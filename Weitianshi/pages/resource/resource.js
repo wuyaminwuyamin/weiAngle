@@ -184,10 +184,8 @@ Page({
           // console.log(res)
         }
       })
-    }
-
+    } 
     if (current == 1) {
-
       //载入寻找项目数据
       wx.request({
         url: 'https://www.weitianshi.com.cn/api/investors/getMatchProjects',
@@ -196,7 +194,7 @@ Page({
         },
         method: 'POST',
         success: function (res) {
-          // console.log(res);
+          console.log(res);
           // var scale=4;
           if (res.data.status_code !== 440004) {
             var yourProject = res.data.data.projects;
@@ -209,9 +207,11 @@ Page({
             //     }
             // }
             // console.log(yourProject);
+            console.log(rel.data.data.investor_id)
             that.setData({
               yourProject: yourProject,
-              hasPublic: 1
+              hasPublic: 1,
+              investor_id:rel.data.data.investor_id
             })
           } else {
             that.setData({
@@ -260,7 +260,8 @@ Page({
             // console.log(yourProject);
             that.setData({
               yourProject: yourProject,
-              hasPublic: 1
+              hasPublic: 1,
+              investor_id:res.data.data.investor_id
             })
           } else {
             that.setData({
@@ -343,16 +344,15 @@ Page({
   },
   //寻找项目触底刷新
   yourPayProject: function () {
-
     wx.showToast({
       title: 'loading...',
       icon: 'loading'
     })
     var that = this;
-    var investor_id = wx.getStorageSync('investor_id');
+    var investor_id = this.data.investor_id;
     var investor_page = this.data.investor_page;
-
-    console.log(user_id)
+    var user_id = wx.getStorageSync('user_id');
+    // console.log(user_id)
     if (user_id != '') {
       investor_page++;
       that.setData({
@@ -368,7 +368,7 @@ Page({
         success: function (res) {
           // console.log(res)
           var newPage = res.data.data;
-          console.log(newPage)
+          // console.log(newPage)
           var yourProject = that.data.yourProject;
           for (var i = 0; i < newPage.length; i++) {
             yourProject.push(newPage[i])

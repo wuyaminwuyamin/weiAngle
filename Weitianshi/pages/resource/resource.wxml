@@ -4,10 +4,6 @@
   <navigator url="resource2" class="nav_btn">需求市场</navigator>
 </view>-->
 
-<!--模版引入demo-->
-
-<!--<import src="../../pages/Template/Template.wxml"/>
-<template is="offer" data="{{text}}"></template>-->
 <view class="swiper-tab">
   <view class="swiper-tab-list swiper-tab-list2 {{currentTab==0 ? 'on' : ''}} my_project" data-current="0" bindtap="swichNav">项目融资</view>
   <view class="swiper-tab-list swiper-tab-list2 {{currentTab==1 ? 'on' : ''}} find_project" data-current="1" bindtap="swichNav">寻找项目</view>

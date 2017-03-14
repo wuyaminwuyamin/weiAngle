@@ -1,7 +1,9 @@
 /* pages/project/project.wxss */
+page{
+  height: 100%;
+}
 
 /*我的项目卡片*/
-
 .weui-media-box {
   padding: 32rpx;
 }
