@@ -1,10 +1,11 @@
 {
   "pages": [
     "pages/resource/resource",
+    "pages/myProject/personInfo",
+    "pages/myProject/companyInfo",
     "pages/payMoney/payMoney",
     "pages/yourProject/yourProject",
     "pages/yourProject/yourDetail",
-    "pages/myProject/personInfo",
     "pages/myProject/myProject",
     "pages/doMain/doMain",
     "pages/payStage/payStage",
@@ -12,8 +13,6 @@
     "pages/selectProject/selectProject",
     "pages/network/network",
     "pages/my/my",
-    "pages/Template/Template",
-    "pages/myProject/companyInfo",
     "pages/myProject/myDetail",
     "pages/others/others",
     "pages/belongArea/belongArea",

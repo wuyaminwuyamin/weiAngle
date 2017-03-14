@@ -1,44 +1,23 @@
-<template name="offer">
-  <view class="_tips">
-    {{text}}
-    111111111
-  </view>
-</template>
 
-
-<template name="myproject">
-  <view class="weui-panel__bd" style="background:white;margin:16px">
-      <view class="weui-media-box weui-media-box_text">
-        <view class="weui-media-box__title weui-media-box__title_in-text">{{item.title}}</view>
-        <view class="sort">
-          <block wx:for="{{item.sort}}" wx:for-item="sort">
-            <view class="weui-media-box__desc">
-              {{sort}}
-            </view>
-          </block>
-        </view>
-        <view class="tips flex">
-          <block wx:for="{{item.tips}}" wx:for-item="tip">
-            <view class="weui-media-box__desc tip">
-              {{tip}}
-            </view>
-          </block>
-        </view>
-        <view class="weui-media-box__info people">
-          <block wx:for="{{item.people}}" wx:for-item="people">
-            <view class="person">
-              <image class="headPic" src="{{people.pic}}" />
-              <view>{{people.name}}</view>
-              <view>{{people.position}}</view>
-            </view>
-          </block>
-        </view>
-        <view class="complete_push">
-          <view class="complete">项目完整度:
-            <view>{{item.complete}}</view>
-          </view>
-          <view class="push_something">一键推送</view>
-        </view>
-      </view>
+<!--多选页面-->
+<template name='multCheckPage'>
+  <view id="doMain">
+    <!--<view class="title">*最多可选择1个</view>-->
+    <view class="context flex">
+      <block wx:for="{{payMoney}}">
+        <label class="tips">
+          <view wx:for-index="idx" bindtap="radioCheck" id="{{item.scale_id}}" data-index="{{index}}" data-value='{{item.scale_money}}' data-check="0" value="{{item.scale_money}}" checked="{{item.checked}}" wx:key="{{item.scale_id}}">
+            <checkbox class="checkbox"></checkbox>
+            {{item.scale_money}}</view>
+        </label>
+      </block>
     </view>
+    <button class="nextBtn" bindtap="certain">
+      确定
+      <image class="rightArrow" src="../../img/rightArrow.png"></image>
+    </button>
+
+    <!--错误提示-->
+    <view class="error" wx:if="{{error=='1'}}">{{error_text}}</view>
+  </view>
 </template>

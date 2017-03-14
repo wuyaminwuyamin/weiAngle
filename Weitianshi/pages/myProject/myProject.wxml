@@ -36,7 +36,7 @@
   <view class="card">
     <view class="text">所在地区*</view>
     <navigator url="../belongArea/belongArea?current=0" id="belongArea">
-      <view class="slect flex" bindtap="belongArea">
+      <view id="belongArea" class="slect flex" bindtap="belongArea">
         <view class="{{belongArea =='选择城市' ? '':'checkOn'}}">{{belongArea}}</view>
         <image class="downArrow" src="../../img/downArrow.png"></image>
       </view>
@@ -52,9 +52,9 @@
   <view class="card card_tips">
     <view class="text">是否独家*</view>
     <view class="flex">
-      <view class="tips {{tips_index==1 ? 'tips_on' : ''}}" bindtap="tipsOn" data-tips="1">独家签约</view>
-      <view class="tips {{tips_index==2 ? 'tips_on' : ''}}" bindtap="tipsOn" data-tips="2">非独家</view>
-      <view class="tips {{tips_index==0 ? 'tips_on' : ''}}" bindtap="tipsOn" data-tips="0">其他</view>
+      <view class="tips {{tips_index==1 ? 'tips_on' : ''}}" id="tips1" bindtap="tipsOn" data-tips="1">独家签约</view>
+      <view class="tips {{tips_index==2 ? 'tips_on' : ''}}" id="tips2" bindtap="tipsOn" data-tips="2">非独家</view>
+      <view class="tips {{tips_index==0 ? 'tips_on' : ''}}" id="tips3" bindtap="tipsOn" data-tips="0">其他</view>
     </view>
   </view>
   <!--<view class="bp flex">

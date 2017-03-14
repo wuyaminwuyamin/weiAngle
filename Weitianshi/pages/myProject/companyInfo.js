@@ -1,4 +1,5 @@
-// var util=require('../../utils/util.js')
+
+var rqj = require('../Template/Template.js')
 Page({
     data: {
         company: "",
@@ -121,7 +122,7 @@ Page({
                         wx.switchTab({
                             url: "../../pages/resource/resource"
                         });
-                    } else {
+                    } else {   
 
                     }
                 },
@@ -135,17 +136,11 @@ Page({
                 error: '1'
             });
             if (company == '') {
-                that.setData({
-                    error_text: '公司不能为空'
-                })
+                rqj.errorHide(that,"公司不能为空",1500)
             } else if (position == '') {
-                that.setData({
-                    error_text: '职位不能为空'
-                })
+               rqj.errorHide(that,"职位不能为空",1500)
             } else {
-                that.setData({
-                    error_text: '请输入正确的邮箱'
-                })
+               rqj.errorHide(that,"请正确填写邮箱",1500)
             }
 
         }
