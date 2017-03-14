@@ -1,0 +1,343 @@
+@import "../../weui.wxss";
+page{
+  height: 100%;
+}
+view {
+  font-size: 28rpx;
+  color: #333;
+}
+
+/*头部*/
+
+.r_nav {
+  display: flex;
+  text-align: center;
+  align-items: baseline;
+  background: white;
+}
+
+.r_nav .nav_btn {
+  color: #999;
+  /*width: 106rpx;*/
+  height: 46rpx;
+  font-size: 30rpx;
+  line-height: 46rpx;
+  margin-top: 26rpx;
+  margin-bottom: 24rpx;
+}
+
+.r_nav  .nav_on {
+  /*border: 1rpx solid #333;
+border-radius: 100rpx;*/
+  color: #333;
+}
+
+.r_nav .nav_btn:first-child {
+  margin-left: 224rpx;
+}
+
+.r_nav .nav_btn:nth-child(2) {
+  margin-left: 94rpx;
+}
+
+.r_nav .nav_email {
+  background: red;
+  width: 40rpx;
+  height: 30rpx;
+  margin-left: 160rpx;
+}
+
+/*三个选项卡*/
+
+.swiper-tab {
+  background: white;
+  display: flex;
+}
+
+.swiper-tab {
+  width: 100%;
+  text-align: center;
+  line-height: 68rpx;
+}
+
+.swiper-tab-list {
+  font-size: 24rpx;
+  display: inline-block;
+  width: 17%;
+  color: #ccc;
+  margin: 24rpx 8%;
+}
+
+.on {
+  color: #333;
+  border-bottom: 5rpx solid #333;
+  text-align: center;
+}
+
+.swiper-box {
+  display: block;
+  height: 100%;
+  width: 100%;
+  overflow: hidden;
+}
+
+.swiper-box view {
+  text-align: center;
+}
+
+/*发布按钮*/
+
+.publish {
+  margin: 32rpx;
+  background: white;
+  border-radius: 52rpx;
+  padding: 24rpx 0;
+}
+
+.publish view {
+  display: block;
+  margin: auto;
+}
+
+.publish view:first-child {
+  font-size: 28rpx;
+  padding-bottom: 8rpx;
+}
+
+.publish view:nth-child(2) {
+  font-size: 20rpx;
+}
+
+/*推送成功*/
+
+.success {
+  position: absolute;
+  bottom: 5%;
+  left: 50%;
+  transform: translateX(-50%);
+  padding: 5px 10px;
+  background: greenyellow;
+  border-radius: 5px;
+}
+
+/*通用卡片调整
+weui-panel__bd{
+  margin: 32rpx;
+  background: white;
+}*/
+
+/*我的项目卡片*/
+
+.weui-media-box {
+  padding: 32rpx;
+}
+
+.weui-media-box__desc {
+  font-size: 24rpx;
+  color: #666;
+  border-right: 1px solid #e0e0e0;
+  padding: 0 16rpx;
+}
+
+.weui-media-box__info .publish {
+  border: 1px #777 solid;
+  width: 6em;
+  padding: 3px 0;
+  display: inline-block;
+}
+
+.weui-media-box__title_in-text {
+  white-space: nowrap;
+  display: block;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  font-size: 28rpx;
+  text-align: left;
+}
+
+.sort {
+  display: flex;
+}
+
+.people {
+  display: flex;
+}
+
+.person {
+  width: 25%;
+}
+
+.person view:nth-child(2) {
+  font-size: 20rpx;
+  color: #666;
+  padding-top:8rpx;
+}
+
+.person view:nth-child(3) {
+  font-size: 20rpx;
+  color: #999;
+}
+
+.complete_push {
+  display: flex;
+  padding-top: 32rpx;
+  justify-content: space-between;
+  align-items: baseline;
+}
+
+.complete {
+  font-size: 20rpx;
+  color: #999;
+}
+
+.complete view {
+  display: inline-block;
+  color: red;
+  font-size: 20rpx;
+}
+
+.push_something {
+  font-size: 20rpx;
+  color: white;
+  background: #40587a;
+  padding: 14rpx 20rpx;
+  border-radius: 100rpx;
+}
+
+.tip {
+  border: 1px solid #e0e0e0;
+  border-radius: 49px;
+  font-size: 20rpx;
+  padding: 4rpx 15rpx;
+  margin-right: 12rpx;
+  margin-top: 20rpx;
+  line-height: 32rpx;
+  color: #999;
+}
+
+.headPic {
+  width: 120rpx;
+  height: 120rpx;
+  display: inline-block;
+  text-align: center;
+  border-radius: 50%;
+}
+
+.weui-media-box__desc:last-child {
+  border: none;
+}
+
+.weui-media-box__desc:first-child {
+  padding-left: 0;
+}
+
+.tip:last-child {
+  border: 1px solid #e0e0e0;
+}
+
+/*others的卡片*/
+
+.others_pic {
+  width: 60rpx;
+  height: 60rpx;
+  display: block;
+}
+
+.others .weui-cell__bd view {
+  text-align: left;
+}
+
+.others .weui-cell__bd .others_name {
+  font-size: 28rpx;
+  color: #333;
+  line-height: 28rpx;
+}
+
+.ohters_position {
+  font-size: 24rpx;
+  color: #666;
+  padding-left: 16rpx;
+}
+
+.others .weui-cell__bd .others_company {
+  font-size: 20rpx;
+  color: #999;
+}
+
+.others_tips {
+  border: 1px solid #333;
+  border-radius: 8rpx;
+  padding: 5rpx 11rpx;
+  font-size: 20rpx;
+  border-color: #ccc;
+  color: #ccc;
+}
+
+.others_tips_on {
+  border: 1px solid #333;
+  color: #333;
+}
+
+.offer_search {
+  display: block;
+  background: white;
+  margin: 32rpx;
+  margin-top: 0;
+  padding-bottom: 32rpx;
+}
+
+.offer, .search {
+  align-items: baseline;
+}
+
+.search {
+  margin-top: 32rpx;
+}
+
+.offer view:first-child {
+  padding-left: 32rpx;
+  font-size: 24rpx;
+}
+
+.search view:first-child {
+  padding-left: 32rpx;
+  font-size: 24rpx;
+}
+
+.others_tips {
+  margin-left: 24rpx;
+  font-size: 20rpx;
+}
+
+.others_nopic {
+  font-size: 64rpx;
+  color: #40587a;
+  background: #f2f2f2;
+  border-radius: 50%;
+  line-height: 120rpx;
+}
+
+
+/*本页面调整*/
+.swiper-tab-list2{
+  font-size: 24rpx;
+  display: inline-block;
+  width: 34%;
+  margin: 24rpx 8%;
+}
+
+.foryou{
+    border: none;
+    font-size: 20rpx;
+    color: #666;
+    padding-top: 24rpx;
+   
+}
+.foryou2{
+  font-size: 24rpx;
+  margin-bottom: -8rpx;
+}
+.findTips{
+  font-size: 20rpx;
+  color: #999;
+}

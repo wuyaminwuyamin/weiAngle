@@ -1,0 +1,77 @@
+<!--<view class="title">
+  您的项目会推送给匹配的投资人,去电脑上创建更方面
+</view>-->
+<view id="myProject">
+  <view class="card">
+    <view class="text">项目介绍*</view>
+    <textarea placeholder="一句话介绍,30字以内." placeholder-style='color:#ccc' bindblur="bindTextAreaBlur" maxlength="30" value="{{describe}}" />
+  </view>
+  <view class="card">
+    <view class="text">所属领域*</view>
+    <navigator url="../../pages/doMain/doMain?current=0" id="domain">
+      <view class="slect flex">
+        <view class="{{domainValue =='选择领域' ? '':'checkOn'}}">{{domainValue}}</view>
+        <image class="downArrow" src="../../img/downArrow.png"></image>
+      </view>
+    </navigator>
+  </view>
+  <view class="card">
+    <view class="text">项目阶段*</view>
+    <picker id="stage" bindchange="stage" value="{{stage_index}}" range="{{stage_arry}}">
+      <view class="slect flex">
+        <view class="{{stage_index ==0 ? '' : 'checkOn'}}">{{stage[stage_index].stage_name}}</view>
+        <image class="downArrow" src="../../img/downArrow.png"></image>
+      </view>
+    </picker>
+  </view>
+  <view class="card">
+    <view class="text">期望融资*</view>
+    <picker id="expect" bindchange="expect" value="{{expect_index}}" range="{{expect_arry}}">
+      <view class="slect flex">
+        <view class="{{expect_index ==0 ? '' : 'checkOn'}}">{{expect[expect_index].scale_money}}</view>
+        <image class="downArrow" src="../../img/downArrow.png"></image>
+      </view>
+    </picker>
+  </view>
+  <view class="card">
+    <view class="text">所在地区*</view>
+    <navigator url="../belongArea/belongArea?current=0" id="belongArea">
+      <view class="slect flex" bindtap="belongArea">
+        <view class="{{belongArea =='选择城市' ? '':'checkOn'}}">{{belongArea}}</view>
+        <image class="downArrow" src="../../img/downArrow.png"></image>
+      </view>
+    </navigator>
+
+    <!--<picker class="card" bindchange="area" id="area" value="{{index}}" range="{{[1,2,3,4,5]}}">
+      <view class="slect flex">
+        <view>{{area}}</view>
+        <image class="downArrow"></image>
+      </view>
+    </picker>-->
+  </view>
+  <view class="card card_tips">
+    <view class="text">是否独家*</view>
+    <view class="flex">
+      <view class="tips {{tips_index==1 ? 'tips_on' : ''}}" bindtap="tipsOn" data-tips="1">独家签约</view>
+      <view class="tips {{tips_index==2 ? 'tips_on' : ''}}" bindtap="tipsOn" data-tips="2">非独家</view>
+      <view class="tips {{tips_index==0 ? 'tips_on' : ''}}" bindtap="tipsOn" data-tips="0">其他</view>
+    </view>
+  </view>
+  <!--<view class="bp flex">
+    <view>项目计划书</view>
+    <view class="bpBtn">去PC上传</view>
+  </view>-->
+  <button class="nextBtn" bindtap="public">
+    发布项目
+    <image class="rightArrow" src="../../img/rightArrow.png"></image>
+  </button>
+
+  <!--错语提示-->
+  <view class="error" wx:if="{{error=='1'}}">{{error_text}}</view>
+
+  <!--加载更多-->
+  <view class="weui-loadmore" wx:if="{{loading=='1'}}">
+    <view class="weui-loading"></view>
+    <view class="weui-loadmore__tips">正在加载</view>
+  </view>
+</view>

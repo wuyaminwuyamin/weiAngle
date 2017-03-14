@@ -1,0 +1,136 @@
+/* pages/project/project.wxss */
+
+/*我的项目卡片*/
+
+.weui-media-box {
+  padding: 32rpx;
+}
+
+.weui-media-box__desc {
+  font-size: 24rpx;
+  color: #666;
+  border-right: 1px solid #e0e0e0;
+  padding: 0 16rpx;
+}
+
+.weui-media-box__info .publish {
+  border: 1px #777 solid;
+  width: 6em;
+  padding: 3px 0;
+  display: inline-block;
+}
+
+.weui-media-box__title_in-text {
+  white-space: nowrap;
+  display: block;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  font-size: 28rpx;
+  text-align: left;
+}
+
+.sort {
+  display: flex;
+}
+
+.people {
+  display: flex;
+}
+
+.person {
+  width: 25%;
+}
+
+.person view:nth-child(2) {
+  font-size: 20rpx;
+  color: #666;
+  padding-top: 8rpx;
+}
+
+.person view:nth-child(3) {
+  font-size: 20rpx;
+  color: #999;
+}
+
+.complete_push {
+  display: flex;
+  padding-top: 32rpx;
+  justify-content: space-between;
+  align-items: baseline;
+}
+
+.complete {
+  font-size: 20rpx;
+  color: #999;
+}
+
+.complete view {
+  display: inline-block;
+  color: red;
+  font-size: 20rpx;
+}
+
+.push_something {
+  font-size: 20rpx;
+  color: white;
+  background: #40587a;
+  padding: 14rpx 20rpx;
+  border-radius: 100rpx;
+}
+
+.tip {
+  border: 1px solid #e0e0e0;
+  border-radius: 49px;
+  font-size: 20rpx;
+  padding: 4rpx 15rpx;
+  margin-right: 12rpx;
+  margin-top: 20rpx;
+  line-height: 32rpx;
+  color: #999;
+}
+
+.headPic {
+  width: 120rpx;
+  height: 120rpx;
+  display: inline-block;
+  text-align: center;
+  border-radius: 50%;
+}
+
+.weui-media-box__desc:last-child {
+  border: none;
+}
+
+.weui-media-box__desc:first-child {
+  padding-left: 0;
+}
+
+.tip:last-child {
+  border: 1px solid #e0e0e0;
+}
+
+.weui-panel__bd {
+  margin: 32rpx;
+  margin-bottom: 0;
+  background: white;
+}
+
+.weui-cell {
+  margin: 32rpx;
+  margin-top: 0;
+  background: white;
+  margin-bottom: 0;
+  border-radius: 4px 4px 0 0;
+  padding-top: 0;
+}
+
+.others_company {
+  justify-content: space-between;
+}
+
+.theOne {
+  background: #40587a;
+  color: white;
+  text-align: center;
+  margin-right: 0;
+}

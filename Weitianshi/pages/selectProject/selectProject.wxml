@@ -1,0 +1,70 @@
+<scroll-view style="height:100%;" scroll-y="true" bindscrolltolower='loadMore'>
+
+  <!--已匹配的项目-->
+  <view class="others">
+    <block wx:for="{{slectProject}}" wx:key="{{pro_id}}" wx:for-item="myProject">
+      <view class="weui-panel__bd">
+        <view class="weui-media-box weui-media-box_text" data-id='{{myProject.pro_id}}' data-index="{{index}}" bindtap="detail">
+          <view class="weui-media-box__title weui-media-box__title_in-text" style="text-align:left;">{{myProject.pro_intro}}</view>
+          <view class="sort">
+            <block wx:for="{{myProject.pro_industry}}" wx:for-item="sort" wx:key="*this">
+              <view class="weui-media-box__desc">
+                {{sort.industry_name}}
+              </view>
+            </block>
+          </view>
+
+          <!--项目阶段｜项目地区｜项目金额-->
+          <view class="tips flex">
+            <view style="width:1px"></view>
+            <view class="weui-media-box__desc tip" wx:if="{{myProject.pro_stage}}">{{myProject.pro_stage}}</view>
+            <view class="weui-media-box__desc tip" wx:if="{{myProject.pro_area}}">{{myProject.pro_area}}</view>
+            <view class="weui-media-box__desc tip" wx:if="{{myProject.pro_scale}}">{{myProject.pro_scale}}</view>
+          </view>
+
+          <!--<view class="weui-media-box__info people">
+              <block wx:for="{{myProject.match_investors}}" wx:for-item="match_investors" wx:key="investor_id">
+                <view class="person" data-id="{{match_investors.investor_id}}">
+                  <image class="headPic" wx:if="{{match_investors.investor_logo_url}}" src="{{match_investors.investor_logo_url}}" />
+                  <view class="headPic others_nopic" wx:if="{{!match_investors.investor_logo_url}}">{{match_investors.investor_logo_text}}</view>
+                  <view>{{match_investors.investor_name}}</view>
+                  <view>{{match_investors.investor_career}}</view>
+                </view>
+              </block>
+            </view>-->
+
+          <!--<view class="complete_push">
+            <view class="complete">项目完整度:
+              <view>40%</view>
+            </view>
+            <view class="push_something">一键推送</view>
+          </view>-->
+        </view>
+      </view>
+
+      <!--名片-->
+      <view class="weui-cell">
+        <view class="weui-cell__hd" style="position: relative;margin-right: 10px;">
+          <image wx:if="{{myProject.user_avatar_url}}" class="others_pic" src="{{myProject.user_avatar_url}}" />
+          <view wx:if="{{!myProject.user_avatar_url}}" class="others_nopic">代</view>
+        </view>
+        <view class="weui-cell__bd">
+          <view class="flex" style="align-items: baseline;">
+            <view class="others_name">{{myProject.user_name}}</view>
+            <view class="others_email">{{myProject.user_email}}</view>
+          </view>
+          <view class="others_company flex">
+           {{myProject.user_company}} | {{myProject.user_career}}
+          <view class='theOne exclusive'>精选项目</view>
+          </view>
+
+          <!--<view class="ohters_position"></view>-->
+        </view>
+      </view>
+    </block>
+  </view>
+
+  <!--空状态-->
+  <image class="empty" src="../../img/empty.png" wx:if="{{myProject==''}}"></image>
+
+</scroll-view>

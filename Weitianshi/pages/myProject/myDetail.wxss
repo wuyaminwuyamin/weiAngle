@@ -1,0 +1,289 @@
+page {
+  background: white;
+  height: 100%;
+}
+
+scroll-view {
+  height: 93%;
+}
+
+/*我的项目卡片*/
+
+.on {
+  color: #ccc;
+  border-bottom: 5rpx solid #333;
+  text-align: center;
+}
+
+.swiper-box {
+  display: block;
+  height: 100%;
+  width: 100%;
+  overflow: hidden;
+}
+
+.swiper-box view {
+  text-align: center;
+}
+
+/*发布按钮*/
+
+.publish {
+  margin: 32rpx;
+  background: white;
+  border-radius: 52rpx;
+  padding: 24rpx 0;
+}
+
+.publish view {
+  display: block;
+  margin: auto;
+}
+
+.publish view:first-child {
+  font-size: 28rpx;
+  padding-bottom: 8rpx;
+}
+
+.publish view:nth-child(2) {
+  font-size: 20rpx;
+}
+
+.weui-media-box {
+  padding: 32rpx;
+}
+
+.weui-media-box__desc {
+  font-size: 24rpx;
+  color: #666;
+  border-right: 1px solid #e0e0e0;
+  padding: 0 8rpx;
+}
+
+.weui-media-box__desc:last-child {
+  border: none;
+}
+
+.weui-media-box__desc:first-child {
+  padding-left: 0;
+}
+
+.weui-media-box__info .publish {
+  border: 1px #777 solid;
+  width: 6em;
+  padding: 3px 0;
+  display: inline-block;
+}
+
+.box__title_in-text {
+  font-size: 28rpx;
+  text-align: left;
+  padding-bottom: 18rpx;
+}
+
+.theOne {
+  background: #40587a;
+  color: white;
+  display: inline-block;
+  width: 5em;
+  text-align: center;
+}
+
+.sort {
+  display: flex;
+}
+
+.tip {
+  border: 1px solid #e0e0e0;
+  border-radius: 49px;
+  font-size: 20rpx;
+  padding: 4rpx 15rpx;
+  margin-right: 12rpx;
+  margin-top: 20rpx;
+  color: #999;
+}
+
+.tip:last-child {
+  border: 1px solid #e0e0e0;
+}
+
+.tips {
+  justify-content: space-between;
+}
+
+/*others的卡片*/
+
+.others_pic {
+  width: 60rpx;
+  height: 60rpx;
+  display: block;
+}
+
+.others .weui-cell__bd view {
+  text-align: left;
+}
+
+.others_name {
+  font-size: 32rpx;
+  color: #333;
+  line-height: 32rpx;
+  padding-bottom: 24rpx;
+}
+
+.ohters_position {
+  display: block;
+  font-size: 24rpx;
+  color: #666;
+}
+
+.others_company {
+  font-size: 24rpx;
+  color: #666;
+  padding-bottom: 16rpx;
+}
+
+.others_email {
+  font-size: 24rpx;
+  color: #333;
+  padding-left: 16rpx;
+}
+
+.others_tips {
+  border: 1px solid #333;
+  border-radius: 8rpx;
+  padding: 5rpx 11rpx;
+  font-size: 20rpx;
+  border-color: #ccc;
+  color: #ccc;
+}
+
+.others_tips_on {
+  border: 1px solid #333;
+  color: #333;
+}
+
+.offer_search {
+  display: block;
+  background: white;
+  margin: 32rpx;
+  margin-top: 0;
+  padding-bottom: 32rpx;
+}
+
+.offer, .search {
+  align-items: baseline;
+}
+
+.search {
+  margin-top: 32rpx;
+}
+
+.offer view:first-child {
+  padding-left: 32rpx;
+  font-size: 24rpx;
+}
+
+.search view:first-child {
+  padding-left: 32rpx;
+  font-size: 24rpx;
+}
+
+.others_tips {
+  margin-left: 24rpx;
+  font-size: 20rpx;
+}
+
+/*当前页面的修改*/
+
+.greatPoint {
+  font-size: 20rpx;
+  color: #666;
+  padding-top: 32rpx;
+}
+
+.weui-media-box {
+  background: white;
+}
+
+.greyFrame {
+  padding: 32rpx;
+  /*padding-top: 0;*/
+  background: #f3f4f8;
+}
+
+.complete {
+  font-size: 20rpx;
+  color: #999;
+  padding-top: 32rpx;
+  padding-bottom: 16rpx;
+}
+
+.floatBtn {
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+}
+
+.floatBtn button {
+  width: 100%;
+  justify-content: center;
+  color: white;
+  border-radius: 0;
+}
+
+.edit {
+  background: #40587a;
+}
+
+.detail {
+  padding: 0 32rpx;
+}
+
+.grey {
+  padding: 32rpx 0;
+  font-size: 24rpx;
+  color: #ccc;
+  padding-bottom: 0;
+}
+
+.item1 {
+  padding: 32rpx 0;
+  font-size: 24rpx;
+  color: #333;
+}
+
+.item2 {
+  text-align: center;
+  color: #333;
+  font-size: 28rpx;
+  padding: 30rpx 32rpx;
+  border: 1px solid #e0e0e0;
+  border-radius: 4px;
+  margin-bottom: 16rpx;
+}
+
+.sort_item {
+  margin-bottom: 32rpx;
+}
+
+/*头像*/
+
+.others_pic {
+  width: 120rpx;
+  height: 120rpx;
+  display: inline-block;
+  text-align: center;
+  border-radius: 50%;
+}
+
+.others_nopic {
+  font-size: 64rpx;
+  color: #40587a;
+  background: #f2f2f2;
+  padding: 28rpx 40rpx;
+  border-radius: 50%;
+}
+
+.load {
+  text-align: center;
+}

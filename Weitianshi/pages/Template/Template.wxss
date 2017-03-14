@@ -1,0 +1,9 @@
+._tips{
+  border:1px solid #333;
+  border-radius: 8rpx;
+  padding:5rpx 11rpx; 
+}
+._tips_on{
+  border: 1px solid #333;
+  color: #333;
+}

@@ -1,0 +1,13 @@
+
+<!--错误提示模版-->
+<template name='error'>
+  <view class="error" wx:if="{{error=='1'}}">{{error_text}}</view>
+</template>
+<!--错误提示-->
+<view class="error" wx:if="{{error=='1'}}">{{error_text}}</view>
+
+<!--加载更多-->
+<view class="weui-loadmore" wx:if="{{loading=='1'}}">
+  <view class="weui-loading"></view>
+  <view class="weui-loadmore__tips">正在加载</view>
+</view>

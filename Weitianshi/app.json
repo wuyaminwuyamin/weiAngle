@@ -1,0 +1,59 @@
+{
+  "pages": [
+    "pages/resource/resource",
+    "pages/payMoney/payMoney",
+    "pages/yourProject/yourProject",
+    "pages/yourProject/yourDetail",
+    "pages/myProject/personInfo",
+    "pages/myProject/myProject",
+    "pages/doMain/doMain",
+    "pages/payStage/payStage",
+    "pages/resource/resource2",
+    "pages/selectProject/selectProject",
+    "pages/people/people",
+    "pages/my/my",
+    "pages/Template/Template",
+    "pages/myProject/companyInfo",
+    "pages/myProject/myDetail",
+    "pages/others/others",
+    "pages/belongArea/belongArea",
+    "pages/payArea/payArea",
+    "pages/test/test"
+  ],
+  "window": {
+    "navigationBarBackgroundColor": "#fff",
+    "navigationBarTitleText": "WeChat",
+    "navigationBarTextStyle": "black",
+    "enablePullDownRefresh": true,
+    "backgroundTextStyle": "dark"
+  },
+  "tabBar": {
+    "list": [
+      {
+        "iconPath": "img/resource.png",
+        "selectedIconPath": "img/resourceOn.png",
+        "pagePath": "pages/resource/resource",
+        "text": "对接"
+      },
+      {
+        "iconPath": "img/project.png",
+        "selectedIconPath": "img/projectOn.png",
+        "pagePath": "pages/selectProject/selectProject",
+        "text": "项目"
+      },
+      {
+        "iconPath": "img/people.png",
+        "selectedIconPath": "img/peopleOn.png",
+        "pagePath": "pages/people/people",
+        "text": "人脉"
+      },
+      {
+        "iconPath": "img/my.png",
+        "selectedIconPath": "img/myOn.png",
+        "pagePath": "pages/my/my",
+        "text": "我的"
+      }
+    ],
+    "selectedColor": "black"
+  }
+}

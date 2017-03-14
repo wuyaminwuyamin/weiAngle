@@ -1,0 +1,20 @@
+<view id="doMain">
+
+  <!--<view class="title">*最多可选择1个</view>-->
+  <view class="context flex">
+    <block wx:for="{{payMoney}}">
+      <label class="tips">
+        <view wx:for-index="idx" bindtap="radioCheck" id="{{item.scale_id}}" data-index="{{index}}" data-value='{{item.scale_money}}' data-check="0" value="{{item.scale_money}}" checked="{{item.checked}}" wx:key="{{item.scale_id}}">
+          <checkbox class="checkbox"></checkbox>
+          {{item.scale_money}}</view>
+      </label>
+    </block>
+  </view>
+  <button class="nextBtn" bindtap="certain">
+    确定
+    <image class="rightArrow" src="../../img/rightArrow.png"></image>
+  </button>
+
+  <!--错误提示-->
+  <view class="error" wx:if="{{error=='1'}}">{{error_text}}</view>
+</view>

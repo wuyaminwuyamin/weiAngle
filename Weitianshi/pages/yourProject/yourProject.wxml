@@ -1,0 +1,81 @@
+
+<!--<view class="title">
+  您的项目会推送给匹配的投资人,去电脑上创建更方面
+</view>-->
+<view id="myProject">
+  <view class="card">
+    <view class="text">投资领域*</view>
+    <navigator url="../../pages/doMain/doMain?current=1" id="domain">
+      <view class="slect flex">
+        <view class="{{domainValue =='选择领域' ? '':'checkOn'}}">{{domainValue}}</view>
+        <image class="downArrow" src="../../img/downArrow.png"></image>
+      </view>
+    </navigator>
+  </view>
+  <view class="card">
+    <view class="text">投资阶段*</view>
+    <navigator url="../../pages/payStage/payStage" id="payStage">
+      <view class="slect flex">
+        <view class="{{payStage =='选择阶段' ? '':'checkOn'}}">{{payStage}}</view>
+        <image class="downArrow" src="../../img/downArrow.png"></image>
+      </view>
+    </navigator>
+  </view>
+
+  <!--投资金额-->
+  <!--<view class="card">
+    <view class="text">投资金额*</view>
+    <picker id="expect" bindchange="expect" value="{{expect_index}}" range="{{expect_arry}}">
+      <view class="slect flex" wx:if="{{picker}}">
+        <view class="{{expect[expect_index].scale_money=='选择金额' ? '':'checkOn'}}">{{expect[expect_index].scale_money}}</view>
+        <image class="downArrow" src="../../img/downArrow.png"></image>
+      </view>
+       <view class="slect flex" wx:else>
+        <view class="checkOn">{{initPayMoney}}</view>
+        <image class="downArrow" src="../../img/downArrow.png"></image>
+      </view>
+    </picker>
+  </view>-->
+
+  <view class="card">
+    <view class="text">投资金额*</view>
+    <navigator url="../../pages/payMoney/payMoney" id="payMoney">
+      <view class="slect flex">
+        <view class="{{payMoney =='选择金额' ? '':'checkOn'}}">{{payMoney}}</view>
+        <image class="downArrow" src="../../img/downArrow.png"></image>
+      </view>
+    </navigator>
+  </view>
+
+  <view class="card">
+    <view class="text">投资地区*</view>
+    <navigator url="../../pages/payArea/payArea" id="payArea">
+      <view class="slect flex">
+        <view class="{{payArea =='选择城市' ? '':'checkOn'}}">{{payArea}}</view>
+        <image class="downArrow" src="../../img/downArrow.png"></image>
+      </view>
+    </navigator>
+  </view>
+  <view class="card">
+    <view class="text">具体描述(非必填)</view>
+    <textarea placeholder="其他需求的描述,如:阿里系的创业团队我更亲睐" placeholder-style='color:#ccc;' bindblur="bindTextAreaBlur" maxlength="30" value="{{describe}}" />
+  </view>
+
+  <!--<view class="bp flex">
+    <view>项目计划书</view>
+    <view class="bpBtn">去PC上传</view>
+  </view>-->
+  <button class="nextBtn" bindtap="public">
+    发布需求
+    <image class="rightArrow" src="../../img/rightArrow.png"></image>
+  </button>
+
+  <!--错语提示-->
+  <view class="error" wx:if="{{error=='1'}}">{{error_text}}</view>
+
+  <!--加载更多-->
+  <view class="weui-loadmore" wx:if="{{loading=='1'}}">
+    <view class="weui-loading"></view>
+    <view class="weui-loadmore__tips">正在加载</view>
+  </view>
+</view>

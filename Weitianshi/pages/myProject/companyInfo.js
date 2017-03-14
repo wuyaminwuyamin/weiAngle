@@ -1,0 +1,154 @@
+// var util=require('../../utils/util.js')
+Page({
+    data: {
+        company: "",
+        position: "",
+        email: "",
+        result: "1",
+        error: "0",
+        error_text: ''
+    },
+    //onLoad
+    onLoad: function (options) {
+        // console.log("this is onLoad")
+        var that = this;
+        // console.log(options)
+        var company=options.user_company;
+        var position=options.user_career;
+        var email=options.user_email;
+        if(company==null){
+            company=''
+        };
+        if(position==null){
+            position==''
+        };
+        if(email==null){
+            email=''
+        }
+        that.setData({
+            company:company,
+            position:Position,
+            email:email
+        })
+    },
+    //下拉刷新
+    onPullDownRefresh: function () {
+        // console.log("开启了下拉刷新")
+        wx.stopPullDownRefresh()
+    },
+    //公司项的特殊符号过滤和值的双向绑定
+    company: function (e) {
+        var that = this;
+        var pattern = new RegExp("[`~!@#$^&*()=|{}':;',\\[\\].<>/?~！@#￥……&*（）——|{}【】‘；：”“'。，、？]");
+        var rs = "";
+        var company = e.detail.value;
+        // console.log(company)
+        for (var i = 0; i < company.length; i++) {
+            rs = rs + company.substr(i, 1).replace(pattern, '');
+        }
+        that.setData({
+            company: rs
+        })
+    },
+
+    //职位项的特殊符号过滤和值的双向绑定
+    position: function (e) {
+        var that = this;
+        var pattern = new RegExp("[`~!@#$^&*()=|{}':;',\\[\\].<>/?~！@#￥……&*（）——|{}【】‘；：”“'。，、？]");
+        var rs = "";
+        var position = e.detail.value;
+        // console.log(position)
+        for (var i = 0; i < position.length; i++) {
+            rs = rs + position.substr(i, 1).replace(pattern, '');
+        }
+        that.setData({
+            position: rs
+        })
+    },
+
+    //邮箱验证
+    checkEmail: function (e) {
+        var that = this;
+        var temp = e.detail.value;
+        var email = this.data.email;
+        // console.log(temp)
+        var myreg = /^(\w-*\.*)+@(\w-?)+(\.\w{2,})+$/;
+        if (!myreg.test(temp) && temp !== '') {
+            // console.log('请输入有效的E_mail！');
+            that.setData({
+                result: "0"
+            })
+        } else {
+            that.setData({
+                result: "1"
+            })
+        }
+        // console.log(temp);
+        that.setData({
+            email: temp
+        })
+    },
+
+    //点击跳转
+    backHome: function () {
+        var that = this;
+        var company = this.data.company;
+        var position = this.data.position;
+        var result = this.data.result;
+        var error = this.data.error;
+        var error_text = this.data.error_text;
+        var email = this.data.email;
+        var user_id = wx.getStorageSync('user_id');
+        // console.log(typeof user_id, user_id);
+        // console.log(company);
+        // console.log(position);
+        // console.log(result);
+
+        if (result == "1" && company !== "" && position !== "") {
+            //向后台发送公司信息
+            wx.request({
+                url: 'https://www.weitianshi.com.cn/api/wx/updateUser',
+                data: {
+                    user_id: user_id,
+                    user_company_name: company,
+                    user_company_career: position,
+                    user_email: email
+                },
+                method: 'POST',
+                success: function (res) {
+                    // console.log(res)
+                    if (res.data.status_code == 2000000) {
+                        wx.switchTab({
+                            url: "../../pages/resource/resource"
+                        });
+                    } else {
+
+                    }
+                },
+            })
+            //取消错误提示
+            that.setData({
+                error: '0'
+            })
+        } else {
+            that.setData({
+                error: '1'
+            });
+            if (company == '') {
+                that.setData({
+                    error_text: '公司不能为空'
+                })
+            } else if (position == '') {
+                that.setData({
+                    error_text: '职位不能为空'
+                })
+            } else {
+                that.setData({
+                    error_text: '请输入正确的邮箱'
+                })
+            }
+
+        }
+
+    }
+});

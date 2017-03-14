@@ -1,0 +1,18 @@
+
+<!--pages/test/test.wxml-->
+<view class="table">
+  <view class="tr bg-th">
+    <block wx:for="{{table.title}}" wx:key="{{code}}">
+      <view class="th">{{item}}</view>
+    </block>
+  </view>
+  <block wx:for="{{table.listData}}" wx:key="{{code}}">
+    <view class="tr {{index % 2 == 0?'bg-td':''}}">
+      <view class="td">{{item.date}}</view>
+      <view class="td">{{item.name}}</view>
+      <view class="td">{{item.Shift}}</view>
+      <view class="td">{{item.time}}</view>
+      <view class="td">{{item.type}}</view>
+    </view>
+  </block>
+</view>
