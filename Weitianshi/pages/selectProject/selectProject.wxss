@@ -128,9 +128,23 @@
   justify-content: space-between;
 }
 
-.theOne {
+.others .others_company  .theOne {
   background: #40587a;
   color: white;
   text-align: center;
   margin-right: 0;
+  width: 105rpx;
+  height: 26rpx;
+  line-height: 26rpx;
+
+}
+.others_nopic {
+  font-size: 64rpx;
+  color: #40587a;
+  background: #f2f2f2;
+  width: 120rpx;
+  height: 120rpx;
+  line-height: 120rpx;
+  border-radius: 50%;
+  text-align: center;
 }

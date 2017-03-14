@@ -49,7 +49,7 @@ Page({
       url: 'https://www.weitianshi.com.cn/api/project/getSelectedProjects',
       data: {
         user_id: user_id,
-        page:page
+        page: page
       },
       method: 'POST',
       success: function (res) {
@@ -63,10 +63,17 @@ Page({
   },
 
   //项目详情
-  detail:function(e){
+  detail: function (e) {
     var thisData = e.currentTarget.dataset;
     wx.navigateTo({
       url: '../yourProject/yourDetail?id=' + thisData.id
     })
+  },
+   //分享当前页面
+  onShareAppMessage: function () {
+    return {
+      title: '来微天使找优质项目',
+      path: '/pages/selectProject/selectProject'
+    }
   }
 })

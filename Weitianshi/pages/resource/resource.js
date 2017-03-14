@@ -196,7 +196,7 @@ Page({
         },
         method: 'POST',
         success: function (res) {
-          console.log(res);
+          // console.log(res);
           // var scale=4;
           if (res.data.status_code !== 440004) {
             var yourProject = res.data.data.projects;
@@ -213,13 +213,11 @@ Page({
               yourProject: yourProject,
               hasPublic: 1
             })
-            console.log(that.data.hasPublic)
           } else {
             that.setData({
               hasPublic: 0
             })
           }
-          console.log(that.data.hasPublic)
         }
       })
 
@@ -247,7 +245,7 @@ Page({
         },
         method: 'POST',
         success: function (res) {
-          console.log(res);
+          // console.log(res);
           // var scale=4;
           if (res.data.status_code !== 440004) {
             var yourProject = res.data.data.projects;
@@ -262,11 +260,11 @@ Page({
             // console.log(yourProject);
             that.setData({
               yourProject: yourProject,
-              hasPublic:1
+              hasPublic: 1
             })
-          }else{
+          } else {
             that.setData({
-               hasPublic:0
+              hasPublic: 0
             })
           }
         }
@@ -345,6 +343,7 @@ Page({
   },
   //寻找项目触底刷新
   yourPayProject: function () {
+
     wx.showToast({
       title: 'loading...',
       icon: 'loading'
@@ -352,7 +351,9 @@ Page({
     var that = this;
     var investor_id = wx.getStorageSync('investor_id');
     var investor_page = this.data.investor_page;
-    if (investor_id !== '') {
+
+    console.log(user_id)
+    if (user_id != '') {
       investor_page++;
       that.setData({
         investor_page: investor_page
@@ -362,11 +363,10 @@ Page({
         data: {
           investor_id: investor_id,
           page: investor_page,
-          load: 1
         },
         method: 'POST',
         success: function (res) {
-          // console.log(res);
+          // console.log(res)
           var newPage = res.data.data;
           console.log(newPage)
           var yourProject = that.data.yourProject;
@@ -380,13 +380,16 @@ Page({
             title: 'loading...',
             icon: 'loading'
           })
-          setTimeout(function () {
-            that.setData({
-              load: 0
-            })
-          }, 1500)
         }
       })
+    }
+  },
+  //分享当前页面
+  onShareAppMessage: function () {
+    var user_id = wx.getStorageSync('user_id');
+    return {
+      title: '微天使帮您精准对接投融资需求',
+      path: '/pages/resource/resource'
     }
   }
 });

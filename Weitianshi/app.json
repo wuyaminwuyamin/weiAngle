@@ -10,7 +10,7 @@
     "pages/payStage/payStage",
     "pages/resource/resource2",
     "pages/selectProject/selectProject",
-    "pages/people/people",
+    "pages/network/network",
     "pages/my/my",
     "pages/Template/Template",
     "pages/myProject/companyInfo",
@@ -44,7 +44,7 @@
       {
         "iconPath": "img/people.png",
         "selectedIconPath": "img/peopleOn.png",
-        "pagePath": "pages/people/people",
+        "pagePath": "pages/network/network",
         "text": "人脉"
       },
       {

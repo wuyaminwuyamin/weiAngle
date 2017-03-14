@@ -17,7 +17,7 @@ Page({
 
     },
     onLoad: function () {
-        // console.log("this is onLoad")
+        console.log("this is onLoad")
         var user_id = wx.getStorageSync('user_id');
         var that = this;
 
@@ -121,12 +121,11 @@ Page({
     },
     //页面显示
     onShow: function () {
-        // console.log("this is onShow")
+        var that=this;
+        console.log("this is onShow")
         //维护登录状态
         app.checkLogin();
-        var that = this;
         //填入所属领域,项目介绍,所在地区
-        var that = this;
         var domainValue = wx.getStorageSync('y_domainValue') || "选择领域";
         var domainId = wx.getStorageSync('y_domainId');
         var describe = wx.getStorageSync('y_describe');
@@ -195,6 +194,7 @@ Page({
         var user_id = wx.getStorageSync('user_id');
    
         // console.log(user_id, describe, domainId, payMoney, payMoney, payArea, payAreaId, payStage, payStageId)
+        console.log(domainId,payStageId,payMoneyId,payAreaId,describe)
         if (domainValue !== "选择领域" && payMoney != "选择金额" && payArea !== "选择城市" && payStage !== "选择阶段") {
             wx.request({
                 url: 'https://www.weitianshi.com.cn/api/investors/insertInvestor',
@@ -221,6 +221,7 @@ Page({
                     // wx.setStorageSync('y_console_expect', 0)
                     // wx.setStorageSync('y_payArea', "选择城市")
                     // wx.setStorageSync('y_payAreaId', [])
+                    
                     wx.switchTab({
                         url: '../resource/resource'
                     });

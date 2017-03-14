@@ -28,8 +28,8 @@
         <view class="weui-media-box weui-media-box_text">
           <view class=" box__title_in-text">
             {{project.pro_intro}}
-            <view class="theOne exclusive" wx:if="{{project.is_exclusive==-1}}">独家签约</view>
-            <view class="theOne exclusive" wx:if="{{project.is_exclusive!==-1}}">非独家签约</view>
+            <view class="theOne exclusive" wx:if="{{project.is_exclusive==1}}">独家签约</view>
+            <view class="theOne exclusive" wx:if="{{project.is_exclusive==2}}">非独家签约</view>
           </view>
 
           <!--标签1-->
