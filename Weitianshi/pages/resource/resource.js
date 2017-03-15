@@ -16,6 +16,7 @@ Page({
       "投后服务"
     ],
     investor_page: 1,//投资人分页
+    share:1,//分享页面
     //资源对接
     others: [
       {

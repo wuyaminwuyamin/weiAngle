@@ -14,6 +14,7 @@ Page({
     onLoad: function (options) {
         //  投资人数据
         // console.log("this is onLoad");
+        console.log(options)
         var that = this;
         var id = options.id;
         var index = options.index;
@@ -87,9 +88,7 @@ Page({
         })
 
     },
-    // onShow: function () {
-    //     console.log("this is onShow")
-    // },
+
     //下拉刷新
     onPullDownRefresh: function () {
         // console.log("开启了下拉刷新");

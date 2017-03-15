@@ -13,6 +13,7 @@ Page({
     onLoad: function (options) {
         //  投资人数据
         // console.log("this is onLoad");
+        // console.log(options)
         var that = this;
         var id = options.id;
         var index = options.index;
