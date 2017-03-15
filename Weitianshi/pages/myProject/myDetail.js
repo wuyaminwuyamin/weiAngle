@@ -1,3 +1,4 @@
+var rqj = require('../Template/Template.js')
 Page({
     data: {
         firstName: "代",
@@ -8,13 +9,13 @@ Page({
         projectName: "",
         companyName: "",
         stock: 0,
-        load: 0,
-        investor_arry: []
+        investor_arry: [],
+        page_end: false
     },
     onLoad: function (options) {
         //  投资人数据
         // console.log("this is onLoad");
-        console.log(options)
+        // console.log(options)
         var that = this;
         var id = options.id;
         var index = options.index;
@@ -97,49 +98,47 @@ Page({
 
     //触底加载
     loadMore: function () {
-        // console.log("正在加载更多")
-        wx.showToast({
-            title: 'loading...',
-            icon: 'loading'
-        })
         var that = this;
         var page = this.data.page;
         var user_id = this.data.user_id;
         var pro_id = this.data.id;
-        page++;
-        that.setData({
-            page: page,
-            load: 1
-        });
-        // console.log(page)
-        wx.request({
-            url: 'https://www.weitianshi.com.cn/api/project/getProjectMatchInvestors',
-            data: {
-                user_id: user_id,
-                pro_id: pro_id,
-                page: page
-            },
-            method: 'POST',
-            success: function (res) {
-                var investor2 = res.data.data;
-                var investor_arry = that.data.investor_arry
-                for (var i = 0; i < investor2.length; i++) {
-                    investor_arry.push(investor2[i])
-                }
-                that.setData({
-                    investor_arry: investor_arry
-                });
-                wx.hideToast({
-                    title: 'loading...',
-                    icon: 'loading'
-                })
-                setTimeout(function () {
+        var page_end = this.data.page_end;
+        if (page_end == false) {
+            wx.showToast({
+                title: 'loading...',
+                icon: 'loading'
+            })
+            page++;
+            that.setData({
+                page: page,
+            });
+            wx.request({
+                url: 'https://www.weitianshi.com.cn/api/project/getProjectMatchInvestors',
+                data: {
+                    user_id: user_id,
+                    pro_id: pro_id,
+                    page: page
+                },
+                method: 'POST',
+                success: function (res) {
+                    var investor2 = res.data.data;
+                    var investor_arry = that.data.investor_arry
+                    for (var i = 0; i < investor2.length; i++) {
+                        investor_arry.push(investor2[i])
+                    }
                     that.setData({
-                        load: 0
+                        investor_arry: investor_arry,
+                        page_end:res.data.page_end
+                    });
+                    wx.hideToast({
+                        title: 'loading...',
+                        icon: 'loading'
                     })
-                }, 1500)
-            }
-        })
+                }
+            })
+        } else {
+            rqj.errorHide(that, "没有更多了", 3000)
+        }
     },
 
     //分享当前页面

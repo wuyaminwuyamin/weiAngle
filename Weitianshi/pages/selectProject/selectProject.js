@@ -2,8 +2,8 @@ var rqj = require('../Template/Template.js')
 Page({
   data: {
     slectProject: '',
-    load: 0,
-    page: 1
+    page: 1,
+    page_end: false
   },
   onShow: function () {
     var that = this;
@@ -28,43 +28,43 @@ Page({
   //触底加载
   loadMore: function () {
     console.log("正在加载更多")
-    wx.showToast({
-      title: 'loading...',
-      icon: 'loading'
-    })
     var that = this;
     var page = this.data.page
-
-    page++;
-    that.setData({
-      page: page,
-      load: 1
-    });
-    var user_id = wx.getStorageSync('user_id')
-    wx.request({
-      url: 'https://www.weitianshi.com.cn/api/project/getSelectedProjects',
-      data: {
-        user_id: user_id,
-        page: page
-      },
-      method: 'POST',
-      success: function (res) {
-        console.log(res);
-        var slectProject_new = res.data.data;
-        var slectProject = that.data.slectProject;
-        if (res.data.data == '') {
-          rqj.errorHide(that, '没有更多了', 3000)
-        } else {
-          console.log('loading')
+    var user_id = wx.getStorageSync('user_id');
+    var page_end = this.data.page_end;
+    if (page_end == false) {
+      wx.showToast({
+        title: 'loading...',
+        icon: 'loading'
+      })
+      page++;
+      that.setData({
+        page: page,
+      });
+      wx.request({
+        url: 'https://www.weitianshi.com.cn/api/project/getSelectedProjects',
+        data: {
+          user_id: user_id,
+          page: page
+        },
+        method: 'POST',
+        success: function (res) {
+          console.log(res);
+          var slectProject_new = res.data.data;
+          var slectProject = that.data.slectProject;
           for (var i = 0; i < slectProject_new.length; i++) {
             slectProject.push(slectProject_new[i])
           }
           that.setData({
-            slectProject: slectProject
+            slectProject: slectProject,
+            page_end: res.data.page_end
           })
         }
-      }
-    })
+      })
+    } else {
+      rqj.errorHide(that, '没有更多了', 3000)
+    }
+
   },
 
   //项目详情

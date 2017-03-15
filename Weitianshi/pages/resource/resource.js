@@ -10,7 +10,6 @@ Page({
     myProject: "",
     yourProject: "",
     findTarget: "",//寻找项目的匹配的标准
-    load: 1,
     text: "你好",
     finding: [
       "众创空间",
@@ -18,6 +17,7 @@ Page({
     ],
     investor_page: 1,//投资人分页
     share: 1,//分享页面
+    page_end: false,
     //资源对接
     others: [
       {
@@ -153,9 +153,6 @@ Page({
     })
     //请求列表信息
     if (user_id !== 0) {
-      // console.log("请求了列表信息");
-      // console.log(user_id)
-      //获取当前页面信息
       wx.request({
         url: 'https://www.weitianshi.com.cn/api/project/getMyProject',
         data: {
@@ -188,7 +185,7 @@ Page({
       })
     }
     if (current == 1) {
-      //载入寻找项目数据
+      //载入投资需求的匹配项目
       wx.request({
         url: 'https://www.weitianshi.com.cn/api/investors/getMatchProjects',
         data: {
@@ -197,7 +194,6 @@ Page({
         method: 'POST',
         success: function (res) {
           console.log(res);
-          // var scale=4;
           if (res.data.status_code !== 440004) {
             var yourProject = res.data.data.projects;
             // var pro_scale=yourProject.pro_scale;
@@ -222,9 +218,7 @@ Page({
           }
         }
       })
-
     }
-
   },
   //下拉刷新
   onPullDownRefresh: function () {
@@ -346,44 +340,46 @@ Page({
   },
   //寻找项目触底刷新
   yourPayProject: function () {
-    wx.showToast({
-      title: 'loading...',
-      icon: 'loading'
-    })
     var that = this;
     var investor_id = this.data.investor_id;
     var investor_page = this.data.investor_page;
     var user_id = wx.getStorageSync('user_id');
+    var page_end = this.data.page_end
     // console.log(user_id)
     if (user_id != '') {
-      investor_page++;
-      that.setData({
-        investor_page: investor_page
-      });
-      wx.request({
-        url: 'https://www.weitianshi.com.cn/api/investors/withPageGetMatchProjects',
-        data: {
-          investor_id: investor_id,
-          page: investor_page,
-        },
-        method: 'POST',
-        success: function (res) {
-          // console.log(res)
-          var newPage = res.data.data;
-          // console.log(newPage)
-          var yourProject = that.data.yourProject;
-          if (newPage == '') {
-            rqj.errorHide(that, '没有更多了', 3000)
-          } else {
+      if (page_end == false) {
+        wx.showToast({
+          title: 'loading...',
+          icon: 'loading'
+        })
+        investor_page++;
+        that.setData({
+          investor_page: investor_page
+        });
+        wx.request({
+          url: 'https://www.weitianshi.com.cn/api/investors/withPageGetMatchProjects',
+          data: {
+            investor_id: investor_id,
+            page: investor_page,
+          },
+          method: 'POST',
+          success: function (res) {
+            // console.log(res)
+            var newPage = res.data.data;
+            // console.log(newPage)
+            var yourProject = that.data.yourProject;
             for (var i = 0; i < newPage.length; i++) {
               yourProject.push(newPage[i])
             }
             that.setData({
-              yourProject: yourProject
+              yourProject: yourProject,
+              page_end: res.data.page_end
             })
           }
-        }
-      })
+        })
+      } else {
+        rqj.errorHide(that, "没有更多了", 3000)
+      }
     }
   },
   //分享当前页面
