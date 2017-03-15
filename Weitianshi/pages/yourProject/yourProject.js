@@ -235,7 +235,6 @@ Page({
                 that.setData({
                     error: "0"
                 });
-                // console.log('提示已消失')
             }, 1500);
 
             if (domainId == 0) {

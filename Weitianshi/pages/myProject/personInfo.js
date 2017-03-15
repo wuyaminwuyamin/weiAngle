@@ -10,7 +10,8 @@ Page({
         checking: "0",//获取验证码请求是否发送
         time: "0",//获取验证码按钮是否可点
         loading: "0",//加载动画控制
-        getCode: "获取验证码"
+        getCode: "获取验证码",
+        endTime: 60//多少秒后验证码得发
     },
     //下拉刷新
     onPullDownRefresh: function () {
@@ -65,17 +66,12 @@ Page({
         var telphone = this.data.telphone;
         var checking = this.data.checking;
         var that = this;
+        var endTime = this.data.endTime
+        endTime=60;
         that.setData({
             checking: "1",
             time: "1",
         });
-        setTimeout(function () {
-            that.setData({
-                time: "0",
-                getCode: "获取验证码"
-            });
-            // console.log("计数完成")
-        }, 60000);
         wx.request({
             url: 'https://www.weitianshi.com.cn/api/wx/sendMobileCode',
             data: {
@@ -104,13 +100,29 @@ Page({
                         error: "1",
                         error_text: "手机号码不合法",
                         time: "0"
-                    });
+                    })
                     var errorTime = setTimeout(function () {
                         that.setData({
                             error: "0"
                         });
                         // console.log('提示已消失')
                     }, 1500)
+                } else {
+                   var _time=setInterval(function(){
+                        if(endTime>1){
+                            endTime--;
+                            that.setData({
+                                getCode:endTime+'s后重新获取验证码'
+                            })
+                        }
+                    },1000)
+                    setTimeout(function () {
+                        that.setData({
+                            time: "0",
+                            getCode: "获取验证码"
+                        });
+                        clearInterval(_time)
+                    }, 60000);
                 }
             },
             fail: function () {

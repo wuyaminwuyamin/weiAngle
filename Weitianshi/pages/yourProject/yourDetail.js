@@ -116,7 +116,7 @@ Page({
         var pro_intro=this.data.project.pro_intro;
         return {
             title: '项目-'+pro_intro,
-            path: '/pages/yourDetail/yourDetail'
+            path: '/pages/yourDetail/yourDetail?pro_id='+that.data.id
         }
     }
 

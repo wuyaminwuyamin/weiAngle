@@ -70,7 +70,7 @@ Page({
     wx.login({
       success: function (res) {
         if (res.code) {
-          //向后台请求数据
+          //向后台请求登录状态
           //console.log(res.code)
           wx.request({
             url: 'https://www.weitianshi.com.cn/api/wx/returnLoginStatus',
@@ -79,20 +79,18 @@ Page({
             },
             method: 'POST',
             success: function (res) {
+              // console.log(res)
               //本地存入open_session,bind_mobile,user_id
               wx.setStorageSync('open_session', res.data.open_session);
               wx.setStorageSync('bind_mobile', res.data.bind_mobile);
               wx.setStorageSync('user_id', res.data.user_id);
-              //
               var bind_mobile = wx.getStorageSync('bind_mobile');
-              var user_id = wx.getStorageSync('user_id');
-              // console.log("维护登录状态成功,已将bind_mobile,user_id,open_session存入缓存")
+              var user_id = res.data.user_id
               // console.log(res.data.bind_mobile, res.data.user_id, res.data.open_session)
-
-              if (user_id !== 0) {
+              if (user_id != 0) {
                 // console.log("请求了列表信息")
                 // console.log(user_id)
-                //获取当前页面信息
+                //获取我的项目匹配到的投资人
                 wx.request({
                   url: 'https://www.weitianshi.com.cn/api/project/getMyProject',
                   data: {
@@ -102,13 +100,11 @@ Page({
                   success: function (res) {
                     var myProject = res.data.data;
                     var length = myProject.length;
-                    // console.log(length)
                     wx.setStorageSync('proLength', length);
                     that.setData({
                       myProject: myProject,
                       bind_mobile: bind_mobile
                     });
-                    // console.log(res)
 
                     //将匹配出来的四个人放入缓存
                     var investors = [];
@@ -117,12 +113,6 @@ Page({
                       investors.push(cards[i].match_investors)
                     }
                     wx.setStorageSync('investors', investors)
-                  },
-                  fail: function () {
-                    // fail
-                  },
-                  complete: function () {
-                    // complete
                   }
                 })
               }
@@ -147,12 +137,20 @@ Page({
     var bind_mobile = wx.getStorageSync('bind_mobile');
     var y_domainValue = wx.getStorageSync('y_domainValue');
     var current = this.data.currentTab;
+    var user_industry=[];
+    var user_industryId=[];
+    var user_area=[];
+    var user_areaId=[];
+    var user_scale=[];
+    var user_scaleId=[];
+    var user_stage=[];
+    var user_stageId=[]
     // console.log(user_id)
     that.setData({
       y_domainValue: y_domainValue
     })
-    //请求列表信息
-    if (user_id !== 0) {
+    //获取我的项目匹配到的投资人
+    if (user_id != 0) {
       wx.request({
         url: 'https://www.weitianshi.com.cn/api/project/getMyProject',
         data: {
@@ -184,41 +182,78 @@ Page({
         }
       })
     }
-    if (current == 1) {
-      //载入投资需求的匹配项目
-      wx.request({
-        url: 'https://www.weitianshi.com.cn/api/investors/getMatchProjects',
-        data: {
-          user_id: user_id
-        },
-        method: 'POST',
-        success: function (res) {
-          console.log(res);
-          if (res.data.status_code !== 440004) {
-            var yourProject = res.data.data.projects;
-            // var pro_scale=yourProject.pro_scale;
-            // var new_scale=[]
-            // for(var i=0;i<pro_scale.length;i++){
-            //   var isSame=0;
-            //     if(pro_scale.scale_id==4){
+    //获取用户投资需求
+    // if(user_id!=0){
+    //   wx.request({
+    //     url: 'https://www.weitianshi.com.cn/api/investors/checkInvestorInfo',
+    //     data: {
+    //       user_id:user_id
+    //     },
+    //     method: 'POST', 
+    //     success: function(res){
+    //       console.log(res)
+    //       //循环出用户信息
+    //       var investor=res.data.data;
+    //       var industry=investor.industry_tag;
+    //       for(var i=0;i<industry.length;i++){
+    //         user_industry.push(industry[i].industry_name);
+    //         user_industryId.push(industry[i].industry_id)
+    //       }
+    //       var area=investor.area_tag;
+    //       for(var i=0;i<area.length;i++){
+    //         user_area.push(area[i].area_title);
+    //         user_areaId.push(area[i].area_id)
+    //       }
+    //       var scale=investor.scale_tag;
+    //       for(var i=0;i<scale.length;i++){
+    //         user_scale.push(scale[i].scale_money)
+    //         user_scaleId.push(scale[i].scale_id)
+    //       }
+    //       var stage=investor.stage_tag;
+    //       for(var i=0;i<stage.length;i++){
+    //         user_stage.push(stage[i].stage_name)
+    //         user_stageId.push(stage[i].stage_id)
+    //       }
+    //       console.log(user_industry,user_industryId,user_area,user_areaId,user_scale,user_scaleId,user_stage,user_stageId)
+    //     }
+    //   })
+    // }
+    var userNeed=rqj.userNeed(that)
+    console.log(userNeed)
 
-            //     }
-            // }
-            // console.log(yourProject);
-            console.log(rel.data.data.investor_id)
-            that.setData({
-              yourProject: yourProject,
-              hasPublic: 1,
-              investor_id: rel.data.data.investor_id
-            })
-          } else {
-            that.setData({
-              hasPublic: 0
-            })
-          }
+    //获取投资需求的匹配项目
+    wx.request({
+      url: 'https://www.weitianshi.com.cn/api/investors/getMatchProjects',
+      data: {
+        user_id: user_id
+      },
+      method: 'POST',
+      success: function (res) {
+        // console.log(res);
+        if (res.data.status_code !== 440004) {
+          var yourProject = res.data.data.projects;
+          // var pro_scale=yourProject.pro_scale;
+          // var new_scale=[]
+          // for(var i=0;i<pro_scale.length;i++){
+          //   var isSame=0;
+          //     if(pro_scale.scale_id==4){
+
+          //     }
+          // }
+          console.log(res.data.data.investor_id)
+          that.setData({
+            yourProject: yourProject,
+            hasPublic: 1,
+            investor_id: res.data.data.investor_id
+          })
+        } else {
+          that.setData({
+            hasPublic: 0
+          })
         }
-      })
-    }
+      }
+    })
+
   },
   //下拉刷新
   onPullDownRefresh: function () {
