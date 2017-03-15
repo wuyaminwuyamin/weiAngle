@@ -1,3 +1,4 @@
+var rqj = require('../Template/Template.js')
 Page({
   data: {
     slectProject: '',
@@ -50,10 +51,13 @@ Page({
       success: function (res) {
         console.log(res);
         var slectProject_new = res.data.data;
-        var slectProject=that.data.slectProject;
-        if (slectProject_new != '') {
+        var slectProject = that.data.slectProject;
+        if (res.data.data == '') {
+          rqj.errorHide(that, '没有更多了', 3000)
+        } else {
+          console.log('loading')
           for (var i = 0; i < slectProject_new.length; i++) {
-             slectProject.push(slectProject_new[i])
+            slectProject.push(slectProject_new[i])
           }
           that.setData({
             slectProject: slectProject

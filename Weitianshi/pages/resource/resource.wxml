@@ -3,7 +3,6 @@
   <view class="nav_btn nav_on">精准对接</view>
   <navigator url="resource2" class="nav_btn">需求市场</navigator>
 </view>-->
-
 <view class="swiper-tab">
   <view class="swiper-tab-list swiper-tab-list2 {{currentTab==0 ? 'on' : ''}} my_project" data-current="0" bindtap="swichNav">项目融资</view>
   <view class="swiper-tab-list swiper-tab-list2 {{currentTab==1 ? 'on' : ''}} find_project" data-current="1" bindtap="swichNav">寻找项目</view>
@@ -130,6 +129,9 @@
             </view>
           </view>
         </block>
+
+        <!--没有更多-->
+        <view class="error" wx:if="{{error=='1'}}">{{error_text}}</view>
 
         <!--空状态-->
         <view wx:if="{{yourProject==''}}">

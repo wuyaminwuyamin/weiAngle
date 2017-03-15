@@ -1,3 +1,4 @@
+var rqj = require('../Template/Template.js')
 var app = getApp()
 Page({
   data: {
@@ -16,7 +17,7 @@ Page({
       "投后服务"
     ],
     investor_page: 1,//投资人分页
-    share:1,//分享页面
+    share: 1,//分享页面
     //资源对接
     others: [
       {
@@ -185,7 +186,7 @@ Page({
           // console.log(res)
         }
       })
-    } 
+    }
     if (current == 1) {
       //载入寻找项目数据
       wx.request({
@@ -212,7 +213,7 @@ Page({
             that.setData({
               yourProject: yourProject,
               hasPublic: 1,
-              investor_id:rel.data.data.investor_id
+              investor_id: rel.data.data.investor_id
             })
           } else {
             that.setData({
@@ -262,7 +263,7 @@ Page({
             that.setData({
               yourProject: yourProject,
               hasPublic: 1,
-              investor_id:res.data.data.investor_id
+              investor_id: res.data.data.investor_id
             })
           } else {
             that.setData({
@@ -371,16 +372,16 @@ Page({
           var newPage = res.data.data;
           // console.log(newPage)
           var yourProject = that.data.yourProject;
-          for (var i = 0; i < newPage.length; i++) {
-            yourProject.push(newPage[i])
+          if (newPage == '') {
+            rqj.errorHide(that, '没有更多了', 3000)
+          } else {
+            for (var i = 0; i < newPage.length; i++) {
+              yourProject.push(newPage[i])
+            }
+            that.setData({
+              yourProject: yourProject
+            })
           }
-          that.setData({
-            yourProject: yourProject
-          })
-          wx.hideToast({
-            title: 'loading...',
-            icon: 'loading'
-          })
         }
       })
     }

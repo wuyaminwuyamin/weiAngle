@@ -341,3 +341,6 @@ weui-panel__bd{
   font-size: 20rpx;
   color: #999;
 }
+.error{
+  bottom: 100rpx
+}
