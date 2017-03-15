@@ -13,6 +13,7 @@ Page({
     onLoad: function (options) {
         //  投资人数据
         // console.log("this is onLoad");
+        // console.log(options)
         var that = this;
         var id = options.id;
         var index = options.index;
@@ -110,6 +111,14 @@ Page({
         // console.log("开启了下拉刷新")
         wx.stopPullDownRefresh()
     },
+    //分享当前页面
+    onShareAppMessage: function () {
+        var pro_intro=this.data.project.pro_intro;
+        return {
+            title: '项目-'+pro_intro,
+            path: '/pages/yourDetail/yourDetail'
+        }
+    }
 
     //触底加载
     // loadMore: function () {

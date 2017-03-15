@@ -6,7 +6,7 @@
       <view class="weui-cell" style="background:white;margin:32rpx;margin-bottom:0;border-radius:4px 4px 0 0">
         <view class="weui-cell__hd" style="position: relative;margin-right: 10px;">
           <image wx:if="{{user.user_avatar_url}}" class="others_pic" src="{{user.user_avatar_url}}" />
-          <view wx:if="{{!user.user_avatar_url}}" class="others_nopic">代</view>
+          <view wx:if="{{!user.user_avatar_url}}" class="others_nopic">{{user.user_avatar_text}}</view>
         </view>
         <view class="weui-cell__bd">
           <view class="flex" style="align-items: baseline;">
@@ -28,8 +28,8 @@
         <view class="weui-media-box weui-media-box_text">
           <view class=" box__title_in-text">
             {{project.pro_intro}}
-            <view class="theOne exclusive" wx:if="{{project.is_exclusive==-1}}">独家签约</view>
-            <view class="theOne exclusive" wx:if="{{project.is_exclusive!==-1}}">非独家签约</view>
+            <view class="theOne exclusive" wx:if="{{project.is_exclusive==1}}">独家签约</view>
+            <view class="theOne exclusive" wx:if="{{project.is_exclusive==2}}">非独家签约</view>
           </view>
 
           <!--标签1-->

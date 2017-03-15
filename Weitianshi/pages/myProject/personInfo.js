@@ -1,3 +1,4 @@
+var rqj = require('../Template/Template.js')
 Page({
     data: {
         name: "",
@@ -90,7 +91,7 @@ Page({
                     that.setData({
                         error: "1",
                         error_text: "没有请求到验证码",
-                        time:"0"
+                        time: "0"
                     });
                     var errorTime = setTimeout(function () {
                         that.setData({
@@ -102,7 +103,7 @@ Page({
                     that.setData({
                         error: "1",
                         error_text: "手机号码不合法",
-                        time:"0"
+                        time: "0"
                     });
                     var errorTime = setTimeout(function () {
                         that.setData({
@@ -165,17 +166,7 @@ Page({
                                 wx.setStorageSync('user_id', res.data.user_id);
                                 wx.setStorageSync('bind_mobile', 1)
                             } else {
-                                //显示错误提示
-                                that.setData({
-                                    error: "1",
-                                    error_text: "验证码错误"
-                                });
-                                var errorTime = setTimeout(function () {
-                                    that.setData({
-                                        error: "0"
-                                    });
-                                    // console.log('提示已消失')
-                                }, 1500)
+                                rqj.errorHide(that, "验证码错误", 1500)
                             }
 
                         }

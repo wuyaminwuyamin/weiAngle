@@ -66,24 +66,34 @@ Page({
             error: "0"
         });
 
-        //传值给myProject
-        if (checked == "") {
-            wx.setStorageSync('y_payMoney', "选择金额");
-            wx.setStorageSync('y_payMoneyId', '');
-            // wx.setStorageSync('domainChecked', checked)
+        if (checked.length > 5) {
+            that.setData({
+                error: "1",
+                error_text: "至多选择五个标签"
+            });
+            var time = setTimeout(function () {
+                var that = this;
+                that.setData({
+                    error: "0"
+                })
+            }, 1500)
         } else {
-            wx.setStorageSync('y_payMoney', checked);
-            wx.setStorageSync('y_payMoneyId', index);
-            // wx.setStorageSync('domainChecked', checked)
+            //传值给myProject
+            if (checked == "") {
+                wx.setStorageSync('y_payMoney', "选择金额");
+                wx.setStorageSync('y_payMoneyId', '');
+                // wx.setStorageSync('domainChecked', checked)
+            } else {
+                wx.setStorageSync('y_payMoney', checked);
+                wx.setStorageSync('y_payMoneyId', index);
+                // wx.setStorageSync('domainChecked', checked)
+            }
+
+            // console.log(checked, index);
+            wx.navigateBack({
+                delta: 1 // 回退前 delta(默认为1) 页面
+            })
         }
-
-        // console.log(checked, index);
-        wx.navigateBack({
-            delta: 1 // 回退前 delta(默认为1) 页面
-        })
-
-
     }
-
 
 });

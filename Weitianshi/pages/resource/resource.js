@@ -16,6 +16,7 @@ Page({
       "投后服务"
     ],
     investor_page: 1,//投资人分页
+    share:1,//分享页面
     //资源对接
     others: [
       {
@@ -184,10 +185,8 @@ Page({
           // console.log(res)
         }
       })
-    }
-
+    } 
     if (current == 1) {
-
       //载入寻找项目数据
       wx.request({
         url: 'https://www.weitianshi.com.cn/api/investors/getMatchProjects',
@@ -209,17 +208,17 @@ Page({
             //     }
             // }
             // console.log(yourProject);
+            console.log(rel.data.data.investor_id)
             that.setData({
               yourProject: yourProject,
-              hasPublic: 1
+              hasPublic: 1,
+              investor_id:rel.data.data.investor_id
             })
-            console.log(that.data.hasPublic)
           } else {
             that.setData({
               hasPublic: 0
             })
           }
-          console.log(that.data.hasPublic)
         }
       })
 
@@ -247,7 +246,7 @@ Page({
         },
         method: 'POST',
         success: function (res) {
-          console.log(res);
+          // console.log(res);
           // var scale=4;
           if (res.data.status_code !== 440004) {
             var yourProject = res.data.data.projects;
@@ -262,11 +261,12 @@ Page({
             // console.log(yourProject);
             that.setData({
               yourProject: yourProject,
-              hasPublic:1
+              hasPublic: 1,
+              investor_id:res.data.data.investor_id
             })
-          }else{
+          } else {
             that.setData({
-               hasPublic:0
+              hasPublic: 0
             })
           }
         }
@@ -350,9 +350,11 @@ Page({
       icon: 'loading'
     })
     var that = this;
-    var investor_id = wx.getStorageSync('investor_id');
+    var investor_id = this.data.investor_id;
     var investor_page = this.data.investor_page;
-    if (investor_id !== '') {
+    var user_id = wx.getStorageSync('user_id');
+    // console.log(user_id)
+    if (user_id != '') {
       investor_page++;
       that.setData({
         investor_page: investor_page
@@ -362,13 +364,12 @@ Page({
         data: {
           investor_id: investor_id,
           page: investor_page,
-          load: 1
         },
         method: 'POST',
         success: function (res) {
-          // console.log(res);
+          // console.log(res)
           var newPage = res.data.data;
-          console.log(newPage)
+          // console.log(newPage)
           var yourProject = that.data.yourProject;
           for (var i = 0; i < newPage.length; i++) {
             yourProject.push(newPage[i])
@@ -380,13 +381,16 @@ Page({
             title: 'loading...',
             icon: 'loading'
           })
-          setTimeout(function () {
-            that.setData({
-              load: 0
-            })
-          }, 1500)
         }
       })
+    }
+  },
+  //分享当前页面
+  onShareAppMessage: function () {
+    var user_id = wx.getStorageSync('user_id');
+    return {
+      title: '微天使帮您精准对接投融资需求',
+      path: '/pages/resource/resource'
     }
   }
 });

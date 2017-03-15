@@ -1,19 +1,18 @@
 {
   "pages": [
     "pages/resource/resource",
+    "pages/myProject/companyInfo",
+    "pages/myProject/personInfo",
     "pages/payMoney/payMoney",
     "pages/yourProject/yourProject",
     "pages/yourProject/yourDetail",
-    "pages/myProject/personInfo",
     "pages/myProject/myProject",
     "pages/doMain/doMain",
     "pages/payStage/payStage",
     "pages/resource/resource2",
     "pages/selectProject/selectProject",
-    "pages/people/people",
+    "pages/network/network",
     "pages/my/my",
-    "pages/Template/Template",
-    "pages/myProject/companyInfo",
     "pages/myProject/myDetail",
     "pages/others/others",
     "pages/belongArea/belongArea",
@@ -44,7 +43,7 @@
       {
         "iconPath": "img/people.png",
         "selectedIconPath": "img/peopleOn.png",
-        "pagePath": "pages/people/people",
+        "pagePath": "pages/network/network",
         "text": "人脉"
       },
       {

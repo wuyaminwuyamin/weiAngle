@@ -1,10 +1,9 @@
-<scroll-view style="height:100%;" scroll-y="true" bindscrolltolower='loadMore'>
-
+<scroll-view style="height:90%;" scroll-y="true" bindscrolltolower='loadMore'>
   <!--已匹配的项目-->
   <view class="others">
     <block wx:for="{{slectProject}}" wx:key="{{pro_id}}" wx:for-item="myProject">
       <view class="weui-panel__bd">
-        <view class="weui-media-box weui-media-box_text" data-id='{{myProject.pro_id}}' data-index="{{index}}" bindtap="detail">
+        <view class="weui-media-box weui-media-box_text select_project" data-id='{{myProject.pro_id}}' data-index="{{index}}" bindtap="detail">
           <view class="weui-media-box__title weui-media-box__title_in-text" style="text-align:left;">{{myProject.pro_intro}}</view>
           <view class="sort">
             <block wx:for="{{myProject.pro_industry}}" wx:for-item="sort" wx:key="*this">
@@ -43,10 +42,10 @@
       </view>
 
       <!--名片-->
-      <view class="weui-cell">
+      <view class="weui-cell select_project" data-id='{{myProject.pro_id}}' data-index="{{index}}" bindtap="detail">
         <view class="weui-cell__hd" style="position: relative;margin-right: 10px;">
           <image wx:if="{{myProject.user_avatar_url}}" class="others_pic" src="{{myProject.user_avatar_url}}" />
-          <view wx:if="{{!myProject.user_avatar_url}}" class="others_nopic">代</view>
+          <view wx:if="{{!myProject.user_avatar_url}}" class="others_nopic">{{myProject.user_avatar_text}}</view>
         </view>
         <view class="weui-cell__bd">
           <view class="flex" style="align-items: baseline;">
@@ -54,8 +53,8 @@
             <view class="others_email">{{myProject.user_email}}</view>
           </view>
           <view class="others_company flex">
-           {{myProject.user_company}} | {{myProject.user_career}}
-          <view class='theOne exclusive'>精选项目</view>
+            {{myProject.user_company}} | {{myProject.user_career}}
+            <view class='theOne exclusive'>精选项目</view>
           </view>
 
           <!--<view class="ohters_position"></view>-->
@@ -63,8 +62,6 @@
       </view>
     </block>
   </view>
-
   <!--空状态-->
   <image class="empty" src="../../img/empty.png" wx:if="{{myProject==''}}"></image>
-
 </scroll-view>

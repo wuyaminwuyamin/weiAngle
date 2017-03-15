@@ -1,6 +1,5 @@
 <view id="doMain">
-
-  <!--<view class="title">*最多可选择1个</view>-->
+  <view class="title">*最多可选择1个</view>
   <view class="context flex">
     <block wx:for="{{payMoney}}">
       <label class="tips">
@@ -15,6 +14,9 @@
     <image class="rightArrow" src="../../img/rightArrow.png"></image>
   </button>
 
-  <!--错误提示-->
   <view class="error" wx:if="{{error=='1'}}">{{error_text}}</view>
 </view>
+<!--<import src="../../pages/Template.wxml"/>
+<template name="multCheckPage" data="{{payMoney:payMoney}}">
+
+</template>-->

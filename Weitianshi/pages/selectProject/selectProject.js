@@ -20,12 +20,6 @@ Page({
         that.setData({
           slectProject: slectProject
         })
-      },
-      fail: function () {
-        // fail
-      },
-      complete: function () {
-        // complete
       }
     })
   },
@@ -38,6 +32,7 @@ Page({
       icon: 'loading'
     })
     var that = this;
+    var page = this.data.page
 
     page++;
     that.setData({
@@ -49,24 +44,37 @@ Page({
       url: 'https://www.weitianshi.com.cn/api/project/getSelectedProjects',
       data: {
         user_id: user_id,
-        page:page
+        page: page
       },
       method: 'POST',
       success: function (res) {
         console.log(res);
-        var slectProject = res.data.data;
-        that.setData({
-          slectProject: slectProject
-        })
+        var slectProject_new = res.data.data;
+        var slectProject=that.data.slectProject;
+        if (slectProject_new != '') {
+          for (var i = 0; i < slectProject_new.length; i++) {
+             slectProject.push(slectProject_new[i])
+          }
+          that.setData({
+            slectProject: slectProject
+          })
+        }
       }
     })
   },
 
   //项目详情
-  detail:function(e){
+  detail: function (e) {
     var thisData = e.currentTarget.dataset;
     wx.navigateTo({
       url: '../yourProject/yourDetail?id=' + thisData.id
     })
+  },
+  //分享当前页面
+  onShareAppMessage: function () {
+    return {
+      title: '来微天使找优质项目',
+      path: '/pages/selectProject/selectProject'
+    }
   }
 })

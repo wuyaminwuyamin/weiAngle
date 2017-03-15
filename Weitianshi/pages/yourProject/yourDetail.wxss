@@ -292,6 +292,6 @@ scroll-view {
   width: 160rpx;
   height: 160rpx;
   padding-left:295rpx;
-  padding-top:295rpx;
+  padding-top:170rpx;
   padding-bottom: 295rpx;
 }
