@@ -183,10 +183,13 @@ page {
   padding-left: 16rpx;
 }
 
-
-/*近期开放*/
-.soon{
-  color: #8899A6;
-  line-height: 500px;
+.soon {
+  color: #ccc;
+  margin: 160px auto;
+  width: 150px;
+  height: 100px;
+  line-height: 100px;
+  background: #fff;
+  border-radius: 5px;
   text-align: center;
 }
