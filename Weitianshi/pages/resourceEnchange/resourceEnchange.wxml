@@ -1,0 +1,18 @@
+
+<!--pages/resourceEnchange/resourceEnchange.wxml-->
+<view id="resourceEnchange">
+  <view class="offer">
+    <view class="title">我能提供的资源</view>
+    <view class="context flex">
+      <block wx:for="{{enchange}}" wx:key="{{item.industry_id}}">
+        <label class="tips">
+          <view wx:for-index="idx" class="{{item.checked==true?'checkedOne':''}}" bindtap="checkboxChange" id="{{item.industry_id}}" data-index="{{index}}" data-value='{{item.industry_name}}' data-check="0">
+            {{item.industry_name}}</view>
+        </label>
+      </block>
+    </view>
+  </view>
+  <view class="search">
+    <view class="title">寻求对接的资源</view>
+  </view>
+</view>

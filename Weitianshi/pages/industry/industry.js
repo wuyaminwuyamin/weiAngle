@@ -8,17 +8,45 @@ Page({
         error_text: ""
     },
     onLoad: function (options) {
+        // console.log("this is onLoad")
         var that = this;
         var industry = wx.getStorageSync('industry');
         var current = options.current;
-        // console.log("this is onLoad")
+
+        if (current == 0) {
+            var domainValue = wx.getStorageSync('domainValue')
+            var domainId = wx.getStorageSync('domainId')
+            if (domainValue == "选择领域") {
+                domainValue = [];
+                domainId = [];
+            }
+        } else if (current == 1) {
+            var domainValue = wx.getStorageSync('y_domainValue')
+            var domainId = wx.getStorageSync('y_domainId')
+            if (domainValue == "选择领域") {
+                domainValue = [];
+                domainId = [];
+            }
+        }
+
+        //checkbox
+        for (var i = 0; i < industry.length; i++) {
+            if (domainValue.indexOf(industry[i].industry_name) != -1) {
+                industry[i].checked = true;
+            } else {
+                industry[i].checked = false;
+            }
+        }
+        wx.setStorageSync('industry', industry)
+
         that.setData({
             doMain: industry,
-            current: current
+            current: current,
+            checked: domainValue,
+            index: domainId
         });
 
-        // console.log(this.data.current);
-        // console.log(this.data.checked, typeof this.data.checked)
+
     },
 
     //下拉刷新
@@ -47,12 +75,10 @@ Page({
             checked.splice(checked.indexOf(value), 1);
             index.splice(index.indexOf(id), 1)
         }
-
         that.setData({
             checked: checked,
             index: index
         })
-
     },
 
 
@@ -81,25 +107,21 @@ Page({
                 if (checked == "") {
                     wx.setStorageSync('domainValue', "选择领域");
                     wx.setStorageSync('domainId', '');
-                    // wx.setStorageSync('domainChecked', checked)
                 } else {
                     wx.setStorageSync('domainValue', checked);
                     wx.setStorageSync('domainId', index);
-                    // wx.setStorageSync('domainChecked', checked)
                 }
             } else if (current == 1) {
                 if (checked == "") {
                     wx.setStorageSync('y_domainValue', "选择领域");
                     wx.setStorageSync('y_domainId', '');
-                    // wx.setStorageSync('domainChecked', checked)
                 } else {
                     wx.setStorageSync('y_domainValue', checked);
                     wx.setStorageSync('y_domainId', index);
-                    // wx.setStorageSync('domainChecked', checked)
                 }
             }
 
-            // console.log(checked, index);
+            console.log(checked, index);
             wx.navigateBack({
                 delta: 1 // 回退前 delta(默认为1) 页面
             })

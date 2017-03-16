@@ -71,10 +71,9 @@ function userNeed(that) {
     return userNeed;
 }
 
-
-
 //函数输出
 module.exports = {
     errorHide: errorHide,
     userNeed: userNeed
 }
+

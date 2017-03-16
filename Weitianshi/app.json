@@ -1,23 +1,21 @@
 {
   "pages": [
+    "pages/resourceEnchange/resourceEnchange",
     "pages/resource/resource",
-    "pages/myProject/personInfo",
-    "pages/myProject/companyInfo",
+    "pages/myProject/companyInfo/companyInfo",
     "pages/payMoney/payMoney",
     "pages/yourProject/yourProject",
     "pages/yourProject/yourDetail",
-    "pages/myProject/myProject",
-    "pages/doMain/doMain",
+    "pages/myProject/publishProject/publishProject",
+    "pages/industry/industry",
     "pages/payStage/payStage",
-    "pages/resource/resource2",
+    "pages/needMarket/needMarket",
     "pages/selectProject/selectProject",
     "pages/network/network",
     "pages/my/my",
-    "pages/myProject/myDetail",
-    "pages/others/others",
+    "pages/myProject/projectDetail/projectDetail",
     "pages/belongArea/belongArea",
-    "pages/payArea/payArea",
-    "pages/test/test"
+    "pages/payArea/payArea"
   ],
   "window": {
     "navigationBarBackgroundColor": "#fff",

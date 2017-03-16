@@ -5,7 +5,7 @@
 <view id="myProject">
   <view class="card">
     <view class="text">投资领域*</view>
-    <navigator url="../../pages/doMain/doMain?current=1" id="domain">
+    <navigator url="../../pages/industry/industry?current=1" id="domain">
       <view class="slect flex">
         <view class="{{domainValue =='选择领域' ? '':'checkOn'}}">{{domainValue}}</view>
         <image class="downArrow" src="../../img/downArrow.png"></image>

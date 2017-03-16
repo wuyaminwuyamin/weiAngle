@@ -183,43 +183,47 @@ Page({
       })
     }
     //获取用户投资需求
-    // if(user_id!=0){
-    //   wx.request({
-    //     url: 'https://www.weitianshi.com.cn/api/investors/checkInvestorInfo',
-    //     data: {
-    //       user_id:user_id
-    //     },
-    //     method: 'POST', 
-    //     success: function(res){
-    //       console.log(res)
-    //       //循环出用户信息
-    //       var investor=res.data.data;
-    //       var industry=investor.industry_tag;
-    //       for(var i=0;i<industry.length;i++){
-    //         user_industry.push(industry[i].industry_name);
-    //         user_industryId.push(industry[i].industry_id)
-    //       }
-    //       var area=investor.area_tag;
-    //       for(var i=0;i<area.length;i++){
-    //         user_area.push(area[i].area_title);
-    //         user_areaId.push(area[i].area_id)
-    //       }
-    //       var scale=investor.scale_tag;
-    //       for(var i=0;i<scale.length;i++){
-    //         user_scale.push(scale[i].scale_money)
-    //         user_scaleId.push(scale[i].scale_id)
-    //       }
-    //       var stage=investor.stage_tag;
-    //       for(var i=0;i<stage.length;i++){
-    //         user_stage.push(stage[i].stage_name)
-    //         user_stageId.push(stage[i].stage_id)
-    //       }
-    //       console.log(user_industry,user_industryId,user_area,user_areaId,user_scale,user_scaleId,user_stage,user_stageId)
-    //     }
-    //   })
-    // }
-    var userNeed=rqj.userNeed(that)
-    console.log(userNeed)
+    if(user_id!=0){
+      wx.request({
+        url: 'https://www.weitianshi.com.cn/api/investors/checkInvestorInfo',
+        data: {
+          user_id:user_id
+        },
+        method: 'POST', 
+        success: function(res){
+          console.log(res)
+          //循环出用户信息
+          var investor=res.data.data;
+          var industry=investor.industry_tag;
+          for(var i=0;i<industry.length;i++){
+            user_industry.push(industry[i].industry_name);
+            user_industryId.push(industry[i].industry_id)
+          }
+          var area=investor.area_tag;
+          for(var i=0;i<area.length;i++){
+            user_area.push(area[i].area_title);
+            user_areaId.push(area[i].area_id)
+          }
+          var scale=investor.scale_tag;
+          for(var i=0;i<scale.length;i++){
+            user_scale.push(scale[i].scale_money)
+            user_scaleId.push(scale[i].scale_id)
+          }
+          var stage=investor.stage_tag;
+          for(var i=0;i<stage.length;i++){
+            user_stage.push(stage[i].stage_name)
+            user_stageId.push(stage[i].stage_id)
+          }
+          console.log(user_industry,user_industryId,user_area,user_areaId,user_scale,user_scaleId,user_stage,user_stageId)
+        }
+      })
+    }
+    // var userNeed=rqj.userNeed(that)
+    // console.log(userNeed)
+    //  console.log(userNeed.user_area)
+    //  console.log(userNeed.user_area[0])
+    //  console.log(user_area)
+
 
     //获取投资需求的匹配项目
     wx.request({
@@ -240,7 +244,7 @@ Page({
 
           //     }
           // }
-          console.log(res.data.data.investor_id)
+          // console.log(res.data.data.investor_id)
           that.setData({
             yourProject: yourProject,
             hasPublic: 1,
@@ -328,11 +332,11 @@ Page({
     // console.log(bind_mobile, this.data.bind_mobile)
     if (bind_mobile == 0) {
       wx.navigateTo({
-        url: '../myProject/personInfo'
+        url: '../myProject/personInfo/personInfo'
       })
     } else if (bind_mobile == 1) {
       wx.navigateTo({
-        url: "../myProject/myProject"
+        url: "../myProject/publishProject/publishProject"
       })
     }
   },
@@ -348,7 +352,7 @@ Page({
     // console.log(bind_mobile, this.data.bind_mobile);
     if (bind_mobile == 0) {
       wx.navigateTo({
-        url: '../myProject/personInfo'
+        url: '../myProject/personInfo/personInfo'
       })
     } else if (bind_mobile == 1) {
       wx.navigateTo({
@@ -362,7 +366,7 @@ Page({
     var thisData = e.currentTarget.dataset;
     var index = thisData.index;
     wx.navigateTo({
-      url: '../myProject/myDetail?id=' + thisData.id + '&&index=' + index
+      url: '../myProject/projectDetail/projectDetail?id=' + thisData.id + '&&index=' + index
     })
   },
   //点击项目投资详情

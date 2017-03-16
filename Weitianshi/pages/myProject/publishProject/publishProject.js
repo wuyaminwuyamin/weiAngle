@@ -1,3 +1,4 @@
+
 var app = getApp();
 
 Page({
@@ -193,7 +194,7 @@ Page({
                     wx.setStorageSync('cityNum', 0);
                     wx.setStorageSync('tips', 4);
                     wx.switchTab({
-                        url: '../resource/resource'
+                        url: '../../resource/resource'
                     });
                 },
                 fail: function () {

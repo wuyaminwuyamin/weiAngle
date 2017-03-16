@@ -1,5 +1,5 @@
 
-var rqj = require('../Template/Template.js')
+var rqj = require('../../Template/Template.js')
 Page({
     data: {
         company: "",

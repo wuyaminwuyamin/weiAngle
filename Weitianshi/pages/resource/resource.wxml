@@ -1,13 +1,11 @@
-
-<!--<view class="r_nav flex">
+<view class="r_nav flex">
   <view class="nav_btn nav_on">精准对接</view>
-  <navigator url="resource2" class="nav_btn">需求市场</navigator>
-</view>-->
+  <navigator url="../needMarket/needMarket" class="nav_btn">需求市场</navigator>
+</view>
 <view class="swiper-tab">
-  <view class="swiper-tab-list swiper-tab-list2 {{currentTab==0 ? 'on' : ''}} my_project" data-current="0" bindtap="swichNav">项目融资</view>
-  <view class="swiper-tab-list swiper-tab-list2 {{currentTab==1 ? 'on' : ''}} find_project" data-current="1" bindtap="swichNav">寻找项目</view>
-
-  <!--<view class="swiper-tab-list {{currentTab==2 ? 'on' : ''}}" data-current="2" bindtap="swichNav">资源对接</view>-->
+  <view class="swiper-tab-list  {{currentTab==0 ? 'on' : ''}} my_project" data-current="0" bindtap="swichNav">项目融资</view>
+  <view class="swiper-tab-list  {{currentTab==1 ? 'on' : ''}} find_project" data-current="1" bindtap="swichNav">寻找项目</view>
+  <view class="swiper-tab-list {{currentTab==2 ? 'on' : ''}}" data-current="2" bindtap="swichNav">资源对接</view>
 </view>
 <swiper current="{{currentTab}}" class="swiper-box" duration="300" style="height:88%" bindchange="bindChange">
 
@@ -17,7 +15,7 @@
       <view>
         <view class="publish publish_my_project" bindtap="myProject">
           <view>发布融资项目</view>
-          <view class="weui-media-box__desc ">快速发布,精准对接优质资本</view>
+          <view class="weui-media-box__desc">快速发布,精准对接优质资本</view>
         </view>
       </view>
 
@@ -138,16 +136,15 @@
           <image class="empty" src="../../img/empty.png"></image>
         </view>
       </view>
-
+      
       <!--<view class="load" wx:if="{{load==1}}">正在加载</view>-->
     </scroll-view>
   </swiper-item>
 
   <!-- 资源对接 -->
-
-  <!--<swiper-item>
+  <swiper-item>
     <view>
-      <navigator url="../others/others" class="publish">
+      <navigator url="../resourceEnchange/resourceEnchange" class="publish">
         <view>我的资源需求</view>
         <view class="weui-media-box__desc">
           寻求对接的资源:
@@ -157,7 +154,7 @@
         </view>
       </navigator>
       <view class="others">
-        <block wx:for="{{others}}" wx:key="{{item.id}}" wx:key="*this">
+        <block wx:for="{{others}}" wx:key="{{item.id}}" wx:key="item.id">
           <view class="weui-cell" style="background:white;margin:32rpx;margin-bottom:0;border-radius:4px 4px 0 0">
             <view class="weui-cell__hd" style="position: relative;margin-right: 10px;">
               <image class="others_pic" src="../../img/a.png" />
@@ -187,5 +184,5 @@
         </block>
       </view>
     </view>
-  </swiper-item>-->
+  </swiper-item>
 </swiper>

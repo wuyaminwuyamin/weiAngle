@@ -222,10 +222,11 @@ scroll-view {
   position: fixed;
   bottom: 0;
   width: 100%;
+  font-size: 32rpx;
 }
 
 .floatBtn button {
-  width: 100%;
+  width: 50%;
   justify-content: center;
   color: white;
   border-radius: 0;

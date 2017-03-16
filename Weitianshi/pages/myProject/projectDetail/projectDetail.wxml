@@ -211,6 +211,6 @@
 
 <!--下面的浮动按钮-->
 <view class="floatBtn flex ">
-  <!--<button class="edit ">修改项目</button>-->
-  <button class="push " disabled="true">加人脉、一键推送(近期开放)</button>
+  <button class="edit ">修改项目</button>
+  <button class="push " disabled="true">一键推送(近期开放)</button>
 </view>

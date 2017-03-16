@@ -1,4 +1,4 @@
-<scroll-view bindscrolltolower='loadMore' scroll-y="true">
+<scroll-view  scroll-y="true">
   <view id="myDetail">
     <view class="weui-panel__bd" style="background:white;">
 

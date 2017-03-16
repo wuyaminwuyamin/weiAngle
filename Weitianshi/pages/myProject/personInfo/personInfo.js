@@ -1,4 +1,4 @@
-var rqj = require('../Template/Template.js')
+var rqj = require('../../Template/Template.js')
 Page({
     data: {
         name: "",
@@ -173,7 +173,7 @@ Page({
                             // console.log(user_career, user_company, uer_email);
                             if (res.data.status_code == 2000000) {
                                 wx.navigateTo({
-                                    url: 'companyInfo?user_career=' + user_career + "&&user_company=" + user_company + "&&uer_email=" + uer_email,
+                                    url: '../companyInfo/companyInfo?user_career=' + user_career + "&&user_company=" + user_company + "&&uer_email=" + uer_email,
                                 });
                                 wx.setStorageSync('user_id', res.data.user_id);
                                 wx.setStorageSync('bind_mobile', 1)
