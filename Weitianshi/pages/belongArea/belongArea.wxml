@@ -1,12 +1,16 @@
 <view id="payArea" class="flex">
-  <view class="frame_province">
-    <block wx:for="{{province}}" wx:for-index='idx' wx:key="{{item.area_id}}">
-      <view class="province" bindtap="province" data-index="{{idx}}" data-id='{{item.area_id}}' style="background:{{backgrond[idx]==1?'white':''}}">{{item.area_title}}</view>
-    </block>
-  </view>
-  <view class="frame_city">
-    <block wx:for="{{city}}" wx:for-index='idx'>
-      <view class="city" bindtap="city" data-index='{{idx}}' data-id='{{item.area_id}}' wx:key="{{item.area_id}}">{{item.area_title}}</view>
-    </block>
-  </view>
+  <scroll-view scroll-y="true" class="frame_province">
+    <view>
+      <block wx:for="{{province}}" wx:for-index='idx' wx:key="{{item.area_id}}">
+        <view class="province" bindtap="province" data-index="{{idx}}" data-id='{{item.area_id}}' style="background:{{backgrond[idx]==1?'white':''}}">{{item.area_title}}</view>
+      </block>
+    </view>
+  </scroll-view>
+  <scroll-view scroll-y="true" class="frame_city">
+    <view>
+      <block wx:for="{{city}}" wx:for-index='idx'>
+        <view class="city" bindtap="city" data-index='{{idx}}' data-id='{{item.area_id}}' wx:key="{{item.area_id}}">{{item.area_title}}</view>
+      </block>
+    </view>
+  </scroll-view>
 </view>
