@@ -25,7 +25,7 @@ Page({
         var user_id = wx.getStorageSync('user_id');
         var page = this.data.page;
         var avatarUrl = wx.getStorageSync('avatarUrl');
-        var investors = wx.getStorageSync('investors');//所有项目对应四位投资人
+        var investors = wx.getStorageSync('investors') ||'';//所有项目对应四位投资人
         // console.log(index);
         // console.log(avatarUrl);
         that.setData({
@@ -40,7 +40,9 @@ Page({
         var industry_tag = [];
         var scale_tag = [];
         var stage_tag = [];
-        for (var i = 0; i < investor.length; i++) {
+        console.log(investors)
+        if(investors!=''){
+                  for (var i = 0; i < investor.length; i++) {
             industry_tag.push(investor[i].industry_tag);
             scale_tag.push(investor[i].scale_tag);
             stage_tag.push(investor[i].stage_tag)
@@ -50,6 +52,7 @@ Page({
             stage_tag: stage_tag,
             scale_tag: scale_tag
         });
+        }
         // console.log(investor)
         // console.log(industry_tag)
         //项目详情(不包括投资人)
@@ -169,7 +172,7 @@ Page({
         var pro_intro = this.data.project.pro_intro;
         return {
             title: '项目-' + pro_intro,
-            path: '/pages/myProject/myDetail'
+            path: '/pages/myProject/myDetail?pro_id'+that.data.id
         }
     }
 });

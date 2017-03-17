@@ -1,6 +1,7 @@
 {
   "pages": [
     "pages/resource/resource",
+    "pages/myProject/projectDetail/projectDetail",
     "pages/yourProject/yourDetail",
     "pages/resourceEnchange/resourceEnchange",
     "pages/myProject/companyInfo/companyInfo",
@@ -13,7 +14,6 @@
     "pages/selectProject/selectProject",
     "pages/network/network",
     "pages/my/my",
-    "pages/myProject/projectDetail/projectDetail",
     "pages/belongArea/belongArea",
     "pages/payArea/payArea"
   ],

@@ -13,7 +13,6 @@ Page({
     },
     onLoad: function (options) {
         app.checkLogin();
-        console.log(getCurrentPages())
         //  投资人数据
         // console.log("this is onLoad");
         // console.log(options)
@@ -21,7 +20,6 @@ Page({
         var id = options.id;
         var index = options.index;
         var user_id = wx.getStorageSync('user_id');
-        console.log(typeof user_id)
         var page = this.data.page;
         var avatarUrl = wx.getStorageSync('avatarUrl');
         // console.log(index);
@@ -32,8 +30,6 @@ Page({
             user_id: user_id,
             avatarUrl: avatarUrl,
         });
-
-     console.log(this.data.id)
 
         //项目详情(不包括投资人)
         wx.request({
