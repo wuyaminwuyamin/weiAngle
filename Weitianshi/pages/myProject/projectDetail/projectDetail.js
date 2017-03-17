@@ -1,13 +1,16 @@
 var rqj = require('../../Template/Template.js')
 Page({
     data: {
+        winWidth: 0,//选项卡
+        winHeight: 0,//选项卡
+        currentTab: 0,//选项卡
         firstName: "代",
         id: "",
         page: 0,
         aa: [],
-        bpName: "",
-        projectName: "",
-        companyName: "",
+        bpName: "杭州投着乐网络科技有限公司商业计划书",
+        projectName: "微天使",
+        companyName: "杭州投着乐网络科技有限公司",
         stock: 0,
         investor_arry: [],
         page_end: false
@@ -96,6 +99,25 @@ Page({
         wx.stopPullDownRefresh()
     },
 
+    /*滑动切换tab*/
+    bindChange: function (e) {
+        var that = this;
+        var current = e.detail.current;
+        that.setData({ currentTab: e.detail.current });
+    },
+
+    /*点击tab切换*/
+    swichNav: function (e) {
+        var that = this;
+        if (this.data.currentTab === e.target.dataset.current) {
+            return false;
+        } else {
+            that.setData({
+                currentTab: e.target.dataset.current
+            })
+        }
+    },
+
     //触底加载
     loadMore: function () {
         var that = this;
@@ -121,6 +143,7 @@ Page({
                 },
                 method: 'POST',
                 success: function (res) {
+                    console.log(res)
                     var investor2 = res.data.data;
                     var investor_arry = that.data.investor_arry
                     for (var i = 0; i < investor2.length; i++) {
@@ -128,7 +151,7 @@ Page({
                     }
                     that.setData({
                         investor_arry: investor_arry,
-                        page_end:res.data.page_end
+                        page_end: res.data.page_end
                     });
                     wx.hideToast({
                         title: 'loading...',

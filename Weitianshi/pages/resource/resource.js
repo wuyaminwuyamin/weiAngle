@@ -191,7 +191,7 @@ Page({
         },
         method: 'POST', 
         success: function(res){
-          console.log(res)
+          // console.log(res)
           //循环出用户信息
           var investor=res.data.data;
           var industry=investor.industry_tag;
@@ -214,7 +214,7 @@ Page({
             user_stage.push(stage[i].stage_name)
             user_stageId.push(stage[i].stage_id)
           }
-          console.log(user_industry,user_industryId,user_area,user_areaId,user_scale,user_scaleId,user_stage,user_stageId)
+          // console.log(user_industry,user_industryId,user_area,user_areaId,user_scale,user_scaleId,user_stage,user_stageId)
         }
       })
     }

@@ -1,3 +1,4 @@
+var app = getApp()
 Page({
     data: {
         firstName: "代",
@@ -11,6 +12,7 @@ Page({
         load: 0
     },
     onLoad: function (options) {
+        app.checkLogin();
         console.log(getCurrentPages())
         //  投资人数据
         // console.log("this is onLoad");
@@ -19,6 +21,7 @@ Page({
         var id = options.id;
         var index = options.index;
         var user_id = wx.getStorageSync('user_id');
+        console.log(typeof user_id)
         var page = this.data.page;
         var avatarUrl = wx.getStorageSync('avatarUrl');
         // console.log(index);
@@ -30,7 +33,7 @@ Page({
             avatarUrl: avatarUrl,
         });
 
-
+     console.log(this.data.id)
 
         //项目详情(不包括投资人)
         wx.request({
@@ -56,7 +59,7 @@ Page({
 
 
 
-
+           
                 var is_mine = res.data.data.is_mine;
                 //console.log(is_mine)
                 if (is_mine == true) {

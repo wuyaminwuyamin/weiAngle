@@ -75,6 +75,7 @@ App({
               wx.setStorageSync('open_session', res.data.open_session);
               wx.setStorageSync('bind_mobile', res.data.bind_mobile);
               wx.setStorageSync('user_id', res.data.user_id);
+              console.log(res.data.user_id)
               //检查是否绑定手机
               var bind_mobile = wx.getStorageSync('bind_mobile');
               // console.log("维护登录状态成功,已将bind_mobile,user_id,open_session存入缓存");

@@ -20,8 +20,6 @@ Page({
       enchangeId = [];
     }
 
-
-
     //checkbox
     for (var i = 0; i < industry.length; i++) {
       if (enchangeValue.indexOf(industry[i].industry_name) != -1) {
@@ -31,7 +29,7 @@ Page({
       }
     }
     wx.setStorageSync('industry', industry)
-
+    console.log(industry)
     that.setData({
       enchange: industry,
       current: current,
@@ -64,6 +62,7 @@ Page({
     if (index.indexOf(id) == -1) {
       checked.push(value);
       index.push(id)
+
     } else {
       // console.log(checked.indexOf(value), index.indexOf(id) + 1);
       checked.splice(checked.indexOf(value), 1);

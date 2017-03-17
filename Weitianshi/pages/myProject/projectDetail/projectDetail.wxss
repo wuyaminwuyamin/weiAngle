@@ -2,16 +2,22 @@ page {
   background: white;
   height: 100%;
 }
+#myDetail,.weui-panel__bd{
+  height: 100%;
+}
 
 scroll-view {
   height: 93%;
 }
 
+.ziben{
+  color: #ccc;
+}
+
 /*我的项目卡片*/
 
 .on {
-  color: #ccc;
-  border-bottom: 5rpx solid #333;
+  color: #40587a;
   text-align: center;
 }
 
@@ -209,6 +215,7 @@ scroll-view {
   padding: 32rpx;
   /*padding-top: 0;*/
   background: #f3f4f8;
+  padding-bottom: 0;
 }
 
 .complete {
@@ -226,7 +233,7 @@ scroll-view {
 }
 
 .floatBtn button {
-  width: 50%;
+  width: 100%;
   justify-content: center;
   color: white;
   border-radius: 0;
@@ -287,4 +294,9 @@ scroll-view {
 
 .load {
   text-align: center;
+}
+
+.ziben{
+  width: 50%;
+  padding-bottom: 32rpx;
 }
