@@ -128,6 +128,9 @@ Page({
         var user_id = this.data.user_id;
         var pro_id = this.data.id;
         var page_end = this.data.page_end;
+        console.log(
+            user_id,pro_id
+        )
         if (page_end == false) {
             wx.showToast({
                 title: 'loading...',

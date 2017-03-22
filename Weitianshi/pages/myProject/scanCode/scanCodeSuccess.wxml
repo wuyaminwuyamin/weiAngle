@@ -1,0 +1,6 @@
+
+<!--pages/myProject/scanCode/scanCodeSuccess.wxml-->
+<button class="nextBtn" bindtap="route">
+  完成
+  <image class="rightArrow" src="../../../img/rightArrow.png"></image>
+</button>

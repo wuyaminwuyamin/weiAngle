@@ -1,1 +1,15 @@
 /* pages/people/people.wxss */
+
+.searchBox {
+}
+
+.search {
+  padding-left: 20rpx;
+  border: 1px solid #ccc;
+}
+
+.weui-media-box__desc {
+  color: #666;
+  border-right: 1px solid #e0e0e0;
+  padding: 0 8rpx;
+}

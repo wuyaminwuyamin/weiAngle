@@ -2,17 +2,24 @@
 <!--pages/resourceEnchange/resourceEnchange.wxml-->
 <view id="resourceEnchange">
   <view class="offer">
-    <view class="title">我能提供的资源</view>
+    <view class="flex">
+      <view class="title">可提供资源</view>
+      <view class="title offerAdd" bindtap="offerAdd">自定义添加</view>
+    </view>
     <view class="context flex">
       <block wx:for="{{enchange}}" wx:key="{{item.industry_id}}">
         <label class="tips">
-          <view wx:for-index="idx" class="{{item.checked==true?'checkedOne':''}}" bindtap="checkboxChange" id="{{item.industry_id}}" data-index="{{index}}" data-value='{{item.industry_name}}' data-check="0">
+          <view wx:for-index="idx" class="{{checked==true?'checkedOne':''}}" bindtap="checkboxChange" id="{{item.industry_id}}" data-index="{{index}}" data-value='{{item.industry_name}}' data-check="false">
             {{item.industry_name}}</view>
         </label>
       </block>
     </view>
   </view>
   <view class="search">
-    <view class="title">寻求对接的资源</view>
+    <view class="title">在寻求资源</view>
+  </view>
+  <view>
+    <text>具体描述</text>
+     <textarea placeholder="其他需求的描述,如:阿里系的创业团队我更亲睐" placeholder-style='color:#ccc' bindblur="bindTextAreaBlur" maxlength="30" value="{{describe}}" />
   </view>
 </view>

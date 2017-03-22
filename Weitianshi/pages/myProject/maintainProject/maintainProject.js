@@ -152,21 +152,20 @@ Page({
     },
 
     //上传BP
-    upLoad: function () {
+    upLoad:function(){
         wx.navigateTo({
-            url: '../scanCode/scanCode',
-            success: function (res) {
-                // success
-            },
-            fail: function () {
-                // fail
-            },
-            complete: function () {
-                // complete
-            }
+          url: '../scanCode/scanCode',
+          success: function(res){
+            // success
+          },
+          fail: function() {
+            // fail
+          },
+          complete: function() {
+            // complete
+          }
         })
     },
-
 
     //点击发布
     public: function () {

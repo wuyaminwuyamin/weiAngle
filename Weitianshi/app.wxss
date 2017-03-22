@@ -193,3 +193,18 @@ page {
   border-radius: 5px;
   text-align: center;
 }
+
+
+.others_tips {
+  border: 1px solid #333;
+  border-radius: 8rpx;
+  padding: 5rpx 11rpx;
+  font-size: 20rpx;
+  border-color: #ccc;
+  color: #ccc;
+}
+
+.others_tips_on {
+  border: 1px solid #333;
+  color: #333;
+}

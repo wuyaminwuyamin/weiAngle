@@ -13,12 +13,9 @@ Page({
     var industry = wx.getStorageSync('industry');
     var current = options.current;
     console.log(industry)
-    var enchangeValue = wx.getStorageSync('enchangeValue')
-    var enchangeId = wx.getStorageSync('enchangeId')
-    if (enchangeValue == "选择领域") {
-      enchangeValue = [];
-      enchangeId = [];
-    }
+    var enchangeValue = []
+    var enchangeId = []
+    var enchangeCheck = []
 
     //checkbox
     for (var i = 0; i < industry.length; i++) {
@@ -27,15 +24,17 @@ Page({
       } else {
         industry[i].checked = false;
       }
+      enchangeCheck.push(industry[i].checked)
     }
-    wx.setStorageSync('industry', industry)
-    console.log(industry)
     that.setData({
       enchange: industry,
       current: current,
       checked: enchangeValue,
-      index: enchangeId
+      index: enchangeId,
+      enchangeCheck: enchangeCheck
     });
+    console.log(this.data.enchangeCheck)
+    console.log(this.data.checked)
 
 
   },
@@ -49,31 +48,20 @@ Page({
   //传值部份
   checkboxChange: function (e) {
     var that = this;
-    var checked = this.data.checked;
-  
-    var enchange = this.data.enchange;
-    var index = this.data.index;
     var thisData = e.currentTarget.dataset;
-    var isCheck = thisData.check;
-    var value = thisData.value;
-    var idx = thisData.index;
-    var id = e.currentTarget.id;
-
-    if (index.indexOf(id) == -1) {
-      checked.push(value);
-      index.push(id)
-
-    } else {
-      // console.log(checked.indexOf(value), index.indexOf(id) + 1);
-      checked.splice(checked.indexOf(value), 1);
-      index.splice(index.indexOf(id), 1)
-    }
-    that.setData({
-      checked: checked,
-      index: index
-    })
+    console.log(thisData)
+    var e_index=thisData.index;
+    var e_value=thisData.value;
+    var e_checked=thisData.checked;
+    e_checked=true
   },
 
+  //可提供资源自定义添加
+  offerAdd: function () {
+    wx.showModal({
+      title:"自定义内容"
+  })
+  },
 
   //点击确定
   certain: function () {
@@ -113,6 +101,4 @@ Page({
     }
 
   }
-
-
 });

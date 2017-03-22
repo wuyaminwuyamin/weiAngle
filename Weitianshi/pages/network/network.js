@@ -1,19 +1,40 @@
 // pages/network/network.js
 Page({
-  data:{},
-  onLoad:function(options){
-    // 页面初始化 options为页面跳转所带来的参数
+  data: {
+    user_id:"QrYqn6Zr",
+    pro_id: "PWRG8vpV",
+    investor_arry:[]
   },
-  onReady:function(){
-    // 页面渲染完成
+  onShow: function () {
+    var that=this;
+    var user_id=this.data.user_id;
+    var pro_id=this.data.pro_id;
+    
+    wx.request({
+      url: 'https://www.weitianshi.com.cn/api/project/getProjectMatchInvestors',
+      data: {
+        user_id: user_id,
+        pro_id: pro_id,
+        page: 1
+      },
+      method: 'POST',
+      success: function (res) {
+        console.log(res)
+        var investor2 = res.data.data;
+        var investor_arry = that.data.investor_arry
+        for (var i = 0; i < investor2.length; i++) {
+          investor_arry.push(investor2[i])
+        }
+        that.setData({
+          investor_arry: investor_arry,
+          page_end: res.data.page_end
+        });
+        wx.hideToast({
+          title: 'loading...',
+          icon: 'loading'
+        })
+      }
+    })
   },
-  onShow:function(){
-    // 页面显示
-  },
-  onHide:function(){
-    // 页面隐藏
-  },
-  onUnload:function(){
-    // 页面关闭
-  }
+
 })

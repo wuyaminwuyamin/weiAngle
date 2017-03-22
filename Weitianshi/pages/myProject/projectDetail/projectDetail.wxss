@@ -300,3 +300,12 @@ scroll-view {
   width: 50%;
   padding-bottom: 32rpx;
 }
+
+.detail .grey,.detail .item1,.detail .item2{
+  text-align: left;
+}
+
+navigator .maintainProject{
+  background:#40587a;
+  color: white;
+}
