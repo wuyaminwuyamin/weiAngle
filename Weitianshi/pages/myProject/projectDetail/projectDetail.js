@@ -64,7 +64,7 @@ Page({
             },
             method: 'POST',
             success: function (res) {
-                // console.log(res)
+                console.log(res)
                 var project = res.data.data;
                 var user = res.data.user;
                 var aa = [];

@@ -1,0 +1,24 @@
+
+<!--pages/my/myInfoEdit/myInfoEdit.wxml-->
+<view id="myInfoEdit">
+  <view class="card baseInfo flex" bindtap="baseInfo">
+    <view class="card_left">基本信息</view>
+    <view class="card_right">{{baseInfo}}%</view>
+  </view>
+  <view class="card projectFinance flex" bindtap="projectFinance">
+    <view class="card_left">项目融资</view>
+    <view class="card_right">{{projectFinance}}%</view>
+  </view>
+  <view class="card findProject flex" bindtap="findProject">
+    <view class="card_left">寻找案源</view>
+    <view class="card_right">{{findProject}}%</view>
+  </view>
+  <view class="card resourceEnchange flex" bindtap="resourceEnchange">
+    <view class="card_left">资源对接</view>
+    <view class="card_right">{{resourceEnchange}}%</view>
+  </view>
+  <view class="card investCase flex" bindtap="investCase">
+    <view class="card_left">投资案例</view>
+    <view class="card_right">{{investCase}}%</view>
+  </view>
+</view>

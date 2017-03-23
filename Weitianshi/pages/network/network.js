@@ -2,7 +2,7 @@
 Page({
   data: {
     user_id:"QrYqn6Zr",
-    pro_id: "PWRG8vpV",
+    pro_id: "Er6ZGQr4",
     investor_arry:[]
   },
   onShow: function () {

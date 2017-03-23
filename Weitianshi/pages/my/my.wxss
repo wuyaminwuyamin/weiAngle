@@ -1,1 +1,18 @@
 /* pages/my/my.wxss */
+.businessCard {
+  margin: 32rpx 0;
+  margin-top: 0;
+  padding-top: 32rpx;
+}
+
+.myCard {
+  justify-content: space-between;
+  padding: 44rpx 32rpx;
+  font-size: 28rpx;
+  color: #333;
+  background: white;
+}
+
+.loginOut{
+  justify-content: center
+}

@@ -1,1 +1,34 @@
-<view class="soon">近期开放...</view>
+<view id="my">
+
+  <!--名片-->
+  <view class="weui-cell businessCard" bindtap="userInfo">
+    <view class="weui-cell__hd" style="position: relative;margin-right: 10px;">
+      <image wx:if="{{user.user_avatar_url}}" class="others_pic" src="{{user.user_avatar_url}}" />
+      <view wx:if="{{!user.user_avatar_url}}" class="others_nopic">代</view>
+    </view>
+    <view class="weui-cell__bd">
+      <view class="flex" style="align-items: baseline;">
+        <view class="others_name">{{user.user_name}}</view>
+        <view class="others_email">{{user.user_email}}</view>
+      </view>
+      <view class="others_company">{{user.user_company}} | {{user.user_career}}</view>
+    </view>
+  </view>
+
+  <!--个人资料完整度-->
+  <view class="personInfo_integrity myCard flex" bindtap="resourcesIndex">
+    <view>个人资料完整度</view>
+    <view>{{integrity}}%</view>
+  </view>
+
+  <!--资源指数-->
+  <view class="resourcesIndex myCard flex">
+    <view>资源指数</view>
+    <view>{{resourcesIndex}}</view>
+  </view>
+
+  <!--退出登录-->
+  <view class="loginOut myCard flex">
+    <view>退出登录</view>
+  </view>
+</view>

@@ -194,7 +194,6 @@ page {
   text-align: center;
 }
 
-
 .others_tips {
   border: 1px solid #333;
   border-radius: 8rpx;
@@ -207,4 +206,72 @@ page {
 .others_tips_on {
   border: 1px solid #333;
   color: #333;
+}
+
+.offer, .search {
+  align-items: baseline;
+}
+
+.search {
+  margin-top: 32rpx;
+}
+
+.offer view:first-child {
+  padding-left: 32rpx;
+  font-size: 24rpx;
+}
+
+.search view:first-child {
+  padding-left: 32rpx;
+  font-size: 24rpx;
+}
+
+.others_tips {
+  margin-left: 24rpx;
+  font-size: 20rpx;
+}
+
+/*我的项目卡片*/
+
+.on {
+  color: #40587a;
+  text-align: center;
+}
+
+.swiper-box {
+  display: block;
+  height: 100%;
+  width: 100%;
+  overflow: hidden;
+}
+
+.swiper-box view {
+  text-align: center;
+}
+
+.weui-media-box__desc {
+  color: #666;
+  border-right: 1px solid #e0e0e0;
+  padding: 0 8rpx;
+}
+
+.businessCard {
+  background: white;
+  margin: 32rpx;
+  margin-bottom: 0;
+  border-radius: 4px 4px 0 0;
+}
+
+.floatBtn {
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  font-size: 32rpx;
+  z-index: 999;
+}
+
+.floatBtn button {
+  width: 100%;
+  justify-content: center;
+  border-radius: 0;
 }

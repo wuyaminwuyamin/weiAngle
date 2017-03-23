@@ -1,8 +1,12 @@
 {
   "pages": [
+    "pages/my/myInfoEdit/myInfoEdit",
+    "pages/my/projectFinance/projectFinance",
+    "pages/resource/resource",
+    "pages/my/baseInfo/baseInfo",
+    "pages/my/investCase/investCase",
     "pages/userDetail/userDetail",
     "pages/network/network",
-    "pages/resource/resource",
     "pages/resourceEnchange/resourceEnchange",
     "pages/myProject/maintainProject/maintainProject",
     "pages/myProject/scanCode/scanCode",
@@ -10,6 +14,7 @@
     "pages/belongArea/belongArea",
     "pages/myProject/projectDetail/projectDetail",
     "pages/yourProject/yourDetail",
+    "pages/myProject/personInfo/personInfo",
     "pages/myProject/companyInfo/companyInfo",
     "pages/payMoney/payMoney",
     "pages/yourProject/yourProject",

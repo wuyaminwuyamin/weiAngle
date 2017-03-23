@@ -13,3 +13,6 @@
   border-right: 1px solid #e0e0e0;
   padding: 0 8rpx;
 }
+.weui-media-box__desc:last-child{
+  border-right: none;
+}

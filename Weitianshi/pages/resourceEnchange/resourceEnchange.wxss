@@ -63,3 +63,8 @@ textarea {
   font-size: 28rpx;
   margin-bottom: 16rpx;
 }
+
+.offer wx-view:first-child {
+  padding-left: 0;
+  font-size: 24rpx;
+}

@@ -1,0 +1,43 @@
+
+<!--pages/my/projectFinance/projectFinance.wxml-->
+<scroll-view style="height:100%;" scroll-y="true">
+
+  <!--已发布的项目-->
+  <block wx:for="{{myProject}}" wx:key="{{pro_id}}" wx:for-item="myProject">
+    <view class="weui-panel__bd" style="background:white;margin:16px">
+      <view class="weui-media-box weui-media-box_text my_detail" data-id='{{myProject.pro_id}}' data-index="{{index}}" bindtap="detail">
+        <view class="weui-media-box__title weui-media-box__title_in-text" style="text-align:left;">{{myProject.pro_intro}}</view>
+        <view class="sort flex">
+          <block wx:for="{{myProject.pro_industry}}" wx:for-item="sort" wx:key="*this">
+            <view class="weui-media-box__desc" wx:if="{{index<4}}">
+              {{sort}}
+            </view>
+          </block>
+        </view>
+
+        <!--项目阶段｜项目地区｜项目金额-->
+        <view class="tips flex">
+          <view style="width:1px"></view>
+          <view class="weui-media-box__desc tip">{{myProject.pro_stage}}</view>
+          <view class="weui-media-box__desc tip">{{myProject.pro_area}}</view>
+          <view class="weui-media-box__desc tip">{{myProject.pro_scale}}</view>
+        </view>
+        <view class="edit flex">
+          <view class="editIcon" bindtap="edit" data-pro-id="">
+            <image src=""></image>
+          </view>
+        </view>
+      </view>
+    </view>
+  </block>
+
+  <!--空状态-->
+  <view wx:if="{{myProject==''}}">
+    <image class="empty" src="../../img/empty.png"></image>
+  </view>
+</scroll-view>
+
+<!--新增项目-->
+<view class="floatBtn flex maintainProject" bindtap="addProject">
+  <button class="push maintainProject">+新增项目</button>
+</view>

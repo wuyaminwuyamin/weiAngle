@@ -1,0 +1,12 @@
+/* pages/my/myInfoEdit/myInfoEdit.wxss */
+.card{
+    justify-content: space-between;
+    padding: 32rpx;
+    font-family: 28rpx;
+}
+.card .card_left{
+
+}
+.card card_right{
+
+}
