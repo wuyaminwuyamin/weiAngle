@@ -27,8 +27,4 @@
     <view>{{resourcesIndex}}</view>
   </view>
 
-  <!--退出登录-->
-  <view class="loginOut myCard flex">
-    <view>退出登录</view>
-  </view>
 </view>

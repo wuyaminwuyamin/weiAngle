@@ -1,9 +1,9 @@
 {
   "pages": [
-    "pages/my/myInfoEdit/myInfoEdit",
-    "pages/my/projectFinance/projectFinance",
     "pages/resource/resource",
     "pages/my/baseInfo/baseInfo",
+    "pages/my/myInfoEdit/myInfoEdit",
+    "pages/my/projectFinance/projectFinance",
     "pages/my/investCase/investCase",
     "pages/userDetail/userDetail",
     "pages/network/network",

@@ -3,7 +3,13 @@
 <view id="baseInfo">
   <view class="card avatar flex">
     <view class="card_left">头像</view>
-    <view class="card_right">相片</view>
+    <view class="weui-uploader__bd">
+      <view class="weui-uploader__files">
+        <view class="weui-uploader__file">
+          <image class="weui-uploader__img" src="{{image}}"  bindtap="chooseImage"></image>
+        </view>
+      </view>
+    </view>
   </view>
   <view class="card name flex">
     <view class="card_left">姓名</view>
