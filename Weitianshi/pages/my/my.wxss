@@ -7,7 +7,7 @@
 
 .myCard {
   justify-content: space-between;
-  padding: 44rpx 32rpx;
+  padding: 40rpx 32rpx;
   font-size: 28rpx;
   color: #333;
   background: white;
@@ -15,4 +15,15 @@
 
 .loginOut{
   justify-content: center
+}
+
+.others_nopic{
+  width: 144rpx;
+  height: 144rpx;
+  border-radius: 50%;
+  background: #f2f2f2;
+  font-size: 64rpx;
+  color: #10587a;
+  line-height: 144rpx;
+  text-align: center;
 }

@@ -1,7 +1,9 @@
 // pages/my/myInfoEdit/myInfoEdit.js
 Page({
   data: {
-    baseInfo: 50
+    baseInfo: 50,
+    integrity:50,
+    loser:10
   },
   onLoad: function (options) {
 

@@ -1,11 +1,54 @@
 /* pages/people/people.wxss */
 
+page {
+  height: 100%;
+}
+
+/*空状态*/
+.nullState view{
+  font-size: 20rpx;
+  color: #999;
+  width: 260rpx;
+  height: 28rpx;
+  line-height: 28rpx;
+  margin: 452rpx auto;
+  margin-bottom: 88rpx;
+}
+.nullState button{
+  width: 120rpx;
+  margin: 0 auto;
+  height: 48rpx;
+  line-height: 48rpx;
+  font-size: 20rpx;
+  color: white;
+  background: #40587a;
+  border-radius: 200rpx;
+  padding: 0;
+}
+
+.search_frame {
+  background: white;
+  padding: 16rpx 32rpx;
+}
+
+.search_icon {
+  padding: 16rpx;
+  padding-top: 36rpx;
+}
+
 .searchBox {
+  align-items: center;
+  height: 58rpx;
+  line-height: 58rpx;
+  background: #f2f2f2;
+  border-radius: 8rpx;
 }
 
 .search {
-  padding-left: 20rpx;
-  border: 1px solid #ccc;
+  margin: 0;
+  font-size: 20rpx;
+  height: 58rpx;
+  line-height: 58rpx;
 }
 
 .weui-media-box__desc {
@@ -13,6 +56,7 @@
   border-right: 1px solid #e0e0e0;
   padding: 0 8rpx;
 }
-.weui-media-box__desc:last-child{
+
+.weui-media-box__desc:last-child {
   border-right: none;
 }

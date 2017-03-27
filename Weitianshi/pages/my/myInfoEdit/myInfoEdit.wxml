@@ -1,6 +1,7 @@
 
 <!--pages/my/myInfoEdit/myInfoEdit.wxml-->
 <view id="myInfoEdit">
+  <view class="integrity">项目完整度{{integrity}}%,打败了{{loser}}%的项目</view>
   <view class="card baseInfo flex" bindtap="baseInfo">
     <view class="card_left">基本信息</view>
     <view class="card_right">{{baseInfo}}%</view>

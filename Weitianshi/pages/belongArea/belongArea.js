@@ -60,7 +60,6 @@ Page({
                 that.setData({
                     city: city
                 })
-
             }
         });
         //   console.log(province[index])

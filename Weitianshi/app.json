@@ -1,17 +1,18 @@
 {
   "pages": [
     "pages/resource/resource",
+    "pages/needMarket/needMarket",
     "pages/my/baseInfo/baseInfo",
     "pages/my/myInfoEdit/myInfoEdit",
     "pages/my/projectFinance/projectFinance",
     "pages/my/investCase/investCase",
     "pages/userDetail/userDetail",
-    "pages/network/network",
     "pages/resourceEnchange/resourceEnchange",
     "pages/myProject/maintainProject/maintainProject",
     "pages/myProject/scanCode/scanCode",
     "pages/myProject/scanCode/scanCodeSuccess",
     "pages/belongArea/belongArea",
+    "pages/network/network",
     "pages/myProject/projectDetail/projectDetail",
     "pages/yourProject/yourDetail",
     "pages/myProject/personInfo/personInfo",
@@ -21,7 +22,6 @@
     "pages/myProject/publishProject/publishProject",
     "pages/industry/industry",
     "pages/payStage/payStage",
-    "pages/needMarket/needMarket",
     "pages/selectProject/selectProject",
     "pages/my/my",
     "pages/payArea/payArea"
