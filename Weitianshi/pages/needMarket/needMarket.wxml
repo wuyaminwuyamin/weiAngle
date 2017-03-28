@@ -1,5 +1,5 @@
 <view class="r_nav flex">
-  <navigator url="../resource/resource" class="nav_btn">精准对接</navigator>
+  <view class="nav_btn" bindtap="backToResource">精准对接</view>
   <view class="nav_btn nav_on">需求市场</view>
 </view>
 <view class="swiper-tab">

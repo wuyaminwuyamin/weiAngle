@@ -28,6 +28,7 @@ Page({
         var investors = wx.getStorageSync('investors') ||'';//所有项目对应四位投资人
         // console.log(index);
         // console.log(avatarUrl);
+        console.log(id)
         that.setData({
             index: index,
             id: id,

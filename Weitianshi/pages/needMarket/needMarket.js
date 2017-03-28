@@ -68,4 +68,10 @@ Page({
       })
     }
   },
+  // 返回对接页面
+  backToResource:function(){
+    wx.switchTab({
+      url: '../resource/resource',
+    })
+  }
 });

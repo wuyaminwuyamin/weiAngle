@@ -1,20 +1,20 @@
 // pages/network/network.js
 Page({
   data: {
-    user_id:"QrYqn6Zr",
+    user_id: "QrYqn6Zr",
     pro_id: "Er6ZGQr4",
-    investor_arry:[]
+    investor_arry: []
   },
   onShow: function () {
-    var that=this;
-    var user_id=this.data.user_id;
-    var pro_id=this.data.pro_id;
-    
+    var that = this;
+    var user_id = this.data.user_id;
+    var pro_id = this.data.pro_id;
+
     wx.request({
       url: 'https://www.weitianshi.com.cn/api/project/getProjectMatchInvestors',
       data: {
         user_id: user_id,
-        pro_id: pro_id,
+        pro_id: "2rzlaKW3",
         page: 1
       },
       method: 'POST',
@@ -36,5 +36,10 @@ Page({
       }
     })
   },
-
+  onShareAppMessage: function () {
+    return {
+      title: '我是对接',
+      path: '/pages/resource/resource'
+    }
+  }
 })
