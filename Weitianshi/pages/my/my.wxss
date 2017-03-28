@@ -1,29 +1,123 @@
-/* pages/my/my.wxss */
-.businessCard {
-  margin: 32rpx 0;
-  margin-top: 0;
-  padding-top: 32rpx;
+page{
+  color: #333;
+  width: 100%;
+}
+/*用户名片*/
+.user_info{
+  margin: 32rpx;
+  background: white;
+  justify-content: space-between;
+  padding: 32rpx;
+  flex-wrap: wrap;
+}
+.user_left,.user_right{
+  height: 256rpx;
+}
+.user_left{
+  width: 80%;
+}
+.user_right{
+  width: 20%;
+}
+.user_down{
+  width: 100%;
+  margin-top: 32rpx;
+}
+.user_pic,user_text{
+  display: flex;
+  flex-direction: column-reverse;
 }
 
-.myCard {
-  justify-content: space-between;
-  padding: 40rpx 32rpx;
+.user_name{
+  font-size: 40rpx;
+  margin-bottom: 20rpx
+}
+.user_career{
+  font-size: 24rpx;
+  color: #666;
+  margin-bottom: 40rpx;
+}
+.user_company,.user_mobile,.user_email{
+  font-size: 20rpx;
+  color: #666;
+  margin-bottom: 20rpx;
+}
+.user_popularity,.user_attention,.user_potential{
+  width: 120rpx;
+  background: #f8f8f8;
+  height: 82rpx;
+  text-align: center;
+  margin-right: 132rpx;
+  font-size: 20rpx;
+  color: #666;
+}
+.user_popularity view:first-child,.user_attention view:first-child,.user_potential view:first-child{
+  font-size: 32rpx;
+  color: #333;
+  height: 40rpx;
+}
+.user_potential{
+  margin-right: 0
+}
+
+/*个人描述*/
+.user_intro{
+  background: white;
+  padding: 32rpx;
+  margin-bottom: 32rpx;
+}
+.user_intro .intro_title{
+  color: #333;
+  font-size: 28rpx;
+}
+.user_intro .intro_content{
+  padding: 19rpx 22rpx;
+  background: #f8f8f8;
+  font-size: 20rpx;
+  height: 132rpx;
+  margin-top:32rpx;
+  border-radius: 8rpx;
+}
+.user_invest_info,.user_resource_info,.user_project_info,.user_invest_case{
+  background: white;
+  padding:32rpx;
+  margin-bottom: 32rpx;
+}
+.title{
   font-size: 28rpx;
   color: #333;
-  background: white;
+  justify-content: space-between;
+  margin-bottom: 26rpx;
 }
-
-.loginOut{
-  justify-content: center
+.title image{
+  width:22rpx;
+  height: 22rpx;
 }
-
-.others_nopic{
-  width: 144rpx;
-  height: 144rpx;
-  border-radius: 50%;
-  background: #f2f2f2;
-  font-size: 64rpx;
-  color: #10587a;
-  line-height: 144rpx;
-  text-align: center;
+.invest_title,.resource_title{
+  font-size: 24rpx;
+  margin-bottom: 32rpx;
+}
+.invest_title{
+  font-size: 24rpx;
+  color: #333;
+  margin-bottom: 32rpx;
+}
+.invest_stage_frame,.invest_scale_frame,.invest_industry_frame,.res_find_frame,.res_give_frame{
+  display: flex;
+  margin-bottom: 46rpx;
+}
+.invest_industry,.invest_stage,.invest_scale,.res_find,.res_give{
+  font-size: 20rpx;
+  padding: 14rpx;
+  border:1px solid #666;
+  color: #666;
+  border-radius: 8rpx;
+  margin-right: 22rpx;
+}
+.invest_desc{
+  padding:18rpx 24rpx;
+  background: #f8f8f8;
+  font-size: 20rpx;
+  height: 132rpx;
+  border-radius: 8rpx;
 }

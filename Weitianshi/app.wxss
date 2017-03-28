@@ -275,3 +275,14 @@ page {
   justify-content: center;
   border-radius: 0;
 }
+
+.noPic{
+  width: 144rpx;
+  height: 144rpx;
+  border-radius: 50%;
+  background: #f2f2f2;
+  font-size: 64rpx;
+  color: #10587a;
+  line-height: 144rpx;
+  text-align: center;
+}

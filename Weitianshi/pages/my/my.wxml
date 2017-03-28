@@ -1,49 +1,123 @@
 <view id="my">
 
-  <!--名片-->
-  <view class="weui-cell businessCard" bindtap="userInfo" wx:if="{{user}}">
-    <view class="weui-cell__hd" style="position: relative;margin-right: 10px;">
-      <image  class="others_pic" src="{{user.user_avatar_url}}" />
+  <!--我的名片-->
+  <view class="user_info flex">
+    <view class="user_left">
+      <view class="user_name" wx:if="{{user.user_real_name}}">{{user.user_real_name}}</view>
+      <view class="user_name" wx:if="{{!user.user_real_name}}">代替名</view>
+      <view class="user_career" wx:if="{{user.user_company_career}}">{{user.user_company_career}}</view>
+      <view class="user_career" wx:if="{{!user.user_company_career}}">职位名称</view>
+      <view class="user_company" wx:if="{{user.user_company_name}}">{{user.user_company_name}}</view>
+      <view class="user_company" wx:if="{{!user.user_company_name}}">公司名称</view>
+      <view class="user_mobile" wx:if="{{user.user_mobile}}">{{user.user_mobile}}</view>
+      <view class="user_mobile" wx:if="{{!user.user_mobile}}">手机号码</view>
+      <view class="user_email" wx:if="{{user.user_email}}">{{user.user_email}}</view>
+      <view class="user_email" wx:if="{{!user.user_email}}">邮箱号码</view>
     </view>
-    <view class="weui-cell__bd">
-      <view class="flex" style="align-items: baseline;">
-        <view class="others_name">{{user.user_real_name}}</view>
-        <view class="others_email">{{user.user_email}}</view>
+    <view class="user_right">
+      <image wx:if="{{user.user_avatar_url}}" class="user_pic" src="{{user.user_avatar_url}}"></image>
+      <view wx:if="{{user.user_avatar_text}}" class="user_text noPic">{{user.user_avatar_text}}</view>
+      <image class="user_edit" src=""></image>
+    </view>
+    <view class="user_down flex">
+      <view class="user_popularity user_tips">
+        <view>{{user.user_popularity}}</view>
+        <view>人气</view>
       </view>
-      <view class="others_company">{{user.user_company_name}} | {{user.user_company_career}}</view>
-    </view>
-  </view>
-
-   <view class="weui-cell businessCard" bindtap="userInfo" wx:if="{{!user}}">
-    <view class="weui-cell__hd" style="position: relative;margin-right: 10px;">
-      <view class="others_nopic">代</view>
-    </view>
-    <view class="weui-cell__bd">
-      <view class="flex" style="align-items: baseline;">
-        <view class="others_name">代用名</view>
-        <view class="others_email">786485748@qq.com</view>
+      <view class="user_attention user_tips">
+        <view>{{user.user_attention}}</view>
+        <view>收藏我</view>
       </view>
-      <view class="others_company">杭州投着乐网络科技有限公司 | 投资总监</view>
+      <view class="user_potential user_tips">
+        <view>{{user.user_potential}}</view>
+        <view>潜在项目</view>
+      </view>
     </view>
   </view>
 
-
-  <!--个人资料完整度-->
-  <view class="personInfo_integrity myCard flex" bindtap="resourcesIndex">
-    <view>个人资料完整度</view>
-    <view>{{integrity}}%</view>
+  <!--个人描述-->
+  <view class="user_intro">
+    <view class="intro_title">个人描述</view>
+    <view class="intro_content">{{user.user_intro}}</view>
   </view>
 
-  <!--资源指数-->
-  <view class="resourcesIndex myCard flex">
-    <view>资源指数</view>
-    <view>{{resourcesIndex}}</view>
+  <!--寻找案源-->
+  <view class="user_invest_info">
+    <view class="flex title">
+      <view>寻找案源</view>
+      <image src=""></image>
+    </view>
+
+    <!--投资领域-->
+    <view class="invest_title">投资领域</view>
+    <view class="invest_industry_frame">
+      <block wx:for="{{invest.invest_industry}}" wx:key="{{item.industry_id}}">
+        <view class="invest_industry" data-id="{{item.industry_id}}" data-value="{{item.industry_name}}">{{item.industry_name}}</view>
+      </block>
+    </view>
+
+    <!--投资轮次-->
+    <view class="invest_title">投资轮次</view>
+    <view class="invest_stage_frame">
+      <block wx:for="{{invest.invest_stage}}" wx:key="{{item.stage_id}}">
+        <view class="invest_stage" data-id="{{item.stage_id}}" data-value="{{item.stage_name}}">{{item.stage_name}}</view>
+      </block>
+    </view>
+
+    <!--投资金额-->
+    <view class="invest_title">投资金额</view>
+    <view class="invest_scale_frame">
+      <block wx:for="{{invest.invest_scale}}" wx:key="{{item.scale_id}}">
+        <view class="invest_scale" data-id="{{item.scale_id}}" data-value="{{item.scale_money}}">{{item.scale_money}}</view>
+      </block>
+    </view>
+
+    <!--具体描述-->
+    <view class="invest_title">具体描述</view>
+    <view class="invest_desc">{{invest.invest_desc}}</view>
   </view>
 
-  <!--潜在的机会-->
-  <view class="myCard flex">
-    <view>潜在机会的项目</view>
-    <view>{{}}</view>
+  <!--资源对接-->
+  <view class="user_resource_info">
+    <view class="flex title">
+      <view>资源对接</view>
+      <image src=""></image>
+    </view>
+    <!--可提供资源-->
+    <view class="resource_title">可提供资源</view>
+    <view class="res_give_frame">
+      <block wx:for="{{resouce.res_give}}" wx:key="{{item.resource_id}}">
+        <view class="res_give" data-id="{{item.resource_id}}" data-value="{{item.resouce_name}}">{{item.resouce_name}}</view>
+      </block>
+    </view>
+    <!--正寻求资源-->
+    <view class="resource_title">正寻求资源</view>
+    <view class="res_find_frame">
+      <block wx:for="{{resource.res_find}}" wx:key="{{item.resource_id}}">
+        <view class="res_find" data-id="{{item.resource_id}}" data-value="{{item.resource_name}}">{{item.resource_name}}</view>
+      </block>
+    </view>
   </view>
 
+  <!--项目融资-->
+  <view class="user_project_info">
+    <view class="flex title">
+      <view>项目融资</view>
+    </view>
+    <!--融资项目-->
+    <view class="{{projcet_info_frame}}">
+      <block></block>
+    </view>
+  </view>
+
+  <!--投资案例-->
+  <view class="user_invest_case">
+    <view class="flex title">
+      <view>投资案例</view>
+    </view>
+    <!--融资项目-->
+    <view class="{{invest_case_frame}}">
+      <block></block>
+    </view>
+  </view>
 </view>
