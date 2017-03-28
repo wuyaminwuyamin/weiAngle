@@ -16,7 +16,7 @@ Page({
       method: 'POST',
 
       success: function (res) {
-        // console.log(res);
+        console.log(res);
         var slectProject = res.data.data;
         that.setData({
           slectProject: slectProject

@@ -1,5 +1,6 @@
 {
   "pages": [
+    "pages/my/my",
     "pages/resource/resource",
     "pages/resourceEnchange/resourceEnchange",
     "pages/needMarket/needMarket",
@@ -23,7 +24,6 @@
     "pages/industry/industry",
     "pages/payStage/payStage",
     "pages/selectProject/selectProject",
-    "pages/my/my",
     "pages/payArea/payArea"
   ],
   "window": {

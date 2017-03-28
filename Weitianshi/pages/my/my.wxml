@@ -3,14 +3,14 @@
   <!--名片-->
   <view class="weui-cell businessCard" bindtap="userInfo" wx:if="{{user}}">
     <view class="weui-cell__hd" style="position: relative;margin-right: 10px;">
-      <image wx:if="{{user.user_avatar_url}}" class="others_pic" src="{{user.user_avatar_url}}" />
+      <image  class="others_pic" src="{{user.user_avatar_url}}" />
     </view>
     <view class="weui-cell__bd">
       <view class="flex" style="align-items: baseline;">
-        <view class="others_name">{{user.user_name}}</view>
+        <view class="others_name">{{user.user_real_name}}</view>
         <view class="others_email">{{user.user_email}}</view>
       </view>
-      <view class="others_company">{{user.user_company}} | {{user.user_career}}</view>
+      <view class="others_company">{{user.user_company_name}} | {{user.user_company_career}}</view>
     </view>
   </view>
 
