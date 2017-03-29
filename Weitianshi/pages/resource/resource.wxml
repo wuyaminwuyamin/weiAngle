@@ -154,30 +154,31 @@
         </view>
       </navigator>
       <view class="others">
-        <block wx:for="{{others}}" wx:key="{{item.id}}" wx:key="item.id">
+        <block wx:for="{{res_match}}" wx:key="{{item.resource_id}}">
           <view class="weui-cell" style="background:white;margin:32rpx;margin-bottom:0;border-radius:4px 4px 0 0">
             <view class="weui-cell__hd" style="position: relative;margin-right: 10px;">
-              <image class="others_pic" src="../../img/a.png" />
+              <image class="others_pic" wx:if="{{item.user_avatar_url}}" src="{{item.user_avatar_url}}" />
+              <view class="others_text" wx:if="{{item.user_avatar_text}}">{{item.user_avatar_text}}</view>
             </view>
             <view class="weui-cell__bd">
               <view class="flex" style="align-items: baseline;">
-                <view class="others_name">代用名</view>
-                <view class="ohters_position">职位名称</view>
+                <view class="others_name">{{item.user_name}}</view>
+                <view class="ohters_position">{{item.user_career}}</view>
               </view>
-              <view class="others_company">杭州投着乐网络科技有限公司</view>
+              <view class="others_company">{{item.user_company}}</view>
             </view>
           </view>
           <view class="offer_search" style="border-radius:0 0 4px 4px">
             <view class="offer flex">
               <view>可提供资源</view>
-              <block wx:for="{{item.offer}}" wx:for-item="offer" wx:key="*this">
-                <view class="others_tips">{{offer}}</view>
+              <block wx:for="{{item.res_give}}" wx:for-item="give" wx:key="give.resource_id">
+                <view class="others_tips">{{give.resource_name}}</view>
               </block>
             </view>
             <view class="search flex">
               <view>在寻求资源</view>
-              <block wx:for="{{item.search}}" wx:for-item="search" wx:key="*key">
-                <view class="others_tips">{{search}}</view>
+              <block wx:for="{{item.res_find}}" wx:for-item="find" wx:key="find.resource_id">
+                <view class="others_tips">{{find.resource_name}}</view>
               </block>
             </view>
           </view>

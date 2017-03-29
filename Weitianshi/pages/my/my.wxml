@@ -19,7 +19,8 @@
       <view wx:if="{{user.user_avatar_text}}" class="user_text noPic">{{user.user_avatar_text}}</view>
       <image class="user_edit" src=""></image>
     </view>
-    <view class="user_down flex">
+
+    <!--<view class="user_down flex">
       <view class="user_popularity user_tips">
         <view>{{user.user_popularity}}</view>
         <view>人气</view>
@@ -32,7 +33,7 @@
         <view>{{user.user_potential}}</view>
         <view>潜在项目</view>
       </view>
-    </view>
+    </view>-->
   </view>
 
   <!--个人描述-->
@@ -83,6 +84,7 @@
       <view>资源对接</view>
       <image src=""></image>
     </view>
+
     <!--可提供资源-->
     <view class="resource_title">可提供资源</view>
     <view class="res_give_frame">
@@ -90,6 +92,7 @@
         <view class="res_give" data-id="{{item.resource_id}}" data-value="{{item.resouce_name}}">{{item.resouce_name}}</view>
       </block>
     </view>
+
     <!--正寻求资源-->
     <view class="resource_title">正寻求资源</view>
     <view class="res_find_frame">
@@ -104,9 +107,24 @@
     <view class="flex title">
       <view>项目融资</view>
     </view>
+
     <!--融资项目-->
-    <view class="{{projcet_info_frame}}">
-      <block></block>
+    <view class="projcet_info_frame">
+      <block wx:for="{{project_info}}" wx:key="{{item.pro_intro}}">
+        <view class="project_card">
+          <view class="pro_intro">{{item.pro_intro}}</view>
+        </view>
+        <view class="pro_industry_frame flex">
+          <block wx:for="{{item.pro_industry}}" wx:key="{{item.industry_id}}" wx:for-item="pro_industry">
+            <view class="pro_industry" data-id="{{pro_industry.industry_id}}" data-vlaue="{{pro_industry.industry_name}}">{{pro_industry.industry_name}}</view>
+          </block>
+        </view>
+        <view class="pro_sorts flex">
+          <view class="pro_sort" wx:if="{{item.pro_stage.stage_name}}">{{item.pro_stage.stage_name}}</view>
+          <view class="pro_sort" wx:if="{{item.pro_city.area_title}}">{{item.pro_city.area_title}}</view>
+          <view class="pro_sort" wx:if="{{item.pro_scale.scale_money}}">{{item.pro_scale.scale_money}}</view>
+        </view>
+      </block>
     </view>
   </view>
 
@@ -115,9 +133,42 @@
     <view class="flex title">
       <view>投资案例</view>
     </view>
+
     <!--融资项目-->
-    <view class="{{invest_case_frame}}">
-      <block></block>
+    <view class="invest_case_frame">
+      <block wx:for="{{invest_case}}" wx:key="{{item.case_id}}">
+        <view class="case_name_frame flex">
+          <image src="" class="case_point"></image>
+          <view class="case_name">{{item.case_name}}</view>
+          <view class="case_time">{{item.case_deal_time}}</view>
+        </view>
+         <view class="pro_industry_frame flex">
+          <block wx:for="{{item.pro_industry}}" wx:key="{{item.industry_id}}" wx:for-item="pro_industry">
+            <view class="pro_industry" data-id="{{pro_industry.industry_id}}" data-vlaue="{{pro_industry.industry_name}}">{{pro_industry.industry_name}}</view>
+          </block>
+        </view>
+        <view class="pro_sorts flex">
+          <view class="pro_sort" wx:if="{{item.stage}}">{{item.stage}}</view>
+          <view class="pro_sort" wx:if="{{item.pro_city.area_title}}">{{item.pro_city.area_title}}</view>
+          <view class="pro_sort" wx:if="{{item.pro_scale.scale_money}}">{{item.pro_scale.scale_money}}</view>
+        </view>
+      </block>
+    </view>
+  </view>
+
+  <!--交换名片-->
+  <view class="changeCard flex">
+    <view>交换名片,搭建我的人脉库</view>
+    <button>去交换</button>
+  </view>
+
+  <!--信息不完善的友情提示-->
+  <view class="toast">
+    <view class="toast_title">友情提示</view>
+    <view class="toast_content">交换名片之前,请先完善自己的名片</view>
+    <view class="toast_button flex">
+      <view class="toast_cancel">取消</view>
+      <view class="toast_certain">去完善</view>
     </view>
   </view>
 </view>

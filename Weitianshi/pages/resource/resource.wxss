@@ -1,7 +1,9 @@
 @import "../../weui.wxss";
-page{
+
+page {
   height: 100%;
 }
+
 view {
   font-size: 28rpx;
   color: #333;
@@ -170,7 +172,7 @@ weui-panel__bd{
 .person view:nth-child(2) {
   font-size: 20rpx;
   color: #666;
-  padding-top:8rpx;
+  padding-top: 8rpx;
 }
 
 .person view:nth-child(3) {
@@ -241,6 +243,16 @@ weui-panel__bd{
   width: 60rpx;
   height: 60rpx;
   display: block;
+}
+
+.others_text {
+  width: 60rpx;
+  height: 60rpx;
+  line-height: 60rpx;
+  border-radius: 50%;
+  background: #f2f2f2;
+  color: #10587a;
+  text-align: center;
 }
 
 .others .weui-cell__bd view {
@@ -317,30 +329,32 @@ weui-panel__bd{
   line-height: 120rpx;
 }
 
-
 /*本页面调整*/
-.swiper-tab-list2{
+
+.swiper-tab-list2 {
   font-size: 24rpx;
   display: inline-block;
   width: 34%;
   margin: 24rpx 8%;
 }
 
-.foryou{
-    border: none;
-    font-size: 20rpx;
-    color: #666;
-    padding-top: 24rpx;
-   
+.foryou {
+  border: none;
+  font-size: 20rpx;
+  color: #666;
+  padding-top: 24rpx;
 }
-.foryou2{
+
+.foryou2 {
   font-size: 24rpx;
   margin-bottom: -8rpx;
 }
-.findTips{
+
+.findTips {
   font-size: 20rpx;
   color: #999;
 }
-.error{
-  bottom: 100rpx
+
+.error {
+  bottom: 100rpx;
 }

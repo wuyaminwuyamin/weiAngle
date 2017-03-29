@@ -154,6 +154,7 @@ Page({
     that.setData({
       y_domainValue: y_domainValue
     })
+
     //获取我的项目匹配到的投资人
     if (user_id != 0) {
       wx.request({
@@ -223,13 +224,6 @@ Page({
         }
       })
     }
-    // var userNeed=rqj.userNeed(that)
-    // console.log(userNeed)
-    //  console.log(userNeed.user_area)
-    //  console.log(userNeed.user_area[0])
-    //  console.log(user_area)
-
-
     //获取投资需求的匹配项目
     wx.request({
       url: 'https://www.weitianshi.com.cn/api/investors/getMatchProjects',
@@ -262,6 +256,29 @@ Page({
         }
       }
     })
+    //获取用户资源需求和匹配结果
+    wx.request({
+      url: 'https://dev.weitianshi.com.cn/api/resource/getMatchResource',
+      data: {
+        user_id:user_id
+      },
+      method: 'POST',
+      success: function(res){
+        console.log(res.data)
+        wx.setStorage({
+          key: 'resource_data',
+          data: res.data.res_data
+        })
+        var res_match=res.data.res_match;
+        that.setData({
+          res_match:res_match //资源需求匹配出来的项目
+        })
+      },
+      fail: function(res) {
+        console.log(res)
+      }
+    })
+    
 
   },
   //下拉刷新

@@ -23,11 +23,15 @@ Page({
             var user=res.data.user_info;
             var invest=res.data.invest_info;
             var resource=res.data.resource_info;
-            console.log(user)
+            var project_info=res.data.project_info;
+            var invest_case=res.data.invest_case;
+            console.log(invest_case)
             that.setData({
                 user:user,
                 invest:invest,
                 resource:resource,
+                project_info:project_info,
+                invest_case:invest_case
             })
           },
           fail: function(res) {
