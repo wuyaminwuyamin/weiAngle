@@ -1,7 +1,6 @@
-<view id="my">
-
+<scroll-view id="my" scroll-y="true">
   <!--我的名片-->
-  <view class="user_info flex">
+  <view class="user_info flex" bindtap="cardEdit"> 
     <view class="user_left">
       <view class="user_name" wx:if="{{user.user_real_name}}">{{user.user_real_name}}</view>
       <view class="user_name" wx:if="{{!user.user_real_name}}">代替名</view>
@@ -20,7 +19,7 @@
       <image class="user_edit" src=""></image>
     </view>
 
-    <!--<view class="user_down flex">
+    <view class="user_down flex">
       <view class="user_popularity user_tips">
         <view>{{user.user_popularity}}</view>
         <view>人气</view>
@@ -33,7 +32,7 @@
         <view>{{user.user_potential}}</view>
         <view>潜在项目</view>
       </view>
-    </view>-->
+    </view>
   </view>
 
   <!--个人描述-->
@@ -43,7 +42,7 @@
   </view>
 
   <!--寻找案源-->
-  <view class="user_invest_info">
+  <view class="user_invest_info" bindtap="findProjectEdit">
     <view class="flex title">
       <view>寻找案源</view>
       <image src=""></image>
@@ -79,7 +78,7 @@
   </view>
 
   <!--资源对接-->
-  <view class="user_resource_info">
+  <view class="user_resource_info" bindtap="resourceEnchangeEdit">
     <view class="flex title">
       <view>资源对接</view>
       <image src=""></image>
@@ -109,7 +108,7 @@
     </view>
 
     <!--融资项目-->
-    <view class="projcet_info_frame">
+    <view class="projcet_info_frame" bindtap="projectFinance">
       <block wx:for="{{project_info}}" wx:key="{{item.pro_intro}}">
         <view class="project_card">
           <view class="pro_intro">{{item.pro_intro}}</view>
@@ -129,7 +128,7 @@
   </view>
 
   <!--投资案例-->
-  <view class="user_invest_case">
+  <view class="user_invest_case" bindtap="investCase">
     <view class="flex title">
       <view>投资案例</view>
     </view>
@@ -159,16 +158,17 @@
   <!--交换名片-->
   <view class="changeCard flex">
     <view>交换名片,搭建我的人脉库</view>
-    <button>去交换</button>
+    <button bindtap="cardChange">去交换</button>
   </view>
 
   <!--信息不完善的友情提示-->
-  <view class="toast">
+  <view class="toast" hidden="{{modal==1}}">
     <view class="toast_title">友情提示</view>
     <view class="toast_content">交换名片之前,请先完善自己的名片</view>
     <view class="toast_button flex">
-      <view class="toast_cancel">取消</view>
-      <view class="toast_certain">去完善</view>
+      <view class="toast_cancel" bindtap="toastCancel">取消</view>
+      <view class="toast_certain" bindtap="toastCertain">去完善</view>
     </view>
   </view>
-</view>
+</scroll-view>
+<view class="modal" hidden="{{modal==1}}"></view>

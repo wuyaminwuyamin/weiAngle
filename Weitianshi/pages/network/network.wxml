@@ -3,13 +3,14 @@
 <view class="search_frame">
   <label class="searchBox flex">
     <icon type="search" size="12" class="search_icon"></icon>
-    <input class="search"  placeholder="搜索姓名、公司、标签" />
+    <input class="search" placeholder="搜索姓名、公司、标签" />
   </label>
 </view>
 
 <!--资本对接-->
 <swiper-item>
   <scroll-view scroll-y="true" bindscrolltolower="loadMore">
+
     <!--资本对接-->
     <view class=" resource ">
       <view class="others ">
@@ -135,6 +136,10 @@
 
 <!--空状态-->
 <view class="nullState">
-  <view>分享我的名片,拓展我的人肪</view>
-  <button>我的名片</button>
+  <view class="nullState_text">
+    <image src=""></image>
+    <view>暂无人脉</view>
+    <view>分享我的名片,拓展我的人肪</view>
+  </view>
+  <button bindtap="myCard">我的名片</button>
 </view>

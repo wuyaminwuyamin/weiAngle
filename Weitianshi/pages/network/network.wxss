@@ -5,24 +5,33 @@ page {
 }
 
 /*空状态*/
-.nullState view{
-  font-size: 20rpx;
+
+.nullState_text{
+  text-align: center
+}
+.nullState_text image{
+
+}
+.nullState_text view:nth-child(2){
+  font-size: 32rpx;
+  padding-top: 40rpx;
+  padding-bottom: 24rpx;
+  font-weight: 600;
+}
+.nullState_text view:nth-child(3){
   color: #999;
-  width: 260rpx;
-  height: 28rpx;
-  line-height: 28rpx;
-  margin: 452rpx auto;
-  margin-bottom: 88rpx;
+  font-size: 28rpx;
+  padding-bottom: 60rpx;
 }
 .nullState button{
-  width: 120rpx;
+  width: 360rpx;
   margin: 0 auto;
-  height: 48rpx;
-  line-height: 48rpx;
-  font-size: 20rpx;
+  height: 88rpx;
+  line-height: 88rpx;
+  font-size: 30rpx;
   color: white;
   background: #40587a;
-  border-radius: 200rpx;
+  border-radius: 8rpx;
   padding: 0;
 }
 

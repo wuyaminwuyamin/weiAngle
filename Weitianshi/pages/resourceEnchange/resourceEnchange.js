@@ -44,6 +44,7 @@ Page({
         var targetCheck = []    //选中标签checked的数组
         //enchange和target中加入checked属性
         console.log(res_find,res_find_name)
+        console.log(res_give,res_give_name)
         for (var i = 0; i < enchange.length; i++) {
           if (res_find_name.indexOf(enchange[i].resource_name) != -1) {
             enchange[i].checked = true;
@@ -188,7 +189,7 @@ Page({
       },
       method: 'POST',
       success: function (res) {
-        console.log("成功发布")
+        console.log(enchangeId,targetId,describe)
       },
       fail: function (res) {
         console.log(res)

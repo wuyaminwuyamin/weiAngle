@@ -3,15 +3,46 @@
   <view class="nav_btn nav_on">需求市场</view>
 </view>
 <view class="swiper-tab">
-  <view class="swiper-tab-list  {{currentTab==0 ? 'on' : ''}} my_project" data-current="0" bindtap="swichNav">找资金</view>
-  <view class="swiper-tab-list  {{currentTab==1 ? 'on' : ''}} find_project" data-current="1" bindtap="swichNav">找项目</view>
+  <view class="swiper-tab-list  {{currentTab==0 ? 'on' : ''}} my_project" data-current="0" bindtap="swichNav">融资需求</view>
+  <view class="swiper-tab-list  {{currentTab==1 ? 'on' : ''}} find_project" data-current="1" bindtap="swichNav">投资需求</view>
   <view class="swiper-tab-list {{currentTab==2 ? 'on' : ''}}" data-current="2" bindtap="swichNav">资源需求</view>
 </view>
 <swiper current="{{currentTab}}" class="swiper-box" duration="300" style="height:88%" bindchange="">
 
-  <!-- 找资金 -->
+  <!-- 融资需求 -->
   <swiper-item>
     <scroll-view scroll-y="true">
+      <view class="financingNeed">
+        <block wx:for="{{financingNeed}}" wx:key="{{item.pro_id}}">
+          <view class="card" data-id="{{item.pro_id}}">
+            <view class="user_info flex">
+              <view class="user_text" wx:if="{{item.user_avatar_text}}">{{item.user_avatar_text}}</view>
+              <image class="user_pic" src="{{item.user_avatar_url}}" wx:if="{{item.user_avatar_url}}"></image>
+              <view class="user_info_right">
+                <view class="flex">
+                  <view class="user_name">{{item.user_name}}</view>
+                  <view class="user_career">{{item.user_career}}</view>
+                  <view class="pro_time">{{item.pro_time}}</view>
+                </view>
+                <view class="user_company">{{item.user_company}}</view>
+              </view>
+            </view>
+            <view class="pro_info">
+              <view class="pro_intro">{{item.pro_intro}}</view>
+              <view class="pro_industry flex">
+                <block wx:for="{{item.pro_industry}}" wx:for-item="pro_industry" wx:key="{{pro_industry.industry_id}}" wx:for-index="pro_index">
+                  <view class="industry_tip">{{pro_industry.industry_name}}</view>
+                </block>
+              </view>
+              <view class="pro_sorts flex">
+                <view class="pro_sort" wx:if="{{item.pro_stage}}">{{item.pro_stage}}</view>
+                <view class="pro_sort" wx:if="{{item.pro_area}}">{{item.pro_area}}</view>
+                <view class="pro_sort" wx:if="{{item.pro_scale}}">{{item.pro_scale}}</view>
+              </view>
+            </view>
+          </view>
+        </block>
+      </view>
 
       <!--空状态-->
       <view wx:if="{{true}}">
@@ -20,9 +51,49 @@
     </scroll-view>
   </swiper-item>
 
-  <!-- 找项目 -->
+  <!-- 投资需求 -->
   <swiper-item>
     <scroll-view scroll-y="true" bindscrolltolower=''>
+      <view class="investNeed">
+        <block wx:for="{{investNeed}}">
+          <view class="card" data-id="{{item.investor_id}}">
+            <view class="user_info flex">
+              <view class="user_text" wx:if="{{item.investor_logo_text}}">{{item.investor_logo_text}}</view>
+              <image class="user_pic" src="{{item.investor_logo_url}}" wx:if="{{item.investor_logo_url}}"></image>
+              <view class="user_info_right">
+                <view class="flex">
+                  <view class="user_name">{{item.investor_name}}</view>
+                  <view class="user_career">{{item.investor_career}}</view>
+                  <!--<view class="pro_time">{{item.investor_time}}</view>-->
+                </view>
+                <view class="user_company">{{item.investor_company}}</view>
+              </view>
+            </view>
+            <view class="investor_info">
+              <view class="investor_intro flex">
+                <view class="investor_text">投资需求:</view>
+                <view class="investor_right">{{item.investor_desc}}</view>
+              </view>
+              <view class="investor_industry_frame flex">
+                <view class="investor_text">投资领域:</view>
+                <view class="investor_right">
+                  <block wx:for="{{industry_tag}}">
+                    <view class="investor_industry"></view>
+                  </block>
+                </view>
+              </view>
+              <view class="investor_stage_frame flex">
+                <view class="investor_text">投资轮次:</view>
+                <view class="investor_right">
+                  <block wx:for="{{stage_tag}}">
+                    <view class="investor_stage"></view>
+                  </block>
+                </view>
+              </view>
+            </view>
+          </view>
+        </block>
+      </view>
 
       <!--空状态-->
       <view wx:if="{{true}}">

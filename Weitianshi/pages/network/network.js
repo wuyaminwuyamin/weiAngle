@@ -11,10 +11,9 @@ Page({
     var pro_id = this.data.pro_id;
 
     wx.request({
-      url: 'https://www.weitianshi.com.cn/api/project/getProjectMatchInvestors',
+      url: 'https://dev.weitianshi.com.cn/api/user/getMyFollowList',
       data: {
         user_id: user_id,
-        pro_id: "2rzlaKW3",
         page: 1
       },
       method: 'POST',
@@ -41,5 +40,10 @@ Page({
       title: '我是对接',
       path: '/pages/resource/resource'
     }
+  },
+  myCard:function(){
+    wx.navigateTo({
+      url: '../my/cardEdit/cardEdit',
+    })
   }
 })

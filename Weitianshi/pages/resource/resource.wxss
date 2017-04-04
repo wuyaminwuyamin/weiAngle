@@ -300,10 +300,14 @@ weui-panel__bd{
 
 .offer, .search {
   align-items: baseline;
+  flex-wrap: wrap;
+}
+.offer view,.search view{
+  margin-bottom: 16rpx;
 }
 
 .search {
-  margin-top: 32rpx;
+  margin-top: 20rpx;
 }
 
 .offer view:first-child {

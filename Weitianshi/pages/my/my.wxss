@@ -1,6 +1,11 @@
 page {
   color: #333;
   width: 100%;
+  height: 100%;
+  position: relative;
+}
+#my{
+  height: 100%;
 }
 
 /*用户名片*/
@@ -27,7 +32,6 @@ page {
 
 .user_down {
   width: 100%;
-  margin-top: 32rpx;
 }
 
 .user_pic, user_text {
@@ -247,4 +251,52 @@ page {
   height: 92rpx;
   line-height: 92rpx;
   border-radius: 0;
+}
+
+
+/*弹窗*/
+.toast{
+  width: 540rpx;
+  height: 330rpx;
+  position: absolute;
+  left: 50%;
+  top: 175%;
+  transform: translate(-50%);
+  background: white;
+  z-index: 999;
+  text-align: center
+}
+.toast_title{
+  color: #333;
+  font-size: 36rpx;
+  padding-top: 44rpx;
+}
+.toast_content{
+  font-size: 24rpx;
+  color: #333;
+  padding-top: 56rpx;
+  padding-bottom: 68rpx;
+  border-bottom: 1px solid #ccc;
+}
+.toast_button{
+  height: 90rpx;
+  line-height: 90rpx;
+  font-size: 30rpx;
+  color: #333;
+}
+.toast_button view{
+  width: 50%;
+}
+.toast_cancel{
+  border-right: 1px solid #ccc;
+}
+
+.modal{
+  background: #000;
+  opacity: 0.5;
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  left: 0;
+  top: 0;
 }

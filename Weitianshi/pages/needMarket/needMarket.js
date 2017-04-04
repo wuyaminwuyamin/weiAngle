@@ -8,7 +8,57 @@ Page({
     currentTab: 0,//选项卡
   },
   //载入页面
-  onLoad:function(){
+  onShow: function () {
+    var that = this;
+    var currentTab = this.data.currentTab
+    console.log(currentTab)
+
+    //融资需求获取数据
+    wx.request({
+      url: 'https://dev.weitianshi.com.cn/api/project/projectMarket',
+      data: {},
+      method: 'POST',
+      success: function (res) {
+        // console.log(res)
+        var financingNeed = res.data.data;
+        that.setData({
+          financingNeed: financingNeed
+        })
+      },
+      fail: function (res) {
+        console.log(res)
+      },
+    })
+
+    //投资需求获取数据
+    wx.request({
+      url: 'https://dev.weitianshi.com.cn/api/investors/investorMarket',
+      data: {},
+      method: 'POST',
+      success: function (res) {
+        console.log(res)
+        var investNeed = res.data.data;
+        that.setData({
+          investNeed: investNeed
+        })
+        console.log(investNeed)
+      },
+      fail: function (res) {
+        console.log(res)
+      },
+    })
+    //资源需求获取数据
+    wx.request({
+      url: 'https://dev.weitianshi.com.cn/api/resource/resourceMarket',
+      data: {},
+      method: 'POST',
+      success: function (res) {
+        // console.log(res)
+      },
+      fail: function (res) {
+        console.log(res)
+      },
+    })
 
   },
   /*滑动切换tab*/
@@ -69,7 +119,7 @@ Page({
     }
   },
   // 返回对接页面
-  backToResource:function(){
+  backToResource: function () {
     wx.switchTab({
       url: '../resource/resource',
     })

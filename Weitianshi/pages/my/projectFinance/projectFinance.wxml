@@ -5,7 +5,7 @@
   <!--已发布的项目-->
   <block wx:for="{{myProject}}" wx:key="{{pro_id}}" wx:for-item="myProject">
     <view class="weui-panel__bd" style="background:white;margin:16px">
-      <view class="weui-media-box weui-media-box_text my_detail" data-id='{{myProject.pro_id}}' data-index="{{index}}" bindtap="detail">
+      <view class="weui-media-box weui-media-box_text my_detail" data-id='{{myProject.pro_id}}' data-index="{{index}}" bindtap="edit">
         <view class="weui-media-box__title weui-media-box__title_in-text" style="text-align:left;">{{myProject.pro_intro}}</view>
         <view class="sort flex">
           <block wx:for="{{myProject.pro_industry}}" wx:for-item="sort" wx:key="*this">

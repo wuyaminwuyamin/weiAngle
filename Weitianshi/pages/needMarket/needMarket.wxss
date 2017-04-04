@@ -1,10 +1,13 @@
 @import "../../weui.wxss";
-page{
+
+page {
   height: 100%;
 }
-scroll-view{
+
+scroll-view {
   height: 100%;
 }
+
 view {
   font-size: 28rpx;
   color: #333;
@@ -88,4 +91,111 @@ border-radius: 100rpx;*/
   text-align: center;
 }
 
+swiper-item {
+  background: #f3f4f8;
+  padding: 0 32rpx;
+}
 
+.card {
+  background: white;
+  margin-top: 32rpx;
+  width: 622rpx;
+  padding: 32rpx;
+}
+
+/*用户信息*/
+
+.user_info {
+}
+
+.user_text, .user_pic {
+  width: 60rpx;
+  height: 60rpx;
+  border-radius: 50%;
+}
+
+.user_text {
+  background: #f2f2f2;
+  line-height: 60rpx;
+  text-align: center;
+  font-size: 24rpx;
+}
+
+.user_info_right {
+  margin-left: 16rpx;
+}
+
+.user_name {
+  font-size: 28rpx;
+  color: #333;
+}
+
+.user_career {
+  font-size: 24rpx;
+  color: #666;
+  margin-left: 16rpx;
+}
+
+.pro_time {
+  background: #f2f2f2;
+  border-radius: 8rpx;
+  width: 86rpx;
+  height: 28rpx;
+  line-height: 28rpx;
+  color: #999;
+  font-size: 20rpx;
+  margin-left: 272rpx;
+}
+
+.swiper-box .user_company {
+  text-align: left;
+  padding-top: 12rpx;
+  font-size: 20rpx;
+  color: #999;
+}
+.pro_info{
+  margin-top: 12rpx;
+  width: 622rpx;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.swiper-box .pro_intro{
+  padding: 20rpx 0;
+  font-size: 28rpx;
+  color: #333;
+  text-align: left;
+}
+.industry_tip{
+  font-size: 24rpx;
+  color: #666;
+  padding: 0 16rpx;
+  border-right: 1px solid #e0e0e0;
+  margin-bottom: 20rpx;
+}
+.industry_tip:first-child{
+  padding-left: 0;
+}
+.industry_tip:last-child{
+  border:none;
+}
+.pro_sort{
+  margin-right: 24rpx; 
+  font-size: 20rpx;
+  color: #999;
+  border-radius: 98rpx;
+  border: 1px solid #e0e0e0;
+  padding: 0 16rpx;
+  height: 26rpx;
+  line-height: 26rpx;
+}
+
+/*投资需求*/
+.investor_intro,.investor_industry_frame,.investor_stage_frame{
+  padding-top: 32rpx;
+}
+.investor_text{
+  font-size: 24rpx;
+}
+.investor_text,investor_right{
+  padding: 0 12rpx;
+}
