@@ -4,7 +4,8 @@ page {
   height: 100%;
   position: relative;
 }
-#my{
+
+#my {
   height: 100%;
 }
 
@@ -104,7 +105,8 @@ page {
   padding: 32rpx;
   margin-bottom: 32rpx;
 }
-.user_invest_case{
+
+.user_invest_case {
   margin-bottom: 0;
 }
 
@@ -130,6 +132,16 @@ page {
 .invest_title, .resource_title {
   font-size: 24rpx;
   margin-bottom: 32rpx;
+}
+
+.project_card {
+  border: 1px solid #e0e0e0;
+  border-radius: 8rpx;
+  padding: 32rpx;
+  margin-bottom: 22rpx;
+}
+.project_card:last-child{
+  margin-bottom: 0;
 }
 
 .invest_title {
@@ -163,10 +175,8 @@ page {
 
 /*资源对接*/
 
-.projcet_info_frame{
-  border: 1px solid #e0e0e0;
-  border-radius: 8rpx;
-  padding: 32rpx;
+.projcet_info_frame {
+  
 }
 
 .pro_intro {
@@ -181,11 +191,12 @@ page {
 
 .pro_industry {
   border-right: 1px solid #e0e0e0;
-  padding-right:16rpx;
+  padding-right: 16rpx;
   font-size: 24rpx;
   color: #666;
 }
-.pro_industry:last-child{
+
+.pro_industry:last-child {
   border: none;
 }
 
@@ -207,19 +218,23 @@ page {
 }
 
 /*投资案例*/
-.case_name_frame{
-  margin-top: 32rpx
+
+.case_name_frame {
+  margin-top: 32rpx;
 }
-.case_point{
+
+.case_point {
   width: 16rpx;
   height: 16rpx;
 }
-.case_name{
+
+.case_name {
   font-size: 28rpx;
   color: #333;
   padding-right: 460rpx;
 }
-.case_time{
+
+.case_time {
   width: 125rpx;
   height: 28rpx;
   line-height: 28rpx;
@@ -231,31 +246,34 @@ page {
 }
 
 /*去交换*/
-.changeCard{
+
+.changeCard {
   align-items: center;
   justify-content: space-between;
 }
-.changeCard view{
+
+.changeCard view {
   background: f2f2f2;
   padding: 32rpx;
   color: #999;
   font-size: 24rpx;
 }
-.changeCard button{
+
+.changeCard button {
   color: white;
   width: 25%;
   text-align: center;
   font-size: 28rpx;
-  background:#40587a;
+  background: #40587a;
   margin: 0;
   height: 92rpx;
   line-height: 92rpx;
   border-radius: 0;
 }
 
-
 /*弹窗*/
-.toast{
+
+.toast {
   width: 540rpx;
   height: 330rpx;
   position: absolute;
@@ -264,34 +282,39 @@ page {
   transform: translate(-50%);
   background: white;
   z-index: 999;
-  text-align: center
+  text-align: center;
 }
-.toast_title{
+
+.toast_title {
   color: #333;
   font-size: 36rpx;
   padding-top: 44rpx;
 }
-.toast_content{
+
+.toast_content {
   font-size: 24rpx;
   color: #333;
   padding-top: 56rpx;
   padding-bottom: 68rpx;
   border-bottom: 1px solid #ccc;
 }
-.toast_button{
+
+.toast_button {
   height: 90rpx;
   line-height: 90rpx;
   font-size: 30rpx;
   color: #333;
 }
-.toast_button view{
+
+.toast_button view {
   width: 50%;
 }
-.toast_cancel{
+
+.toast_cancel {
   border-right: 1px solid #ccc;
 }
 
-.modal{
+.modal {
   background: #000;
   opacity: 0.5;
   width: 100%;
@@ -299,4 +322,28 @@ page {
   position: absolute;
   left: 0;
   top: 0;
+}
+
+
+/*空数据状态*/
+.nothingNow{
+  font-size: 28rpx;
+  color: #666;
+  margin-left: 24rpx;
+}
+
+/*我的人脉和加入人脉*/
+.aboutNetwork{
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 98rpx;
+  line-height: 98rpx;
+  color: #40587a;
+  font-size: 30rpx;
+  text-align: center;
+}
+.aboutNetwork view{
+  width: 50%;
 }

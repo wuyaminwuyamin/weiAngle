@@ -54,7 +54,7 @@
 
   <!--非必填-->
   <view class="notNecessary">
-    <view class="grey">非必填</view>
+    <!--<view class="grey">非必填</view>-->
 
     <!--项目名称-->
     <view class="card">

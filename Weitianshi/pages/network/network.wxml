@@ -135,7 +135,7 @@
 </swiper-item>
 
 <!--空状态-->
-<view class="nullState">
+<view class="nullState" wx:if="{{investor2==''}}">
   <view class="nullState_text">
     <image src=""></image>
     <view>暂无人脉</view>

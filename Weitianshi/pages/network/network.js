@@ -26,6 +26,7 @@ Page({
           investor_arry.push(investor2[i])
         }
         that.setData({
+          investor2:investor2,
           investor_arry: investor_arry,
           page_end: res.data.page_end
         });

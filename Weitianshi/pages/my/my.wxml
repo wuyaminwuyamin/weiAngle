@@ -111,20 +111,20 @@
     </view>
 
     <!--融资项目-->
-    <view class="projcet_info_frame" bindtap="projectFinance">
+    <view class="projcet_info_frame">
       <block wx:for="{{project_info}}" wx:key="{{item.pro_intro}}">
-        <view class="project_card">
+        <view class="project_card" bindtap="projectFinance">
           <view class="pro_intro">{{item.pro_intro}}</view>
-        </view>
-        <view class="pro_industry_frame flex">
-          <block wx:for="{{item.pro_industry}}" wx:key="{{item.industry_id}}" wx:for-item="pro_industry">
-            <view class="pro_industry" data-id="{{pro_industry.industry_id}}" data-vlaue="{{pro_industry.industry_name}}">{{pro_industry.industry_name}}</view>
-          </block>
-        </view>
-        <view class="pro_sorts flex">
-          <view class="pro_sort" wx:if="{{item.pro_stage.stage_name}}">{{item.pro_stage.stage_name}}</view>
-          <view class="pro_sort" wx:if="{{item.pro_city.area_title}}">{{item.pro_city.area_title}}</view>
-          <view class="pro_sort" wx:if="{{item.pro_scale.scale_money}}">{{item.pro_scale.scale_money}}</view>
+          <view class="pro_industry_frame flex">
+            <block wx:for="{{item.pro_industry}}" wx:key="{{item.industry_id}}" wx:for-item="pro_industry">
+              <view class="pro_industry" data-id="{{pro_industry.industry_id}}" data-vlaue="{{pro_industry.industry_name}}">{{pro_industry.industry_name}}</view>
+            </block>
+          </view>
+          <view class="pro_sorts flex">
+            <view class="pro_sort" wx:if="{{item.pro_stage.stage_name}}">{{item.pro_stage.stage_name}}</view>
+            <view class="pro_sort" wx:if="{{item.pro_city.area_title}}">{{item.pro_city.area_title}}</view>
+            <view class="pro_sort" wx:if="{{item.pro_scale.scale_money}}">{{item.pro_scale.scale_money}}</view>
+          </view>
         </view>
       </block>
     </view>
@@ -156,12 +156,23 @@
         </view>
       </block>
     </view>
+    <view wx:if="!invest_case">
+      <view class="flex">
+        <!--<image src=""></image>-->
+        <view class="nothingNow">暂无</view>
+      </view>
+    </view>
   </view>
 
   <!--交换名片-->
-  <view class="changeCard flex">
+  <view class="changeCard flex" wx:if="{{share==1}}">
     <view>交换名片,搭建我的人脉库</view>
     <button bindtap="cardChange">去交换</button>
+  </view>
+  <!--我的人脉和加入人脉-->
+  <view class="aboutNetwork flex" wx:if="{{share==2}}">
+    <view bindtap="myNetwork">我的人脉</view>
+    <view bindtap="myNetwork">加入人脉</view>
   </view>
 
   <!--信息不完善的友情提示-->

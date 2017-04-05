@@ -6,9 +6,10 @@ Page({
         resourcesIndex: 9.9,
         user: "",
         modal: 1,
+        share:2,
     },
     onShow: function (options) {
-        // console.log(options)
+        console.log(options)
         var that = this
         var user_id = wx.getStorageSync('user_id');
         that.setData({
@@ -105,5 +106,19 @@ Page({
         this.setData({
             modal: modal
         })
+    },
+    //分享名片
+    onShareAppMessage: function () {
+        var user_id=wx.getStorageSync('user_id')
+    return {
+      title: '分享您的名片',
+      path: '/pages/my/my?user_id='+user_id+"&&share="+2,
+      success: function(res) {
+        console.log("分享成功")
+      },
+      fail: function(res) {
+        console.log(res)
+      }
     }
+  }
 });

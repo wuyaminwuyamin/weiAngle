@@ -19,7 +19,6 @@ Page({
       success: function (res) {
         var myProject = res.data.data;
         var length = myProject.length;
-        console.log(myProject)
         wx.setStorageSync('proLength', length);
         that.setData({
           myProject: myProject,
@@ -31,9 +30,10 @@ Page({
   detail: function (e) {
     var thisData = e.currentTarget.dataset;
     var id = thisData.id;
+    var index=thisData.index
     console.log(thisData)
     wx.navigateTo({
-      url: '../../myProject/projectDetail/projectDetail?id='+id
+      url: '../../myProject/projectDetail/projectDetail?id='+id+"&&index="+index
     })
   },
   // 新增项目

@@ -37,7 +37,6 @@ Page({
       data: {},
       method: 'POST',
       success: function (res) {
-        console.log(res)
         var investNeed = res.data.data;
         that.setData({
           investNeed: investNeed
@@ -58,7 +57,6 @@ Page({
         that.setData({
           resourceNeed: resourceNeed
         })
-        console.log(resourceNeed)
       },
       fail: function (res) {
         console.log(res)

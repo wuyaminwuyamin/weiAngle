@@ -1,7 +1,7 @@
 {
   "pages": [
-    "pages/resourceEnchange/resourceEnchange",
     "pages/my/my",
+    "pages/resourceEnchange/resourceEnchange",
     "pages/resource/resource",
     "pages/my/cardEdit/cardEdit",
     "pages/needMarket/needMarket",
