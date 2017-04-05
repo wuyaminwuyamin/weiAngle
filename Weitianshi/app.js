@@ -132,6 +132,7 @@ App({
   globalData: {
     error: 0,
     error_text: "111111",
-    y_domainValue:"选择领域"
+    y_domainValue:"选择领域",
+    url:"https://dev.weitianshi.com.cn"
   }
 });

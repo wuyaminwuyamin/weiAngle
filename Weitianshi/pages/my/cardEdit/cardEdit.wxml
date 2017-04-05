@@ -7,11 +7,11 @@
   </view>
   <view class="card">
     <view class="text">姓名</view>
-    <input class="" id="name" value="{{user_info.user_real_name}}" bindblur="nameEdit" />
+    <input class="" id="name" value="{{user_info.user_real_name}}" bindblur="nameEdit"/>
   </view>
   <view class="card">
     <view class="text">手机</view>
-    <input class="" id="mobile" value="{{user_info.user_mobile}}" bindblur="mobileEdit" />
+    <input disabled="true" class="" id="mobile" value="{{user_info.user_mobile}}" bindblur="mobileEdit" style="color:#ccc;"/>
   </view>
   <view class="card">
     <view class="text">公司</view>
@@ -19,7 +19,7 @@
   </view>
   <view class="card">
     <view class="text">职位</view>
-    <input class="" id="career" value="{{user_info.user_company_career}}" bindblur="careerEidt" />
+    <input class="" id="career" value="{{user_info.user_company_career}}" bindblur="careerEdit" />
   </view>
   <view class="card">
     <view class="text">邮箱</view>
@@ -27,7 +27,7 @@
   </view>
   <view class="card">
     <view class="text">个人描述</view>
-    <textarea class="" id="describe" value="{{user_info.user_intro}}" bindblur="describeEdit" />
+    <textarea class="" id="describe" value="{{user_info.user_intro}}" bindinput="describeEdit" />
   </view>
 </view>
-<button class="save" bindtap="save">保存</button>
+<view class="save" bindtap="save">保存</view>

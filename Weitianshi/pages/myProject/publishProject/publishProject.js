@@ -1,6 +1,5 @@
-
-var app = getApp();
-
+var app=getApp();
+var url=app.globalData.url;
 Page({
     data: {
         describe: "",
@@ -37,7 +36,7 @@ Page({
         wx.setStorageSync('tips', 4);
         //请求地区,标签,期望融资,项目阶段数据
         wx.request({
-            url: 'https://www.weitianshi.com.cn/api/category/getWxProjectCategory',
+            url: url+'/api/category/getWxProjectCategory',
             method: 'POST',
             success: function (res) {
                 console.log(res);
@@ -184,7 +183,7 @@ Page({
         // console.log(user_id, describe, domainId, console_stage, console_expect, provinceNum, cityNum, tips)
         if (describe !== "" && domainValue !== "选择领域" && console_stage !== 0 && console_expect != 0 && provinceNum !== 0 && cityNum !== 0 && tips !== 4) {
             wx.request({
-                url: 'https://www.weitianshi.com.cn/api/project/insertProject',
+                url: url+'/api/project/insertProject',
                 data: {
                     user_id: user_id,
                     pro_intro: describe,

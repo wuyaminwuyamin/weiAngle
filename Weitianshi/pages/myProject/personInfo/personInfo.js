@@ -1,4 +1,6 @@
 var rqj = require('../../Template/Template.js')
+var app=getApp();
+var url=app.globalData.url;
 Page({
     data: {
         name: "",
@@ -73,7 +75,7 @@ Page({
             time: "1",
         });
         wx.request({
-            url: 'https://www.weitianshi.com.cn/api/wx/sendMobileCode',
+            url: url+'/api/wx/sendMobileCode',
             data: {
                 user_mobile: telphone
             },
@@ -156,7 +158,7 @@ Page({
                 // console.log(name, telphone, checkCode, code);
                 if (name !== "" && result == "1") {
                     wx.request({
-                        url: 'https://www.weitianshi.com.cn/api/wx/bindUser',
+                        url: url+'/api/wx/bindUser',
                         data: {
                             user_real_name: name,
                             user_mobile: telphone,

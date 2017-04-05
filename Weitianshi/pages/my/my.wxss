@@ -58,7 +58,7 @@ page {
 
 .user_popularity, .user_attention, .user_potential {
   width: 120rpx;
-  background: #f8f8f8;
+  background: #f2f2f2;
   height: 82rpx;
   text-align: center;
   margin-right: 132rpx;
@@ -92,7 +92,7 @@ page {
 
 .user_intro .intro_content {
   padding: 19rpx 22rpx;
-  background: #f8f8f8;
+  background: #f2f2f2;
   font-size: 20rpx;
   height: 132rpx;
   margin-top: 32rpx;
@@ -155,7 +155,7 @@ page {
 
 .invest_desc {
   padding: 18rpx 24rpx;
-  background: #f8f8f8;
+  background: #f2f2f2;
   font-size: 20rpx;
   height: 132rpx;
   border-radius: 8rpx;

@@ -1,4 +1,5 @@
-// pages/network/network.js
+var app=getApp();
+var url=app.globalData.url;
 Page({
   data: {
     user_id: "QrYqn6Zr",
@@ -11,7 +12,7 @@ Page({
     var pro_id = this.data.pro_id;
 
     wx.request({
-      url: 'https://dev.weitianshi.com.cn/api/user/getMyFollowList',
+      url: url+'/api/user/getMyFollowList',
       data: {
         user_id: user_id,
         page: 1

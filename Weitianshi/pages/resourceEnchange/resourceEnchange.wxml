@@ -9,7 +9,7 @@
     <view class="context flex">
       <block wx:for="{{enchange}}" wx:key="{{item.industry_id}}">
         <label class="tips">
-          <view class="{{item.checked==true?'checkedOne':''}}" id="{{item.resource_id}}" data-index="{{index}}" data-value='{{item.resource_name}}' data-check="false" bindtap="checkboxChange">
+          <view class="{{enchangeCheck[index]==true?'checkedOne':''}}" id="{{item.resource_id}}" data-index="{{index}}" data-value='{{item.resource_name}}' data-check="false" bindtap="checkboxChange">
             {{item.resource_name}}</view>
         </label>
       </block>
@@ -23,7 +23,7 @@
     <view class="context flex">
       <block wx:for="{{target}}" wx:key="{{item.resource_id}}">
         <label class="tips">
-          <view class="{{item.checked==true?'checkedOne':''}}" id="{{item.resource_id}}" data-index="{{index}}" data-value='{{item.resource_name}}' data-check="false" bindtap="checkboxChange2">
+          <view class="{{targetCheck[index]==true?'checkedOne':''}}" id="{{item.resource_id}}" data-index="{{index}}" data-value='{{item.resource_name}}' data-check="false" bindtap="checkboxChange2">
             {{item.resource_name}}</view>
         </label>
       </block>

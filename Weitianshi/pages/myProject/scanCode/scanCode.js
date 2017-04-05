@@ -1,4 +1,5 @@
-// pages/myProject/scanCode/scanCode.js
+var app=getApp();
+var url=app.globalData.url;
 Page({
   data:{},
   onLoad:function(options){

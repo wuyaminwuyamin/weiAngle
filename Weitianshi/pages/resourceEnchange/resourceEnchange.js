@@ -1,4 +1,6 @@
-var rqj = require('../Template/Template.js')
+var rqj = require('../Template/Template.js');
+var app = getApp();
+var url = app.globalData.url;
 Page({
   data: {
     enchange: [],//接口给的标签
@@ -14,7 +16,7 @@ Page({
     var that = this;
     //获取资源分类名称和id
     wx.request({
-      url: 'https://dev.weitianshi.com.cn/api/category/getResourceCategory',
+      url: url + '/api/category/getResourceCategory',
       data: {},
       method: 'POST',
       success: function (res) {
@@ -25,9 +27,9 @@ Page({
         var enchange = res.data.data;
         var target = res.data.data;
         var res_find_name = [];
-        var res_find_id=[];
+        var res_find_id = [];
         var res_give_name = [];
-        var res_give_id=[];
+        var res_give_id = [];
         for (var i = 0; i < res_find.length; i++) {
           res_find_name.push(res_find[i].resource_name)
           res_find_id.push(res_find[i].resource_id)
@@ -43,8 +45,9 @@ Page({
         var targetId = res_give_id   //选中标签id的数组
         var targetCheck = []    //选中标签checked的数组
         //enchange和target中加入checked属性
-        console.log(res_find,res_find_name)
-        console.log(res_give,res_give_name)
+        console.log(res_find, res_find_name, res_find_id)
+        console.log(res_give, res_give_name, res_give_id)
+
         for (var i = 0; i < enchange.length; i++) {
           if (res_find_name.indexOf(enchange[i].resource_name) != -1) {
             enchange[i].checked = true;
@@ -56,10 +59,11 @@ Page({
         for (var i = 0; i < target.length; i++) {
           if (res_give_name.indexOf(target[i].resource_name) != -1) {
             target[i].checked = true;
+            console.log(2)
           } else {
             target[i].checked = false;
           }
-          targetCheck.push(enchange[i].checked)
+          targetCheck.push(target[i].checked)
         }
         that.setData({
           enchange: enchange,
@@ -71,7 +75,6 @@ Page({
           targetId: targetId,
           targetCheck: targetCheck
         });
-        // console.log(enchange)
       },
       fail: function (res) {
         console.log(res)
@@ -97,9 +100,10 @@ Page({
     var enchange = this.data.enchange
     var enchangeValue = this.data.enchangeValue;
     var enchangeId = this.data.enchangeId;
-
-    if (enchange[e_index].checked == false) {
+    var enchangeCheck = this.data.enchangeCheck;
+    if (enchangeCheck[e_index] == false) {
       if (enchangeValue.length < 5) {
+        enchangeCheck[e_index]=true;
         enchange[e_index].checked = true;
         enchangeValue.push(enchange[e_index].resource_name)
         enchangeId.push(enchange[e_index].resource_id)
@@ -107,6 +111,7 @@ Page({
         rqj.errorHide(that, "最多可选择五项", 3000)
       }
     } else {
+      enchangeCheck[e_index]=false;
       enchange[e_index].checked = false;
       enchangeValue.splice(enchangeValue.indexOf(e_value), 1)
       enchangeId.splice(enchangeId.indexOf(e_index), 1)
@@ -114,9 +119,10 @@ Page({
     this.setData({
       enchange: enchange,
       enchangeValue: enchangeValue,
-      enchangeId: enchangeId
+      enchangeId: enchangeId,
+      enchangeCheck:enchangeCheck,
     });
-    // console.log(enchangeValue,enchangeId)
+    console.log(enchangeValue, enchangeId)
   },
   //传值部份2
   checkboxChange2: function (e) {
@@ -130,9 +136,11 @@ Page({
     var target = this.data.target
     var targetValue = this.data.targetValue;
     var targetId = this.data.targetId;
+    var targetCheck=this.data.targetCheck;
 
     if (target[e_index].checked == false) {
       if (targetValue.length < 5) {
+        targetCheck[e_index]=true;
         target[e_index].checked = true;
         targetValue.push(target[e_index].resource_name)
         targetId.push(target[e_index].resource_id)
@@ -140,6 +148,7 @@ Page({
         rqj.errorHide(that, "最多可选择五项", 3000)
       }
     } else {
+      targetCheck[e_index]=false;
       target[e_index].checked = false;
       targetValue.splice(targetValue.indexOf(e_value), 1)
       targetId.splice(targetId.indexOf(e_index), 1)
@@ -147,7 +156,8 @@ Page({
     this.setData({
       target: target,
       targetValue: targetValue,
-      targetId: targetId
+      targetId: targetId,
+      targetCheck:targetCheck
     });
   },
   //具体描述
@@ -180,7 +190,7 @@ Page({
     var describe = this.data.describe
     console.log(enchangeValue, enchangeId, targetValue, targetId)
     wx.request({
-      url: 'https://dev.weitianshi.com.cn/api/resource/insertResource',
+      url: url + '/api/resource/insertResource',
       data: {
         user_id: user_id,
         res_give: enchangeId,
@@ -189,7 +199,7 @@ Page({
       },
       method: 'POST',
       success: function (res) {
-        console.log(enchangeId,targetId,describe)
+        console.log(enchangeId, targetId, describe)
       },
       fail: function (res) {
         console.log(res)

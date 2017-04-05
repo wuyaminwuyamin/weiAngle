@@ -1,3 +1,5 @@
+var app=getApp();
+var url=app.globalData.url;
 Page({
     data: {
         payArea: [],
@@ -11,7 +13,7 @@ Page({
         var that = this;
         var payArea = '';
         wx.request({
-          url: 'https://www.weitianshi.com.cn/api/category/getHotCity',
+          url: url+'/api/category/getHotCity',
           data: {},
           method: 'POST', // OPTIONS, GET, HEAD, POST, PUT, DELETE, TRACE, CONNECT
           success: function(res){

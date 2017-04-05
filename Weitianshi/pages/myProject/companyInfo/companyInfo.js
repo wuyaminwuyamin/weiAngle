@@ -1,5 +1,7 @@
 
 var rqj = require('../../Template/Template.js')
+var app=getApp();
+var url=app.globalData.url;
 Page({
     data: {
         company: "",
@@ -108,7 +110,7 @@ Page({
         if (result == "1" && company !== "" && position !== "") {
             //向后台发送公司信息
             wx.request({
-                url: 'https://www.weitianshi.com.cn/api/wx/updateUser',
+                url: url+'/api/wx/updateUser',
                 data: {
                     user_id: user_id,
                     user_company_name: company,

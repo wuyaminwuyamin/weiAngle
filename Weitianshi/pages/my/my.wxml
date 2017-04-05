@@ -1,6 +1,7 @@
 <scroll-view id="my" scroll-y="true">
+
   <!--我的名片-->
-  <view class="user_info flex" bindtap="cardEdit"> 
+  <view class="user_info flex" bindtap="cardEdit">
     <view class="user_left">
       <view class="user_name" wx:if="{{user.user_real_name}}">{{user.user_real_name}}</view>
       <view class="user_name" wx:if="{{!user.user_real_name}}">代替名</view>
@@ -18,18 +19,20 @@
       <view wx:if="{{user.user_avatar_text}}" class="user_text noPic">{{user.user_avatar_text}}</view>
       <image class="user_edit" src=""></image>
     </view>
-
     <view class="user_down flex">
       <view class="user_popularity user_tips">
-        <view>{{user.user_popularity}}</view>
+        <view wx:if="{{user.user_popularity}}">{{user.user_popularity}}</view>
+        <view wx:if="{{!user.user_popularity}}">-</view>
         <view>人气</view>
       </view>
       <view class="user_attention user_tips">
-        <view>{{user.user_attention}}</view>
+        <view wx:if="{{user.user_attention}}">{{user.user_attention}}</view>
+        <view wx:if="{{!user.user_attention}}">-</view>
         <view>收藏我</view>
       </view>
       <view class="user_potential user_tips">
-        <view>{{user.user_potential}}</view>
+        <view wx:if="{{user.user_potential}}">{{user.user_potential}}</view>
+        <view wx:if="{{!user.user_potential}}">-</view>
         <view>潜在项目</view>
       </view>
     </view>
@@ -87,8 +90,8 @@
     <!--可提供资源-->
     <view class="resource_title">可提供资源</view>
     <view class="res_give_frame">
-      <block wx:for="{{resouce.res_give}}" wx:key="{{item.resource_id}}">
-        <view class="res_give" data-id="{{item.resource_id}}" data-value="{{item.resouce_name}}">{{item.resouce_name}}</view>
+      <block wx:for="{{resource.res_give}}" wx:key="{{item.resource_id}}">
+        <view class="res_give" data-id="{{item.resource_id}}" data-value="{{item.resource_name}}">{{item.resource_name}}</view>
       </block>
     </view>
 
@@ -141,7 +144,7 @@
           <view class="case_name">{{item.case_name}}</view>
           <view class="case_time">{{item.case_deal_time}}</view>
         </view>
-         <view class="pro_industry_frame flex">
+        <view class="pro_industry_frame flex">
           <block wx:for="{{item.pro_industry}}" wx:key="{{item.industry_id}}" wx:for-item="pro_industry">
             <view class="pro_industry" data-id="{{pro_industry.industry_id}}" data-vlaue="{{pro_industry.industry_name}}">{{pro_industry.industry_name}}</view>
           </block>

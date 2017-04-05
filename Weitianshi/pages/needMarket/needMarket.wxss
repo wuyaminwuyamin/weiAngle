@@ -106,6 +106,7 @@ swiper-item {
 /*用户信息*/
 
 .user_info {
+  margin-bottom: 20rpx;
 }
 
 .user_text, .user_pic {
@@ -153,33 +154,44 @@ swiper-item {
   font-size: 20rpx;
   color: #999;
 }
-.pro_info{
+
+.pro_info {
   margin-top: 12rpx;
   width: 622rpx;
   overflow: hidden;
   text-overflow: ellipsis;
 }
-.swiper-box .pro_intro{
+
+.swiper-box .pro_intro {
   padding: 20rpx 0;
   font-size: 28rpx;
   color: #333;
   text-align: left;
 }
-.industry_tip{
+
+.investor_right {
+  flex-wrap: wrap;
+  width: 460rpx;
+}
+
+.industry_tip {
   font-size: 24rpx;
   color: #666;
   padding: 0 16rpx;
   border-right: 1px solid #e0e0e0;
   margin-bottom: 20rpx;
 }
-.industry_tip:first-child{
+
+.industry_tip:first-child {
   padding-left: 0;
 }
-.industry_tip:last-child{
-  border:none;
+
+.industry_tip:last-child {
+  border: none;
 }
-.pro_sort{
-  margin-right: 24rpx; 
+
+.pro_sort {
+  margin-right: 24rpx;
   font-size: 20rpx;
   color: #999;
   border-radius: 98rpx;
@@ -190,12 +202,33 @@ swiper-item {
 }
 
 /*投资需求*/
-.investor_intro,.investor_industry_frame,.investor_stage_frame{
-  padding-top: 32rpx;
+
+.investor_intro, .investor_industry_frame, .investor_stage_frame {
+  align-items: baseline;
 }
-.investor_text{
+
+.swiper-box .investor_text {
   font-size: 24rpx;
+  flex-wrap: nowrap;
+  width: 140rpx;
+  margin: 12rpx 0;
+  text-align: left;
 }
-.investor_text,investor_right{
+
+.investor_text, investor_right {
   padding: 0 12rpx;
+}
+
+/*资源需求*/
+
+.res_give,.res_find {
+  font-size: 24rpx;
+  border: 1px solid #ccc;
+  color: #ccc;
+  padding: 0 12rpx;
+  border-radius: 8rpx;
+  height: 46rpx;
+  line-height: 46rpx;
+  margin-right: 24rpx;
+  margin-bottom: 16rpx;
 }

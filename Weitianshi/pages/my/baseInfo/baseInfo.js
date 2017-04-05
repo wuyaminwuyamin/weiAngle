@@ -1,4 +1,5 @@
-// pages/my/baseInfo/baseInfo.js
+var app=getApp();
+var url=app.globalData.url;
 Page({
   data: {
     avatar: "",

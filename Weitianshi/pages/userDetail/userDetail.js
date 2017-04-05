@@ -1,3 +1,5 @@
+var app=getApp();
+var url=app.globalData.url;
 Page({
     data: {
         integrity:30,
@@ -13,7 +15,7 @@ Page({
         })
         //我的个人信息
         wx.request({
-          url: 'https://dev.weitianshi.com.cn/api/user/getUserAllInfo',
+          url: url+'/api/user/getUserAllInfo',
           data: {
               user_id:"V0VznXa0"
           },

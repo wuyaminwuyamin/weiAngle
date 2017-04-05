@@ -1,3 +1,5 @@
+var app=getApp();
+var url=app.globalData.url;
 Page({
     data: {
         doMain: [],
@@ -45,8 +47,9 @@ Page({
             checked: domainValue,
             index: domainId
         });
+        
 
-
+        console.log(this.data.checked,this.data.index)
     },
 
     //下拉刷新
@@ -65,8 +68,7 @@ Page({
         var isCheck = thisData.check;
         var value = thisData.value;
         var idx = thisData.index;
-        var id = e.currentTarget.id;
-
+        var id = e.currentTarget.id*1;
         if (index.indexOf(id) == -1) {
             checked.push(value);
             index.push(id)
@@ -120,8 +122,6 @@ Page({
                     wx.setStorageSync('y_domainId', index);
                 }
             }
-
-            console.log(checked, index);
             wx.navigateBack({
                 delta: 1 // 回退前 delta(默认为1) 页面
             })

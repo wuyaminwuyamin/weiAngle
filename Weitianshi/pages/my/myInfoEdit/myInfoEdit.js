@@ -1,4 +1,5 @@
-// pages/my/myInfoEdit/myInfoEdit.js
+var app=getApp();
+var url=app.globalData.url;
 Page({
   data: {
     baseInfo: 50,

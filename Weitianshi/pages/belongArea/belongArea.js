@@ -1,3 +1,5 @@
+var app=getApp();
+var url=app.globalData.url;
 Page({
     data: {
         province: [],
@@ -14,7 +16,7 @@ Page({
         });
         // console.log(this.data.current);
         wx.request({
-            url: 'https://www.weitianshi.com.cn/api/category/getArea',
+            url: url+'/api/category/getArea',
             data: {
                 pid: 0
             },
@@ -48,7 +50,7 @@ Page({
 
         // console.log(this.data.console_province);
         wx.request({
-            url: 'https://www.weitianshi.com.cn/api/category/getArea',
+            url: url+'/api/category/getArea',
             data: {
                 pid: id
             },

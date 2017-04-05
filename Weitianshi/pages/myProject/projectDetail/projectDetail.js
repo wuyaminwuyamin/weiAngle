@@ -1,4 +1,6 @@
-var rqj = require('../../Template/Template.js')
+var rqj = require('../../Template/Template.js');
+var app=getApp();
+var url=app.globalData.url;
 Page({
     data: {
         winWidth: 0,//选项卡
@@ -58,7 +60,7 @@ Page({
         // console.log(industry_tag)
         //项目详情(不包括投资人)
         wx.request({
-            url: 'https://www.weitianshi.com.cn/api/project/showProjectDetail',
+            url: url+'/api/project/showProjectDetail',
             data: {
                 user_id: user_id,
                 pro_id: this.data.id
@@ -142,7 +144,7 @@ Page({
                 page: page,
             });
             wx.request({
-                url: 'https://www.weitianshi.com.cn/api/project/getProjectMatchInvestors',
+                url: url+'/api/project/getProjectMatchInvestors',
                 data: {
                     user_id: user_id,
                     pro_id: pro_id,

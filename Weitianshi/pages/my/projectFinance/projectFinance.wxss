@@ -1,12 +1,27 @@
 /* pages/my/projectFinance/projectFinance.wxss */
-.weui-media-box__desc:last-child{
-    border-right: none;
+
+.weui-media-box__desc:last-child {
+  border-right: none;
 }
-.edit{
-    justify-content: flex-end
-}   
-.editIcon{
-    width: 40rpx;
-    height: 40rpx;
-    background: coral;
+
+.edit {
+  justify-content: flex-end;
+}
+
+.editIcon {
+  width: 40rpx;
+  height: 40rpx;
+  background: coral;
+}
+
+.tip{
+  margin-right: 24rpx;
+  font-size: 20rpx;
+  color: #999;
+  border-radius: 98rpx;
+  border: 1px solid #e0e0e0;
+  padding: 0 16rpx;
+  height: 26rpx;
+  line-height: 26rpx;
+  margin-top: 20rpx;
 }

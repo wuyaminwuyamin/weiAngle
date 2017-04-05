@@ -1,3 +1,5 @@
+var app=getApp();
+var url=app.globalData.url;
 Page({
     data: {
         integrity: 30,
@@ -5,18 +7,18 @@ Page({
         user: "",
         modal: 1,
     },
-    onLoad: function () {
+    onShow: function (options) {
+        // console.log(options)
         var that = this
         var user_id = wx.getStorageSync('user_id');
-        console.log(user_id)
         that.setData({
             user_id: "user_id",
         })
         //我的个人信息
         wx.request({
-            url: 'https://dev.weitianshi.com.cn/api/user/getUserAllInfo',
+            url: url+'/api/user/getUserAllInfo',
             data: {
-                user_id: "V0VznXa0"
+                user_id: user_id
             },
             method: 'POST',
             success: function (res) {
@@ -26,7 +28,6 @@ Page({
                 var resource = res.data.resource_info;
                 var project_info = res.data.project_info;
                 var invest_case = res.data.invest_case;
-                console.log(invest_case)
                 that.setData({
                     user: user,
                     invest: invest,
@@ -98,6 +99,11 @@ Page({
     toastCertain: function () {
         wx.navigateTo({
             url: 'cardEdit/cardEdit',
+        })
+        var modal = this.data.modal;
+        modal = 1;
+        this.setData({
+            modal: modal
         })
     }
 });

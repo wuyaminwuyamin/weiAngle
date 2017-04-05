@@ -1,4 +1,5 @@
-// pages/my/projectFinance/projectFinance.js
+var app=getApp();
+var url=app.globalData.url;
 Page({
   data: {
 
@@ -10,7 +11,7 @@ Page({
 
     //获取我的项目 
     wx.request({
-      url: 'https://www.weitianshi.com.cn/api/project/getMyProject',
+      url: url+'/api/project/getMyProject',
       data: {
         user_id: user_id
       },
@@ -26,12 +27,13 @@ Page({
       }
     })
   },
-  //编辑项目
-  edit: function (e) {
-    console.log(111)
-    var pro_id = e.target.dataset.proId;
+  //项目详情
+  detail: function (e) {
+    var thisData = e.currentTarget.dataset;
+    var id = thisData.id;
+    console.log(thisData)
     wx.navigateTo({
-      url: '../../myProject/projectDetail/projectDetail'
+      url: '../../myProject/projectDetail/projectDetail?id='+id
     })
   },
   // 新增项目

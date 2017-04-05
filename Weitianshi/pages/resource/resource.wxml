@@ -80,7 +80,7 @@
       <view wx:if="{{hasPublic==1}}">
         <view class="publish publish2 publish_find_project2" bindtap="yourProject">
           <view style="font-size:24rpx">我的投资需求</view>
-          <view class="weui-media-box__desc" style="font-size:28rpx">{{y_domainValue}}</view>
+          <view class="weui-media-box__desc" style="font-size:20rpx;color:#999;">投资领域:  {{y_domainValue}}</view>
         </view>
       </view>
       <view class="foryou2">为您对接到的项目</view>
@@ -136,7 +136,7 @@
           <image class="empty" src="../../img/empty.png"></image>
         </view>
       </view>
-      
+
       <!--<view class="load" wx:if="{{load==1}}">正在加载</view>-->
     </scroll-view>
   </swiper-item>
@@ -144,15 +144,18 @@
   <!-- 资源对接 -->
   <swiper-item>
     <view>
-      <navigator url="../resourceEnchange/resourceEnchange" class="publish">
-        <view>我的资源需求</view>
-        <view class="weui-media-box__desc">
-          寻求对接的资源:
-          <block wx:for="{{finding}}" wx:key="*this">
-            {{item}}
-          </block>
+      <view wx:if="{{hasPublic==0}}">
+        <view class="publish publish2 publish_find_project" bindtap="resourceNeed">
+          <view>发布资源需求</view>
+          <view class="weui-media-box__desc">快速发布,精准对接优质项目</view>
         </view>
-      </navigator>
+      </view>
+      <view wx:if="{{hasPublic==1}}">
+        <view class="publish publish2 publish_find_project2" bindtap="resourceNeed">
+          <view style="font-size:24rpx">我的资源需求</view>
+          <view class="weui-media-box__desc" style="font-size:20rpx;color:#999;">寻求对接的资源:  {{res_find}}</view>
+        </view>
+      </view>
       <view class="others">
         <block wx:for="{{res_match}}" wx:key="{{item.resource_id}}">
           <view class="weui-cell" style="background:white;margin:32rpx;margin-bottom:0;border-radius:4px 4px 0 0">

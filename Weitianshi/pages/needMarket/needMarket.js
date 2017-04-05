@@ -1,5 +1,6 @@
 var rqj = require('../Template/Template.js')
-var app = getApp()
+var app=getApp();
+var url=app.globalData.url;
 Page({
   data: {
     userInfo: {},
@@ -15,7 +16,7 @@ Page({
 
     //融资需求获取数据
     wx.request({
-      url: 'https://dev.weitianshi.com.cn/api/project/projectMarket',
+      url: url+'/api/project/projectMarket',
       data: {},
       method: 'POST',
       success: function (res) {
@@ -32,7 +33,7 @@ Page({
 
     //投资需求获取数据
     wx.request({
-      url: 'https://dev.weitianshi.com.cn/api/investors/investorMarket',
+      url: url+'/api/investors/investorMarket',
       data: {},
       method: 'POST',
       success: function (res) {
@@ -41,7 +42,6 @@ Page({
         that.setData({
           investNeed: investNeed
         })
-        console.log(investNeed)
       },
       fail: function (res) {
         console.log(res)
@@ -49,11 +49,16 @@ Page({
     })
     //资源需求获取数据
     wx.request({
-      url: 'https://dev.weitianshi.com.cn/api/resource/resourceMarket',
+      url: url+'/api/resource/resourceMarket',
       data: {},
       method: 'POST',
       success: function (res) {
         // console.log(res)
+        var resourceNeed = res.data.data;
+        that.setData({
+          resourceNeed: resourceNeed
+        })
+        console.log(resourceNeed)
       },
       fail: function (res) {
         console.log(res)
@@ -72,7 +77,7 @@ Page({
     if (current == 1) {
       //载入寻找项目数据
       wx.request({
-        url: 'https://www.weitianshi.com.cn/api/investors/getMatchProjects',
+        url: url+'/api/investors/getMatchProjects',
         data: {
           user_id: user_id
         },
