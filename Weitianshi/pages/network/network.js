@@ -1,41 +1,30 @@
-var app=getApp();
-var url=app.globalData.url;
+var app = getApp();
+var url = app.globalData.url;
 Page({
   data: {
-    user_id: "QrYqn6Zr",
-    pro_id: "Er6ZGQr4",
-    investor_arry: []
+
   },
   onShow: function () {
     var that = this;
-    var user_id = this.data.user_id;
-    var pro_id = this.data.pro_id;
-
-    wx.request({
-      url: url+'/api/user/getMyFollowList',
-      data: {
-        user_id: user_id,
-        page: 1
-      },
-      method: 'POST',
-      success: function (res) {
-        console.log(res)
-        var investor2 = res.data.data;
-        var investor_arry = that.data.investor_arry
-        for (var i = 0; i < investor2.length; i++) {
-          investor_arry.push(investor2[i])
+    var user_id = wx.getStorageSync('user_id')
+    if (user_id) {
+      wx.request({
+        url: url + '/api/user/getMyFollowList',
+        data: {
+          // user_id: "V0VznXa0",
+          user_id: user_id,
+          page: 1
+        },
+        method: 'POST',
+        success: function (res) {
+          console.log(res)
+          var netWork = res.data.data
+          that.setData({
+            netWork: netWork
+          })
         }
-        that.setData({
-          investor2:investor2,
-          investor_arry: investor_arry,
-          page_end: res.data.page_end
-        });
-        wx.hideToast({
-          title: 'loading...',
-          icon: 'loading'
-        })
-      }
-    })
+      })
+    }
   },
   onShareAppMessage: function () {
     return {
@@ -43,7 +32,7 @@ Page({
       path: '/pages/resource/resource'
     }
   },
-  myCard:function(){
+  myCard: function () {
     wx.navigateTo({
       url: '../my/cardEdit/cardEdit',
     })

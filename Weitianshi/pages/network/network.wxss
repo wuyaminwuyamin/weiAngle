@@ -6,24 +6,27 @@ page {
 
 /*空状态*/
 
-.nullState_text{
-  text-align: center
+.nullState_text {
+  text-align: center;
 }
-.nullState_text image{
 
+.nullState_text image {
 }
-.nullState_text view:nth-child(2){
+
+.nullState_text view:nth-child(2) {
   font-size: 32rpx;
   padding-top: 40rpx;
   padding-bottom: 24rpx;
   font-weight: 600;
 }
-.nullState_text view:nth-child(3){
+
+.nullState_text view:nth-child(3) {
   color: #999;
   font-size: 28rpx;
   padding-bottom: 60rpx;
 }
-.nullState button{
+
+.nullState button {
   width: 360rpx;
   margin: 0 auto;
   height: 88rpx;
@@ -60,12 +63,161 @@ page {
   line-height: 58rpx;
 }
 
-.weui-media-box__desc {
-  color: #666;
-  border-right: 1px solid #e0e0e0;
-  padding: 0 8rpx;
+/*用户信息*/
+
+.card {
+  background: white;
+  margin-top: 32rpx;
+  width: 100%;
+  padding: 32rpx;
 }
 
-.weui-media-box__desc:last-child {
-  border-right: none;
+.user_info {
+  margin-bottom: 20rpx;
+}
+
+.user_text, .user_pic {
+  width: 120rpx;
+  height: 120rpx;
+  border-radius: 50%;
+}
+
+.user_text {
+  background: #f2f2f2;
+  line-height: 120rpx;
+  text-align: center;
+  font-size: 48rpx;
+}
+
+.user_info_right {
+  margin-left: 24rpx;
+}
+
+.user_name {
+  font-size: 32rpx;
+  color: #333;
+}
+
+.user_career {
+  font-size: 24rpx;
+  color: #666;
+  padding-top: 16rpx;
+}
+
+.user_company {
+  font-size: 24rpx;
+  color: #666;
+  padding-top: 24rpx;
+}
+
+.pro_time {
+  background: #f2f2f2;
+  border-radius: 8rpx;
+  width: 86rpx;
+  height: 28rpx;
+  line-height: 28rpx;
+  color: #999;
+  font-size: 20rpx;
+  margin-left: 272rpx;
+}
+
+.swiper-box .user_company {
+  text-align: left;
+  padding-top: 12rpx;
+  font-size: 20rpx;
+  color: #999;
+}
+
+.pro_info {
+  margin-top: 12rpx;
+  width: 622rpx;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.swiper-box .pro_intro {
+  padding: 20rpx 0;
+  font-size: 28rpx;
+  color: #333;
+  text-align: left;
+}
+.industry,.stage{
+  font-size: 24rpx;
+  color: #666;
+  padding: 0 16rpx;
+}
+.industry{
+  border-right: 1px solid #e0e0e0;
+}
+.industry:first-child{
+  padding-left: 0
+}
+.industry:last-child{
+  border: 0
+}
+.stage:first-child{
+  padding-left: 0;
+}
+
+.investor_right {
+  flex-wrap: wrap;
+}
+
+.industry_tip {
+  font-size: 24rpx;
+  color: #666;
+  padding: 0 16rpx;
+  border-right: 1px solid #e0e0e0;
+  margin-bottom: 20rpx;
+}
+
+.industry_tip:first-child {
+  padding-left: 0;
+}
+
+.industry_tip:last-child {
+  border: none;
+}
+
+.pro_sort {
+  margin-right: 24rpx;
+  font-size: 20rpx;
+  color: #999;
+  border-radius: 98rpx;
+  border: 1px solid #e0e0e0;
+  padding: 0 16rpx;
+  height: 26rpx;
+  line-height: 26rpx;
+}
+
+/*投资需求*/
+
+.investor_intro, .investor_industry_frame, .investor_stage_frame {
+  align-items: baseline;
+}
+
+.investor_text {
+  font-size: 24rpx;
+  flex-wrap: nowrap;
+  width: 120rpx;
+  margin: 12rpx 0;
+  text-align: left;
+}
+
+.investor_text, investor_right {
+  padding: 0 12rpx;
+}
+
+/*资源需求*/
+
+.res_give, .res_find {
+  font-size: 24rpx;
+  border: 1px solid #ccc;
+  color: #ccc;
+  padding: 0 12rpx;
+  border-radius: 8rpx;
+  height: 46rpx;
+  line-height: 46rpx;
+  margin-right: 24rpx;
+  margin-bottom: 16rpx;
 }

@@ -331,6 +331,11 @@ page {
   color: #666;
   margin-left: 24rpx;
 }
+.project_card_null{
+  height: 160rpx;
+  font-size: 28rpx;
+  color: #666;
+}
 
 /*我的人脉和加入人脉*/
 .aboutNetwork{

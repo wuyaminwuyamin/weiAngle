@@ -10,8 +10,8 @@ Page({
     bind_mobile: 0,//是否已存有个人信息
     myProject: "",
     yourProject: "",
+    res_match:"",
     findTarget: "",//寻找项目的匹配的标准
-    text: "你好",
     investor_page: 1,//投资人分页
     share: 1,//分享页面
     page_end: false,
@@ -60,7 +60,7 @@ Page({
             },
             method: 'POST',
             success: function (res) {
-              // console.log(res)
+              console.log(res)
               //本地存入open_session,bind_mobile,user_id
               wx.setStorageSync('open_session', res.data.open_session);
               wx.setStorageSync('bind_mobile', res.data.bind_mobile);
@@ -232,7 +232,6 @@ Page({
         },
         method: 'POST',
         success: function (res) {
-          // console.log(res.data)
           wx.setStorage({
             key: 'resource_data',
             data: res.data.res_data

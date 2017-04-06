@@ -8,7 +8,6 @@ Page({
     that.setData({
       user_id: "user_id",
     })
-    console.log(user_id)
 
     //获取用户信息
     wx.request({

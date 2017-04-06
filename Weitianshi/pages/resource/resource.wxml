@@ -50,13 +50,6 @@
                 </view>
               </block>
             </view>
-
-            <!--<view class="complete_push">
-            <view class="complete">项目完整度:
-              <view>40%</view>
-            </view>
-            <view class="push_something">一键推送</view>
-          </view>-->
           </view>
         </view>
       </block>
@@ -80,10 +73,10 @@
       <view wx:if="{{hasPublic==1}}">
         <view class="publish publish2 publish_find_project2" bindtap="yourProject">
           <view style="font-size:24rpx">我的投资需求</view>
-          <view class="weui-media-box__desc" style="font-size:20rpx;color:#999;">投资领域:  {{y_domainValue}}</view>
+          <view class="weui-media-box__desc" style="font-size:20rpx;color:#999;">投资领域: {{y_domainValue}}</view>
         </view>
       </view>
-      <view class="foryou2">为您对接到的项目</view>
+      <view class="foryou2" hidden="{{yourProject==''}}">为您对接到的项目</view>
 
       <!--已匹配的项目-->
       <view class="others">
@@ -106,24 +99,6 @@
                 <view class="weui-media-box__desc tip" wx:if="{{myProject.pro_area.area_title}}">{{myProject.pro_area.area_title}}</view>
                 <view class="weui-media-box__desc tip" wx:if="{{myProject.pro_scale.scale_money}}">{{myProject.pro_scale.scale_money}}</view>
               </view>
-
-              <!--<view class="weui-media-box__info people">
-              <block wx:for="{{myProject.match_investors}}" wx:for-item="match_investors" wx:key="investor_id">
-                <view class="person" data-id="{{match_investors.investor_id}}">
-                  <image class="headPic" wx:if="{{match_investors.investor_logo_url}}" src="{{match_investors.investor_logo_url}}" />
-                  <view class="headPic others_nopic" wx:if="{{!match_investors.investor_logo_url}}">{{match_investors.investor_logo_text}}</view>
-                  <view>{{match_investors.investor_name}}</view>
-                  <view>{{match_investors.investor_career}}</view>
-                </view>
-              </block>
-            </view>-->
-
-              <!--<view class="complete_push">
-            <view class="complete">项目完整度:
-              <view>40%</view>
-            </view>
-            <view class="push_something">一键推送</view>
-          </view>-->
             </view>
           </view>
         </block>
@@ -153,7 +128,7 @@
       <view wx:if="{{hasPublic==1}}">
         <view class="publish publish2 publish_find_project2" bindtap="resourceNeed">
           <view style="font-size:24rpx">我的资源需求</view>
-          <view class="weui-media-box__desc" style="font-size:20rpx;color:#999;">寻求对接的资源:  {{res_find}}</view>
+          <view class="weui-media-box__desc" style="font-size:20rpx;color:#999;">寻求对接的资源: {{res_find}}</view>
         </view>
       </view>
       <view class="others">
@@ -186,6 +161,11 @@
             </view>
           </view>
         </block>
+
+        <!--空状态-->
+        <view wx:if="{{res_match==''}}">
+          <image class="empty" src="../../img/empty.png"></image>
+        </view>
       </view>
     </view>
   </swiper-item>

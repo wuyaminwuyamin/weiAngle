@@ -123,7 +123,7 @@
               </view>
             </view>
             <view class="investor_info">
-              <view class="investor_intro flex" wx:if="{{item.res_desc}}">
+              <view class="investor_intro flex" wx:if="{{item.res_desc}}" style="margin-bottom:12rpx;">
                 <view class="investor_text">资源需求:</view>
                 <view class="investor_right flex">{{item.res_desc}}</view>
               </view>

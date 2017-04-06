@@ -146,6 +146,7 @@ swiper-item {
   color: #999;
   font-size: 20rpx;
   margin-left: 272rpx;
+  overflow: hidden;
 }
 
 .swiper-box .user_company {

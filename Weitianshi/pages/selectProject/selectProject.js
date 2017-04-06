@@ -16,9 +16,7 @@ Page({
         user_id: user_id
       },
       method: 'POST',
-
       success: function (res) {
-        // console.log(res);
         var slectProject = res.data.data;
         that.setData({
           slectProject: slectProject

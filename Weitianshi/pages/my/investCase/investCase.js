@@ -1,20 +1,46 @@
-var app=getApp();
-var url=app.globalData.url;
+var app = getApp();
+var url = app.globalData.url;
 Page({
-  data:{},
-  onLoad:function(options){
-    // 页面初始化 options为页面跳转所带来的参数
+  data: {
+
   },
-  onReady:function(){
-    // 页面渲染完成
+  onLoad: function (options) {
+    var that = this;
+    var user_id = wx.getStorageSync('user_id')
+    if (user_id!='') {
+      //获取我的项目 
+      wx.request({
+        url: url + '/api/project/getMyProject',
+        data: {
+          user_id: user_id
+        },
+        method: 'POST',
+        success: function (res) {
+          var myProject = res.data.data;
+          var length = myProject.length;
+          wx.setStorageSync('proLength', length);
+          that.setData({
+            myProject: myProject,
+          });
+        }
+      })
+    }
+
   },
-  onShow:function(){
-    // 页面显示
+  //项目详情
+  detail: function (e) {
+    var thisData = e.currentTarget.dataset;
+    var id = thisData.id;
+    var index = thisData.index
+    console.log(thisData)
+    wx.navigateTo({
+      url: '../../myProject/projectDetail/projectDetail?id=' + id + "&&index=" + index
+    })
   },
-  onHide:function(){
-    // 页面隐藏
-  },
-  onUnload:function(){
-    // 页面关闭
+  // 新增项目
+  addProject() {
+    wx.navigateTo({
+      url: '../investCaseEdit/investCaseEdit',
+    })
   }
 })

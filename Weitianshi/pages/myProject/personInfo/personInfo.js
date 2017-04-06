@@ -1,6 +1,6 @@
 var rqj = require('../../Template/Template.js')
-var app=getApp();
-var url=app.globalData.url;
+var app = getApp();
+var url = app.globalData.url;
 Page({
     data: {
         name: "",
@@ -20,8 +20,18 @@ Page({
         // console.log("开启了下拉刷新")
         wx.stopPullDownRefresh()
     },
-    onShow: function () {
+    onLoad: function (options) {
         var that = this;
+        console.log(options)
+        var options = options;
+        that.setData({
+            options: options
+        })
+
+    },
+    onShow: function (options) {
+        var that = this;
+        // 清零短信倒计时
         that.setData({
             time: "0"
         })
@@ -69,13 +79,13 @@ Page({
         var checking = this.data.checking;
         var that = this;
         var endTime = this.data.endTime
-        endTime=60;
+        endTime = 60;
         that.setData({
             checking: "1",
             time: "1",
         });
         wx.request({
-            url: url+'/api/wx/sendMobileCode',
+            url: url + '/api/wx/sendMobileCode',
             data: {
                 user_mobile: telphone
             },
@@ -110,14 +120,14 @@ Page({
                         // console.log('提示已消失')
                     }, 1500)
                 } else {
-                   var _time=setInterval(function(){
-                        if(endTime>1){
+                    var _time = setInterval(function () {
+                        if (endTime > 1) {
                             endTime--;
                             that.setData({
-                                getCode:endTime+'s后重新获取验证码'
+                                getCode: endTime + 's后重新获取验证码'
                             })
                         }
-                    },1000)
+                    }, 1000)
                     setTimeout(function () {
                         that.setData({
                             time: "0",
@@ -158,7 +168,7 @@ Page({
                 // console.log(name, telphone, checkCode, code);
                 if (name !== "" && result == "1") {
                     wx.request({
-                        url: url+'/api/wx/bindUser',
+                        url: url + '/api/wx/bindUser',
                         data: {
                             user_real_name: name,
                             user_mobile: telphone,
@@ -172,11 +182,18 @@ Page({
                             var user_career = res.data.user_career;
                             var user_company = res.data.user_company;
                             var uer_email = res.data.user_email;
-                            // console.log(user_career, user_company, uer_email);
+                            var options = this.data.options;
+                            // console.log(user_career, user_company, uer_email);  
                             if (res.data.status_code == 2000000) {
-                                wx.navigateTo({
-                                    url: '../companyInfo/companyInfo?user_career=' + user_career + "&&user_company=" + user_company + "&&uer_email=" + uer_email,
-                                });
+                                if (options) {
+                                    wx.navigateTo({
+                                        url: '../companyInfo/companyInfo?user_career=' + user_career + "&&user_company=" + user_company + "&&uer_email=" + uer_email + "&&options=" + options,
+                                    });
+                                } else {
+                                    wx.navigateTo({
+                                        url: '../companyInfo/companyInfo?user_career=' + user_career + "&&user_company=" + user_company + "&&uer_email=" + uer_email,
+                                    });
+                                }
                                 wx.setStorageSync('user_id', res.data.user_id);
                                 wx.setStorageSync('bind_mobile', 1)
                             } else {

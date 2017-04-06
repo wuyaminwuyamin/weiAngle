@@ -1,0 +1,24 @@
+<!--pages/my/investCaseEdit/investCaseEdit.wxml-->
+<view id="cardEdit">
+  <view class="card">
+    <view class="text">项目名称</view>
+    <input class="card_case" id="case_name" placeholder="请输入" bindblur="case_name"/>
+  </view>
+  <view class="card">
+    <view class="text">项目领域</view>
+    <view class="card_case" id="mobile" placeholder="请选择" bindblur="mobileEdit" style="color:#ccc;"></view>
+  </view>
+  <view class="card">
+    <view class="text">项目轮次</view>
+    <view class="card_case" id="case_stage" placeholder="请选择" bindblur="case_stage"></view>
+  </view>
+  <view class="card">
+    <view class="text">投资金额(万元)</view>
+    <input class="" id="case_money" placeholder="请输入" bindblur="case_money" />
+  </view>
+  <view class="card">
+    <view class="text">交易时间</view>
+    <view class="card_case" id="case_deal_time" value="请选择" bindblur="case_deal_time"></view>
+  </view>
+</view>
+<view class="save" bindtap="save">保存</view>
