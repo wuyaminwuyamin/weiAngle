@@ -1,7 +1,7 @@
 
 var rqj = require('../../Template/Template.js')
-var app=getApp();
-var url=app.globalData.url;
+var app = getApp();
+var url = app.globalData.url;
 Page({
     data: {
         company: "",
@@ -13,25 +13,28 @@ Page({
     },
     //onLoad
     onLoad: function (options) {
-        // console.log("this is onLoad")
         var that = this;
-        // console.log(options)
-        var company=options.user_company;
-        var position=options.user_career;
-        var email=options.user_email;
-        if(company==null){
-            company=''
+        console.log(options)
+        var company = options.user_company;
+        var position = options.user_career;
+        var email = options.user_email;
+        var network = options.network;
+        var followed_user_id = options.followed_user_id;
+        if (company == "null") {
+            company = ''
         };
-        if(position==null){
-            position==''
+        if (position == "null") {
+            position = ''
         };
-        if(email==null){
-            email=''
+        if (email == "null") {
+            email = ''
         }
         that.setData({
-            company:company,
-            position:Position,
-            email:email
+            company: company,
+            position: position,
+            email: email,
+            network: network,
+            followed_user_id: followed_user_id
         })
     },
     //下拉刷新
@@ -102,6 +105,8 @@ Page({
         var error_text = this.data.error_text;
         var email = this.data.email;
         var user_id = wx.getStorageSync('user_id');
+        var netWork = this.data.network;
+        var followed_user_id = this.data.followed_user_id;
         // console.log(typeof user_id, user_id);
         // console.log(company);
         // console.log(position);
@@ -110,7 +115,7 @@ Page({
         if (result == "1" && company !== "" && position !== "") {
             //向后台发送公司信息
             wx.request({
-                url: url+'/api/wx/updateUser',
+                url: url + '/api/wx/updateUser',
                 data: {
                     user_id: user_id,
                     user_company_name: company,
@@ -121,11 +126,33 @@ Page({
                 success: function (res) {
                     // console.log(res)
                     if (res.data.status_code == 2000000) {
-                        wx.switchTab({
-                            url: "../../pages/resource/resource"
-                        });
-                    } else {   
-
+                        if (netWork == 2) {
+                            wx.switchTab({
+                                url: '/pages/network/network',
+                            })
+                        } else if (netWork == 1) {
+                            wx.request({
+                                url: url + '/api/user/followUser',
+                                data: {
+                                    follow_user_id: user_id,
+                                    followed_user_id: followed_user_id
+                                },
+                                method: 'POST',
+                                success: function (res) {
+                                    console.log("人脉添加成功");
+                                    wx.switchTab({
+                                        url: '/pages/network/network',
+                                    })
+                                },
+                                fail: function (res) {
+                                    console.log(res)
+                                },
+                            })
+                        } else {
+                            wx.switchTab({
+                                url: "/pages/resource/resource"
+                            });
+                        }
                     }
                 },
             })
@@ -138,11 +165,11 @@ Page({
                 error: '1'
             });
             if (company == '') {
-                rqj.errorHide(that,"公司不能为空",1500)
+                rqj.errorHide(that, "公司不能为空", 1500)
             } else if (position == '') {
-               rqj.errorHide(that,"职位不能为空",1500)
+                rqj.errorHide(that, "职位不能为空", 1500)
             } else {
-               rqj.errorHide(that,"请正确填写邮箱",1500)
+                rqj.errorHide(that, "请正确填写邮箱", 1500)
             }
 
         }

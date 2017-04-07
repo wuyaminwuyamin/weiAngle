@@ -75,10 +75,7 @@ Page({
                         },
                         fail: function () {
                             // fail
-                        },
-                        complete: function () {
-                            // complete
-                        }
+                         },
                     })
                 }
             },

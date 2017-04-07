@@ -22,14 +22,14 @@ Page({
     },
     onLoad: function (options) {
         var that = this;
-        console.log(options)
-        var options = options;
+        var network=options.network;
+        var followed_user_id=options.followed_user_id;
         that.setData({
-            options: options
+            network:network,
+            followed_user_id:followed_user_id
         })
-
     },
-    onShow: function (options) {
+    onShow: function () {
         var that = this;
         // 清零短信倒计时
         that.setData({
@@ -182,18 +182,13 @@ Page({
                             var user_career = res.data.user_career;
                             var user_company = res.data.user_company;
                             var uer_email = res.data.user_email;
-                            var options = this.data.options;
+                            var network=that.data.network;
+                            var followed_user_id=that.data.followed_user_id;
                             // console.log(user_career, user_company, uer_email);  
                             if (res.data.status_code == 2000000) {
-                                if (options) {
-                                    wx.navigateTo({
-                                        url: '../companyInfo/companyInfo?user_career=' + user_career + "&&user_company=" + user_company + "&&uer_email=" + uer_email + "&&options=" + options,
-                                    });
-                                } else {
-                                    wx.navigateTo({
-                                        url: '../companyInfo/companyInfo?user_career=' + user_career + "&&user_company=" + user_company + "&&uer_email=" + uer_email,
-                                    });
-                                }
+                                wx.navigateTo({
+                                    url: '../companyInfo/companyInfo?user_career=' + user_career + "&&user_company=" + user_company + "&&uer_email=" + uer_email + "&&network=" + network +"&&followed_user_id="+followed_user_id,
+                                });
                                 wx.setStorageSync('user_id', res.data.user_id);
                                 wx.setStorageSync('bind_mobile', 1)
                             } else {

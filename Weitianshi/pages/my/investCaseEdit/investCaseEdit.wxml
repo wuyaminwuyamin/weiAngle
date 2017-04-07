@@ -6,11 +6,11 @@
   </view>
   <view class="card">
     <view class="text">项目领域</view>
-    <view class="card_case" id="mobile" placeholder="请选择" bindblur="mobileEdit" style="color:#ccc;"></view>
+    <view class="card_case" id="case_industry" bindblur="mobileEdit" style="color:#ccc;">请选择</view>
   </view>
   <view class="card">
     <view class="text">项目轮次</view>
-    <view class="card_case" id="case_stage" placeholder="请选择" bindblur="case_stage"></view>
+    <view class="card_case" id="case_stage" bindblur="case_stage">请选择</view>
   </view>
   <view class="card">
     <view class="text">投资金额(万元)</view>
@@ -18,7 +18,7 @@
   </view>
   <view class="card">
     <view class="text">交易时间</view>
-    <view class="card_case" id="case_deal_time" value="请选择" bindblur="case_deal_time"></view>
+    <view class="card_case" id="case_deal_time" bindblur="case_deal_time">请选择</view>
   </view>
 </view>
-<view class="save" bindtap="save">保存</view>
+<view class="save" bindtap="addCase">保存</view>

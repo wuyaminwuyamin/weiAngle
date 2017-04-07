@@ -34,7 +34,7 @@
 
           <!--标签1-->
           <view class=" sort ">
-            <block wx:for="{{project.pro_industry}}">
+            <block wx:for="{{project.pro_industry}}" wx:key="{{item.industry_name }}">
               <view class="weui-media-box__desc " wx:if="{{index<4}}">
                 {{item.industry_name}}
               </view>

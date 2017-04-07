@@ -127,12 +127,32 @@ App({
     wx.stopPullDownRefresh()
   },
 
+  // user_id为空时,返回首页或者完善信息
+  noUserId: function () {
+    wx.showModal({
+      title: "提示",
+      content: "请先绑定个人信息",
+      success: function (res) {
+        console.log(res)
+        if (res.confirm == true) {
+          wx.navigateTo({
+            url: '/pages/myProject/personInfo/personInfo',
+          })
+        } else {
+          wx.switchTab({
+            url: '/pages/resource/resource',
+          })
+        }
+      }
+    })
+  },
+
 
   //初始本地缓存
   globalData: {
     error: 0,
     error_text: "111111",
-    y_domainValue:"选择领域",
-    url:"https://dev.weitianshi.com.cn"
+    y_domainValue: "选择领域",
+    url: "https://dev.weitianshi.com.cn"
   }
 });

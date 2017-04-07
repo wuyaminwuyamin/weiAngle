@@ -8,7 +8,7 @@ Page({
     },
     onShow: function (options) {
         // var options = { user_id: "V0VznXa0" }
-        console.log(options)
+        // console.log(options)
         var that = this
         var followed_user_id;
 
@@ -59,6 +59,8 @@ Page({
                             success: function (res) {
                                 var user_id = res.data.user_id;
                                 var user_mobile = res.data.bind_mobile;
+                                wx.setStorageSync('user_id', user_id);
+                                wx.setStorageSync('user_mobile', user_mobile);
                                 // 判断是否绑定过用户
                                 if (user_id == 0) {
                                     that.setData({
@@ -82,7 +84,8 @@ Page({
         } else {
             console.log("分享者")
             // 分享者
-            var user_id = wx.getStorageSync('user_id');
+            var user_id = wx.getStorageSync('user_id')
+            console.log(user_id)
             that.setData({
                 user_id: user_id
             })
@@ -113,6 +116,8 @@ Page({
                         console.log(res)
                     },
                 })
+            } else {
+                app.noUserId()
             }
         }
     },
@@ -195,8 +200,16 @@ Page({
     myNetwork: function () {
         var bindUser = this.data.bindUser;
         if (bindUser == 0) {
-            wx.navigateTo({
-                url: '../myProject/personInfo/personInfo?myNetwork=1',
+            wx.showModal({
+                title: "提示",
+                content: "请先绑定个人信息",
+                success: function (res) {
+                    if (res.confirm == true) {
+                        wx.navigateTo({
+                            url: '../myProject/personInfo/personInfo?network=2&&followed_user_id=' + 0,
+                        })
+                    }
+                }
             })
         } else {
             wx.switchTab({
@@ -226,11 +239,18 @@ Page({
                 },
             })
         } else {
-            wx.navigateTo({
-                url: '../myProject/personInfo/personInfo?addNetwork=1&&followed_user_id=' + followed_user_id,
+            wx.showModal({
+                title: "提示",
+                content: "请先绑定个人信息",
+                success: function (res) {
+                    if (res.confirm == true) {
+                        wx.navigateTo({
+                            url: '../myProject/personInfo/personInfo?network=1&&followed_user_id=' + followed_user_id,
+                        })
+                    }
+                }
             })
         }
-
     },
     //分享名片
     onShareAppMessage: function () {

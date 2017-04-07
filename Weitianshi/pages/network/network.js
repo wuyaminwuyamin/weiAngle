@@ -7,6 +7,10 @@ Page({
   onShow: function () {
     var that = this;
     var user_id = wx.getStorageSync('user_id')
+    that.setData({
+      user_id:user_id
+    })
+    console.log(user_id)
     if (user_id) {
       wx.request({
         url: url + '/api/user/getMyFollowList',
@@ -35,6 +39,11 @@ Page({
   myCard: function () {
     wx.navigateTo({
       url: '../my/cardEdit/cardEdit',
+    })
+  },
+  bindUserInfo:function(){
+    wx.navigateTo({
+      url: '../myProject/personInfo/personInfo',
     })
   }
 })

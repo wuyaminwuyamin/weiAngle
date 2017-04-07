@@ -1,8 +1,8 @@
 {
   "pages": [
-    "pages/my/investCaseEdit/investCaseEdit",
-    "pages/my/my",
     "pages/resource/resource",
+    "pages/my/my",
+    "pages/my/investCaseEdit/investCaseEdit",
     "pages/network/network",
     "pages/resourceEnchange/resourceEnchange",
     "pages/my/cardEdit/cardEdit",
