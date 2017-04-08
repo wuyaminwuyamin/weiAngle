@@ -12,8 +12,6 @@ Page({
   onShow: function () {
     var that = this;
     var currentTab = this.data.currentTab
-    console.log(currentTab)
-
     //融资需求获取数据
     wx.request({
       url: url+'/api/project/projectMarket',
@@ -118,6 +116,14 @@ Page({
         currentTab: e.target.dataset.current
       })
     }
+  },
+  // 跳转项目详情
+  projectDetail:function(e){
+    console.log(e.target)
+  },
+  // 跳转人物详情
+  investorDetail(e){
+    console.log(e.target)
   },
   // 返回对接页面
   backToResource: function () {

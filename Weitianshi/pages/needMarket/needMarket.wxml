@@ -14,7 +14,7 @@
     <scroll-view scroll-y="true">
       <view class="financingNeed">
         <block wx:for="{{financingNeed}}" wx:key="{{item.pro_id}}">
-          <view class="card" data-id="{{item.pro_id}}">
+          <view class="card" data-id="{{item.pro_id}}" bindtap="projectDetail">
             <view class="user_info flex">
               <view class="user_text" wx:if="{{item.user_avatar_text}}">{{item.user_avatar_text}}</view>
               <image class="user_pic" src="{{item.user_avatar_url}}" wx:if="{{item.user_avatar_url}}"></image>
@@ -22,7 +22,7 @@
                 <view class="flex">
                   <view class="user_name">{{item.user_name}}</view>
                   <view class="user_career">{{item.user_career}}</view>
-                  <view class="pro_time">{{item.pro_time}}</view>
+                  <!--<view class="pro_time">{{item.pro_time}}</view>-->
                 </view>
                 <view class="user_company">{{item.user_company}}</view>
               </view>
@@ -56,7 +56,7 @@
     <scroll-view scroll-y="true" bindscrolltolower=''>
       <view class="investNeed">
         <block wx:for="{{investNeed}}" wx:key="{{item.investor_id}}">
-          <view class="card" data-id="{{item.investor_id}}">
+          <view class="card" data-id="{{item.investor_id}}" id="{{item.investor_id}}" bindtap="investorDetail">
             <view class="user_info flex">
               <view class="user_text" wx:if="{{item.investor_logo_text}}">{{item.investor_logo_text}}</view>
               <image class="user_pic" src="{{item.investor_logo_url}}" wx:if="{{item.investor_logo_url}}"></image>
@@ -79,7 +79,7 @@
                 <view class="investor_text">投资领域:</view>
                 <view class="investor_right">
                   <block wx:for="{{industry_tag}}" wx:key="{{investor_industry}}">
-                    <view class="investor_industry"></view>
+                    <view class="investor_industry">人工智能</view>
                   </block>
                 </view>
               </view>
@@ -87,7 +87,7 @@
                 <view class="investor_text">投资轮次:</view>
                 <view class="investor_right">
                   <block wx:for="{{stage_tag}}" wx:key="{{index}}">
-                    <view class="investor_stage"></view>
+                    <view class="investor_stage">A轮</view>
                   </block>
                 </view>
               </view>
@@ -108,7 +108,7 @@
     <scroll-view scroll-y="true" bindscrolltolower=''>
       <view class="resourceNeed">
         <block wx:for="{{resourceNeed}}" wx:key="{{item.res_id}}">
-          <view class="card" data-id="{{item.res_id}}">
+          <view class="card" data-id="{{item.res_id}}"  bindtap="investorDetail">
             <view class="user_info flex">
               <view class="user_text" wx:if="{{item.user_avatar_text}}">{{item.user_avatar_text}}</view>
               <image class="user_pic" src="{{item.user_avatar_url}}" wx:if="{{item.user_avatar_url}}"></image>

@@ -18,7 +18,7 @@
       <image wx:if="{{user.user_avatar_url}}" class="user_pic" src="{{user.user_avatar_url}}"></image>
       <view wx:if="{{user.user_avatar_text}}" class="user_text noPic">{{user.user_avatar_text}}</view>
       <view wx:if="{{!user}}" class="user_text noPic">代</view>
-      <image class="user_edit" src=""></image>
+      <image class="user_edit" src="/img/icon-share@3x.png"></image>
     </view>
     <view class="user_down flex">
       <view class="user_popularity user_tips">
@@ -41,7 +41,10 @@
 
   <!--个人描述-->
   <view class="user_intro">
-    <view class="intro_title">个人描述</view>
+    <view class="intro_title flex">
+      个人描述
+      <image class="iconEdit" src="/img/icon-edit@3x.png"></image>
+    </view>
     <view class="intro_content" wx:if="{{user}}">{{user.user_intro}}</view>
     <view class="intro_content" wx:if="{{!user}}" style="height:34rpx;line-height:34rpx;">暂无描述</view>
   </view>
@@ -50,7 +53,7 @@
   <view class="user_invest_info" bindtap="findProjectEdit">
     <view class="flex title">
       <view>寻找案源</view>
-      <image src=""></image>
+      <image class="iconEdit" src="/img/icon-edit@3x.png"></image>
     </view>
 
     <!--投资领域-->
@@ -77,7 +80,7 @@
       <block wx:for="{{invest.invest_scale}}" wx:key="{{item.scale_id}}">
         <view class="invest_scale" data-id="{{item.scale_id}}" data-value="{{item.scale_money}}">{{item.scale_money}}</view>
       </block>
-      <view class="invest_industry" wx:if="{[invest.invest_scale=='' ||!invest.invest_scale}}">暂无</view>
+      <view class="invest_industry" wx:if="{[invest.invest_scale.scale_money=='' ||!invest.invest_scale.scale_money}}">暂无</view>
     </view>
 
     <!--具体描述-->

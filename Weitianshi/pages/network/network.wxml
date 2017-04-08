@@ -69,9 +69,9 @@
 <!--空状态-->
 <view class="nullState" wx:if="{{netWork=='' || !netWork}}">
   <view class="nullState_text">
-    <image src=""></image>
+    <image src="/img/connection.png"></image>
     <view>暂无人脉</view>
-    <view>分享我的名片,拓展我的人肪</view>
+    <view>分享我的名片，拓展我的人脉</view>
   </view>
   <button bindtap="myCard" wx:if="{{user_id}}">我的名片</button>
   <button bindtap="bindUserInfo" wx:if="{{!user_id}}">请先绑定用户信息</button>

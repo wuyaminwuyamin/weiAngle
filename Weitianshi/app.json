@@ -1,12 +1,13 @@
 {
   "pages": [
-    "pages/resource/resource",
     "pages/my/my",
-    "pages/my/investCaseEdit/investCaseEdit",
     "pages/network/network",
+    "pages/selectProject/selectProject",
+    "pages/resource/resource",
+    "pages/needMarket/needMarket",
+    "pages/my/investCaseEdit/investCaseEdit",
     "pages/resourceEnchange/resourceEnchange",
     "pages/my/cardEdit/cardEdit",
-    "pages/needMarket/needMarket",
     "pages/my/projectFinance/projectFinance",
     "pages/userDetail/userDetail",
     "pages/my/baseInfo/baseInfo",
@@ -25,7 +26,6 @@
     "pages/myProject/publishProject/publishProject",
     "pages/industry/industry",
     "pages/payStage/payStage",
-    "pages/selectProject/selectProject",
     "pages/payArea/payArea"
   ],
   "window": {
@@ -62,6 +62,7 @@
         "text": "我的"
       }
     ],
-    "selectedColor": "black"
+    "selectedColor": "black",
+    "borderStyle": "white"
   }
 }

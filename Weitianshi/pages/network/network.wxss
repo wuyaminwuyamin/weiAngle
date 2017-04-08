@@ -11,6 +11,9 @@ page {
 }
 
 .nullState_text image {
+    width: 176rpx;
+    height: 176rpx;
+    margin-top: 248rpx;
 }
 
 .nullState_text view:nth-child(2) {

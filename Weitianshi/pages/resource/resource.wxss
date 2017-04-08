@@ -65,9 +65,10 @@ border-radius: 100rpx;*/
 .swiper-tab-list {
   font-size: 24rpx;
   display: inline-block;
-  width: 17%;
+  width: 96rpx;
   color: #ccc;
-  margin: 24rpx 8%;
+  margin: 24rpx 77rpx;
+  margin-bottom: 0;
 }
 
 .on {
@@ -302,7 +303,8 @@ weui-panel__bd{
   align-items: baseline;
   flex-wrap: wrap;
 }
-.offer view,.search view{
+
+.offer view, .search view {
   margin-bottom: 16rpx;
 }
 

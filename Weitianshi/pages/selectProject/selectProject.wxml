@@ -22,24 +22,6 @@
               <view class="weui-media-box__desc tip" wx:if="{{myProject.pro_area}}">{{myProject.pro_area}}</view>
               <view class="weui-media-box__desc tip" wx:if="{{myProject.pro_scale}}">{{myProject.pro_scale}}</view>
             </view>
-
-            <!--<view class="weui-media-box__info people">
-              <block wx:for="{{myProject.match_investors}}" wx:for-item="match_investors" wx:key="investor_id">
-                <view class="person" data-id="{{match_investors.investor_id}}">
-                  <image class="headPic" wx:if="{{match_investors.investor_logo_url}}" src="{{match_investors.investor_logo_url}}" />
-                  <view class="headPic others_nopic" wx:if="{{!match_investors.investor_logo_url}}">{{match_investors.investor_logo_text}}</view>
-                  <view>{{match_investors.investor_name}}</view>
-                  <view>{{match_investors.investor_career}}</view>
-                </view>
-              </block>
-            </view>-->
-
-            <!--<view class="complete_push">
-            <view class="complete">项目完整度:
-              <view>40%</view>
-            </view>
-            <view class="push_something">一键推送</view>
-          </view>-->
           </view>
         </view>
 
@@ -52,11 +34,11 @@
           <view class="weui-cell__bd">
             <view class="flex" style="align-items: baseline;">
               <view class="others_name">{{myProject.user_name}}</view>
-              <view class="others_email">{{myProject.user_email}}</view>
+              <view class="others_email">{{myProject.user_career}}</view>
             </view>
             <view class="others_company flex">
-              {{myProject.user_company}} | {{myProject.user_career}}
-              <view class='theOne exclusive'>精选项目</view>
+              {{myProject.user_company}}
+              <image class='choiced' src="/img/choiced.png"/>
             </view>
 
             <!--<view class="ohters_position"></view>-->

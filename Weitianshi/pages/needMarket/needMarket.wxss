@@ -69,9 +69,10 @@ border-radius: 100rpx;*/
 .swiper-tab-list {
   font-size: 24rpx;
   display: inline-block;
-  width: 17%;
+  width: 96rpx;
   color: #ccc;
-  margin: 24rpx 8%;
+  margin: 24rpx 77rpx;
+  margin-bottom: 0;
 }
 
 .on {
@@ -101,6 +102,7 @@ swiper-item {
   margin-top: 32rpx;
   width: 622rpx;
   padding: 32rpx;
+  padding-bottom: 20rpx;
 }
 
 /*用户信息*/
@@ -134,7 +136,6 @@ swiper-item {
 .user_career {
   font-size: 24rpx;
   color: #666;
-  margin-left: 16rpx;
 }
 
 .pro_time {
@@ -145,7 +146,7 @@ swiper-item {
   line-height: 28rpx;
   color: #999;
   font-size: 20rpx;
-  margin-left: 272rpx;
+  float: right;
   overflow: hidden;
 }
 
@@ -161,6 +162,7 @@ swiper-item {
   width: 622rpx;
   overflow: hidden;
   text-overflow: ellipsis;
+  white-space: nowrap;
 }
 
 .swiper-box .pro_intro {
@@ -168,11 +170,15 @@ swiper-item {
   font-size: 28rpx;
   color: #333;
   text-align: left;
+  width: 622rpx;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  padding-top: 0;
 }
 
 .investor_right {
   flex-wrap: wrap;
-  width: 460rpx;
+  width: 520rpx;
 }
 
 .industry_tip {
@@ -211,18 +217,25 @@ swiper-item {
 .swiper-box .investor_text {
   font-size: 24rpx;
   flex-wrap: nowrap;
-  width: 140rpx;
+  width: 103rpx;
   margin: 12rpx 0;
   text-align: left;
+  padding-left: 0;
+  white-space: nowrap;
 }
 
 .investor_text, investor_right {
   padding: 0 12rpx;
 }
+.swiper-box .investor_right{
+  font-size: 24rpx;
+  color: #333;
+  text-align:left; 
+}
 
 /*资源需求*/
 
-.res_give,.res_find {
+.res_give, .res_find {
   font-size: 24rpx;
   border: 1px solid #ccc;
   color: #ccc;
@@ -232,4 +245,11 @@ swiper-item {
   line-height: 46rpx;
   margin-right: 24rpx;
   margin-bottom: 16rpx;
+}
+
+.empty{
+  padding-top: 396rpx;
+  margin-left: -32rpx;
+  width: 176rpx;
+  height: 216rpx; 
 }

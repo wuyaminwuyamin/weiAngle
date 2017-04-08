@@ -69,6 +69,7 @@ Page({
         var value = thisData.value;
         var idx = thisData.index;
         var id = e.currentTarget.id*1;
+        console.log(checked)
         if (index.indexOf(id) == -1) {
             checked.push(value);
             index.push(id)

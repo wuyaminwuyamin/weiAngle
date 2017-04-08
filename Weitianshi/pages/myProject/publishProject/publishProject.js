@@ -196,7 +196,7 @@ Page({
                 },
                 method: 'POST',
                 success: function (res) {
-                    // console.log(res)
+                    console.log(res)
                     //数据清空
                     wx.setStorageSync('project_id', res.data.project_index);
                     wx.setStorageSync('describe', "");

@@ -18,12 +18,6 @@ Page({
   },
   //载入页面
   onLoad: function (option) {
-    // console.log("this is onLoad")
-    wx.getSystemInfo({
-      success: function (res) {
-        console.log(res)
-      }
-    })
     var that = this;
     var user_id = wx.getStorageSync('user_id');
     var bind_mobile = wx.getStorageSync('bind_mobile');

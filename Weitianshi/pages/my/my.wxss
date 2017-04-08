@@ -10,7 +10,14 @@ page {
 }
 
 /*用户名片*/
-
+.user_right .user_edit{
+  display: block;
+  width: 40rpx;
+  height: 40rpx;
+  border-radius: 0;
+  margin: 0 auto;
+  margin-top: 40rpx;
+}
 .user_info {
   margin: 32rpx;
   background: white;
@@ -30,7 +37,11 @@ page {
 .user_right {
   width: 20%;
 }
-
+.user_right image{
+  width: 120rpx;
+  height: 120rpx;
+  border-radius: 50%;
+}
 .user_down {
   width: 100%;
 }
@@ -90,12 +101,21 @@ page {
   color: #333;
   font-size: 28rpx;
 }
+.intro_title{
+  justify-content: space-between;
+
+}
+.iconEdit{
+  width: 36rpx;
+  height: 36rpx;
+  display: block;
+}
 
 .user_intro .intro_content {
   padding: 19rpx 22rpx;
   background: #f2f2f2;
   font-size: 20rpx;
-  height: 132rpx;
+  height: 94rpx;
   margin-top: 32rpx;
   border-radius: 8rpx;
 }

@@ -18,6 +18,7 @@ Page({
       method: 'POST',
       success: function (res) {
         var slectProject = res.data.data;
+        console.log(slectProject)
         that.setData({
           slectProject: slectProject
         })
