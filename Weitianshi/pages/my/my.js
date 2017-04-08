@@ -177,10 +177,13 @@ Page({
     },
     //交换名片
     cardChange: function () {
-        var modal = this.data.modal;
+        /*var modal = this.data.modal;
         modal = 0;
         this.setData({
             modal: modal
+        })*/
+        wx.navigateTo({
+          url: 'test/test?user_id=1',
         })
     },
     //取消交换名片
@@ -264,8 +267,8 @@ Page({
         console.log(user_id)
         return {
             title: '分享您的名片',
-            path: '/pages/my/my?user_id=' + user_id,
-            // path:"/pages/my/test/test?user_id=1",
+            // path: '/pages/my/my?user_id=V0VznXa0',
+            path:"/pages/my/test/test?user_id=1",
             success: function (res) {
                 wx.showToast({
                     user_id
