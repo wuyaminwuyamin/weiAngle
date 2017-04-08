@@ -31,7 +31,7 @@ input, textarea {
 
 .card textarea {
   background: #f2f2f2;
-  height: 240rpx;
+  height: 208rpx;
   padding: 32rpx;
   margin: 0;
   width: 618rpx;
@@ -46,4 +46,11 @@ input, textarea {
   color: white;
   font-size: 30rpx;
   text-align: center;
+}
+
+.noChange {
+  border: 1px solid #e0e0e0;
+  padding: 0 32rpx;
+  height: 88rpx;
+  line-height: 88rpx;
 }

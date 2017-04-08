@@ -2,7 +2,7 @@
 <!--pages/my/cardEdit/cardEdit.wxml-->
 <view id="cardEdit">
   <view class="userPic">
-    <image src="{{user_info.user_avatar_url}}" wx:if="{{user_info.user_avatar_url}}"></image>
+    <image class="noPic" src="{{user_info.user_avatar_url}}" wx:if="{{user_info.user_avatar_url}}"></image>
     <view class="user_text noPic" wx:if="{{user_info.user_avatar_text}}">{{user_info.user_avatar_text}}</view>
   </view>
   <view class="card">
@@ -11,7 +11,7 @@
   </view>
   <view class="card">
     <view class="text">手机</view>
-    <input disabled="true" class="" id="mobile" value="{{user_info.user_mobile}}" bindblur="mobileEdit" style="color:#ccc;"/>
+    <view disabled="true" class="noChange" id="mobile" bindblur="mobileEdit" style="color:#ccc;">{{user_info.user_mobile}}</view>
   </view>
   <view class="card">
     <view class="text">公司</view>

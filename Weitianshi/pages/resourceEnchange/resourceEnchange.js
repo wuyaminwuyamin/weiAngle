@@ -25,20 +25,24 @@ Page({
         console.log(resource_data)
         var res_find = resource_data.res_find;
         var res_give = resource_data.res_give;
-        var describe =resource_data.res_desc
+        var describe = resource_data.res_desc
         var enchange = res.data.data;
         var target = res.data.data;
         var res_find_name = [];
         var res_find_id = [];
         var res_give_name = [];
         var res_give_id = [];
-        for (var i = 0; i < res_find.length; i++) {
-          res_find_name.push(res_find[i].resource_name)
-          res_find_id.push(res_find[i].resource_id)
+        if (res_find) {
+          for (var i = 0; i < res_find.length; i++) {
+            res_find_name.push(res_find[i].resource_name)
+            res_find_id.push(res_find[i].resource_id)
+          }
         }
-        for (var i = 0; i < res_give.length; i++) {
-          res_give_name.push(res_give[i].resource_name)
-          res_give_id.push(res_give[i].resource_id)
+        if (res_give) {
+          for (var i = 0; i < res_give.length; i++) {
+            res_give_name.push(res_give[i].resource_name)
+            res_give_id.push(res_give[i].resource_id)
+          }
         }
         var targetValue = res_find_name    //选中标签值的数组
         var targetId = res_find_id   //选中标签id的数组
@@ -46,10 +50,6 @@ Page({
         var enchangeValue = res_give_name    //选中标签值的数组
         var enchangeId = res_give_id   //选中标签id的数组
         var enchangeCheck = []    //选中标签checked的数组
-        //enchange和target中加入checked属性
-        console.log(res_find, res_find_name, res_find_id)
-        console.log(res_give, res_give_name, res_give_id)
-
         for (var i = 0; i < enchange.length; i++) {
           if (res_give_name.indexOf(enchange[i].resource_name) != -1) {
             enchange[i].checked = true;
@@ -61,7 +61,6 @@ Page({
         for (var i = 0; i < target.length; i++) {
           if (res_find_name.indexOf(target[i].resource_name) != -1) {
             target[i].checked = true;
-            console.log(2)
           } else {
             target[i].checked = false;
           }
@@ -76,9 +75,8 @@ Page({
           targetValue: targetValue,
           targetId: targetId,
           targetCheck: targetCheck,
-          describe:describe
+          describe: describe
         });
-        console.log(enchange,target)
       },
       fail: function (res) {
         console.log(res)
@@ -107,7 +105,7 @@ Page({
     var enchangeCheck = this.data.enchangeCheck;
     if (enchangeCheck[e_index] == false) {
       if (enchangeValue.length < 5) {
-        enchangeCheck[e_index]=true;
+        enchangeCheck[e_index] = true;
         enchange[e_index].checked = true;
         enchangeValue.push(enchange[e_index].resource_name)
         enchangeId.push(enchange[e_index].resource_id)
@@ -115,7 +113,7 @@ Page({
         rqj.errorHide(that, "最多可选择五项", 3000)
       }
     } else {
-      enchangeCheck[e_index]=false;
+      enchangeCheck[e_index] = false;
       enchange[e_index].checked = false;
       enchangeValue.splice(enchangeValue.indexOf(e_value), 1)
       enchangeId.splice(enchangeId.indexOf(e_index), 1)
@@ -124,7 +122,7 @@ Page({
       enchange: enchange,
       enchangeValue: enchangeValue,
       enchangeId: enchangeId,
-      enchangeCheck:enchangeCheck,
+      enchangeCheck: enchangeCheck,
     });
     console.log(enchangeValue, enchangeId)
   },
@@ -140,11 +138,11 @@ Page({
     var target = this.data.target
     var targetValue = this.data.targetValue;
     var targetId = this.data.targetId;
-    var targetCheck=this.data.targetCheck;
+    var targetCheck = this.data.targetCheck;
 
     if (target[e_index].checked == false) {
       if (targetValue.length < 5) {
-        targetCheck[e_index]=true;
+        targetCheck[e_index] = true;
         target[e_index].checked = true;
         targetValue.push(target[e_index].resource_name)
         targetId.push(target[e_index].resource_id)
@@ -152,7 +150,7 @@ Page({
         rqj.errorHide(that, "最多可选择五项", 3000)
       }
     } else {
-      targetCheck[e_index]=false;
+      targetCheck[e_index] = false;
       target[e_index].checked = false;
       targetValue.splice(targetValue.indexOf(e_value), 1)
       targetId.splice(targetId.indexOf(e_index), 1)
@@ -161,7 +159,7 @@ Page({
       target: target,
       targetValue: targetValue,
       targetId: targetId,
-      targetCheck:targetCheck
+      targetCheck: targetCheck
     });
   },
   //具体描述

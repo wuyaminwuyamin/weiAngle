@@ -119,13 +119,13 @@
   <!-- 资源对接 -->
   <swiper-item>
     <view>
-      <view wx:if="{{hasPublic==0}}">
+      <view wx:if="{{hasPublic2==0}}">
         <view class="publish publish2 publish_find_project" bindtap="resourceNeed">
           <view>发布资源需求</view>
           <view class="weui-media-box__desc">快速发布,精准对接优质项目</view>
         </view>
       </view>
-      <view wx:if="{{hasPublic==1}}">
+      <view wx:if="{{hasPublic2==1}}">
         <view class="publish publish2 publish_find_project2" bindtap="resourceNeed">
           <view style="font-size:24rpx">我的资源需求</view>
           <view class="weui-media-box__desc" style="font-size:20rpx;color:#999;">寻求对接的资源: {{res_find}}</view>

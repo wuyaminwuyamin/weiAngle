@@ -133,6 +133,7 @@ weui-panel__bd{
 
 .weui-media-box {
   padding: 32rpx;
+  padding-bottom: 12rpx;
 }
 
 .weui-media-box__desc {
@@ -167,13 +168,22 @@ weui-panel__bd{
 }
 
 .person {
-  width: 25%;
+  width: 120rpx;
+  margin-left: 24rpx;
+  margin-right: 24rpx;
+}
+.person:first-child{
+  margin-left: 0
+}
+.person:last-child{
+  mmargin-right: 0
 }
 
 .person view:nth-child(2) {
   font-size: 20rpx;
   color: #666;
   padding-top: 8rpx;
+  width: 120rpx;
 }
 
 .person view:nth-child(3) {
@@ -214,7 +224,7 @@ weui-panel__bd{
   padding: 4rpx 15rpx;
   margin-right: 12rpx;
   margin-top: 20rpx;
-  line-height: 32rpx;
+  line-height: 22rpx;
   color: #999;
 }
 

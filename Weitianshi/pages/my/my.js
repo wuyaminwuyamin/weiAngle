@@ -14,6 +14,9 @@ Page({
 
         if (options) {
             console.log("被分享")
+            wx.showToast({
+                title:"被分享"
+            })
             // 被分享
             var options = options;
             followed_user_id = options.user_id;
@@ -83,6 +86,9 @@ Page({
             });
         } else {
             console.log("分享者")
+             wx.showToast({
+                title:"分享者"
+            })
             // 分享者
             var user_id = wx.getStorageSync('user_id')
             console.log(user_id)
@@ -255,11 +261,15 @@ Page({
     //分享名片
     onShareAppMessage: function () {
         var user_id = wx.getStorageSync('user_id')
+        console.log(user_id)
         return {
             title: '分享您的名片',
             path: '/pages/my/my?user_id=' + user_id,
+            // path:"/pages/my/test/test?user_id=1",
             success: function (res) {
-                console.log("分享成功")
+                wx.showToast({
+                    user_id
+                })
             },
             fail: function (res) {
                 console.log(res)

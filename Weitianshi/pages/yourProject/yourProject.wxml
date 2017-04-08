@@ -67,7 +67,6 @@
   </view>-->
   <button class="nextBtn" bindtap="public">
     发布需求
-    <image class="rightArrow" src="../../img/rightArrow.png"></image>
   </button>
 
   <!--错语提示-->

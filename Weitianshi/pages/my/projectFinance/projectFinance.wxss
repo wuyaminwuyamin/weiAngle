@@ -11,10 +11,15 @@
 .editIcon {
   width: 40rpx;
   height: 40rpx;
-  background: coral;
 }
 
-.tip{
+.editIcon image {
+  width: 28rpx;
+  height: 28rpx;
+  display: block;
+}
+
+.tip {
   margin-right: 24rpx;
   font-size: 20rpx;
   color: #999;

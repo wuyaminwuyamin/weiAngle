@@ -215,7 +215,6 @@ scroll-view {
   padding: 32rpx;
   /*padding-top: 0;*/
   background: #f3f4f8;
-  padding-bottom: 0;
 }
 
 .complete {

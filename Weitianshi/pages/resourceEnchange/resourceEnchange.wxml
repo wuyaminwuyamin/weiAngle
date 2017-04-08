@@ -39,6 +39,5 @@
   <!--发布项目-->
   <button class="nextBtn" bindtap="publish">
     发布项目
-    <image class="rightArrow" src="../../../img/rightArrow.png"></image>
   </button>
 </view>

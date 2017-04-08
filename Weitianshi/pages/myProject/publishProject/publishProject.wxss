@@ -41,7 +41,8 @@ page {
   border: 1px solid #e0e0e0;
   padding: 0 32rpx;
   justify-content: space-between;
-  align-items: baseline
+  align-items: baseline;
+  padding-right: 24rpx;
 }
 
 .slect view {
@@ -54,8 +55,8 @@ page {
 }
 
 .slect image {
-  height: 18rpx;
-  width: 36rpx;
+  height: 12rpx;
+  width: 24rpx;
   display: flex;
 }
 
@@ -66,6 +67,8 @@ page {
   height: 82rpx;
   line-height: 82rpx;
   text-align: center;
+  color: #999;
+  font-size: 28rpx;
 }
 .card .tips_on{
     border:1px solid #333;

@@ -51,13 +51,13 @@
       <view class="tips {{tips_index==0 ? 'tips_on' : ''}}" id="tips3" bindtap="tipsOn" data-tips="0">其他</view>
     </view>
   </view>
-  <view class="bp flex">
+  <!--上传BP-->
+  <!--<view class="bp flex">
     <view>项目计划书</view>
     <view class="bpBtn" bindtap="upLoad">去PC上传</view>
-  </view>
+  </view>-->
   <button class="nextBtn" bindtap="public">
     发布项目
-    <image class="rightArrow" src="../../../img/rightArrow.png"></image>
   </button>
 
   <!--错语提示-->

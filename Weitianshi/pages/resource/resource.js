@@ -236,6 +236,7 @@ Page({
                   },
                   method: 'POST',
                   success: function (res) {
+                    console.log(res)
                     if (res.data.status_code != "450002") {
                       wx.setStorage({
                         key: 'resource_data',
@@ -253,7 +254,12 @@ Page({
                       that.setData({
                         res_match: res_match, //资源需求匹配出来的项目
                         res_find: res_find,//我正在寻求的资源
+                        hasPublic2:1
                       })
+                    }else{
+                      that.setData({
+                      hasPublic2: 0
+                    })
                     }
                   },
                   fail: function (res) {

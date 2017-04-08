@@ -93,7 +93,7 @@
   <view class="user_resource_info" bindtap="resourceEnchangeEdit">
     <view class="flex title">
       <view>资源对接</view>
-      <image src=""></image>
+      <image class="iconEdit" src="/img/icon-edit@3x.png"></image>
     </view>
 
     <!--可提供资源-->
@@ -119,6 +119,7 @@
   <view class="user_project_info">
     <view class="flex title">
       <view>项目融资</view>
+      <image class="iconEdit" src="/img/icon-edit@3x.png"></image>
     </view>
 
     <!--融资项目-->
@@ -146,6 +147,7 @@
   <view class="user_invest_case" bindtap="investCase">
     <view class="flex title">
       <view>投资案例</view>
+      <image class="iconEdit" src="/img/icon-edit@3x.png"></image>
     </view>
 
     <!--融资项目-->

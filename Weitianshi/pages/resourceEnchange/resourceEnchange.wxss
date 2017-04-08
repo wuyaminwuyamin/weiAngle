@@ -27,7 +27,7 @@ page {
   border-radius: 8rpx;
   justify-content: center;
   align-content: baseline;
-  width: 22%;
+  width: 23%;
   margin-right: 2%;
   color: #999;
   height: 76rpx;
