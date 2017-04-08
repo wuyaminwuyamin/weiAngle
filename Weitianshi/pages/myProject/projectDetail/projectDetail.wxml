@@ -5,7 +5,7 @@
     <view class="weui-cell" style="background:white;margin:32rpx;margin-bottom:0;border-radius:4px 4px 0 0">
       <view class="weui-cell__hd" style="position: relative;margin-right: 10px;">
         <image wx:if="{{user.user_avatar_url}}" class="others_pic" src="{{user.user_avatar_url}}" />
-        <view wx:if="{{!user.user_avatar_url}}" class="others_nopic">代</view>
+        <view wx:if="{{user.user_avatar_text}}" class="others_nopic">{{user.user_avatar_text}}</view>
       </view>
       <view class="weui-cell__bd">
         <view class="flex" style="align-items: baseline;">

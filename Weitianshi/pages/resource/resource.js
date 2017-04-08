@@ -52,7 +52,6 @@ Page({
       success: function (res) {
         if (res.code) {
           //向后台请求登录状态
-          //console.log(res.code)
           wx.request({
             url: url + '/api/wx/returnLoginStatus',
             data: {

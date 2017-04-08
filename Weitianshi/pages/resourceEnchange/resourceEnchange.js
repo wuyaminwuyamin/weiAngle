@@ -22,8 +22,10 @@ Page({
       success: function (res) {
         //判断用户是否填写过资源需求
         var resource_data = wx.getStorageSync('resource_data')
+        console.log(resource_data)
         var res_find = resource_data.res_find;
         var res_give = resource_data.res_give;
+        var describe =resource_data.res_desc
         var enchange = res.data.data;
         var target = res.data.data;
         var res_find_name = [];
@@ -38,18 +40,18 @@ Page({
           res_give_name.push(res_give[i].resource_name)
           res_give_id.push(res_give[i].resource_id)
         }
-        var enchangeValue = res_find_name    //选中标签值的数组
-        var enchangeId = res_find_id   //选中标签id的数组
-        var enchangeCheck = []    //选中标签checked的数组
-        var targetValue = res_give_name    //选中标签值的数组
-        var targetId = res_give_id   //选中标签id的数组
+        var targetValue = res_find_name    //选中标签值的数组
+        var targetId = res_find_id   //选中标签id的数组
         var targetCheck = []    //选中标签checked的数组
+        var enchangeValue = res_give_name    //选中标签值的数组
+        var enchangeId = res_give_id   //选中标签id的数组
+        var enchangeCheck = []    //选中标签checked的数组
         //enchange和target中加入checked属性
         console.log(res_find, res_find_name, res_find_id)
         console.log(res_give, res_give_name, res_give_id)
 
         for (var i = 0; i < enchange.length; i++) {
-          if (res_find_name.indexOf(enchange[i].resource_name) != -1) {
+          if (res_give_name.indexOf(enchange[i].resource_name) != -1) {
             enchange[i].checked = true;
           } else {
             enchange[i].checked = false;
@@ -57,7 +59,7 @@ Page({
           enchangeCheck.push(enchange[i].checked)
         }
         for (var i = 0; i < target.length; i++) {
-          if (res_give_name.indexOf(target[i].resource_name) != -1) {
+          if (res_find_name.indexOf(target[i].resource_name) != -1) {
             target[i].checked = true;
             console.log(2)
           } else {
@@ -73,8 +75,10 @@ Page({
           target: target,
           targetValue: targetValue,
           targetId: targetId,
-          targetCheck: targetCheck
+          targetCheck: targetCheck,
+          describe:describe
         });
+        console.log(enchange,target)
       },
       fail: function (res) {
         console.log(res)
@@ -188,7 +192,6 @@ Page({
     var targetId = this.data.targetId;
     var user_id = wx.getStorageSync('user_id');
     var describe = this.data.describe
-    console.log(enchangeValue, enchangeId, targetValue, targetId)
     wx.request({
       url: url + '/api/resource/insertResource',
       data: {

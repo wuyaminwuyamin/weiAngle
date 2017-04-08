@@ -59,7 +59,7 @@
       <block wx:for="{{invest.invest_industry}}" wx:key="{{item.industry_id}}">
         <view class="invest_industry" data-id="{{item.industry_id}}" data-value="{{item.industry_name}}">{{item.industry_name}}</view>
       </block>
-      <view class="invest_industry" wx:if="invest.invest_industry=='' ||!invest.invest_industry">暂无</view>
+      <view class="invest_industry" wx:if="{{invest.invest_industry=='' ||!invest.invest_industry}}">暂无</view>
     </view>
 
     <!--投资轮次-->
@@ -68,7 +68,7 @@
       <block wx:for="{{invest.invest_stage}}" wx:key="{{item.stage_id}}">
         <view class="invest_stage" data-id="{{item.stage_id}}" data-value="{{item.stage_name}}">{{item.stage_name}}</view>
       </block>
-      <view class="invest_industry" wx:if="invest.invest_stage=='' ||!invest.invest_stage">暂无</view>
+      <view class="invest_industry" wx:if="{{invest.invest_stage=='' ||!invest.invest_stage}}">暂无</view>
     </view>
 
     <!--投资金额-->
@@ -77,7 +77,7 @@
       <block wx:for="{{invest.invest_scale}}" wx:key="{{item.scale_id}}">
         <view class="invest_scale" data-id="{{item.scale_id}}" data-value="{{item.scale_money}}">{{item.scale_money}}</view>
       </block>
-      <view class="invest_industry" wx:if="invest.invest_scale=='' ||!invest.invest_scale">暂无</view>
+      <view class="invest_industry" wx:if="{[invest.invest_scale=='' ||!invest.invest_scale}}">暂无</view>
     </view>
 
     <!--具体描述-->

@@ -31,7 +31,7 @@
   </view>
   <view>
     <view class="describe">具体描述</view>
-    <textarea placeholder="其他需求的描述,如:阿里系的创业团队我更亲睐" placeholder-style='color:#ccc' bindblur="bindTextAreaBlur" maxlength="30" value="{{describe}}"/>
+    <textarea placeholder="其他需求的描述,如:阿里系的创业团队我更亲睐" placeholder-style='color:#ccc' bindinput="bindTextAreaBlur" maxlength="30" value="{{describe}}"/>
   </view>
 
   <!--错语提示-->

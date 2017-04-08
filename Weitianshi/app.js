@@ -34,12 +34,6 @@ App({
                 },
                 method: 'POST',
                 success: function (res) {
-                  //本地存入open_session
-                  wx.setStorageSync('open_session', res.data.open_session);
-                  wx.setStorageSync('bind_mobile', res.data.bind_mobile);
-                  wx.setStorageSync('user_id', res.data.user_id);
-                  // console.log("获取用户信息完成,已将bind_mobile,userId,open_session存入缓存");
-                  // console.log(res.data.bind_mobile, res.data.user_id, res.data.open_session)
                 },
                 fail: function () {
                   console.log("向后台发送信息失败")
@@ -153,6 +147,6 @@ App({
     error: 0,
     error_text: "111111",
     y_domainValue: "选择领域",
-    url: "https://dev.weitianshi.com.cn"
+    url: "https://www.weitianshi.com.cn"
   }
 });
