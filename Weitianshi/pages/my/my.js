@@ -6,32 +6,23 @@ Page({
         user: "",
         modal: 1,
     },
-    onShow: function (options) {
-        // var options = { user_id: "V0VznXa0" }
-        // console.log(options)
+    onShow: function () {
         var that = this
-        var followed_user_id;
-
-        if (options) {
-            console.log("被分享")
-            wx.showToast({
-                title:"被分享"
-            })
-            // 被分享
-            var options = options;
-            followed_user_id = options.user_id;
-            that.setData({
-                options: options,
-                followed_user_id: followed_user_id,
-            })
+        var user_id = wx.getStorageSync('user_id')
+        console.log(user_id)
+        that.setData({
+            user_id: user_id
+        })
+        if (user_id) {
             //载入我的个人信息
             wx.request({
                 url: url + '/api/user/getUserAllInfo',
                 data: {
-                    user_id: followed_user_id
+                    user_id: user_id
                 },
                 method: 'POST',
                 success: function (res) {
+                    console.log(res)
                     var user = res.data.user_info;
                     var invest = res.data.invest_info;
                     var resource = res.data.resource_info;
@@ -49,82 +40,8 @@ Page({
                     console.log(res)
                 },
             })
-            //检验登录状态获取user_id
-            wx.login({
-                success: function (res) {
-                    if (res.code) {
-                        wx.request({
-                            url: url + '/api/wx/returnLoginStatus',
-                            data: {
-                                code: res.code
-                            },
-                            method: 'POST',
-                            success: function (res) {
-                                var user_id = res.data.user_id;
-                                var user_mobile = res.data.bind_mobile;
-                                wx.setStorageSync('user_id', user_id);
-                                wx.setStorageSync('user_mobile', user_mobile);
-                                // 判断是否绑定过用户
-                                if (user_id == 0) {
-                                    that.setData({
-                                        bindUser: 0
-                                    })
-                                } else {
-                                    that.setData({
-                                        bindUser: 1
-                                    })
-                                }
-                                console.log(user_id, user_mobile)
-                                that.setData({
-                                    user_id: user_id,
-                                    user_mobile: user_mobile
-                                })
-                            }
-                        })
-                    }
-                }
-            });
         } else {
-            console.log("分享者")
-             wx.showToast({
-                title:"分享者"
-            })
-            // 分享者
-            var user_id = wx.getStorageSync('user_id')
-            console.log(user_id)
-            that.setData({
-                user_id: user_id
-            })
-            if (user_id) {
-                //载入我的个人信息
-                wx.request({
-                    url: url + '/api/user/getUserAllInfo',
-                    data: {
-                        user_id: user_id
-                    },
-                    method: 'POST',
-                    success: function (res) {
-                        console.log(res)
-                        var user = res.data.user_info;
-                        var invest = res.data.invest_info;
-                        var resource = res.data.resource_info;
-                        var project_info = res.data.project_info;
-                        var invest_case = res.data.invest_case;
-                        that.setData({
-                            user: user,
-                            invest: invest,
-                            resource: resource,
-                            project_info: project_info,
-                            invest_case: invest_case
-                        })
-                    },
-                    fail: function (res) {
-                        console.log(res)
-                    },
-                })
-            } else {
-                app.noUserId()
-            }
+            app.noUserId()
         }
     },
     //编辑名片
@@ -177,13 +94,14 @@ Page({
     },
     //交换名片
     cardChange: function () {
+        var user_id=this.data.user_id;
         /*var modal = this.data.modal;
         modal = 0;
         this.setData({
             modal: modal
         })*/
         wx.navigateTo({
-          url: 'test/test?user_id=1',
+            url: 'sharePage/sharePage?user_id='+user_id,
         })
     },
     //取消交换名片
@@ -268,7 +186,7 @@ Page({
         return {
             title: '分享您的名片',
             // path: '/pages/my/my?user_id=V0VznXa0',
-            path:"/pages/my/test/test?user_id=1",
+            path: "/pages/my/sharePage/sharePage?user_id="+user_id,
             success: function (res) {
                 wx.showToast({
                     user_id

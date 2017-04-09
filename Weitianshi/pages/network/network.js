@@ -53,7 +53,7 @@ Page({
         var company = res.data.user_info.user_company_name
         if (name != '' && mobile != '' && career != '' && company != '') {
           wx.navigateTo({
-            url: '../my/showPage/showPage?user_id=' + user_id,
+            url: '../my/sharePage/sharePage?user_id=' + user_id,
           })
         } else {
           wx.showModal({
