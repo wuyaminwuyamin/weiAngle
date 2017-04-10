@@ -34,8 +34,7 @@ Page({
         } else if (current == 2) {
             var domainValue = options.industryValue;
             var domainId = options.industryId;
-            domainValue=domainValue.split(",")
-            console.log(typeof domainValue)
+            console.log(typeof domainId)
             if (domainValue == '选择领域') {
                 domainValue = [];
                 domainId = [];
