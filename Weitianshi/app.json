@@ -1,8 +1,8 @@
 {
   "pages": [
+    "pages/resource/resource",
     "pages/my/my",
     "pages/userDetail/userDetail",
-    "pages/resource/resource",
     "pages/my/cardEdit/cardEdit",
     "pages/network/network",
     "pages/selectProject/selectProject",
