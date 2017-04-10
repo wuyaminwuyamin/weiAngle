@@ -77,8 +77,8 @@ Page({
             titel: "友情提示",
             content: "分享名片功能需要在个人页面点击去交换按钮实现",
             showCancel: false,
-            success:function(res){
-              if(res.confirm==true){
+            success: function (res) {
+              if (res.confirm == true) {
                 wx.switchTab({
                   url: '/pages/my/my',
                 })
@@ -107,6 +107,9 @@ Page({
   },
   // 绑定名片
   bindUserInfo: function () {
+    var notIntegrity = this.data.notIntegrity;
+    var usr_id = this.data.user_id;
+    console.log(notIntegrity,usr_id)
     wx.navigateTo({
       url: '../myProject/personInfo/personInfo',
     })

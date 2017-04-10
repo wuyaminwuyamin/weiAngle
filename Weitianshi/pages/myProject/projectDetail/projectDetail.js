@@ -9,7 +9,7 @@ Page({
         firstName: "代",
         id: "",
         page: 0,
-        aa: [],
+        industy_sort: [],
         bpName: "杭州投着乐网络科技有限公司商业计划书",
         projectName: "微天使",
         companyName: "杭州投着乐网络科技有限公司",
@@ -19,8 +19,6 @@ Page({
     },
     onLoad: function (options) {
         //  投资人数据
-        // console.log("this is onLoad");
-        console.log(options)
         var that = this;
         var id = options.id;
         var index = options.index;
@@ -28,9 +26,6 @@ Page({
         var page = this.data.page;
         var avatarUrl = wx.getStorageSync('avatarUrl');
         var investors = wx.getStorageSync('investors') ||'';//所有项目对应四位投资人
-        // console.log(index);
-        // console.log(avatarUrl);
-        console.log(id)
         that.setData({
             index: index,
             id: id,
@@ -43,7 +38,6 @@ Page({
         var industry_tag = [];
         var scale_tag = [];
         var stage_tag = [];
-        console.log(investors)
         if(investors!=''){
                   for (var i = 0; i < investor.length; i++) {
             industry_tag.push(investor[i].industry_tag);
@@ -67,11 +61,9 @@ Page({
             },
             method: 'POST',
             success: function (res) {
-                console.log(res)
                 var project = res.data.data;
-                console.log(project)
                 var user = res.data.user;
-                var aa = [];
+                var industy_sort = [];
                 var firstName = user.user_name.substr(0, 1);
                 that.setData({
                     project: project,
@@ -81,21 +73,12 @@ Page({
                 // console.log(user)
                 var pro_industry = project.pro_industry;
                 for (var i = 0; i < pro_industry.length; i++) {
-                    aa.push(pro_industry[i].industry_name)
+                    industy_sort.push(pro_industry[i].industry_name)
                 }
                 that.setData({
-                    aa: aa
+                    industy_sort: industy_sort
                 });
-                // console.log(that.data.aa);
-                // console.log(project);
-                // console.log(user);
             },
-            fail: function () {
-                // fail
-            },
-            complete: function () {
-                // complete
-            }
         })
 
     },
@@ -172,6 +155,14 @@ Page({
         } else {
             rqj.errorHide(that, "没有更多了", 3000)
         }
+    },
+    //维护项目
+    maintainProject(){
+        var id=this.data.id;
+        var user_id=this.data.user_id;
+        wx.navigateTo({
+          url: '/pages/myProject/maintainProject/maintainProject?pro_id='+id+"&&user_id="+user_id,
+        })
     },
 
     //分享当前页面

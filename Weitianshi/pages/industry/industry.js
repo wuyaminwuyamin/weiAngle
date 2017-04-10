@@ -1,5 +1,5 @@
-var app=getApp();
-var url=app.globalData.url;
+var app = getApp();
+var url = app.globalData.url;
 Page({
     data: {
         doMain: [],
@@ -12,8 +12,10 @@ Page({
     onLoad: function (options) {
         // console.log("this is onLoad")
         var that = this;
+        var options = options;
         var industry = wx.getStorageSync('industry');
         var current = options.current;
+        // 0:发布融资项目  1:发布投资项目  2:维护我的项目
 
         if (current == 0) {
             var domainValue = wx.getStorageSync('domainValue')
@@ -26,6 +28,15 @@ Page({
             var domainValue = wx.getStorageSync('y_domainValue')
             var domainId = wx.getStorageSync('y_domainId')
             if (domainValue == "选择领域") {
+                domainValue = [];
+                domainId = [];
+            }
+        } else if (current == 2) {
+            var domainValue = options.industryValue;
+            var domainId = options.industryId;
+            domainValue=domainValue.split(",")
+            console.log(typeof domainValue)
+            if (domainValue == '选择领域') {
                 domainValue = [];
                 domainId = [];
             }
@@ -47,9 +58,9 @@ Page({
             checked: domainValue,
             index: domainId
         });
-        
 
-        console.log(this.data.checked,this.data.index)
+
+        console.log(this.data.checked, this.data.index)
     },
 
     //下拉刷新
@@ -68,7 +79,7 @@ Page({
         var isCheck = thisData.check;
         var value = thisData.value;
         var idx = thisData.index;
-        var id = e.currentTarget.id*1;
+        var id = e.currentTarget.id * 1;
         console.log(checked)
         if (index.indexOf(id) == -1) {
             checked.push(value);
@@ -122,13 +133,14 @@ Page({
                     wx.setStorageSync('y_domainValue', checked);
                     wx.setStorageSync('y_domainId', index);
                 }
+            } else if (current == 2) {
+                wx.setStorageSync('m_domainValue', checked);
+                wx.setStorageSync('m_domainId', index);
             }
             wx.navigateBack({
                 delta: 1 // 回退前 delta(默认为1) 页面
             })
         }
-
     }
-
 
 });

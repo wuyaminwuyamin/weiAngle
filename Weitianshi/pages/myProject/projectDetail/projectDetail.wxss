@@ -304,7 +304,7 @@ scroll-view {
   text-align: left;
 }
 
-navigator .maintainProject{
+.maintainProject{
   background:#40587a;
   color: white;
 }

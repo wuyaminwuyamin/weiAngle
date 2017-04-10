@@ -33,9 +33,9 @@
 
         <!--标签1-->
         <view class=" sort ">
-          <block wx:for="{{project.pro_industry}}" wx:for-item="{{aa}}" wx:key="{{aa}}">
+          <block wx:for="{{project.pro_industry}}" wx:for-item="{{industy_sort}}" wx:key="{{industy_sort}}">
             <view class="weui-media-box__desc ">
-              {{aa[index]}}
+              {{industy_sort[index]}}
             </view>
           </block>
         </view>
@@ -225,8 +225,6 @@
 <view class="floatBtn flex" hidden="{{currentTab==0}}">
   <button class="push " disabled="true">一键推送(近期开放)</button>
 </view>
-<navigator url="../maintainProject/maintainProject">
-  <view class="floatBtn flex maintainProject" hidden="{{currentTab==1}}">
-    <button class="push maintainProject">维护项目</button>
-  </view>
-</navigator>
+<view class="floatBtn flex maintainProject" hidden="{{currentTab==1}}" bindtap="maintainProject">
+  <button class="push maintainProject">维护项目</button>
+</view>
