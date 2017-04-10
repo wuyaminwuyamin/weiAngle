@@ -8,16 +8,15 @@ Page({
     },
     onLoad: function (options) {
         var that = this
-        var user_id = wx.getStorageSync('user_id');
-        console.log(user_id)
+        var user_id = options.id
         that.setData({
-            user_id: "user_id",
+            user_id: user_id,
         })
         //我的个人信息
         wx.request({
           url: url+'/api/user/getUserAllInfo',
           data: {
-              user_id:"V0VznXa0"
+              user_id:user_id
           },
           method: 'POST',
           success: function(res){

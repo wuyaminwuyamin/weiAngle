@@ -38,7 +38,11 @@ Page({
   },
   // 用户详情
   userDetail:function(e){
-    console.log(e.target)
+    var id=e.currentTarget.dataset.id
+    console.log(id)
+    wx.navigateTo({
+      url: '/pages/userDetail/userDetail?id='+id,
+    })
   },
   //我的名片
   myCard: function () {
