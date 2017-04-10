@@ -13,7 +13,6 @@
     </view>
     <button form-type="submit" class="nextBtn" bindtap="nextPage" loading="{{loading=='1'}}">
       下一步
-      <image class="rightArrow" src="../../img/rightArrow.png"></image>
     </button>
   </form>
 

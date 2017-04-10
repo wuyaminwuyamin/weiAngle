@@ -18,7 +18,7 @@
       <image wx:if="{{user.user_avatar_url}}" class="user_pic" src="{{user.user_avatar_url}}"></image>
       <view wx:if="{{user.user_avatar_text}}" class="user_text noPic">{{user.user_avatar_text}}</view>
       <view wx:if="{{!user}}" class="user_text noPic">代</view>
-      <image class="user_edit" src="/img/icon-share@3x.png"></image>
+      <image class="user_edit" src="/img/icon-share@3x.png" catchtap="cardChange"></image>
     </view>
     <view class="user_down flex">
       <view class="user_popularity user_tips">
@@ -178,6 +178,8 @@
       </view>
     </view>
   </view>
+  
+  <view style="height:92rpx;"></view>
 
   <!--交换名片-->
   <view class="changeCard flex" wx:if="{{!options}}">
@@ -192,16 +194,16 @@
   </view>
 
   <!--信息不完善的友情提示-->
-  <view class="toast" hidden="{{notIntegrity==1}}">
+  <!--<view class="toast" hidden="{{notIntegrity==1}}">
     <view class="toast_title">友情提示</view>
     <view class="toast_content">交换名片之前,请先完善自己的名片</view>
     <view class="toast_button flex">
       <view class="toast_cancel" bindtap="toastCancel">取消</view>
       <view class="toast_certain" bindtap="toastCertain">去完善</view>
     </view>
-  </view>
+  </view>-->
 </scroll-view>
-<view class="modal" hidden="{{notIntegrity==1}}"></view>
-<view class="showModal" hidden="{{modal==1}}" bindtap="cancelShare">
+<!--<view class="modal" hidden="{{notIntegrity==1}}"></view>-->
+<view class="showModal" hidden="{{modal==0}}" bindtap="cancelShare">
   <image src="/img/img-share@3x.png"></image>
 </view>

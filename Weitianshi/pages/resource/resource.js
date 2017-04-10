@@ -15,6 +15,7 @@ Page({
     investor_page: 1,//投资人分页
     share: 1,//分享页面
     page_end: false,
+    hasPublic2:0
   },
   //载入页面
   onLoad: function (option) {
@@ -254,12 +255,12 @@ Page({
                       that.setData({
                         res_match: res_match, //资源需求匹配出来的项目
                         res_find: res_find,//我正在寻求的资源
-                        hasPublic2:1
+                        hasPublic2: 1
                       })
-                    }else{
+                    } else {
                       that.setData({
-                      hasPublic2: 0
-                    })
+                        hasPublic2: 0
+                      })
                     }
                   },
                   fail: function (res) {

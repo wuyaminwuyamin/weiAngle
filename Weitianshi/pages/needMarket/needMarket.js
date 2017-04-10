@@ -1,6 +1,6 @@
 var rqj = require('../Template/Template.js')
-var app=getApp();
-var url=app.globalData.url;
+var app = getApp();
+var url = app.globalData.url;
 Page({
   data: {
     userInfo: {},
@@ -14,7 +14,7 @@ Page({
     var currentTab = this.data.currentTab
     //融资需求获取数据
     wx.request({
-      url: url+'/api/project/projectMarket',
+      url: url + '/api/project/projectMarket',
       data: {},
       method: 'POST',
       success: function (res) {
@@ -30,10 +30,11 @@ Page({
 
     //投资需求获取数据
     wx.request({
-      url: url+'/api/investors/investorMarket',
+      url: url + '/api/investors/investorMarket',
       data: {},
       method: 'POST',
       success: function (res) {
+        console.log(res)
         var investNeed = res.data.data;
         that.setData({
           investNeed: investNeed
@@ -45,7 +46,7 @@ Page({
     })
     //资源需求获取数据
     wx.request({
-      url: url+'/api/resource/resourceMarket',
+      url: url + '/api/resource/resourceMarket',
       data: {},
       method: 'POST',
       success: function (res) {
@@ -71,7 +72,7 @@ Page({
     if (current == 1) {
       //载入寻找项目数据
       wx.request({
-        url: url+'/api/investors/getMatchProjects',
+        url: url + '/api/investors/getMatchProjects',
         data: {
           user_id: user_id
         },
@@ -117,13 +118,19 @@ Page({
       })
     }
   },
-  // 跳转项目详情
-  projectDetail:function(e){
-    console.log(e.target)
+  // 跳转项目详情(融资需求和投资需求)
+  projectDetail: function (e) {
+    var id = e.currentTarget.dataset.id
+    wx.navigateTo({
+      url: '../yourProject/yourDetail?id=' + id
+    })
   },
   // 跳转人物详情
-  investorDetail(e){
-    console.log(e.target)
+  investorDetail(e) {
+    var id = e.currentTarget.dataset.id
+    wx.navigateTo({
+      url: '../userDetail/userDetail?id=' + id
+    })
   },
   // 返回对接页面
   backToResource: function () {

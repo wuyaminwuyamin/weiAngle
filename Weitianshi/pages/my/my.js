@@ -4,8 +4,14 @@ Page({
     data: {
         integrity: 30,
         user: "",
-        notIntegrity: 1,
-        modal: 1,
+        modal: 0,
+    },
+    onLoad:function(options){
+        if(options){
+            this.setData({
+                modal:options.modal
+            })
+        }
     },
     onShow: function () {
         var that = this
@@ -103,12 +109,12 @@ Page({
         var status_code = this.data.status_code;
         if (status_code == 2000000) {
             that.setData({
-                modal: 0
+                modal: 1
             })
         } else {
             wx.showModal({
-                title: "提示",
-                content: "请先完善个人信息",
+                title: "友情提示",
+                content: "交换名片之前,请先完善自己的名片",
                 success: function () {
                     wx.navigateTo({
                         url: '../my/cardEdit/cardEdit',
@@ -121,25 +127,7 @@ Page({
              url: 'sharePage/sharePage?user_id='+user_id,
          })*/
     },
-    //取消交换名片
-    toastCancel: function () {
-        var notIntegrity = this.data.notIntegrity;
-        notIntegrity = 1;
-        this.setData({
-            notIntegrity: notIntegrity
-        })
-    },
-    //去完善名片
-    toastCertain: function () {
-        wx.navigateTo({
-            url: 'cardEdit/cardEdit',
-        })
-        var notIntegrity = this.data.notIntegrity;
-        notIntegrity = 1;
-        this.setData({
-            notIntegrity: notIntegrity
-        })
-    },
+
     //分享名片
     onShareAppMessage: function () {
         var user_id = wx.getStorageSync('user_id')
@@ -161,7 +149,7 @@ Page({
     //取消分享
     cancelShare: function () {
         this.setData({
-            modal: 1
+            modal: 0
         })
     },
 
@@ -223,4 +211,22 @@ Page({
         }
     },
     */
-});
+});  /*//取消交换名片
+    toastCancel: function () {
+        var notIntegrity = this.data.notIntegrity;
+        notIntegrity = 0;
+        this.setData({
+            notIntegrity: notIntegrity
+        })
+    },
+    //去完善名片
+    toastCertain: function () {
+        wx.navigateTo({
+            url: 'cardEdit/cardEdit',
+        })
+        var notIntegrity = this.data.notIntegrity;
+        notIntegrity = 0;
+        this.setData({
+            notIntegrity: notIntegrity
+        })
+    },*/

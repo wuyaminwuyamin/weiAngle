@@ -64,6 +64,7 @@ page {
   font-size: 20rpx;
   height: 58rpx;
   line-height: 58rpx;
+  width: 100%;
 }
 
 /*用户信息*/

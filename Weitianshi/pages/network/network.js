@@ -2,15 +2,36 @@ var app = getApp();
 var url = app.globalData.url;
 Page({
   data: {
-
+    notIntegrity: 0,
   },
   onShow: function () {
     var that = this;
-    var user_id = wx.getStorageSync('user_id')
+    var user_id = wx.getStorageSync('user_id');
     that.setData({
       user_id: user_id
     })
     console.log(user_id)
+    // 检查个人信息全不全
+    if (user_id) {
+      wx.request({
+        url: url + '/api/user/checkUserInfo',
+        data: {
+          user_id: user_id
+        },
+        method: 'POST',
+        success: function (res) {
+          that.setData({
+            notIntegrity: res.data.is_complete,
+          })
+        },
+        fail: function (res) {
+          wx.showToast({
+            title: res
+          })
+        },
+      })
+    }
+    // 获取人脉库信息
     if (user_id) {
       wx.request({
         url: url + '/api/user/getMyFollowList',
@@ -30,18 +51,12 @@ Page({
       })
     }
   },
-  onShareAppMessage: function () {
-    return {
-      title: '我是对接',
-      path: '/pages/resource/resource'
-    }
-  },
   // 用户详情
-  userDetail:function(e){
-    var id=e.currentTarget.dataset.id
+  userDetail: function (e) {
+    var id = e.currentTarget.dataset.id
     console.log(id)
     wx.navigateTo({
-      url: '/pages/userDetail/userDetail?id='+id,
+      url: '/pages/userDetail/userDetail?id=' + id,
     })
   },
   //我的名片
@@ -56,14 +71,25 @@ Page({
       },
       method: 'POST',
       success: function (res) {
-        if (res.data.status_code==2000000) {
-          wx.navigateTo({
-            url: '../my/sharePage/sharePage?user_id=' + user_id,
+        console.log(res)
+        if (res.data.status_code == 2000000) {
+          wx.showModal({
+            titel: "友情提示",
+            content: "分享名片功能需要在个人页面点击去交换按钮实现",
+            showCancel: false,
+            success:function(res){
+              if(res.confirm==true){
+                wx.switchTab({
+                  url: '/pages/my/my',
+                })
+              }
+            }
           })
+
         } else {
           wx.showModal({
-            title: "提示",
-            content: "请先完善个人信息",
+            title: "友情提示",
+            content: "交换名片之前,请先完善自己的名片",
             success: function () {
               wx.navigateTo({
                 url: '../my/cardEdit/cardEdit',
