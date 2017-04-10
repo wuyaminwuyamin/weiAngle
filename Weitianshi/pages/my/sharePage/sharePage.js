@@ -52,7 +52,8 @@ Page({
               var user_mobile = res.data.bind_mobile;
               wx.setStorageSync('user_id', user_id);
               wx.setStorageSync('user_mobile', user_mobile);
-              
+              wx.show
+
               // 判断是否绑定过用户
               if (user_id == 0) {
                 that.setData({
@@ -120,8 +121,23 @@ Page({
         },
         method: 'POST',
         success: function (res) {
-          console.log("添加人脉成功")
-          console.log(res)
+          if(res.status_code==2000000){
+            wx.showModal({
+              title:"提示",
+              content:"添加人脉成功",
+              showCancel:false,
+              confirmText:"跳转到我的人脉库",
+              confirm:function(){
+                wx.switchTab({
+                  url: '/pages/network/network',
+                })
+              }
+            })
+          }else{
+            wx.showToast({
+              title:res.error_msg
+            })
+          }
         },
         fail: function (res) {
           console.log(res)

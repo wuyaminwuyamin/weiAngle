@@ -18,11 +18,11 @@ page {
 }
 
 .user_left {
-  width: 70%;
+  width: 541rpx;
 }
 
 .user_right {
-  width: 30%;
+  width: 120rpx;
 }
 
 .user_down {
@@ -33,6 +33,9 @@ page {
 .user_pic, user_text {
   display: flex;
   flex-direction: column-reverse;
+  width: 120rpx;
+  height: 120rpx;
+  border-radius: 50%;
 }
 
 .user_name {

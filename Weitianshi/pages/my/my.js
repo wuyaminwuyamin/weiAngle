@@ -4,6 +4,7 @@ Page({
     data: {
         integrity: 30,
         user: "",
+        notIntegrity: 1,
         modal: 1,
     },
     onShow: function () {
@@ -28,12 +29,14 @@ Page({
                     var resource = res.data.resource_info;
                     var project_info = res.data.project_info;
                     var invest_case = res.data.invest_case;
+                    var status_code = res.data.status_code;
                     that.setData({
                         user: user,
                         invest: invest,
                         resource: resource,
                         project_info: project_info,
-                        invest_case: invest_case
+                        invest_case: invest_case,
+                        status_code: status_code
                     })
                 },
                 fail: function (res) {
@@ -94,22 +97,36 @@ Page({
     },
     //交换名片
     cardChange: function () {
-        var user_id=this.data.user_id;
-        /*var modal = this.data.modal;
-        modal = 0;
-        this.setData({
-            modal: modal
-        })*/
-        wx.navigateTo({
-            url: 'sharePage/sharePage?user_id='+user_id,
-        })
+        var that = this;
+        var user_id = this.data.user_id;
+        var modal = this.data.modal;
+        var status_code = this.data.status_code;
+        if (status_code == 2000000) {
+            that.setData({
+                modal: 0
+            })
+        } else {
+            wx.showModal({
+                title: "提示",
+                content: "请先完善个人信息",
+                success: function () {
+                    wx.navigateTo({
+                        url: '../my/cardEdit/cardEdit',
+                    })
+                }
+            })
+        }
+
+        /* wx.navigateTo({
+             url: 'sharePage/sharePage?user_id='+user_id,
+         })*/
     },
     //取消交换名片
     toastCancel: function () {
-        var modal = this.data.modal;
-        modal = 1;
+        var notIntegrity = this.data.notIntegrity;
+        notIntegrity = 1;
         this.setData({
-            modal: modal
+            notIntegrity: notIntegrity
         })
     },
     //去完善名片
@@ -117,12 +134,39 @@ Page({
         wx.navigateTo({
             url: 'cardEdit/cardEdit',
         })
-        var modal = this.data.modal;
-        modal = 1;
+        var notIntegrity = this.data.notIntegrity;
+        notIntegrity = 1;
         this.setData({
-            modal: modal
+            notIntegrity: notIntegrity
         })
     },
+    //分享名片
+    onShareAppMessage: function () {
+        var user_id = wx.getStorageSync('user_id')
+        console.log(user_id)
+        return {
+            title: '分享您的名片',
+            // path: '/pages/my/my?user_id=V0VznXa0',
+            path: "/pages/my/sharePage/sharePage?user_id=" + user_id,
+            success: function (res) {
+                wx.showToast({
+                    user_id
+                })
+            },
+            fail: function (res) {
+                console.log(res)
+            }
+        }
+    },
+    //取消分享
+    cancelShare: function () {
+        this.setData({
+            modal: 1
+        })
+    },
+
+
+    /*
     //我的人脉
     myNetwork: function () {
         var bindUser = this.data.bindUser;
@@ -179,22 +223,5 @@ Page({
             })
         }
     },
-    //分享名片
-    onShareAppMessage: function () {
-        var user_id = wx.getStorageSync('user_id')
-        console.log(user_id)
-        return {
-            title: '分享您的名片',
-            // path: '/pages/my/my?user_id=V0VznXa0',
-            path: "/pages/my/sharePage/sharePage?user_id="+user_id,
-            success: function (res) {
-                wx.showToast({
-                    user_id
-                })
-            },
-            fail: function (res) {
-                console.log(res)
-            }
-        }
-    }
+    */
 });

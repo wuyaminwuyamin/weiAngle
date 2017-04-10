@@ -6,7 +6,7 @@ Page({
         resourcesIndex:9.9,
         user:""
     },
-    onLoad: function () {
+    onLoad: function (options) {
         var that = this
         var user_id = wx.getStorageSync('user_id');
         console.log(user_id)

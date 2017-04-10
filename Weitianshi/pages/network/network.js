@@ -36,6 +36,11 @@ Page({
       path: '/pages/resource/resource'
     }
   },
+  // 用户详情
+  userDetail:function(e){
+    console.log(e.target)
+  },
+  //我的名片
   myCard: function () {
     var that = this;
     var user_id = this.data.user_id;
@@ -47,11 +52,7 @@ Page({
       },
       method: 'POST',
       success: function (res) {
-        var name = res.data.user_info.user_real_name;
-        var mobile = res.data.user_info.user_real_mobile;
-        var career = res.data.user_info.user_company_career;
-        var company = res.data.user_info.user_company_name
-        if (name != '' && mobile != '' && career != '' && company != '') {
+        if (res.data.status_code==2000000) {
           wx.navigateTo({
             url: '../my/sharePage/sharePage?user_id=' + user_id,
           })
@@ -74,6 +75,7 @@ Page({
       },
     })
   },
+  // 绑定名片
   bindUserInfo: function () {
     wx.navigateTo({
       url: '../myProject/personInfo/personInfo',

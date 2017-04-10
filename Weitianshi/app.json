@@ -1,6 +1,7 @@
 {
   "pages": [
     "pages/my/my",
+    "pages/userDetail/userDetail",
     "pages/resource/resource",
     "pages/my/cardEdit/cardEdit",
     "pages/network/network",
@@ -10,7 +11,6 @@
     "pages/my/sharePage/sharePage",
     "pages/resourceEnchange/resourceEnchange",
     "pages/my/projectFinance/projectFinance",
-    "pages/userDetail/userDetail",
     "pages/my/baseInfo/baseInfo",
     "pages/my/myInfoEdit/myInfoEdit",
     "pages/my/investCase/investCase",

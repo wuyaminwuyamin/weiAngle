@@ -18,7 +18,6 @@
       <image wx:if="{{user.user_avatar_url}}" class="user_pic" src="{{user.user_avatar_url}}"></image>
       <view wx:if="{{user.user_avatar_text}}" class="user_text noPic">{{user.user_avatar_text}}</view>
       <view wx:if="{{!user}}" class="user_text noPic">代</view>
-      <image class="user_edit" src="/img/icon-share@3x.png"></image>
     </view>
     <view class="user_down flex">
       <view class="user_popularity user_tips">
@@ -43,7 +42,6 @@
   <view class="user_intro">
     <view class="intro_title flex">
       个人描述
-      <image class="iconEdit" src="/img/icon-edit@3x.png"></image>
     </view>
     <view class="intro_content" wx:if="{{user}}">{{user.user_intro}}</view>
     <view class="intro_content" wx:if="{{!user}}" style="height:34rpx;line-height:34rpx;">暂无描述</view>
@@ -53,7 +51,6 @@
   <view class="user_invest_info">
     <view class="flex title">
       <view>寻找案源</view>
-      <image class="iconEdit" src="/img/icon-edit@3x.png"></image>
     </view>
 
     <!--投资领域-->
@@ -93,7 +90,6 @@
   <view class="user_resource_info">
     <view class="flex title">
       <view>资源对接</view>
-      <image class="iconEdit" src="/img/icon-edit@3x.png"></image>
     </view>
 
     <!--可提供资源-->
@@ -119,7 +115,6 @@
   <view class="user_project_info">
     <view class="flex title">
       <view>项目融资</view>
-      <image class="iconEdit" src="/img/icon-edit@3x.png"></image>
     </view>
 
     <!--融资项目-->
@@ -147,7 +142,6 @@
   <view class="user_invest_case">
     <view class="flex title">
       <view>投资案例</view>
-      <image class="iconEdit" src="/img/icon-edit@3x.png"></image>
     </view>
 
     <!--融资项目-->
@@ -180,7 +174,6 @@
 
   <!--我的人脉和加入人脉-->
   <view class="aboutNetwork flex">
-    <view bindtap="myNetwork">我的人脉</view>
     <view bindtap="addNetwork">加入人脉</view>
   </view>
 

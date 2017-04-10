@@ -12,7 +12,7 @@
   <scroll-view scroll-y="true" bindscrolltolower="loadMore">
     <view class="netWork">
       <block wx:for="{{netWork}}" wx:key="{{item.user_id}}">
-        <view class="card" data-id="{{item.user_id}}">
+        <view class="card" data-id="{{item.user_id}}" bindtap="{{userDetail}}">
           <view class="user_info flex">
             <view class="user_text" wx:if="{{item.user_avatar_text}}">{{item.user_avatar_text}}</view>
             <image class="user_pic" src="{{item.user_avatar_url}}" wx:if="{{item.user_avatar_url}}"></image>

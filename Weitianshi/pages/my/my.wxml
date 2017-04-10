@@ -40,7 +40,7 @@
   </view>
 
   <!--个人描述-->
-  <view class="user_intro">
+  <view class="user_intro" bindtap="cardEdit">
     <view class="intro_title flex">
       个人描述
       <image class="iconEdit" src="/img/icon-edit@3x.png"></image>
@@ -192,7 +192,7 @@
   </view>
 
   <!--信息不完善的友情提示-->
-  <view class="toast" hidden="{{modal==1}}">
+  <view class="toast" hidden="{{notIntegrity==1}}">
     <view class="toast_title">友情提示</view>
     <view class="toast_content">交换名片之前,请先完善自己的名片</view>
     <view class="toast_button flex">
@@ -201,4 +201,7 @@
     </view>
   </view>
 </scroll-view>
-<view class="modal" hidden="{{modal==1}}"></view>
+<view class="modal" hidden="{{notIntegrity==1}}"></view>
+<view class="showModal" hidden="{{modal==1}}" bindtap="cancelShare">
+  <image src="/img/img-share@3x.png"></image>
+</view>
