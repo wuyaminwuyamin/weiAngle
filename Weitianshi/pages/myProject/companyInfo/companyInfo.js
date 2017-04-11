@@ -18,8 +18,7 @@ Page({
         var company = options.user_company;
         var position = options.user_career;
         var email = options.user_email;
-        var network = options.network;
-        var followed_user_id = options.followed_user_id;
+
         if (company == "null") {
             company = ''
         };
@@ -33,9 +32,9 @@ Page({
             company: company,
             position: position,
             email: email,
-            network: network,
-            followed_user_id: followed_user_id
         })
+
+
     },
     //下拉刷新
     onPullDownRefresh: function () {
@@ -105,8 +104,6 @@ Page({
         var error_text = this.data.error_text;
         var email = this.data.email;
         var user_id = wx.getStorageSync('user_id');
-        var netWork = this.data.network;
-        var followed_user_id = this.data.followed_user_id;
         // console.log(typeof user_id, user_id);
         // console.log(company);
         // console.log(position);
@@ -126,11 +123,9 @@ Page({
                 success: function (res) {
                     // console.log(res)
                     if (res.data.status_code == 2000000) {
-                        if (netWork == 2) {
-                            wx.switchTab({
-                                url: '/pages/network/network',
-                            })
-                        } else if (netWork == 1) {
+                        // 从绑定人脉那边过来的
+                        var followed_user_id = wx.getStorageSync('followed_user_id');
+                        if (followed_user_id) {
                             wx.request({
                                 url: url + '/api/user/followUser',
                                 data: {
@@ -139,13 +134,19 @@ Page({
                                 },
                                 method: 'POST',
                                 success: function (res) {
-                                    console.log("人脉添加成功");
-                                    wx.switchTab({
-                                        url: '/pages/network/network',
-                                    })
-                                },
-                                fail: function (res) {
-                                    console.log(res)
+                                    if (res.status_code == 2000000) {
+                                        wx.showModal({
+                                            title: "提示",
+                                            content: "添加人脉成功",
+                                            showCancel: false,
+                                            confirmText: "跳转到我的人脉库",
+                                            confirm: function () {
+                                                wx.switchTab({
+                                                    url: '/pages/network/network',
+                                                })
+                                            }
+                                        })
+                                    }
                                 },
                             })
                         } else {

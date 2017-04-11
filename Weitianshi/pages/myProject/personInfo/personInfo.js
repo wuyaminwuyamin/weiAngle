@@ -20,15 +20,6 @@ Page({
         // console.log("开启了下拉刷新")
         wx.stopPullDownRefresh()
     },
-    onLoad: function (options) {
-        var that = this;
-        var network=options.network;
-        var followed_user_id=options.followed_user_id;
-        that.setData({
-            network:network,
-            followed_user_id:followed_user_id
-        })
-    },
     onShow: function () {
         var that = this;
         // 清零短信倒计时
@@ -182,12 +173,10 @@ Page({
                             var user_career = res.data.user_career;
                             var user_company = res.data.user_company;
                             var uer_email = res.data.user_email;
-                            var network=that.data.network;
-                            var followed_user_id=that.data.followed_user_id;
                             // console.log(user_career, user_company, uer_email);  
                             if (res.data.status_code == 2000000) {
                                 wx.navigateTo({
-                                    url: '../companyInfo/companyInfo?user_career=' + user_career + "&&user_company=" + user_company + "&&uer_email=" + uer_email + "&&network=" + network +"&&followed_user_id="+followed_user_id,
+                                    url: '../companyInfo/companyInfo?user_career=' + user_career + "&&user_company=" + user_company + "&&uer_email=" + uer_email,
                                 });
                                 wx.setStorageSync('user_id', res.data.user_id);
                                 wx.setStorageSync('bind_mobile', 1)

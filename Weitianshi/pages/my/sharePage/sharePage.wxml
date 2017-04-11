@@ -176,15 +176,5 @@
   <view class="aboutNetwork flex">
     <view bindtap="addNetwork">加入人脉</view>
   </view>
-
-  <!--信息不完善的友情提示-->
-  <view class="toast" hidden="{{modal==1}}">
-    <view class="toast_title">友情提示</view>
-    <view class="toast_content">交换名片之前,请先完善自己的名片</view>
-    <view class="toast_button flex">
-      <view class="toast_cancel" bindtap="toastCancel">取消</view>
-      <view class="toast_certain" bindtap="toastCertain">去完善</view>
-    </view>
-  </view>
 </scroll-view>
 <view class="modal" hidden="{{modal==1}}"></view>

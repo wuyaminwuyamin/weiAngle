@@ -2,16 +2,16 @@ var app = getApp();
 var url = app.globalData.url;
 Page({
   data: {
-    integrity: 30,
     user: "",
-    modal: 1,
+    followed_user_id: "",
   },
   onLoad: function (options) {
-    var that=this;
+    var that = this;
     var followed_user_id = options.user_id;
     that.setData({
       followed_user_id: followed_user_id,
     })
+
     //载入分享者的个人信息
     wx.request({
       url: url + '/api/user/getUserAllInfo',
@@ -52,19 +52,18 @@ Page({
               var user_mobile = res.data.bind_mobile;
               wx.setStorageSync('user_id', user_id);
               wx.setStorageSync('user_mobile', user_mobile);
-              wx.show
 
               // 判断是否绑定过用户
               if (user_id == 0) {
                 that.setData({
                   bindUser: 0
                 })
-              } else {
+              } else{
                 that.setData({
-                  bindUser: 1
+                  bindUser:1
                 })
               }
-              console.log(user_id, user_mobile)
+
               that.setData({
                 user_id: user_id,
                 user_mobile: user_mobile
@@ -74,41 +73,87 @@ Page({
         }
       }
     });
+    //如果进入的是自己的名片里
+    var user_id = this.data.user_id;
+    if (user_id == followed_user_id) {
+      wx.switchTab({
+        url: '/pages/network/network',
+      })
+    }
   },
-  //去完善名片
-  toastCertain: function () {
-    wx.navigateTo({
-      url: 'cardEdit/cardEdit',
-    })
-    var modal = this.data.modal;
-    modal = 1;
-    this.setData({
-      modal: modal
-    })
-  },
-  //我的人脉
-  myNetwork: function () {
+
+
+  // 添加人脉
+  addNetwork: function () {
+    var user_id = this.data.user_id;
+    var followed_user_id = this.data.followed_user_id;
     var bindUser = this.data.bindUser;
     if (bindUser == 0) {
       wx.showModal({
         title: "提示",
         content: "请先绑定个人信息",
         success: function (res) {
+          wx.setStorageSync('followed_user_id', followed_user_id)
           if (res.confirm == true) {
             wx.navigateTo({
-              url: '/pages/myProject/personInfo/personInfo?network=2&&followed_user_id=' + 0,
+              url: '../myProject/personInfo/personInfo'
             })
           }
         }
       })
-    } else {
-      wx.switchTab({
-        url: '/pages/network/network',
+    } else if (bindUser == 1) {
+      wx.request({
+        url: url + '/api/user/followUser',
+        data: {
+          follow_user_id: user_id,
+          followed_user_id: followed_user_id
+        },
+        method: 'POST',
+        success: function (res) {
+          if (res.status_code == 2000000) {
+            wx.showModal({
+              title: "提示",
+              content: "添加人脉成功",
+              showCancel: false,
+              confirmText: "跳转到我的人脉库",
+              confirm: function () {
+                wx.switchTab({
+                  url: '/pages/network/network',
+                })
+              }
+            })
+          } else {
+            wx.showModal({
+              title: "提示",
+              content: "您可能已经添加过此人脉",
+              showCancel: false,
+              confirmText: "跳转到我的人脉库",
+              confirm: function () {
+                wx.switchTab({
+                  url: '/pages/network/network',
+                })
+              }
+            })
+          }
+        },
+        fail: function (res) {
+          wx.showModal({
+            title: "错误提示",
+            content: "添加人脉失败" + res
+          })
+        },
+      })
+    } else{
+      showModal({
+        title:"错误提示",
+        content:"bindUser部分出问题了"
       })
     }
   },
+
+
   // 添加人脉
-  addNetwork: function () {
+  /*addNetwork: function () {
     var user_id = this.data.user_id;
     var followed_user_id = this.data.followed_user_id;
     console.log(user_id, followed_user_id)
@@ -121,21 +166,21 @@ Page({
         },
         method: 'POST',
         success: function (res) {
-          if(res.status_code==2000000){
+          if (res.status_code == 2000000) {
             wx.showModal({
-              title:"提示",
-              content:"添加人脉成功",
-              showCancel:false,
-              confirmText:"跳转到我的人脉库",
-              confirm:function(){
+              title: "提示",
+              content: "添加人脉成功",
+              showCancel: false,
+              confirmText: "跳转到我的人脉库",
+              confirm: function () {
                 wx.switchTab({
                   url: '/pages/network/network',
                 })
               }
             })
-          }else{
+          } else {
             wx.showToast({
-              title:res.error_msg
+              title: res.error_msg
             })
           }
         },
@@ -156,5 +201,5 @@ Page({
         }
       })
     }
-  },
+  },*/
 });
