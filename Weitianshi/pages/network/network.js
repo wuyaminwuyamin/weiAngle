@@ -90,10 +90,12 @@ Page({
           wx.showModal({
             title: "友情提示",
             content: "交换名片之前,请先完善自己的名片",
-            success: function () {
-              wx.navigateTo({
-                url: '../my/cardEdit/cardEdit',
-              })
+            success: function (res) {
+              if (res.confirm == true) {
+                wx.navigateTo({
+                  url: '../my/cardEdit/cardEdit',
+                })
+              }
             }
           })
         }
@@ -109,7 +111,7 @@ Page({
   bindUserInfo: function () {
     var notIntegrity = this.data.notIntegrity;
     var usr_id = this.data.user_id;
-    console.log(notIntegrity,usr_id)
+    console.log(notIntegrity, usr_id)
     wx.navigateTo({
       url: '../myProject/personInfo/personInfo',
     })

@@ -86,11 +86,11 @@ Page({
             }
         } else if (current == 1) {
             if (this.data.belongArea == "") {
-                wx.setStorageSync('y_belongArea', "选择地区")
+                wx.setStorageSync('m_belongArea', "选择地区")
             } else {
-                wx.setStorageSync('y_belongArea', this.data.belongArea);
-                wx.setStorageSync('y_provinceNum', this.data.provinceNum);
-                wx.setStorageSync('y_cityNum', this.data.cityNum);
+                wx.setStorageSync('m_belongArea', this.data.belongArea);
+                wx.setStorageSync('m_provinceNum', this.data.provinceNum);
+                wx.setStorageSync('m_cityNum', this.data.cityNum);
             }
         }
 

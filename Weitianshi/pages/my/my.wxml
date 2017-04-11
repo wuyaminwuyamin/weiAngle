@@ -119,23 +119,29 @@
   <view class="user_project_info">
     <view class="flex title">
       <view>项目融资</view>
-      <image class="iconEdit" src="/img/icon-edit@3x.png"></image>
     </view>
 
     <!--融资项目-->
     <view class="projcet_info_frame">
       <block wx:for="{{project_info}}" wx:key="{{item.pro_intro}}">
         <view class="project_card" bindtap="projectFinance">
-          <view class="pro_intro">{{item.pro_intro}}</view>
+          <view class="pro_intro">
+            {{item.pro_intro}}
+          </view>
           <view class="pro_industry_frame flex">
             <block wx:for="{{item.pro_industry}}" wx:key="{{item.industry_id}}" wx:for-item="pro_industry">
               <view class="pro_industry" data-id="{{pro_industry.industry_id}}" data-vlaue="{{pro_industry.industry_name}}">{{pro_industry.industry_name}}</view>
             </block>
           </view>
-          <view class="pro_sorts flex">
-            <view class="pro_sort" wx:if="{{item.pro_stage.stage_name}}">{{item.pro_stage.stage_name}}</view>
-            <view class="pro_sort" wx:if="{{item.pro_city.area_title}}">{{item.pro_city.area_title}}</view>
-            <view class="pro_sort" wx:if="{{item.pro_scale.scale_money}}">{{item.pro_scale.scale_money}}</view>
+          <view class="flex s_pro_sorts">
+            <view class="pro_sorts flex">
+              <view class="pro_sort" wx:if="{{item.pro_stage.stage_name}}">{{item.pro_stage.stage_name}}</view>
+              <view class="pro_sort" wx:if="{{item.pro_city.area_title}}">{{item.pro_city.area_title}}</view>
+              <view class="pro_sort" wx:if="{{item.pro_scale.scale_money}}">{{item.pro_scale.scale_money}}</view>
+            </view>
+            <view>
+              <image class="iconEdit s_iconEdit" src="/img/icon-edit@3x.png"></image>
+            </view>
           </view>
         </view>
       </block>
@@ -178,7 +184,6 @@
       </view>
     </view>
   </view>
-  
   <view style="height:92rpx;"></view>
 
   <!--交换名片-->
@@ -194,6 +199,7 @@
   </view>
 
   <!--信息不完善的友情提示-->
+
   <!--<view class="toast" hidden="{{notIntegrity==1}}">
     <view class="toast_title">友情提示</view>
     <view class="toast_content">交换名片之前,请先完善自己的名片</view>
@@ -203,6 +209,7 @@
     </view>
   </view>-->
 </scroll-view>
+
 <!--<view class="modal" hidden="{{notIntegrity==1}}"></view>-->
 <view class="showModal" hidden="{{modal==0}}" bindtap="cancelShare">
   <image src="/img/img-share@3x.png"></image>

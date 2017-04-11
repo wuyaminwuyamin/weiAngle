@@ -28,7 +28,6 @@ Page({
         var stageId = [];
         var scaleValue = [];
         var scaleId = [];
-
         this.setData({
             pro_id: pro_id,
             user_id: user_id
@@ -86,10 +85,13 @@ Page({
                 var describe = theData.pro_intro;
                 var industry = theData.pro_industry;
                 var industryValue = [];
-                var industryId = []
-                var stage_index = stageValue.indexOf(theData.pro_stage.stage_name)
-                var scale_index = scaleValue.indexOf(theData.pro_scale.scale_money)
+                var industryId = [];
+                var stage_index = stageValue.indexOf(theData.pro_stage.stage_name);
+                var scale_index = scaleValue.indexOf(theData.pro_scale.scale_money);
                 var tipsIndex=theData.is_exclusive;
+                var belongArea=theData.pro_area.area_title;
+                var provinceNum=theData.pro_area.pid;
+                var cityNum=theData.pro_area.area_id;
                 // 对项目的所属领域进行处理
                 if (industry) {
                     for (var i = 0; i < industry.length; i++) {
@@ -97,7 +99,14 @@ Page({
                         industryId.push(industry[i].industry_id)
                     }
                 }
-
+                wx.setStorage({
+                  key: 'm_domainValue',
+                  data: industryValue,
+                });
+                wx.setStorage({
+                  key: 'm_domainId',
+                  data: industryId,
+                })
                 that.setData({
                     describe: describe,
                     industryValue: industryValue,
@@ -105,6 +114,9 @@ Page({
                     stage_index: stage_index,
                     scale_index: scale_index,
                     tipsIndex:tipsIndex,
+                    belongArea:belongArea,
+                    provinceNum:provinceNum,
+                    cityNum:cityNum
                 })
 
             },
@@ -118,10 +130,16 @@ Page({
     onShow:function(){
         var that=this;
         var industryValue=wx.getStorageSync('m_domainValue');
-        var industryId=wx.getStorageInfoSync('m_domainId');
+        var industryId=wx.getStorageSync('m_domainId');
+        var belongArea=wx.getStorageSync('m_belongArea');
+        var provinceNum=wx.getStorageSync("m_provinceNum");
+        var cityNum=wx.getStorageSync('m_cityNum')
         this.setData({
             industryValue:industryValue,
-            industryId:industryId
+            industryId:industryId,
+            belongArea:belongArea,
+            provinceNum:provinceNum,
+            cityNum:cityNum
         })
     },
 
@@ -187,16 +205,22 @@ Page({
         var industryId = this.data.industryId;
         var provinceNum = this.data.provinceNum;
         var cityNum = this.data.cityNum;
-        var console_stage = this.data.stage[this.data.stage_index].stage_id;
-        var console_scale = this.data.scale[this.data.scale_index].scale_id;
+        var stageId=this.data.stageId;
+        var scaleId=this.data.scaleId;
+        var stage_index=this.data.stage_index;
+        var scale_index=this.data.scale_index;
+        var console_stage = stageId[stage_index];
+        var console_scale=scaleId[scale_index];
         var tipsIndex = this.data.tipsIndex;
         var user_id = wx.getStorageSync('user_id');
-        // console.log(user_id, describe, industryId, console_stage, console_scale, provinceNum, cityNum, tipsIndex)
+        var pro_id=this.data.pro_id;
+        console.log(user_id, describe, industryId, console_stage, console_scale, provinceNum, cityNum, tipsIndex)
         if (describe !== "" && industryValue !== "选择领域" && console_stage !== 0 && console_scale != 0 && provinceNum !== 0 && cityNum !== 0 && tipsIndex !== 4) {
             wx.request({
-                url: url + '/api/project/insertProject',
+                url: url + '/api/project/updateProject',
                 data: {
                     user_id: user_id,
+                    pro_id:pro_id,
                     pro_intro: describe,
                     industry: industryId,
                     pro_finance_stage: console_stage,

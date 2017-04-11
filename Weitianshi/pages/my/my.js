@@ -103,7 +103,7 @@ Page({
     },
     //交换名片
     cardChange: function () {
-        var that = this;
+        /*var that = this;
         var user_id = this.data.user_id;
         var modal = this.data.modal;
         var status_code = this.data.status_code;
@@ -121,11 +121,11 @@ Page({
                     })
                 }
             })
-        }
+        }*/
 
-        /* wx.navigateTo({
+         wx.navigateTo({
              url: 'sharePage/sharePage?user_id='+user_id,
-         })*/
+         })
     },
 
     //分享名片

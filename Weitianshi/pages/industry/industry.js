@@ -24,21 +24,37 @@ Page({
                 domainValue = [];
                 domainId = [];
             }
+            console.log(domainValue)
+            console.log(typeof domainValue)
         } else if (current == 1) {
             var domainValue = wx.getStorageSync('y_domainValue')
             var domainId = wx.getStorageSync('y_domainId')
+
+            if (!domainValue) {
+                domainValue = [];
+                domainId = [];  
+            }
             if (domainValue == "选择领域") {
                 domainValue = [];
                 domainId = [];
             }
+
+            console.log(domainValue)
+            console.log(typeof domainValue)
         } else if (current == 2) {
             var domainValue = options.industryValue;
             var domainId = options.industryId;
-            console.log(typeof domainId)
+            var domainValue=domainValue.split(",")
+            var domainId=domainId.split(",")
+            for(var i=0;i<domainId.length;i++){
+                domainId[i]=domainId[i]*1
+            }
             if (domainValue == '选择领域') {
                 domainValue = [];
                 domainId = [];
             }
+            console.log(domainValue,domainId)
+            console.log(typeof domainValue)
         }
 
         //checkbox
@@ -57,9 +73,6 @@ Page({
             checked: domainValue,
             index: domainId
         });
-
-
-        console.log(this.data.checked, this.data.index)
     },
 
     //下拉刷新
@@ -79,7 +92,7 @@ Page({
         var value = thisData.value;
         var idx = thisData.index;
         var id = e.currentTarget.id * 1;
-        console.log(checked)
+        console.log(checked,id)
         if (index.indexOf(id) == -1) {
             checked.push(value);
             index.push(id)

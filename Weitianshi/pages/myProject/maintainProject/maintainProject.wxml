@@ -34,7 +34,7 @@
   </view>
   <view class="card">
     <view class="text">所在地区*</view>
-    <navigator url="../../belongArea/belongArea?current=0" id="belongArea">
+    <navigator url="../../belongArea/belongArea?current=1" id="belongArea">
       <view id="belongArea" class="slect flex" bindtap="belongArea">
         <view class="{{belongArea =='选择城市' ? '':'checkOn'}}">{{belongArea}}</view>
         <image class="downArrow" src="../../../img/downArrow.png"></image>
@@ -51,8 +51,7 @@
   </view>
 
   <!--非必填-->
-  <view class="notNecessary">
-    <!--项目名称-->
+  <!--<view class="notNecessary">
     <view class="card">
       <view class="text">项目名称</view>
       <view id="projectName" class="slect flex">
@@ -60,7 +59,6 @@
       </view>
     </view>
 
-    <!--公司名称-->
     <view class="card">
       <view class="text">公司名称</view>
       <view id="companyName" class="slect flex">
@@ -68,7 +66,6 @@
       </view>
     </view>
 
-    <!--项目亮点-->
     <view class="card">
       <view class="text">项目亮点</view>
       <view id="greatPoint" class="slect flex">
@@ -76,7 +73,6 @@
       </view>
     </view>
 
-    <!--投后股份(%)-->
     <view class="card">
       <view class="text">投后股份(%)</view>
       <view id="stock" class="slect flex">
@@ -85,14 +81,13 @@
     </view>
   </view>
 
-  <!--商业计划书-->
   <view class="bp flex">
     <view>项目计划书</view>
     <view class="bpBtn" bindtap="upLoad">去PC上传</view>
   </view>
   <view class="grey">
     BP私密保护,投资人可通过申请查看来了解项目价值
-  </view>
+  </view>-->
 
   
   <button class="nextBtn" bindtap="public">
