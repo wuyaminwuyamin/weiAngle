@@ -177,4 +177,3 @@
     <view bindtap="addNetwork">加入人脉</view>
   </view>
 </scroll-view>
-<view class="modal" hidden="{{modal==1}}"></view>
