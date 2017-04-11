@@ -68,7 +68,6 @@ Page({
             },
             method: 'POST',
             success: function (res) {
-
                 if (res.data.data != '') {
                     //获取已存有的投资领域,投资阶段,投资金额,投次地区
                     var thisData = res.data.data;

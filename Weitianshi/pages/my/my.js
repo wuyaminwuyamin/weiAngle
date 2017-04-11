@@ -103,7 +103,7 @@ Page({
     },
     //交换名片
     cardChange: function () {
-        var that = this;
+     /*   var that = this;
         var user_id = this.data.user_id;
         var modal = this.data.modal;
         var status_code = this.data.status_code;
@@ -121,11 +121,11 @@ Page({
                     })
                 }
             })
-        }
+        }*/
 
-        /* wx.navigateTo({
-             url: 'sharePage/sharePage?user_id='+user_id,
-         })*/
+         wx.navigateTo({
+             url: 'sharePage/sharePage?user_id=V0VznXa0',
+         })
     },
 
     //分享名片
@@ -133,7 +133,7 @@ Page({
         var user_id = wx.getStorageSync('user_id')
         console.log(user_id)
         return {
-            title: '分享您的名片',
+            title: '投资名片',
             // path: '/pages/my/my?user_id=V0VznXa0',
             path: "/pages/my/sharePage/sharePage?user_id=" + user_id,
             success: function (res) {

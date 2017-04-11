@@ -52,15 +52,15 @@ Page({
               var user_mobile = res.data.bind_mobile;
               wx.setStorageSync('user_id', user_id);
               wx.setStorageSync('user_mobile', user_mobile);
-
+              console.log(res)
               // 判断是否绑定过用户
               if (user_id == 0) {
                 that.setData({
                   bindUser: 0
                 })
-              } else{
+              } else {
                 that.setData({
-                  bindUser:1
+                  bindUser: 1
                 })
               }
 
@@ -88,6 +88,7 @@ Page({
     var user_id = this.data.user_id;
     var followed_user_id = this.data.followed_user_id;
     var bindUser = this.data.bindUser;
+
     if (bindUser == 0) {
       wx.showModal({
         title: "提示",
@@ -96,7 +97,7 @@ Page({
           wx.setStorageSync('followed_user_id', followed_user_id)
           if (res.confirm == true) {
             wx.navigateTo({
-              url: '../myProject/personInfo/personInfo'
+              url: '/pages/myProject/personInfo/personInfo'
             })
           }
         }
@@ -110,13 +111,14 @@ Page({
         },
         method: 'POST',
         success: function (res) {
-          if (res.status_code == 2000000) {
+          console.log(res)
+          if (res.data.status_code == 2000000) {
             wx.showModal({
               title: "提示",
               content: "添加人脉成功",
               showCancel: false,
-              confirmText: "跳转到我的人脉库",
-              confirm: function () {
+              confirmText: "到人脉库",
+              success: function (res) {
                 wx.switchTab({
                   url: '/pages/network/network',
                 })
@@ -127,8 +129,8 @@ Page({
               title: "提示",
               content: "您可能已经添加过此人脉",
               showCancel: false,
-              confirmText: "跳转到我的人脉库",
-              confirm: function () {
+              confirmText: "到人脉库",
+              success: function () {
                 wx.switchTab({
                   url: '/pages/network/network',
                 })
@@ -143,10 +145,10 @@ Page({
           })
         },
       })
-    } else{
+    } else {
       showModal({
-        title:"错误提示",
-        content:"bindUser部分出问题了"
+        title: "错误提示",
+        content: "bindUser部分出问题了"
       })
     }
   },
@@ -171,7 +173,7 @@ Page({
               title: "提示",
               content: "添加人脉成功",
               showCancel: false,
-              confirmText: "跳转到我的人脉库",
+              confirmText: "到人脉库",
               confirm: function () {
                 wx.switchTab({
                   url: '/pages/network/network',

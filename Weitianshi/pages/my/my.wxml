@@ -18,7 +18,7 @@
       <image wx:if="{{user.user_avatar_url}}" class="user_pic" src="{{user.user_avatar_url}}"></image>
       <view wx:if="{{user.user_avatar_text}}" class="user_text noPic">{{user.user_avatar_text}}</view>
       <view wx:if="{{!user}}" class="user_text noPic">代</view>
-      <image class="user_edit" src="/img/icon-share@3x.png" catchtap="cardChange"></image>
+      <!--<image class="user_edit" src="/img/icon-share@3x.png" catchtap="cardChange"></image>-->
     </view>
     <view class="user_down flex">
       <view class="user_popularity user_tips">
@@ -71,7 +71,7 @@
       <block wx:for="{{invest.invest_stage}}" wx:key="{{item.stage_id}}">
         <view class="invest_stage" data-id="{{item.stage_id}}" data-value="{{item.stage_name}}">{{item.stage_name}}</view>
       </block>
-      <view class="invest_industry" wx:if="{{invest.invest_stage=='' ||!invest.invest_stage}}">暂无</view>
+      <view class="invest_industry" wx:if="{{invest.invest_stage==''||!invest.invest_stage}}">暂无</view>
     </view>
 
     <!--投资金额-->
@@ -80,7 +80,7 @@
       <block wx:for="{{invest.invest_scale}}" wx:key="{{item.scale_id}}">
         <view class="invest_scale" data-id="{{item.scale_id}}" data-value="{{item.scale_money}}">{{item.scale_money}}</view>
       </block>
-      <view class="invest_industry" wx:if="{[invest.invest_scale.scale_money=='' ||!invest.invest_scale.scale_money}}">暂无</view>
+      <view class="invest_industry" wx:if="{invest.invest_scale=='' ||!invest.invest_scale}}">暂无</view>
     </view>
 
     <!--具体描述-->

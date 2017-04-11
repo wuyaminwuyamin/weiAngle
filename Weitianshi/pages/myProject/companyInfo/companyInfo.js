@@ -134,13 +134,13 @@ Page({
                                 },
                                 method: 'POST',
                                 success: function (res) {
-                                    if (res.status_code == 2000000) {
+                                    if (res.data.status_code == 2000000) {
                                         wx.showModal({
                                             title: "提示",
                                             content: "添加人脉成功",
                                             showCancel: false,
-                                            confirmText: "跳转到我的人脉库",
-                                            confirm: function () {
+                                            confirmText: "到人脉库",
+                                            success: function () {
                                                 wx.switchTab({
                                                     url: '/pages/network/network',
                                                 })
@@ -154,6 +154,11 @@ Page({
                                 url: "/pages/resource/resource"
                             });
                         }
+                    }else{
+                        wx.showModal({
+                            title:"错误提示",
+                            content:"用户已生成,但是公司,职位,邮箱信息绑定失败"
+                        })
                     }
                 },
             })
