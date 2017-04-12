@@ -1,43 +1,13 @@
 <import src="/pages/Template/Template.wxml" />
 <view id="my">
   <!--我的名片-->
-  <template is="myCard" data="{{user:user}}"></template>
-  <view class="grey"></view>
+  <template is="userInfo" data="{{user:user}}"></template>
+
+  <!--个人描述-->
+  <template is="userIntro" data="{{user:user}}"></template>
+
   <!--寻找案源-->
-  <view class="user_invest_info">
-    <view class="flex title">
-      <view>寻找案源</view>
-      <image src=""></image>
-    </view>
-
-    <!--投资领域-->
-    <view class="invest_title">投资领域</view>
-    <view class="invest_industry_frame">
-      <block wx:for="{{invest.invest_industry}}" wx:key="{{item.industry_id}}">
-        <view class="invest_industry" data-id="{{item.industry_id}}" data-value="{{item.industry_name}}">{{item.industry_name}}</view>
-      </block>
-    </view>
-
-    <!--投资轮次-->
-    <view class="invest_title">投资轮次</view>
-    <view class="invest_stage_frame">
-      <block wx:for="{{invest.invest_stage}}" wx:key="{{item.stage_id}}">
-        <view class="invest_stage" data-id="{{item.stage_id}}" data-value="{{item.stage_name}}">{{item.stage_name}}</view>
-      </block>
-    </view>
-
-    <!--投资金额-->
-    <view class="invest_title">投资金额</view>
-    <view class="invest_scale_frame">
-      <block wx:for="{{invest.invest_scale}}" wx:key="{{item.scale_id}}">
-        <view class="invest_scale" data-id="{{item.scale_id}}" data-value="{{item.scale_money}}">{{item.scale_money}}</view>
-      </block>
-    </view>
-
-    <!--具体描述-->
-    <view class="invest_title">具体描述</view>
-    <view class="invest_desc">{{invest.invest_desc}}</view>
-  </view>
+  <template is="InvestInfo" data="{{invest:invest}}"></template>
 
   <!--资源对接-->
   <view class="user_resource_info">

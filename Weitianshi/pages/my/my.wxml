@@ -1,92 +1,14 @@
+<import src="/pages/Template/Template.wxml" />
 <scroll-view id="my" scroll-y="true" scroll-top="{{goTop==1?0:''}}">
+
   <!--我的名片-->
-  <view class="user_info flex" bindtap="cardEdit">
-    <view class="user_left">
-      <view class="user_name" wx:if="{{user.user_real_name}}">{{user.user_real_name}}</view>
-      <view class="user_name" wx:if="{{!user.user_real_name}}">代替名</view>
-      <view class="user_career" wx:if="{{user.user_company_career}}">{{user.user_company_career}}</view>
-      <view class="user_career" wx:if="{{!user.user_company_career}}">职位名称</view>
-      <view class="user_company" wx:if="{{user.user_company_name}}">{{user.user_company_name}}</view>
-      <view class="user_company" wx:if="{{!user.user_company_name}}">公司名称</view>
-      <view class="user_mobile" wx:if="{{user.user_mobile}}">{{user.user_mobile}}</view>
-      <view class="user_mobile" wx:if="{{!user.user_mobile}}">手机号码</view>
-      <view class="user_email" wx:if="{{user.user_email}}">{{user.user_email}}</view>
-      <view class="user_email" wx:if="{{!user.user_email}}">邮箱号码</view>
-    </view>
-    <view class="user_right">
-      <image wx:if="{{user.user_avatar_url}}" class="user_pic" src="{{user.user_avatar_url}}"></image>
-      <view wx:if="{{user.user_avatar_text}}" class="user_text noPic">{{user.user_avatar_text}}</view>
-      <view wx:if="{{!user}}" class="user_text noPic">代</view>
-      <!--<image class="user_edit" src="/img/icon-share@3x.png" catchtap="cardChange"></image>-->
-    </view>
-    <view class="user_down flex">
-      <view class="user_popularity user_tips">
-        <view wx:if="{{user.user_popularity}}">{{user.user_popularity}}</view>
-        <view wx:if="{{!user.user_popularity}}">-</view>
-        <view>人气</view>
-      </view>
-      <view class="user_attention user_tips">
-        <view wx:if="{{user.user_attention}}">{{user.user_attention}}</view>
-        <view wx:if="{{!user.user_attention}}">-</view>
-        <view>收藏我</view>
-      </view>
-      <view class="user_potential user_tips">
-        <view wx:if="{{user.user_potential}}">{{user.user_potential}}</view>
-        <view wx:if="{{!user.user_potential}}">-</view>
-        <view>潜在项目</view>
-      </view>
-    </view>
-  </view>
+  <template is="userInfo" data="{{user:user}}"></template>
 
   <!--个人描述-->
-  <view class="user_intro" bindtap="cardEdit">
-    <view class="intro_title flex">
-      个人描述
-      <image class="iconEdit" src="/img/icon-edit@3x.png"></image>
-    </view>
-    <view class="intro_content" wx:if="{{user}}">{{user.user_intro}}</view>
-    <view class="intro_content" wx:if="{{!user}}" style="height:34rpx;line-height:34rpx;">暂无描述</view>
-  </view>
+  <template is="userIntro" data="{{user:user}}"></template>
 
   <!--寻找案源-->
-  <view class="user_invest_info" bindtap="findProjectEdit">
-    <view class="flex title">
-      <view>寻找案源</view>
-      <image class="iconEdit" src="/img/icon-edit@3x.png"></image>
-    </view>
-
-    <!--投资领域-->
-    <view class="invest_title">投资领域</view>
-    <view class="invest_industry_frame">
-      <block wx:for="{{invest.invest_industry}}" wx:key="{{item.industry_id}}">
-        <view class="invest_industry" data-id="{{item.industry_id}}" data-value="{{item.industry_name}}">{{item.industry_name}}</view>
-      </block>
-      <view class="invest_industry" wx:if="{{invest.invest_industry=='' ||!invest.invest_industry}}">暂无</view>
-    </view>
-
-    <!--投资轮次-->
-    <view class="invest_title">投资轮次</view>
-    <view class="invest_stage_frame">
-      <block wx:for="{{invest.invest_stage}}" wx:key="{{item.stage_id}}">
-        <view class="invest_stage" data-id="{{item.stage_id}}" data-value="{{item.stage_name}}">{{item.stage_name}}</view>
-      </block>
-      <view class="invest_industry" wx:if="{{invest.invest_stage==''||!invest.invest_stage}}">暂无</view>
-    </view>
-
-    <!--投资金额-->
-    <view class="invest_title">投资金额</view>
-    <view class="invest_scale_frame">
-      <block wx:for="{{invest.invest_scale}}" wx:key="{{item.scale_id}}">
-        <view class="invest_scale" data-id="{{item.scale_id}}" data-value="{{item.scale_money}}">{{item.scale_money}}</view>
-      </block>
-      <view class="invest_industry" wx:if="{{invest.invest_scale=='' ||!invest.invest_scale}}">暂无</view>
-    </view>
-
-    <!--具体描述-->
-    <view class="invest_title">具体描述</view>
-    <view class="invest_desc" wx:if="{{user}}">{{invest.invest_desc}}</view>
-    <view class="invest_desc" wx:if="{{!user}}" style="height:34rpx;line-height:34rpx;">暂无描述</view>
-  </view>
+  <template is="InvestInfo" data="{{invest:invest}}"></template>
 
   <!--资源对接-->
   <view class="user_resource_info" bindtap="resourceEnchangeEdit">
@@ -149,12 +71,12 @@
   </view>
 
   <!--投资案例-->
+
   <!--<view class="user_invest_case" bindtap="investCase">
     <view class="flex title">
       <view>投资案例</view>
       <image class="iconEdit" src="/img/icon-edit@3x.png"></image>
     </view>
-
     <view class="invest_case_frame">
       <block wx:for="{{invest_case}}" wx:key="{{item.case_id}}">
         <view class="case_name_frame flex">
@@ -180,7 +102,6 @@
       </view>
     </view>
   </view>-->
-  
   <view style="height:92rpx;"></view>
 
   <!--交换名片-->
