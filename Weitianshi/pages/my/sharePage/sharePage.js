@@ -50,9 +50,9 @@ Page({
             success: function (res) {
               var user_id = res.data.user_id;
               var user_mobile = res.data.bind_mobile;
+              var followed_user_id = that.data.followed_user_id;
               wx.setStorageSync('user_id', user_id);
               wx.setStorageSync('user_mobile', user_mobile);
-              console.log(res)
               // 判断是否绑定过用户
               if (user_id == 0) {
                 that.setData({
@@ -63,7 +63,13 @@ Page({
                   bindUser: 1
                 })
               }
-
+              console.log(user_id, followed_user_id)
+              //如果进入的是自己的名片里
+              if (user_id == followed_user_id) {
+                wx.switchTab({
+                  url: '/pages/network/network',
+                })
+              }
               that.setData({
                 user_id: user_id,
                 user_mobile: user_mobile
@@ -73,13 +79,7 @@ Page({
         }
       }
     });
-    //如果进入的是自己的名片里
-    var user_id = this.data.user_id;
-    if (user_id == followed_user_id) {
-      wx.switchTab({
-        url: '/pages/network/network',
-      })
-    }
+
   },
 
 
@@ -127,7 +127,7 @@ Page({
           } else {
             wx.showModal({
               title: "提示",
-              content: "您可能已经添加过此人脉",
+              content: "您已经添加过此人脉",
               showCancel: false,
               confirmText: "到人脉库",
               success: function () {

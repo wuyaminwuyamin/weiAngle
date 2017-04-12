@@ -97,7 +97,7 @@ Page({
       method: 'POST',
       success: function (res) {
         wx.switchTab({
-          url: '../my',
+          url: '/pages/my/my',
         })
       },
       fail: function (res) {

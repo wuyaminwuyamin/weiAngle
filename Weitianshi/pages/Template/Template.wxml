@@ -21,3 +21,24 @@
     <view class="error" wx:if="{{error=='1'}}">{{error_text}}</view>
   </view>
 </template>
+
+<!--发布投资需求和资源需求的按钮-->
+<template name="publish">
+  <view wx:if="{{hasPublic==0}}">
+    <view class="publish publish2 publish_find_project" bindtap="{{jumpProject}}">
+      <view>{{text.text1}}</view>
+      <view class="weui-media-box__desc">{{text.text2}}</view>
+    </view>
+  </view>
+  <view wx:if="{{hasPublic==1}}">
+    <view class="publish publish2 publish_find_project2" bindtap="{{jumpProject}}">
+      <view style="font-size:24rpx">{{text.text3}}</view>
+      <view class="weui-media-box__desc" style="font-size:20rpx;color:#999;">{{text.text4}}: {{y_domainValue}}</view>
+    </view>
+  </view>
+</template>
+
+<!--demo-->
+<template name="demo">
+  <view>{{text}}</view>
+</template>

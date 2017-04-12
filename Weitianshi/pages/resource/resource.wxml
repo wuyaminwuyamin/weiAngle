@@ -1,3 +1,4 @@
+<import src="/pages/Template/Template.wxml" />
 <view class="r_nav flex">
   <view class="nav_btn nav_on">精准对接</view>
   <navigator url="../needMarket/needMarket" class="nav_btn">需求市场</navigator>
@@ -64,18 +65,7 @@
   <!-- 寻找项目 -->
   <swiper-item>
     <scroll-view style="height:100%;" scroll-y="true" bindscrolltolower='yourPayProject'>
-      <view wx:if="{{hasPublic==0}}">
-        <view class="publish publish2 publish_find_project" bindtap="yourProject">
-          <view>发布投资需求</view>
-          <view class="weui-media-box__desc">快速发布,精准对接优质项目</view>
-        </view>
-      </view>
-      <view wx:if="{{hasPublic==1}}">
-        <view class="publish publish2 publish_find_project2" bindtap="yourProject">
-          <view style="font-size:24rpx">我的投资需求</view>
-          <view class="weui-media-box__desc" style="font-size:20rpx;color:#999;">投资领域: {{y_domainValue}}</view>
-        </view>
-      </view>
+      <template is="publish" data="{{hasPublic:hasPublic,y_domainValue:y_domainValue,text:investText,jumpProject:'yourProject'}}"></template>
       <view class="foryou2" hidden="{{yourProject==''}}">为您对接到的项目</view>
 
       <!--已匹配的项目-->
@@ -119,18 +109,7 @@
   <!-- 资源对接 -->
   <swiper-item>
     <view>
-      <view wx:if="{{hasPublic2==0}}">
-        <view class="publish publish2 publish_find_project" bindtap="resourceNeed">
-          <view>发布资源需求</view>
-          <view class="weui-media-box__desc">快速发布,精准对接优质项目</view>
-        </view>
-      </view>
-      <view wx:if="{{hasPublic2==1}}">
-        <view class="publish publish2 publish_find_project2" bindtap="resourceNeed">
-          <view style="font-size:24rpx">我的资源需求</view>
-          <view class="weui-media-box__desc" style="font-size:20rpx;color:#999;">寻求对接的资源: {{res_find}}</view>
-        </view>
-      </view>
+      <template is="publish" data="{{hasPublic:hasPublic2,y_domainValue:res_find,text:resourceText,jumpProject:'resourceNeed'}}"></template>
       <view class="others">
         <block wx:for="{{res_match}}" wx:key="{{item.resource_id}}">
           <view class="weui-cell" style="background:white;margin:32rpx;margin-bottom:0;border-radius:4px 4px 0 0">

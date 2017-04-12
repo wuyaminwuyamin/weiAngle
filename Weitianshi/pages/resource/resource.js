@@ -15,7 +15,19 @@ Page({
     investor_page: 1,//投资人分页
     share: 1,//分享页面
     page_end: false,
-    hasPublic2:0
+    hasPublic2:0,
+    investText:{
+      text1:"发布投资需求",
+      text2:"快速发布,精准对接优质项目",
+      text3:"我的投资需求",
+      text4:"投资领域"
+    },
+    resourceText:{
+      text1:"发布资源需求",
+      text2:"快速发布,精准对接优质项目",
+      text3:"我的资源需求",
+      text4:"寻求对接的资源"
+    }
   },
   //载入页面
   onLoad: function (option) {

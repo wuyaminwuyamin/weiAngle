@@ -1,5 +1,4 @@
-<scroll-view id="my" scroll-y="true">
-
+<scroll-view id="my" scroll-y="true" scroll-top="{{goTop==1?0:''}}">
   <!--我的名片-->
   <view class="user_info flex" bindtap="cardEdit">
     <view class="user_left">
@@ -80,7 +79,7 @@
       <block wx:for="{{invest.invest_scale}}" wx:key="{{item.scale_id}}">
         <view class="invest_scale" data-id="{{item.scale_id}}" data-value="{{item.scale_money}}">{{item.scale_money}}</view>
       </block>
-      <view class="invest_industry" wx:if="{invest.invest_scale=='' ||!invest.invest_scale}}">暂无</view>
+      <view class="invest_industry" wx:if="{{invest.invest_scale=='' ||!invest.invest_scale}}">暂无</view>
     </view>
 
     <!--具体描述-->

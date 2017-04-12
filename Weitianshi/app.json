@@ -31,7 +31,7 @@
   ],
   "window": {
     "navigationBarBackgroundColor": "#fff",
-    "navigationBarTitleText": "WeChat",
+    "navigationBarTitleText": "微天使乐投平台",
     "navigationBarTextStyle": "black",
     "enablePullDownRefresh": true,
     "backgroundTextStyle": "dark"
@@ -65,5 +65,11 @@
     ],
     "selectedColor": "black",
     "borderStyle": "white"
+  },
+  "networkTimeout": {
+    "request": 20000,
+    "connectSocket": 20000,
+    "uploadFile": 20000,
+    "downloadFile": 20000
   }
 }

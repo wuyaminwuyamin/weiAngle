@@ -25,7 +25,6 @@ Page({
       wx.request({
         url: url + '/api/user/createUserProjectCase',
         data: {
-
         },
         method: 'POST',
         success: function (res) {

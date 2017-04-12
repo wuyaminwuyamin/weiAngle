@@ -1,12 +1,15 @@
 //app.js
 App({
-  onLaunch: function () {
+  onLaunch: function (options) {
     //调用API从本地缓存中获取数据
     var logs = wx.getStorageSync('logs') || [];
     logs.unshift(Date.now());
     wx.setStorageSync('logs', logs)
+    // console.log(options.scene)
   },
-
+  onError: function (msg) {
+    console.log(msg)
+  },
 
   //获取用户信息
   getUserInfo: function (cb) {
@@ -34,6 +37,7 @@ App({
                 },
                 method: 'POST',
                 success: function (res) {
+                  console.log(res)
                 },
                 fail: function () {
                   console.log("向后台发送信息失败")
@@ -48,7 +52,6 @@ App({
       })
     }
   },
-
 
   //维护登录状态
   checkLogin: function () {
@@ -65,15 +68,9 @@ App({
             },
             method: 'POST',
             success: function (res) {
-              //本地存入open_session
-              wx.setStorageSync('open_session', res.data.open_session);
               wx.setStorageSync('bind_mobile', res.data.bind_mobile);
               wx.setStorageSync('user_id', res.data.user_id);
               console.log(res.data.user_id)
-              //检查是否绑定手机
-              var bind_mobile = wx.getStorageSync('bind_mobile');
-              // console.log("维护登录状态成功,已将bind_mobile,user_id,open_session存入缓存");
-              // console.log(res.data.bind_mobile, res.data.user_id, res.data.open_session);
             },
             fail: function () {
               console.log("向后台获取3rd_session失败")
@@ -87,11 +84,20 @@ App({
     //微信登录状态维护
     wx.checkSession({
       success: function () {
-        //session 未过期，并且在本生命周期一直有效
+      },
+      fail: function () {
+        wx.login();
+      }
+    })
+  },
+  //微信登录状态维护
+  checkSession: function () {
+    wx.checkSession({
+      success: function () {
       },
       fail: function () {
         //登录态过期
-        wx.login(); //重新登录
+        wx.login() //重新登录
       }
     })
   },
@@ -99,8 +105,7 @@ App({
   //查看缓存
   cacheCheck: function () {
     var res = wx.getStorageInfoSync();
-    // console.log(res.keys);
-    // console.log(res.currentSize);
+    console.log(res)
   },
 
   //报错
@@ -145,8 +150,6 @@ App({
   //初始本地缓存
   globalData: {
     error: 0,
-    error_text: "111111",
-    y_domainValue: "选择领域",
     url: "https://www.weitianshi.com.cn"
   }
 });

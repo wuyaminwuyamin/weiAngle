@@ -115,7 +115,7 @@ Page({
                         if (endTime > 1) {
                             endTime--;
                             that.setData({
-                                getCode: endTime + 's后重新获取验证码'
+                                getCode: endTime + 's后重新获取'
                             })
                         }
                     }, 1000)
