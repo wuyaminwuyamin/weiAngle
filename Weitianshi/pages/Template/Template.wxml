@@ -1,27 +1,4 @@
 
-<!--多选页面-->
-<template name='multCheckPage'>
-  <view id="doMain">
-    <!--<view class="title">*最多可选择1个</view>-->
-    <view class="context flex">
-      <block wx:for="{{payMoney}}">
-        <label class="tips">
-          <view wx:for-index="idx" bindtap="radioCheck" id="{{item.scale_id}}" data-index="{{index}}" data-value='{{item.scale_money}}' data-check="0" value="{{item.scale_money}}" checked="{{item.checked}}" wx:key="{{item.scale_id}}">
-            <checkbox class="checkbox"></checkbox>
-            {{item.scale_money}}</view>
-        </label>
-      </block>
-    </view>
-    <button class="nextBtn" bindtap="certain">
-      确定
-      <image class="rightArrow" src="../../img/rightArrow.png"></image>
-    </button>
-
-    <!--错误提示-->
-    <view class="error" wx:if="{{error=='1'}}">{{error_text}}</view>
-  </view>
-</template>
-
 <!--发布投资需求和资源需求的按钮-->
 <template name="publish">
   <view wx:if="{{hasPublic==0}}">
@@ -38,7 +15,44 @@
   </view>
 </template>
 
-<!--demo-->
-<template name="demo">
-  <view>{{text}}</view>
+<!--我的名片-->
+<template name="myCard">
+  <view class="user_info flex" bindtap="cardEdit">
+    <view class="user_left">
+      <view class="user_name" wx:if="{{user.user_real_name}}">{{user.user_real_name}}</view>
+      <view class="user_name" wx:if="{{!user.user_real_name}}">代替名</view>
+      <view class="user_career" wx:if="{{user.user_company_career}}">{{user.user_company_career}}</view>
+      <view class="user_career" wx:if="{{!user.user_company_career}}">职位名称</view>
+      <view class="user_company" wx:if="{{user.user_company_name}}">{{user.user_company_name}}</view>
+      <view class="user_company" wx:if="{{!user.user_company_name}}">公司名称</view>
+      <view class="user_mobile" wx:if="{{user.user_mobile}}">{{user.user_mobile}}</view>
+      <view class="user_mobile" wx:if="{{!user.user_mobile}}">手机号码</view>
+      <view class="user_email" wx:if="{{user.user_email}}">{{user.user_email}}</view>
+      <view class="user_email" wx:if="{{!user.user_email}}">邮箱号码</view>
+    </view>
+    <view class="user_right">
+      <image wx:if="{{user.user_avatar_url}}" class="user_pic" src="{{user.user_avatar_url}}"></image>
+      <view wx:if="{{user.user_avatar_text}}" class="user_text noPic">{{user.user_avatar_text}}</view>
+      <view wx:if="{{!user}}" class="user_text noPic">代</view>
+
+      <!--<image class="user_edit" src="/img/icon-share@3x.png" catchtap="cardChange"></image>-->
+    </view>
+    <view class="user_down flex">
+      <view class="user_popularity user_tips">
+        <view wx:if="{{user.user_popularity}}">{{user.user_popularity}}</view>
+        <view wx:if="{{!user.user_popularity}}">-</view>
+        <view>人气</view>
+      </view>
+      <view class="user_attention user_tips">
+        <view wx:if="{{user.user_attention}}">{{user.user_attention}}</view>
+        <view wx:if="{{!user.user_attention}}">-</view>
+        <view>收藏我</view>
+      </view>
+      <view class="user_potential user_tips">
+        <view wx:if="{{user.user_potential}}">{{user.user_potential}}</view>
+        <view wx:if="{{!user.user_potential}}">-</view>
+        <view>潜在项目</view>
+      </view>
+    </view>
+  </view>
 </template>

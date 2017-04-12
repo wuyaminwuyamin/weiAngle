@@ -1,31 +1,7 @@
+<import src="/pages/Template/Template.wxml" />
 <view id="my">
-
   <!--我的名片-->
-  <view class="user_info flex">
-    <view class="user_right">
-      <image wx:if="{{user.user_avatar_url}}" class="user_pic" src="{{user.user_avatar_url}}"></image>
-      <view wx:if="{{user.user_avatar_text}}" class="user_text noPic">{{user.user_avatar_text}}</view>
-    </view>
-    <view class="user_left">
-      <view class="user_name" wx:if="{{user.user_real_name}}">{{user.user_real_name}}</view>
-      <view class="user_name" wx:if="{{!user.user_real_name}}">代替名</view>
-      <view class="user_company" wx:if="{{user.user_company_name}}">{{user.user_company_name}}</view>
-      <view class="user_company" wx:if="{{!user.user_company_name}}">公司名称</view>
-      <view class="user_career" wx:if="{{user.user_company_career}}">{{user.user_company_career}}</view>
-      <view class="user_career" wx:if="{{!user.user_company_career}}">职位名称</view>
-
-      <!--<view class="user_mobile" wx:if="{{user.user_mobile}}">{{user.user_mobile}}</view>
-        <view class="user_mobile" wx:if="{{!user.user_mobile}}">手机号码</view>
-        <view class="user_email" wx:if="{{user.user_email}}">{{user.user_email}}</view>
-      <view class="user_email" wx:if="{{!user.user_email}}">邮箱号码</view>-->
-    </view>
-
-    <!--个人描述-->
-    <view class="user_intro">
-      <view class="intro_title">个人描述</view>
-      <view class="intro_content">{{user.user_intro}}</view>
-    </view>
-  </view>
+  <template is="myCard" data="{{user:user}}"></template>
   <view class="grey"></view>
   <!--寻找案源-->
   <view class="user_invest_info">
