@@ -20,10 +20,10 @@ Page({
         that.setData({
           user_info: res.data.user_info,
           name: res.data.user_info.user_real_name,
-          mobile:res.data.user_info.user_real_mobile,
-          career:res.data.user_info.user_company_career,
-          company:res.data.user_info.user_company_name,
-          describe:res.data.user_info.user_intro
+          mobile: res.data.user_info.user_real_mobile,
+          career: res.data.user_info.user_company_career,
+          company: res.data.user_info.user_company_name,
+          describe: res.data.user_info.user_intro
         })
       },
       fail: function (res) {
@@ -83,22 +83,30 @@ Page({
     var career = this.data.career;
     var eMail = this.data.eMail;
     var describe = this.data.describe;
-    var user_id=wx.getStorageSync('user_id')
+    var user_id = wx.getStorageSync('user_id')
     wx.request({
-      url: url+'/api/wx/updateUser',
+      url: url + '/api/wx/updateUser',
       data: {
-        user_id:user_id,
-        user_real_name:name,
-        user_company_name:company,
-        user_company_career:career,
-        user_email:eMail,
-        user_intro:describe
+        user_id: user_id,
+        user_real_name: name,
+        user_company_name: company,
+        user_company_career: career,
+        user_email: eMail,
+        user_intro: describe
       },
       method: 'POST',
       success: function (res) {
-        wx.switchTab({
-          url: '/pages/my/my',
-        })
+        if (res.data.status_code == 2000000) {
+          wx.switchTab({
+            url: '/pages/my/my',
+          })
+        }else{
+          wx.showModal({
+            title:"错误提示",
+            content:res.data.error_msg,
+            showCancel:false
+          })
+        }
       },
       fail: function (res) {
         console.log(res)
