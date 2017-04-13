@@ -113,7 +113,7 @@
   <!-- 资源需求 -->
   <swiper-item>
     <scroll-view scroll-y="true" bindscrolltolower='resourceNeed'>
-      <view class="resourceNeed" hidden="true">
+      <view class="resourceNeed">
         <block wx:for="{{resourceNeed}}" wx:key="{{item.res_id}}">
           <view class="card" data-id="{{item.res_id}}" bindtap="investorDetail">
             <view class="user_info flex">

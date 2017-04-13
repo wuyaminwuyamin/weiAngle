@@ -27,14 +27,16 @@
       <view class="user_company" wx:if="{{!user.user_company_name}}">公司名称：暂无编辑</view>
       <view class="user_mobile" wx:if="{{user.user_mobile}}">手机：{{user.user_mobile}}</view>
       <view class="user_mobile" wx:if="{{!user.user_mobile}}">手机号码：暂无编辑</view>
-      <view class="user_email" wx:if="{{user.user_email}}">邮箱：{{user.user_email}}</view>
+      <view class="user_email flex" wx:if="{{user.user_email}}">
+        <view>邮箱：{{user.user_email}}</view>
+        <image class="user_edit" src="/img/icon-Share2@3x.png" catchtap="cardChange"></image>
+      </view>
       <view class="user_email" wx:if="{{!user.user_email}}">邮箱号码：暂无编辑</view>
     </view>
     <view class="user_right">
       <image wx:if="{{user.user_avatar_url}}" class="user_pic" src="{{user.user_avatar_url}}"></image>
       <view wx:if="{{user.user_avatar_text}}" class="user_text noPic">{{user.user_avatar_text}}</view>
       <image wx:if="{{!user}}" class="user_pic" src="/img/img-avatar@3x.png"></image>
-      <image class="user_edit" src="/img/icon-Share2@3x.png" catchtap="cardChange"></image>
     </view>
   </view>
   <view class="user_down flex">
@@ -59,14 +61,14 @@
 <!--个人描述-->
 <template name="userIntro">
   <view class="user_intro" bindtap="cardEdit">
-    <view class="intro_title flex" >
+    <view class="intro_title flex">
       <view class="title">
         <image class="title_icon" src="/img/icon-miaoshu@3x.png"></image>
         个人描述
       </view>
       <image class="iconEdit" src="/img/icon-edit@3x.png"></image>
     </view>
-    <view class="intro_content" wx:if="{{user.user_intro!=''}}">{{user.user_intro}}</view>
+    <view class="intro_content" wx:if="{{user.user_intro ==true}}">{{user.user_intro}}</view>
   </view>
 </template>
 
@@ -107,7 +109,7 @@
 
     <!--具体描述-->
     <view class="invest_title">具体描述</view>
-    <view class="invest_desc" wx:if="{{invest.invest_desc !=''}}">{{invest.invest_desc}}</view>
+    <view class="invest_desc" wx:if="{{invest.invest_desc ==true}}">{{invest.invest_desc}}</view>
   </view>
 </template>
 
@@ -131,12 +133,11 @@
     </view>
 
     <!--正寻求资源-->
-    <view class="resource_title" wx:if="{{resource.res_find!=''}}">正寻求资源</view>
-    <view class="res_find_frame" wx:if="{{resource.res_find!=''}}">
+    <view class="resource_title" wx:if="{{resource.res_find !=''}}">正寻求资源</view>
+    <view class="res_find_frame" wx:if="{{resource.res_find !=''}}">
       <block wx:for="{{resource.res_find}}" wx:key="{{item.resource_id}}">
         <view class="res_find" data-id="{{item.resource_id}}" data-value="{{item.resource_name}}">{{item.resource_name}}</view>
       </block>
-      <view class="res_find">暂无</view>
     </view>
   </view>
 </template>

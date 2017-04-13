@@ -53,7 +53,9 @@ Page({
       data: {},
       method: 'POST',
       success: function (res) {
+        console.log(res)
         var resourceNeed = res.data.data;
+        console.log(resourceNeed)
         that.setData({
           resourceNeed: resourceNeed
         })

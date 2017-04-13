@@ -11,13 +11,15 @@ page {
 
 /*用户名片*/
 
-.user_right .user_edit {
+.user_edit {
   display: block;
   width: 40rpx;
   height: 40rpx;
   border-radius: 0;
-  margin: 0 auto;
-  padding-top: 192rpx;
+  padding: 40rpx;
+  margin: 0;
+  padding-bottom: 0;
+  margin-top: -40rpx;
 }
 
 .user_info {
@@ -72,7 +74,9 @@ page {
 }
 
 .user_email {
+  justify-content: space-between;
   margin-bottom: 0;
+  width: 604rpx;
 }
 
 .user_popularity, .user_attention, .user_potential {
