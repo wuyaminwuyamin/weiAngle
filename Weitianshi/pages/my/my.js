@@ -36,6 +36,7 @@ Page({
                     var resource = res.data.resource_info;
                     var project_info = res.data.project_info;
                     var invest_case = res.data.invest_case;
+                    console.log(invest)
                     var status_code = res.data.status_code;
                     that.setData({
                         user: user,

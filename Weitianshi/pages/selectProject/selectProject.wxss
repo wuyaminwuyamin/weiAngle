@@ -170,7 +170,3 @@ page {
   font-size: 28rpx;
   padding-bottom: 12rpx;
 }
-
-.error {
-  bottom: 100rpx;
-}

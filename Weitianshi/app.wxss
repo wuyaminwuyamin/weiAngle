@@ -90,7 +90,7 @@ page {
   color: #666;
   text-align: center;
   position: fixed;
-  bottom: 346rpx;
+  bottom: 100rpx;
   left: 50%;
   transform: translateX(-50%);
   padding: 16rpx 32rpx;
@@ -137,12 +137,12 @@ page {
 /*空图象*/
 
 .empty {
-  width: 125px;
-  height: 150px;
+  width: 212rpx;
+  height: 256rpx;
   display: inline-block;
   overflow: hidden;
   text-align: center;
-  padding-top: 75px;
+  padding-top: 228rpx;
 }
 
 /*名片*/

@@ -58,3 +58,7 @@ input {
   font-size: 32rpx;
   border-radius: 200rpx;
 }
+
+.error{
+  bottom:346rpx;
+}

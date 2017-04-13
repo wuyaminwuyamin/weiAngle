@@ -1,5 +1,5 @@
+<import src="/pages/Template/Template.wxml" />
 <scroll-view style="height:100%;" scroll-y="true" bindscrolltolower='loadMore'>
-
   <!--已匹配的项目-->
   <view class="others">
     <block wx:for="{{slectProject}}" wx:key="{{pro_id}}" wx:for-item="myProject">

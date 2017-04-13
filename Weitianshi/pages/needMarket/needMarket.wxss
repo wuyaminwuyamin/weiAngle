@@ -250,6 +250,6 @@ swiper-item {
 .empty{
   padding-top: 396rpx;
   margin-left: -32rpx;
-  width: 176rpx;
-  height: 216rpx; 
+  width: 205rpx;
+  height: 256rpx; 
 }

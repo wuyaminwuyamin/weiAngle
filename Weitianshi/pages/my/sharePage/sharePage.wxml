@@ -1,176 +1,21 @@
+<import src="/pages/Template/Template.wxml" />
 <scroll-view id="my" scroll-y="true">
-
   <!--我的名片-->
-  <view class="user_info flex" bindtap="cardEdit">
-    <view class="user_left">
-      <view class="user_name" wx:if="{{user.user_real_name}}">{{user.user_real_name}}</view>
-      <view class="user_name" wx:if="{{!user.user_real_name}}">代替名</view>
-      <view class="user_career" wx:if="{{user.user_company_career}}">{{user.user_company_career}}</view>
-      <view class="user_career" wx:if="{{!user.user_company_career}}">职位名称</view>
-      <view class="user_company" wx:if="{{user.user_company_name}}">{{user.user_company_name}}</view>
-      <view class="user_company" wx:if="{{!user.user_company_name}}">公司名称</view>
-      <view class="user_mobile" wx:if="{{user.user_mobile}}">{{user.user_mobile}}</view>
-      <view class="user_mobile" wx:if="{{!user.user_mobile}}">手机号码</view>
-      <view class="user_email" wx:if="{{user.user_email}}">{{user.user_email}}</view>
-      <view class="user_email" wx:if="{{!user.user_email}}">邮箱号码</view>
-    </view>
-    <view class="user_right">
-      <image wx:if="{{user.user_avatar_url}}" class="user_pic" src="{{user.user_avatar_url}}"></image>
-      <view wx:if="{{user.user_avatar_text}}" class="user_text noPic">{{user.user_avatar_text}}</view>
-      <view wx:if="{{!user}}" class="user_text noPic">代</view>
-    </view>
-    <view class="user_down flex">
-      <view class="user_popularity user_tips">
-        <view wx:if="{{user.user_popularity}}">{{user.user_popularity}}</view>
-        <view wx:if="{{!user.user_popularity}}">-</view>
-        <view>人气</view>
-      </view>
-      <view class="user_attention user_tips">
-        <view wx:if="{{user.user_attention}}">{{user.user_attention}}</view>
-        <view wx:if="{{!user.user_attention}}">-</view>
-        <view>收藏我</view>
-      </view>
-      <view class="user_potential user_tips">
-        <view wx:if="{{user.user_potential}}">{{user.user_potential}}</view>
-        <view wx:if="{{!user.user_potential}}">-</view>
-        <view>潜在项目</view>
-      </view>
-    </view>
-  </view>
+  <template is="userInfo" data="{{user:user}}"></template>
 
   <!--个人描述-->
-  <view class="user_intro">
-    <view class="intro_title flex">
-      个人描述
-    </view>
-    <view class="intro_content" wx:if="{{user}}">{{user.user_intro}}</view>
-    <view class="intro_content" wx:if="{{!user}}" style="height:34rpx;line-height:34rpx;">暂无描述</view>
-  </view>
+  <template is="userIntro" data="{{user:user}}"></template>
 
   <!--寻找案源-->
-  <view class="user_invest_info">
-    <view class="flex title">
-      <view>寻找案源</view>
-    </view>
-
-    <!--投资领域-->
-    <view class="invest_title">投资领域</view>
-    <view class="invest_industry_frame">
-      <block wx:for="{{invest.invest_industry}}" wx:key="{{item.industry_id}}">
-        <view class="invest_industry" data-id="{{item.industry_id}}" data-value="{{item.industry_name}}">{{item.industry_name}}</view>
-      </block>
-      <view class="invest_industry" wx:if="{{invest.invest_industry=='' ||!invest.invest_industry}}">暂无</view>
-    </view>
-
-    <!--投资轮次-->
-    <view class="invest_title">投资轮次</view>
-    <view class="invest_stage_frame">
-      <block wx:for="{{invest.invest_stage}}" wx:key="{{item.stage_id}}">
-        <view class="invest_stage" data-id="{{item.stage_id}}" data-value="{{item.stage_name}}">{{item.stage_name}}</view>
-      </block>
-      <view class="invest_industry" wx:if="{{invest.invest_stage=='' ||!invest.invest_stage}}">暂无</view>
-    </view>
-
-    <!--投资金额-->
-    <view class="invest_title">投资金额</view>
-    <view class="invest_scale_frame">
-      <block wx:for="{{invest.invest_scale}}" wx:key="{{item.scale_id}}">
-        <view class="invest_scale" data-id="{{item.scale_id}}" data-value="{{item.scale_money}}">{{item.scale_money}}</view>
-      </block>
-      <view class="invest_industry" wx:if="{[invest.invest_scale.scale_money=='' ||!invest.invest_scale.scale_money}}">暂无</view>
-    </view>
-
-    <!--具体描述-->
-    <view class="invest_title">具体描述</view>
-    <view class="invest_desc" wx:if="{{user}}">{{invest.invest_desc}}</view>
-    <view class="invest_desc" wx:if="{{!user}}" style="height:34rpx;line-height:34rpx;">暂无描述</view>
-  </view>
+  <template is="InvestInfo" data="{{invest:invest}}"></template>
 
   <!--资源对接-->
-  <view class="user_resource_info">
-    <view class="flex title">
-      <view>资源对接</view>
-    </view>
-
-    <!--可提供资源-->
-    <view class="resource_title">可提供资源</view>
-    <view class="res_give_frame">
-      <block wx:for="{{resource.res_give}}" wx:key="{{item.resource_id}}">
-        <view class="res_give" data-id="{{item.resource_id}}" data-value="{{item.resource_name}}">{{item.resource_name}}</view>
-      </block>
-      <view class="res_give" wx:if="{{resource.res_give=='' ||!resource.res_give}}">暂无</view>
-    </view>
-
-    <!--正寻求资源-->
-    <view class="resource_title">正寻求资源</view>
-    <view class="res_find_frame">
-      <block wx:for="{{resource.res_find}}" wx:key="{{item.resource_id}}">
-        <view class="res_find" data-id="{{item.resource_id}}" data-value="{{item.resource_name}}">{{item.resource_name}}</view>
-      </block>
-      <view class="res_find" wx:if="{{resource.res_find=='' ||!resource.res_find}}">暂无</view>
-    </view>
-  </view>
+  <template is="resourceInfo" data="{{resource:resource}}"></template>
 
   <!--项目融资-->
-  <view class="user_project_info">
-    <view class="flex title">
-      <view>项目融资</view>
-    </view>
+  <template is="projectInfo" data="{{project_info:project_info}}"></template>
 
-    <!--融资项目-->
-    <view class="projcet_info_frame">
-      <block wx:for="{{project_info}}" wx:key="{{item.pro_intro}}">
-        <view class="project_card">
-          <view class="pro_intro">{{item.pro_intro}}</view>
-          <view class="pro_industry_frame flex">
-            <block wx:for="{{item.pro_industry}}" wx:key="{{item.industry_id}}" wx:for-item="pro_industry">
-              <view class="pro_industry" data-id="{{pro_industry.industry_id}}" data-vlaue="{{pro_industry.industry_name}}">{{pro_industry.industry_name}}</view>
-            </block>
-          </view>
-          <view class="pro_sorts flex">
-            <view class="pro_sort" wx:if="{{item.pro_stage.stage_name}}">{{item.pro_stage.stage_name}}</view>
-            <view class="pro_sort" wx:if="{{item.pro_city.area_title}}">{{item.pro_city.area_title}}</view>
-            <view class="pro_sort" wx:if="{{item.pro_scale.scale_money}}">{{item.pro_scale.scale_money}}</view>
-          </view>
-        </view>
-      </block>
-      <view class="project_card project_card_null" wx:if="{{project_info=='' || !project_info}}">暂无</view>
-    </view>
-  </view>
-
-  <!--投资案例-->
-  <view class="user_invest_case">
-    <view class="flex title">
-      <view>投资案例</view>
-    </view>
-
-    <!--融资项目-->
-    <view class="invest_case_frame">
-      <block wx:for="{{invest_case}}" wx:key="{{item.case_id}}">
-        <view class="case_name_frame flex">
-          <image src="" class="case_point"></image>
-          <view class="case_name">{{item.case_name}}</view>
-          <view class="case_time">{{item.case_deal_time}}</view>
-        </view>
-        <view class="pro_industry_frame flex">
-          <block wx:for="{{item.pro_industry}}" wx:key="{{item.industry_id}}" wx:for-item="pro_industry">
-            <view class="pro_industry" data-id="{{pro_industry.industry_id}}" data-vlaue="{{pro_industry.industry_name}}">{{pro_industry.industry_name}}</view>
-          </block>
-        </view>
-        <view class="pro_sorts flex">
-          <view class="pro_sort" wx:if="{{item.stage}}">{{item.stage}}</view>
-          <view class="pro_sort" wx:if="{{item.pro_city.area_title}}">{{item.pro_city.area_title}}</view>
-          <view class="pro_sort" wx:if="{{item.pro_scale.scale_money}}">{{item.pro_scale.scale_money}}</view>
-        </view>
-      </block>
-    </view>
-    <view wx:if="{{invest_case ==''}}">
-      <view class="flex">
-        <!--<image src=""></image>-->
-        <view class="nothingNow" wx:if="{{!invest_case}}">暂无</view>
-      </view>
-    </view>
-  </view>
+  <template is="forButton"></template>
 
   <!--我的人脉和加入人脉-->
   <view class="aboutNetwork flex">

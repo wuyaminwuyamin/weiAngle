@@ -37,7 +37,7 @@ App({
                 },
                 method: 'POST',
                 success: function (res) {
-                  console.log(res)
+                  
                 },
                 fail: function () {
                   console.log("向后台发送信息失败")

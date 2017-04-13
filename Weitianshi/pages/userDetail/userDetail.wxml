@@ -10,80 +10,9 @@
   <template is="InvestInfo" data="{{invest:invest}}"></template>
 
   <!--资源对接-->
-  <view class="user_resource_info">
-    <view class="flex title">
-      <view>资源对接</view>
-      <image src=""></image>
-    </view>
-
-    <!--可提供资源-->
-    <view class="resource_title">可提供资源</view>
-    <view class="res_give_frame">
-      <block wx:for="{{resouce.res_give}}" wx:key="{{item.resource_id}}">
-        <view class="res_give" data-id="{{item.resource_id}}" data-value="{{item.resouce_name}}">{{item.resouce_name}}</view>
-      </block>
-    </view>
-
-    <!--正寻求资源-->
-    <view class="resource_title">正寻求资源</view>
-    <view class="res_find_frame">
-      <block wx:for="{{resource.res_find}}" wx:key="{{item.resource_id}}">
-        <view class="res_find" data-id="{{item.resource_id}}" data-value="{{item.resource_name}}">{{item.resource_name}}</view>
-      </block>
-    </view>
-  </view>
+  <template is="resourceInfo" data="{{resource:resource}}"></template>
 
   <!--项目融资-->
-  <view class="user_project_info">
-    <view class="flex title">
-      <view>项目融资</view>
-    </view>
+  <template is="projectInfo" data="{{project_info:project_info}}"></template>
 
-    <!--融资项目-->
-    <view class="projcet_info_frame">
-      <block wx:for="{{project_info}}" wx:key="{{item.pro_intro}}">
-        <view class="project_card">
-          <view class="pro_intro">{{item.pro_intro}}</view>
-        </view>
-        <view class="pro_industry_frame flex">
-          <block wx:for="{{item.pro_industry}}" wx:key="{{item.industry_id}}" wx:for-item="pro_industry">
-            <view class="pro_industry" data-id="{{pro_industry.industry_id}}" data-vlaue="{{pro_industry.industry_name}}">{{pro_industry.industry_name}}</view>
-          </block>
-        </view>
-        <view class="pro_sorts flex">
-          <view class="pro_sort" wx:if="{{item.pro_stage.stage_name}}">{{item.pro_stage.stage_name}}</view>
-          <view class="pro_sort" wx:if="{{item.pro_city.area_title}}">{{item.pro_city.area_title}}</view>
-          <view class="pro_sort" wx:if="{{item.pro_scale.scale_money}}">{{item.pro_scale.scale_money}}</view>
-        </view>
-      </block>
-    </view>
-  </view>
-
-  <!--投资案例-->
-  <view class="user_invest_case">
-    <view class="flex title">
-      <view>投资案例</view>
-    </view>
-
-    <!--融资项目-->
-    <view class="invest_case_frame">
-      <block wx:for="{{invest_case}}" wx:key="{{item.case_id}}">
-        <view class="case_name_frame flex">
-          <image src="" class="case_point"></image>
-          <view class="case_name">{{item.case_name}}</view>
-          <view class="case_time">{{item.case_deal_time}}</view>
-        </view>
-        <view class="pro_industry_frame flex">
-          <block wx:for="{{item.pro_industry}}" wx:key="{{item.industry_id}}" wx:for-item="pro_industry">
-            <view class="pro_industry" data-id="{{pro_industry.industry_id}}" data-vlaue="{{pro_industry.industry_name}}">{{pro_industry.industry_name}}</view>
-          </block>
-        </view>
-        <view class="pro_sorts flex">
-          <view class="pro_sort" wx:if="{{item.stage}}">{{item.stage}}</view>
-          <view class="pro_sort" wx:if="{{item.pro_city.area_title}}">{{item.pro_city.area_title}}</view>
-          <view class="pro_sort" wx:if="{{item.pro_scale.scale_money}}">{{item.pro_scale.scale_money}}</view>
-        </view>
-      </block>
-    </view>
-  </view>
 </view>

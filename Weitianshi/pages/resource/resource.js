@@ -15,18 +15,18 @@ Page({
     investor_page: 1,//投资人分页
     share: 1,//分享页面
     page_end: false,
-    hasPublic2:0,
-    investText:{
-      text1:"发布投资需求",
-      text2:"快速发布,精准对接优质项目",
-      text3:"我的投资需求",
-      text4:"投资领域"
+    hasPublic2: 0,
+    investText: {
+      text1: "发布投资需求",
+      text2: "快速发布,精准对接优质项目",
+      text3: "我的投资需求",
+      text4: "投资领域"
     },
-    resourceText:{
-      text1:"发布资源需求",
-      text2:"快速发布,精准对接优质项目",
-      text3:"我的资源需求",
-      text4:"寻求对接的资源"
+    resourceText: {
+      text1: "发布资源需求",
+      text2: "快速发布,精准对接优质项目",
+      text3: "我的资源需求",
+      text4: "寻求对接的资源"
     }
   },
   //载入页面
@@ -66,14 +66,12 @@ Page({
             },
             method: 'POST',
             success: function (res) {
-              console.log(res)
               //本地存入open_session,bind_mobile,user_id
               wx.setStorageSync('open_session', res.data.open_session);
               wx.setStorageSync('bind_mobile', res.data.bind_mobile);
               wx.setStorageSync('user_id', res.data.user_id);
               var bind_mobile = wx.getStorageSync('bind_mobile');
               var user_id = res.data.user_id;
-              console.log(res.data.user_id)
               // console.log(res.data.bind_mobile, res.data.user_id, res.data.open_session)
               if (user_id != 0) {
                 // console.log("请求了列表信息")
@@ -119,7 +117,6 @@ Page({
   onShow: function () {
     // console.log("this is onShow")
     var that = this;
-    var y_domainValue = wx.getStorageSync('y_domainValue');
     var current = this.data.currentTab;
     var user_industry = [];
     var user_industryId = [];
@@ -129,9 +126,6 @@ Page({
     var user_scaleId = [];
     var user_stage = [];
     var user_stageId = []
-    that.setData({
-      y_domainValue: y_domainValue
-    })
 
     wx.login({
       success: function (res) {
@@ -145,7 +139,6 @@ Page({
             success: function (res) {
               var user_id = res.data.user_id;
               var bind_mobile = res.data.bind_mobile;
-              console.log(user_id)
               wx.setStorageSync('user_id', user_id);
               wx.setStorageSync('bind_mobile', bind_mobile)
               //获取我的项目匹配到的投资人
@@ -190,6 +183,7 @@ Page({
                   },
                   method: 'POST',
                   success: function (res) {
+                    console.log(res)
                     //循环出用户信息
                     var investor = res.data.data;
                     var industry = investor.industry_tag;
@@ -214,6 +208,9 @@ Page({
                         user_stageId.push(stage[i].stage_id)
                       }
                     }
+                    that.setData({
+                      user_industry: user_industry
+                    })
                     // console.log(user_industry,user_industryId,user_area,user_areaId,user_scale,user_scaleId,user_stage,user_stageId)
                   }
                 })

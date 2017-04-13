@@ -17,7 +17,7 @@ page {
   height: 40rpx;
   border-radius: 0;
   margin: 0 auto;
-  padding: 40rpx;
+  padding-top: 192rpx;
 }
 
 .user_info {
@@ -26,10 +26,6 @@ page {
   justify-content: space-between;
   padding: 32rpx;
   flex-wrap: wrap;
-}
-
-.user_left, .user_right {
-  height: 280rpx;
 }
 
 .user_left {
@@ -48,6 +44,9 @@ page {
 
 .user_down {
   width: 100%;
+  background: white;
+  padding: 32rpx 64rpx;
+  margin-bottom: 32rpx;
 }
 
 .user_pic, user_text {
@@ -56,20 +55,24 @@ page {
 }
 
 .user_name {
-  font-size: 40rpx;
-  margin-bottom: 20rpx;
+  font-size: 56rpx;
+  margin-bottom: 16rpx;
 }
 
 .user_career {
-  font-size: 24rpx;
+  font-size: 32rpx;
   color: #666;
-  margin-bottom: 40rpx;
+  margin-bottom: 106rpx;
 }
 
 .user_company, .user_mobile, .user_email {
-  font-size: 20rpx;
+  font-size: 24rpx;
   color: #666;
   margin-bottom: 20rpx;
+}
+
+.user_email {
+  margin-bottom: 0;
 }
 
 .user_popularity, .user_attention, .user_potential {
@@ -106,24 +109,23 @@ page {
   font-size: 28rpx;
 }
 
-.intro_title {
-  justify-content: space-between;
-}
-
 .intro_title .iconEdit, .title .iconEdit {
   width: 36rpx;
   height: 36rpx;
   display: block;
 }
-.s_pro_sorts{
+
+.s_pro_sorts {
   align-items: baseline;
 }
+
 .s_iconEdit {
   width: 26rpx;
   height: 26rpx;
   display: block;
 }
-.sort_frame{
+
+.sort_frame {
   align-items: center;
 }
 
@@ -134,7 +136,6 @@ page {
   height: 94rpx;
   margin-top: 32rpx;
   border-radius: 8rpx;
-  color: #999;
 }
 
 .user_invest_info, .user_resource_info, .user_project_info, .user_invest_case {
@@ -156,6 +157,20 @@ page {
   color: #333;
   justify-content: space-between;
   margin-bottom: 26rpx;
+  align-items: baseline;
+}
+
+.intro_title {
+  justify-content: space-between;
+  align-items: center;
+}
+
+.title .title_icon {
+  width: 32rpx;
+  height: 32rpx;
+  padding: 0;
+  margin: 0;
+  font-size: 0;
 }
 
 .title view {
@@ -218,9 +233,6 @@ page {
 
 /*资源对接*/
 
-.projcet_info_frame {
-}
-
 .pro_intro {
   font-size: 28rpx;
   color: #333;
@@ -233,8 +245,8 @@ page {
 
 .pro_industry {
   border-right: 1px solid #e0e0e0;
-  padding-right: 16rpx;
-  padding-left: 16rpx;
+  padding-right: 13rpx;
+  padding-left: 13rpx;
   font-size: 24rpx;
   color: #666;
 }
