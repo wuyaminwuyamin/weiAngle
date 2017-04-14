@@ -1,3 +1,4 @@
+<import src="/pages/Template/Template.wxml" />
 <view class="r_nav flex">
   <view class="nav_btn" bindtap="backToResource">精准对接</view>
   <view class="nav_btn nav_on">需求市场</view>
@@ -19,7 +20,7 @@
               <view class="user_text" wx:if="{{item.user_avatar_text}}">{{item.user_avatar_text}}</view>
               <image class="user_pic" src="{{item.user_avatar_url}}" wx:if="{{item.user_avatar_url}}"></image>
               <view class="user_info_right">
-                <view class="flex">
+                <view class="flex nameFrame">
                   <view class="user_name">{{item.user_name}}</view>
                   <view class="user_career">{{item.user_career}}</view>
 
@@ -44,6 +45,7 @@
           </view>
         </block>
       </view>
+      <view style="height:98rpx;"></view>
 
       <!--错误提示-->
       <view class="error" wx:if="{{error=='1'}}">{{error_text}}</view>
@@ -99,6 +101,7 @@
           </view>
         </block>
       </view>
+      <view style="height:98rpx;"></view>
 
       <!--错误提示-->
       <view class="error" wx:if="{{error=='1'}}">{{error_text}}</view>
@@ -115,51 +118,16 @@
     <scroll-view scroll-y="true" bindscrolltolower='resourceNeed'>
       <view class="resourceNeed">
         <block wx:for="{{resourceNeed}}" wx:key="{{item.res_id}}">
-          <view class="card" data-id="{{item.res_id}}" bindtap="investorDetail">
-            <view class="user_info flex">
-              <view class="user_text" wx:if="{{item.user_avatar_text}}">{{item.user_avatar_text}}</view>
-              <image class="user_pic" src="{{item.user_avatar_url}}" wx:if="{{item.user_avatar_url}}"></image>
-              <view class="user_info_right">
-                <view class="flex">
-                  <view class="user_name">{{item.user_name}}</view>
-                  <view class="user_career">{{item.user_career}}</view>
-
-                  <!--<view class="pro_time">{{item.investor_time}}</view>-->
-                </view>
-                <view class="user_company">{{item.user_company}}</view>
-              </view>
-            </view>
-            <view class="investor_info">
-              <view class="investor_intro flex" wx:if="{{item.res_desc}}" style="margin-bottom:12rpx;">
-                <view class="investor_text">资源需求:</view>
-                <view class="investor_right flex">{{item.res_desc}}</view>
-              </view>
-              <view class="investor_industry_frame flex">
-                <view class="investor_text">可提供资源:</view>
-                <view class="investor_right flex">
-                  <block wx:for="{{item.res_find}}" wx:for-item="res_find" wx:key="{{res_find.resource_id}}">
-                    <view class="res_find">{{res_find.resource_name}}</view>
-                  </block>
-                </view>
-              </view>
-              <view class="investor_industry_frame flex">
-                <view class="investor_text">在寻求资源:</view>
-                <view class="investor_right flex">
-                  <block wx:for="{{item.res_give}}" wx:for-item="res_give" wx:key="{{res_give.resource_id}}">
-                    <view class="res_give">{{res_give.resource_name}}</view>
-                  </block>
-                </view>
-              </view>
-            </view>
-          </view>
+          <template is="resourceCard" data="{{item:item}}"></template>
         </block>
       </view>
+      <view style="height:98rpx;"></view>
 
       <!--错误提示-->
       <view class="error" wx:if="{{error=='1'}}">{{error_text}}</view>
 
       <!--空状态-->
-      <view>
+      <view wx:if="{{resourceNeed==''}}">
         <image class="empty" src="../../img/img-wujieguo@3x.png"></image>
       </view>
     </scroll-view>

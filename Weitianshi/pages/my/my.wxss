@@ -161,7 +161,7 @@ page {
   color: #333;
   justify-content: space-between;
   margin-bottom: 26rpx;
-  align-items: baseline;
+  vertical-align: middle;
 }
 
 .intro_title {

@@ -62,7 +62,7 @@
 <template name="userIntro">
   <view class="user_intro" bindtap="cardEdit">
     <view class="intro_title flex">
-      <view class="title">
+      <view class="title flex">
         <image class="title_icon" src="/img/icon-miaoshu@3x.png"></image>
         个人描述
       </view>
@@ -181,9 +181,49 @@
   </view>
 </template>
 
+<!--资源需求卡片-->
+<template name="resourceCard">
+  <view class="card" data-id="{{item.res_id}}" bindtap="userDetail">
+    <view class="user_info flex">
+      <view class="user_text" wx:if="{{item.user_avatar_text}}">{{item.user_avatar_text}}</view>
+      <image class="user_pic" src="{{item.user_avatar_url}}" wx:if="{{item.user_avatar_url}}"></image>
+      <view class="user_info_right">
+        <view class="flex">
+          <view class="user_name">{{item.user_name}}</view>
+          <view class="user_career">{{item.user_career}}</view>
+          <!--<view class="pro_time">{{item.investor_time}}</view>-->
+        </view>
+        <view class="user_company">{{item.user_company}}</view>
+      </view>
+    </view>
+    <view class="investor_info">
+      <view class="investor_intro flex" wx:if="{{item.res_desc}}" style="margin-bottom:12rpx;">
+        <view class="investor_text">资源需求:</view>
+        <view class="investor_right flex">{{item.res_desc}}</view>
+      </view>
+      <view class="investor_industry_frame flex">
+        <view class="investor_text">可提供资源:</view>
+        <view class="investor_right flex">
+          <block wx:for="{{item.res_find}}" wx:for-item="res_find" wx:key="{{res_find.resource_id}}">
+            <view class="res_find">{{res_find.resource_name}}</view>
+          </block>
+        </view>
+      </view>
+      <view class="investor_industry_frame flex">
+        <view class="investor_text">在寻求资源:</view>
+        <view class="investor_right flex">
+          <block wx:for="{{item.res_give}}" wx:for-item="res_give" wx:key="{{res_give.resource_id}}">
+            <view class="res_give">{{res_give.resource_name}}</view>
+          </block>
+        </view>
+      </view>
+    </view>
+  </view>
+</template>
+
 <!--为浮动按钮留空-->
 <template name="forButton">
-  <view style="height:98rpx;"></view>
+  <view style="height:98rpx;">111111111</view>
 </template>?
 
 <!--自定义黄色背景小提示-->

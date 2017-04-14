@@ -127,15 +127,21 @@ swiper-item {
 .user_info_right {
   margin-left: 16rpx;
 }
-
+.nameFrame{
+  align-items: center;
+}
 .user_name {
   font-size: 28rpx;
   color: #333;
+}
+.investNeed .user_company{
+  padding-left: 16rpx;
 }
 
 .user_career {
   font-size: 24rpx;
   color: #666;
+  margin-left: 16rpx;
 }
 
 .pro_time {
@@ -178,7 +184,6 @@ swiper-item {
 
 .investor_right {
   flex-wrap: wrap;
-  width: 520rpx;
 }
 
 .industry_tip {
@@ -217,7 +222,7 @@ swiper-item {
 .swiper-box .investor_text {
   font-size: 24rpx;
   flex-wrap: nowrap;
-  width: 103rpx;
+  width: 128rpx;
   margin: 12rpx 0;
   text-align: left;
   padding-left: 0;

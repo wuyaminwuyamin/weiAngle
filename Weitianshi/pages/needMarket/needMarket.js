@@ -189,7 +189,7 @@ Page({
       resourcePage: resourcePage
     });
     wx.request({
-      url: url + '/api/investors/investorMarket',
+      url: url + '/api/resource/resourceMarket',
       data: {
         page: resourcePage
       },
