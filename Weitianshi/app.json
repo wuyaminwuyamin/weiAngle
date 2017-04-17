@@ -1,7 +1,7 @@
 {
   "pages": [
-    "pages/network/network",
     "pages/resource/resource",
+    "pages/network/network",
     "pages/my/my",
     "pages/my/sharePage/sharePage",
     "pages/userDetail/userDetail",

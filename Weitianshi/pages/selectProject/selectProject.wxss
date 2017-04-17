@@ -131,9 +131,11 @@ page {
 .others_company {
   justify-content: space-between;
 }
-.others_company{
+
+.others_company {
   font-size: 20rpx;
 }
+
 .others .others_company  .theOne {
   background: #40587a;
   color: white;
@@ -143,19 +145,20 @@ page {
   height: 26rpx;
   line-height: 26rpx;
 }
-.choiced{
+
+.choiced {
   width: 64rpx;
   height: 32rpx;
   margin-right: -30rpx;
 }
 
 .others_nopic {
-  font-size: 64rpx;
+  margin-top: -28rpx;
   color: #40587a;
   background: #f2f2f2;
   width: 60rpx;
   height: 60rpx;
-  line-height: 120rpx;
+  line-height: 60rpx;
   border-radius: 50%;
   text-align: center;
 }

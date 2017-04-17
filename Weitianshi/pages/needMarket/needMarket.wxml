@@ -43,30 +43,45 @@
                 <view class="flex">
                   <view class="user_name">{{item.investor_name}}</view>
                   <view class="user_career">{{item.investor_career}}</view>
-
                   <!--<view class="pro_time">{{item.investor_time}}</view>-->
                 </view>
                 <view class="user_company">{{item.investor_company}}</view>
               </view>
             </view>
             <view class="investor_info">
-              <view class="investor_intro flex" wx:if="{{item.investor_desc}}">
+              <view class="investor_intro flex" wx:if="{{item.investor_desc!=''}}">
                 <view class="investor_text">投资需求:</view>
                 <view class="investor_right">{{item.investor_desc}}</view>
               </view>
-              <view class="investor_industry_frame flex" wx:if="{{investor_industry}}">
+              <view class="investor_industry_frame flex" wx:if="{{item.industry_tag!=''}}">
                 <view class="investor_text">投资领域:</view>
                 <view class="investor_right">
-                  <block wx:for="{{industry_tag}}" wx:key="{{investor_industry}}">
-                    <view class="investor_industry">人工智能</view>
+                  <block wx:for="{{item.industry_tag}}" wx:key="{{index}}" wx:for-item="industry">
+                    <view class="investor_industry">{{industry.industry_name}}</view>
                   </block>
                 </view>
               </view>
-              <view class="investor_stage_frame flex" wx:if="{{stage_tage}}">
+              <view class="investor_stage_frame flex" wx:if="{{item.stage_tag!=''}}">
                 <view class="investor_text">投资轮次:</view>
                 <view class="investor_right">
-                  <block wx:for="{{stage_tag}}" wx:key="{{index}}">
-                    <view class="investor_stage">A轮</view>
+                  <block wx:for="{{item.stage_tag}}" wx:key="{{index}}" wx:for-item="stage">
+                    <view class="investor_stage">{{stage.stage_name}}</view>
+                  </block>
+                </view>
+              </view>
+              <view class="investor_stage_frame flex" wx:if="{{item.area_tag!=''}}">
+                <view class="investor_text">投资地区:</view>
+                <view class="investor_right">
+                  <block wx:for="{{item.area_tag}}" wx:key="{{index}}" wx:for-item="area">
+                    <view class="investor_stage">{{area[index].area_title}}</view>
+                  </block>
+                </view>
+              </view>
+              <view class="investor_stage_frame flex" wx:if="{{item.scale_tag!=''}}">
+                <view class="investor_text">投资金额:</view>
+                <view class="investor_right">
+                  <block wx:for="{{item.scale_tag}}" wx:key="{{index}}" wx:for-item="{{scale}}">
+                    <view class="investor_stage">{{scale[index].scale_money}}</view>
                   </block>
                 </view>
               </view>

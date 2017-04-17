@@ -256,3 +256,8 @@ swiper-item {
   width: 205rpx;
   height: 256rpx; 
 }
+
+.investor_info{
+  height: 156rpx;
+  overflow: hidden;
+}
