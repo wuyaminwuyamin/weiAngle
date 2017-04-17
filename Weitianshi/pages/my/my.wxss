@@ -18,12 +18,14 @@ page {
   border-radius: 0;
   padding: 40rpx;
   margin: 0;
-  padding-bottom: 0;
+}
+.user_email label{
+  margin-right: -40rpx;
   margin-top: -40rpx;
 }
 
 .user_info {
-  margin: 32rpx;
+  margin: 40rpx 32rpx;
   background: white;
   justify-content: space-between;
   padding: 32rpx;
@@ -33,9 +35,14 @@ page {
 .user_left {
   width: 80%;
 }
+.user_left .flex:first-child{
+  align-items: flex-end;
+  margin-bottom: 96rpx;
+}
 
 .user_right {
   width: 20%;
+  height: 120rpx;
 }
 
 .user_right image {
@@ -58,18 +65,17 @@ page {
 
 .user_name {
   font-size: 56rpx;
-  margin-bottom: 16rpx;
 }
 
 .user_career {
   font-size: 32rpx;
   color: #666;
-  margin-bottom: 106rpx;
+  margin-left: 24rpx;
 }
 
 .user_company, .user_mobile, .user_email {
-  font-size: 24rpx;
-  color: #666;
+  font-size: 28rpx;
+  color: #999;
   margin-bottom: 20rpx;
 }
 
@@ -104,13 +110,14 @@ page {
 
 .user_intro {
   background: white;
-  padding: 32rpx;
   margin-bottom: 32rpx;
 }
 
 .user_intro .intro_title {
   color: #333;
   font-size: 28rpx;
+  padding: 32rpx;
+  height: 32rpx;
 }
 
 .intro_title .iconEdit, .title .iconEdit {
@@ -138,7 +145,7 @@ page {
   background: #f2f2f2;
   font-size: 20rpx;
   height: 94rpx;
-  margin-top: 32rpx;
+  margin:0 32rpx;
   border-radius: 8rpx;
 }
 
@@ -160,7 +167,6 @@ page {
   font-size: 28rpx;
   color: #333;
   justify-content: space-between;
-  margin-bottom: 26rpx;
   vertical-align: middle;
 }
 
@@ -175,11 +181,16 @@ page {
   padding: 0;
   margin: 0;
   font-size: 0;
+  margin-right: 16rpx;
 }
 
 .title view {
   font-size: 28rpx;
   color: #333;
+  align-items: center;
+  height: 32rpx;
+  line-height: 32rpx;
+  display: flex;
 }
 
 .title image {
@@ -200,6 +211,9 @@ page {
   border-radius: 8rpx;
   padding: 32rpx;
   margin-bottom: 22rpx;
+}
+.project_card:first-child{
+  margin-top: 32rpx;
 }
 
 .project_card:last-child {

@@ -17,12 +17,20 @@
             <view class="user_text" wx:if="{{item.user_avatar_text}}">{{item.user_avatar_text}}</view>
             <image class="user_pic" src="{{item.user_avatar_url}}" wx:if="{{item.user_avatar_url}}"></image>
             <view class="user_info_right">
-              <view class="user_name">{{item.user_real_name}}</view>
-              <view class="user_company" wx:if="{{item.user_company_name !=''}}">{{item.user_company_name}}</view>
-              <view class="user_career">{{item.user_company_career}}</view>
+              <view class="flex frame">
+                <view class="name_flex flex">
+                  <view class="user_name">{{item.user_real_name}}</view>
+                  <view class="user_career">{{item.user_company_career}}</view>
+                </view>
+                <image class="telephone" src="/img/icon-phone@3x.png" data-telephone="{{item.user_mobile}}" bindtap="telephone"></image>
+              </view>
+
+              <!--<view class="user_company" wx:if="{{item.user_company_name !=''}}">{{item.user_company_name}}</view>-->
+              <view class="user_company" wx:if="{{item.user_company_name !=''}}">杭州投着乐网络科技有限公司</view>
             </view>
           </view>
           <view class="investor_info">
+
             <!--投资领域-->
             <view class="investor_industry_frame flex" wx:if="{{item.user_invest_industry !=''}}">
               <view class="investor_text">投资领域:</view>
@@ -32,6 +40,7 @@
                 </block>
               </view>
             </view>
+
             <!--投资轮次-->
             <view class="investor_industry_frame flex" wx:if="{{item.user_invest_stage !=''}}">
               <view class="investor_text">投资轮次:</view>
@@ -41,6 +50,7 @@
                 </block>
               </view>
             </view>
+
             <!--拥有资源-->
             <view class="investor_industry_frame flex" wx:if="{{item.user_resource_find !=''}}">
               <view class="investor_text">拥有资源:</view>
@@ -50,6 +60,7 @@
                 </block>
               </view>
             </view>
+
             <!--寻求资源-->
             <view class="investor_industry_frame flex" wx:if="{{item.user_resource_give !=''}}">
               <view class="investor_text">寻求资源:</view>

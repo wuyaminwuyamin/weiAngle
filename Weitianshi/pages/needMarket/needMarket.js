@@ -97,7 +97,7 @@ Page({
     })
   },
   // 跳转人物详情
-  investorDetail(e) {
+  userDetail(e) {
     var id = e.currentTarget.dataset.id
     wx.navigateTo({
       url: '../userDetail/userDetail?id=' + id

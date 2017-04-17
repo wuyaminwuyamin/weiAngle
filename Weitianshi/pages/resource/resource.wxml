@@ -71,7 +71,8 @@
       <!--已匹配的项目-->
       <view class="others">
         <block wx:for="{{yourProject}}" wx:key="{{pro_id}}" wx:for-item="myProject">
-          <view class="weui-panel__bd" style="background:white;margin:16px">
+
+          <!--<view class="weui-panel__bd" style="background:white;margin:16px">
             <view class="weui-media-box weui-media-box_text your_Detail" data-id='{{myProject.pro_id}}' data-index="{{index}}" bindtap="yourDetail">
               <view class="weui-media-box__title weui-media-box__title_in-text" style="text-align:left;">{{myProject.pro_intro}}</view>
               <view class="sort">
@@ -81,8 +82,6 @@
                   </view>
                 </block>
               </view>
-
-              <!--项目阶段｜项目地区｜项目金额-->
               <view class="tips flex">
                 <view style="width:1px"></view>
                 <view class="weui-media-box__desc tip" wx:if="{{myProject.pro_stage.stage_name}}">{{myProject.pro_stage.stage_name}}</view>
@@ -90,7 +89,8 @@
                 <view class="weui-media-box__desc tip" wx:if="{{myProject.pro_scale.scale_money}}">{{myProject.pro_scale.scale_money}}</view>
               </view>
             </view> 
-          </view>
+          </view>-->
+          <template is="selectedCard" data="{{myProject:myProject}}"></template>
         </block>
 
         <!--没有更多-->
@@ -112,33 +112,7 @@
       <template is="publish" data="{{hasPublic:hasPublic2,user_industry:res_find,text:resourceText,jumpProject:'resourceNeed'}}"></template>
       <view class="others">
         <block wx:for="{{res_match}}" wx:key="{{item.resource_id}}">
-          <view class="weui-cell" style="background:white;margin:32rpx;margin-bottom:0;border-radius:4px 4px 0 0">
-            <view class="weui-cell__hd" style="position: relative;margin-right: 10px;">
-              <image class="others_pic" wx:if="{{item.user_avatar_url}}" src="{{item.user_avatar_url}}" />
-              <view class="others_text" wx:if="{{item.user_avatar_text}}">{{item.user_avatar_text}}</view>
-            </view>
-            <view class="weui-cell__bd">
-              <view class="flex" style="align-items: baseline;">
-                <view class="others_name">{{item.user_name}}</view>
-                <view class="ohters_position">{{item.user_career}}</view>
-              </view>
-              <view class="others_company">{{item.user_company}}</view>
-            </view>
-          </view>
-          <view class="offer_search" style="border-radius:0 0 4px 4px">
-            <view class="offer flex">
-              <view>可提供资源</view>
-              <block wx:for="{{item.res_give}}" wx:for-item="give" wx:key="give.resource_id">
-                <view class="others_tips">{{give.resource_name}}</view>
-              </block>
-            </view>
-            <view class="search flex">
-              <view>在寻求资源</view>
-              <block wx:for="{{item.res_find}}" wx:for-item="find" wx:key="find.resource_id">
-                <view class="others_tips">{{find.resource_name}}</view>
-              </block>
-            </view>
-          </view>
+          <template is="resourceCard" data="{{item:item}}"></template>
         </block>
 
         <!--空状态-->

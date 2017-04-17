@@ -39,5 +39,5 @@
 
 <!--新增项目-->
 <view class="floatBtn flex maintainProject" bindtap="addProject">
-  <button class="push maintainProject">+新增项目</button>
+  <button class="push maintainProject">新增项目</button>
 </view>

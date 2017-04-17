@@ -6,6 +6,18 @@ Page({
         user: "",
         modal: 0,
         goTop: 0,
+        financingProject: {
+            url: "/img/icon-rongzi@3x.png",
+            text: "项目融资",
+            event: "projectFinance",
+            project_info: ""
+        },
+        investProject: {
+            url: "/img/icon-anli@3x.png",
+            text: "投资案例",
+            event: "investCase",
+            project_info: ""
+        }
     },
     onLoad: function (options) {
         if (options) {
@@ -36,15 +48,20 @@ Page({
                     var resource = res.data.resource_info;
                     var project_info = res.data.project_info;
                     var invest_case = res.data.invest_case;
-                    console.log(invest)
                     var status_code = res.data.status_code;
+                    var financingProject = that.data.financingProject;
+                    var investProject = that.data.investProject;
+                    financingProject.project_info = project_info;
+                    investProject.project_info = invest_case;
                     that.setData({
                         user: user,
                         invest: invest,
                         resource: resource,
                         project_info: project_info,
                         invest_case: invest_case,
-                        status_code: status_code
+                        status_code: status_code,
+                        financingProject: financingProject,
+                        investProject: investProject,
                     })
                 },
                 fail: function (res) {
@@ -84,23 +101,16 @@ Page({
     projectFinance: function () {
         if (!this.data.options) {
             wx.navigateTo({
-                url: 'projectFinance/projectFinance',
+                url: 'projectFinance/projectFinance?type=1',
             })
         }
     },
     //投资案例
     investCase: function () {
         if (!this.data.options) {
-            var invest_case = this.data.ivest_case;
-            if (invest_case) {
-                wx.navigateTo({
-                    url: 'investCase/investCase?invest_case=' + invest_case,
-                })
-            } else {
-                wx.navigateTo({
-                    url: 'investCase/investCase'
-                })
-            }
+            wx.navigateTo({
+                url: 'investCase/investCase?type=2'
+            })
         }
     },
     //交换名片
@@ -124,7 +134,7 @@ Page({
                 }
             })
         }
-        
+
         //  wx.navigateTo({
         //      url: 'sharePage/sharePage?user_id=V0VznXa0',
         //  })
@@ -132,9 +142,9 @@ Page({
     //分享名片
     onShareAppMessage: function () {
         var user_id = wx.getStorageSync('user_id');
-        var modal=this.data.modal;
+        var modal = this.data.modal;
         this.setData({
-            goTop:1
+            goTop: 1
         })
 
         if (modal == 1) {
@@ -217,7 +227,8 @@ Page({
         }
     },
     */
-});  /*//取消交换名片
+});
+ /*//取消交换名片
     toastCancel: function () {
         var notIntegrity = this.data.notIntegrity;
         notIntegrity = 0;

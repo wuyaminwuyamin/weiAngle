@@ -183,7 +183,6 @@ Page({
                   },
                   method: 'POST',
                   success: function (res) {
-                    console.log(res)
                     //循环出用户信息
                     var investor = res.data.data;
                     var industry = investor.industry_tag;
@@ -246,7 +245,6 @@ Page({
                   },
                   method: 'POST',
                   success: function (res) {
-                    console.log(res)
                     if (res.data.status_code != "450002") {
                       wx.setStorage({
                         key: 'resource_data',
@@ -349,7 +347,6 @@ Page({
       })
     }
   },
-
   //点击发布融资项目
   myProject: function () {
     var that = this;
@@ -369,7 +366,6 @@ Page({
       })
     }
   },
-
   //点击发布投资需求
   yourProject: function () {
     var that = this;
@@ -389,7 +385,6 @@ Page({
       })
     }
   },
-
   //点击发布资源需求
   resourceNeed: function () {
     var that = this;
@@ -409,7 +404,13 @@ Page({
       })
     }
   },
-
+  // 跳转人物详情
+  userDetail(e) {
+    var id = e.currentTarget.dataset.id
+    wx.navigateTo({
+      url: '../userDetail/userDetail?id=' + id
+    })
+  },
   //点击项目融资详情
   detail: function (e) {
     var thisData = e.currentTarget.dataset;
@@ -426,6 +427,7 @@ Page({
       url: '../yourProject/yourDetail?id=' + thisData.id + '&&index=' + index
     })
   },
+
   //寻找项目触底刷新
   yourPayProject: function () {
     var that = this;

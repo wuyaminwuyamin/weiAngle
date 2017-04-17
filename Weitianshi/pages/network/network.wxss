@@ -96,6 +96,16 @@ page {
 .user_info_right {
   margin-left: 24rpx;
 }
+.frame{
+  justify-content: space-between;
+  width:540rpx;
+}
+.name_flex{
+  width: 160rpx;
+  justify-content: space-between;
+  align-items: center;
+  
+}
 
 .user_name {
   font-size: 32rpx;
@@ -224,4 +234,11 @@ page {
   line-height: 46rpx;
   margin-right: 24rpx;
   margin-bottom: 16rpx;
+}
+
+
+/*一键拨号*/
+.telephone{
+  width: 32rpx;
+  height: 32rpx;
 }

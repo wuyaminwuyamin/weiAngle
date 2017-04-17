@@ -131,7 +131,7 @@ Page({
         var that=this;
         var industryValue=wx.getStorageSync('m_domainValue');
         var industryId=wx.getStorageSync('m_domainId');
-        var belongArea=wx.getStorageSync('m_belongArea');
+        var belongArea=wx.getStorageSync('m_belongArea')||this.data.belongArea;
         var provinceNum=wx.getStorageSync("m_provinceNum");
         var cityNum=wx.getStorageSync('m_cityNum')
         this.setData({

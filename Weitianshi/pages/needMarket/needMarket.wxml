@@ -15,34 +15,7 @@
     <scroll-view scroll-y="true" bindscrolltolower="financingNeed">
       <view class="financingNeed">
         <block wx:for="{{financingNeed}}" wx:key="{{item.pro_id}}">
-          <view class="card" data-id="{{item.pro_id}}" bindtap="projectDetail">
-            <view class="user_info flex">
-              <view class="user_text" wx:if="{{item.user_avatar_text}}">{{item.user_avatar_text}}</view>
-              <image class="user_pic" src="{{item.user_avatar_url}}" wx:if="{{item.user_avatar_url}}"></image>
-              <view class="user_info_right">
-                <view class="flex nameFrame">
-                  <view class="user_name">{{item.user_name}}</view>
-                  <view class="user_career">{{item.user_career}}</view>
-
-                  <!--<view class="pro_time">{{item.pro_time}}</view>-->
-                </view>
-                <view class="user_company">{{item.user_company}}</view>
-              </view>
-            </view>
-            <view class="pro_info">
-              <view class="pro_intro">{{item.pro_intro}}</view>
-              <view class="pro_industry flex">
-                <block wx:for="{{item.pro_industry}}" wx:for-item="pro_industry" wx:key="{{pro_industry.industry_id}}" wx:for-index="pro_index">
-                  <view class="industry_tip">{{pro_industry.industry_name}}</view>
-                </block>
-              </view>
-              <view class="pro_sorts flex">
-                <view class="pro_sort" wx:if="{{item.pro_stage}}">{{item.pro_stage}}</view>
-                <view class="pro_sort" wx:if="{{item.pro_area}}">{{item.pro_area}}</view>
-                <view class="pro_sort" wx:if="{{item.pro_scale}}">{{item.pro_scale}}</view>
-              </view>
-            </view>
-          </view>
+            <template is="financingCard" data="{{item:item}}"></template>
         </block>
       </view>
       <view style="height:98rpx;"></view>
@@ -77,11 +50,11 @@
               </view>
             </view>
             <view class="investor_info">
-              <view class="investor_intro flex">
+              <view class="investor_intro flex" wx:if="{{item.investor_desc}}">
                 <view class="investor_text">投资需求:</view>
                 <view class="investor_right">{{item.investor_desc}}</view>
               </view>
-              <view class="investor_industry_frame flex">
+              <view class="investor_industry_frame flex" wx:if="{{investor_industry}}">
                 <view class="investor_text">投资领域:</view>
                 <view class="investor_right">
                   <block wx:for="{{industry_tag}}" wx:key="{{investor_industry}}">
@@ -89,7 +62,7 @@
                   </block>
                 </view>
               </view>
-              <view class="investor_stage_frame flex">
+              <view class="investor_stage_frame flex" wx:if="{{stage_tage}}">
                 <view class="investor_text">投资轮次:</view>
                 <view class="investor_right">
                   <block wx:for="{{stage_tag}}" wx:key="{{index}}">

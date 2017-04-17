@@ -115,5 +115,12 @@ Page({
     wx.navigateTo({
       url: '../myProject/personInfo/personInfo',
     })
+  },
+  // 一键拨号
+  telephone:function(e){
+    var telephone=e.currentTarget.dataset.telephone;
+    wx.makePhoneCall({
+      phoneNumber: telephone,
+    })
   }
 })

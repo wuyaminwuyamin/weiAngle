@@ -17,19 +17,23 @@
 
 <!--我的名片-->
 <template name="userInfo">
-  <view class="user_info flex" bindtap="cardEdit">
+  <view class="user_info flex" bindtap="{{cardEdit}}">
     <view class="user_left">
-      <view class="user_name" wx:if="{{user.user_real_name}}">{{user.user_real_name}}</view>
-      <view class="user_name" wx:if="{{!user.user_real_name}}">代替名</view>
-      <view class="user_career" wx:if="{{user.user_company_career}}">{{user.user_company_career}}</view>
-      <view class="user_career" wx:if="{{!user.user_company_career}}">职位名称</view>
+      <view class="flex">
+        <view class="user_name" wx:if="{{user.user_real_name}}">{{user.user_real_name}}</view>
+        <view class="user_name" wx:if="{{!user.user_real_name}}">代替名</view>
+        <view class="user_career" wx:if="{{user.user_company_career}}">{{user.user_company_career}}</view>
+        <view class="user_career" wx:if="{{!user.user_company_career}}">职位名称</view>
+      </view>
       <view class="user_company" wx:if="{{user.user_company_name}}">公司：{{user.user_company_name}}</view>
       <view class="user_company" wx:if="{{!user.user_company_name}}">公司名称：暂无编辑</view>
       <view class="user_mobile" wx:if="{{user.user_mobile}}">手机：{{user.user_mobile}}</view>
       <view class="user_mobile" wx:if="{{!user.user_mobile}}">手机号码：暂无编辑</view>
       <view class="user_email flex" wx:if="{{user.user_email}}">
         <view>邮箱：{{user.user_email}}</view>
-        <image class="user_edit" src="/img/icon-Share2@3x.png" catchtap="cardChange"></image>
+        <label>
+          <image class="user_edit" src="/img/icon-Share2@3x.png" catchtap="cardChange"></image>
+        </label>
       </view>
       <view class="user_email" wx:if="{{!user.user_email}}">邮箱号码：暂无编辑</view>
     </view>
@@ -68,7 +72,7 @@
       </view>
       <image class="iconEdit" src="/img/icon-edit@3x.png"></image>
     </view>
-    <view class="intro_content" wx:if="{{user.user_intro ==true}}">{{user.user_intro}}</view>
+    <view class="intro_content" wx:if="{{user.user_intro!=null}}">{{user.user_intro}}</view>
   </view>
 </template>
 
@@ -76,7 +80,7 @@
 <template name="InvestInfo">
   <view class="user_invest_info" bindtap="findProjectEdit">
     <view class="flex title">
-      <view>
+      <view class="title">
         <image class="title_icon" src="/img/icon-anyuan@3x.png"></image>
         寻找案源
       </view>
@@ -109,7 +113,7 @@
 
     <!--具体描述-->
     <view class="invest_title">具体描述</view>
-    <view class="invest_desc" wx:if="{{invest.invest_desc ==true}}">{{invest.invest_desc}}</view>
+    <view class="invest_desc">{{invest.invest_desc}}</view>
   </view>
 </template>
 
@@ -142,20 +146,20 @@
   </view>
 </template>
 
-<!--项目融资-->
+<!--项目融资 && 投资案例-->
 <template name="projectInfo">
   <view class="user_project_info">
     <view class="flex title">
       <view>
-        <image class="title_icon" src="/img/icon-rongzi@3x.png"></image>
-        项目融资
+        <image class="title_icon" src="{{url}}"></image>
+        {{text}}
       </view>
     </view>
 
     <!--融资项目-->
     <view class="projcet_info_frame">
       <block wx:for="{{project_info}}" wx:key="{{item.pro_intro}}">
-        <view class="project_card" bindtap="projectFinance">
+        <view class="project_card" bindtap="{{event}}">
           <view class="pro_intro">
             {{item.pro_intro}}
           </view>
@@ -181,9 +185,41 @@
   </view>
 </template>
 
-<!--资源需求卡片-->
+<!--融资需求卡片-->
+<template name="financingCard">
+  <view class="card" data-id="{{item.pro_id}}" bindtap="projectDetail">
+    <view class="user_info flex">
+      <view class="user_text" wx:if="{{item.user_avatar_text}}">{{item.user_avatar_text}}</view>
+      <image class="user_pic" src="{{item.user_avatar_url}}" wx:if="{{item.user_avatar_url}}"></image>
+      <view class="user_info_right">
+        <view class="flex nameFrame">
+          <view class="user_name">{{item.user_name}}</view>
+          <view class="user_career">{{item.user_career}}</view>
+
+          <!--<view class="pro_time">{{item.pro_time}}</view>-->
+        </view>
+        <view class="user_company">{{item.user_company}}</view>
+      </view>
+    </view>
+    <view class="pro_info">
+      <view class="pro_intro">{{item.pro_intro}}</view>
+      <view class="pro_industry flex">
+        <block wx:for="{{item.pro_industry}}" wx:for-item="pro_industry" wx:key="{{pro_industry.industry_id}}" wx:for-index="pro_index">
+          <view class="industry_tip">{{pro_industry.industry_name}}</view>
+        </block>
+      </view>
+      <view class="pro_sorts flex">
+        <view class="pro_sort" wx:if="{{item.pro_stage}}">{{item.pro_stage}}</view>
+        <view class="pro_sort" wx:if="{{item.pro_area}}">{{item.pro_area}}</view>
+        <view class="pro_sort" wx:if="{{item.pro_scale}}">{{item.pro_scale}}</view>
+      </view>
+    </view>
+  </view>
+</template>
+
+<!--资源需求卡片&&资源对接卡片-->
 <template name="resourceCard">
-  <view class="card" data-id="{{item.res_id}}" bindtap="userDetail">
+  <view class="card" data-id="{{item.user_id}}" bindtap="userDetail">
     <view class="user_info flex">
       <view class="user_text" wx:if="{{item.user_avatar_text}}">{{item.user_avatar_text}}</view>
       <image class="user_pic" src="{{item.user_avatar_url}}" wx:if="{{item.user_avatar_url}}"></image>
@@ -191,6 +227,7 @@
         <view class="flex">
           <view class="user_name">{{item.user_name}}</view>
           <view class="user_career">{{item.user_career}}</view>
+
           <!--<view class="pro_time">{{item.investor_time}}</view>-->
         </view>
         <view class="user_company">{{item.user_company}}</view>
@@ -216,6 +253,52 @@
             <view class="res_give">{{res_give.resource_name}}</view>
           </block>
         </view>
+      </view>
+    </view>
+  </view>
+</template>
+
+<!--精选项目卡片&&投资项目卡片-->
+<template name="selectedCard">
+  <view class="selectProjectDetail">
+    <view class="weui-panel__bd">
+      <view class="weui-media-box weui-media-box_text select_project" data-id='{{myProject.pro_id}}' data-index="{{index}}" bindtap="detail">
+        <view class="weui-media-box__title weui-media-box__title_in-text" style="text-align:left;">{{myProject.pro_intro}}</view>
+        <view class="sort">
+          <block wx:for="{{myProject.pro_industry}}" wx:for-item="sort" wx:key="*this">
+            <view class="weui-media-box__desc">
+              {{sort.industry_name}}
+            </view>
+          </block>
+        </view>
+
+        <!--项目阶段｜项目地区｜项目金额-->
+        <view class="tips flex">
+          <view style="width:1px"></view>
+          <view class="weui-media-box__desc tip" wx:if="{{myProject.pro_stage}}">{{myProject.pro_stage.stage_name || myProject.pro_stage}}</view>
+          <view class="weui-media-box__desc tip" wx:if="{{myProject.pro_area}}">{{myProject.pro_area.area_title || myProject.pro_area}}</view>
+          <view class="weui-media-box__desc tip" wx:if="{{myProject.pro_scale}}">{{myProject.pro_scale.scale_money || myProject.pro_scale}}</view>
+        </view>
+      </view>
+    </view>
+
+    <!--名片-->
+    <view class="weui-cell select_project" data-id='{{myProject.pro_id}}' data-index="{{index}}" bindtap="detail">
+      <view class="weui-cell__hd" style="position: relative;margin-right: 10px;">
+        <image wx:if="{{myProject.user_avatar_url}}" class="others_pic" src="{{myProject.user_avatar_url}}" />
+        <view wx:if="{{!myProject.user_avatar_url}}" class="others_nopic">{{myProject.user_avatar_text}}</view>
+      </view>
+      <view class="weui-cell__bd">
+        <view class="flex" style="align-items: baseline;">
+          <view class="others_name">{{myProject.user_name}}</view>
+          <view class="others_email">{{myProject.user_career}}</view>
+        </view>
+        <view class="others_company flex">
+          {{myProject.user_company}}
+          <image class='choiced' src="/img/choiced.png" />
+        </view>
+
+        <!--<view class="ohters_position"></view>-->
       </view>
     </view>
   </view>
