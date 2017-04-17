@@ -209,9 +209,9 @@
         </block>
       </view>
       <view class="pro_sorts flex">
-        <view class="pro_sort" wx:if="{{item.pro_stage}}">{{item.pro_stage}}</view>
-        <view class="pro_sort" wx:if="{{item.pro_area}}">{{item.pro_area}}</view>
-        <view class="pro_sort" wx:if="{{item.pro_scale}}">{{item.pro_scale}}</view>
+        <view class="pro_sort" wx:if="{{item.pro_stage}}">{{item.pro_stage.stage_name}}</view>
+        <view class="pro_sort" wx:if="{{item.pro_area}}">{{item.pro_area.area_title}}</view>
+        <view class="pro_sort" wx:if="{{item.pro_scale}}">{{item.pro_scale.scale_money}}</view>
       </view>
     </view>
   </view>
@@ -275,9 +275,9 @@
         <!--项目阶段｜项目地区｜项目金额-->
         <view class="tips flex">
           <view style="width:1px"></view>
-          <view class="weui-media-box__desc tip" wx:if="{{myProject.pro_stage}}">{{myProject.pro_stage.stage_name || myProject.pro_stage}}</view>
-          <view class="weui-media-box__desc tip" wx:if="{{myProject.pro_area}}">{{myProject.pro_area.area_title || myProject.pro_area}}</view>
-          <view class="weui-media-box__desc tip" wx:if="{{myProject.pro_scale}}">{{myProject.pro_scale.scale_money || myProject.pro_scale}}</view>
+          <view class="weui-media-box__desc tip" wx:if="{{myProject.pro_stage}}">{{myProject.pro_stage.stage_name}}</view>
+          <view class="weui-media-box__desc tip" wx:if="{{myProject.pro_area}}">{{myProject.pro_area.area_title}}</view>
+          <view class="weui-media-box__desc tip" wx:if="{{myProject.pro_scale}}">{{myProject.pro_scale.scale_money}}</view>
         </view>
       </view>
     </view>

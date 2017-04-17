@@ -21,6 +21,7 @@ Page({
       data: {},
       method: 'POST',
       success: function (res) {
+        console.log(res)
         var financingNeed = res.data.data;
         that.setData({
           financingNeed: financingNeed
@@ -37,7 +38,6 @@ Page({
       data: {},
       method: 'POST',
       success: function (res) {
-        console.log(res)
         var investNeed = res.data.data;
         that.setData({
           investNeed: investNeed
@@ -53,7 +53,6 @@ Page({
       data: {},
       method: 'POST',
       success: function (res) {
-        console.log(res)
         var resourceNeed = res.data.data;
         console.log(resourceNeed)
         that.setData({

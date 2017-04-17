@@ -257,7 +257,7 @@ swiper-item {
   height: 256rpx; 
 }
 
-.investor_info{
+.investNeed .investor_info{
   height: 156rpx;
   overflow: hidden;
 }
