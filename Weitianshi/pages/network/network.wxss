@@ -101,10 +101,8 @@ page {
   width:540rpx;
 }
 .name_flex{
-  width: 160rpx;
   justify-content: space-between;
   align-items: center;
-  
 }
 
 .user_name {
@@ -112,10 +110,11 @@ page {
   color: #333;
 }
 
-.user_career {
+.name_flex .user_career {
   font-size: 24rpx;
   color: #666;
   padding-top: 16rpx;
+  margin-left: 16rpx;
 }
 
 .user_company {

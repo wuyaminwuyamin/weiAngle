@@ -72,7 +72,7 @@
       </view>
       <image class="iconEdit" src="/img/icon-edit@3x.png"></image>
     </view>
-    <view class="intro_content" wx:if="{{user.user_intro!=null}}">{{user.user_intro}}</view>
+    <view class="intro_content" wx:if="{{user.user_intro!=null}}" hidden="{{!user.user_intro}}">{{user.user_intro}}</view>
   </view>
 </template>
 
@@ -88,32 +88,32 @@
     </view>
 
     <!--投资领域-->
-    <view class="invest_title" wx:if="{{invest.invest_industry!=''}}">投资领域</view>
-    <view class="invest_industry_frame" wx:if="{{invest.invest_industry!=''}}">
+    <view class="invest_title" wx:if="{{invest.invest_industry!=''}}" hidden="{{!invest.invest_industry}}">投资领域</view>
+    <view class="invest_industry_frame" hidden="{{!invest.invest_industry}}">
       <block wx:for="{{invest.invest_industry}}" wx:key="{{item.industry_id}}">
         <view class="invest_industry" data-id="{{item.industry_id}}" data-value="{{item.industry_name}}">{{item.industry_name}}</view>
       </block>
     </view>
 
     <!--投资轮次-->
-    <view class="invest_title" wx:if="{{invest.invest_stage==''||!invest.invest_stage}}">投资轮次</view>
-    <view class="invest_stage_frame" wx:if="{{invest.invest_stage==''||!invest.invest_stage}}">
+    <view class="invest_title" wx:if="{{invest.invest_stage!=''}}" hidden="{{!invest.invest_stage}}">投资轮次</view>
+    <view class="invest_stage_frame" hidden="{{!invest.invest_stage}}">
       <block wx:for="{{invest.invest_stage}}" wx:key="{{item.stage_id}}">
         <view class="invest_stage" data-id="{{item.stage_id}}" data-value="{{item.stage_name}}">{{item.stage_name}}</view>
       </block>
     </view>
 
     <!--投资金额-->
-    <view class="invest_title" wx:if="{{invest.invest_scale!=''}}">投资金额</view>
-    <view class="invest_scale_frame" wx:if="{{invest.invest_scale!=''}}">
+    <view class="invest_title" wx:if="{{invest.invest_scale!=''}}" hidden="{{!invest.invest_scale}}">投资金额</view>
+    <view class="invest_scale_frame" hidden="{{!invest.invest_scale}}">
       <block wx:for="{{invest.invest_scale}}" wx:key="{{item.scale_id}}">
         <view class="invest_scale" data-id="{{item.scale_id}}" data-value="{{item.scale_money}}">{{item.scale_money}}</view>
       </block>
     </view>
 
     <!--具体描述-->
-    <view class="invest_title">具体描述</view>
-    <view class="invest_desc">{{invest.invest_desc}}</view>
+    <view class="invest_title" hidden="{{!invest.invest_desc}}">具体描述</view>
+    <view class="invest_desc" hidden="{{!invest.invest_desc}}">{{invest.invest_desc}}</view>
   </view>
 </template>
 
@@ -129,16 +129,16 @@
     </view>
 
     <!--可提供资源-->
-    <view class="resource_title" wx:if="{{resource.res_give!=''}}">可提供资源</view>
-    <view class="res_give_frame" wx:if="{{resource.res_give!=''}}">
+    <view class="resource_title" wx:if="{{resource.res_give!=''}}" hidden="{{!resource.res_give}}">可提供资源</view>
+    <view class="res_give_frame" wx:if="{{resource.res_give!=''}}" hidden="{{!resource.res_give}}">
       <block wx:for="{{resource.res_give}}" wx:key="{{item.resource_id}}">
         <view class="res_give" data-id="{{item.resource_id}}" data-value="{{item.resource_name}}">{{item.resource_name}}</view>
       </block>
     </view>
 
     <!--正寻求资源-->
-    <view class="resource_title" wx:if="{{resource.res_find !=''}}">正寻求资源</view>
-    <view class="res_find_frame" wx:if="{{resource.res_find !=''}}">
+    <view class="resource_title" wx:if="{{resource.res_find !=''}}" hidden="{{!resource.res_find}}">正寻求资源</view>
+    <view class="res_find_frame" wx:if="{{resource.res_find !=''}}" hidden="{{!resource.res_find}}">
       <block wx:for="{{resource.res_find}}" wx:key="{{item.resource_id}}">
         <view class="res_find" data-id="{{item.resource_id}}" data-value="{{item.resource_name}}">{{item.resource_name}}</view>
       </block>
@@ -151,9 +151,10 @@
   <view class="user_project_info">
     <view class="flex title">
       <view>
-        <image class="title_icon" src="{{url}}"></image>
+        <image class="title_icon" src="/img/icon-duijie@3x.png"></image>
         {{text}}
       </view>
+      <image class="iconEdit" src="/img/icon-edit@3x.png" catchtap="{{event}}"></image>
     </view>
 
     <!--融资项目-->
@@ -174,13 +175,9 @@
               <view class="pro_sort" wx:if="{{item.pro_city.area_title}}">{{item.pro_city.area_title}}</view>
               <view class="pro_sort" wx:if="{{item.pro_scale.scale_money}}">{{item.pro_scale.scale_money}}</view>
             </view>
-            <view>
-              <image class="iconEdit s_iconEdit" src="/img/icon-edit@3x.png"></image>
-            </view>
           </view>
         </view>
       </block>
-      <view class="project_card project_card_null" wx:if="{{project_info=='' || !project_info}}" bindtap="{{event}}">暂无</view>
     </view>
   </view>
 </template>

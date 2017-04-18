@@ -26,9 +26,9 @@
           <view class="weui-media-box weui-media-box_text my_detail" data-id='{{myProject.pro_id}}' data-index="{{index}}" bindtap="detail">
             <view class="weui-media-box__title weui-media-box__title_in-text" style="text-align:left;">{{myProject.pro_intro}}</view>
             <view class="sort">
-              <block wx:for="{{myProject.pro_industry}}" wx:for-item="sort" wx:key="*this">
+              <block wx:for="{{myProject.pro_industry}}" wx:for-item="sort" wx:key="sort.industry_id">
                 <view class="weui-media-box__desc" wx:if="{{index<4}}">
-                  {{sort}}
+                  {{sort.industry_name}}
                 </view>
               </block>
             </view>

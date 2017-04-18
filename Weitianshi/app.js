@@ -108,18 +108,6 @@ App({
     console.log(res)
   },
 
-  //报错
-  error: function (text) {
-    // this.globalData.error = 1
-    // this.globalData.error_text = text
-    // var errorTime = setTimeout(function () {
-    //   this.globalData.error = 0;
-    //   this.globalData.error_text=""
-    //   console.log('提示已消失')
-    // }, 1500)
-    // console.log(this.globalData.error_text)
-  },
-
   //下拉刷新
   onPullDownRefresh: function () {
     // console.log("开启了下拉刷新")

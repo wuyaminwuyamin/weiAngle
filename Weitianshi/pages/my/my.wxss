@@ -52,7 +52,6 @@ page {
 }
 
 .user_down {
-  width: 100%;
   background: white;
   padding: 32rpx 64rpx;
   margin-bottom: 32rpx;
@@ -153,10 +152,6 @@ page {
   background: white;
   padding: 32rpx;
   margin-bottom: 32rpx;
-}
-
-.user_resource_info {
-  padding-bottom: 6rpx;
 }
 
 .user_invest_case {

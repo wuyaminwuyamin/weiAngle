@@ -25,8 +25,7 @@
                 <image class="telephone" src="/img/icon-phone@3x.png" data-telephone="{{item.user_mobile}}" bindtap="telephone"></image>
               </view>
 
-              <!--<view class="user_company" wx:if="{{item.user_company_name !=''}}">{{item.user_company_name}}</view>-->
-              <view class="user_company" wx:if="{{item.user_company_name !=''}}">杭州投着乐网络科技有限公司</view>
+              <view class="user_company" wx:if="{{item.user_company_name !=''}}">{{item.user_company_name}}</view>
             </view>
           </view>
           <view class="investor_info">
