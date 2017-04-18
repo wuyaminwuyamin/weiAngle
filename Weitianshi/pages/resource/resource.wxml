@@ -71,25 +71,6 @@
       <!--已匹配的项目-->
       <view class="others">
         <block wx:for="{{yourProject}}" wx:key="{{pro_id}}" wx:for-item="myProject">
-
-          <!--<view class="weui-panel__bd" style="background:white;margin:16px">
-            <view class="weui-media-box weui-media-box_text your_Detail" data-id='{{myProject.pro_id}}' data-index="{{index}}" bindtap="yourDetail">
-              <view class="weui-media-box__title weui-media-box__title_in-text" style="text-align:left;">{{myProject.pro_intro}}</view>
-              <view class="sort">
-                <block wx:for="{{myProject.pro_industry}}" wx:for-item="sort" wx:key="*this">
-                  <view class="weui-media-box__desc" wx:if="{{index<4}}">
-                    {{sort.industry_name}}
-                  </view>
-                </block>
-              </view>
-              <view class="tips flex">
-                <view style="width:1px"></view>
-                <view class="weui-media-box__desc tip" wx:if="{{myProject.pro_stage.stage_name}}">{{myProject.pro_stage.stage_name}}</view>
-                <view class="weui-media-box__desc tip" wx:if="{{myProject.pro_area.area_title}}">{{myProject.pro_area.area_title}}</view>
-                <view class="weui-media-box__desc tip" wx:if="{{myProject.pro_scale.scale_money}}">{{myProject.pro_scale.scale_money}}</view>
-              </view>
-            </view> 
-          </view>-->
           <template is="selectedCard" data="{{myProject:myProject}}"></template>
         </block>
 
@@ -101,14 +82,12 @@
           <image class="empty" src="../../img/empty.png"></image>
         </view>
       </view>
-
-      <!--<view class="load" wx:if="{{load==1}}">正在加载</view>-->
     </scroll-view>
   </swiper-item>
 
   <!-- 资源对接 -->
   <swiper-item>
-    <view>
+    <scroll-view style="height:100%;" scroll-y="true" bindscrolltolower='resourceProject'>
       <template is="publish" data="{{hasPublic:hasPublic2,user_industry:res_find,text:resourceText,jumpProject:'resourceNeed'}}"></template>
       <view class="others">
         <block wx:for="{{res_match}}" wx:key="{{item.resource_id}}">
@@ -120,6 +99,6 @@
           <image class="empty" src="../../img/empty.png"></image>
         </view>
       </view>
-    </view>
+    </scroll-view>
   </swiper-item>
 </swiper>

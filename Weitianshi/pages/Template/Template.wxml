@@ -187,7 +187,31 @@
 
 <!--项目融资列表 && 投资案例列表-->
 <template name="projectList">
+  <view class="weui-panel__bd" style="background:white;margin:16px">
+    <view class="weui-media-box weui-media-box_text my_detail" data-id='{{myProject.pro_id}}' data-index="{{index}}" bindtap="detail">
+      <view class="weui-media-box__title weui-media-box__title_in-text" style="text-align:left;">{{myProject.pro_intro}}</view>
+      <view class="sort flex">
+        <block wx:for="{{myProject.pro_industry}}" wx:for-item="sort" wx:key="*this">
+          <view class="weui-media-box__desc" wx:if="{{index<4}}">
+            {{sort}}
+          </view>
+        </block>
+      </view>
 
+      <!--项目阶段｜项目地区｜项目金额-->
+      <view class="tips flex">
+        <view style="width:1px"></view>
+        <view class="weui-media-box__desc tip">{{myProject.pro_stage}}</view>
+        <view class="weui-media-box__desc tip">{{myProject.pro_area}}</view>
+        <view class="weui-media-box__desc tip">{{myProject.pro_scale}}</view>
+      </view>
+      <view class="edit flex">
+        <view class="editIcon" bindtap="edit" data-pro-id="">
+          <image src="/img/icon-edit@3x.png"></image>
+        </view>
+      </view>
+    </view>
+  </view>
 </template>
 
 <!--融资需求卡片-->
@@ -304,6 +328,28 @@
         </view>
 
         <!--<view class="ohters_position"></view>-->
+      </view>
+    </view>
+  </view>
+</template>
+
+<!--原投资项目卡片-->
+<template name="preSelectedCard">
+  <view class="weui-panel__bd" style="background:white;margin:16px">
+    <view class="weui-media-box weui-media-box_text your_Detail" data-id='{{myProject.pro_id}}' data-index="{{index}}" bindtap="yourDetail">
+      <view class="weui-media-box__title weui-media-box__title_in-text" style="text-align:left;">{{myProject.pro_intro}}</view>
+      <view class="sort">
+        <block wx:for="{{myProject.pro_industry}}" wx:for-item="sort" wx:key="*this">
+          <view class="weui-media-box__desc" wx:if="{{index<4}}">
+            {{sort.industry_name}}
+          </view>
+        </block>
+      </view>
+      <view class="tips flex">
+        <view style="width:1px"></view>
+        <view class="weui-media-box__desc tip" wx:if="{{myProject.pro_stage.stage_name}}">{{myProject.pro_stage.stage_name}}</view>
+        <view class="weui-media-box__desc tip" wx:if="{{myProject.pro_area.area_title}}">{{myProject.pro_area.area_title}}</view>
+        <view class="weui-media-box__desc tip" wx:if="{{myProject.pro_scale.scale_money}}">{{myProject.pro_scale.scale_money}}</view>
       </view>
     </view>
   </view>

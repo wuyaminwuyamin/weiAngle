@@ -27,7 +27,7 @@ Page({
       text2: "快速发布,精准对接优质项目",
       text3: "我的资源需求",
       text4: "寻求对接的资源"
-    }
+    },
   },
   //载入页面
   onLoad: function (option) {
@@ -297,7 +297,6 @@ Page({
     that.setData({ currentTab: e.detail.current });
     var user_id = wx.getStorageSync('user_id');
     var loadData = wx.getStorageSync("loadData");
-    // console.log(user_id, current);
     if (current == 1) {
       //载入寻找项目数据
       wx.request({
@@ -311,15 +310,6 @@ Page({
           // var scale=4;
           if (res.data.status_code !== 440004) {
             var yourProject = res.data.data.projects;
-            // var pro_scale=yourProject.pro_scale;
-            // var new_scale=[]
-            // for(var i=0;i<pro_scale.length;i++){
-            //   var isSame=0;
-            //     if(pro_scale.scale_id==4){
-
-            //     }
-            // }
-            // console.log(yourProject);
             that.setData({
               yourProject: yourProject,
               hasPublic: 1,
@@ -471,6 +461,12 @@ Page({
         rqj.errorHide(that, "没有更多了", 3000)
       }
     }
+  },
+
+  // 资源对接触底刷新
+  resourceProject: function () {
+    var that = this;
+
   },
   //分享当前页面
   onShareAppMessage: function () {

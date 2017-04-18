@@ -1,8 +1,8 @@
 {
   "pages": [
+    "pages/resource/resource",
     "pages/my/my",
     "pages/needMarket/needMarket",
-    "pages/resource/resource",
     "pages/network/network",
     "pages/my/sharePage/sharePage",
     "pages/userDetail/userDetail",
@@ -11,7 +11,6 @@
     "pages/my/investCaseEdit/investCaseEdit",
     "pages/resourceEnchange/resourceEnchange",
     "pages/my/projectFinance/projectFinance",
-    "pages/my/myInfoEdit/myInfoEdit",
     "pages/my/investCase/investCase",
     "pages/myProject/maintainProject/maintainProject",
     "pages/myProject/scanCode/scanCode",
