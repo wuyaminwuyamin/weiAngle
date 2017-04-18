@@ -220,7 +220,7 @@ swiper-item {
 .swiper-box .investor_text {
   font-size: 24rpx;
   flex-wrap: nowrap;
-  width: 128rpx;
+  width: 108rpx;
   margin: 12rpx 0;
   text-align: left;
   padding-left: 0;
@@ -230,10 +230,28 @@ swiper-item {
 .investor_text, investor_right {
   padding: 0 12rpx;
 }
+.resourceNeed .investor_text{
+  width: 128rpx;
+}
 .swiper-box .investor_right{
   font-size: 24rpx;
   color: #333;
   text-align:left; 
+}
+.investor_right{
+  display: flex;
+  margin-left: -8rpx;
+}
+.investor_intro{
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hideen;
+}
+.investor_stage{
+  padding:0 8rpx;
+  font-size: 24rpx;
+  color: #666;
+  margin-bottom: 10rpx;
 }
 
 /*资源需求*/
@@ -258,6 +276,6 @@ swiper-item {
 }
 
 .investNeed .investor_info{
-  height: 156rpx;
+  max-height: 156rpx;
   overflow: hidden;
 }

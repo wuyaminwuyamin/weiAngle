@@ -101,7 +101,7 @@ Page({
     projectFinance: function () {
         if (!this.data.options) {
             wx.navigateTo({
-                url: 'projectFinance/projectFinance?type=1',
+                url: 'projectFinance/projectFinance',
             })
         }
     },
@@ -109,7 +109,7 @@ Page({
     investCase: function () {
         if (!this.data.options) {
             wx.navigateTo({
-                url: 'investCase/investCase?type=2'
+                url: 'investCase/investCase'
             })
         }
     },

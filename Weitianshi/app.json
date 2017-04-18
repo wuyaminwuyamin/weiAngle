@@ -1,13 +1,13 @@
 {
   "pages": [
+    "pages/my/my",
+    "pages/needMarket/needMarket",
     "pages/resource/resource",
     "pages/network/network",
-    "pages/my/my",
     "pages/my/sharePage/sharePage",
     "pages/userDetail/userDetail",
     "pages/my/cardEdit/cardEdit",
     "pages/selectProject/selectProject",
-    "pages/needMarket/needMarket",
     "pages/my/investCaseEdit/investCaseEdit",
     "pages/resourceEnchange/resourceEnchange",
     "pages/my/projectFinance/projectFinance",

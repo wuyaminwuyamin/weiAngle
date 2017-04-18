@@ -14,10 +14,10 @@
   <template is="resourceInfo" data="{{resource:resource}}"></template>
 
   <!--项目融资-->
-  <template is="projectInfo" data="{{...financingProject}}"></template>
+  <template is="financingProject" data="{{...financingProject}}"></template>
 
   <!--投资案例-->
-  <template is="projectInfo" data="{{...investProject}}"></template>
+  <template is="financingProject" data="{{...investProject}}"></template>
 
   <!--投资案例-->
   <!--<view class="user_invest_case" bindtap="investCase">

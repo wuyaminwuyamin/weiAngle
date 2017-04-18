@@ -51,13 +51,13 @@
             <view class="investor_info">
               <view class="investor_intro flex" wx:if="{{item.investor_desc!=''}}">
                 <view class="investor_text">投资需求:</view>
-                <view class="investor_right">{{item.investor_desc}}</view>
+                <view class="investor_right investor_intro">{{item.investor_desc}}</view>
               </view>
               <view class="investor_industry_frame flex" wx:if="{{item.industry_tag!=''}}">
                 <view class="investor_text">投资领域:</view>
                 <view class="investor_right">
                   <block wx:for="{{item.industry_tag}}" wx:key="{{index}}" wx:for-item="industry">
-                    <view class="investor_industry">{{industry.industry_name}}</view>
+                    <view class="investor_stage">{{industry.industry_name}}</view>
                   </block>
                 </view>
               </view>

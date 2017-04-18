@@ -286,3 +286,12 @@ page {
   line-height: 144rpx;
   text-align: center;
 }
+
+/*按钮一号*/
+.buttonOne button{
+  background: #40587a;
+  font-size: 30rpx;
+  color: white;
+  height: 98rpx;
+  line-height: 98rpx;
+}

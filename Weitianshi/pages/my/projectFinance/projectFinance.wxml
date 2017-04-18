@@ -1,4 +1,4 @@
-
+<import src="/pages/Template/Template.wxml" />
 <!--pages/my/projectFinance/projectFinance.wxml-->
 <scroll-view style="height:100%;" scroll-y="true">
 
@@ -37,7 +37,6 @@
   </view>
 </scroll-view>
 
-<!--新增项目-->
-<view class="floatBtn flex maintainProject" bindtap="addProject">
-  <button class="push maintainProject">新增项目</button>
-</view>
+<!--按钮-->
+<template is="buttonOne" data="{{...buttonOne}}"></template>
+

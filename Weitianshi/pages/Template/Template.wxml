@@ -147,7 +147,7 @@
 </template>
 
 <!--项目融资 && 投资案例-->
-<template name="projectInfo">
+<template name="financingProject">
   <view class="user_project_info">
     <view class="flex title">
       <view>
@@ -180,9 +180,14 @@
           </view>
         </view>
       </block>
-      <view class="project_card project_card_null" wx:if="{{project_info=='' || !project_info}}">暂无</view>
+      <view class="project_card project_card_null" wx:if="{{project_info=='' || !project_info}}" bindtap="{{event}}">暂无</view>
     </view>
   </view>
+</template>
+
+<!--项目融资列表 && 投资案例列表-->
+<template name="projectList">
+
 </template>
 
 <!--融资需求卡片-->
@@ -312,4 +317,11 @@
 <!--自定义黄色背景小提示-->
 <template name="toast">
   <view class="error" wx:if="{{error=='1'}}">{{error_text}}</view>
+</template>
+
+<!--按钮一号-->
+<template name="buttonOne">
+  <view class="floatBtn buttonOne" bindtap="buttonOne">
+    <button>{{text}}</button>
+  </view>
 </template>
