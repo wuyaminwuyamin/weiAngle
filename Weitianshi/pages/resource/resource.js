@@ -3,31 +3,31 @@ var app = getApp()
 var url = app.globalData.url
 Page({
   data: {
-    userInfo: {},
     winWidth: 0,//选项卡
     winHeight: 0,//选项卡
     currentTab: 0,//选项卡
     bind_mobile: 0,//是否已存有个人信息
-    myProject: "",
-    yourProject: "",
-    res_match: "",
-    findTarget: "",//寻找项目的匹配的标准
+    myProject: "",//项目融资数据的字段 
+    yourProject: "",//寻找项目数据的字段
+    res_match: "",//资源对接数据的字段
     investor_page: 1,//投资人分页
-    share: 1,//分享页面
-    page_end: false,
-    hasPublic2: 0,
+    resource_Page: 1,//资源分页
+    investor_page_end: false,//投资人数据是否完结
+    resource_page_end:false,//资源数据是否完结
+    hasPublic: 0,//是否发布过投资需求
+    hasPublic2: 0,//是否发布过资源需求
     investText: {
       text1: "发布投资需求",
       text2: "快速发布,精准对接优质项目",
       text3: "我的投资需求",
       text4: "投资领域"
-    },
+    },//投资按钮字段
     resourceText: {
       text1: "发布资源需求",
       text2: "快速发布,精准对接优质项目",
       text3: "我的资源需求",
       text4: "寻求对接的资源"
-    },
+    },//资源按钮字段
   },
   //载入页面
   onLoad: function (option) {
@@ -36,7 +36,6 @@ Page({
     var bind_mobile = wx.getStorageSync('bind_mobile');
     //调用应用实例的方法获取全局数据(获取用户信息并向后台进行发送)
     app.getUserInfo(function (userInfo) {
-      //更新数据
       that.setData({
         userInfo: userInfo,
         bind_mobile: bind_mobile,
@@ -72,10 +71,7 @@ Page({
               wx.setStorageSync('user_id', res.data.user_id);
               var bind_mobile = wx.getStorageSync('bind_mobile');
               var user_id = res.data.user_id;
-              // console.log(res.data.bind_mobile, res.data.user_id, res.data.open_session)
               if (user_id != 0) {
-                // console.log("请求了列表信息")
-                // console.log(user_id)
                 //获取我的项目匹配到的投资人
                 wx.request({
                   url: url + '/api/project/getMyProject',
@@ -115,7 +111,6 @@ Page({
   },
   //显示页面
   onShow: function () {
-    // console.log("this is onShow")
     var that = this;
     var current = this.data.currentTab;
     var user_industry = [];
@@ -306,8 +301,7 @@ Page({
         },
         method: 'POST',
         success: function (res) {
-          // console.log(res);
-          // var scale=4;
+          ;
           if (res.data.status_code !== 440004) {
             var yourProject = res.data.data.projects;
             that.setData({
@@ -424,10 +418,10 @@ Page({
     var investor_id = this.data.investor_id;
     var investor_page = this.data.investor_page;
     var user_id = wx.getStorageSync('user_id');
-    var page_end = this.data.page_end
+    var investor_page_end = this.data.investor_page_end
     // console.log(user_id)
     if (user_id != '') {
-      if (page_end == false) {
+      if (investor_page_end == false) {
         wx.showToast({
           title: 'loading...',
           icon: 'loading'
@@ -453,7 +447,7 @@ Page({
             }
             that.setData({
               yourProject: yourProject,
-              page_end: res.data.page_end
+              investor_page_end: res.data.investor_page_end
             })
           }
         })

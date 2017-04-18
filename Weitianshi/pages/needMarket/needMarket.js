@@ -178,7 +178,7 @@ Page({
     })
 
   },
-   // 资源需求触底刷新
+  // 资源需求触底刷新
   resourceNeed: function () {
     var that = this;
     var resourcePage = this.data.resourcePage;

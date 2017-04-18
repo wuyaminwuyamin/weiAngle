@@ -1,5 +1,6 @@
 page {
   height: 100%;
+  position: relative;
 }
 
 scroll-view {
@@ -208,7 +209,7 @@ swiper-item {
   border: 1px solid #e0e0e0;
   padding: 0 16rpx;
   height: 26rpx;
-  line-height: 26rpx;
+  line-height: 30rpx;
 }
 
 /*投资需求*/
@@ -276,6 +277,11 @@ swiper-item {
 }
 
 .investNeed .investor_info{
-  max-height: 156rpx;
+  max-height: 154rpx;
   overflow: hidden;
+}
+
+/*模版修正*/
+.error{
+  left: 45%;
 }
