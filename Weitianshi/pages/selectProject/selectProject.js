@@ -68,7 +68,7 @@ Page({
   },
 
   //项目详情
-  detail: function (e) {
+  yourDetail: function (e) {
     var thisData = e.currentTarget.dataset;
     wx.navigateTo({
       url: '../yourProject/yourDetail?id=' + thisData.id

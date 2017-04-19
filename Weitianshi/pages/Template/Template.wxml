@@ -157,10 +157,9 @@
       <image class="iconEdit" src="/img/icon-edit@3x.png" catchtap="{{event}}"></image>
     </view>
 
-    <!--融资项目-->
     <view class="projcet_info_frame">
       <block wx:for="{{project_info}}" wx:key="{{item.pro_intro}}">
-        <view class="project_card" bindtap="{{event}}">
+        <view class="project_card" data-id="{{item.pro_id}}" data-index="{{index}}" bindtap="{{event2}}">
           <view class="pro_intro">
             {{item.pro_intro}}
           </view>
@@ -288,7 +287,7 @@
 <template name="selectedCard">
   <view class="selectProjectDetail">
     <view class="weui-panel__bd">
-      <view class="weui-media-box weui-media-box_text select_project" data-id='{{myProject.pro_id}}' data-index="{{index}}" bindtap="detail">
+      <view class="weui-media-box weui-media-box_text select_project" data-id='{{myProject.pro_id}}'  data-index="{{index}}" bindtap="yourDetail">
         <view class="weui-media-box__title weui-media-box__title_in-text" style="text-align:left;">{{myProject.pro_intro}}</view>
         <view class="sort">
           <block wx:for="{{myProject.pro_industry}}" wx:for-item="sort" wx:key="*this">
@@ -309,7 +308,7 @@
     </view>
 
     <!--名片-->
-    <view class="weui-cell select_project" data-id='{{myProject.pro_id}}' data-index="{{index}}" bindtap="detail">
+    <view class="weui-cell select_project" data-id='{{myProject.pro_id}}' data-index="{{index}}" bindtap="yourDetail">
       <view class="weui-cell__hd" style="position: relative;margin-right: 10px;">
         <image wx:if="{{myProject.user_avatar_url}}" class="others_pic" src="{{myProject.user_avatar_url}}" />
         <view wx:if="{{!myProject.user_avatar_url}}" class="others_nopic">{{myProject.user_avatar_text}}</view>

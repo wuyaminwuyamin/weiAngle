@@ -10,6 +10,7 @@ Page({
             url: "/img/icon-rongzi@3x.png",
             text: "项目融资",
             event: "projectFinance",
+            event2:"financingDetail",
             project_info: ""
         },
         investProject: {
@@ -104,6 +105,14 @@ Page({
                 url: 'projectFinance/projectFinance',
             })
         }
+    },
+    //融资项目详情
+    financingDetail:function(e){
+        var id=e.currentTarget.dataset.id;
+        var index=e.currentTarget.dataset.index
+        wx.navigateTo({
+          url: '/pages/myProject/projectDetail/projectDetail?id='+id+"&&index="+index,
+        })
     },
     //投资案例
     investCase: function () {
