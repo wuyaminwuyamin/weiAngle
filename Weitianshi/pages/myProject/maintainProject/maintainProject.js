@@ -81,6 +81,7 @@ Page({
             },
             method: 'POST',
             success: function (res) {
+                console.log(res)
                 var theData = res.data.data;
                 var describe = theData.pro_intro;
                 var industry = theData.pro_industry;
@@ -88,10 +89,11 @@ Page({
                 var industryId = [];
                 var stage_index = stageValue.indexOf(theData.pro_stage.stage_name);
                 var scale_index = scaleValue.indexOf(theData.pro_scale.scale_money);
-                var tipsIndex=theData.is_exclusive;
-                var belongArea=theData.pro_area.area_title;
-                var provinceNum=theData.pro_area.pid;
-                var cityNum=theData.pro_area.area_id;
+                var tipsIndex = theData.is_exclusive;
+                var belongArea = theData.pro_area.area_title;
+                var provinceNum = theData.pro_area.pid;
+                var cityNum = theData.pro_area.area_id;
+                console.log(provinceNum,cityNum)
                 // 对项目的所属领域进行处理
                 if (industry) {
                     for (var i = 0; i < industry.length; i++) {
@@ -100,12 +102,12 @@ Page({
                     }
                 }
                 wx.setStorage({
-                  key: 'm_domainValue',
-                  data: industryValue,
+                    key: 'm_domainValue',
+                    data: industryValue,
                 });
                 wx.setStorage({
-                  key: 'm_domainId',
-                  data: industryId,
+                    key: 'm_domainId',
+                    data: industryId,
                 })
                 that.setData({
                     describe: describe,
@@ -113,10 +115,10 @@ Page({
                     industryId: industryId,
                     stage_index: stage_index,
                     scale_index: scale_index,
-                    tipsIndex:tipsIndex,
-                    belongArea:belongArea,
-                    provinceNum:provinceNum,
-                    cityNum:cityNum
+                    tipsIndex: tipsIndex,
+                    belongArea: belongArea,
+                    provinceNum: provinceNum,
+                    cityNum: cityNum
                 })
 
             },
@@ -127,20 +129,24 @@ Page({
             },
         })
     },
-    onShow:function(){
-        var that=this;
-        var industryValue=wx.getStorageSync('m_domainValue');
-        var industryId=wx.getStorageSync('m_domainId');
-        var belongArea=wx.getStorageSync('m_belongArea')||this.data.belongArea;
-        var provinceNum=wx.getStorageSync("m_provinceNum");
-        var cityNum=wx.getStorageSync('m_cityNum')
+    onShow: function () {
+        var that = this;
+        var industryValue = wx.getStorageSync('m_domainValue');
+        var industryId = wx.getStorageSync('m_domainId');
+        var belongArea = wx.getStorageSync('m_belongArea') || this.data.belongArea;
+        var provinceNum = wx.getStorageSync("m_provinceNum");
+        var cityNum = wx.getStorageSync('m_cityNum')
         this.setData({
-            industryValue:industryValue,
-            industryId:industryId,
-            belongArea:belongArea,
-            provinceNum:provinceNum,
-            cityNum:cityNum
+            industryValue: industryValue,
+            industryId: industryId,
+            belongArea: belongArea,
         })
+        if(cityNum){
+            this.setData({
+                provinceNum:provinceNum,
+                cityNum:cityNum
+            })
+        }
     },
 
     //下拉刷新
@@ -156,14 +162,14 @@ Page({
             describe: e.detail.value
         })
     },
-    
+
     // 选择领域
-    industry:function(){
-        var industryValue=this.data.industryValue;
-        var industryId=this.data.industryId;
+    industry: function () {
+        var industryValue = this.data.industryValue;
+        var industryId = this.data.industryId;
         console.log(typeof industryValue)
         wx.navigateTo({
-          url: '/pages/industry/industry?current=2&&industryValue='+industryValue+'&&industryId='+industryId
+            url: '/pages/industry/industry?current=2&&industryValue=' + industryValue + '&&industryId=' + industryId
         })
     },
 
@@ -205,22 +211,22 @@ Page({
         var industryId = this.data.industryId;
         var provinceNum = this.data.provinceNum;
         var cityNum = this.data.cityNum;
-        var stageId=this.data.stageId;
-        var scaleId=this.data.scaleId;
-        var stage_index=this.data.stage_index;
-        var scale_index=this.data.scale_index;
+        var stageId = this.data.stageId;
+        var scaleId = this.data.scaleId;
+        var stage_index = this.data.stage_index;
+        var scale_index = this.data.scale_index;
         var console_stage = stageId[stage_index];
-        var console_scale=scaleId[scale_index];
+        var console_scale = scaleId[scale_index];
         var tipsIndex = this.data.tipsIndex;
         var user_id = wx.getStorageSync('user_id');
-        var pro_id=this.data.pro_id;
+        var pro_id = this.data.pro_id;
         console.log(user_id, describe, industryId, console_stage, console_scale, provinceNum, cityNum, tipsIndex)
         if (describe !== "" && industryValue !== "选择领域" && console_stage !== 0 && console_scale != 0 && provinceNum !== 0 && cityNum !== 0 && tipsIndex !== 4) {
             wx.request({
                 url: url + '/api/project/updateProject',
                 data: {
                     user_id: user_id,
-                    pro_id:pro_id,
+                    pro_id: pro_id,
                     pro_intro: describe,
                     industry: industryId,
                     pro_finance_stage: console_stage,
@@ -231,13 +237,19 @@ Page({
                 },
                 method: 'POST',
                 success: function (res) {
-                    wx.switchTab({
-                        url: '../../resource/resource'
-                    });
+                    if (res.status_code = 2000000) {
+                        wx.switchTab({
+                            url: '../../resource/resource'
+                        });
+                    } else {
+                        wx.showToast({
+                            title: res.status_code
+                        })
+                    }
                 },
                 fail: function () {
                     wx.showToast({
-                        title:"维护项目失败"
+                        title: "维护项目失败"
                     })
                 },
             })

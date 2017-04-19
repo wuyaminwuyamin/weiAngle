@@ -6,7 +6,7 @@ Page({
       text: "添加案例"
     }
   },
-  onLoad: function () {
+  onShow: function () {
     var that = this;
     var user_id = wx.getStorageSync('user_id');
     this.setData({
