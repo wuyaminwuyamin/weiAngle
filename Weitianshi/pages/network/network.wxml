@@ -22,7 +22,7 @@
                   <view class="user_name">{{item.user_real_name}}</view>
                   <view class="user_career">{{item.user_company_career}}</view>
                 </view>
-                <image class="telephone" src="/img/icon-phone@3x.png" data-telephone="{{item.user_mobile}}" bindtap="telephone"></image>
+                <image class="telephone" src="/img/icon-phone@3x.png" data-telephone="{{item.user_mobile}}" catchtap="telephone"></image>
               </view>
 
               <view class="user_company" wx:if="{{item.user_company_name !=''}}">{{item.user_company_name}}</view>

@@ -15,7 +15,7 @@ Page({
         var options = options;
         var industry = wx.getStorageSync('industry');
         var current = options.current;
-        // 0:发布融资项目  1:发布投资项目  2:维护我的项目
+        // 0:发布融资项目  1:发布投资项目  2:维护我的项目 3:发布投资案例
 
         if (current == 0) {
             var domainValue = wx.getStorageSync('domainValue')
@@ -32,7 +32,7 @@ Page({
 
             if (!domainValue) {
                 domainValue = [];
-                domainId = [];  
+                domainId = [];
             }
             if (domainValue == "选择领域") {
                 domainValue = [];
@@ -44,17 +44,28 @@ Page({
         } else if (current == 2) {
             var domainValue = options.industryValue;
             var domainId = options.industryId;
-            var domainValue=domainValue.split(",")
-            var domainId=domainId.split(",")
-            for(var i=0;i<domainId.length;i++){
-                domainId[i]=domainId[i]*1
+            var domainValue = domainValue.split(",")
+            var domainId = domainId.split(",")
+            for (var i = 0; i < domainId.length; i++) {
+                domainId[i] = domainId[i] * 1
             }
             if (domainValue == '选择领域') {
                 domainValue = [];
                 domainId = [];
             }
-            console.log(domainValue,domainId)
+            console.log(domainValue, domainId)
             console.log(typeof domainValue)
+        } else if (current == 3) {
+            var domainValue = wx.getStorageSync('case_domainValue')
+            var domainId = wx.getStorageSync('case_domainId')
+            if (!domainValue) {
+                domainValue = [];
+                domainId = [];
+            }
+            if (domainValue == "选择领域") {
+                domainValue = [];
+                domainId = [];
+            }
         }
 
         //checkbox
@@ -92,7 +103,7 @@ Page({
         var value = thisData.value;
         var idx = thisData.index;
         var id = e.currentTarget.id * 1;
-        console.log(checked,id)
+        console.log(checked, id)
         if (index.indexOf(id) == -1) {
             checked.push(value);
             index.push(id)
@@ -148,6 +159,14 @@ Page({
             } else if (current == 2) {
                 wx.setStorageSync('m_domainValue', checked);
                 wx.setStorageSync('m_domainId', index);
+            } else if (current == 3) {
+                if (checked == "") {
+                    wx.setStorageSync('case_domainValue', "选择领域");
+                    wx.setStorageSync('case_domainId', '');
+                } else {
+                    wx.setStorageSync('case_domainValue', checked);
+                    wx.setStorageSync('case_domainId', index);
+                }
             }
             wx.navigateBack({
                 delta: 1 // 回退前 delta(默认为1) 页面

@@ -36,9 +36,9 @@
             <!--项目阶段｜项目地区｜项目金额-->
             <view class="tips flex">
               <view style="width:1px"></view>
-              <view class="weui-media-box__desc tip">{{myProject.pro_stage}}</view>
-              <view class="weui-media-box__desc tip">{{myProject.pro_area}}</view>
-              <view class="weui-media-box__desc tip">{{myProject.pro_scale}}</view>
+              <view class="weui-media-box__desc tip">{{myProject.pro_stage.stage_name}}</view>
+              <view class="weui-media-box__desc tip">{{myProject.pro_area.area_title}}</view>
+              <view class="weui-media-box__desc tip">{{myProject.pro_scale.scale_money}}</view>
             </view>
             <view class="foryou" style="text-align:left">为您对接到的资本</view>
             <view class="weui-media-box__info people">

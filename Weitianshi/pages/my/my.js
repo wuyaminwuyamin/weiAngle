@@ -12,12 +12,6 @@ Page({
             event: "projectFinance",
             event2:"financingDetail",
             project_info: ""
-        },
-        investProject: {
-            url: "/img/icon-anli@3x.png",
-            text: "投资案例",
-            event: "investCase",
-            project_info: ""
         }
     },
     onLoad: function (options) {
@@ -51,9 +45,7 @@ Page({
                     var invest_case = res.data.invest_case;
                     var status_code = res.data.status_code;
                     var financingProject = that.data.financingProject;
-                    var investProject = that.data.investProject;
                     financingProject.project_info = project_info;
-                    investProject.project_info = invest_case;
                     that.setData({
                         user: user,
                         invest: invest,
@@ -62,7 +54,6 @@ Page({
                         invest_case: invest_case,
                         status_code: status_code,
                         financingProject: financingProject,
-                        investProject: investProject,
                     })
                 },
                 fail: function (res) {

@@ -153,15 +153,6 @@ Page({
     upLoad: function () {
         wx.navigateTo({
             url: '../scanCode/scanCode',
-            success: function (res) {
-                // success
-            },
-            fail: function () {
-                // fail
-            },
-            complete: function () {
-                // complete
-            }
         })
     },
 

@@ -1,8 +1,8 @@
 <import src="/pages/Template/Template.wxml" />
 <scroll-view style="height:100%;" scroll-y="true">
   <!--已发布的项目-->
-  <block wx:for="{{myProject}}" wx:key="{{pro_id}}" wx:for-item="myProject">
-     <template is="projectList" data="{{myProject:invest_case,index:index}}"></template>
+  <block wx:for="{{invest_case}}" wx:key="{{pro_id}}" wx:for-item="myProject">
+     <template is="projectList" data="{{myProject:myProject,index:index}}"></template>
   </block>
 
   <!--空状态-->
