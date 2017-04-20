@@ -11,5 +11,6 @@
   </view>
 </scroll-view>
 
+<view style="height:98rpx;"></view>
 <!--按钮一号-->
 <template is="buttonOne" data="{{...buttonOne}}"></template>

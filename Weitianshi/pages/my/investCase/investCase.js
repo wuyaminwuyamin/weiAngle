@@ -21,8 +21,8 @@ Page({
         },
         method: 'POST',
         success: function (res) {
-          console.log(res)
           var invest_case = res.data.invest_case;
+          wx.setStorageSync('invest_case', invest_case)
           that.setData({
             invest_case: invest_case,
           })
@@ -34,18 +34,12 @@ Page({
     } else {
       app.noUserId()
     }
-    
-
-
   },
-  //项目详情
-  detail: function (e) {
-    var thisData = e.currentTarget.dataset;
-    var id = thisData.id;
-    var index = thisData.index
-    console.log(thisData)
+  //编辑案例
+  edit: function (e) {
+    var index = e.currentTarget.dataset.index;
     wx.navigateTo({
-      url: '../../myProject/projectDetail/projectDetail?id=' + id + "&&index=" + index
+      url: '../investCaseEdit/investCaseEdit?index=' + index,
     })
   },
   // 按钮一号

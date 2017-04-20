@@ -3,7 +3,7 @@
 <view id="cardEdit">
   <view class="card">
     <view class="text">项目名称</view>
-    <input class="card_case" id="case_name" placeholder="请输入" bindblur="case_name" maxlength="15" />
+    <input class="card_case" id="case_name" placeholder="请输入" value="{{case_name}}" bindblur="case_name" maxlength="15" />
   </view>
   <view class="card">
     <view class="text">项目领域</view>
@@ -12,12 +12,12 @@
   <view class="card">
     <view class="text">项目轮次</view>
     <picker class="card_case" bindchange="case_stage" value="{{stage_index}}" range="{{stage}}">
-      {{stage[stage_index]}}
+      {{case_stage_name||stage[stage_index]}}
     </picker>
   </view>
   <view class="card">
     <view class="text">投资金额(万元)</view>
-    <input class="" id="case_money" placeholder="请输入" bindblur="case_money" maxlength="10" type="number"/>
+    <input class="" id="case_money" placeholder="请输入" value="{{case_money}}" bindblur="case_money" maxlength="10" type="number"/>
   </view>
   <view class="card">
     <view class="text">交易时间</view>
@@ -26,4 +26,5 @@
     </picker>
   </view>
 </view>
+
 <template is="buttonOne" data="{{...buttonOne}}"></template>

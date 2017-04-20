@@ -6,11 +6,14 @@
 .edit {
   justify-content: flex-end;
 }
+.img_frame{
+  align-items: baseline;
+  justify-content: space-between;
+}
 
-.editIcon {
-  width: 40rpx;
-  height: 40rpx;
-  background: coral;
+.editIcon{
+  width: 32rpx;
+  height: 32rpx;
 }
 
 .tip{

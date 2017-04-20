@@ -8,10 +8,16 @@
   justify-content: flex-end;
 }
 
-.editIcon {
-  width: 40rpx;
-  height: 40rpx;
+.img_frame{
+  align-items: baseline;
+  justify-content: space-between;
 }
+
+.editIcon{
+  width: 32rpx;
+  height: 32rpx;
+}
+
 
 .editIcon image {
   width: 28rpx;

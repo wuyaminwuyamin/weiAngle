@@ -17,17 +17,17 @@
   <template is="financingProject" data="{{...financingProject}}"></template>
 
   <!--投资案例-->
-  <!--<view class="user_project_info">
+  <view class="user_project_info">
     <view class="flex title">
       <view>
-        <image class="title_icon" src="/img/icon-duijie@3x.png"></image>
+        <image class="title_icon" src="/img/icon-anli@3x.png"></image>
         投资案例
       </view>
       <image class="iconEdit" src="/img/icon-edit@3x.png" catchtap="investCase"></image>
     </view>
     <view class="invest_info_frame">
       <block wx:for="{{invest_case}}" wx:key="{{item.case_id}}">
-        <view class="project_card" data-id="{{item.case_id}}" data-index="{{index}}" bindtap="investCase">
+        <view class="project_card" data-id="{{item.case_id}}" data-index="{{index}}">
           <view class="case_name_frame flex">
             <image class="case_pic" src="/img/dot@3x.png"></image>
             <view class="pro_intro">{{item.case_name}}</view>
@@ -40,13 +40,13 @@
           <view class="flex s_pro_sorts">
             <view class="pro_sorts flex">
               <view class="pro_sort" wx:if="{{item.stage.stage_name}}">{{item.stage.stage_name}}</view>
-              <view class="pro_sort" wx:if="{{item.case_money}}">{{item.scale_money}}万</view>
+              <view class="pro_sort" wx:if="{{item.case_money}}">{{item.case_money}}万</view>
             </view>
           </view>
         </view>
       </block>
     </view>
-  </view>-->
+  </view>
   <view style="height:92rpx;"></view>
 
   <!--交换名片-->
