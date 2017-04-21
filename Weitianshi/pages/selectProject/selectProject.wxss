@@ -1,9 +1,11 @@
 /* pages/project/project.wxss */
-page{
+
+page {
   height: 100%;
 }
 
 /*我的项目卡片*/
+
 .weui-media-box {
   padding: 32rpx;
 }
@@ -87,7 +89,7 @@ page{
   padding: 4rpx 15rpx;
   margin-right: 12rpx;
   margin-top: 20rpx;
-  line-height: 32rpx;
+  line-height: 22rpx;
   color: #999;
 }
 
@@ -130,6 +132,10 @@ page{
   justify-content: space-between;
 }
 
+.others_company {
+  font-size: 20rpx;
+}
+
 .others .others_company  .theOne {
   background: #40587a;
   color: white;
@@ -138,18 +144,32 @@ page{
   width: 105rpx;
   height: 26rpx;
   line-height: 26rpx;
-
 }
+
+.choiced {
+  width: 64rpx;
+  height: 32rpx;
+  margin-right: -30rpx;
+}
+
 .others_nopic {
-  font-size: 64rpx;
+  margin-top: -28rpx;
   color: #40587a;
   background: #f2f2f2;
-  width: 120rpx;
-  height: 120rpx;
-  line-height: 120rpx;
+  width: 60rpx;
+  height: 60rpx;
+  line-height: 60rpx;
   border-radius: 50%;
   text-align: center;
 }
-.error{
-  bottom:100rpx
+
+.others_pic {
+  margin-top: -28rpx;
+  width: 60rpx;
+  height: 60rpx;
+}
+
+.others_name {
+  font-size: 28rpx;
+  padding-bottom: 12rpx;
 }

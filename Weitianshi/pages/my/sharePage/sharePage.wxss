@@ -1,0 +1,11 @@
+@import "/pages/my/my.wxss";
+/*加入人脉按钮*/
+.aboutNetwork view{
+    width: 100%;
+    text-align: center;
+    color: white;
+    background:#40587a;
+    font-size: 30rpx;
+    height: 98rpx;
+    line-height: 98rpx;
+}

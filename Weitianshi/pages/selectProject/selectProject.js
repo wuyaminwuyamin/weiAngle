@@ -1,4 +1,6 @@
-var rqj = require('../Template/Template.js')
+var rqj = require('../Template/Template.js');
+var app=getApp();
+var url=app.globalData.url;
 Page({
   data: {
     slectProject: '',
@@ -9,14 +11,12 @@ Page({
     var that = this;
     var user_id = wx.getStorageSync('user_id')
     wx.request({
-      url: 'https://www.weitianshi.com.cn/api/project/getSelectedProjects',
+      url: url+'/api/project/getSelectedProjects',
       data: {
         user_id: user_id
       },
       method: 'POST',
-
       success: function (res) {
-        // console.log(res);
         var slectProject = res.data.data;
         that.setData({
           slectProject: slectProject
@@ -42,7 +42,7 @@ Page({
         page: page,
       });
       wx.request({
-        url: 'https://www.weitianshi.com.cn/api/project/getSelectedProjects',
+        url: url+'/api/project/getSelectedProjects',
         data: {
           user_id: user_id,
           page: page
@@ -68,7 +68,7 @@ Page({
   },
 
   //项目详情
-  detail: function (e) {
+  yourDetail: function (e) {
     var thisData = e.currentTarget.dataset;
     wx.navigateTo({
       url: '../yourProject/yourDetail?id=' + thisData.id

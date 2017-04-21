@@ -1,0 +1,18 @@
+<import src="/pages/Template/Template.wxml" />
+<view id="my">
+  <!--我的名片-->
+  <template is="userInfo" data="{{user:user}}"></template>
+
+  <!--个人描述-->
+  <template is="userIntro" data="{{user:user}}"></template>
+
+  <!--寻找案源-->
+  <template is="InvestInfo" data="{{invest:invest}}"></template>
+
+  <!--资源对接-->
+  <template is="resourceInfo" data="{{resource:resource}}"></template>
+
+  <!--项目融资-->
+  <template is="projectInfo" data="{{project_info:project_info}}"></template>
+
+</view>

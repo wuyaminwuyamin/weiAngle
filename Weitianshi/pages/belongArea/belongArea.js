@@ -1,3 +1,5 @@
+var app=getApp();
+var url=app.globalData.url;
 Page({
     data: {
         province: [],
@@ -14,7 +16,7 @@ Page({
         });
         // console.log(this.data.current);
         wx.request({
-            url: 'https://www.weitianshi.com.cn/api/category/getArea',
+            url: url+'/api/category/getArea',
             data: {
                 pid: 0
             },
@@ -48,7 +50,7 @@ Page({
 
         // console.log(this.data.console_province);
         wx.request({
-            url: 'https://www.weitianshi.com.cn/api/category/getArea',
+            url: url+'/api/category/getArea',
             data: {
                 pid: id
             },
@@ -60,7 +62,6 @@ Page({
                 that.setData({
                     city: city
                 })
-
             }
         });
         //   console.log(province[index])
@@ -85,11 +86,11 @@ Page({
             }
         } else if (current == 1) {
             if (this.data.belongArea == "") {
-                wx.setStorageSync('y_belongArea', "选择地区")
+                wx.setStorageSync('m_belongArea', "选择地区")
             } else {
-                wx.setStorageSync('y_belongArea', this.data.belongArea);
-                wx.setStorageSync('y_provinceNum', this.data.provinceNum);
-                wx.setStorageSync('y_cityNum', this.data.cityNum);
+                wx.setStorageSync('m_belongArea', this.data.belongArea);
+                wx.setStorageSync('m_provinceNum', this.data.provinceNum);
+                wx.setStorageSync('m_cityNum', this.data.cityNum);
             }
         }
 

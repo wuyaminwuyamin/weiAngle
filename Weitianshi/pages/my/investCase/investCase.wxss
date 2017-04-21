@@ -1,0 +1,29 @@
+/* pages/my/investCase/investCase.wxss */
+.weui-media-box__desc:last-child {
+  border-right: none;
+}
+
+.edit {
+  justify-content: flex-end;
+}
+.img_frame{
+  align-items: baseline;
+  justify-content: space-between;
+}
+
+.editIcon{
+  width: 32rpx;
+  height: 32rpx;
+}
+
+.tip{
+  margin-right: 24rpx;
+  font-size: 20rpx;
+  color: #999;
+  border-radius: 98rpx;
+  border: 1px solid #e0e0e0;
+  padding: 0 16rpx;
+  height: 26rpx;
+  line-height: 26rpx;
+  margin-top: 20rpx;
+}

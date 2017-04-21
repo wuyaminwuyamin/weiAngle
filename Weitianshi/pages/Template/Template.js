@@ -1,5 +1,3 @@
-
-
 var _this
 
 //错误提示消失
@@ -15,7 +13,6 @@ function errorHide(target, errorText, time) {
         });
     }, time)
 }
-
 //循环出用户投资信息
 function userNeed(that) {
     var userNeed={};

@@ -215,7 +215,6 @@ scroll-view {
   padding: 32rpx;
   /*padding-top: 0;*/
   background: #f3f4f8;
-  padding-bottom: 0;
 }
 
 .complete {
@@ -299,4 +298,13 @@ scroll-view {
 .ziben{
   width: 50%;
   padding-bottom: 32rpx;
+}
+
+.detail .grey,.detail .item1,.detail .item2{
+  text-align: left;
+}
+
+.maintainProject{
+  background:#40587a;
+  color: white;
 }

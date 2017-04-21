@@ -1,5 +1,5 @@
 var app = getApp();
-
+var url = app.globalData.url;
 Page({
     data: {
         describe: "",
@@ -23,7 +23,7 @@ Page({
 
         //请求地区,标签,期望融资,项目阶段数据
         wx.request({
-            url: 'https://www.weitianshi.com.cn/api/category/getWxProjectCategory',
+            url: url + '/api/category/getWxProjectCategory',
             method: 'POST',
             success: function (res) {
                 // console.log(res)
@@ -62,66 +62,66 @@ Page({
 
         //检查是否发布过投资信息
         wx.request({
-            url: 'https://www.weitianshi.com.cn/api/investors/checkInvestorInfo',
+            url: url + '/api/investors/checkInvestorInfo',
             data: {
                 user_id: user_id
             },
             method: 'POST',
-
             success: function (res) {
-                // console.log(res)
-                //获取已存有的投资领域,投资阶段,投资金额,投次地区
-                var thisData = res.data.data;
-                var y_domainValue = [];
-                var y_domainId = [];
-                var domain = thisData.industry_tag;
-                for (var i = 0; i < domain.length; i++) {
-                    y_domainValue.push(domain[i].industry_name)
-                    y_domainId.push(domain[i].industry_id)
-                };
-                var y_payStage = [];
-                var y_StageId = [];
-                var payStage = thisData.stage_tag;
-                for (var i = 0; i < payStage.length; i++) {
-                    y_payStage.push(payStage[i].stage_name);
-                    y_StageId.push(payStage[i].stage_id)
-                }
-                var y_payMoney = [];
-                var y_payMoneyId = [];
-                var payMoney = thisData.scale_tag;
-                for (var i = 0; i < payMoney.length; i++) {
-                    y_payMoney.push(payMoney[i].scale_money)
-                    y_payMoneyId.push(payMoney[i].scale_id)
-                };
+                if (res.data.data != '') {
+                    //获取已存有的投资领域,投资阶段,投资金额,投次地区
+                    var thisData = res.data.data;
+                    var y_domainValue = [];
+                    var y_domainId = [];
+                    var domain = thisData.industry_tag;
+                    for (var i = 0; i < domain.length; i++) {
+                        y_domainValue.push(domain[i].industry_name)
+                        y_domainId.push(domain[i].industry_id)
+                    };
+                    var y_payStage = [];
+                    var y_StageId = [];
+                    var payStage = thisData.stage_tag;
+                    for (var i = 0; i < payStage.length; i++) {
+                        y_payStage.push(payStage[i].stage_name);
+                        y_StageId.push(payStage[i].stage_id)
+                    }
+                    var y_payMoney = [];
+                    var y_payMoneyId = [];
+                    var payMoney = thisData.scale_tag;
+                    for (var i = 0; i < payMoney.length; i++) {
+                        y_payMoney.push(payMoney[i].scale_money)
+                        y_payMoneyId.push(payMoney[i].scale_id)
+                    };
 
-                var y_payArea = [];
-                var y_payAreaId = [];
-                var payArea = thisData.area_tag;
-                for (var i = 0; i < payArea.length; i++) {
-                    y_payArea.push(payArea[i].area_title);
-                    y_payAreaId.push(payArea[i].area_id);
+                    var y_payArea = [];
+                    var y_payAreaId = [];
+                    var payArea = thisData.area_tag;
+                    for (var i = 0; i < payArea.length; i++) {
+                        y_payArea.push(payArea[i].area_title);
+                        y_payAreaId.push(payArea[i].area_id);
+                    }
+                    var initPayMoney = thisData.scale_tag[0].scale_money
+                    // console.log(initPayMoney)
+                    that.setData({
+                        initPayMoney: initPayMoney
+                    })
+                    //初始化
+                    wx.setStorageSync('y_describe', thisData.investor_desc)
+                    wx.setStorageSync('y_domainValue', y_domainValue)
+                    wx.setStorageSync('y_domainId', y_domainId)
+                    wx.setStorageSync('y_payStage', y_payStage)
+                    wx.setStorageSync('y_stageId', y_StageId)
+                    wx.setStorageSync('y_payMoney', y_payMoney)
+                    wx.setStorageSync('y_payMoneyId', y_payMoneyId)
+                    wx.setStorageSync('y_payArea', y_payArea)
+                    wx.setStorageSync('y_payAreaId', y_payAreaId)
                 }
-                var initPayMoney = thisData.scale_tag[0].scale_money
-                // console.log(initPayMoney)
-                that.setData({
-                    initPayMoney: initPayMoney
-                })
-                //初始化
-                wx.setStorageSync('y_describe', thisData.investor_desc)
-                wx.setStorageSync('y_domainValue', y_domainValue)
-                wx.setStorageSync('y_domainId', y_domainId)
-                wx.setStorageSync('y_payStage', y_payStage)
-                wx.setStorageSync('y_stageId', y_StageId)
-                wx.setStorageSync('y_payMoney', y_payMoney)
-                wx.setStorageSync('y_payMoneyId', y_payMoneyId)
-                wx.setStorageSync('y_payArea', y_payArea)
-                wx.setStorageSync('y_payAreaId', y_payAreaId)
             },
         })
     },
     //页面显示
     onShow: function () {
-        var that=this;
+        var that = this;
         // console.log("this is onShow")
         //维护登录状态
         app.checkLogin();
@@ -135,7 +135,6 @@ Page({
         var payStageId = wx.getStorageSync('y_payStageId');
         var payMoney = wx.getStorageSync('y_payMoney') || "选择金额";
         var payMoneyId = wx.getStorageSync('y_payMoneyId')
-
         // console.log(domainValue, domainId, describe, payArea, payAreaId, payStage, payStageId)
         that.setData({
             domainValue: domainValue,
@@ -192,12 +191,12 @@ Page({
         var payMoney = this.data.payMoney;
         var payMoneyId = this.data.payMoneyId;
         var user_id = wx.getStorageSync('user_id');
-   
+
         // console.log(user_id, describe, domainId, payMoney, payMoney, payArea, payAreaId, payStage, payStageId)
-        console.log(domainId,payStageId,payMoneyId,payAreaId,describe)
+        console.log(domainId, payStageId, payMoneyId, payAreaId, describe)
         if (domainValue !== "选择领域" && payMoney != "选择金额" && payArea !== "选择城市" && payStage !== "选择阶段") {
             wx.request({
-                url: 'https://www.weitianshi.com.cn/api/investors/insertInvestor',
+                url: url + '/api/investors/insertInvestor',
                 data: {
                     user_id: user_id,
                     investor_industry: domainId,
@@ -221,7 +220,7 @@ Page({
                     // wx.setStorageSync('y_console_expect', 0)
                     // wx.setStorageSync('y_payArea', "选择城市")
                     // wx.setStorageSync('y_payAreaId', [])
-                    
+
                     wx.switchTab({
                         url: '../resource/resource'
                     });

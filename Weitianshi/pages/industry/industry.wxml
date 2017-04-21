@@ -17,7 +17,6 @@
   </view>
   <button class="nextBtn" bindtap="certain">
     确定
-    <image class="rightArrow" src="../../../img/rightArrow.png"></image>
   </button>
 
   <!--引用尝试-->

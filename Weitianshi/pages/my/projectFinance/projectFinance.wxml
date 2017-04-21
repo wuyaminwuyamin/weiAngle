@@ -1,0 +1,18 @@
+<import src="/pages/Template/Template.wxml" />
+<!--pages/my/projectFinance/projectFinance.wxml-->
+<scroll-view style="height:100%;" scroll-y="true">
+
+  <!--已发布的项目-->
+  <block wx:for="{{myProject}}" wx:key="{{pro_id}}" wx:for-item="myProject">
+    <template is="projectList" data="{{myProject:myProject,index:index}}"></template>
+  </block>
+
+  <!--空状态-->
+  <view wx:if="{{myProject==''}}">
+    <image class="empty" src="../../img/empty.png"></image>
+  </view>
+</scroll-view>
+
+<!--按钮-->
+<template is="buttonOne" data="{{...buttonOne}}"></template>
+

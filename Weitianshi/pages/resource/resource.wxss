@@ -1,7 +1,9 @@
-@import "../../weui.wxss";
-page{
+@import "/pages/Template/Template.wxss";
+@import "/pages/selectProject/selectProject.wxss";
+page {
   height: 100%;
 }
+
 view {
   font-size: 28rpx;
   color: #333;
@@ -63,9 +65,10 @@ border-radius: 100rpx;*/
 .swiper-tab-list {
   font-size: 24rpx;
   display: inline-block;
-  width: 17%;
+  width: 96rpx;
   color: #ccc;
-  margin: 24rpx 8%;
+  margin: 24rpx 77rpx;
+  margin-bottom: 0;
 }
 
 .on {
@@ -130,6 +133,7 @@ weui-panel__bd{
 
 .weui-media-box {
   padding: 32rpx;
+  padding-bottom: 12rpx;
 }
 
 .weui-media-box__desc {
@@ -164,13 +168,22 @@ weui-panel__bd{
 }
 
 .person {
-  width: 25%;
+  width: 120rpx;
+  margin-left: 24rpx;
+  margin-right: 24rpx;
+}
+.person:first-child{
+  margin-left: 0
+}
+.person:last-child{
+  mmargin-right: 0
 }
 
 .person view:nth-child(2) {
   font-size: 20rpx;
   color: #666;
-  padding-top:8rpx;
+  padding-top: 8rpx;
+  width: 120rpx;
 }
 
 .person view:nth-child(3) {
@@ -207,11 +220,12 @@ weui-panel__bd{
 .tip {
   border: 1px solid #e0e0e0;
   border-radius: 49px;
-  font-size: 20rpx;
-  padding: 4rpx 15rpx;
+  padding: 0 15rpx;
   margin-right: 12rpx;
   margin-top: 20rpx;
   line-height: 32rpx;
+  height:28rpx;
+  font-size: 20rpx;
   color: #999;
 }
 
@@ -241,6 +255,16 @@ weui-panel__bd{
   width: 60rpx;
   height: 60rpx;
   display: block;
+}
+
+.others_text {
+  width: 60rpx;
+  height: 60rpx;
+  line-height: 60rpx;
+  border-radius: 50%;
+  background: #f2f2f2;
+  color: #10587a;
+  text-align: center;
 }
 
 .others .weui-cell__bd view {
@@ -288,10 +312,15 @@ weui-panel__bd{
 
 .offer, .search {
   align-items: baseline;
+  flex-wrap: wrap;
+}
+
+.offer view, .search view {
+  margin-bottom: 16rpx;
 }
 
 .search {
-  margin-top: 32rpx;
+  margin-top: 20rpx;
 }
 
 .offer view:first-child {
@@ -310,37 +339,57 @@ weui-panel__bd{
 }
 
 .others_nopic {
+  margin-top: 0;
   font-size: 64rpx;
   color: #40587a;
   background: #f2f2f2;
   border-radius: 50%;
   line-height: 120rpx;
 }
-
+.selectProjectDetail .others_nopic{
+  line-height: 59rpx;
+  margin-top: 0;
+  font-size: 40rpx;
+}
 
 /*本页面调整*/
-.swiper-tab-list2{
+
+.swiper-tab-list2 {
   font-size: 24rpx;
   display: inline-block;
   width: 34%;
   margin: 24rpx 8%;
 }
 
-.foryou{
-    border: none;
-    font-size: 20rpx;
-    color: #666;
-    padding-top: 24rpx;
-   
+.foryou {
+  border: none;
+  font-size: 20rpx;
+  color: #666;
+  padding-top: 24rpx;
 }
-.foryou2{
+
+.foryou2 {
   font-size: 24rpx;
   margin-bottom: -8rpx;
 }
-.findTips{
+
+.findTips {
   font-size: 20rpx;
   color: #999;
 }
-.error{
-  bottom: 100rpx
+
+.error {
+  bottom: 100rpx;
+}
+
+
+/*模版调整*/
+.choiced{
+  display: none;
+}
+.selectProjectDetail .select_project:nth-child(2){
+  padding-top: 20rpx;
+}
+.empty{
+  padding-top: 260rpx;
 }

@@ -1,12 +1,15 @@
 //app.js
 App({
-  onLaunch: function () {
+  onLaunch: function (options) {
     //调用API从本地缓存中获取数据
     var logs = wx.getStorageSync('logs') || [];
     logs.unshift(Date.now());
     wx.setStorageSync('logs', logs)
+    // console.log(options.scene)
   },
-
+  onError: function (msg) {
+    console.log(msg)
+  },
 
   //获取用户信息
   getUserInfo: function (cb) {
@@ -34,12 +37,7 @@ App({
                 },
                 method: 'POST',
                 success: function (res) {
-                  //本地存入open_session
-                  wx.setStorageSync('open_session', res.data.open_session);
-                  wx.setStorageSync('bind_mobile', res.data.bind_mobile);
-                  wx.setStorageSync('user_id', res.data.user_id);
-                  // console.log("获取用户信息完成,已将bind_mobile,userId,open_session存入缓存");
-                  // console.log(res.data.bind_mobile, res.data.user_id, res.data.open_session)
+                  
                 },
                 fail: function () {
                   console.log("向后台发送信息失败")
@@ -54,7 +52,6 @@ App({
       })
     }
   },
-
 
   //维护登录状态
   checkLogin: function () {
@@ -71,15 +68,9 @@ App({
             },
             method: 'POST',
             success: function (res) {
-              //本地存入open_session
-              wx.setStorageSync('open_session', res.data.open_session);
               wx.setStorageSync('bind_mobile', res.data.bind_mobile);
               wx.setStorageSync('user_id', res.data.user_id);
               console.log(res.data.user_id)
-              //检查是否绑定手机
-              var bind_mobile = wx.getStorageSync('bind_mobile');
-              // console.log("维护登录状态成功,已将bind_mobile,user_id,open_session存入缓存");
-              // console.log(res.data.bind_mobile, res.data.user_id, res.data.open_session);
             },
             fail: function () {
               console.log("向后台获取3rd_session失败")
@@ -93,11 +84,20 @@ App({
     //微信登录状态维护
     wx.checkSession({
       success: function () {
-        //session 未过期，并且在本生命周期一直有效
+      },
+      fail: function () {
+        wx.login();
+      }
+    })
+  },
+  //微信登录状态维护
+  checkSession: function () {
+    wx.checkSession({
+      success: function () {
       },
       fail: function () {
         //登录态过期
-        wx.login(); //重新登录
+        wx.login() //重新登录
       }
     })
   },
@@ -105,20 +105,7 @@ App({
   //查看缓存
   cacheCheck: function () {
     var res = wx.getStorageInfoSync();
-    // console.log(res.keys);
-    // console.log(res.currentSize);
-  },
-
-  //报错
-  error: function (text) {
-    // this.globalData.error = 1
-    // this.globalData.error_text = text
-    // var errorTime = setTimeout(function () {
-    //   this.globalData.error = 0;
-    //   this.globalData.error_text=""
-    //   console.log('提示已消失')
-    // }, 1500)
-    // console.log(this.globalData.error_text)
+    console.log(res)
   },
 
   //下拉刷新
@@ -127,11 +114,30 @@ App({
     wx.stopPullDownRefresh()
   },
 
+  // user_id为空时,返回首页或者完善信息
+  noUserId: function () {
+    wx.showModal({
+      title: "提示",
+      content: "请先绑定个人信息",
+      success: function (res) {
+        console.log(res)
+        if (res.confirm == true) {
+          wx.navigateTo({
+            url: '/pages/myProject/personInfo/personInfo',
+          })
+        } else {
+          wx.switchTab({
+            url: '/pages/resource/resource',
+          })
+        }
+      }
+    })
+  },
+
 
   //初始本地缓存
   globalData: {
     error: 0,
-    error_text: "111111",
-    y_domainValue:"选择领域"
+    url: "https://www.weitianshi.com.cn"
   }
 });

@@ -1,5 +1,7 @@
 
 var rqj = require('../../Template/Template.js')
+var app = getApp();
+var url = app.globalData.url;
 Page({
     data: {
         company: "",
@@ -11,26 +13,28 @@ Page({
     },
     //onLoad
     onLoad: function (options) {
-        // console.log("this is onLoad")
         var that = this;
-        // console.log(options)
-        var company=options.user_company;
-        var position=options.user_career;
-        var email=options.user_email;
-        if(company==null){
-            company=''
+        console.log(options)
+        var company = options.user_company;
+        var position = options.user_career;
+        var email = options.user_email;
+
+        if (company == "null") {
+            company = ''
         };
-        if(position==null){
-            position==''
+        if (position == "null") {
+            position = ''
         };
-        if(email==null){
-            email=''
+        if (email == "null") {
+            email = ''
         }
         that.setData({
-            company:company,
-            position:Position,
-            email:email
+            company: company,
+            position: position,
+            email: email,
         })
+
+
     },
     //下拉刷新
     onPullDownRefresh: function () {
@@ -108,7 +112,7 @@ Page({
         if (result == "1" && company !== "" && position !== "") {
             //向后台发送公司信息
             wx.request({
-                url: 'https://www.weitianshi.com.cn/api/wx/updateUser',
+                url: url + '/api/wx/updateUser',
                 data: {
                     user_id: user_id,
                     user_company_name: company,
@@ -119,11 +123,42 @@ Page({
                 success: function (res) {
                     // console.log(res)
                     if (res.data.status_code == 2000000) {
-                        wx.switchTab({
-                            url: "../../pages/resource/resource"
-                        });
-                    } else {   
-
+                        // 从绑定人脉那边过来的
+                        var followed_user_id = wx.getStorageSync('followed_user_id');
+                        if (followed_user_id) {
+                            wx.request({
+                                url: url + '/api/user/followUser',
+                                data: {
+                                    follow_user_id: user_id,
+                                    followed_user_id: followed_user_id
+                                },
+                                method: 'POST',
+                                success: function (res) {
+                                    if (res.data.status_code == 2000000) {
+                                        wx.showModal({
+                                            title: "提示",
+                                            content: "添加人脉成功",
+                                            showCancel: false,
+                                            confirmText: "到人脉库",
+                                            success: function () {
+                                                wx.switchTab({
+                                                    url: '/pages/network/network',
+                                                })
+                                            }
+                                        })
+                                    }
+                                },
+                            })
+                        } else {
+                            wx.switchTab({
+                                url: "/pages/resource/resource"
+                            });
+                        }
+                    }else{
+                        wx.showModal({
+                            title:"错误提示",
+                            content:"用户已生成,但是公司,职位,邮箱信息绑定失败"
+                        })
                     }
                 },
             })
@@ -136,11 +171,11 @@ Page({
                 error: '1'
             });
             if (company == '') {
-                rqj.errorHide(that,"公司不能为空",1500)
+                rqj.errorHide(that, "公司不能为空", 1500)
             } else if (position == '') {
-               rqj.errorHide(that,"职位不能为空",1500)
+                rqj.errorHide(that, "职位不能为空", 1500)
             } else {
-               rqj.errorHide(that,"请正确填写邮箱",1500)
+                rqj.errorHide(that, "请正确填写邮箱", 1500)
             }
 
         }

@@ -1,25 +1,35 @@
 {
   "pages": [
     "pages/resource/resource",
+    "pages/my/my",
+    "pages/my/investCase/investCase",
+    "pages/my/investCaseEdit/investCaseEdit",
+    "pages/needMarket/needMarket",
+    "pages/network/network",
+    "pages/my/sharePage/sharePage",
+    "pages/userDetail/userDetail",
+    "pages/my/cardEdit/cardEdit",
+    "pages/selectProject/selectProject",
+    "pages/resourceEnchange/resourceEnchange",
+    "pages/my/projectFinance/projectFinance",
+    "pages/myProject/maintainProject/maintainProject",
+    "pages/myProject/scanCode/scanCode",
+    "pages/myProject/scanCode/scanCodeSuccess",
     "pages/belongArea/belongArea",
     "pages/myProject/projectDetail/projectDetail",
     "pages/yourProject/yourDetail",
-    "pages/resourceEnchange/resourceEnchange",
+    "pages/myProject/personInfo/personInfo",
     "pages/myProject/companyInfo/companyInfo",
     "pages/payMoney/payMoney",
     "pages/yourProject/yourProject",
     "pages/myProject/publishProject/publishProject",
     "pages/industry/industry",
     "pages/payStage/payStage",
-    "pages/needMarket/needMarket",
-    "pages/selectProject/selectProject",
-    "pages/network/network",
-    "pages/my/my",
     "pages/payArea/payArea"
   ],
   "window": {
     "navigationBarBackgroundColor": "#fff",
-    "navigationBarTitleText": "WeChat",
+    "navigationBarTitleText": "微天使乐投平台",
     "navigationBarTextStyle": "black",
     "enablePullDownRefresh": true,
     "backgroundTextStyle": "dark"
@@ -51,6 +61,13 @@
         "text": "我的"
       }
     ],
-    "selectedColor": "black"
+    "selectedColor": "black",
+    "borderStyle": "white"
+  },
+  "networkTimeout": {
+    "request": 20000,
+    "connectSocket": 20000,
+    "uploadFile": 20000,
+    "downloadFile": 20000
   }
 }
