@@ -17,7 +17,7 @@
 
 <!--我的名片-->
 <template name="userInfo">
-  <view class="user_info flex" bindtap="{{cardEdit}}">
+  <view class="user_info flex" bindtap="cardEdit">
     <view class="user_left">
       <view class="flex">
         <view class="user_name" wx:if="{{user.user_real_name}}">{{user.user_real_name}}</view>
@@ -158,7 +158,7 @@
     </view>
     <view class="projcet_info_frame">
       <block wx:for="{{project_info}}" wx:key="{{item.pro_intro}}">
-        <view class="project_card" data-id="{{item.pro_id||item.case_id}}" data-index="{{index}}" bindtap="{{event2}}">
+        <view class="project_card" data-id="{{item.pro_id}}" data-index="{{index}}" bindtap="{{event2}}">
           <view class="pro_intro">
             {{item.pro_intro||item.case_name}}
           </view>
