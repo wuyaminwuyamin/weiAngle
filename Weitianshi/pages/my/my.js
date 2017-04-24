@@ -76,7 +76,7 @@ Page({
     findProjectEdit: function () {
         if (!this.data.options) {
             wx.navigateTo({
-                url: '../yourProject/yourProject',
+                url: '../yourProject/yourProject?current='+1,
             })
         }
 

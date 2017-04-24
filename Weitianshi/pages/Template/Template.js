@@ -1,5 +1,5 @@
 var _this
-
+var app = getApp();
 //错误提示消失
 function errorHide(target, errorText, time) {
     var that = target;
@@ -15,15 +15,15 @@ function errorHide(target, errorText, time) {
 }
 //循环出用户投资信息
 function userNeed(that) {
-    var userNeed={};
-    var user_industry=[];
-    var user_industryId=[];
-    var user_area=[];
-    var user_areaId=[];
-    var user_stage=[];
-    var user_stageId=[];
-    var user_scale=[];
-    var user_scaleId=[];
+    var userNeed = {};
+    var user_industry = [];
+    var user_industryId = [];
+    var user_area = [];
+    var user_areaId = [];
+    var user_stage = [];
+    var user_stageId = [];
+    var user_scale = [];
+    var user_scaleId = [];
     var user_id = wx.getStorageSync('user_id')
     if (user_id != 0) {
         wx.request({
@@ -66,6 +66,51 @@ function userNeed(that) {
     userNeed.user_scale = user_scale;
     userNeed.user_scaleId = user_scaleId;
     return userNeed;
+}
+//添加人脉
+function addNetWork(that, follow_user_id, followed_user_id) {
+    wx.request({
+        url: url + '/api/user/followUser',
+        data: {
+            follow_user_id: follow_user_id,
+            followed_user_id: followed_user_id
+        },
+        method: 'POST',
+        success: function (res) {
+            console.log(res)
+            if (res.data.status_code == 2000000) {
+                wx.showModal({
+                    title: "提示",
+                    content: "添加人脉成功",
+                    showCancel: false,
+                    confirmText: "到人脉库",
+                    success: function (res) {
+                        wx.switchTab({
+                            url: '/pages/network/network',
+                        })
+                    }
+                })
+            } else {
+                wx.showModal({
+                    title: "提示",
+                    content: "您已经添加过此人脉",
+                    showCancel: false,
+                    confirmText: "到人脉库",
+                    success: function () {
+                        wx.switchTab({
+                            url: '/pages/network/network',
+                        })
+                    }
+                })
+            }
+        },
+        fail: function (res) {
+            wx.showModal({
+                title: "错误提示",
+                content: "添加人脉失败" + res
+            })
+        },
+    })
 }
 
 //函数输出
