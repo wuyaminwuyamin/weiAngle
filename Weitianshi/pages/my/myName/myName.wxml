@@ -1,2 +1,2 @@
 <!--pages/my/myName/myName.wxml-->
-<text>pages/my/myName/myName.wxml</text>
+<import src="/pages/Template/Template.wxml"/>
