@@ -1,3 +1,5 @@
 <!--pages/my/myName/myName.wxml-->
+<import src="/pages/Template/Template.wxml"/>
 <text>pages/my/myName/myName.wxml</text>
 <view>天子守国门,君王死社稷</view>
+
