@@ -8,7 +8,7 @@ Page({
         goTop: 0,
         financingProject: {
             url: "/img/icon-rongzi@3x.png",
-            text: "项目融资",
+            text: "我的项目库",
             event: "projectFinance",
             event2:"financingDetail",
             project_info: ""
