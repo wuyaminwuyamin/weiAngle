@@ -240,6 +240,7 @@ Page({
                   },
                   method: 'POST',
                   success: function (res) {
+                    console.log(res)
                     if (res.data.status_code != "450002") {
                       wx.setStorage({
                         key: 'resource_data',
