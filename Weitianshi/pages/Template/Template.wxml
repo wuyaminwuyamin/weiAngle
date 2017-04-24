@@ -32,7 +32,7 @@
       <view class="user_email flex" wx:if="{{user.user_email}}">
         <view>邮箱：{{user.user_email}}</view>
         <label>
-          <image class="user_edit" src="/img/icon-Share2@3x.png" catchtap="cardChange"></image>
+          <image class="user_edit" wx:if="{{canEdit}}" src="/img/icon-Share2@3x.png" catchtap="cardChange"></image>
         </label>
       </view>
       <view class="user_email" wx:if="{{!user.user_email}}">邮箱号码：暂无编辑</view>
@@ -70,7 +70,7 @@
         <image class="title_icon" src="/img/icon-miaoshu@3x.png"></image>
         个人描述
       </view>
-      <image class="iconEdit" src="/img/icon-edit@3x.png"></image>
+     <image class="iconEdit" wx:if="{{canEdit}}" src="/img/icon-edit@3x.png"></image>
     </view>
     <view class="intro_content" wx:if="{{user.user_intro!=null}}" hidden="{{!user.user_intro}}">{{user.user_intro}}</view>
     <view style="height:32rpx;" wx:if="{{user.user_intro!=null}}" hidden="{{!user.user_intro}}"></view>
@@ -85,7 +85,7 @@
         <image class="title_icon" src="/img/icon-anyuan@3x.png"></image>
         寻找案源
       </view>
-      <image class="iconEdit" src="/img/icon-edit@3x.png"></image>
+     <image class="iconEdit" wx:if="{{canEdit}}" src="/img/icon-edit@3x.png"></image>
     </view>
 
     <!--投资领域-->
@@ -126,7 +126,7 @@
         <image class="title_icon" src="/img/icon-duijie@3x.png"></image>
         资源对接
       </view>
-      <image class="iconEdit" src="/img/icon-edit@3x.png"></image>
+     <image class="iconEdit" wx:if="{{canEdit}}" src="/img/icon-edit@3x.png"></image>
     </view>
 
     <!--可提供资源-->
@@ -147,7 +147,7 @@
   </view>
 </template>
 
-<!--项目融资 && 投资案例-->
+<!--项目融资-->
 <template name="financingProject">
   <view class="user_project_info">
     <view class="flex title">
@@ -155,11 +155,11 @@
         <image class="title_icon" src="/img/icon-rongzi@3x.png"></image>
         {{text}}
       </view>
-      <image class="iconEdit" src="/img/icon-edit@3x.png" catchtap="{{event}}"></image>
+      <image class="iconEdit" wx:if="{{canEdit}}" src="/img/icon-edit@3x.png" catchtap="projectFinance"></image>
     </view>
     <view class="projcet_info_frame">
       <block wx:for="{{project_info}}" wx:key="{{item.pro_intro}}">
-        <view class="project_card" data-id="{{item.pro_id}}" data-index="{{index}}" bindtap="{{event2}}">
+        <view class="project_card" data-id="{{item.user_id}}" data-index="{{index}}" bindtap="financingDetail">
           <view class="pro_intro">
             {{item.pro_intro||item.case_name}}
           </view>
@@ -173,6 +173,40 @@
               <view class="pro_sort" wx:if="{{item.pro_stage.stage_name}}">{{item.pro_stage.stage_name}}</view>
               <view class="pro_sort" wx:if="{{item.pro_city.area_title}}">{{item.pro_city.area_title}}</view>
               <view class="pro_sort" wx:if="{{item.pro_scale.scale_money}}">{{item.pro_scale.scale_money}}</view>
+            </view>
+          </view>
+        </view>
+      </block>
+    </view>
+  </view>
+</template>
+
+<!--投资案例-->
+<template name="investProject">
+  <view class="user_project_info">
+    <view class="flex title">
+      <view>
+        <image class="title_icon" src="/img/icon-anli@3x.png"></image>
+        投资案例
+      </view>
+      <image class="iconEdit" wx:if="{{canEdit}}" src="/img/icon-edit@3x.png" catchtap="investCase"></image>
+    </view>
+    <view class="invest_info_frame">
+      <block wx:for="{{invest_case}}" wx:key="{{item.case_id}}">
+        <view class="project_card" data-id="{{item.case_id}}" data-index="{{index}}">
+          <view class="case_name_frame flex">
+            <image class="case_pic" src="/img/dot@3x.png"></image>
+            <view class="pro_intro">{{item.case_name}}</view>
+          </view>
+          <view class="pro_industry_frame flex">
+            <block wx:for="{{item.industry}}" wx:key="{{pro_industry.industry_id}}" wx:for-item="pro_industry">
+              <view class="pro_industry" data-id="{{pro_industry.industry_id}}" data-vlaue="{{pro_industry.industry_name}}">{{pro_industry.industry_name}}</view>
+            </block>
+          </view>
+          <view class="flex s_pro_sorts">
+            <view class="pro_sorts flex">
+              <view class="pro_sort" wx:if="{{item.stage.stage_name}}">{{item.stage.stage_name}}</view>
+              <view class="pro_sort" wx:if="{{item.case_money}}">{{item.case_money}}万</view>
             </view>
           </view>
         </view>
