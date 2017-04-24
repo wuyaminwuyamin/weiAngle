@@ -1,2 +1,6 @@
 <!--pages/my/myName/myName.wxml-->
+<import src="/pages/Template/Template.wxml"/>
 <text>pages/my/myName/myName.wxml</text>
+<view>天子守国门,君王死社稷</view>
+<view>今天是周一，我们晚上吃点什么呢</view>
+
