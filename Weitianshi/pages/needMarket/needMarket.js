@@ -101,6 +101,7 @@ Page({
       url: '../userDetail/userDetail?id=' + id
     })
   },
+  
   // 融资需求触底刷新
   financingNeed: function () {
     var that = this;

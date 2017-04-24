@@ -16,11 +16,13 @@ Page({
         picker: 0
 
     },
-    onLoad: function () {
-        // console.log("this is onLoad")
+    onLoad: function (options) {
         var user_id = wx.getStorageSync('user_id');
         var that = this;
-
+        var current = options.current;
+        this.setData({
+            current: current
+        })
         //请求地区,标签,期望融资,项目阶段数据
         wx.request({
             url: url + '/api/category/getWxProjectCategory',
@@ -68,6 +70,7 @@ Page({
             },
             method: 'POST',
             success: function (res) {
+                console.log(res)
                 if (res.data.data != '') {
                     //获取已存有的投资领域,投资阶段,投资金额,投次地区
                     var thisData = res.data.data;
@@ -115,6 +118,17 @@ Page({
                     wx.setStorageSync('y_payMoneyId', y_payMoneyId)
                     wx.setStorageSync('y_payArea', y_payArea)
                     wx.setStorageSync('y_payAreaId', y_payAreaId)
+                    that.setData({
+                        domainValue: y_domainValue,
+                        domainId: y_domainId,
+                        describe: thisData.investor_desc,
+                        payArea: y_payArea,
+                        payAreaId: y_payAreaId,
+                        payStage: y_payStage,
+                        payStageId: y_StageId,
+                        payMoney: y_payMoney,
+                        payMoneyId: y_payMoneyId
+                    })
                 }
             },
         })
@@ -122,7 +136,6 @@ Page({
     //页面显示
     onShow: function () {
         var that = this;
-        // console.log("this is onShow")
         //维护登录状态
         app.checkLogin();
         //填入所属领域,项目介绍,所在地区
@@ -210,6 +223,7 @@ Page({
                 success: function (res) {
                     // console.log(res)
                     wx.setStorageSync('investor_id', res.data.investor_id)
+                    var current = that.data.current;
                     //数据清空
                     // wx.setStorageSync('y_project_id', res.data.project_index)
                     // wx.setStorageSync('y_describe', "")
@@ -220,10 +234,15 @@ Page({
                     // wx.setStorageSync('y_console_expect', 0)
                     // wx.setStorageSync('y_payArea', "选择城市")
                     // wx.setStorageSync('y_payAreaId', [])
-
-                    wx.switchTab({
-                        url: '../resource/resource'
-                    });
+                    if (current == 1) {
+                        wx.switchTab({
+                            url:"/pages/my/my"
+                        })
+                    } else {
+                        wx.switchTab({
+                            url: '../resource/resource'
+                        });
+                    }
                 },
             })
         } else {
