@@ -6,13 +6,7 @@ Page({
         user: "",
         modal: 0,
         goTop: 0,
-        financingProject: {
-            url: "/img/icon-rongzi@3x.png",
-            text: "我的项目库",
-            event: "projectFinance",
-            event2:"financingDetail",
-            project_info: ""
-        }
+        canEdit:1,
     },
     onLoad: function (options) {
         if (options) {
@@ -45,7 +39,7 @@ Page({
                     var invest_case = res.data.invest_case;
                     var status_code = res.data.status_code;
                     var financingProject = that.data.financingProject;
-                    financingProject.project_info = project_info;
+                    console.log(project_info)
                     that.setData({
                         user: user,
                         invest: invest,

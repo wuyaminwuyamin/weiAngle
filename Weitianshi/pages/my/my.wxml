@@ -2,51 +2,23 @@
 <scroll-view id="my" scroll-y="true" scroll-top="{{goTop==1?0:''}}">
 
   <!--我的名片-->
-  <template is="userInfo" data="{{user:user}}"></template>
+  <template is="userInfo" data="{{user:user,canEdit:canEdit}}"></template>
 
   <!--个人描述-->
-  <template is="userIntro" data="{{user:user}}"></template>
+  <template is="userIntro" data="{{user:user,canEdit:canEdit}}"></template>
 
   <!--寻找案源-->
-  <template is="InvestInfo" data="{{invest:invest}}"></template>
+  <template is="InvestInfo" data="{{invest:invest,canEdit:canEdit}}"></template>
 
   <!--资源对接-->
-  <template is="resourceInfo" data="{{resource:resource}}"></template>
+  <template is="resourceInfo" data="{{resource:resource,canEdit:canEdit}}"></template>
 
   <!--项目融资-->
-  <template is="financingProject" data="{{...financingProject}}"></template>
+  <template is="financingProject" data="{{project_info:project_info,text:'我的项目库',canEdit:canEdit}}"></template>
 
   <!--投资案例-->
-  <view class="user_project_info">
-    <view class="flex title">
-      <view>
-        <image class="title_icon" src="/img/icon-anli@3x.png"></image>
-        投资案例
-      </view>
-      <image class="iconEdit" src="/img/icon-edit@3x.png" catchtap="investCase"></image>
-    </view>
-    <view class="invest_info_frame">
-      <block wx:for="{{invest_case}}" wx:key="{{item.case_id}}">
-        <view class="project_card" data-id="{{item.case_id}}" data-index="{{index}}">
-          <view class="case_name_frame flex">
-            <image class="case_pic" src="/img/dot@3x.png"></image>
-            <view class="pro_intro">{{item.case_name}}</view>
-          </view>
-          <view class="pro_industry_frame flex">
-            <block wx:for="{{item.industry}}" wx:key="{{pro_industry.industry_id}}" wx:for-item="pro_industry">
-              <view class="pro_industry" data-id="{{pro_industry.industry_id}}" data-vlaue="{{pro_industry.industry_name}}">{{pro_industry.industry_name}}</view>
-            </block>
-          </view>
-          <view class="flex s_pro_sorts">
-            <view class="pro_sorts flex">
-              <view class="pro_sort" wx:if="{{item.stage.stage_name}}">{{item.stage.stage_name}}</view>
-              <view class="pro_sort" wx:if="{{item.case_money}}">{{item.case_money}}万</view>
-            </view>
-          </view>
-        </view>
-      </block>
-    </view>
-  </view>
+  <template is="investProject" data="{{invest_case:invest_case,canEdit:canEdit}}"></template>
+
   <view style="height:92rpx;"></view>
 
   <!--交换名片-->
