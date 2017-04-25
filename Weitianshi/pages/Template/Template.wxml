@@ -383,7 +383,7 @@
 
 <!--为浮动按钮留空-->
 <template name="forButton">
-  <view style="height:98rpx;">111111111</view>
+  <view style="height:98rpx;"></view>
 </template>?
 
 <!--自定义黄色背景小提示-->
