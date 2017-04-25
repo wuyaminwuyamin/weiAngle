@@ -39,7 +39,14 @@ Page({
                     var invest_case = res.data.invest_case;
                     var status_code = res.data.status_code;
                     var financingProject = that.data.financingProject;
-                    console.log(project_info)
+                    var user_name = res.data.user_info.user_real_name;
+                    wx.setNavigationBarTitle({
+                      title: user_name+"的投资名片",
+                      success: function(res) {
+                        // success
+                        console.log(res);
+                      }
+                    })
                     that.setData({
                         user: user,
                         invest: invest,
