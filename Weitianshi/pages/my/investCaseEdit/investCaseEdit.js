@@ -44,7 +44,7 @@ Page({
       },
     })
     // 维护项目的情况下
-    if (options) {
+    if (options!='') {
       var invest_case = wx.getStorageSync('invest_case');
       var index = options.index;
       invest_case = invest_case[index];
