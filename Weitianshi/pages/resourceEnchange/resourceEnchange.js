@@ -14,6 +14,10 @@ Page({
   },
   onLoad: function (options) {
     var that = this;
+    var current = options.current;//current=1:从my页面跳转过来的
+    this.setData({
+      current: current
+    })
     //获取资源分类名称和id
     wx.request({
       url: url + '/api/category/getResourceCategory',
@@ -189,7 +193,8 @@ Page({
     var targetValue = this.data.targetValue;
     var targetId = this.data.targetId;
     var user_id = wx.getStorageSync('user_id');
-    var describe = this.data.describe
+    var describe = this.data.describe;
+    var current = this.data.current;
     wx.request({
       url: url + '/api/resource/insertResource',
       data: {
@@ -206,9 +211,14 @@ Page({
         console.log(res)
       }
     })
-
-    wx.navigateBack({
-      delta: 1 // 回退前 delta(默认为1) 页面
-    })
+    if (current == 1) {
+      wx.switchTab({
+        url: '/pages/my/my',
+      })
+    } else {
+      wx.navigateBack({
+        delta: 1 // 回退前 delta(默认为1) 页面
+      })
+    }
   }
 });
