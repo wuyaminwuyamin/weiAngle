@@ -44,7 +44,7 @@ Page({
                       title: user_name+"的投资名片",
                       success: function(res) {
                         // success
-                        console.log(res);
+                        console.log(res+":");
                       }
                     })
                     that.setData({
