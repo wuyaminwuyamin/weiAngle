@@ -81,7 +81,7 @@ page {
 .user_email {
   justify-content: space-between;
   margin-bottom: 0;
-  width: 604rpx;
+  width: 88%;
 }
 
 .user_popularity, .user_attention, .user_potential {
