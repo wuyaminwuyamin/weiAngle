@@ -228,8 +228,9 @@ page {
   margin-top: 32rpx;
 }
 
-.project_card:last-child {
+.invest_info_frame .project_card:last-child {
   margin-bottom: 0;
+  padding-bottom: 32rpx;
 }
 
 .invest_title {
