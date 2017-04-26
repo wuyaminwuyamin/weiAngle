@@ -1215,3 +1215,13 @@ icon {
   margin-top: 0;
   padding-bottom: 32rpx;
 }
+
+.aboutNetwork view{
+    width: 100%;
+    text-align: center;
+    color: white;
+    background:#40587a;
+    font-size: 30rpx;
+    height: 98rpx;
+    line-height: 98rpx;
+}
