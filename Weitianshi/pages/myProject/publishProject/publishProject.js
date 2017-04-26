@@ -94,9 +94,13 @@ Page({
         var that = this;
         var domainValue = wx.getStorageSync('domainValue');
         var domainId = wx.getStorageSync('domainId');
+        // 项目介绍
         var describe = wx.getStorageSync('describe');
+        // 所在地区
         var belongArea = wx.getStorageSync('belongArea');
+        // 省的信息
         var provinceNum = wx.getStorageSync('provinceNum');
+        // 城市信息
         var cityNum = wx.getStorageSync('cityNum');
         // console.log(domainValue, domainId, describe, belongArea, provinceNum, cityNum, this.data.tips_index);
         that.setData({
@@ -107,8 +111,6 @@ Page({
             provinceNum: provinceNum,
             cityNum: cityNum
         })
-
-
     },
     //下拉刷新
     onPullDownRefresh: function () {

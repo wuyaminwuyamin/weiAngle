@@ -20,6 +20,16 @@ input, textarea {
   color: #333;
   margin-top: 16rpx;
 }
+.slect {
+  border-radius: 4px;
+  height: 82repx;
+  line-height: 82rpx;
+  border: 1px solid #e0e0e0;
+  padding: 0 32rpx;
+  justify-content: space-between;
+  align-items: baseline;
+  padding-right: 24rpx;
+}
 
 .card input {
   padding: 0 32rpx;
