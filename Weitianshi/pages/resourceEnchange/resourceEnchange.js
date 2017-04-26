@@ -96,31 +96,40 @@ Page({
 
   //传值部份
   checkboxChange: function (e) {
-    // console.log(e)
+    // console.log(e);
     var that = this;
+    // console.log(that)
     var thisData = e.currentTarget.dataset;
     // console.log(thisData)
-    var e_index = thisData.index;
+    var e_index = thisData.index;//数组下标
     var e_value = thisData.value;
     var e_check = thisData.check;
-    var enchange = this.data.enchange
+    var enchange = this.data.enchange//返回的所有数据
+    console.log(e_index);
     var enchangeValue = this.data.enchangeValue;
     var enchangeId = this.data.enchangeId;
+    console.log(enchangeId);//已添加的数字
+    
     var enchangeCheck = this.data.enchangeCheck;
-    if (enchangeCheck[e_index] == false) {
+    // console.log(enchangeCheck[e_index]);
+    if (enchangeCheck[e_index] == false) {//当确认按钮时
       if (enchangeValue.length < 5) {
         enchangeCheck[e_index] = true;
         enchange[e_index].checked = true;
         enchangeValue.push(enchange[e_index].resource_name)
-        enchangeId.push(enchange[e_index].resource_id)
+        // console.log(enchange[e_index].resource_id);//数据的排序ID(0,1,2)
+        enchangeId.push(enchange[e_index].resource_id)//点击时把数据的ID添加起来
       } else {
         rqj.errorHide(that, "最多可选择五项", 3000)
       }
-    } else {
+    } else {//当取消按钮时
       enchangeCheck[e_index] = false;
       enchange[e_index].checked = false;
+      // console.log(enchangeValue);
       enchangeValue.splice(enchangeValue.indexOf(e_value), 1)
-      enchangeId.splice(enchangeId.indexOf(e_index), 1)
+      // console.log(enchangeValue.indexOf(e_value))
+      // console.log(enchangeId.indexOf(e_index))
+      enchangeId.splice(enchangeId.indexOf(e_index+1), 1)
     }
     this.setData({
       enchange: enchange,
