@@ -58,7 +58,6 @@ scroll-view {
   color: #666;
   border-right: 1px solid #e0e0e0;
   padding: 0 8rpx;
-
 }
 
 .weui-media-box__desc:last-child {
@@ -230,6 +229,7 @@ scroll-view {
   justify-content: center;
   color: white;
   border-radius: 0;
+  background: #40587a;
 }
 
 .edit {
@@ -292,7 +292,7 @@ scroll-view {
 .lock {
   width: 160rpx;
   height: 160rpx;
-  padding-left:295rpx;
-  padding-top:170rpx;
+  padding-left: 295rpx;
+  padding-top: 170rpx;
   padding-bottom: 295rpx;
 }

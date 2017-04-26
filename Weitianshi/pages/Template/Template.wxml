@@ -35,7 +35,11 @@
           <image class="user_edit" wx:if="{{canEdit}}" src="/img/icon-Share2@3x.png" catchtap="cardChange"></image>
         </label>
       </view>
-      <view class="user_email" wx:if="{{!user.user_email}}">邮箱号码：暂无编辑</view>
+      <view class="user_email flex" wx:if="{{!user.user_email}}">邮箱号码：暂无编辑
+       <label>
+          <image class="user_edit" wx:if="{{canEdit}}" src="/img/icon-Share2@3x.png" catchtap="cardChange"></image>
+        </label>
+        </view>
     </view>
     <view class="user_right">
       <image wx:if="{{user.user_avatar_url}}" class="user_pic" src="{{user.user_avatar_url}}"></image>
@@ -383,7 +387,7 @@
 
 <!--为浮动按钮留空-->
 <template name="forButton">
-  <view style="height:98rpx;">111111111</view>
+  <view style="height:98rpx;"></view>
 </template>?
 
 <!--自定义黄色背景小提示-->

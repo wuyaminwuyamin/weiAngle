@@ -404,6 +404,13 @@ Page({
       url: '../myProject/projectDetail/projectDetail?id=' + thisData.id + '&&index=' + index
     })
   },
+  //点击融资项目匹配出来的投资人
+  investorDetial(e){
+    var id=e.currentTarget.dataset.id;
+    wx.navigateTo({
+      url: '/pages/userDetail/userDetail?id='+id,
+    })
+  },
   //点击项目投资详情
   yourDetail: function (e) {
     var thisData = e.currentTarget.dataset;

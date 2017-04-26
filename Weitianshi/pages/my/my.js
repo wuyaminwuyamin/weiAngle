@@ -86,7 +86,7 @@ Page({
     resourceEnchangeEdit: function () {
         if (!this.data.options) {
             wx.navigateTo({
-                url: '../resourceEnchange/resourceEnchange',
+                url: '../resourceEnchange/resourceEnchange?current='+1,
             })
         }
     },
