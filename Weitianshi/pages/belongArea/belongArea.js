@@ -14,6 +14,7 @@ Page({
         that.setData({
             current: current
         });
+        // current==0发布融资项目 current==1 维护融资项目 current==2 添加投资案例
         // console.log(this.data.current);
         wx.request({
             url: url+'/api/category/getArea',

@@ -114,6 +114,12 @@ Page({
       case_time: e.detail.value
     })
   },
+  // 项目领域
+  case_local: function (e) {
+    wx.navigateTo({
+      url: '/pages/belongArea/belongArea?current=' + 3
+    })
+  },
   //保存
   buttonOne: function () {
     var user_id = wx.getStorageSync('user_id');
@@ -125,6 +131,7 @@ Page({
     var case_stage = case_stage || stageId[stage_index];
     var case_money = this.data.case_money;
     var case_time = this.data.case_time;
+    var case_local = this.data.case_local
     console.log(case_name, industry, case_industry, case_stage, case_money, case_time)
     if (user_id && case_name != undefined && case_industry != '' && case_stage != 0 && case_money != undefined && case_time != '请选择') {
       wx.request({

@@ -41,11 +41,8 @@ Page({
                 var user = res.data.user;
                 var firstName = user.user_name.substr(0, 1) || '';
                 var pro_industry = project.pro_industry;
-<<<<<<< HEAD
                 console.log(project)
-=======
                 var followed_user_id=res.data.user.user_id
->>>>>>> refs/remotes/morganfly/morganfly
                 that.setData({
                     project: project,
                     user: user,
@@ -101,9 +98,7 @@ Page({
             title: '项目-' + pro_intro,
             path: '/pages/yourDetail/yourDetail?pro_id=' + that.data.id
         }
-<<<<<<< HEAD
         console.log(data.project.pro_intro);
-=======
     },
     //添加人脉
     addNetWork: function () {
@@ -172,6 +167,5 @@ Page({
                 content: "bindUser部分出问题了"
             })
         }
->>>>>>> refs/remotes/morganfly/morganfly
     }
 });
