@@ -15,7 +15,7 @@
   </view>
 </template>
 
-<!--我的名片-->
+<!--My我的名片-->
 <template name="userInfo">
   <view class="user_info flex" bindtap="cardEdit">
     <view class="user_left">
@@ -66,7 +66,7 @@
   </view>
 </template>
 
-<!--个人描述-->
+<!--My个人描述-->
 <template name="userIntro">
   <view class="user_intro" bindtap="cardEdit">
     <view class="intro_title flex">
@@ -74,14 +74,14 @@
         <image class="title_icon" src="/img/icon-miaoshu@3x.png"></image>
         个人描述
       </view>
-     <image class="iconEdit" wx:if="{{canEdit}}" src="/img/icon-edit@3x.png"></image>
+      <image class="iconEdit" wx:if="{{canEdit}}" src="/img/icon-edit@3x.png"></image>
     </view>
     <view class="intro_content" wx:if="{{user.user_intro!=null}}" hidden="{{!user.user_intro}}">{{user.user_intro}}</view>
     <view style="height:32rpx;" wx:if="{{user.user_intro!=null}}" hidden="{{!user.user_intro}}"></view>
   </view>
 </template>
 
-<!--寻找案源-->
+<!--My寻找案源-->
 <template name="InvestInfo">
   <view class="user_invest_info" bindtap="findProjectEdit">
     <view class="flex title">
@@ -89,7 +89,7 @@
         <image class="title_icon" src="/img/icon-anyuan@3x.png"></image>
         寻找案源
       </view>
-     <image class="iconEdit" wx:if="{{canEdit}}" src="/img/icon-edit@3x.png"></image>
+      <image class="iconEdit" wx:if="{{canEdit}}" src="/img/icon-edit@3x.png"></image>
     </view>
 
     <!--投资领域-->
@@ -122,7 +122,7 @@
   </view>
 </template>
 
-<!--资源对接-->
+<!--My资源对接-->
 <template name="resourceInfo">
   <view class="user_resource_info" bindtap="resourceEnchangeEdit">
     <view class="flex title">
@@ -130,7 +130,7 @@
         <image class="title_icon" src="/img/icon-duijie@3x.png"></image>
         资源对接
       </view>
-     <image class="iconEdit" wx:if="{{canEdit}}" src="/img/icon-edit@3x.png"></image>
+      <image class="iconEdit" wx:if="{{canEdit}}" src="/img/icon-edit@3x.png"></image>
     </view>
 
     <!--可提供资源-->
@@ -151,7 +151,7 @@
   </view>
 </template>
 
-<!--项目融资-->
+<!--My项目融资-->
 <template name="financingProject">
   <view class="user_project_info">
     <view class="flex title">
@@ -163,7 +163,7 @@
     </view>
     <view class="projcet_info_frame">
       <block wx:for="{{project_info}}" wx:key="{{item.pro_intro}}">
-        <view class="project_card" data-id="{{item.user_id}}" data-index="{{index}}" bindtap="financingDetail">
+        <view class="project_card" data-id="{{item.pro_id}}" data-index="{{index}}" bindtap="financingDetail">
           <view class="pro_intro">
             {{item.pro_intro||item.case_name}}
           </view>
@@ -185,7 +185,7 @@
   </view>
 </template>
 
-<!--投资案例-->
+<!--My投资案例-->
 <template name="investProject">
   <view class="user_project_info">
     <view class="flex title">
@@ -222,7 +222,7 @@
 <!--项目融资列表 && 投资案例列表-->
 <template name="projectList">
   <view class="weui-panel__bd" style="background:white;margin:16px">
-    <view class="weui-media-box weui-media-box_text my_detail" data-id='{{myProject.pro_id}}' data-index="{{index}}">
+    <view class="weui-media-box weui-media-box_text my_detail" data-id='{{myProject.pro_id}}' data-index="{{index}}" bindtap="detail">
       <view class="weui-media-box__title weui-media-box__title_in-text" style="text-align:left;">{{myProject.pro_intro||myProject.case_name}}</view>
       <view class="sort flex">
         <block wx:for="{{myProject.pro_industry||myProject.industry}}" wx:for-item="sort" wx:key="*this">
@@ -387,7 +387,7 @@
 
 <!--为浮动按钮留空-->
 <template name="forButton">
-  <view style="height:98rpx;">111111111</view>
+  <view style="height:98rpx;"></view>
 </template>?
 
 <!--自定义黄色背景小提示-->
