@@ -21,7 +21,8 @@ Page({
       method: 'POST',
       success: function (res) {
         //判断用户是否填写过资源需求
-        var resource_data = wx.getStorageSync('resource_data')
+        var resource_data = wx.getStorageSync('resource_data');
+        console.log(res);
         console.log(resource_data)
         var res_find = resource_data.res_find;
         var res_give = resource_data.res_give;
@@ -101,10 +102,10 @@ Page({
     var e_value = thisData.value;
     var e_check = thisData.check;
     var enchange = this.data.enchange//返回的所有数据
-    console.log(e_index);
+    // console.log(e_index);
     var enchangeValue = this.data.enchangeValue;
     var enchangeId = this.data.enchangeId;
-    console.log(enchangeId);//已添加的数字
+    // console.log(enchangeId);//已添加的数字
     
     var enchangeCheck = this.data.enchangeCheck;
     // console.log(enchangeCheck[e_index]);
@@ -194,7 +195,7 @@ Page({
     var enchange = this.data.enchange;
     var enchangeValue = this.data.enchangeValue;
     var enchangeId = this.data.enchangeId;
-    var target = this.data.target
+    var target = this.data.target 
     var targetValue = this.data.targetValue;
     var targetId = this.data.targetId;
     var user_id = wx.getStorageSync('user_id');
