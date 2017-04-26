@@ -16,7 +16,7 @@ Page({
     wx.request({
       url: url + '/api/user/getUserAllInfo',
       data: {
-        user_id: followed_user_id
+        user_id: followed_user_id,
       },
       method: 'POST',
       success: function (res) {

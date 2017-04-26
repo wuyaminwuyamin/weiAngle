@@ -8,7 +8,8 @@ Page({
     },
     onLoad: function (options) {
         var that = this
-        var user_id = options.id
+        var user_id = options.id;
+        var view_id=wx.getStorageSync('user_id');
         that.setData({
             user_id: user_id,
         })
@@ -16,7 +17,9 @@ Page({
         wx.request({
           url: url+'/api/user/getUserAllInfo',
           data: {
-              user_id:user_id
+              user_id:user_id,
+              view_id:view_id,
+              share_id:0,
           },
           method: 'POST',
           success: function(res){

@@ -25,8 +25,7 @@
     "pages/myProject/publishProject/publishProject",
     "pages/industry/industry",
     "pages/payStage/payStage",
-    "pages/payArea/payArea",
-    "pages/my/myName/myName"
+    "pages/payArea/payArea"
   ],
   "window": {
     "navigationBarBackgroundColor": "#fff",

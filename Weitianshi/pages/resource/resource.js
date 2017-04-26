@@ -13,7 +13,7 @@ Page({
     investor_page: 1,//投资人分页
     resource_Page: 1,//资源分页
     investor_page_end: false,//投资人数据是否完结
-    resource_page_end:false,//资源数据是否完结
+    resource_page_end: false,//资源数据是否完结
     hasPublic: 0,//是否发布过投资需求
     hasPublic2: 0,//是否发布过资源需求
     investText: {
@@ -249,6 +249,7 @@ Page({
                       var res_match = res.data.res_match;
                       var res_find = res.data.res_data.res_find;
                       var res_find_arry = [];
+                      var res_id = res.data.res_data.res_id;
                       if (res_find != '') {
                         for (var i = 0; i < res_find.length; i++) {
                           res_find_arry.push(res_find[i].resource_name)
@@ -258,7 +259,8 @@ Page({
                       that.setData({
                         res_match: res_match, //资源需求匹配出来的项目
                         res_find: res_find,//我正在寻求的资源
-                        hasPublic2: 1
+                        hasPublic2: 1,//是否发布过资源需求
+                        res_id: res_id,//用过请求资源需求匹配项目的分页接口
                       })
                     } else {
                       that.setData({
@@ -405,10 +407,10 @@ Page({
     })
   },
   //点击融资项目匹配出来的投资人
-  investorDetial(e){
-    var id=e.currentTarget.dataset.id;
+  investorDetial(e) {
+    var id = e.currentTarget.dataset.id;
     wx.navigateTo({
-      url: '/pages/userDetail/userDetail?id='+id,
+      url: '/pages/userDetail/userDetail?id=' + id,
     })
   },
   //点击项目投资详情
@@ -446,9 +448,7 @@ Page({
           },
           method: 'POST',
           success: function (res) {
-            // console.log(res)
             var newPage = res.data.data;
-            // console.log(newPage)
             var yourProject = that.data.yourProject;
             for (var i = 0; i < newPage.length; i++) {
               yourProject.push(newPage[i])
@@ -468,7 +468,47 @@ Page({
   // 资源对接触底刷新
   resourceProject: function () {
     var that = this;
+    var res_id = this.data.res_id;
+    var resource_page = this.data.resource_page;
+    var user_id = wx.getStorageSync('user_id');
+    var resource_page_end = this.data.resource_page_end;
+    var res_match = this.data.res_match;
+    if (user_id != '') {
+      if (resource_page_end == false) {
+        wx.showToast({
+          title: 'loading...',
+          icon: 'loading'
+        })
+        resource_page++;
+        that.setData({
+          resource_page: resource_page
+        });
+        wx.request({
+          url: url + '/api/resource/getMatchResourceForPage',
+          data: {
+            res_id: res_id,
+            page: resource_page,
+          },
+          method: 'POST',
+          success: function (res) {
+            console.log(res)
+            var newPage = res.data.res_match;
+            var resource_page_end = res.data.page_end;
+            var res_match = that.data.res_match;
 
+            for (var i = 0; i < newPage.length; i++) {
+              res_match.push(newPage[i])
+            }
+            that.setData({
+              res_match: res_match, //资源需求匹配出来的项目
+              resource_page_end: resource_page_end,
+            })
+          }
+        })
+      } else {
+        rqj.errorHide(that, "没有更多了", 3000)
+      }
+    }
   },
   //分享当前页面
   onShareAppMessage: function () {
