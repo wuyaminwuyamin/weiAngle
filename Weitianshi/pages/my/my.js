@@ -39,7 +39,6 @@ Page({
                     var invest_case = res.data.invest_case;
                     var status_code = res.data.status_code;
                     var financingProject = that.data.financingProject;
-                    console.log(project_info)
                     that.setData({
                         user: user,
                         invest: invest,

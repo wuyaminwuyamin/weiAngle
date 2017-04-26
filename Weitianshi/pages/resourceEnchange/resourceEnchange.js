@@ -21,35 +21,40 @@ Page({
       method: 'POST',
       success: function (res) {
         //判断用户是否填写过资源需求
-        var resource_data = wx.getStorageSync('resource_data')
-        console.log(resource_data)
+        var resource_data = wx.getStorageSync('resource_data');
+        //寻求的资源
         var res_find = resource_data.res_find;
+        //可提供的资源
         var res_give = resource_data.res_give;
-        var describe = resource_data.res_desc
+        var describe = resource_data.res_desc;
         var enchange = res.data.data;
         var target = res.data.data;
+        //寻求的资源名称和id
         var res_find_name = [];
         var res_find_id = [];
+        //提供的名称和id
         var res_give_name = [];
         var res_give_id = [];
+        //寻求的资源添加名称和id
         if (res_find) {
           for (var i = 0; i < res_find.length; i++) {
-            res_find_name.push(res_find[i].resource_name)
-            res_find_id.push(res_find[i].resource_id)
+            res_find_name.push(res_find[i].resource_name);
+            res_find_id.push(res_find[i].resource_id);
           }
         }
+        //可提供的资源添加名称和id
         if (res_give) {
           for (var i = 0; i < res_give.length; i++) {
-            res_give_name.push(res_give[i].resource_name)
+            res_give_name.push(res_give[i].resource_name);
             res_give_id.push(res_give[i].resource_id)
           }
         }
-        var targetValue = res_find_name    //选中标签值的数组
-        var targetId = res_find_id   //选中标签id的数组
-        var targetCheck = []    //选中标签checked的数组
-        var enchangeValue = res_give_name    //选中标签值的数组
-        var enchangeId = res_give_id   //选中标签id的数组
-        var enchangeCheck = []    //选中标签checked的数组
+        var targetValue = res_find_name    //选中寻求资源的标签值的数组
+        var targetId = res_find_id   //选中寻求资源的标签id的数组
+        var targetCheck = []    //选中寻求资源的标签checked的数组
+        var enchangeValue = res_give_name    //选中可提供资源的标签值的数组
+        var enchangeId = res_give_id   //选中可提供资源的标签id的数组
+        var enchangeCheck = []    //选中可提供资源的标签checked的数组
         for (var i = 0; i < enchange.length; i++) {
           if (res_give_name.indexOf(enchange[i].resource_name) != -1) {
             enchange[i].checked = true;
@@ -65,6 +70,8 @@ Page({
             target[i].checked = false;
           }
           targetCheck.push(target[i].checked)
+          // console.log(targetCheck)
+          
         }
         that.setData({
           enchange: enchange,
@@ -95,7 +102,7 @@ Page({
     // console.log(e)
     var that = this;
     var thisData = e.currentTarget.dataset;
-    // console.log(thisData)
+    console.log(thisData)
     var e_index = thisData.index;
     var e_value = thisData.value;
     var e_check = thisData.check;
@@ -152,8 +159,8 @@ Page({
     } else {
       targetCheck[e_index] = false;
       target[e_index].checked = false;
-      targetValue.splice(targetValue.indexOf(e_value), 1)
-      targetId.splice(targetId.indexOf(e_index), 1)
+      targetValue.splice(targetValue.indexOf(e_value), 1);
+      targetId.splice(targetId.indexOf(e_index), 1);
     }
     this.setData({
       target: target,
@@ -161,6 +168,7 @@ Page({
       targetId: targetId,
       targetCheck: targetCheck
     });
+    
   },
   //具体描述
   bindTextAreaBlur: function (e) {

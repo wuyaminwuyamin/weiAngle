@@ -41,6 +41,7 @@ Page({
                 var user = res.data.user;
                 var firstName = user.user_name.substr(0, 1) || '';
                 var pro_industry = project.pro_industry;
+                console.log(project)
                 that.setData({
                     project: project,
                     user: user,
@@ -95,5 +96,6 @@ Page({
             title: '项目-' + pro_intro,
             path: '/pages/yourDetail/yourDetail?pro_id=' + that.data.id
         }
+        console.log(data.project.pro_intro);
     }
 });
