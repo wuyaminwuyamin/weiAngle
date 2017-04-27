@@ -166,7 +166,7 @@ Page({
         targetValue.push(target[e_index].resource_name)
         targetId.push(target[e_index].resource_id)
       } else {
-        rqj.errorHide(that, "最多可选择五项", 3000)
+        rqj.errorHide(that, "最多可选择五项", 1000)
       }
     } else {
       targetCheck[e_index] = false;
