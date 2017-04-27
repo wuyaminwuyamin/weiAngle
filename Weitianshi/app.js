@@ -138,6 +138,6 @@ App({
   //初始本地缓存
   globalData: {
     error: 0,
-    url: "https://dev.weitianshi.cn"
+    url: "https://www.weitianshi.cn"
   }
 });

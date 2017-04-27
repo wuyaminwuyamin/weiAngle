@@ -50,10 +50,6 @@ Page({
 
                     wx.setNavigationBarTitle({
                       title: user_name+"的投资名片",
-                      success: function(res) {
-                        // success
-                        console.log(res);
-                      }
                     })
                     that.setData({
                         user: user,
