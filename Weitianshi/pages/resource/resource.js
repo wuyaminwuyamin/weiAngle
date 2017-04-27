@@ -1,7 +1,7 @@
 var rqj = require('../Template/Template.js')
 var app = getApp()
 var url = app.globalData.url
-var num =0;
+var num = 0;
 Page({
   data: {
     winWidth: 0,//选项卡
@@ -549,9 +549,9 @@ Page({
           },
           method: 'POST',
           success: function (res) {
-          console.log(res);
-          console.log("第3次");
-          console.log(num);
+            console.log(res);
+            console.log("第3次");
+            console.log(num);
             var newPage = res.data.res_match;
             var resource_page_end = res.data.page_end;
             var res_match = that.data.res_match;
@@ -565,13 +565,13 @@ Page({
             })
           }
         })
-
       } else {
         rqj.errorHide(that, "没有更多了", 3000)
       }
-    //rqj.loadMore(url,that,'/api/resource/getMatchResourceForPage',resource_page,res_id,user_id,resource_page_end)
+      //rqj.loadMore(url,that,'/api/resource/getMatchResourceForPage',resource_page,res_id,user_id,resource_page_end)
+    }
   },
-  callback: function (res,that) {
+  callback: function (res, that) {
     console.log("这里是回调函数");
     console.log(res);
     var newPage = res.data.res_match;
