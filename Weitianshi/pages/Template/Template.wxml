@@ -297,7 +297,7 @@
         <view class="investor_text">资源需求:</view>
         <view class="investor_right flex">{{item.res_desc}}</view>
       </view>
-      <view class="investor_industry_frame flex">
+      <view class="investor_industry_frame flex" hidden="{{item.res_find==''}}">
         <view class="investor_text">可提供资源:</view>
         <view class="investor_right flex">
           <block wx:for="{{item.res_find}}" wx:for-item="res_find" wx:key="{{res_find.resource_id}}">
@@ -305,7 +305,7 @@
           </block>
         </view>
       </view>
-      <view class="investor_industry_frame flex">
+      <view class="investor_industry_frame flex" hidden="{{item.res_give==''}}">
         <view class="investor_text">在寻求资源:</view>
         <view class="investor_right flex">
           <block wx:for="{{item.res_give}}" wx:for-item="res_give" wx:key="{{res_give.resource_id}}">

@@ -39,6 +39,7 @@ Page({
             url: url+'/api/category/getWxProjectCategory',
             method: 'POST',
             success: function (res) {
+                console.log(res)
                 var thisData = res.data.data;
                 wx.setStorageSync('area', thisData.area);
                 wx.setStorageSync('industry', thisData.industry);

@@ -8,6 +8,7 @@ Page({
     page_end: false
   },
   onShow: function () {
+    console.log(this.data.page)
     var that = this;
     var user_id = wx.getStorageSync('user_id')
     wx.request({
@@ -19,7 +20,9 @@ Page({
       success: function (res) {
         var slectProject = res.data.data;
         that.setData({
-          slectProject: slectProject
+          slectProject: slectProject,
+          page:1,
+          page_end:false,
         })
       }
     })
