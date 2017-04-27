@@ -46,8 +46,9 @@ Page({
         method: 'POST',
         success: function (res) {
           console.log(res)
-          var netWork = res.data.data;
+          var netWork = res.data.data;//所有的用户
           var page_end = res.data.page_end;
+          console.log(netWork);
           that.setData({
             netWork: netWork,
             page_end: page_end,
@@ -56,10 +57,10 @@ Page({
       })
     }
   },
-  // 用户详情
+  // 用户详情=========================================================================================
   userDetail: function (e) {
     var id = e.currentTarget.dataset.id
-    console.log(id)
+    console.log(id);
     wx.navigateTo({
       url: '/pages/userDetail/userDetail?id=' + id,
     })

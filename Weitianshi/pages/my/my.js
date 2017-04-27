@@ -144,6 +144,31 @@ Page({
     onShareAppMessage: function () {
         var user_id = wx.getStorageSync('user_id');
         var modal = this.data.modal;
+        // this.setData({
+        //     goTop: 1
+        // })
+
+        // if (modal == 1) {
+        //     this.setData({
+        //         modal: 0
+        //     })
+        // }
+        this.showTo();
+        setTimeout(function(){
+            console.log(3000)
+        },3000)
+        console.log(1)
+        return {
+            title: '投资名片',
+            path: "/pages/my/sharePage/sharePage?user_id=" + user_id,
+            success: function (res) {
+            },
+            fail: function (res) {
+                console.log(res)
+            }
+        }      
+    },
+    showTo : function(){
         this.setData({
             goTop: 1
         })
@@ -153,15 +178,11 @@ Page({
                 modal: 0
             })
         }
-        return {
-            title: '投资名片',
-            path: "/pages/my/sharePage/sharePage?user_id=" + user_id,
-            success: function (res) {
-            },
-            fail: function (res) {
-                console.log(res)
-            }
-        }
+        setTimeout(function(){
+            this.onShareAppMessage();
+        },3000)
+        
+        console.log("dosomething")
     },
     //取消分享
     cancelShare: function () {

@@ -21,4 +21,8 @@
 
   <!--投资案例-->
   <template is="investProject" data="{{invest_case:invest_case,canEdit:canEdit}}"></template>
+  <!--加入人脉下面的浮动按钮-->
+  <view class="floatBtn flex" wx:if="{{follow}}">
+    <button class="push" bindtap="addNetWork">加入人脉</button>
+  </view>
 </view>

@@ -17,7 +17,7 @@ Page({
         var that = this;
         var id = options.id;
         var index = options.index;
-        var user_id = wx.getStorageSync('user_id');
+        var user_id = wx.getStorageSync('user_id');//获取我的user_id
         var page = this.data.page;
         var avatarUrl = wx.getStorageSync('avatarUrl');
         that.setData({
@@ -64,9 +64,9 @@ Page({
                         },
                         method: 'POST',
                         success: function (res) {
-                            // console.log(res)
+                            console.log(res)
                             var investor2 = res.data.data;
-                            // console.log(investor2)
+                            console.log(investor2)
                             that.setData({
                                 investor2: investor2
                             });
@@ -84,7 +84,15 @@ Page({
             },
         })
     },
-
+    // 用户详情=========================================================================================
+    userDetail: function (e) {
+        console.log(e);
+        var id = e.currentTarget.dataset.id
+        console.log(id)
+        wx.navigateTo({
+            url: '/pages/userDetail/userDetail?id=' + id,
+        })
+    },
     //下拉刷新
     onPullDownRefresh: function () {
         // console.log("开启了下拉刷新")
