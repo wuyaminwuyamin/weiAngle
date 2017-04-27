@@ -93,8 +93,11 @@
         <block wx:for="{{res_match}}" wx:key="{{item.resource_id}}">
           <template is="resourceCard" data="{{item:item}}"></template>
         </block>
-        
         <view style="height:32rpx;"></view>
+
+        <!--没有更多-->
+        <view class="error" wx:if="{{error=='1'}}">{{error_text}}</view>
+
         <!--空状态-->
         <view wx:if="{{res_match==''}}">
           <image class="empty" src="../../img/empty.png"></image>

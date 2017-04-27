@@ -41,7 +41,8 @@ page {
 
 .tips .checkedOne {
   border: 1px solid #333;
-  color: #333;
+  color: #fff;
+  background: #40587a;
 }
 
 .offer view:first-child {

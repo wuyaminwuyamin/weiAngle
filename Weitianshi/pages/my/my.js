@@ -27,11 +27,13 @@ Page({
             wx.request({
                 url: url + '/api/user/getUserAllInfo',
                 data: {
-                    user_id: user_id
+                    share_id:0, 
+                    user_id: user_id,
+                    view_id:0,
                 },
                 method: 'POST',
                 success: function (res) {
-                    console.log(res)
+                    console.log(res);
                     var user = res.data.user_info;
                     var invest = res.data.invest_info;
                     var resource = res.data.resource_info;
@@ -40,6 +42,12 @@ Page({
                     var status_code = res.data.status_code;
                     var financingProject = that.data.financingProject;
                     var user_name = res.data.user_info.user_real_name;
+                    //设置缓存==========
+                    wx.setStorage({
+                        key: 'resource_data',
+                        data: res.data.resource_info
+                      })
+
                     wx.setNavigationBarTitle({
                       title: user_name+"的投资名片",
                       success: function(res) {

@@ -242,3 +242,6 @@ page {
   width: 32rpx;
   height: 32rpx;
 }
+.telephoneLab{
+  padding: 32rpx;
+}

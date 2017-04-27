@@ -26,6 +26,8 @@ Page({
       success: function (res) {
         //判断用户是否填写过资源需求
         var resource_data = wx.getStorageSync('resource_data');
+        console.log(res);
+        console.log(resource_data);
         //寻求的资源
         var res_find = resource_data.res_find;
         //可提供的资源
@@ -101,7 +103,7 @@ Page({
     wx.stopPullDownRefresh()
   },
 
-  //传值部份
+  //传值部份可提供资源
   checkboxChange: function (e) {
     // console.log(e);
     var that = this;
@@ -112,11 +114,8 @@ Page({
     var e_value = thisData.value;
     var e_check = thisData.check;
     var enchange = this.data.enchange//返回的所有数据
-    console.log(e_index);
     var enchangeValue = this.data.enchangeValue;
-    var enchangeId = this.data.enchangeId;
-    console.log(enchangeId);//已添加的数字
-    
+    var enchangeId = this.data.enchangeId;//已添加的数字
     var enchangeCheck = this.data.enchangeCheck;
     // console.log(enchangeCheck[e_index]);
     if (enchangeCheck[e_index] == false) {//当确认按钮时
@@ -127,7 +126,7 @@ Page({
         // console.log(enchange[e_index].resource_id);//数据的排序ID(0,1,2)
         enchangeId.push(enchange[e_index].resource_id)//点击时把数据的ID添加起来
       } else {
-        rqj.errorHide(that, "最多可选择五项", 3000)
+        rqj.errorHide(that, "最多可选择五项", 1000)
       }
     } else {//当取消按钮时
       enchangeCheck[e_index] = false;
@@ -146,7 +145,7 @@ Page({
     });
     console.log(enchangeValue, enchangeId)
   },
-  //传值部份2
+  //传值部份2寻求资源
   checkboxChange2: function (e) {
     // console.log(e)
     var that = this;
@@ -172,8 +171,8 @@ Page({
     } else {
       targetCheck[e_index] = false;
       target[e_index].checked = false;
-      targetValue.splice(targetValue.indexOf(e_value), 1);
-      targetId.splice(targetId.indexOf(e_index), 1);
+      targetValue.splice(targetValue.indexOf(e_value), 1)
+      targetId.splice(targetId.indexOf(e_index+1), 1)
     }
     this.setData({
       target: target,
@@ -181,7 +180,7 @@ Page({
       targetId: targetId,
       targetCheck: targetCheck
     });
-    
+    console.log(targetValue, targetId)
   },
   //具体描述
   bindTextAreaBlur: function (e) {
@@ -206,7 +205,7 @@ Page({
     var enchange = this.data.enchange;
     var enchangeValue = this.data.enchangeValue;
     var enchangeId = this.data.enchangeId;
-    var target = this.data.target
+    var target = this.data.target 
     var targetValue = this.data.targetValue;
     var targetId = this.data.targetId;
     var user_id = wx.getStorageSync('user_id');
