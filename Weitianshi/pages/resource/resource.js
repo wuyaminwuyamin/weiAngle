@@ -474,7 +474,7 @@ Page({
     var resource_page_end = this.data.resource_page_end;
     var res_match = this.data.res_match;
     if (user_id != '') {
-      if (resource_page_end == false) {
+      if (resource_page_end == false ) {
         wx.showToast({
           title: 'loading...',
           icon: 'loading'
@@ -495,7 +495,6 @@ Page({
             var newPage = res.data.res_match;
             var resource_page_end = res.data.page_end;
             var res_match = that.data.res_match;
-
             for (var i = 0; i < newPage.length; i++) {
               res_match.push(newPage[i])
             }

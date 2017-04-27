@@ -143,10 +143,6 @@ Page({
                 }
             })
         }
-
-        //  wx.navigateTo({
-        //      url: 'sharePage/sharePage?user_id=V0VznXa0',
-        //  })
     },
     //分享名片
     onShareAppMessage: function () {
@@ -177,82 +173,4 @@ Page({
             modal: 0
         })
     },
-
-    /*
-    //我的人脉
-    myNetwork: function () {
-        var bindUser = this.data.bindUser;
-        if (bindUser == 0) {
-            wx.showModal({
-                title: "提示",
-                content: "请先绑定个人信息",
-                success: function (res) {
-                    if (res.confirm == true) {
-                        wx.navigateTo({
-                            url: '../myProject/personInfo/personInfo?network=2&&followed_user_id=' + 0,
-                        })
-                    }
-                }
-            })
-        } else {
-            wx.switchTab({
-                url: '../network/network',
-            })
-        }
-    },
-    // 添加人脉
-    addNetwork: function () {
-        var user_id = this.data.user_id;
-        var followed_user_id = this.data.followed_user_id;
-        console.log(user_id, followed_user_id)
-        if (user_id != 0) {
-            wx.request({
-                url: url + '/api/user/followUser',
-                data: {
-                    follow_user_id: user_id,
-                    followed_user_id: followed_user_id
-                },
-                method: 'POST',
-                success: function (res) {
-                    console.log("添加人脉成功")
-                    console.log(res)
-                },
-                fail: function (res) {
-                    console.log(res)
-                },
-            })
-        } else {
-            wx.showModal({
-                title: "提示",
-                content: "请先绑定个人信息",
-                success: function (res) {
-                    if (res.confirm == true) {
-                        wx.navigateTo({
-                            url: '../myProject/personInfo/personInfo?network=1&&followed_user_id=' + followed_user_id,
-                        })
-                    }
-                }
-            })
-        }
-    },
-    */
 });
- /*//取消交换名片
-    toastCancel: function () {
-        var notIntegrity = this.data.notIntegrity;
-        notIntegrity = 0;
-        this.setData({
-            notIntegrity: notIntegrity
-        })
-    },
-    //去完善名片
-    toastCertain: function () {
-        wx.navigateTo({
-            url: 'cardEdit/cardEdit',
-        })
-        var notIntegrity = this.data.notIntegrity;
-        notIntegrity = 0;
-        this.setData({
-            notIntegrity: notIntegrity
-        })
-    },*/

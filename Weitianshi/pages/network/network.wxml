@@ -9,7 +9,7 @@
 
 <!--资本对接-->
 <swiper-item>
-  <scroll-view scroll-y="true" bindscrolltolower="loadMore">
+  <scroll-view scroll-y="true" bindscrolltolower="loadMore" lower-threshold="50">
     <view class="netWork">
       <block wx:for="{{netWork}}" wx:key="{{item.user_id}}">
         <view class="card" data-id="{{item.user_id}}" bindtap="userDetail">
@@ -22,9 +22,10 @@
                   <view class="user_name">{{item.user_real_name}}</view>
                   <view class="user_career">{{item.user_company_career}}</view>
                 </view>
-                <label class="telephoneLab" data-telephone="{{item.user_mobile}}" catchtap="telephone"><image class="telephone" src="/img/icon-phone@3x.png" ></image></label>
+                <label class="telephoneLab" data-telephone="{{item.user_mobile}}" catchtap="telephone">
+                  <image class="telephone" src="/img/icon-phone@3x.png"></image>
+                </label>
               </view>
-
               <view class="user_company" wx:if="{{item.user_company_name !=''}}">{{item.user_company_name}}</view>
             </view>
           </view>
@@ -75,6 +76,9 @@
     </view>
   </scroll-view>
 </swiper-item>
+
+<!--没有更多-->
+<view class="error" wx:if="{{error=='1'}}">{{error_text}}</view>
 
 <!--空状态-->
 <view class="nullState" wx:if="{{netWork=='' || !netWork}}">
