@@ -6,7 +6,7 @@ Page({
         user: "",
         modal: 0,
         goTop: 0,
-        canEdit:1,
+        canEdit: 1,
     },
     onLoad: function (options) {
         if (options) {
@@ -27,9 +27,9 @@ Page({
             wx.request({
                 url: url + '/api/user/getUserAllInfo',
                 data: {
-                    share_id:0, 
+                    share_id: 0,
                     user_id: user_id,
-                    view_id:0,
+                    view_id: 0,
                 },
                 method: 'POST',
                 success: function (res) {
@@ -46,10 +46,10 @@ Page({
                     wx.setStorage({
                         key: 'resource_data',
                         data: res.data.resource_info
-                      })
+                    })
 
                     wx.setNavigationBarTitle({
-                      title: user_name+"的投资名片",
+                        title: user_name + "的投资名片",
                     })
                     that.setData({
                         user: user,
@@ -81,7 +81,7 @@ Page({
     findProjectEdit: function () {
         if (!this.data.options) {
             wx.navigateTo({
-                url: '../yourProject/yourProject?current='+1,
+                url: '../yourProject/yourProject?current=' + 1,
             })
         }
 
@@ -90,7 +90,7 @@ Page({
     resourceEnchangeEdit: function () {
         if (!this.data.options) {
             wx.navigateTo({
-                url: '../resourceEnchange/resourceEnchange?current='+1,
+                url: '../resourceEnchange/resourceEnchange?current=' + 1,
             })
         }
     },
@@ -103,11 +103,11 @@ Page({
         }
     },
     //融资项目详情
-    financingDetail:function(e){
-        var id=e.currentTarget.dataset.id;
-        var index=e.currentTarget.dataset.index
+    financingDetail: function (e) {
+        var id = e.currentTarget.dataset.id;
+        var index = e.currentTarget.dataset.index
         wx.navigateTo({
-          url: '/pages/myProject/projectDetail/projectDetail?id='+id+"&&index="+index,
+            url: '/pages/myProject/projectDetail/projectDetail?id=' + id + "&&index=" + index,
         })
     },
     //投资案例
