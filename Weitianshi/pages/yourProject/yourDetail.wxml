@@ -1,9 +1,11 @@
 <scroll-view  scroll-y="true">
+
+<!--头部名片-->
   <view id="myDetail">
     <view class="weui-panel__bd" style="background:white;">
 
       <!--名片-->
-      <view class="weui-cell" style="background:white;margin:32rpx;margin-bottom:0;border-radius:4px 4px 0 0">
+      <view class="weui-cell" style="background:white;margin:32rpx;margin-bottom:0;border-radius:4px 4px 0 0" bindtap="userDetail" data-id="{{user.user_id}}">
         <view class="weui-cell__hd" style="position: relative;margin-right: 10px;">
           <image wx:if="{{user.user_avatar_url}}" class="others_pic" src="{{user.user_avatar_url}}" />
           <view wx:if="{{!user.user_avatar_url}}" class="others_nopic">{{user.user_avatar_text}}</view>
@@ -18,6 +20,7 @@
           <!--<view class="ohters_position"></view>-->
         </view>
       </view>
+
       <view class="greyFrame">
 
         <!--项目完成度-->
