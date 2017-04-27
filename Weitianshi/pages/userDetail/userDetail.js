@@ -4,8 +4,8 @@ Page({
     data: {
         integrity:30,
         resourcesIndex:9.9,
-        user:"",
-        follow: false
+        user:""
+        // follow: false
     },
     onLoad: function (options) {
         var that = this
@@ -101,9 +101,9 @@ Page({
                             }
                         })
                         // ===========================================
-                        that.setData({
-                            follow: true,
-                        })
+                        // that.setData({
+                        //     follow: true,
+                        // })
                     } else {
                         wx.showModal({
                             title: "提示",

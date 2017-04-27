@@ -33,6 +33,6 @@
     <view bindtap="addNetwork">加入人脉</view>
   </view>
 </scroll-view>
-<view class="showModal" hidden="{{modal==0}}" bindtap="cancelShare">
-  <image src="/img/img-share@3x.png"></image>
+<view class="showModal" hidden="{{modal==0}}" bindtap="showTo">
+    <image src="/img/img-share@3x.png"></image>
 </view>
