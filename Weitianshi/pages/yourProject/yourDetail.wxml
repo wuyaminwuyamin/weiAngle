@@ -150,5 +150,5 @@
 
 <!--下面的浮动按钮-->
 <view class="floatBtn flex ">
-  <button class="push" bindtap="addNetWork">加入人脉</button>
+  <button class="push" bindtap="">申请查看</button>
 </view>

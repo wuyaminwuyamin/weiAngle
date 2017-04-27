@@ -1,6 +1,7 @@
 var rqj = require('../Template/Template.js')
 var app = getApp()
 var url = app.globalData.url
+var num =0;
 Page({
   data: {
     winWidth: 0,//选项卡
@@ -448,6 +449,7 @@ Page({
           },
           method: 'POST',
           success: function (res) {
+            console.log(res);
             var newPage = res.data.data;
             var yourProject = that.data.yourProject;
             for (var i = 0; i < newPage.length; i++) {
@@ -459,6 +461,7 @@ Page({
             })
           }
         })
+        return;
       } else {
         rqj.errorHide(that, "没有更多了", 3000)
       }
@@ -467,6 +470,7 @@ Page({
 
   // 资源对接触底刷新
   resourceProject: function () {
+    num++;
     var that = this;
     var res_id = this.data.res_id;
     var resource_page = this.data.resource_page;
@@ -474,7 +478,12 @@ Page({
     var resource_page_end = this.data.resource_page_end;
     var res_match = this.data.res_match;
     if (user_id != '') {
+      console.log("第1次");
+      console.log(num);
+      console.log(resource_page_end);
       if (resource_page_end == false) {
+        console.log("第2次");
+        console.log(num);
         wx.showToast({
           title: 'loading...',
           icon: 'loading'
@@ -491,11 +500,13 @@ Page({
           },
           method: 'POST',
           success: function (res) {
-            console.log(res)
+          console.log(res);
+          console.log("第3次");
+          console.log(num);
             var newPage = res.data.res_match;
             var resource_page_end = res.data.page_end;
             var res_match = that.data.res_match;
-
+            console.log(resource_page_end);
             for (var i = 0; i < newPage.length; i++) {
               res_match.push(newPage[i])
             }
@@ -505,6 +516,7 @@ Page({
             })
           }
         })
+
       } else {
         rqj.errorHide(that, "没有更多了", 3000)
       }
