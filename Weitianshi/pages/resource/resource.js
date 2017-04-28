@@ -1,6 +1,7 @@
 var rqj = require('../Template/Template.js')
 var app = getApp()
 var url = app.globalData.url
+var num = 0;
 Page({
   data: {
     winWidth: 0,//选项卡
@@ -11,7 +12,7 @@ Page({
     yourProject: "",//寻找项目数据的字段
     res_match: "",//资源对接数据的字段
     investor_page: 1,//投资人分页
-    resource_Page: 1,//资源分页
+    resource_page: 1,//资源分页
     investor_page_end: false,//投资人数据是否完结
     resource_page_end: false,//资源数据是否完结
     hasPublic: 0,//是否发布过投资需求
@@ -30,7 +31,7 @@ Page({
     },//资源按钮字段
   },
   //载入页面
-  onLoad: function (option) {
+  onLoad: function () {
     var that = this;
     var user_id = wx.getStorageSync('user_id');
     var bind_mobile = wx.getStorageSync('bind_mobile');
@@ -222,7 +223,9 @@ Page({
                     that.setData({
                       yourProject: yourProject,
                       hasPublic: 1,
-                      investor_id: res.data.data.investor_id
+                      investor_id: res.data.data.investor_id,
+                      investor_page: 1,
+                      investor_page_end: false,
                     })
                   } else {
                     that.setData({
@@ -261,6 +264,8 @@ Page({
                         res_find: res_find,//我正在寻求的资源
                         hasPublic2: 1,//是否发布过资源需求
                         res_id: res_id,//用过请求资源需求匹配项目的分页接口
+                        resource_page: 1,//初始化分页数
+                        resource_page_end: false,//初始化是否还有数据
                       })
                     } else {
                       that.setData({
@@ -448,6 +453,7 @@ Page({
           },
           method: 'POST',
           success: function (res) {
+            console.log(res);
             var newPage = res.data.data;
             var yourProject = that.data.yourProject;
             for (var i = 0; i < newPage.length; i++) {
@@ -459,6 +465,7 @@ Page({
             })
           }
         })
+        return;
       } else {
         rqj.errorHide(that, "没有更多了", 3000)
       }
@@ -466,7 +473,53 @@ Page({
   },
 
   // 资源对接触底刷新
+  // resourceProject: function () {
+  //   var that = this;
+  //   var res_id = this.data.res_id;
+  //   var resource_page = this.data.resource_page;
+  //   var user_id = wx.getStorageSync('user_id');
+  //   var resource_page_end = this.data.resource_page_end;
+  //   var res_match = this.data.res_match;
+  //   if (user_id != '') {
+  //     if (resource_page_end == false) {
+  //       wx.showToast({
+  //         title: 'loading...',
+  //         icon: 'loading'
+  //       })
+  //       resource_page++;
+  //       that.setData({
+  //         resource_page: resource_page
+  //       });
+  //       wx.request({
+  //         url: url + '/api/resource/getMatchResourceForPage',
+  //         data: {
+  //           res_id: res_id,
+  //           page: resource_page,
+  //         },
+  //         method: 'POST',
+  //         success: function (res) {
+  //           that.callback(res)
+  //           console.log(res)
+  //           var newPage = res.data.res_match;
+  //           var resource_page_end = res.data.page_end;
+  //           var res_match = that.data.res_match;
+  //           for (var i = 0; i < newPage.length; i++) {
+  //             res_match.push(newPage[i])
+  //           }
+  //           that.setData({
+  //             res_match: res_match, //资源需求匹配出来的项目
+  //             resource_page_end: resource_page_end,
+  //           })
+  //         }
+  //       })
+  //       return
+  //     } else {
+  //       rqj.errorHide(that, "没有更多了", 3000)
+  //     }
+  //   }
+  // },
   resourceProject: function () {
+    num++;
     var that = this;
     var res_id = this.data.res_id;
     var resource_page = this.data.resource_page;
@@ -474,7 +527,12 @@ Page({
     var resource_page_end = this.data.resource_page_end;
     var res_match = this.data.res_match;
     if (user_id != '') {
+      console.log("第1次");
+      console.log(num);
+      console.log(resource_page_end);
       if (resource_page_end == false) {
+        console.log("第2次");
+        console.log(num);
         wx.showToast({
           title: 'loading...',
           icon: 'loading'
@@ -491,11 +549,13 @@ Page({
           },
           method: 'POST',
           success: function (res) {
-            console.log(res)
+            console.log(res);
+            console.log("第3次");
+            console.log(num);
             var newPage = res.data.res_match;
             var resource_page_end = res.data.page_end;
             var res_match = that.data.res_match;
-
+            console.log(resource_page_end);
             for (var i = 0; i < newPage.length; i++) {
               res_match.push(newPage[i])
             }
@@ -508,7 +568,22 @@ Page({
       } else {
         rqj.errorHide(that, "没有更多了", 3000)
       }
+      //rqj.loadMore(url,that,'/api/resource/getMatchResourceForPage',resource_page,res_id,user_id,resource_page_end)
     }
+  },
+  callback: function (res, that) {
+    console.log("这里是回调函数");
+    console.log(res);
+    var newPage = res.data.res_match;
+    var resource_page_end = res.data.page_end;
+    var res_match = that.data.res_match;
+    for (var i = 0; i < newPage.length; i++) {
+      res_match.push(newPage[i])
+    }
+    that.setData({
+      res_match: res_match, //资源需求匹配出来的项目
+      resource_page_end: resource_page_end,
+    })
   },
   //分享当前页面
   onShareAppMessage: function () {
