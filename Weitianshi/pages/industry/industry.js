@@ -20,7 +20,7 @@ Page({
         var options = options;
         var industry = wx.getStorageSync('industry');
         var current = options.current;
-        // 0:发布融资项目  1:发布投资项目  2:维护我的项目 3:发布投资案例
+        // 0:发布融资项目  1:发布投资需求 2:维护我的项目 3:发布投资案例
 
         if (current == 0) {
             var domainValue = wx.getStorageSync('domainValue')

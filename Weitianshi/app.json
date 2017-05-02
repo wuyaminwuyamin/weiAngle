@@ -1,8 +1,8 @@
 {
   "pages": [
     "pages/resource/resource",
-    "pages/my/sharePage/sharePage",
     "pages/my/investCase/investCase",
+    "pages/my/sharePage/sharePage",
     "pages/my/my",
     "pages/my/investCaseEdit/investCaseEdit",
     "pages/needMarket/needMarket",
