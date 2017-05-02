@@ -128,6 +128,12 @@ Page({
             that.setData({
                 modal: 1
             })
+            setTimeout(function(){
+                console.log(3000)
+                that.setData({
+                    modal: 0
+                })
+            },2000)
         } else {
             wx.showModal({
                 title: "友情提示",
@@ -144,31 +150,6 @@ Page({
     onShareAppMessage: function () {
         var user_id = wx.getStorageSync('user_id');
         var modal = this.data.modal;
-        // this.setData({
-        //     goTop: 1
-        // })
-
-        // if (modal == 1) {
-        //     this.setData({
-        //         modal: 0
-        //     })
-        // }
-        this.showTo();
-        setTimeout(function(){
-            console.log(3000)
-        },3000)
-        console.log(1)
-        return {
-            title: '投资名片',
-            path: "/pages/my/sharePage/sharePage?user_id=" + user_id,
-            success: function (res) {
-            },
-            fail: function (res) {
-                console.log(res)
-            }
-        }      
-    },
-    showTo : function(){
         this.setData({
             goTop: 1
         })
@@ -178,11 +159,15 @@ Page({
                 modal: 0
             })
         }
-        setTimeout(function(){
-            this.onShareAppMessage();
-        },3000)
-        
-        console.log("dosomething")
+        return {
+            title: '投资名片',
+            path: "/pages/my/sharePage/sharePage?user_id=" + user_id,
+            success: function (res) {
+            },
+            fail: function (res) {
+                console.log(res)
+            }
+        }      
     },
     //取消分享
     cancelShare: function () {
