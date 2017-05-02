@@ -139,5 +139,9 @@ App({
   globalData: {
     error: 0,
     url: "https://dev.weitianshi.cn"
+<<<<<<< HEAD
+=======
+    // url: "https://www.weitianshi.cn"
+>>>>>>> refs/remotes/morganfly/morganfly
   }
 });
