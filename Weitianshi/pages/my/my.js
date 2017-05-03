@@ -34,6 +34,7 @@ Page({
                 method: 'POST',
                 success: function (res) {
                     console.log(res);
+                    console.log( res.data.project_info)
                     var user = res.data.user_info;
                     var invest = res.data.invest_info;
                     var resource = res.data.resource_info;
@@ -47,7 +48,7 @@ Page({
                         key: 'resource_data',
                         data: res.data.resource_info
                     })
-
+ 
                     wx.setNavigationBarTitle({
                         title: user_name + "的投资名片",
                     })

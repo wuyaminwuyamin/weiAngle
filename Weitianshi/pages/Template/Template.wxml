@@ -163,6 +163,7 @@
     </view>
     <view class="projcet_info_frame">
       <block wx:for="{{project_info}}" wx:key="{{item.pro_intro}}">
+      
         <view class="project_card" data-id="{{item.pro_id}}" data-index="{{index}}" bindtap="financingDetail">
           <view class="pro_intro">
             {{item.pro_intro||item.case_name}}
@@ -175,7 +176,7 @@
           <view class="flex s_pro_sorts">
             <view class="pro_sorts flex">
               <view class="pro_sort" wx:if="{{item.pro_stage.stage_name}}">{{item.pro_stage.stage_name}}</view>
-              <view class="pro_sort" wx:if="{{item.pro_city.area_title}}">{{item.pro_city.area_title}}</view>
+              <view class="pro_sort" wx:if="{{item.case_city.area_title}}">{{item.case_city.area_title}}</view>
               <view class="pro_sort" wx:if="{{item.pro_scale.scale_money}}">{{item.pro_scale.scale_money}}</view>
             </view>
           </view>
@@ -210,6 +211,7 @@
           <view class="flex s_pro_sorts">
             <view class="pro_sorts flex">
               <view class="pro_sort" wx:if="{{item.stage.stage_name}}">{{item.stage.stage_name}}</view>
+               <view class="pro_sort" wx:if="{{item.case_area}}">{{item.case_area.area_title}}</view>
               <view class="pro_sort" wx:if="{{item.case_money}}">{{item.case_money}}万</view>
             </view>
           </view>
@@ -235,7 +237,7 @@
         <view class="tips flex">
           <view style="width:1px"></view>
           <view class="weui-media-box__desc tip">{{myProject.pro_stage.stage_name||myProject.stage.stage_name}}</view>
-          <view class="weui-media-box__desc tip">{{myProject.pro_area.area_title}}</view>
+          <view class="weui-media-box__desc tip">{{myProject.case_area.area_title}}</view>
           <view class="weui-media-box__desc tip">{{myProject.pro_scale.scale_money||myProject.case_money}}万</view>
         </view>
         <image class="editIcon" data-index="{{index}}" src="/img/icon-pen.png"></image>

@@ -1,5 +1,6 @@
 //app.js
 App({
+  // onLaunch 用于监听小程序初始化,当完成时会触发onLaunch(全局只会触发一次)
   onLaunch: function (options) {
     //调用API从本地缓存中获取数据
     var logs = wx.getStorageSync('logs') || [];
@@ -7,8 +8,7 @@ App({
     wx.setStorageSync('logs', logs)
     // console.log(options.scene)
   },
-
-  onError: function (msg) {
+  onError: function (msg) {//小程序发生脚本错误,或者api调用失败时,会触发onError,并带上错误信息
     console.log(msg)
   },
 
