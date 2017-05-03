@@ -27,7 +27,7 @@ function userNeed(that) {
     var user_id = wx.getStorageSync('user_id')
     if (user_id != 0) {
         wx.request({
-            url: 'https://www.weitianshi.com.cn/api/investors/checkInvestorInfo',
+            url: 'https://www.weitianshi.cn/api/investors/checkInvestorInfo',
             data: {
                 user_id: user_id
             },
