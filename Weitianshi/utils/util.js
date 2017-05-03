@@ -17,6 +17,5 @@ function formatNumber(n) {
 
 module.exports = {
   formatTime: formatTime,
-  sayGoodbye: sayGoodbye,
-  sayHello: sayHello
+  formatNumber:formatNumber
 }
