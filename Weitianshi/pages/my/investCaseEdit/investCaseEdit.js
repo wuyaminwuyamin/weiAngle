@@ -55,6 +55,8 @@ Page({
       var case_stage_name = invest_case.stage.stage_name;
       var case_money = invest_case.case_money;
       var case_time = invest_case.case_deal_time;
+      var case_city = invest_case.case_city;
+      var case_province = invest_case.case_province;
       this.setData({
         case_index: case_index,
         case_name: invest_case.case_name,
@@ -64,7 +66,8 @@ Page({
         case_stage_name: case_stage_name,
         case_money: case_money,
         case_time: case_time,
-
+        case_city:case_city,
+        case_province:case_province
       })
     }
   },
