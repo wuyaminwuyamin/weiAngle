@@ -1,9 +1,10 @@
 {
   "pages": [
+    "pages/test/test",
+    "pages/my/my",
     "pages/resource/resource",
     "pages/my/sharePage/sharePage",
     "pages/my/investCase/investCase",
-    "pages/my/my",
     "pages/my/investCaseEdit/investCaseEdit",
     "pages/needMarket/needMarket",
     "pages/network/network",
@@ -59,6 +60,12 @@
         "selectedIconPath": "img/myOn.png",
         "pagePath": "pages/my/my",
         "text": "我的"
+      },
+      {
+        "iconPath": "img/my.png",
+        "selectedIconPath": "img/myOn.png",
+        "pagePath": "pages/test/test",
+        "text": "测试用"
       }
     ],
     "selectedColor": "black",
