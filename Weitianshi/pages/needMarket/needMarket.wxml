@@ -35,7 +35,7 @@
     <scroll-view scroll-y="true" bindscrolltolower='investNeed'>
       <view class="investNeed">
         <block wx:for="{{investNeed}}" wx:key="{{item.investor_id}}">
-          <view class="card" data-id="{{item.investor_id}}" bindtap="userDetail">
+          <view class="card" data-id="{{item.user_id}}" bindtap="userDetail">
             <view class="user_info flex">
               <view class="user_text" wx:if="{{item.investor_logo_text}}">{{item.investor_logo_text}}</view>
               <image class="user_pic" src="{{item.investor_logo_url}}" wx:if="{{item.investor_logo_url}}"></image>

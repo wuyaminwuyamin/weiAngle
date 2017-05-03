@@ -12,7 +12,11 @@ Page({
     this.setData({
       user_id: user_id
     })
-    //载入我的个人信息
+    // 初始化案例编辑时的领域和地区
+    wx.removeStorageSync('case_domainValue');
+    wx.removeStorageSync('case_domainId');
+    wx.removeStorageSync('addcase_belongArea')
+    // 载入我的个人信息
     if (user_id) {
       wx.request({
         url: url + '/api/user/getUserAllInfo',
@@ -21,6 +25,7 @@ Page({
         },
         method: 'POST',
         success: function (res) {
+          console.log(res)
           var invest_case = res.data.invest_case;
           wx.setStorageSync('invest_case', invest_case)
           that.setData({
@@ -36,12 +41,13 @@ Page({
     }
   },
   //编辑案例
-  edit: function (e) {
+  detail: function (e) {
     var index = e.currentTarget.dataset.index;
     wx.navigateTo({
       url: '../investCaseEdit/investCaseEdit?index=' + index,
     })
   },
+
   // 按钮一号
   buttonOne: function () {
     wx.navigateTo({

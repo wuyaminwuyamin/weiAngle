@@ -27,7 +27,7 @@
   </view>
   <view class="card">
     <view class="text">投资地区</view>
-       <view class="card_case" id="case_local" bindtap="case_local">{{local||"请选择"}}</view>
+       <view class="card_case" id="case_local" bindtap="case_local">{{belongArea.belongArea||"请选择"}}</view>
   </view>
 </view>
 <view style="height:98rpx;"></view>

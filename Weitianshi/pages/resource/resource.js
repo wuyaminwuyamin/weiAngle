@@ -35,6 +35,7 @@ Page({
     var that = this;
     var user_id = wx.getStorageSync('user_id');
     var bind_mobile = wx.getStorageSync('bind_mobile');
+    // console.log(rqj.userNeed(that))
     //调用应用实例的方法获取全局数据(获取用户信息并向后台进行发送)
     app.getUserInfo(function (userInfo) {
       that.setData({
@@ -81,6 +82,7 @@ Page({
                   },
                   method: 'POST',
                   success: function (res) {
+                    console.log(res)
                     var myProject = res.data.data;
                     var length = myProject.length;
                     wx.setStorageSync('proLength', length);
