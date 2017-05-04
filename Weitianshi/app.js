@@ -30,7 +30,7 @@ App({
               //console.log(res)   //调用wx.getUserInfo成功后返回的各种东西
               //向后台发送用户信息
               wx.request({
-                url: 'https://www.weitianshi.cn/api/wx/returnOauth',
+                url: 'https://dev.weitianshi.cn/api/wx/returnOauth',
                 data: {
                   code: login,
                   encryptedData: res.encryptedData,
@@ -63,7 +63,7 @@ App({
           //向后台请求数据
           //console.log(res.code)
           wx.request({
-            url: 'https://www.weitianshi.cn/api/wx/returnLoginStatus',
+            url: 'https://dev.weitianshi.cn/api/wx/returnLoginStatus',
             data: {
               code: res.code
             },
@@ -139,6 +139,6 @@ App({
   //初始本地缓存
   globalData: {
     error: 0,
-    url: "https://www.weitianshi.cn"
+    url: "https://dev.weitianshi.cn"
   }
 });
