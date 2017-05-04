@@ -27,7 +27,7 @@ function userNeed(that) {
     var user_id = wx.getStorageSync('user_id')
     if (user_id != 0) {
         wx.request({
-            url: 'https://www.weitianshi.com.cn/api/investors/checkInvestorInfo',
+            url: 'https://www.weitianshi.cn/api/investors/checkInvestorInfo',
             data: {
                 user_id: user_id
             },
@@ -112,10 +112,41 @@ function addNetWork(that, follow_user_id, followed_user_id) {
         },
     })
 }
+//下拉刷新加载
+function loadMore(url,that, api, page, parameter, user_id, page_end) {
+    if (user_id != '') {
+        if (page_end == false) {
+            wx.showToast({
+                title: 'loading...',
+                icon: 'loading'
+            })
+            page++;
+            that.setData({
+                page: page
+            });
+            console.log(that.data.resource_page,that.data.page)
+            wx.request({
+                url: url + api,
+                data: {
+                    res_id: parameter,
+                    page: page,
+                },
+                method: 'POST',
+                success: function (res) {
+                    that.callback(res,that)
+                }
+            })
+            return
+        } else {
+            rqj.errorHide(that, "没有更多了", 3000)
+        }
+    }
+}
 
 //函数输出
 module.exports = {
     errorHide: errorHide,
-    userNeed: userNeed
+    userNeed: userNeed,
+    loadMore:loadMore,
 }
 

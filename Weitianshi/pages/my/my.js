@@ -6,7 +6,7 @@ Page({
         user: "",
         modal: 0,
         goTop: 0,
-        canEdit:1,
+        canEdit: 1,
     },
     onLoad: function (options) {
         if (options) {
@@ -27,11 +27,14 @@ Page({
             wx.request({
                 url: url + '/api/user/getUserAllInfo',
                 data: {
-                    user_id: user_id
+                    share_id: 0,
+                    user_id: user_id,
+                    view_id: 0,
                 },
                 method: 'POST',
                 success: function (res) {
-                    console.log(res)
+                    console.log(res);
+                    console.log( res.data.project_info)
                     var user = res.data.user_info;
                     var invest = res.data.invest_info;
                     var resource = res.data.resource_info;
@@ -39,7 +42,16 @@ Page({
                     var invest_case = res.data.invest_case;
                     var status_code = res.data.status_code;
                     var financingProject = that.data.financingProject;
-                    console.log(project_info)
+                    var user_name = res.data.user_info.user_real_name;
+                    //设置缓存==========
+                    wx.setStorage({
+                        key: 'resource_data',
+                        data: res.data.resource_info
+                    })
+ 
+                    wx.setNavigationBarTitle({
+                        title: user_name + "的投资名片",
+                    })
                     that.setData({
                         user: user,
                         invest: invest,
@@ -70,7 +82,7 @@ Page({
     findProjectEdit: function () {
         if (!this.data.options) {
             wx.navigateTo({
-                url: '../yourProject/yourProject?current='+1,
+                url: '../yourProject/yourProject?current=' + 1,
             })
         }
 
@@ -79,7 +91,7 @@ Page({
     resourceEnchangeEdit: function () {
         if (!this.data.options) {
             wx.navigateTo({
-                url: '../resourceEnchange/resourceEnchange',
+                url: '../resourceEnchange/resourceEnchange?current=' + 1,
             })
         }
     },
@@ -92,11 +104,11 @@ Page({
         }
     },
     //融资项目详情
-    financingDetail:function(e){
-        var id=e.currentTarget.dataset.id;
-        var index=e.currentTarget.dataset.index
+    financingDetail: function (e) {
+        var id = e.currentTarget.dataset.id;
+        var index = e.currentTarget.dataset.index
         wx.navigateTo({
-          url: '/pages/myProject/projectDetail/projectDetail?id='+id+"&&index="+index,
+            url: '/pages/myProject/projectDetail/projectDetail?id=' + id + "&&index=" + index,
         })
     },
     //投资案例
@@ -117,6 +129,12 @@ Page({
             that.setData({
                 modal: 1
             })
+            setTimeout(function(){
+                console.log(3000)
+                that.setData({
+                    modal: 0
+                })
+            },2000)
         } else {
             wx.showModal({
                 title: "友情提示",
@@ -128,10 +146,6 @@ Page({
                 }
             })
         }
-
-        //  wx.navigateTo({
-        //      url: 'sharePage/sharePage?user_id=V0VznXa0',
-        //  })
     },
     //分享名片
     onShareAppMessage: function () {
@@ -146,15 +160,35 @@ Page({
                 modal: 0
             })
         }
-        return {
+        setTimeout(function(){
+            console.log(3000)
+           
+        },2000)
+        // return {
+        //     title: '投资名片',
+        //     path: "/pages/my/sharePage/sharePage?user_id=" + user_id,
+        //     success: function (res) {
+        //     },
+        //     fail: function (res) {
+        //         console.log(res)
+        //     }
+        // }    
+        return this.test(user_id)
+          
+    },
+    // 测试专用函数
+    test : function(id){
+        console.log("test");
+        var json={
             title: '投资名片',
-            path: "/pages/my/sharePage/sharePage?user_id=" + user_id,
+            path: "/pages/my/sharePage/sharePage?user_id=" + id,
             success: function (res) {
             },
             fail: function (res) {
                 console.log(res)
             }
         }
+        return json;
     },
     //取消分享
     cancelShare: function () {
@@ -162,82 +196,4 @@ Page({
             modal: 0
         })
     },
-
-    /*
-    //我的人脉
-    myNetwork: function () {
-        var bindUser = this.data.bindUser;
-        if (bindUser == 0) {
-            wx.showModal({
-                title: "提示",
-                content: "请先绑定个人信息",
-                success: function (res) {
-                    if (res.confirm == true) {
-                        wx.navigateTo({
-                            url: '../myProject/personInfo/personInfo?network=2&&followed_user_id=' + 0,
-                        })
-                    }
-                }
-            })
-        } else {
-            wx.switchTab({
-                url: '../network/network',
-            })
-        }
-    },
-    // 添加人脉
-    addNetwork: function () {
-        var user_id = this.data.user_id;
-        var followed_user_id = this.data.followed_user_id;
-        console.log(user_id, followed_user_id)
-        if (user_id != 0) {
-            wx.request({
-                url: url + '/api/user/followUser',
-                data: {
-                    follow_user_id: user_id,
-                    followed_user_id: followed_user_id
-                },
-                method: 'POST',
-                success: function (res) {
-                    console.log("添加人脉成功")
-                    console.log(res)
-                },
-                fail: function (res) {
-                    console.log(res)
-                },
-            })
-        } else {
-            wx.showModal({
-                title: "提示",
-                content: "请先绑定个人信息",
-                success: function (res) {
-                    if (res.confirm == true) {
-                        wx.navigateTo({
-                            url: '../myProject/personInfo/personInfo?network=1&&followed_user_id=' + followed_user_id,
-                        })
-                    }
-                }
-            })
-        }
-    },
-    */
 });
- /*//取消交换名片
-    toastCancel: function () {
-        var notIntegrity = this.data.notIntegrity;
-        notIntegrity = 0;
-        this.setData({
-            notIntegrity: notIntegrity
-        })
-    },
-    //去完善名片
-    toastCertain: function () {
-        wx.navigateTo({
-            url: 'cardEdit/cardEdit',
-        })
-        var notIntegrity = this.data.notIntegrity;
-        notIntegrity = 0;
-        this.setData({
-            notIntegrity: notIntegrity
-        })
-    },*/

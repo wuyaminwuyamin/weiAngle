@@ -203,3 +203,53 @@ border-radius: 100rpx;*/
   width: 205rpx;
   height: 256rpx;
 }
+
+
+
+/*点击跳转表单封装*/
+
+.card{
+  margin-top:0;
+}
+
+.formjump .text {
+  padding: 32rpx 0;
+  font-size: 24rpx;
+  color: #333;
+  margin-top: 16rpx;
+}
+
+.formjump .slect {
+  border-radius: 4px;
+  height: 82repx;
+  line-height: 82rpx;
+  border: 1px solid #e0e0e0;
+  padding: 0 32rpx;
+  justify-content: space-between;
+  align-items: baseline;
+  padding-right: 24rpx;
+}
+
+.formjump .slect view {
+  display: flex;
+  width: 90%;
+  color: #ccc;
+}
+
+.formjump .slect .checkOn{
+  color: #333;
+}
+.formjump .slect image {
+  height: 12rpx;
+  width: 24rpx;
+  display: flex;
+}
+.formjump textarea {
+  background: #f2f2f2;
+  border-radius: 4px;
+  padding: 24rpx 32rpx;
+  height: 66rpx;
+  font-size: 28rpx;
+  margin-bottom: 16rpx;
+}
+

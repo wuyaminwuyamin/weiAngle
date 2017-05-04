@@ -1,10 +1,15 @@
 var app = getApp();
+// 所属领域
 var url = app.globalData.url;
 Page({
     data: {
+        // 名称
         doMain: [],
+        // 选中
         checked: [],
+        // 下标
         index: [],
+        // 每一个名称的id值
         id: [],
         error: "0",
         error_text: ""
@@ -15,7 +20,7 @@ Page({
         var options = options;
         var industry = wx.getStorageSync('industry');
         var current = options.current;
-        // 0:发布融资项目  1:发布投资项目  2:维护我的项目 3:发布投资案例
+        // 0:发布融资项目  1:发布投资需求 2:维护我的项目 3:发布投资案例
 
         if (current == 0) {
             var domainValue = wx.getStorageSync('domainValue')
@@ -68,8 +73,9 @@ Page({
             }
         }
 
-        //checkbox
+        //checkbox 便利industry
         for (var i = 0; i < industry.length; i++) {
+            // indexof查找是否包含内容
             if (domainValue.indexOf(industry[i].industry_name) != -1) {
                 industry[i].checked = true;
             } else {
@@ -77,7 +83,7 @@ Page({
             }
         }
         wx.setStorageSync('industry', industry)
-
+        // 设置值
         that.setData({
             doMain: industry,
             current: current,
@@ -95,15 +101,18 @@ Page({
     //传值部份
     checkboxChange: function (e) {
         var that = this;
+        // 选中的名称,并有延迟
         var checked = this.data.checked;
+        // 当前页面所有的内容,每一个都是对象
         var doMain = this.data.doMain;
         var index = this.data.index;
         var thisData = e.currentTarget.dataset;
         var isCheck = thisData.check;
         var value = thisData.value;
         var idx = thisData.index;
-        var id = e.currentTarget.id * 1;
-        console.log(checked, id)
+        // 当前选中项的id
+        var id = e.currentTarget.id * 1;   
+        console.log(index);
         if (index.indexOf(id) == -1) {
             checked.push(value);
             index.push(id)
@@ -117,8 +126,6 @@ Page({
             index: index
         })
     },
-
-
     //点击确定
     certain: function () {
         var that = this;
@@ -131,8 +138,9 @@ Page({
         that.setData({
             error: "0"
         });
-
+        // 选择的标签最多是5个
         if (checked.length > 5) {
+            // 如果超过5个提示锁雾
             var that = this;
             that.setData({
                 error: "1",

@@ -1,9 +1,11 @@
 <scroll-view  scroll-y="true">
+
+<!--头部名片-->
   <view id="myDetail">
     <view class="weui-panel__bd" style="background:white;">
 
       <!--名片-->
-      <view class="weui-cell" style="background:white;margin:32rpx;margin-bottom:0;border-radius:4px 4px 0 0">
+      <view class="weui-cell" style="background:white;margin:32rpx;margin-bottom:0;border-radius:4px 4px 0 0" bindtap="userDetail" data-id="{{user.user_id}}">
         <view class="weui-cell__hd" style="position: relative;margin-right: 10px;">
           <image wx:if="{{user.user_avatar_url}}" class="others_pic" src="{{user.user_avatar_url}}" />
           <view wx:if="{{!user.user_avatar_url}}" class="others_nopic">{{user.user_avatar_text}}</view>
@@ -18,6 +20,7 @@
           <!--<view class="ohters_position"></view>-->
         </view>
       </view>
+
       <view class="greyFrame">
 
         <!--项目完成度-->
@@ -140,63 +143,6 @@
           </view>
         </block>
       </view>
-
-      <!--</view>-->
-
-      <!--资本对接二-->
-
-      <!--<view class=" resource ">
-        <view class="others ">
-          <block wx:for="{{investor2}}" wx:key="{{investor_id}}">
-            <view class="weui-cell " style="background:white;margin:32rpx;margin-bottom:0;border-radius:4px 4px 0 0 " data-id="{{investor.investor_id}} ">
-              <view class="weui-cell__hd " style="position: relative;margin-right: 10px; ">
-                <image class="others_pic" wx:if="{{item.investor_logo_url}}" src="{{item.investor_logo_url}}" />
-                <view class=" others_nopic" wx:if="{{!item.investor_logo_url}}">{{item.investor_logo_text}}</view>
-              </view>
-              <view class="weui-cell__bd ">
-                <view class="flex " style="align-items: baseline; ">
-                  <view class="others_name ">{{item.investor_name}}</view>
-                  <view class="others_email ">786485758@qq.com</view>
-                </view>
-                <view class="others_company" wx:if="{{item.investor_type==2}}">{{item.investor_company}}</view>
-                <view class="ohters_position" wx:if="{{item.investor_type==2}}">{{item.investor_career}}</view>
-              </view>
-            </view>
-            <view class="offer_search " style="border-radius:0 0 4px 4px ">
-          
-              <view class="sort offer ">
-                <view class="sort_item ">投资领域:</view>
-                <block wx:for="{{item.industry_tag}}">
-                  <view class="weui-media-box__desc " wx:if="{{index<3}}">
-                    {{item.industry_name}}
-                  </view>
-                </block>
-              </view>
-         
-              <view class=" flex offer ">
-                <view class="sort_item ">投资轮次:</view>
-                <block wx:for="{{item.stage_tag}}">
-                  <view class="weui-media-box__desc ">
-                    {{item.stage_name}}
-                  </view>
-                </block>
-              </view>
-              <view class="offer flex" wx:if="{{item.offer}}">
-                <view>可提供资源</view>
-                <block wx:for="{{item.offer}} " wx:for-item="offer " wx:key="*this ">
-                  <view class="others_tips ">{{offer}}</view>
-                </block>
-              </view>
-              <view class="search flex" wx:if="{{item.search}}">
-                <view>在寻求资源</view>
-                <block wx:for="{{item.search}} " wx:for-item="search " wx:key="*key ">
-                  <view class="others_tips ">{{search}}</view>
-                </block>
-              </view>
-            </view>
-          </block>
-        </view>
-      </view>-->
     </view>
   </view>
   <!--<view class="load" wx:if="{{load==1}}">正在加载</view>-->
@@ -204,7 +150,5 @@
 
 <!--下面的浮动按钮-->
 <view class="floatBtn flex ">
-
-  <!--<button class="edit ">修改项目</button>-->
-  <button class="push " disabled="true ">加人脉、申请查看(近期开放)</button>
+  <button class="push" bindtap="">申请查看</button>
 </view>

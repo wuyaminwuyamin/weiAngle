@@ -14,7 +14,7 @@ Page({
         that.setData({
             current: current
         });
-        // console.log(this.data.current);
+        // current==0发布融资项目 current==1 维护融资项目 current==2 添加投资案例
         wx.request({
             url: url+'/api/category/getArea',
             data: {
@@ -30,7 +30,6 @@ Page({
 
             },
         })
-
     },
     province: function (e) {
         var that = this;
@@ -91,6 +90,24 @@ Page({
                 wx.setStorageSync('m_belongArea', this.data.belongArea);
                 wx.setStorageSync('m_provinceNum', this.data.provinceNum);
                 wx.setStorageSync('m_cityNum', this.data.cityNum);
+            }
+        } else if(current ==2){
+            if(this.data.belongArea ==""){
+                wx.setStorage({
+                  key: 'addcase_belongArea',
+                  data: {
+                      belongArea:this.data.belongArea
+                  },
+                })
+            }else{
+                wx.setStorage({
+                  key: 'addcase_belongArea',
+                  data: {
+                      belongArea:this.data.belongArea,
+                      provinceNum:this.data.provinceNum,
+                      cityNum:this.data.cityNum
+                  },
+                })
             }
         }
 

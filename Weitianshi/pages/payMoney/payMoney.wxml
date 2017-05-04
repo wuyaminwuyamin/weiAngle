@@ -1,5 +1,4 @@
 <view id="doMain">
-  <view class="title">*最多可选择1个</view>
   <view class="context flex">
     <block wx:for="{{payMoney}}">
       <label class="tips">

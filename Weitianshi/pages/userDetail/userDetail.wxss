@@ -1,2 +1,15 @@
 /* pages/userDetail/userDetail.wxss */
 @import "/pages/my/my.wxss";
+.floatBtn {
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+}
+
+.floatBtn button {
+  width: 100%;
+  justify-content: center;
+  color: white;
+  border-radius: 0;
+  background: #40587a;
+}
