@@ -5,7 +5,7 @@ Page({
     data: {
         winWidth: 0,//选项卡
         winHeight: 0,//选项卡
-        currentTab: 0,//选项卡
+        currentTab: 1,//选项卡
         firstName: "代",
         id: "",
         page: 0,
