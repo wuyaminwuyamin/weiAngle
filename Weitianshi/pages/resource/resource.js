@@ -529,12 +529,7 @@ Page({
     var resource_page_end = this.data.resource_page_end;
     var res_match = this.data.res_match;
     if (user_id != '') {
-      console.log("第1次");
-      console.log(num);
-      console.log(resource_page_end);
       if (resource_page_end == false) {
-        console.log("第2次");
-        console.log(num);
         wx.showToast({
           title: 'loading...',
           icon: 'loading'
@@ -551,13 +546,9 @@ Page({
           },
           method: 'POST',
           success: function (res) {
-            console.log(res);
-            console.log("第3次");
-            console.log(num);
             var newPage = res.data.res_match;
             var resource_page_end = res.data.page_end;
             var res_match = that.data.res_match;
-            console.log(resource_page_end);
             for (var i = 0; i < newPage.length; i++) {
               res_match.push(newPage[i])
             }
