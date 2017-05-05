@@ -69,6 +69,8 @@ App({
             },
             method: 'POST',
             success: function (res) {
+              console.log("用户信息")
+              console.log(res)
               wx.setStorageSync('bind_mobile', res.data.bind_mobile);
               wx.setStorageSync('user_id', res.data.user_id);
               console.log(res.data.user_id)

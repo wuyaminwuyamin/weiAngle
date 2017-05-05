@@ -10,9 +10,9 @@ Page({
         id: "",
         page: 0,
         industy_sort: [],
-        bpName: "杭州投着乐网络科技有限公司商业计划书",
-        projectName: "微天使",
-        companyName: "杭州投着乐网络科技有限公司",
+        bpName: "",
+        projectName: "",
+        companyName: "",
         stock: 0,
         page_end: false
     },
@@ -30,7 +30,8 @@ Page({
             id: id,
             user_id: user_id,
             avatarUrl: avatarUrl,
-            investor: investors[index]
+            investor: investors[index],
+            currentTab:options.currentTab
 
         });
         var investor = this.data.investor;

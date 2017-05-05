@@ -1,5 +1,6 @@
 var app = getApp();
 var url = app.globalData.url;
+
 Page({
   data: {
     user: "",
@@ -12,11 +13,87 @@ Page({
       followed_user_id: followed_user_id,
     })
 
-    //载入分享者的个人信息
+    //检验登录状态获取user_id和user_mobile
+    wx.login({
+      success: function (res) {
+        if (res.code) {
+          //请求查看者信息
+          wx.request({
+            url: url + '/api/wx/returnLoginStatus',
+            data: {
+              code: res.code
+            },
+            method: 'POST',
+            success: function (res) {
+              var user_id = res.data.user_id;
+              var user_mobile = res.data.bind_mobile;
+              var followed_user_id = that.data.followed_user_id;
+              var view_id = user_id;
+              wx.setStorageSync('user_id', user_id);
+              wx.setStorageSync('user_mobile', user_mobile);
+              //载入被分享者的个人信息
+              wx.request({
+                url: url + '/api/user/getUserAllInfo',
+                data: {
+                  share_id: followed_user_id,
+                  user_id: followed_user_id,
+                  view_id: view_id,
+                },
+                method: 'POST',
+                success: function (res) {
+                  var user = res.data.user_info;
+                  var invest = res.data.invest_info;
+                  var resource = res.data.resource_info;
+                  var project_info = res.data.project_info;
+                  var invest_case = res.data.invest_case;
+                  that.setData({
+                    user: user,
+                    invest: invest,
+                    resource: resource,
+                    project_info: project_info,
+                    invest_case: invest_case
+                  })
+                },
+                fail: function (res) {
+                  console.log(res)
+                },
+              })
+              // 判断是否绑定过用户
+              if (user_id == 0) {
+                that.setData({
+                  bindUser: 0
+                })
+              } else {
+                that.setData({
+                  bindUser: 1
+                })
+              }
+              console.log("share_id","user_id","view_id")
+              console.log(followed_user_id, followed_user_id,view_id)
+              //如果进入的是自己的名片里
+              if (user_id == followed_user_id) {
+                wx.switchTab({
+                  url: '/pages/network/network',
+                })
+              }
+              that.setData({
+                user_id: user_id,
+                user_mobile: user_mobile
+              })
+            }
+          })
+        }
+      }
+    });
+  },
+  //载入分享者的个人信息
+  getSharedInfo: function (share_id, user_id, view_id) {
     wx.request({
       url: url + '/api/user/getUserAllInfo',
       data: {
-        user_id: followed_user_id,
+        share_id: share_id,
+        user_id: user_id,
+        view_id: view_id,
       },
       method: 'POST',
       success: function (res) {
@@ -37,52 +114,7 @@ Page({
         console.log(res)
       },
     })
-    //检验登录状态获取user_id和user_mobile
-    wx.login({
-      success: function (res) {
-        if (res.code) {
-          wx.request({
-            url: url + '/api/wx/returnLoginStatus',
-            data: {
-              code: res.code
-            },
-            method: 'POST',
-            success: function (res) {
-              var user_id = res.data.user_id;
-              var user_mobile = res.data.bind_mobile;
-              var followed_user_id = that.data.followed_user_id;
-              wx.setStorageSync('user_id', user_id);
-              wx.setStorageSync('user_mobile', user_mobile);
-              // 判断是否绑定过用户
-              if (user_id == 0) {
-                that.setData({
-                  bindUser: 0
-                })
-              } else {
-                that.setData({
-                  bindUser: 1
-                })
-              }
-              console.log(user_id, followed_user_id)
-              //如果进入的是自己的名片里
-              if (user_id == followed_user_id) {
-                wx.switchTab({
-                  url: '/pages/network/network',
-                })
-              }
-              that.setData({
-                user_id: user_id,
-                user_mobile: user_mobile
-              })
-            }
-          })
-        }
-      }
-    });
-
   },
-
-
   // 添加人脉
   addNetwork: function () {
     var user_id = this.data.user_id;
