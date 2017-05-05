@@ -9,7 +9,10 @@ Page({
     currentTab: 0,//选项卡
     financingPage: 1,
     investPage: 1,
-    resourcePage: 1
+    resourcePage: 1,
+    investNeedcheck : true,
+    financingNeedcheck : true,
+    resourceNeedcheck : true
   },
   //载入页面
   onShow: function () {
@@ -106,117 +109,139 @@ Page({
   financingNeed: function () {
     var that = this;
     var financingPage = this.data.financingPage;
+    var financingNeedcheck = this.data.financingNeedcheck;
+    console.log(financingNeedcheck);
     financingPage++;
     this.setData({
       financingPage: financingPage
     });
-    wx.request({
-      url: url + '/api/project/projectMarket',
-      data: {
-        page: financingPage
-      },
-      method: 'POST',
-      success: function (res) {
-        console.log(res)
-        var new_data = res.data.data;
-        if (new_data != '') {
-          wx.showToast({
-            title: 'loading...',
-            icon: 'loading'
-          })
-          var financingNeed = that.data.financingNeed;
-          for (var i = 0; i < new_data.length; i++) {
-            financingNeed.push(new_data[i])
+    if(financingNeedcheck){
+      wx.request({
+        url: url + '/api/project/projectMarket',
+        data: {
+          page: financingPage
+        },
+        method: 'POST',
+        success: function (res) {
+          console.log(res)
+          var new_data = res.data.data;
+          if (new_data != '') {
+            wx.showToast({
+              title: 'loading...',
+              icon: 'loading'
+            })
+            var financingNeed = that.data.financingNeed;
+            for (var i = 0; i < new_data.length; i++) {
+              financingNeed.push(new_data[i])
+            }
+            that.setData({
+              financingNeed: financingNeed
+            })
+          } else {
+            rqj.errorHide(that, '没有更多了', 3000)
           }
-          that.setData({
-            financingNeed: financingNeed
-          })
-        } else {
-          rqj.errorHide(that, '没有更多了', 3000)
-        }
-      },
-      fail: function (res) {
-        console.log(res)
-      },
-    })
+        },
+        fail: function (res) {
+          console.log(res)
+        },
+      })
+    }
+    this.setData({
+      financingNeedcheck:false
+    });
   },
   // 投资需求触底刷新
   investNeed: function () {
     var that = this;
     var investPage = this.data.investPage;
+    var investNeedcheck = this.data.investNeedcheck;
+    console.log(investNeedcheck);
     investPage++;
     this.setData({
       investPage: investPage
     });
-    wx.request({
-      url: url + '/api/investors/investorMarket',
-      data: {
-        page: investPage
-      },
-      method: 'POST',
-      success: function (res) {
-        console.log(res)
-        var new_data = res.data.data;
-        if (new_data != '') {
-          wx.showToast({
-            title: 'loading...',
-            icon: 'loading'
-          })
-          var investNeed = that.data.investNeed;
-          for (var i = 0; i < new_data.length; i++) {
-            investNeed.push(new_data[i])
+    if(investNeedcheck){
+        wx.request({
+        url: url + '/api/investors/investorMarket',
+        data: {
+          page: investPage
+        },
+        method: 'POST',
+        success: function (res) {
+          console.log(res)
+          var new_data = res.data.data;
+          if (new_data != '') {
+            wx.showToast({
+              title: 'loading...',
+              icon: 'loading'
+            })
+            var investNeed = that.data.investNeed;
+            for (var i = 0; i < new_data.length; i++) {
+              investNeed.push(new_data[i])
+            }
+            that.setData({
+              investNeed: investNeed,
+              investNeedcheck : true
+            })
+          } else {
+            rqj.errorHide(that, '没有更多了', 3000)
           }
-          that.setData({
-            investNeed: investNeed
-          })
-        } else {
-          rqj.errorHide(that, '没有更多了', 3000)
-        }
-      },
-      fail: function (res) {
-        console.log(res)
-      },
-    })
+        },
+        fail: function (res) {
+          console.log(res)
+        },
+      })
+    }
+    this.setData({
+      investNeedcheck:false
+    });
+    
 
   },
   // 资源需求触底刷新
   resourceNeed: function () {
     var that = this;
     var resourcePage = this.data.resourcePage;
+    var resourceNeedcheck = this.data.resourceNeedcheck;
+    console.log(resourceNeedcheck);
     resourcePage++;
     this.setData({
       resourcePage: resourcePage
     });
-    wx.request({
-      url: url + '/api/resource/resourceMarket',
-      data: {
-        page: resourcePage
-      },
-      method: 'POST',
-      success: function (res) {
-        console.log(res)
-        var new_data = res.data.data;
-        if (new_data != '') {
-          wx.showToast({
-            title: 'loading...',
-            icon: 'loading'
-          })
-          var resourceNeed = that.data.resourceNeed;
-          for (var i = 0; i < new_data.length; i++) {
-            resourceNeed.push(new_data[i])
+    if(resourceNeedcheck){
+      wx.request({
+        url: url + '/api/resource/resourceMarket',
+        data: {
+          page: resourcePage
+        },
+        method: 'POST',
+        success: function (res) {
+          console.log(res)
+          var new_data = res.data.data;
+          if (new_data != '') {
+            wx.showToast({
+              title: 'loading...',
+              icon: 'loading'
+            })
+            var resourceNeed = that.data.resourceNeed;
+            for (var i = 0; i < new_data.length; i++) {
+              resourceNeed.push(new_data[i])
+            }
+            that.setData({
+              resourceNeed: resourceNeed
+            })
+          } else {
+            rqj.errorHide(that, '没有更多了', 3000)
           }
-          that.setData({
-            resourceNeed: resourceNeed
-          })
-        } else {
-          rqj.errorHide(that, '没有更多了', 3000)
-        }
-      },
-      fail: function (res) {
-        console.log(res)
-      },
-    })
-
+        },
+        fail: function (res) {
+          console.log(res)
+        },
+      })
+    }
+    this.setData({
+      resourceNeedcheck:false
+    });
   },
   // 返回对接页面
   backToResource: function () {
