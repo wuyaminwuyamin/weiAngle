@@ -19,11 +19,15 @@ Page({
   onShow: function () {
     var that = this;
     var currentTab = this.data.currentTab;
+    // 获取当前用户的id
     var user = wx.getStorageSync('user_id')
         console.log(user)
         that.setData({
             user: user
         });
+    // 获取当前用户的项目id
+    var pro_id = wx.getStorageSync('data-id');
+    console.log(pro_id);
     //融资需求获取数据
     wx.request({
       url: url + '/api/project/projectMarket',
