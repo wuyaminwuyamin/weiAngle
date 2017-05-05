@@ -13,7 +13,9 @@ Page({
     wx.request({
       url: url + '/api/user/getUserAllInfo',
       data: {
-        user_id: user_id
+        share_id: 0,
+        user_id: user_id,
+        view_id: user_id
       },
       method: 'POST',
       success: function (res) {
@@ -100,11 +102,11 @@ Page({
           wx.switchTab({
             url: '/pages/my/my',
           })
-        }else{
+        } else {
           wx.showModal({
-            title:"错误提示",
-            content:res.data.error_msg,
-            showCancel:false
+            title: "错误提示",
+            content: res.data.error_msg,
+            showCancel: false
           })
         }
       },

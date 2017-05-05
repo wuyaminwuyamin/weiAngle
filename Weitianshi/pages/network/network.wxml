@@ -8,8 +8,8 @@
 </view>
 
 <!--资本对接-->
-<swiper-item>
-  <scroll-view scroll-y="true" bindscrolltolower="loadMore" lower-threshold="50">
+<view class="s_frame">
+  <scroll-view scroll-y="true" bindscrolltolower="loadMore" scroll-top="{{scroll}}" >
     <view class="netWork">
       <block wx:for="{{netWork}}" wx:key="{{item.user_id}}">
         <view class="card" data-id="{{item.user_id}}" bindtap="userDetail">
@@ -75,7 +75,7 @@
       </block>
     </view>
   </scroll-view>
-</swiper-item>
+</view>
 
 <!--没有更多-->
 <view class="error" wx:if="{{error=='1'}}">{{error_text}}</view>
