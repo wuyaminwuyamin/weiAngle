@@ -161,7 +161,6 @@ Page({
             payMoneyId: payMoneyId
         })
 
-
     },
     //下拉刷新
     onPullDownRefresh: function () {

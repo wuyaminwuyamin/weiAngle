@@ -208,9 +208,6 @@ border-radius: 100rpx;*/
 
 /*点击跳转表单封装*/
 
-.card{
-  margin-top:0;
-}
 
 .formjump .text {
   padding: 32rpx 0;

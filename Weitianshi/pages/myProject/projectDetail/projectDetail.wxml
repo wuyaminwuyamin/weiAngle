@@ -73,17 +73,17 @@
       <!--项目详情-->
       <swiper-item>
         <view class="detail">
-          <view class="grey" wx:if="{{bpName!==''}}">项目BP</view>
-          <view class="bpName" wx:if="{{bpName!==''}}">
+          <view class="grey">项目BP</view>
+          <view class="bpName">
             <view class="item1 ">BP名称</view>
             <view class="item2 ">{{bpName}}</view>
           </view>
-          <view class="grey" wx:if="{{projectName!==''}}">项目机密</view>
-          <view class="projectName" wx:if="{{projectName!==''}}">
+          <view class="grey">项目机密</view>
+          <view class="projectName">
             <view class="item1 ">项目名称</view>
             <view class="item2 ">{{projectName}}</view>
           </view>
-          <view class="companyName" wx:if="{{companyName!==''}}">
+          <view class="companyName">
             <view class="item1 ">公司名称</view>
             <view class="item2 ">{{companyName}}</view>
           </view>

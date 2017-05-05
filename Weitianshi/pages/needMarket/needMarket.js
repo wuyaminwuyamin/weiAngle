@@ -9,12 +9,21 @@ Page({
     currentTab: 0,//选项卡
     financingPage: 1,
     investPage: 1,
-    resourcePage: 1
+    resourcePage: 1,
+    user: 0,
+    investNeedcheck : true,
+    financingNeedcheck : true,
+    resourceNeedcheck : true
   },
   //载入页面
   onShow: function () {
     var that = this;
-    var currentTab = this.data.currentTab
+    var currentTab = this.data.currentTab;
+    var user = wx.getStorageSync('user_id')
+        console.log(user)
+        that.setData({
+            user: user
+        });
     //融资需求获取数据
     wx.request({
       url: url + '/api/project/projectMarket',
@@ -30,7 +39,6 @@ Page({
         console.log(res)
       },
     })
-
     //投资需求获取数据
     wx.request({
       url: url + '/api/investors/investorMarket',
@@ -62,7 +70,6 @@ Page({
         console.log(res)
       },
     })
-
   },
   /*滑动切换tab*/
   bindChange: function (e) {
@@ -90,133 +97,179 @@ Page({
   // 跳转项目详情(融资需求和投资需求)
   projectDetail: function (e) {
     var id = e.currentTarget.dataset.id
-    wx.navigateTo({
-      url: '../yourProject/yourDetail?id=' + id
+    console.log(id);
+    var user_id = this.data.user;
+    console.log(user_id);
+    if(id == user_id){
+      wx.switchTab({
+        url: '../myProject/projectDetail'
+      })
+    }else{
+      wx.navigateTo({
+        url: '../yourProject/yourDetail?id=' + id
     })
+    }
+   
   },
   // 跳转人物详情
-  userDetail(e) {
-    var id = e.currentTarget.dataset.id
-    wx.navigateTo({
+  userDetail:function(e) {
+    //获取当前id
+    var id = e.currentTarget.dataset.id;
+    // console.log(id);
+    // 获取当前用户的id
+    var user_id = this.data.user;
+    // console.log(user_id);
+    // 判断当前用户id和点击id是否一致,如果一致,点击进入我的页面
+    if(id == user_id){
+      wx.switchTab({
+      url: '../my/my'
+    })
+    }else{
+      // 如果当前用户id与点击id不一致,进入用户详情页面
+      wx.navigateTo({
       url: '../userDetail/userDetail?id=' + id
     })
+    }
+
   },
   
   // 融资需求触底刷新
   financingNeed: function () {
     var that = this;
     var financingPage = this.data.financingPage;
+    var financingNeedcheck = this.data.financingNeedcheck;
+    console.log(financingNeedcheck);
     financingPage++;
     this.setData({
       financingPage: financingPage
     });
-    wx.request({
-      url: url + '/api/project/projectMarket',
-      data: {
-        page: financingPage
-      },
-      method: 'POST',
-      success: function (res) {
-        console.log(res)
-        var new_data = res.data.data;
-        if (new_data != '') {
-          wx.showToast({
-            title: 'loading...',
-            icon: 'loading'
-          })
-          var financingNeed = that.data.financingNeed;
-          for (var i = 0; i < new_data.length; i++) {
-            financingNeed.push(new_data[i])
+    if(financingNeedcheck){
+      wx.request({
+        url: url + '/api/project/projectMarket',
+        data: {
+          page: financingPage
+        },
+        method: 'POST',
+        success: function (res) {
+          console.log(res)
+          var new_data = res.data.data;
+          if (new_data != '') {
+            wx.showToast({
+              title: 'loading...',
+              icon: 'loading'
+            })
+            var financingNeed = that.data.financingNeed;
+            for (var i = 0; i < new_data.length; i++) {
+              financingNeed.push(new_data[i])
+            }
+            that.setData({
+              financingNeed: financingNeed
+            })
+          } else {
+            rqj.errorHide(that, '没有更多了', 3000)
           }
-          that.setData({
-            financingNeed: financingNeed
-          })
-        } else {
-          rqj.errorHide(that, '没有更多了', 3000)
-        }
-      },
-      fail: function (res) {
-        console.log(res)
-      },
-    })
+        },
+        fail: function (res) {
+          console.log(res)
+        },
+      })
+    }
+    this.setData({
+      financingNeedcheck:false
+    });
   },
   // 投资需求触底刷新
   investNeed: function () {
     var that = this;
     var investPage = this.data.investPage;
+    var investNeedcheck = this.data.investNeedcheck;
+    console.log(investNeedcheck);
     investPage++;
     this.setData({
       investPage: investPage
     });
-    wx.request({
-      url: url + '/api/investors/investorMarket',
-      data: {
-        page: investPage
-      },
-      method: 'POST',
-      success: function (res) {
-        console.log(res)
-        var new_data = res.data.data;
-        if (new_data != '') {
-          wx.showToast({
-            title: 'loading...',
-            icon: 'loading'
-          })
-          var investNeed = that.data.investNeed;
-          for (var i = 0; i < new_data.length; i++) {
-            investNeed.push(new_data[i])
+    if(investNeedcheck){
+        wx.request({
+        url: url + '/api/investors/investorMarket',
+        data: {
+          page: investPage
+        },
+        method: 'POST',
+        success: function (res) {
+          console.log(res)
+          var new_data = res.data.data;
+          if (new_data != '') {
+            wx.showToast({
+              title: 'loading...',
+              icon: 'loading'
+            })
+            var investNeed = that.data.investNeed;
+            for (var i = 0; i < new_data.length; i++) {
+              investNeed.push(new_data[i])
+            }
+            that.setData({
+              investNeed: investNeed,
+              investNeedcheck : true
+            })
+          } else {
+            rqj.errorHide(that, '没有更多了', 3000)
           }
-          that.setData({
-            investNeed: investNeed
-          })
-        } else {
-          rqj.errorHide(that, '没有更多了', 3000)
-        }
-      },
-      fail: function (res) {
-        console.log(res)
-      },
-    })
+        },
+        fail: function (res) {
+          console.log(res)
+        },
+      })
+    }
+    this.setData({
+      investNeedcheck:false
+    });
+    
 
   },
   // 资源需求触底刷新
   resourceNeed: function () {
     var that = this;
     var resourcePage = this.data.resourcePage;
+    var resourceNeedcheck = this.data.resourceNeedcheck;
+    console.log(resourceNeedcheck);
     resourcePage++;
     this.setData({
       resourcePage: resourcePage
     });
-    wx.request({
-      url: url + '/api/resource/resourceMarket',
-      data: {
-        page: resourcePage
-      },
-      method: 'POST',
-      success: function (res) {
-        console.log(res)
-        var new_data = res.data.data;
-        if (new_data != '') {
-          wx.showToast({
-            title: 'loading...',
-            icon: 'loading'
-          })
-          var resourceNeed = that.data.resourceNeed;
-          for (var i = 0; i < new_data.length; i++) {
-            resourceNeed.push(new_data[i])
+    if(resourceNeedcheck){
+      wx.request({
+        url: url + '/api/resource/resourceMarket',
+        data: {
+          page: resourcePage
+        },
+        method: 'POST',
+        success: function (res) {
+          console.log(res)
+          var new_data = res.data.data;
+          if (new_data != '') {
+            wx.showToast({
+              title: 'loading...',
+              icon: 'loading'
+            })
+            var resourceNeed = that.data.resourceNeed;
+            for (var i = 0; i < new_data.length; i++) {
+              resourceNeed.push(new_data[i])
+            }
+            that.setData({
+              resourceNeed: resourceNeed
+            })
+          } else {
+            rqj.errorHide(that, '没有更多了', 3000)
           }
-          that.setData({
-            resourceNeed: resourceNeed
-          })
-        } else {
-          rqj.errorHide(that, '没有更多了', 3000)
-        }
-      },
-      fail: function (res) {
-        console.log(res)
-      },
-    })
-
+        },
+        fail: function (res) {
+          console.log(res)
+        },
+      })
+    }
+    this.setData({
+      resourceNeedcheck:false
+    });
   },
   // 返回对接页面
   backToResource: function () {

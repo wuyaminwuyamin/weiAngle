@@ -29,7 +29,7 @@ Page({
                 data: {
                     share_id: 0,
                     user_id: user_id,
-                    view_id: 0,
+                    view_id: user_id,
                 },
                 method: 'POST',
                 success: function (res) {
