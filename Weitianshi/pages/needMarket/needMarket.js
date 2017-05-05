@@ -10,6 +10,7 @@ Page({
     financingPage: 1,
     investPage: 1,
     resourcePage: 1,
+    user: 0,
     investNeedcheck : true,
     financingNeedcheck : true,
     resourceNeedcheck : true
@@ -17,7 +18,12 @@ Page({
   //载入页面
   onShow: function () {
     var that = this;
-    var currentTab = this.data.currentTab
+    var currentTab = this.data.currentTab;
+    var user = wx.getStorageSync('user_id')
+        console.log(user)
+        that.setData({
+            user: user
+        });
     //融资需求获取数据
     wx.request({
       url: url + '/api/project/projectMarket',
@@ -33,7 +39,6 @@ Page({
         console.log(res)
       },
     })
-
     //投资需求获取数据
     wx.request({
       url: url + '/api/investors/investorMarket',
@@ -65,7 +70,6 @@ Page({
         console.log(res)
       },
     })
-
   },
   /*滑动切换tab*/
   bindChange: function (e) {
@@ -93,16 +97,40 @@ Page({
   // 跳转项目详情(融资需求和投资需求)
   projectDetail: function (e) {
     var id = e.currentTarget.dataset.id
-    wx.navigateTo({
-      url: '../yourProject/yourDetail?id=' + id
+    console.log(id);
+    var user_id = this.data.user;
+    console.log(user_id);
+    if(id == user_id){
+      wx.switchTab({
+        url: '../myProject/projectDetail'
+      })
+    }else{
+      wx.navigateTo({
+        url: '../yourProject/yourDetail?id=' + id
     })
+    }
+   
   },
   // 跳转人物详情
-  userDetail(e) {
-    var id = e.currentTarget.dataset.id
-    wx.navigateTo({
+  userDetail:function(e) {
+    //获取当前id
+    var id = e.currentTarget.dataset.id;
+    // console.log(id);
+    // 获取当前用户的id
+    var user_id = this.data.user;
+    // console.log(user_id);
+    // 判断当前用户id和点击id是否一致,如果一致,点击进入我的页面
+    if(id == user_id){
+      wx.switchTab({
+      url: '../my/my'
+    })
+    }else{
+      // 如果当前用户id与点击id不一致,进入用户详情页面
+      wx.navigateTo({
       url: '../userDetail/userDetail?id=' + id
     })
+    }
+
   },
   
   // 融资需求触底刷新
