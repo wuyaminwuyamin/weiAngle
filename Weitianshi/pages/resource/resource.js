@@ -383,7 +383,6 @@ Page({
     that.setData({
       bind_mobile: bind_mobile
     });
-    console.log(data)
     if (bind_mobile == 0) {
       wx.navigateTo({
         url: '../myProject/personInfo/personInfo'
