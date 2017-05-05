@@ -36,6 +36,7 @@ Page({
     var that = this;
     var user_id = wx.getStorageSync('user_id');
     var bind_mobile = wx.getStorageSync('bind_mobile');
+    // console.log(rqj.userNeed(that))
     //调用应用实例的方法获取全局数据(获取用户信息并向后台进行发送)
     app.getUserInfo(function (userInfo) {
       that.setData({
@@ -82,6 +83,7 @@ Page({
                   },
                   method: 'POST',
                   success: function (res) {
+                    console.log(res)
                     var myProject = res.data.data;
                     var length = myProject.length;
                     wx.setStorageSync('proLength', length);
@@ -123,7 +125,7 @@ Page({
     var user_scaleId = [];
     var user_stage = [];
     var user_stageId = []
-
+    
     wx.login({
       success: function (res) {
         if (res.code) {
@@ -134,6 +136,7 @@ Page({
             },
             method: 'POST',
             success: function (res) {
+              console.log(res)
               var user_id = res.data.user_id;
               var bind_mobile = res.data.bind_mobile;
               wx.setStorageSync('user_id', user_id);
@@ -290,6 +293,7 @@ Page({
       }
     });
   },
+
   //下拉刷新
   onPullDownRefresh: function () {
     wx.stopPullDownRefresh()
@@ -414,9 +418,10 @@ Page({
   },
   //点击融资项目匹配出来的投资人
   investorDetial(e) {
-    var id = e.currentTarget.dataset.id;
+    var thisData = e.currentTarget.dataset;
+    var index = thisData.index;
     wx.navigateTo({
-      url: '/pages/userDetail/userDetail?id=' + id,
+      url: '../myProject/projectDetail/projectDetail?id=' + thisData.id + '&&index=' + index + "&&currentTab=" + 1
     })
   },
   //点击项目投资详情
@@ -559,6 +564,7 @@ Page({
                 res_match: res_match, //资源需求匹配出来的项目
                 resource_page_end: resource_page_end,
               })
+
             }
           })
         } else {

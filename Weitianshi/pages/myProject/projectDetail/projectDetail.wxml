@@ -73,17 +73,17 @@
       <!--项目详情-->
       <swiper-item>
         <view class="detail">
-          <view class="grey" wx:if="{{bpName!==''}}">项目BP</view>
-          <view class="bpName" wx:if="{{bpName!==''}}">
+          <view class="grey">项目BP</view>
+          <view class="bpName">
             <view class="item1 ">BP名称</view>
             <view class="item2 ">{{bpName}}</view>
           </view>
-          <view class="grey" wx:if="{{projectName!==''}}">项目机密</view>
-          <view class="projectName" wx:if="{{projectName!==''}}">
+          <view class="grey">项目机密</view>
+          <view class="projectName">
             <view class="item1 ">项目名称</view>
             <view class="item2 ">{{projectName}}</view>
           </view>
-          <view class="companyName" wx:if="{{companyName!==''}}">
+          <view class="companyName">
             <view class="item1 ">公司名称</view>
             <view class="item2 ">{{companyName}}</view>
           </view>
@@ -98,60 +98,62 @@
           <view class=" resource ">
             <view class="others ">
               <block wx:for="{{investor}}" wx:key="{{investor_id}}">
-                <view class="weui-cell " style="background:white;margin:32rpx;margin-bottom:0;border-radius:4px 4px 0 0 " data-id="{{investor.investor_id}} ">
-                  <view class="weui-cell__hd " style="position: relative;margin-right: 10px; ">
-                    <image class="others_pic" wx:if="{{item.investor_logo_url}}" src="{{item.investor_logo_url}}" />
-                    <view class=" others_nopic" wx:if="{{!item.investor_logo_url}}">{{item.investor_logo_text}}</view>
-                  </view>
-                  <view class="weui-cell__bd ">
-                    <view class="flex " style="align-items: baseline; ">
-                      <view class="others_name ">{{item.investor_name}}</view>
+                <view class="investor"  data-id="{{investor[index].user_id}}" bindtap="detail">
+                  <view class="weui-cell " style="background:white;margin:32rpx;margin-bottom:0;border-radius:4px 4px 0 0 ">
+                    <view class="weui-cell__hd " style="position: relative;margin-right: 10px; ">
+                      <image class="others_pic" wx:if="{{item.investor_logo_url}}" src="{{item.investor_logo_url}}" />
+                      <view class=" others_nopic" wx:if="{{!item.investor_logo_url}}">{{item.investor_logo_text}}</view>
+                    </view>
+                    <view class="weui-cell__bd ">
+                      <view class="flex " style="align-items: baseline; ">
+                        <view class="others_name ">{{item.investor_name}}</view>
 
-                      <!--<view class="others_email ">786485758@qq.com</view>-->
+                        <!--<view class="others_email ">786485758@qq.com</view>-->
+                      </view>
+
+                      <!--<view class="others_company " wx:if="{{item.investor_type==2}}">{{item.investor_company}}</view>-->
+                      <view class="ohters_position" wx:if="{{item.investor_type==2}}">{{item.investor_career}}</view>
+                    </view>
+                  </view>
+                  <view class="offer_search " style="border-radius:0 0 4px 4px ">
+
+                    <!--标签1-->
+                    <view class="sort offer ">
+                      <view class="sort_item ">投资领域:</view>
+                      <block wx:for="{{industry_tag[index]}}" wx:key="{{industry_name}}">
+                        <view class="weui-media-box__desc" wx:if="{{index<3}}">
+                          {{item.industry_name}}
+                        </view>
+                      </block>
                     </view>
 
-                    <!--<view class="others_company " wx:if="{{item.investor_type==2}}">{{item.investor_company}}</view>-->
-                    <view class="ohters_position" wx:if="{{item.investor_type==2}}">{{item.investor_career}}</view>
-                  </view>
-                </view>
-                <view class="offer_search " style="border-radius:0 0 4px 4px ">
-
-                  <!--标签1-->
-                  <view class="sort offer ">
-                    <view class="sort_item ">投资领域:</view>
-                    <block wx:for="{{industry_tag[index]}}" wx:key="{{industry_name}}">
-                      <view class="weui-media-box__desc" wx:if="{{index<3}}">
-                        {{item.industry_name}}
-                      </view>
-                    </block>
-                  </view>
-
-                  <!--标签2-->
-                  <view class=" flex offer" wx:if="{{stage_tag[index]!=''}}">
-                    <view class="sort_item ">投资轮次:</view>
-                    <block wx:for="{{stage_tag[index]}}" wx:key="{{stage_name}}">
+                    <!--标签2-->
+                    <view class=" flex offer" wx:if="{{stage_tag[index]!=''}}">
+                      <view class="sort_item ">投资轮次:</view>
+                      <block wx:for="{{stage_tag[index]}}" wx:key="{{stage_name}}">
+                        <view class="weui-media-box__desc ">
+                          {{item.stage_name}}
+                        </view>
+                      </block>
+                    </view>
+                    <view class=" flex offer " wx:if="{{stage_tag[index]==''}}">
+                      <view class="sort_item ">投资轮次:</view>
                       <view class="weui-media-box__desc ">
-                        {{item.stage_name}}
+                        暂无
                       </view>
-                    </block>
-                  </view>
-                  <view class=" flex offer " wx:if="{{stage_tag[index]==''}}">
-                    <view class="sort_item ">投资轮次:</view>
-                    <view class="weui-media-box__desc ">
-                      暂无
                     </view>
-                  </view>
-                  <view class="offer flex" wx:if="{{item.offer}}">
-                    <view>可提供资源</view>
-                    <block wx:for="{{item.offer}} " wx:for-item="offer " wx:key="*this ">
-                      <view class="others_tips ">{{offer}}</view>
-                    </block>
-                  </view>
-                  <view class="search flex" wx:if="{{item.search}}">
-                    <view>在寻求资源</view>
-                    <block wx:for="{{item.search}} " wx:for-item="search " wx:key="*key ">
-                      <view class="others_tips ">{{search}}</view>
-                    </block>
+                    <view class="offer flex" wx:if="{{item.offer}}">
+                      <view>可提供资源</view>
+                      <block wx:for="{{item.offer}} " wx:for-item="offer " wx:key="*this ">
+                        <view class="others_tips ">{{offer}}</view>
+                      </block>
+                    </view>
+                    <view class="search flex" wx:if="{{item.search}}">
+                      <view>在寻求资源</view>
+                      <block wx:for="{{item.search}} " wx:for-item="search " wx:key="*key ">
+                        <view class="others_tips ">{{search}}</view>
+                      </block>
+                    </view>
                   </view>
                 </view>
               </block>
@@ -159,11 +161,11 @@
           </view>
 
           <!--资本对接二-->
-          <view class=" resource ">
-            <view class="others ">
-              <block wx:for="{{investor_arry}}" wx:key="{{investor_id}}">
-                <view class="investor">
-                  <view class="weui-cell " style="background:white;margin:32rpx;margin-bottom:0;border-radius:4px 4px 0 0 " data-id="{{investor.investor_id}} ">
+          <view class=" resource">
+            <view class="others">
+              <block wx:for="{{investor2}}" wx:key="{{investor_id}}">
+                <view class="investor" data-id="{{item.user_id}}" bindtap="detail">
+                  <view class="weui-cell " style="background:white;margin:32rpx;margin-bottom:0;border-radius:4px 4px 0 0 ">
                     <view class="weui-cell__hd " style="position: relative;margin-right: 10px; ">
                       <image class="others_pic" wx:if="{{item.investor_logo_url}}" src="{{item.investor_logo_url}}" />
                       <view class=" others_nopic" wx:if="{{!item.investor_logo_url}}">{{item.investor_logo_text}}</view>

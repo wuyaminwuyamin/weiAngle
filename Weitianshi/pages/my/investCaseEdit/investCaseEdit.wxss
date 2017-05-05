@@ -7,7 +7,7 @@ page {
 }
 
 #cardEdit {
-  padding: 32rpx;
+  padding: 0 32rpx;
 }
 
 input, textarea {
@@ -19,6 +19,9 @@ input, textarea {
   font-size: 24rpx;
   color: #333;
   margin-top: 16rpx;
+}
+.text:first-child{
+  margin-top: 0
 }
 .slect {
   border-radius: 4px;

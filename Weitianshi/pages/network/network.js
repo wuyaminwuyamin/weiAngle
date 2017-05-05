@@ -11,7 +11,8 @@ Page({
     var that = this;
     var user_id = wx.getStorageSync('user_id');
     that.setData({
-      user_id: user_id
+      user_id: user_id,
+      page_end:false
     })
     console.log(user_id)
     // 检查个人信息全不全

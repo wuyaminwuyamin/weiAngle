@@ -1,6 +1,6 @@
 var rqj = require('../../Template/Template.js');
-var app=getApp();
-var url=app.globalData.url;
+var app = getApp();
+var url = app.globalData.url;
 Page({
     data: {
         winWidth: 0,//选项卡
@@ -10,11 +10,10 @@ Page({
         id: "",
         page: 0,
         industy_sort: [],
-        bpName: "杭州投着乐网络科技有限公司商业计划书",
-        projectName: "微天使",
-        companyName: "杭州投着乐网络科技有限公司",
+        bpName: "",
+        projectName: "",
+        companyName: "",
         stock: 0,
-        investor_arry: [],
         page_end: false
     },
     onLoad: function (options) {
@@ -25,36 +24,39 @@ Page({
         var user_id = wx.getStorageSync('user_id');
         var page = this.data.page;
         var avatarUrl = wx.getStorageSync('avatarUrl');
-        var investors = wx.getStorageSync('investors') ||'';//所有项目对应四位投资人
+        var investors = wx.getStorageSync('investors') || '';//所有项目对应四位投资人
         that.setData({
             index: index,
             id: id,
             user_id: user_id,
             avatarUrl: avatarUrl,
-            investor: investors[index]
+            investor: investors[index],
+            currentTab:options.currentTab
 
         });
         var investor = this.data.investor;
+        console.log(investor)
         var industry_tag = [];
         var scale_tag = [];
         var stage_tag = [];
-        if(investors!=''){
-                  for (var i = 0; i < investor.length; i++) {
-            industry_tag.push(investor[i].industry_tag);
-            scale_tag.push(investor[i].scale_tag);
-            stage_tag.push(investor[i].stage_tag)
-        }
-        that.setData({
-            industry_tag: industry_tag,
-            stage_tag: stage_tag,
-            scale_tag: scale_tag
-        });
+        if (investors != '') {
+            for (var i = 0; i < investor.length; i++) {
+                industry_tag.push(investor[i].industry_tag);
+                scale_tag.push(investor[i].scale_tag);
+                stage_tag.push(investor[i].stage_tag);
+
+            }
+            that.setData({
+                industry_tag: industry_tag,
+                stage_tag: stage_tag,
+                scale_tag: scale_tag
+            });
         }
         // console.log(investor)
         // console.log(industry_tag)
         //项目详情(不包括投资人)
         wx.request({
-            url: url+'/api/project/showProjectDetail',
+            url: url + '/api/project/showProjectDetail',
             data: {
                 user_id: user_id,
                 pro_id: this.data.id
@@ -82,20 +84,17 @@ Page({
         })
 
     },
-
     //下拉刷新
     onPullDownRefresh: function () {
         // console.log("开启了下拉刷新");
         wx.stopPullDownRefresh()
     },
-
     /*滑动切换tab*/
     bindChange: function (e) {
         var that = this;
         var current = e.detail.current;
         that.setData({ currentTab: e.detail.current });
     },
-
     /*点击tab切换*/
     swichNav: function (e) {
         var that = this;
@@ -107,7 +106,13 @@ Page({
             })
         }
     },
-
+    //进入投资人用户详情
+    detail(e) {
+        var id = e.currentTarget.dataset.id;
+        wx.navigateTo({
+            url: '/pages/userDetail/userDetail?id=' + id,
+        })
+    },
     //触底加载
     loadMore: function () {
         var that = this;
@@ -116,7 +121,7 @@ Page({
         var pro_id = this.data.id;
         var page_end = this.data.page_end;
         console.log(
-            user_id,pro_id
+            user_id, pro_id
         )
         if (page_end == false) {
             wx.showToast({
@@ -128,7 +133,7 @@ Page({
                 page: page,
             });
             wx.request({
-                url: url+'/api/project/getProjectMatchInvestors',
+                url: url + '/api/project/getProjectMatchInvestors',
                 data: {
                     user_id: user_id,
                     pro_id: pro_id,
@@ -136,14 +141,10 @@ Page({
                 },
                 method: 'POST',
                 success: function (res) {
-                    console.log(res)
                     var investor2 = res.data.data;
-                    var investor_arry = that.data.investor_arry
-                    for (var i = 0; i < investor2.length; i++) {
-                        investor_arry.push(investor2[i])
-                    }
+                    console.log(investor2)
                     that.setData({
-                        investor_arry: investor_arry,
+                        investor2: investor2,
                         page_end: res.data.page_end
                     });
                     wx.hideToast({
@@ -157,20 +158,19 @@ Page({
         }
     },
     //维护项目
-    maintainProject(){
-        var id=this.data.id;
-        var user_id=this.data.user_id;
+    maintainProject() {
+        var id = this.data.id;
+        var user_id = this.data.user_id;
         wx.navigateTo({
-          url: '/pages/myProject/maintainProject/maintainProject?pro_id='+id+"&&user_id="+user_id,
+            url: '/pages/myProject/maintainProject/maintainProject?pro_id=' + id + "&&user_id=" + user_id,
         })
     },
-
     //分享当前页面
     onShareAppMessage: function () {
         var pro_intro = this.data.project.pro_intro;
         return {
             title: '项目-' + pro_intro,
-            path: '/pages/myProject/myDetail?pro_id'+that.data.id
+            path: '/pages/myProject/myDetail?pro_id' + that.data.id
         }
     }
 });

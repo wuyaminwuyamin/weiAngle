@@ -1,5 +1,6 @@
 //app.js
 App({
+  // onLaunch 用于监听小程序初始化,当完成时会触发onLaunch(全局只会触发一次)
   onLaunch: function (options) {
     //调用API从本地缓存中获取数据
     var logs = wx.getStorageSync('logs') || [];
@@ -7,7 +8,7 @@ App({
     wx.setStorageSync('logs', logs)
     // console.log(options.scene)
   },
-  onError: function (msg) {
+  onError: function (msg) {//小程序发生脚本错误,或者api调用失败时,会触发onError,并带上错误信息
     console.log(msg)
   },
 
@@ -68,6 +69,8 @@ App({
             },
             method: 'POST',
             success: function (res) {
+              console.log("用户信息")
+              console.log(res)
               wx.setStorageSync('bind_mobile', res.data.bind_mobile);
               wx.setStorageSync('user_id', res.data.user_id);
               console.log(res.data.user_id)
@@ -138,7 +141,6 @@ App({
   //初始本地缓存
   globalData: {
     error: 0,
-    //url: "https://dev.weitianshi.cn"
     url: "https://www.weitianshi.cn"
   }
 });

@@ -29,11 +29,12 @@ Page({
                 data: {
                     share_id: 0,
                     user_id: user_id,
-                    view_id: 0,
+                    view_id: user_id,
                 },
                 method: 'POST',
                 success: function (res) {
                     console.log(res);
+                    console.log( res.data.project_info)
                     var user = res.data.user_info;
                     var invest = res.data.invest_info;
                     var resource = res.data.resource_info;
@@ -47,7 +48,7 @@ Page({
                         key: 'resource_data',
                         data: res.data.resource_info
                     })
-
+ 
                     wx.setNavigationBarTitle({
                         title: user_name + "的投资名片",
                     })
@@ -159,15 +160,35 @@ Page({
                 modal: 0
             })
         }
-        return {
+        setTimeout(function(){
+            console.log(3000)
+           
+        },2000)
+        // return {
+        //     title: '投资名片',
+        //     path: "/pages/my/sharePage/sharePage?user_id=" + user_id,
+        //     success: function (res) {
+        //     },
+        //     fail: function (res) {
+        //         console.log(res)
+        //     }
+        // }    
+        return this.test(user_id)
+          
+    },
+    // 测试专用函数
+    test : function(id){
+        console.log("test");
+        var json={
             title: '投资名片',
-            path: "/pages/my/sharePage/sharePage?user_id=" + user_id,
+            path: "/pages/my/sharePage/sharePage?user_id=" + id,
             success: function (res) {
             },
             fail: function (res) {
                 console.log(res)
             }
-        }      
+        }
+        return json;
     },
     //取消分享
     cancelShare: function () {

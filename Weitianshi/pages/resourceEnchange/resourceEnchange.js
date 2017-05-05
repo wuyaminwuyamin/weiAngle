@@ -28,20 +28,16 @@ Page({
         var resource_data = wx.getStorageSync('resource_data');
         console.log(res);
         console.log(resource_data);
-        //寻求的资源
-        var res_find = resource_data.res_find;
-        //可提供的资源
-        var res_give = resource_data.res_give;
+        var res_find = resource_data.res_find;//寻求的资源
+        var res_give = resource_data.res_give; //可提供的资源
         var describe = resource_data.res_desc;
         var enchange = res.data.data;
         var target = res.data.data;
-        //寻求的资源名称和id
-        var res_find_name = [];
-        var res_find_id = [];
-        //提供的名称和id
-        var res_give_name = [];
+        var res_find_name = [];//寻求的资源名称和id
+        var res_find_id = []; //提供的名称和id
+        var res_give_name = [];//寻求的资源添加名称和id
         var res_give_id = [];
-        //寻求的资源添加名称和id
+        
         if (res_find) {
           for (var i = 0; i < res_find.length; i++) {
             res_find_name.push(res_find[i].resource_name);
@@ -232,7 +228,7 @@ Page({
         url: '/pages/my/my',
       })
     } else {
-      wx.navigateBack({
+      wx.navigateBack({//页面返回
         delta: 1 // 回退前 delta(默认为1) 页面
       })
     }
