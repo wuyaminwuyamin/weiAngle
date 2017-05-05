@@ -25,15 +25,14 @@ Page({
             data: {
                 user_id: user_id
             },
-            method: 'POST', // OPTIONS, GET, HEAD, POST, PUT, DELETE, TRACE, CONNECT
+            method: 'POST',
             success: function(res){
-                // success
                 console.log(res);
                 var complete = res.data.is_complete;
                 if(res.data.status_code ==2000000 || res.data.status_code==0){
                     that.setData({
-                        company: res.data.user_company_career,
-                        position: res.data.user_company_name,
+                        company: res.data.user_company_name,
+                        position: res.data.user_company_career,
                         email: res.data.user_email,
                     })
 

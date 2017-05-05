@@ -17,8 +17,8 @@ Page({
     resource_page_end: false,//资源数据是否完结
     hasPublic: 0,//是否发布过投资需求
     hasPublic2: 0,//是否发布过资源需求
-    resourceProjectcheck : true, //资源对接下拉判断
-    complete : 0,  //个人信息是否完整 默认是否
+    resourceProjectcheck: true, //资源对接下拉判断
+    complete: 0,  //个人信息是否完整 默认是否
     investText: {
       text1: "发布投资需求",
       text2: "快速发布,精准对接优质项目",
@@ -56,7 +56,7 @@ Page({
         });
       }
     });
-    
+
 
     //首次登录
     wx.login({
@@ -127,7 +127,7 @@ Page({
     var user_scaleId = [];
     var user_stage = [];
     var user_stageId = []
-    
+
     wx.login({
       success: function (res) {
         if (res.code) {
@@ -242,27 +242,27 @@ Page({
               })
               // 核对用户信息是否完整
               wx.request({
-                url: url+'/api/user/checkUserInfo',
+                url: url + '/api/user/checkUserInfo',
                 data: {
                   user_id: user_id
                 },
-                method: 'POST', // OPTIONS, GET, HEAD, POST, PUT, DELETE, TRACE, CONNECT
-                success: function(res){
-                  // success
+                method: 'POST',
+                success: function (res) {
                   console.log(res);
                   var complete = res.data.is_complete;
-                  if(res.data.status_code ==2000000){
+                  if (res.data.status_code == 2000000) {
+                    if (complete == 1) {
                       that.setData({
-                        complete: complete
+                        complete: 1
                       })
-
+                    } else {
+                      that.setData({
+                        checkInfo: res.data
+                      })
+                    }
                   }
                 },
-                fail: function(res) {
-                  // fail\
-                },
-                complete: function(res) {
-                  // complete
+                complete: function (res) {
                   console.log(res);
                 }
               });
@@ -375,11 +375,12 @@ Page({
   },
 
   //判断信息是否完整
-  checkInfo : function(data){
+  checkInfo: function (data) {
     var that = this;
     var user_id = wx.getStorageSync('user_id');
     var bind_mobile = wx.getStorageSync('bind_mobile');
     var complete = that.data.complete;
+    var checkInfo = that.data.checkInfo;
     that.setData({
       bind_mobile: bind_mobile
     });
@@ -387,98 +388,53 @@ Page({
       wx.navigateTo({
         url: '../myProject/personInfo/personInfo'
       })
-    } else if (bind_mobile == 1 && complete==1) {
-      if(data=="publishProject"){
+    } else if (bind_mobile == 1 && complete == 1) {
+      if (data == "publishProject") {
         wx.navigateTo({
           url: "../myProject/publishProject/publishProject"
         })
-      }else if(data=="yourProject"){
+      } else if (data == "yourProject") {
         wx.navigateTo({
           url: "../yourProject/yourProject"
         })
-      }else if(data=="resourceNeed"){
+      } else if (data == "resourceNeed") {
         wx.navigateTo({
           url: "../resourceEnchange/resourceEnchange"
-        })       
-      }else{
+        })
+      } else {
         wx.navigateTo({
           url: '../myProject/companyInfo/companyInfo'
         })
-      }  
+      }
     }
 
-    if (complete==0) {
-      wx.navigateTo({
-        url: '../myProject/companyInfo/companyInfo'
-      })
+    if (bind_mobile == 1 && complete == 0) {
+        wx.navigateTo({
+          url: '../myProject/companyInfo/companyInfo'
+        })
     }
+    // if (bind_mobile == 1 && complete == 0) {
+    //   if (checkInfo.user_real_name == '') {
+    //     wx.navigateTo({
+    //       url: '../myProject/personInfo/personInfo'
+    //     })
+    //   } else {
+    //     wx.navigateTo({
+    //       url: '../myProject/companyInfo/companyInfo'
+    //     })
+    //   }
+    // }
   },
   //点击发布融资项目
   myProject: function () {
-    // var that = this;
-    // var user_id = wx.getStorageSync('user_id');
-    // var bind_mobile = wx.getStorageSync('bind_mobile');
-    // var complete = that.data.complete;
-    // console.log(complete);
-    // that.setData({
-    //   bind_mobile: bind_mobile
-    // });
-    // // console.log(bind_mobile, this.data.bind_mobile)
-    // if (bind_mobile == 0) {
-    //   wx.navigateTo({
-    //     url: '../myProject/personInfo/personInfo'
-    //   })
-    // } else if (bind_mobile == 1 && complete==1) {
-    //   wx.navigateTo({
-    //     url: "../myProject/publishProject/publishProject"
-    //   })
-    // }
-
-    // if (complete==0) {
-    //   wx.navigateTo({
-    //     url: '../myProject/companyInfo/companyInfo'
-    //   })
-    // }
     this.checkInfo("publishProject");
   },
   //点击发布投资需求
   yourProject: function () {
-    // var that = this;
-    // var user_id = wx.getStorageSync('user_id');
-    // var bind_mobile = wx.getStorageSync('bind_mobile');
-    // that.setData({
-    //   bind_mobile: bind_mobile
-    // });
-    // // console.log(bind_mobile, this.data.bind_mobile);
-    // if (bind_mobile == 0) {
-    //   wx.navigateTo({
-    //     url: '../myProject/personInfo/personInfo'
-    //   })
-    // } else if (bind_mobile == 1) {
-    //   wx.navigateTo({
-    //     url: "../yourProject/yourProject"
-    //   })
-    // }
     this.checkInfo("yourProject");
   },
   //点击发布资源需求
   resourceNeed: function () {
-    // var that = this;
-    // var user_id = wx.getStorageSync('user_id');
-    // var bind_mobile = wx.getStorageSync('bind_mobile');
-    // that.setData({
-    //   bind_mobile: bind_mobile
-    // });
-    // // console.log(bind_mobile, this.data.bind_mobile);
-    // if (bind_mobile == 0) {
-    //   wx.navigateTo({
-    //     url: '../myProject/personInfo/personInfo'
-    //   })
-    // } else if (bind_mobile == 1) {
-    //   wx.navigateTo({
-    //     url: "../resourceEnchange/resourceEnchange"
-    //   })
-    // }
     this.checkInfo("resourceNeed");
   },
   // 跳转人物详情
@@ -604,7 +560,7 @@ Page({
   //     }
   //   }
   // },
-   // 资源对接触底刷新
+  // 资源对接触底刷新
   resourceProject: function () {
     var that = this;
     var res_id = this.data.res_id;
@@ -613,7 +569,7 @@ Page({
     var resource_page_end = this.data.resource_page_end;
     var res_match = this.data.res_match;
     var resourceProjectcheck = this.data.resourceProjectcheck;
-    if(resourceProjectcheck){
+    if (resourceProjectcheck) {
       if (user_id != '') {
         if (resource_page_end == false) {
           wx.showToast({
@@ -654,7 +610,7 @@ Page({
       }
     }
     this.setData({
-      resourceProjectcheck:false
+      resourceProjectcheck: false
     });
   },
   callback: function (res, that) {
