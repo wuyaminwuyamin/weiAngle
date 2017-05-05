@@ -1,0 +1,55 @@
+/* pages/test/test.wxss */
+/*创建成功时的弹窗*/
+@import "/pages/Template/Template.wxss";
+.creatPop{
+    background:rgba(0,0,0,0.80);
+    border-radius:8rpx;
+    width:176rpx;
+    height:150rpx;
+    position: absolute;
+    top:0;
+    left:0;
+    bottom: 0;
+    right: 0;
+    margin: auto;
+
+}
+
+.creatPop .check{
+    border:2rpx solid #ffffff;
+    width:44rpx;
+    height:44rpx;
+    border-radius:100%;
+    position: absolute;
+    left: 64rpx;
+    top:28rpx;
+}
+
+.creatPop .text{
+    font-family:PingFangSC-Regular;
+    font-size:14px;
+    color:#ffffff;
+    line-height:28rpx;
+    text-align:center;
+    position: absolute;
+    left: 32rpx;
+    top:96rpx;
+}
+.creatPop .image{
+    width:44rpx;
+    height:44rpx;
+    position: absolute;
+    left:66rpx;
+    top:32rpx;
+}
+
+
+/*点击跳转表单封装*/
+.card textarea {
+  background: #f2f2f2;
+  border-radius: 4px;
+  padding: 24rpx 32rpx;
+  height: 66rpx;
+  font-size: 28rpx;
+  margin-bottom: 16rpx;
+}

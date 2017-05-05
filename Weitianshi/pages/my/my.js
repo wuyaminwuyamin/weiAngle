@@ -160,15 +160,35 @@ Page({
                 modal: 0
             })
         }
-        return {
+        setTimeout(function(){
+            console.log(3000)
+           
+        },2000)
+        // return {
+        //     title: '投资名片',
+        //     path: "/pages/my/sharePage/sharePage?user_id=" + user_id,
+        //     success: function (res) {
+        //     },
+        //     fail: function (res) {
+        //         console.log(res)
+        //     }
+        // }    
+        return this.test(user_id)
+          
+    },
+    // 测试专用函数
+    test : function(id){
+        console.log("test");
+        var json={
             title: '投资名片',
-            path: "/pages/my/sharePage/sharePage?user_id=" + user_id,
+            path: "/pages/my/sharePage/sharePage?user_id=" + id,
             success: function (res) {
             },
             fail: function (res) {
                 console.log(res)
             }
-        }      
+        }
+        return json;
     },
     //取消分享
     cancelShare: function () {
