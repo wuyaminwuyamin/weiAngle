@@ -5,7 +5,7 @@ Page({
     data: {
         winWidth: 0,//选项卡
         winHeight: 0,//选项卡
-        currentTab: 0,//选项卡
+        currentTab: 1,//选项卡
         firstName: "代",
         id: "",
         page: 0,
@@ -14,7 +14,8 @@ Page({
         projectName: "",
         companyName: "",
         stock: 0,
-        page_end: false
+        page_end: false,
+        loadMorecheck : true//下拉加载更多判断
     },
     onLoad: function (options) {
         //  投资人数据
@@ -120,42 +121,48 @@ Page({
         var user_id = this.data.user_id;
         var pro_id = this.data.id;
         var page_end = this.data.page_end;
-        console.log(
-            user_id, pro_id
-        )
-        if (page_end == false) {
-            wx.showToast({
-                title: 'loading...',
-                icon: 'loading'
-            })
-            page++;
-            that.setData({
-                page: page,
-            });
-            wx.request({
-                url: url + '/api/project/getProjectMatchInvestors',
-                data: {
-                    user_id: user_id,
-                    pro_id: pro_id,
-                    page: page
-                },
-                method: 'POST',
-                success: function (res) {
-                    var investor2 = res.data.data;
-                    console.log(investor2)
-                    that.setData({
-                        investor2: investor2,
-                        page_end: res.data.page_end
-                    });
-                    wx.hideToast({
-                        title: 'loading...',
-                        icon: 'loading'
-                    })
-                }
-            })
-        } else {
-            rqj.errorHide(that, "没有更多了", 3000)
+        var loadMorecheck = this.data.loadMorecheck;
+        if(loadMorecheck){
+            console.log(
+                user_id, pro_id
+            )
+            if (page_end == false) {
+                wx.showToast({
+                    title: 'loading...',
+                    icon: 'loading'
+                })
+                page++;
+                that.setData({
+                    page: page,
+                });
+                wx.request({
+                    url: url + '/api/project/getProjectMatchInvestors',
+                    data: {
+                        user_id: user_id,
+                        pro_id: pro_id,
+                        page: page
+                    },
+                    method: 'POST',
+                    success: function (res) {
+                        var investor2 = res.data.data;
+                        console.log(investor2)
+                        that.setData({
+                            investor2: investor2,
+                            page_end: res.data.page_end
+                        });
+                        wx.hideToast({
+                            title: 'loading...',
+                            icon: 'loading'
+                        })
+                    }
+                })
+            } else {
+                rqj.errorHide(that, "没有更多了", 3000)
+            }
         }
+        this.setData({
+            loadMorecheck:false
+        });
     },
     //维护项目
     maintainProject() {

@@ -18,7 +18,35 @@ Page({
         var company = options.user_company;
         var position = options.user_career;
         var email = options.user_email;
+        var user_id = wx.getStorageSync('user_id');
+        console.log(user_id);
+        wx.request({
+            url: url+'/api/user/checkUserInfo',
+            data: {
+                user_id: user_id
+            },
+            method: 'POST', // OPTIONS, GET, HEAD, POST, PUT, DELETE, TRACE, CONNECT
+            success: function(res){
+                // success
+                console.log(res);
+                var complete = res.data.is_complete;
+                if(res.data.status_code ==2000000 || res.data.status_code==0){
+                    that.setData({
+                        company: res.data.user_company_career,
+                        position: res.data.user_company_name,
+                        email: res.data.user_email,
+                    })
 
+                }
+            },
+            fail: function(res) {
+                // fail\
+            },
+            complete: function(res) {
+                // complete
+                console.log(res);
+            }
+        });
         if (company == "null") {
             company = ''
         };
@@ -33,6 +61,8 @@ Page({
             position: position,
             email: email,
         })
+
+
 
 
     },

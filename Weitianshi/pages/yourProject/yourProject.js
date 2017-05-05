@@ -148,7 +148,7 @@ Page({
         var payStageId = wx.getStorageSync('y_payStageId');
         var payMoney = wx.getStorageSync('y_payMoney') || "选择金额";
         var payMoneyId = wx.getStorageSync('y_payMoneyId')
-        // console.log(domainValue, domainId, describe, payArea, payAreaId, payStage, payStageId)
+        console.log(domainValue, domainId, describe, payArea, payAreaId, payStage, payStageId)
         that.setData({
             domainValue: domainValue,
             domainId: domainId,
