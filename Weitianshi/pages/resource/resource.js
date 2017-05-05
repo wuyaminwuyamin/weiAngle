@@ -124,7 +124,7 @@ Page({
     var user_scaleId = [];
     var user_stage = [];
     var user_stageId = []
-
+    
     wx.login({
       success: function (res) {
         if (res.code) {
@@ -135,6 +135,7 @@ Page({
             },
             method: 'POST',
             success: function (res) {
+              console.log(res)
               var user_id = res.data.user_id;
               var bind_mobile = res.data.bind_mobile;
               wx.setStorageSync('user_id', user_id);
@@ -291,6 +292,7 @@ Page({
       }
     });
   },
+
   //下拉刷新
   onPullDownRefresh: function () {
     wx.stopPullDownRefresh()
@@ -415,9 +417,10 @@ Page({
   },
   //点击融资项目匹配出来的投资人
   investorDetial(e) {
-    var id = e.currentTarget.dataset.id;
+    var thisData = e.currentTarget.dataset;
+    var index = thisData.index;
     wx.navigateTo({
-      url: '/pages/userDetail/userDetail?id=' + id,
+      url: '../myProject/projectDetail/projectDetail?id=' + thisData.id + '&&index=' + index + "&&currentTab=" + 1
     })
   },
   //点击项目投资详情
