@@ -17,6 +17,7 @@ Page({
     resource_page_end: false,//资源数据是否完结
     hasPublic: 0,//是否发布过投资需求
     hasPublic2: 0,//是否发布过资源需求
+    resourceProjectcheck : true, //资源对接下拉判断
     investText: {
       text1: "发布投资需求",
       text2: "快速发布,精准对接优质项目",
@@ -518,58 +519,57 @@ Page({
   //     }
   //   }
   // },
+   // 资源对接触底刷新
   resourceProject: function () {
-    num++;
     var that = this;
     var res_id = this.data.res_id;
     var resource_page = this.data.resource_page;
     var user_id = wx.getStorageSync('user_id');
     var resource_page_end = this.data.resource_page_end;
     var res_match = this.data.res_match;
-    if (user_id != '') {
-      console.log("第1次");
-      console.log(num);
-      console.log(resource_page_end);
-      if (resource_page_end == false) {
-        console.log("第2次");
-        console.log(num);
-        wx.showToast({
-          title: 'loading...',
-          icon: 'loading'
-        })
-        resource_page++;
-        that.setData({
-          resource_page: resource_page
-        });
-        wx.request({
-          url: url + '/api/resource/getMatchResourceForPage',
-          data: {
-            res_id: res_id,
-            page: resource_page,
-          },
-          method: 'POST',
-          success: function (res) {
-            console.log(res);
-            console.log("第3次");
-            console.log(num);
-            var newPage = res.data.res_match;
-            var resource_page_end = res.data.page_end;
-            var res_match = that.data.res_match;
-            console.log(resource_page_end);
-            for (var i = 0; i < newPage.length; i++) {
-              res_match.push(newPage[i])
+    var resourceProjectcheck = this.data.resourceProjectcheck;
+    if(resourceProjectcheck){
+      if (user_id != '') {
+        if (resource_page_end == false) {
+          wx.showToast({
+            title: 'loading...',
+            icon: 'loading'
+          })
+          resource_page++;
+          that.setData({
+            resource_page: resource_page
+          });
+          wx.request({
+            url: url + '/api/resource/getMatchResourceForPage',
+            data: {
+              res_id: res_id,
+              page: resource_page,
+            },
+            method: 'POST',
+            success: function (res) {
+              console.log(res);
+              var newPage = res.data.res_match;
+              var resource_page_end = res.data.page_end;
+              var res_match = that.data.res_match;
+              console.log(resource_page_end);
+              for (var i = 0; i < newPage.length; i++) {
+                res_match.push(newPage[i])
+              }
+              that.setData({
+                res_match: res_match, //资源需求匹配出来的项目
+                resource_page_end: resource_page_end,
+              })
             }
-            that.setData({
-              res_match: res_match, //资源需求匹配出来的项目
-              resource_page_end: resource_page_end,
-            })
-          }
-        })
-      } else {
-        rqj.errorHide(that, "没有更多了", 3000)
+          })
+        } else {
+          rqj.errorHide(that, "没有更多了", 3000)
+        }
+        //rqj.loadMore(url,that,'/api/resource/getMatchResourceForPage',resource_page,res_id,user_id,resource_page_end)
       }
-      //rqj.loadMore(url,that,'/api/resource/getMatchResourceForPage',resource_page,res_id,user_id,resource_page_end)
     }
+    this.setData({
+      resourceProjectcheck:false
+    });
   },
   callback: function (res, that) {
     console.log("这里是回调函数");
