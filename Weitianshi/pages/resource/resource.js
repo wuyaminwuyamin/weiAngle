@@ -18,6 +18,7 @@ Page({
     hasPublic: 0,//是否发布过投资需求
     hasPublic2: 0,//是否发布过资源需求
     resourceProjectcheck : true, //资源对接下拉判断
+    complete : 0,  //个人信息是否完整 默认是否
     investText: {
       text1: "发布投资需求",
       text2: "快速发布,精准对接优质项目",
@@ -55,6 +56,7 @@ Page({
         });
       }
     });
+    
 
     //首次登录
     wx.login({
@@ -238,6 +240,32 @@ Page({
                   }
                 }
               })
+              // 核对用户信息是否完整
+              wx.request({
+                url: url+'/api/user/checkUserInfo',
+                data: {
+                  user_id: user_id
+                },
+                method: 'POST', // OPTIONS, GET, HEAD, POST, PUT, DELETE, TRACE, CONNECT
+                success: function(res){
+                  // success
+                  console.log(res);
+                  var complete = res.data.is_complete;
+                  if(res.data.status_code ==2000000){
+                      that.setData({
+                        complete: complete
+                      })
+
+                  }
+                },
+                fail: function(res) {
+                  // fail\
+                },
+                complete: function(res) {
+                  // complete
+                  console.log(res);
+                }
+              });
               //获取用户资源需求和匹配结果
               if (user_id != 0) {
                 wx.request({
@@ -248,6 +276,7 @@ Page({
                   method: 'POST',
                   success: function (res) {
                     console.log(res)
+                    console.log(that.data.complete)
                     if (res.data.status_code != "450002") {
                       wx.setStorage({
                         key: 'resource_data',
@@ -344,62 +373,114 @@ Page({
       })
     }
   },
-  //点击发布融资项目
-  myProject: function () {
+
+  //判断信息是否完整
+  checkInfo : function(data){
     var that = this;
     var user_id = wx.getStorageSync('user_id');
     var bind_mobile = wx.getStorageSync('bind_mobile');
+    var complete = that.data.complete;
     that.setData({
       bind_mobile: bind_mobile
     });
-    // console.log(bind_mobile, this.data.bind_mobile)
+    console.log(data)
     if (bind_mobile == 0) {
       wx.navigateTo({
         url: '../myProject/personInfo/personInfo'
       })
-    } else if (bind_mobile == 1) {
+    } else if (bind_mobile == 1 && complete==1) {
+      if(data=="publishProject"){
+        wx.navigateTo({
+          url: "../myProject/publishProject/publishProject"
+        })
+      }else if(data=="yourProject"){
+        wx.navigateTo({
+          url: "../yourProject/yourProject"
+        })
+      }else if(data=="resourceNeed"){
+        wx.navigateTo({
+          url: "../resourceEnchange/resourceEnchange"
+        })       
+      }else{
+        wx.navigateTo({
+          url: '../myProject/companyInfo/companyInfo'
+        })
+      }  
+    }
+
+    if (complete==0) {
       wx.navigateTo({
-        url: "../myProject/publishProject/publishProject"
+        url: '../myProject/companyInfo/companyInfo'
       })
     }
+  },
+  //点击发布融资项目
+  myProject: function () {
+    // var that = this;
+    // var user_id = wx.getStorageSync('user_id');
+    // var bind_mobile = wx.getStorageSync('bind_mobile');
+    // var complete = that.data.complete;
+    // console.log(complete);
+    // that.setData({
+    //   bind_mobile: bind_mobile
+    // });
+    // // console.log(bind_mobile, this.data.bind_mobile)
+    // if (bind_mobile == 0) {
+    //   wx.navigateTo({
+    //     url: '../myProject/personInfo/personInfo'
+    //   })
+    // } else if (bind_mobile == 1 && complete==1) {
+    //   wx.navigateTo({
+    //     url: "../myProject/publishProject/publishProject"
+    //   })
+    // }
+
+    // if (complete==0) {
+    //   wx.navigateTo({
+    //     url: '../myProject/companyInfo/companyInfo'
+    //   })
+    // }
+    this.checkInfo("publishProject");
   },
   //点击发布投资需求
   yourProject: function () {
-    var that = this;
-    var user_id = wx.getStorageSync('user_id');
-    var bind_mobile = wx.getStorageSync('bind_mobile');
-    that.setData({
-      bind_mobile: bind_mobile
-    });
-    // console.log(bind_mobile, this.data.bind_mobile);
-    if (bind_mobile == 0) {
-      wx.navigateTo({
-        url: '../myProject/personInfo/personInfo'
-      })
-    } else if (bind_mobile == 1) {
-      wx.navigateTo({
-        url: "../yourProject/yourProject"
-      })
-    }
+    // var that = this;
+    // var user_id = wx.getStorageSync('user_id');
+    // var bind_mobile = wx.getStorageSync('bind_mobile');
+    // that.setData({
+    //   bind_mobile: bind_mobile
+    // });
+    // // console.log(bind_mobile, this.data.bind_mobile);
+    // if (bind_mobile == 0) {
+    //   wx.navigateTo({
+    //     url: '../myProject/personInfo/personInfo'
+    //   })
+    // } else if (bind_mobile == 1) {
+    //   wx.navigateTo({
+    //     url: "../yourProject/yourProject"
+    //   })
+    // }
+    this.checkInfo("yourProject");
   },
   //点击发布资源需求
   resourceNeed: function () {
-    var that = this;
-    var user_id = wx.getStorageSync('user_id');
-    var bind_mobile = wx.getStorageSync('bind_mobile');
-    that.setData({
-      bind_mobile: bind_mobile
-    });
-    // console.log(bind_mobile, this.data.bind_mobile);
-    if (bind_mobile == 0) {
-      wx.navigateTo({
-        url: '../myProject/personInfo/personInfo'
-      })
-    } else if (bind_mobile == 1) {
-      wx.navigateTo({
-        url: "../resourceEnchange/resourceEnchange"
-      })
-    }
+    // var that = this;
+    // var user_id = wx.getStorageSync('user_id');
+    // var bind_mobile = wx.getStorageSync('bind_mobile');
+    // that.setData({
+    //   bind_mobile: bind_mobile
+    // });
+    // // console.log(bind_mobile, this.data.bind_mobile);
+    // if (bind_mobile == 0) {
+    //   wx.navigateTo({
+    //     url: '../myProject/personInfo/personInfo'
+    //   })
+    // } else if (bind_mobile == 1) {
+    //   wx.navigateTo({
+    //     url: "../resourceEnchange/resourceEnchange"
+    //   })
+    // }
+    this.checkInfo("resourceNeed");
   },
   // 跳转人物详情
   userDetail(e) {
