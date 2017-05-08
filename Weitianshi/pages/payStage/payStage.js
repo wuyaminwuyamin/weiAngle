@@ -1,3 +1,4 @@
+var rqj = require('../Template/Template.js');
 var app=getApp();
 var url=app.globalData.url;
 Page({
@@ -98,9 +99,9 @@ Page({
         if (enchangeValue.length < 5) {
             enchangeCheck[e_index] = true;
             enchange[e_index].checked = true;
-            enchangeValue.push(enchange[e_index].stage_name)
-            // console.log(enchange[e_index].stage_id);
-            enchangeId.push(enchange[e_index].stage_id)//点击时把数据的ID添加起来
+            enchangeValue.push(enchange[e_index].scale_money)
+            // console.log(enchange[e_index].scale_id);
+            enchangeId.push(enchange[e_index].scale_id)//点击时把数据的ID添加起来
         } else {
             rqj.errorHide(that, "最多可选择五项", 1000)
         }
@@ -111,8 +112,8 @@ Page({
         //   console.log(enchangeValue.indexOf(e_value))
         enchangeValue.splice(enchangeValue.indexOf(e_value), 1)
         //   console.log(enchangeId);
-        //   console.log(enchangeId.indexOf(enchange[e_index].stage_id))
-        enchangeId.splice(enchangeId.indexOf(enchange[e_index].stage_id), 1)
+        //   console.log(enchangeId.indexOf(enchange[e_index].scale_id))
+        enchangeId.splice(enchangeId.indexOf(enchange[e_index].scale_id), 1)
         }
         this.setData({
             enchange: enchange,
