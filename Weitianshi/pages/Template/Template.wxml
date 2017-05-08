@@ -176,7 +176,7 @@
           <view class="flex s_pro_sorts">
             <view class="pro_sorts flex">
               <view class="pro_sort" wx:if="{{item.pro_stage.stage_name}}">{{item.pro_stage.stage_name}}</view>
-              <view class="pro_sort" wx:if="{{item.case_city.area_title}}">{{item.case_city.area_title}}</view>
+              <view class="pro_sort" wx:if="{{item.pro_city.area_title}}">{{item.pro_city.area_title}}</view>
               <view class="pro_sort" wx:if="{{item.pro_scale.scale_money}}">{{item.pro_scale.scale_money}}</view>
             </view>
           </view>
@@ -224,7 +224,7 @@
 <!--项目融资列表 && 投资案例列表-->
 <template name="projectList">
   <view class="weui-panel__bd" style="background:white;margin:16px">
-    <view class="weui-media-box weui-media-box_text my_detail" data-id='{{myProject.pro_id}}' data-index="{{index}}" bindtap="">
+    <view class="weui-media-box weui-media-box_text my_detail" data-id='{{myProject.pro_id}}' data-index="{{index}}" bindtap="detail">
       <view class="weui-media-box__title weui-media-box__title_in-text" style="text-align:left;">{{myProject.pro_intro||myProject.case_name}}</view>
       <view class="sort flex">
         <block wx:for="{{myProject.pro_industry||myProject.industry}}" wx:for-item="sort" wx:key="*this">
@@ -237,7 +237,7 @@
         <view class="tips flex">
           <view style="width:1px"></view>
           <view class="weui-media-box__desc tip">{{myProject.pro_stage.stage_name||myProject.stage.stage_name}}</view>
-          <view class="weui-media-box__desc tip">{{myProject.case_area.area_title}}</view>
+          <view class="weui-media-box__desc tip">{{myProject.case_area.area_title||myProject.pro_area.area_title}}</view>
           <view class="weui-media-box__desc tip">{{myProject.pro_scale.scale_money||myProject.case_money}}万</view>
         </view>
         <image class="editIcon" data-index="{{index}}" src="/img/icon-pen.png"></image>
@@ -404,10 +404,6 @@
   </view>
 </template>
 
-
-
-
-
 <!--点击跳转表单封装-->
 <template name="formjump">
   <view class="card formjump">
@@ -421,7 +417,6 @@
   </view>
 </template>
 
-
 <!--底下弹框表单封装-->
 <template name="formbottom">
   <view class="card formjump">
@@ -434,10 +429,6 @@
     </picker>
   </view>
 </template>
-
-
-
-
 
 <!--模板测试-->
 <template name="test">

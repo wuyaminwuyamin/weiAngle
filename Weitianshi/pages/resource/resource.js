@@ -55,7 +55,7 @@ Page({
         });
       }
     });*/
- 
+
 
     //首次登录
     wx.login({
@@ -332,33 +332,6 @@ Page({
     that.setData({ currentTab: e.detail.current });
     var user_id = wx.getStorageSync('user_id');
     var loadData = wx.getStorageSync("loadData");
-    if (current == 1) {
-      //载入寻找项目数据
-      wx.request({
-        url: url + '/api/investors/getMatchProjects',
-        data: {
-          user_id: user_id
-        },
-        method: 'POST',
-        success: function (res) {
-          ;
-          if (res.data.status_code !== 440004) {
-            var yourProject = res.data.data.projects;
-            that.setData({
-              yourProject: yourProject,
-              hasPublic: 1,
-              investor_id: res.data.data.investor_id
-            })
-          } else {
-            that.setData({
-              hasPublic: 0
-            })
-          }
-        }
-      })
-    }
-
-
   },
   /*点击tab切换*/
   swichNav: function (e) {
@@ -410,7 +383,7 @@ Page({
       })
     }
 
-    
+
     // if (bind_mobile == 1 && complete == 0) {
     //   if (checkInfo.user_real_name == '') {
     //     wx.navigateTo({
@@ -473,7 +446,7 @@ Page({
     var investor_id = this.data.investor_id;
     var investor_page = this.data.investor_page;
     var user_id = wx.getStorageSync('user_id');
-    var investor_page_end = this.data.investor_page_end
+    var investor_page_end = this.data.investor_page_end;
     if (user_id != '') {
       if (investor_page_end == false) {
         wx.showToast({
@@ -481,7 +454,6 @@ Page({
           icon: 'loading'
         })
         investor_page++;
-
         that.setData({
           investor_page: investor_page
         });
@@ -502,11 +474,10 @@ Page({
             }
             that.setData({
               yourProject: yourProject,
-              investor_page_end: res.data.investor_page_end
+              investor_page_end: res.data.page_end
             })
           }
         })
-        return;
       } else {
         rqj.errorHide(that, "没有更多了", 3000)
       }
@@ -565,7 +536,7 @@ Page({
       resourceProjectcheck: false
     });
   },
-   // 资源对接触底刷新
+  // 资源对接触底刷新
   /*resourceProject: function () {
     var that = this;
     var res_id = this.data.res_id;

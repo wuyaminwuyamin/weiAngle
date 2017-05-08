@@ -21,6 +21,7 @@ Page({
       },
       method: 'POST',
       success: function (res) {
+        console.log(res)
         var myProject = res.data.data;
         var length = myProject.length;
         wx.setStorageSync('proLength', length);
