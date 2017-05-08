@@ -36,7 +36,7 @@ Page({
     var id = thisData.id;
     var index = thisData.index
     wx.navigateTo({
-      url: '../../myProject/projectDetail/projectDetail?id=' + id + "&&index=" + index+"&&currentTab="+0
+      url: '../../myProject/projectDetail/projectDetail?id=' + id + "&&index=" + index
     })
   },
   // 按钮一号

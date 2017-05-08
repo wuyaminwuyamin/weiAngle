@@ -108,7 +108,7 @@ Page({
         var id = e.currentTarget.dataset.id;
         var index = e.currentTarget.dataset.index
         wx.navigateTo({
-            url: '/pages/myProject/projectDetail/projectDetail?id=' + id + "&&index=" + index+"&&currentTab="+0,
+            url: '/pages/myProject/projectDetail/projectDetail?id=' + id + "&&index=" + index,
         })
     },
     //投资案例
