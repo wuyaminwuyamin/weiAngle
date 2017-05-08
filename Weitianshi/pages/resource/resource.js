@@ -1,4 +1,4 @@
-﻿var rqj = require('../Template/Template.js')
+var rqj = require('../Template/Template.js')
 var app = getApp()
 var url = app.globalData.url
 Page({
@@ -17,6 +17,7 @@ Page({
     hasPublic: 0,//是否发布过投资需求
     hasPublic2: 0,//是否发布过资源需求
     resourceProjectcheck: true, //资源对接下拉判断
+    investorProjectcheck :true,
     complete: 0,  //个人信息是否完整 默认是否
     investText: {
       text1: "发布投资需求",
@@ -332,32 +333,7 @@ Page({
     that.setData({ currentTab: e.detail.current });
     var user_id = wx.getStorageSync('user_id');
     var loadData = wx.getStorageSync("loadData");
-    if (current == 1) {
-      //载入寻找项目数据
-      wx.request({
-        url: url + '/api/investors/getMatchProjects',
-        data: {
-          user_id: user_id
-        },
-        method: 'POST',
-        success: function (res) {
-          ;
-          if (res.data.status_code !== 440004) {
-            var yourProject = res.data.data.projects;
-            that.setData({
-              yourProject: yourProject,
-              hasPublic: 1,
-              investor_id: res.data.data.investor_id
-            })
-          } else {
-            that.setData({
-              hasPublic: 0
-            })
-          }
-        }
-      })
-    }
-
+   
 
   },
   /*点击tab切换*/
@@ -473,7 +449,11 @@ Page({
     var investor_id = this.data.investor_id;
     var investor_page = this.data.investor_page;
     var user_id = wx.getStorageSync('user_id');
-    var investor_page_end = this.data.investor_page_end
+    var yourProject = this.data.yourProject;
+    var investor_page_end = this.data.investor_page_end;
+  var investorProjectcheck = this.data.investorProjectcheck;
+    console.log(investorProjectcheck);
+    if(investorProjectcheck ){
     if (user_id != '') {
       if (investor_page_end == false) {
         wx.showToast({
@@ -494,23 +474,28 @@ Page({
           method: 'POST',
           success: function (res) {
             console.log("分页加载的投资需求的匹配项目")
-            console.log(res);
+            // console.log(res);
             var newPage = res.data.data;
+            var investor_page_end = res.data.page_end;
             var yourProject = that.data.yourProject;
             for (var i = 0; i < newPage.length; i++) {
               yourProject.push(newPage[i])
             }
+            console.log(investor_page);
             that.setData({
               yourProject: yourProject,
-              investor_page_end: res.data.investor_page_end
+              investor_page_end: res.data.page_end
             })
           }
         })
-        return;
-      } else {
-        rqj.errorHide(that, "没有更多了", 3000)
-      }
+      } 
     }
+     }else{
+     rqj.errorHide(that, "没有更多了", 3000)
+    } 
+    this.setData({
+      resourceProjectcheck: false
+    });
   },
   // 资源对接触底刷新
   resourceProject: function () {
@@ -521,6 +506,7 @@ Page({
     var resource_page_end = this.data.resource_page_end;
     var res_match = this.data.res_match;
     var resourceProjectcheck = this.data.resourceProjectcheck;
+    console.log(resourceProjectcheck)
     if (resourceProjectcheck) {
       if (user_id != '') {
         if (resource_page_end == false) {
@@ -543,11 +529,13 @@ Page({
               console.log("分页加载的资源需求的匹配项目")
               console.log(res);
               var newPage = res.data.res_match;
+              console.log(newPage);
               var resource_page_end = res.data.page_end;
               var res_match = that.data.res_match;
               for (var i = 0; i < newPage.length; i++) {
                 res_match.push(newPage[i])
               }
+              console.log(res_match);
               that.setData({
                 res_match: res_match, //资源需求匹配出来的项目
                 resource_page_end: resource_page_end,

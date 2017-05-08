@@ -6,10 +6,11 @@
     </block>
   </view>-->
   <view class="title">*最多可选择5个</view>
-  <view class="context flex choice">
+  <view class="context flex">
     <block wx:for="{{doMain}}" wx:key="{{item.industry_id}}">
       <label  class="tips">
-        <view wx:for-index="idx" bindtap="checkboxChange" id="{{item.industry_id}}" data-index="{{index}}" data-value='{{item.industry_name}}' data-check="false" class="{{doMainCheck[index]==true?'checkedOne':''}}">
+        <view wx:for-index="idx" bindtap="checkboxChange" id="{{item.industry_id}}" data-index="{{index}}" data-value='{{item.industry_name}}' data-check="0">
+          <checkbox class="checkbox" checked="{{item.checked}}"></checkbox>
           {{item.industry_name}}</view>
       </label>
     </block>

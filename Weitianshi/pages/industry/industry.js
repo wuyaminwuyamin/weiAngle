@@ -5,7 +5,7 @@ Page({
     data: {
         // 名称
         doMain: [],
-        // 选中的标签
+        // 选中
         checked: [],
         // 下标
         index: [],
@@ -15,7 +15,7 @@ Page({
         error_text: ""
     },
     onLoad: function (options) {
-        console.log("this is onLoad")
+        // console.log("this is onLoad")
         var that = this;
         var options = options;
         var industry = wx.getStorageSync('industry');
@@ -78,7 +78,6 @@ Page({
             // indexof查找是否包含内容
             if (domainValue.indexOf(industry[i].industry_name) != -1) {
                 industry[i].checked = true;
-        
             } else {
                 industry[i].checked = false;
             }
@@ -103,7 +102,7 @@ Page({
     checkboxChange: function (e) {
         var that = this;
         // 选中的名称,并有延迟
-        // var checked = this.data.checked;
+        var checked = this.data.checked;
         // 当前页面所有的内容,每一个都是对象
         var doMain = this.data.doMain;
         var index = this.data.index;
@@ -114,7 +113,16 @@ Page({
         // 当前选中项的id
         var id = e.currentTarget.id * 1;   
         console.log(index);
+        if (index.indexOf(id) == -1) {
+            checked.push(value);
+            index.push(id)
+        } else {
+            // console.log(checked.indexOf(value), index.indexOf(id) + 1);
+            checked.splice(checked.indexOf(value), 1);
+            index.splice(index.indexOf(id), 1)
+        }
         that.setData({
+            checked: checked,
             index: index
         })
     },

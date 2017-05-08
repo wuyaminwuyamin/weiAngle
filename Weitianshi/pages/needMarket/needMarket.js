@@ -283,15 +283,15 @@ Page({
             that.setData({
               resourceNeed: resourceNeed
             })
-          } else {
-            rqj.errorHide(that, '没有更多了', 3000)
-          }
+          } 
         },
         fail: function (res) {
           console.log(res)
         },
       })
-    }
+    }else {
+            rqj.errorHide(that, '没有更多了', 3000)
+          }
     this.setData({
       resourceNeedcheck:false
     });
