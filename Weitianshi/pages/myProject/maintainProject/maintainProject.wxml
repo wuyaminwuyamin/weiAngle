@@ -34,12 +34,13 @@
   </view>
   <view class="card">
     <view class="text">所在地区*</view>
-    <navigator url="../../belongArea/belongArea?current=1" id="belongArea">
+    <!--<navigator url="../../belongArea/belongArea?current=1" id="belongArea">-->
+    <view id="belongArea">
       <view id="belongArea" class="slect flex" bindtap="belongArea">
         <view class="{{belongArea =='选择城市' ? '':'checkOn'}}">{{belongArea}}</view>
         <image class="downArrow" src="../../../img/downArrow.png"></image>
       </view>
-    </navigator>
+    </view>
   </view>
   <view class="card card_tips">
     <view class="text">是否独家*</view>

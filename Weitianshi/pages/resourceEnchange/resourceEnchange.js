@@ -26,20 +26,23 @@ Page({
       success: function (res) {
         //判断用户是否填写过资源需求
         var resource_data = wx.getStorageSync('resource_data');
-        console.log(res);
-        console.log(resource_data);
+        // console.log(res);
+        // console.log(resource_data);
         var res_find = resource_data.res_find;//寻求的资源
         var res_give = resource_data.res_give; //可提供的资源
-        var describe = resource_data.res_desc;
-        var enchange = res.data.data;
-        var target = res.data.data;
+        var describe = resource_data.res_desc;//具体描述
+        var enchange = res.data.data;//当前可提供资源的object
+        // console.log(enchange);
+        var target = res.data.data;//当前在寻求资源的object
         var res_find_name = [];//寻求的资源名称和id
         var res_find_id = []; //提供的名称和id
-        var res_give_name = [];//寻求的资源添加名称和id
+        var res_give_name = [];//可提供的资源添加名称和id
         var res_give_id = [];
-        
-        if (res_find) {
+       
+        if (res_find) { // 可寻求的资源
+        // 遍历 可寻求资源的长度,遍历取出可提供的名字和id
           for (var i = 0; i < res_find.length; i++) {
+            // 将取出的名字和id添加到对应的数组中
             res_find_name.push(res_find[i].resource_name);
             res_find_id.push(res_find[i].resource_id);
           }
@@ -58,7 +61,7 @@ Page({
         var enchangeId = res_give_id   //选中可提供资源的标签id的数组
         var enchangeCheck = []    //选中可提供资源的标签checked的数组
         for (var i = 0; i < enchange.length; i++) {
-          if (res_give_name.indexOf(enchange[i].resource_name) != -1) {
+          if (res_give_name.indexOf(enchange[i].resource_name) != -1) {//如果enchange里面的资源名称,么米有在give里面,那么 给checked  一个布尔值
             enchange[i].checked = true;
           } else {
             enchange[i].checked = false;
@@ -113,7 +116,7 @@ Page({
     var enchangeValue = this.data.enchangeValue;
     var enchangeId = this.data.enchangeId;//已添加的数字
     var enchangeCheck = this.data.enchangeCheck;
-    // console.log(enchangeCheck[e_index]);
+    //console.log(enchangeCheck);
     if (enchangeCheck[e_index] == false) {//当确认按钮时
       if (enchangeValue.length < 5) {
         enchangeCheck[e_index] = true;

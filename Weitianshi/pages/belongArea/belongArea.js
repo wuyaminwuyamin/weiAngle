@@ -10,10 +10,18 @@ Page({
     },
     onLoad: function (options) {
         var that = this;
+        console.log(options);
         var current = options.current;
+        var provinceNum = parseInt(options.provinceNum);//初始地区
+        var cityNum = parseInt(options.cityNum);//市
+       
         that.setData({
             current: current
         });
+        var provinceArr = [];
+        var cityArr = [];
+        var index=0;
+        var cityindex=0
         // current==0发布融资项目 current==1 维护融资项目 current==2 添加投资案例
         wx.request({
             url: url+'/api/category/getArea',
@@ -22,14 +30,50 @@ Page({
             },
             method: 'POST',
             success: function (res) {
-                // console.log(res)
+                //console.log(res)
                 var province = res.data.data;
+                console.log(province)
+                for(var i=0; i<province.length; i++){
+                    provinceArr.push(province[i].area_id)        
+                }
+                
+                index=provinceArr.indexOf(provinceNum)
+                var backgrond = [];
+                backgrond[index]=1;
+                console.log(backgrond);
                 that.setData({
-                    province: province
+                    province: province,
+                    backgrond:backgrond
                 })
+                wx.request({
+                    url: url+'/api/category/getArea',
+                    data: {
+                        pid: provinceNum
+                    },
+                    method: 'POST',
+                    success: function (res) {                   
+                        var city = res.data.data;
+                        console.log(res)
+                        console.log(city)
+                         for(var i=0; i<city.length; i++){
+                            cityArr.push(city[i].area_id)        
+                        }
+                        cityindex=cityArr.indexOf(cityNum)
+                        var backgroundcity = [];
+                        backgroundcity[cityindex]=1;
+                        console.log(backgroundcity);
+                        that.setData({
+                            city: city,
+                            backgroundcity: backgroundcity
+                        })
+                    }
+                });
+                //console.log(provinceArr,provinceNum)
+                //console.log(provinceArr.indexOf(provinceNum))
 
             },
-        })
+        })      
+        
     },
     province: function (e) {
         var that = this;
@@ -37,9 +81,11 @@ Page({
         var index = e.target.dataset.index;
         var id = e.target.dataset.id;
         var province = this.data.province;
+
         var console_province = this.data.console_province;
         // console.log(index)
         background[index] = 1;
+        console.log(background,province,console_province)
         that.setData({
             backgrond: background,
             belongArea: province[index],
