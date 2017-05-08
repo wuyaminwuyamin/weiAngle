@@ -18,8 +18,8 @@
       <file leaf-file-name="app.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="182">
-              <caret line="49" column="13" lean-forward="true" selection-start-line="49" selection-start-column="13" selection-end-line="49" selection-end-column="13" />
+            <state relative-caret-position="248">
+              <caret line="52" column="8" lean-forward="true" selection-start-line="52" selection-start-column="8" selection-end-line="52" selection-end-column="8" />
               <folding>
                 <element signature="e#1588#2562#0" expanded="false" />
                 <element signature="e#2791#2856#0" expanded="false" />
@@ -54,10 +54,12 @@
                 <element signature="e#20066#20313#0" expanded="false" />
                 <element signature="e#20359#20569#0" expanded="false" />
                 <element signature="e#20618#22249#0" expanded="false" />
-                <element signature="e#22271#23743#0" expanded="false" />
-                <element signature="e#23793#24363#0" expanded="false" />
-                <element signature="e#24411#24846#0" expanded="false" />
-                <element signature="e#24896#25064#0" expanded="false" />
+                <marker date="1494223888364" expanded="true" signature="101:25080" ph="{...}" />
+                <marker date="1494223888364" expanded="false" signature="24425:24860" ph="{...}" />
+                <marker date="1494223888364" expanded="true" signature="24672:24722" ph="{...}" />
+                <marker date="1494223888364" expanded="true" signature="24744:24853" ph="{&quot;res_match&quot;: res_match...}" />
+                <marker date="1494223888364" expanded="false" signature="24910:25078" ph="{...}" />
+                <marker date="1494223888364" expanded="true" signature="24979:25072" ph="{&quot;title&quot;: '微天使帮您精准对接投融资需求'...}" />
               </folding>
             </state>
           </provider>
@@ -136,24 +138,6 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="pages" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Weitianshi" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Weitianshi" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="pages" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="resource" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -253,12 +237,12 @@
       <option name="presentableId" value="Default" />
       <updated>1494056089285</updated>
       <workItem from="1494056091336" duration="63000" />
-      <workItem from="1494211606798" duration="4961000" />
+      <workItem from="1494211606798" duration="5565000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="5024000" />
+    <option name="totallyTimeSpent" value="5628000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1096" extended-state="7" />
@@ -318,18 +302,20 @@
             <element signature="e#20066#20313#0" expanded="false" />
             <element signature="e#20359#20569#0" expanded="false" />
             <element signature="e#20618#22249#0" expanded="false" />
-            <element signature="e#22271#23743#0" expanded="false" />
-            <element signature="e#23793#24363#0" expanded="false" />
-            <element signature="e#24411#24846#0" expanded="false" />
-            <element signature="e#24896#25064#0" expanded="false" />
+            <marker date="1494223888364" expanded="true" signature="101:25080" ph="{...}" />
+            <marker date="1494223888364" expanded="false" signature="24425:24860" ph="{...}" />
+            <marker date="1494223888364" expanded="true" signature="24672:24722" ph="{...}" />
+            <marker date="1494223888364" expanded="true" signature="24744:24853" ph="{&quot;res_match&quot;: res_match...}" />
+            <marker date="1494223888364" expanded="false" signature="24910:25078" ph="{...}" />
+            <marker date="1494223888364" expanded="true" signature="24979:25072" ph="{&quot;title&quot;: '微天使帮您精准对接投融资需求'...}" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="182">
-          <caret line="49" column="13" lean-forward="true" selection-start-line="49" selection-start-column="13" selection-end-line="49" selection-end-column="13" />
+        <state relative-caret-position="248">
+          <caret line="52" column="8" lean-forward="true" selection-start-line="52" selection-start-column="8" selection-end-line="52" selection-end-column="8" />
           <folding>
             <element signature="e#1588#2562#0" expanded="false" />
             <element signature="e#2791#2856#0" expanded="false" />
