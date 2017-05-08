@@ -240,7 +240,7 @@
           <view class="weui-media-box__desc tip">{{myProject.case_area.area_title||myProject.pro_area.area_title}}</view>
           <view class="weui-media-box__desc tip">{{myProject.pro_scale.scale_money||myProject.case_money}}万</view>
         </view>
-        <image class="editIcon" data-index="{{index}}" src="/img/icon-pen.png"></image>
+        <image class="editIcon" data-index="{{index}}" data-id="{{myProject.pro_id}}" src="/img/icon-pen.png" bindtap="editDetail"></image>
       </view>
     </view>
   </view>
