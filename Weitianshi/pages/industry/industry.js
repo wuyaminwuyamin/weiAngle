@@ -57,6 +57,7 @@ Page({
             var domainId = options.industryId;
             var domainValue = domainValue.split(",")
             var domainId = domainId.split(",")
+            console.log(domainValue,domainId)
             for (var i = 0; i < domainId.length; i++) {
                 domainId[i] = domainId[i] * 1
             }
@@ -64,6 +65,7 @@ Page({
                 domainValue = [];
                 domainId = [];
             }
+
             // console.log(domainValue, domainId)
             // console.log(typeof domainValue)
         } else if (current == 3) {
@@ -88,6 +90,7 @@ Page({
                 industry[i].checked = false;
             }
         }
+        console.log(industry);
         wx.setStorageSync('industry', industry)
 
         // console.log(domainValue,domainId)
