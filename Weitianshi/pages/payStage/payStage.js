@@ -91,17 +91,17 @@ Page({
             enchangeCheck.push(enchange[i].checked)//被选中的状态
         }
 
-        // console.log(enchange)
-        // console.log(enchangeId)
+        console.log(enchange)
+        console.log(enchangeId)
         // console.log(enchangeCheck)
         // console.log(enchangeCheck[e_index]);
         if (enchangeCheck[e_index] == false) {//当确认按钮时
         if (enchangeValue.length < 5) {
             enchangeCheck[e_index] = true;
             enchange[e_index].checked = true;
-            enchangeValue.push(enchange[e_index].scale_money)
-            // console.log(enchange[e_index].scale_id);
-            enchangeId.push(enchange[e_index].scale_id)//点击时把数据的ID添加起来
+            enchangeValue.push(enchange[e_index].stage_name)
+            // console.log(enchange[e_index].stage_id);
+            enchangeId.push(enchange[e_index].stage_id)//点击时把数据的ID添加起来
         } else {
             rqj.errorHide(that, "最多可选择五项", 1000)
         }
@@ -112,15 +112,14 @@ Page({
         //   console.log(enchangeValue.indexOf(e_value))
         enchangeValue.splice(enchangeValue.indexOf(e_value), 1)
         //   console.log(enchangeId);
-        //   console.log(enchangeId.indexOf(enchange[e_index].scale_id))
-        enchangeId.splice(enchangeId.indexOf(enchange[e_index].scale_id), 1)
+        //   console.log(enchangeId.indexOf(enchange[e_index].stage_id))
+        enchangeId.splice(enchangeId.indexOf(enchange[e_index].stage_id), 1)
         }
         this.setData({
             enchange: enchange,
             enchangeValue: enchangeValue,
             enchangeId: enchangeId,
             enchangeCheck: enchangeCheck,
-            checked: enchangeCheck,
             index: enchangeId
         });
         wx.setStorageSync('payenchangeValue', enchangeValue)

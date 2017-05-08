@@ -94,10 +94,10 @@ Page({
             enchangeCheck.push(enchange[i].checked)//被选中的状态
         }
 
-        console.log(enchange)
-        console.log(enchangeId)
-        console.log(enchangeCheck)
-        console.log(enchangeCheck[e_index]);
+        // console.log(enchange)
+        // console.log(enchangeId)
+        // console.log(enchangeCheck)
+        // console.log(enchangeCheck[e_index]);
         if (enchangeCheck[e_index] == false) {//当确认按钮时
         if (enchangeValue.length < 5) {
             enchangeCheck[e_index] = true;
