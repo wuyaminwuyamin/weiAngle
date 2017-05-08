@@ -56,7 +56,7 @@ Page({
         });
       }
     });*/
- 
+
 
     //首次登录
     wx.login({
@@ -333,8 +333,6 @@ Page({
     that.setData({ currentTab: e.detail.current });
     var user_id = wx.getStorageSync('user_id');
     var loadData = wx.getStorageSync("loadData");
-   
-
   },
   /*点击tab切换*/
   swichNav: function (e) {
@@ -386,7 +384,7 @@ Page({
       })
     }
 
-    
+
     // if (bind_mobile == 1 && complete == 0) {
     //   if (checkInfo.user_real_name == '') {
     //     wx.navigateTo({
@@ -449,10 +447,10 @@ Page({
     var investor_id = this.data.investor_id;
     var investor_page = this.data.investor_page;
     var user_id = wx.getStorageSync('user_id');
+
     var yourProject = this.data.yourProject;
     var investor_page_end = this.data.investor_page_end;
-  var investorProjectcheck = this.data.investorProjectcheck;
-    console.log(investorProjectcheck);
+    var investorProjectcheck = this.data.investorProjectcheck;
     if(investorProjectcheck ){
     if (user_id != '') {
       if (investor_page_end == false) {
@@ -461,7 +459,6 @@ Page({
           icon: 'loading'
         })
         investor_page++;
-
         that.setData({
           investor_page: investor_page
         });
@@ -558,7 +555,6 @@ Page({
   },
    // 资源对接触底刷新
  /* resourceProject: function () {
-
     var that = this;
     var res_id = this.data.res_id;
     var resource_page = this.data.resource_page;

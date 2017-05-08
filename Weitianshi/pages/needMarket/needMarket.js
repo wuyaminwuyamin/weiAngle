@@ -195,7 +195,6 @@ Page({
     var that = this;
     var investPage = this.data.investPage;
     var investNeedcheck = this.data.investNeedcheck;
-    console.log(investNeedcheck);
     investPage++;
     this.setData({
       investPage: investPage

@@ -1,5 +1,6 @@
 <view id="doMain">
-  <view class="context flex">
+  <view class="title">*最多可选择5个</view>
+  <!--<view class="context flex">
     <block wx:for="{{payMoney}}">
       <label class="tips">
         <view wx:for-index="idx" bindtap="radioCheck" id="{{item.scale_id}}" data-index="{{index}}" data-value='{{item.scale_money}}' data-check="0" value="{{item.scale_money}}" checked="{{item.checked}}" wx:key="{{item.scale_id}}">
@@ -7,7 +8,15 @@
           {{item.scale_money}}</view>
       </label>
     </block>
-  </view>
+  </view>-->
+  <view class="context flex">
+      <block wx:for="{{payMoney}}" wx:key="{{item.scale_id}}">
+        <label class="tips">
+          <view class="{{enchangeCheck[index]==true?'checkedOne':''}}" id="{{item.scale_id}}" data-index="{{index}}" data-value='{{item.scale_money}}' data-check="false" bindtap="checkboxChange">
+            {{item.scale_money}}</view>
+        </label>
+      </block>
+    </view>
   <button class="nextBtn" bindtap="certain">
     确定
   </button>

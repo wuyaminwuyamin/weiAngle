@@ -116,7 +116,7 @@ Page({
     var enchangeValue = this.data.enchangeValue;
     var enchangeId = this.data.enchangeId;//已添加的数字
     var enchangeCheck = this.data.enchangeCheck;
-    // console.log(enchangeCheck[e_index]);
+    //console.log(enchangeCheck);
     if (enchangeCheck[e_index] == false) {//当确认按钮时
       if (enchangeValue.length < 5) {
         enchangeCheck[e_index] = true;

@@ -90,9 +90,11 @@ Page({
                 var stage_index = stageValue.indexOf(theData.pro_stage.stage_name);
                 var scale_index = scaleValue.indexOf(theData.pro_scale.scale_money);
                 var tipsIndex = theData.is_exclusive;
-                var belongArea = theData.pro_area.area_title;
+                var belongArea = theData.pro_area.area_title;//地区
                 var provinceNum = theData.pro_area.pid;
                 var cityNum = theData.pro_area.area_id;
+                wx.setStorageSync("m_provinceNum" ,provinceNum);
+                wx.setStorageSync('m_cityNum' , cityNum)
                 console.log(provinceNum,cityNum)
                 // 对项目的所属领域进行处理
                 if (industry) {
@@ -194,6 +196,17 @@ Page({
         this.setData({
             scale_index: e.detail.value,
         });
+    },
+    belongArea : function(e){
+        var provinceNum=this.data.provinceNum;//初始地区
+        var cityNum = this.data.cityNum;//二级地区
+        // var provinceNum = wx.getStorageSync("m_provinceNum");
+        // var cityNum = wx.getStorageSync('m_cityNum')
+        console.log(provinceNum,cityNum)       
+        wx.navigateTo({
+            url: '../../belongArea/belongArea?current=1'+"&&provinceNum="+provinceNum+"&&cityNum="+cityNum
+        })
+
     },
 
     //上传BP
