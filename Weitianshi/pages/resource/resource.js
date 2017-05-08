@@ -513,7 +513,7 @@ Page({
     }
   },
   // 资源对接触底刷新
-  /*resourceProject: function () {
+  resourceProject: function () {
     var that = this;
     var res_id = this.data.res_id;
     var resource_page = this.data.resource_page;
@@ -556,17 +556,20 @@ Page({
             }
           })
         } else {
-          rqj.errorHide(that, "没有更多了", 3000)
+          // rqj.errorHide(that, "没有更多了", 3000)
+         
         }
-        //rqj.loadMore(url,that,'/api/resource/getMatchResourceForPage',resource_page,res_id,user_id,resource_page_end)
       }
+    }else{
+      rqj.errorHide(that, "没有更多了", 3000)
+      console.log("yes");
     }
     this.setData({
       resourceProjectcheck: false
     });
-  },*/
+  },
    // 资源对接触底刷新
-  resourceProject: function () {
+ /* resourceProject: function () {
     var that = this;
     var res_id = this.data.res_id;
     var resource_page = this.data.resource_page;
@@ -578,7 +581,7 @@ Page({
     this.setData({
       resourceProjectcheck: false
     });
-  },
+  },*/
   //回调函数
   callback: function (res, that) {
     console.log("这里是回调函数");
