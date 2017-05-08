@@ -7,6 +7,16 @@
   </view>-->
   <view class="title">*最多可选择5个</view>
   <view class="context flex">
+      <block wx:for="{{doMain}}" wx:key="{{item.industry_id}}">
+        <label class="tips">
+          <view class="{{enchangeCheck[index]==true?'checkedOne':''}}" id="{{item.industry_id}}" data-index="{{index}}" data-value='{{item.industry_name}}' data-check="false" bindtap="checkboxChange">
+            {{item.industry_name}}</view>
+        </label>
+      </block>
+    </view>
+
+
+  <!--<view class="context flex">
     <block wx:for="{{doMain}}" wx:key="{{item.industry_id}}">
       <label  class="tips">
         <view wx:for-index="idx" bindtap="checkboxChange" id="{{item.industry_id}}" data-index="{{index}}" data-value='{{item.industry_name}}' data-check="0">
@@ -14,7 +24,7 @@
           {{item.industry_name}}</view>
       </label>
     </block>
-  </view>
+  </view>-->
   <button class="nextBtn" bindtap="certain">
     确定
   </button>

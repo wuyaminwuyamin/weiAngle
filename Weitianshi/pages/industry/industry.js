@@ -1,3 +1,4 @@
+var rqj = require('../Template/Template.js');
 var app = getApp();
 // 所属领域
 var url = app.globalData.url;
@@ -5,23 +6,28 @@ Page({
     data: {
         // 名称
         doMain: [],
-        // 选中
-        checked: [],
         // 下标
         index: [],
         // 每一个名称的id值
         id: [],
         error: "0",
-        error_text: ""
+        error_text: "",
+        enchange: [],//接口给的标签
+        checked: [],//已经选中的标签的值
+        checkedId: [],//已经选中标签的id
+        enchangeCheck: [],
+        enchangeValue : [],
+        enchangeId : [],
+        target: []//接口给的标签
     },
     onLoad: function (options) {
         // console.log("this is onLoad")
         var that = this;
         var options = options;
         var industry = wx.getStorageSync('industry');
+        //console.log(industry)
         var current = options.current;
         // 0:发布融资项目  1:发布投资需求 2:维护我的项目 3:发布投资案例
-
         if (current == 0) {
             var domainValue = wx.getStorageSync('domainValue')
             var domainId = wx.getStorageSync('domainId')
@@ -29,8 +35,8 @@ Page({
                 domainValue = [];
                 domainId = [];
             }
-            console.log(domainValue)
-            console.log(typeof domainValue)
+            // console.log(domainValue)
+            // console.log(typeof domainValue)
         } else if (current == 1) {
             var domainValue = wx.getStorageSync('y_domainValue')
             var domainId = wx.getStorageSync('y_domainId')
@@ -44,8 +50,8 @@ Page({
                 domainId = [];
             }
 
-            console.log(domainValue)
-            console.log(typeof domainValue)
+            // console.log(domainValue)
+            // console.log(typeof domainValue)
         } else if (current == 2) {
             var domainValue = options.industryValue;
             var domainId = options.industryId;
@@ -58,8 +64,8 @@ Page({
                 domainValue = [];
                 domainId = [];
             }
-            console.log(domainValue, domainId)
-            console.log(typeof domainValue)
+            // console.log(domainValue, domainId)
+            // console.log(typeof domainValue)
         } else if (current == 3) {
             var domainValue = wx.getStorageSync('case_domainValue')
             var domainId = wx.getStorageSync('case_domainId')
@@ -83,12 +89,20 @@ Page({
             }
         }
         wx.setStorageSync('industry', industry)
+
+        // console.log(domainValue,domainId)
+        var enchangeCheck = wx.getStorageSync('enchangeCheck') || [];
+        var enchangeValue = wx.getStorageSync('enchangeValue') || [];
+        var enchangeId = wx.getStorageSync('enchangeId') || [];
         // 设置值
         that.setData({
             doMain: industry,
             current: current,
             checked: domainValue,
-            index: domainId
+            index: domainId,
+            enchangeCheck : enchangeCheck,
+            enchangeValue : enchangeValue,
+            enchangeId : enchangeId
         });
     },
 
@@ -97,44 +111,68 @@ Page({
         // console.log("开启了下拉刷新");
         wx.stopPullDownRefresh()
     },
+    //传值部份可提供资源
+  checkboxChange: function (e) {
+    // console.log(e);
+    var that = this;
+    // console.log(that)
+    var thisData = e.currentTarget.dataset;
+    // console.log(thisData)
+    var e_index = thisData.index;//数组下标
+    var e_value = thisData.value;//值
+    var e_check = thisData.check;//是否被选中
+    // console.log(e_index,e_value,e_check)
+    var enchange = this.data.doMain//返回的所有数据{checked:false,industry_id:12,industry_name:"社交网络"}
+    var enchangeValue = this.data.enchangeValue;//已被选中的名字
+    var enchangeId = this.data.enchangeId;//已添加的数字
+    var enchangeCheck = this.data.enchangeCheck;//是否被选中
+    for(var i=0; i<enchange.length ; i++){
+        enchangeCheck.push(enchange[i].checked)//被选中的状态
+    }
 
-    //传值部份
-    checkboxChange: function (e) {
-        var that = this;
-        // 选中的名称,并有延迟
-        var checked = this.data.checked;
-        // 当前页面所有的内容,每一个都是对象
-        var doMain = this.data.doMain;
-        var index = this.data.index;
-        var thisData = e.currentTarget.dataset;
-        var isCheck = thisData.check;
-        var value = thisData.value;
-        var idx = thisData.index;
-        // 当前选中项的id
-        var id = e.currentTarget.id * 1;   
-        console.log(index);
-        if (index.indexOf(id) == -1) {
-            checked.push(value);
-            index.push(id)
-        } else {
-            // console.log(checked.indexOf(value), index.indexOf(id) + 1);
-            checked.splice(checked.indexOf(value), 1);
-            index.splice(index.indexOf(id), 1)
-        }
-        that.setData({
-            checked: checked,
-            index: index
-        })
-    },
+    // console.log(enchange)
+    // console.log(enchangeId)
+    // console.log(enchangeCheck)
+    // console.log(enchangeCheck[e_index]);
+    if (enchangeCheck[e_index] == false) {//当确认按钮时
+      if (enchangeValue.length < 5) {
+        enchangeCheck[e_index] = true;
+        enchange[e_index].checked = true;
+        enchangeValue.push(enchange[e_index].industry_name)
+        // console.log(enchange[e_index].industry_id);
+        enchangeId.push(enchange[e_index].industry_id)//点击时把数据的ID添加起来
+      } else {
+        rqj.errorHide(that, "最多可选择五项", 1000)
+      }
+    } else {//当取消按钮时
+      enchangeCheck[e_index] = false;
+      enchange[e_index].checked = false;
+    //   console.log(enchangeValue);
+    //   console.log(enchangeValue.indexOf(e_value))
+      enchangeValue.splice(enchangeValue.indexOf(e_value), 1)
+    //   console.log(enchangeId);
+    //   console.log(enchangeId.indexOf(enchange[e_index].industry_id))
+      enchangeId.splice(enchangeId.indexOf(enchange[e_index].industry_id), 1)
+    }
+    this.setData({
+      enchange: enchange,
+      enchangeValue: enchangeValue,
+      enchangeId: enchangeId,
+      enchangeCheck: enchangeCheck,
+    });
+     wx.setStorageSync('enchangeValue', enchangeValue);
+     wx.setStorageSync('enchangeId', enchangeId);
+    console.log(enchangeValue, enchangeId)
+  },
     //点击确定
     certain: function () {
         var that = this;
-        // var console_checked = this.data.checked.join();
-        var checked = this.data.checked;
+        var checked = this.data.enchangeValue || wx.getStorageSync('enchangeValue');
         var id = this.data.id;
-        var index = this.data.index;
+        var index = this.data.enchangeId || wx.getStorageSync('enchangeId');
         var doMain = this.data.doMain;
         var current = this.data.current;
+        var enchangeCheck = this.data.enchangeCheck || wx.getStorageSync('enchangeCheck')
         that.setData({
             error: "0"
         });
@@ -155,6 +193,7 @@ Page({
                 } else {
                     wx.setStorageSync('domainValue', checked);
                     wx.setStorageSync('domainId', index);
+                    wx.setStorageSync('enchangeCheck', enchangeCheck);
                 }
             } else if (current == 1) {
                 if (checked == "") {
@@ -163,6 +202,7 @@ Page({
                 } else {
                     wx.setStorageSync('y_domainValue', checked);
                     wx.setStorageSync('y_domainId', index);
+                    wx.setStorageSync('enchangeCheck', enchangeCheck);
                 }
             } else if (current == 2) {
                 wx.setStorageSync('m_domainValue', checked);
@@ -174,8 +214,11 @@ Page({
                 } else {
                     wx.setStorageSync('case_domainValue', checked);
                     wx.setStorageSync('case_domainId', index);
+                    wx.setStorageSync('enchangeCheck', enchangeCheck);
                 }
             }
+            
+            
             wx.navigateBack({
                 delta: 1 // 回退前 delta(默认为1) 页面
             })
