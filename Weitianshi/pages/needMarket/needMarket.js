@@ -19,11 +19,11 @@ Page({
   onShow: function () {
     var that = this;
     var currentTab = this.data.currentTab;
-    var user = wx.getStorageSync('user_id')
-        console.log(user)
+    // 获取当前用户的id
+    var user = wx.getStorageSync('user_id');
         that.setData({
             user: user
-        });
+        }); 
     //融资需求获取数据
     wx.request({
       url: url + '/api/project/projectMarket',
@@ -32,12 +32,25 @@ Page({
       success: function (res) {
         var financingNeed = res.data.data;
         that.setData({
-          financingNeed: financingNeed
+          financingNeed: financingNeed,
         })
       },
       fail: function (res) {
         console.log(res)
       },
+    })
+    // 获取我自己的项目id
+    wx.request({
+       url: url + '/api/project/getMyProject',
+       data: { user_id :user},
+       method: 'POST',
+       success: function (res) {
+          var myProject = res.data.data;
+          that.setData({
+              myProject: myProject
+              })
+         console.log(myProject);        
+       }
     })
     //投资需求获取数据
     wx.request({
@@ -96,13 +109,25 @@ Page({
   },
   // 跳转项目详情(融资需求和投资需求)
   projectDetail: function (e) {
+    // console.log(e)
     var id = e.currentTarget.dataset.id
     console.log(id);
-    var user_id = this.data.user;
-    console.log(user_id);
-    if(id == user_id){
-      wx.switchTab({
-        url: '../myProject/projectDetail'
+    var myProjectArray = this.data.myProject;
+    console.log(myProjectArray);
+    var length = myProjectArray.length;
+    // console.log(length);
+    var pro_id;
+    var arrNew = [];
+    for(let i = 0;i < length;i++){
+       pro_id = myProjectArray[i].pro_id;
+      console.log(pro_id);
+      arrNew.push(pro_id)
+    }
+    var index = arrNew.indexOf(id);
+    console.log(index)
+    if(index!=-1){
+      wx.navigateTo({
+        url:'/pages/myProject/projectDetail/projectDetail?id=' + id+'&&index='+index
       })
     }else{
       wx.navigateTo({
