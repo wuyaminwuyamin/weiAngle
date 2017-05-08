@@ -5,8 +5,8 @@ App({
     //调用API从本地缓存中获取数据
     var logs = wx.getStorageSync('logs') || [];
     logs.unshift(Date.now());
-    wx.setStorageSync('logs', logs)
-    // console.log(options.scene)
+    wx.setStorageSync('logs', logs);
+    // console.log(options.scene);
   },
   onError: function (msg) {//小程序发生脚本错误,或者api调用失败时,会触发onError,并带上错误信息
     console.log(msg)

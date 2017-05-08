@@ -1,4 +1,4 @@
-var rqj = require('../Template/Template.js')
+﻿var rqj = require('../Template/Template.js')
 var app = getApp()
 var url = app.globalData.url
 Page({
@@ -321,7 +321,6 @@ Page({
       }
     });
   },
-
   //下拉刷新
   onPullDownRefresh: function () {
     wx.stopPullDownRefresh()
@@ -372,7 +371,6 @@ Page({
       })
     }
   },
-
   //判断信息是否完整
   checkInfo: function (data) {
     var that = this;
@@ -404,14 +402,15 @@ Page({
         wx.navigateTo({
           url: '../myProject/companyInfo/companyInfo'
         })
-      }
-    }
 
-    if (bind_mobile == 1 && complete == 0) {
+      }
+    } else if (bind_mobile == 1 && complete == 0) {
       wx.navigateTo({
         url: '../myProject/companyInfo/companyInfo'
       })
     }
+
+    
     // if (bind_mobile == 1 && complete == 0) {
     //   if (checkInfo.user_real_name == '') {
     //     wx.navigateTo({
@@ -482,6 +481,7 @@ Page({
           icon: 'loading'
         })
         investor_page++;
+
         that.setData({
           investor_page: investor_page
         });
@@ -570,6 +570,7 @@ Page({
   },
    // 资源对接触底刷新
  /* resourceProject: function () {
+
     var that = this;
     var res_id = this.data.res_id;
     var resource_page = this.data.resource_page;
