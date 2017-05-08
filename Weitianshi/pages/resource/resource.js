@@ -518,7 +518,7 @@ Page({
         }
     },
     // 资源对接触底刷新
-    /*resourceProject: function () {
+    resourceProject: function () {
      var that = this;
      var res_id = this.data.res_id;
      var resource_page = this.data.resource_page;
@@ -569,9 +569,9 @@ Page({
      this.setData({
      resourceProjectcheck: false
      });
-     },*/
-    // 资源对接触底刷新
-    resourceProject: function () {
+     },
+    // 资源对接触底刷新(跟回调函数一起用来测试用)
+    /*resourceProject: function () {
         var that = this;
         var res_id = this.data.res_id;
         var resource_page = this.data.resource_page;
@@ -583,7 +583,7 @@ Page({
         this.setData({
             resourceProjectcheck: false
         });
-    },
+    },*/
     //回调函数
     callback: function (res, that) {
         console.log("这里是回调函数");
