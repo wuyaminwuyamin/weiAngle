@@ -76,7 +76,6 @@ Page({
               wx.setStorageSync('user_id', res.data.user_id);
               var bind_mobile = wx.getStorageSync('bind_mobile');
               var user_id = res.data.user_id;
-              console.log(user_id);
               if (user_id != 0) {
                 //获取我的项目匹配到的投资人
                 wx.request({
@@ -561,7 +560,7 @@ Page({
   //     }
   //   }
   // },
-  // 资源对接触底刷新
+  资源对接触底刷新
   resourceProject: function () {
     var that = this;
     var res_id = this.data.res_id;
