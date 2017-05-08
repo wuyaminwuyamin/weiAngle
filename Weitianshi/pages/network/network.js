@@ -12,7 +12,9 @@ Page({
     var user_id = wx.getStorageSync('user_id');
     that.setData({
       user_id: user_id,
-      page_end:false
+      page_end:false,
+      scroll:0,
+      netWork_page:1
     })
     console.log(user_id)
     // 检查个人信息全不全
@@ -53,6 +55,7 @@ Page({
           that.setData({
             netWork: netWork,
             page_end: page_end,
+            netWork_page:1
           })
         }
       })

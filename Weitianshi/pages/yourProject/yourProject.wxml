@@ -12,6 +12,7 @@
       </view>
     </navigator>
   </view>
+
   <view class="card">
     <view class="text">投资阶段*</view>
     <navigator url="../../pages/payStage/payStage" id="payStage">
@@ -21,21 +22,6 @@
       </view>
     </navigator>
   </view>
-
-  <!--投资金额-->
-  <!--<view class="card">
-    <view class="text">投资金额*</view>
-    <picker id="expect" bindchange="expect" value="{{expect_index}}" range="{{expect_arry}}">
-      <view class="slect flex" wx:if="{{picker}}">
-        <view class="{{expect[expect_index].scale_money=='选择金额' ? '':'checkOn'}}">{{expect[expect_index].scale_money}}</view>
-        <image class="downArrow" src="../../img/downArrow.png"></image>
-      </view>
-       <view class="slect flex" wx:else>
-        <view class="checkOn">{{initPayMoney}}</view>
-        <image class="downArrow" src="../../img/downArrow.png"></image>
-      </view>
-    </picker>
-  </view>-->
 
   <view class="card">
     <view class="text">投资金额*</view>
@@ -56,6 +42,7 @@
       </view>
     </navigator>
   </view>
+  
   <view class="card">
     <view class="text">具体描述(非必填)</view>
     <textarea placeholder="其他需求的描述,如:阿里系的创业团队我更亲睐" placeholder-style='color:#ccc;' bindinput="bindTextAreaBlur" maxlength="60" value="{{describe}}"/>

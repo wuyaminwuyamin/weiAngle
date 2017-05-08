@@ -150,5 +150,5 @@
 
 <!--下面的浮动按钮-->
 <view class="floatBtn flex ">
-  <button class="push" bindtap="">申请查看</button>
+  <button class="push" bindtap="">申请查看(近期开放)</button>
 </view>
