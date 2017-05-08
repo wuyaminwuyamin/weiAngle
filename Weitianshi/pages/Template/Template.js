@@ -112,41 +112,45 @@ function addNetWork(that, follow_user_id, followed_user_id) {
         },
     })
 }
-//下拉刷新加载
-function loadMore(url,that, api, page, parameter, user_id, page_end) {
-    if (user_id != '') {
-        if (page_end == false) {
-            wx.showToast({
-                title: 'loading...',
-                icon: 'loading'
-            })
-            page++;
-            that.setData({
-                page: page
-            });
-            console.log(that.data.resource_page,that.data.page)
-            wx.request({
-                url: url + api,
-                data: {
-                    res_id: parameter,
-                    page: page,
-                },
-                method: 'POST',
-                success: function (res) {
-                    that.callback(res,that)
-                }
-            })
-            return
-        } else {
-            rqj.errorHide(that, "没有更多了", 3000)
+//上滑加载
+function loadMore(projectCheck, url, that, api, page, parameter, user_id, page_end) {
+    if (projectCheck) {
+        if (user_id != '') {
+            if (page_end == false) {
+                wx.showToast({
+                    title: 'loading...',
+                    icon: 'loading'
+                })
+                page++;
+                that.setData({
+                    page: page
+                });
+                wx.request({
+                    url: url + api,
+                    data: {
+                        res_id: parameter,
+                        page: page,
+                    },
+                    method: 'POST',
+                    success: function (res) {
+                        console.log("资源需求匹配的分页加载接口")
+                        console.log(res)
+                        that.callback(res, that)
+                    }
+                })
+                return
+            } else {
+                rqj.errorHide(that, "没有更多了", 3000)
+            }
         }
     }
+
 }
 
 //函数输出
 module.exports = {
     errorHide: errorHide,
     userNeed: userNeed,
-    loadMore:loadMore,
+    loadMore: loadMore,
 }
 
