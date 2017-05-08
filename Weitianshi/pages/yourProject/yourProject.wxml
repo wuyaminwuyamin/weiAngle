@@ -66,7 +66,7 @@
     <view class="bpBtn">去PC上传</view>
   </view>-->
   <button class="nextBtn" bindtap="public">
-    发布需求
+    发布
   </button>
 
   <!--错语提示-->

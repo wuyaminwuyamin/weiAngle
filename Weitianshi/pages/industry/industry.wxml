@@ -16,7 +16,7 @@
     </block>
   </view>
   <button class="nextBtn" bindtap="certain">
-    确定
+   发布
   </button>
 
   <!--引用尝试-->
