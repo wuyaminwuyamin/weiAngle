@@ -38,7 +38,7 @@ App({
                 },
                 method: 'POST',
                 success: function (res) {
-                  
+
                 },
                 fail: function () {
                   console.log("向后台发送信息失败")
@@ -69,8 +69,8 @@ App({
             },
             method: 'POST',
             success: function (res) {
-              console.log("user_id,是否绑定手机号")
-              console.log(res)
+              console.log("user_id,是否绑定手机号");
+              console.log(res);
               wx.setStorageSync('bind_mobile', res.data.bind_mobile);
               wx.setStorageSync('user_id', res.data.user_id);
               console.log(res.data.user_id)
