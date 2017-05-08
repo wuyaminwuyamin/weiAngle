@@ -202,6 +202,8 @@ Page({
                     wx.setStorageSync('cityNum', 0);
                     wx.setStorageSync('tips', 4);
                     wx.setStorageSync('enchangeCheck', [])
+                    wx.setStorageSync('enchangeValue', []);
+                    wx.setStorageSync('enchangeId', []);
                     wx.switchTab({
                         url: '../../resource/resource'
                     });

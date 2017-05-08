@@ -25,7 +25,7 @@ Page({
         var that = this;
         var options = options;
         var industry = wx.getStorageSync('industry');
-        console.log(industry)
+        //console.log(industry)
         var current = options.current;
         // 0:发布融资项目  1:发布投资需求 2:维护我的项目 3:发布投资案例
         if (current == 0) {
@@ -173,9 +173,6 @@ Page({
         var doMain = this.data.doMain;
         var current = this.data.current;
         var enchangeCheck = this.data.enchangeCheck || wx.getStorageSync('enchangeCheck')
-        // var enchangeCheck = wx.getStorageSync('enchangeCheck') || [];
-        // var checked = wx.getStorageSync('enchangeValue') || [];
-        // var index = wx.getStorageSync('enchangeId') || [];
         that.setData({
             error: "0"
         });
