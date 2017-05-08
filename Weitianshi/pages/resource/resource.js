@@ -405,13 +405,13 @@ Page({
           url: '../myProject/companyInfo/companyInfo'
         })
       }
-    }
-
-    if (bind_mobile == 1 && complete == 0) {
+    } else if (bind_mobile == 1 && complete == 0) {
       wx.navigateTo({
         url: '../myProject/companyInfo/companyInfo'
       })
     }
+
+    
     // if (bind_mobile == 1 && complete == 0) {
     //   if (checkInfo.user_real_name == '') {
     //     wx.navigateTo({
