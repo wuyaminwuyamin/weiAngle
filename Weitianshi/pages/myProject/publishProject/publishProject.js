@@ -87,8 +87,6 @@ Page({
     //页面显示
     onShow: function () {
         // console.log("this is onShow")
-        //维护登录状态
-        app.checkLogin();
         var that = this;
 
         //填入所属领域,项目介绍,所在地区

@@ -14,7 +14,6 @@ Page({
         error_text: "",
         loading: '0',
         picker: 0
-
     },
     onLoad: function (options) {
         var user_id = wx.getStorageSync('user_id');
@@ -136,8 +135,6 @@ Page({
     //页面显示
     onShow: function () {
         var that = this;
-        //维护登录状态
-        app.checkLogin();
         //填入所属领域,项目介绍,所在地区
         var domainValue = wx.getStorageSync('y_domainValue') || "选择领域";
         var domainId = wx.getStorageSync('y_domainId');

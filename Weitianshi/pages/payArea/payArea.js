@@ -19,7 +19,7 @@ Page({
         wx.request({
           url: url+'/api/category/getHotCity',
           data: {},
-          method: 'POST', // OPTIONS, GET, HEAD, POST, PUT, DELETE, TRACE, CONNECT
+          method: 'POST',
           success: function(res){
               var payArea = res.data.data;
               for(var i=0;i<payArea.length; i++){

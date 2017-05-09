@@ -216,7 +216,6 @@
                   </view>
                 </view>
               </block>
-              <view></view>
             </view>
           </view>
         </scroll-view>
