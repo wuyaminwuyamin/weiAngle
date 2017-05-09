@@ -33,19 +33,19 @@ Page({
     },
     //载入页面
     onLoad: function () {
-   
     },
     //显示页面
     onShow: function () {
         var that = this;
         var current = this.data.currentTab;
-        wx.setStorageSync("user_id", "V0VznXa0")
+        // wx.setStorageSync("user_id", "V0VznXa0")；
+        wx.clearStorage()
         var user_id = wx.getStorageSync('user_id');
         console.log(user_id);
         //获取user_id和载入数据
-        rqj.loginPage(that,user_id)
+        rqj.loginPage(that, user_id)
     },
-    loadData: function (that,user_id) {
+    loadData: function (that, user_id) {
         var user_id = user_id;
         //获取我的项目匹配到的投资人
         wx.request({
@@ -232,7 +232,7 @@ Page({
     },
     /*点击tab切换*/
     swichNav: function (e) {
-        var user_id=wx.getStorageSync("user_id")
+        var user_id = wx.getStorageSync("user_id")
         var that = this;
         if (this.data.currentTab === e.target.dataset.current) {
             return false;
