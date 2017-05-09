@@ -11,7 +11,7 @@ App({
     onError: function (msg) {//小程序发生脚本错误,或者api调用失败时,会触发onError,并带上错误信息
         console.log(msg)
     },
-
+  
     //获取用户信息
     getUserInfo: function (cb) {
         var that = this;
@@ -75,6 +75,7 @@ App({
             })
         }
     },
+
 
     //维护登录状态
     /*checkLogin: function () {
@@ -162,7 +163,6 @@ App({
             }
         })
     },
-
 
     //初始本地缓存
     globalData: {

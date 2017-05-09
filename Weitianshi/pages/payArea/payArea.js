@@ -1,6 +1,7 @@
 var rqj = require('../Template/Template.js');
 var app=getApp();
 var url=app.globalData.url;
+var save = true;//是否删除缓存
 Page({
     data: {
         payArea: [],
@@ -13,6 +14,7 @@ Page({
         enchangeValue : [],
         enchangeId : []
     },
+    
     onLoad: function () {
         var that = this;
         var payArea = '';
@@ -21,6 +23,7 @@ Page({
           data: {},
           method: 'POST',
           success: function(res){
+            console.log(res)
               var payArea = res.data.data;
               for(var i=0;i<payArea.length; i++){
                 payArea[i].checked =false;
@@ -28,10 +31,14 @@ Page({
              that.setData({
                 payArea: payArea
              })
+             wx.setStorageSync('hotpayArea', payArea)
           }
         });
         
-        wx.setStorageSync('payArea', payArea)
+        wx.setStorageSync('payArea', payArea);
+        var aaa = wx.getStorageSync('y_payArea');
+        var bbb = wx.getStorageSync('y_payAreaId');
+        console.log(aaa, bbb)
         var enchangeCheck = wx.getStorageSync('payareaenchangeCheck') || [];
         var enchangeValue = wx.getStorageSync('payareaenchangeValue') || [];
         var enchangeId = wx.getStorageSync('payareaenchangeId') || [];
@@ -41,9 +48,12 @@ Page({
             enchangeId : enchangeId,
             index: enchangeId
         });
+        // console.log(enchangeValue,enchangeId)
         // var payArea = wx.getStorageSync('y_area')
     },
-
+    onShow: function () {
+      // 页面显示
+    },
     //下拉刷新
     onPullDownRefresh: function () {
         wx.stopPullDownRefresh()
@@ -126,9 +136,9 @@ Page({
             checked: enchangeCheck,
             index: enchangeId
         });
-        wx.setStorageSync('payareaenchangeValue', enchangeValue)
-        wx.setStorageSync('payareaenchangeId', enchangeId)
-        wx.setStorageSync('payareaenchangeCheck', enchangeCheck)
+        // wx.setStorageSync('payareaenchangeValue', enchangeValue)
+        // wx.setStorageSync('payareaenchangeId', enchangeId)
+        // wx.setStorageSync('payareaenchangeCheck', enchangeCheck)
         // wx.setStorageSync('enchangeValue', enchangeValue);
         // wx.setStorageSync('enchangeId', enchangeId);
         console.log(enchangeValue, enchangeId)
@@ -136,15 +146,16 @@ Page({
 
     //点击确定
     certain: function () {
+        save = true;
         var that = this;
         // var console_checked = this.data.checked.join();
-        var checked = this.data.checked;
+        // var checked = this.data.checked;
         var id = this.data.id;
-        var index = this.data.index;
+        // var index = this.data.index;
         var payArea = this.data.payArea;
-        var checked = this.data.enchangeValue || wx.getStorageSync('payareaenchangeValue');
-        var index = this.data.enchangeId || wx.getStorageSync('payareaenchangeId');
-        var enchangeCheck = this.data.enchangeCheck || wx.getStorageSync('payareaenchangeCheck')
+        var checked = this.data.enchangeValue;
+        var index = this.data.enchangeId;
+        var enchangeCheck = this.data.enchangeCheck;
         that.setData({
             error: "0"
         });
@@ -167,11 +178,17 @@ Page({
             if (checked == "") {
                 wx.setStorageSync('y_payArea', "选择城市");
                 wx.setStorageSync('y_payAreaId', '');
+                wx.setStorageSync('payareaenchangeValue', checked)
+                wx.setStorageSync('payareaenchangeId', index)
+                wx.setStorageSync('payareaenchangeCheck',enchangeCheck)
                 // wx.setStorageSync('domainChecked', checked)
             } else {
                 wx.setStorageSync('y_payArea', checked);
                 wx.setStorageSync('y_payAreaId', index);
                 // wx.setStorageSync('domainChecked', checked)
+                wx.setStorageSync('payareaenchangeValue', checked)
+                wx.setStorageSync('payareaenchangeId', index)
+                wx.setStorageSync('payareaenchangeCheck',enchangeCheck)
             }
 
             // console.log(checked, index);
@@ -179,8 +196,18 @@ Page({
                 delta: 1 // 回退前 delta(默认为1) 页面
             })
         }
+        save = !save;
 
     }
+    // ,
+    // onUnload: function () {
+    //   // 页面关闭
+    //   if (save) {
+    //     wx.setStorageSync('payareaenchangeValue', []);
+    //     wx.setStorageSync('payareaenchangeId', []);
+    //     wx.setStorageSync('payareaenchangeCheck', []);
+    //   }
+    // }
 
 
 });

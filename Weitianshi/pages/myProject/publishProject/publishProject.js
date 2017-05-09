@@ -1,5 +1,6 @@
 var app=getApp();
 var url=app.globalData.url;
+var save = true;
 Page({
     data: {
         describe: "",
@@ -160,6 +161,7 @@ Page({
 
     //点击发布
     public: function () {
+        save = !save;
         var that = this;
         var theData = that.data;
         var describe = this.data.describe;
@@ -188,6 +190,7 @@ Page({
                 method: 'POST',
                 success: function (res) {
                     console.log(res)
+
                     //数据清空
                     wx.setStorageSync('project_id', res.data.project_index);
                     wx.setStorageSync('describe', "");
@@ -253,5 +256,34 @@ Page({
 
         }
 
+    },
+    onUnload: function () {
+      // 页面关闭
+      if (save) {
+        wx.setStorageSync('enchangeValue', []);
+        wx.setStorageSync('enchangeId', []);
+        wx.setStorageSync('enchangeCheck', [])
+        wx.setStorageSync('payenchangeValue', [])
+        wx.setStorageSync('payenchangeId', [])
+        wx.setStorageSync('payenchangeCheck', [])
+        wx.setStorageSync('paymoneychangeValue', [])
+        wx.setStorageSync('paymoneychangeId', [])
+        wx.setStorageSync('paymoneyenchangeCheck', [])
+        wx.setStorageSync('payareachangeValue', [])
+        wx.setStorageSync('payareachangeId', [])
+        wx.setStorageSync('payareaenchangeCheck', [])
+        wx.setStorageSync('domainValue', []);
+        wx.setStorageSync('domainId', '');
+        wx.setStorageSync('y_domainValue', "选择领域");
+        wx.setStorageSync('y_domainId', []);
+        wx.setStorageSync('m_domainValue', []);
+        wx.setStorageSync('m_domainId', []);
+        wx.setStorageSync('y_payArea', "选择城市");
+        wx.setStorageSync('y_payAreaId', []);;
+        wx.setStorageSync('y_payStage', "选择阶段");
+        wx.setStorageSync('y_payStageId', []);;
+        wx.setStorageSync('y_payMoney', "选择金额");
+
+      }
     }
 });
