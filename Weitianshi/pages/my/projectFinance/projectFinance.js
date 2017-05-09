@@ -6,7 +6,7 @@ Page({
       text: "新增项目"
     }
   },
-  onLoad: function () {
+  onShow: function () {
     var that = this;
     var user_id = wx.getStorageSync('user_id')
 
@@ -37,7 +37,15 @@ Page({
     var id = thisData.id;
     var index = thisData.index
     wx.navigateTo({
-      url: '../../myProject/projectDetail/projectDetail?id=' + id + "&&index=" + index
+      url: '../../myProject/projectDetail/projectDetail?id=' + id + "&&index=" + index + "&&currentTab=" + 0
+    })
+  },
+  //编辑项目
+  editDetail: function (e) {
+    var id=e.currentTarget.dataset.id;
+    var user_id = wx.getStorageSync('user_id')
+    wx.navigateTo({
+      url: '/pages/myProject/maintainProject/maintainProject?pro_id=' + id + "&&user_id=" + user_id,
     })
   },
   // 按钮一号

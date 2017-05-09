@@ -178,5 +178,11 @@ Page({
             title: '项目-' + pro_intro,
             path: '/pages/myProject/myDetail?pro_id' + that.data.id
         }
+    },
+    //跳转到我的页面
+    toMy:function(){
+        wx.switchTab({
+          url: '/pages/my/my',
+        })
     }
 });
