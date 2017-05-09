@@ -94,9 +94,9 @@ Page({
             }
         }
         //console.log(industry);
-        wx.setStorageSync('industry', industry)
+        wx.setStorageSync('industry', industry);
 
-        console.log(domainValue,domainId)
+        console.log(domainValue,domainId);
         var enchangeCheck = wx.getStorageSync('enchangeCheck') || [];
         var enchangeValue = wx.getStorageSync('enchangeValue') || [];
         var enchangeId = wx.getStorageSync('enchangeId') || [];
@@ -183,6 +183,7 @@ Page({
         that.setData({
             error: "0"
         });
+        console.log(checked, index)
         wx.setStorageSync('enchangeValue', checked);
         wx.setStorageSync('enchangeId', index);
         wx.setStorageSync('enchangeCheck', enchangeCheck);
@@ -203,6 +204,7 @@ Page({
                 } else {
                     wx.setStorageSync('domainValue', checked);
                     wx.setStorageSync('domainId', index);
+                    console.log(wx.getStorageSync('domainId'))
                     wx.setStorageSync('enchangeCheck', enchangeCheck);
                 }
             } else if (current == 1) {
@@ -211,6 +213,7 @@ Page({
                     wx.setStorageSync('y_domainId', '');
                 } else {
                     wx.setStorageSync('y_domainValue', checked);
+                    console.log(checked);
                     wx.setStorageSync('y_domainId', index);
                     wx.setStorageSync('enchangeCheck', enchangeCheck);
                 }

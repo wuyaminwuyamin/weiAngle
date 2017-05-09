@@ -192,7 +192,7 @@ Page({
                     wx.setStorageSync('y_payMoneyId', y_payMoneyId)
                     wx.setStorageSync('y_payArea', y_payArea)
                     wx.setStorageSync('y_payAreaId', y_payAreaId)
-                    console.log(y_payArea, y_payAreaId);
+                    // console.log(y_payArea, y_payAreaId);
 
 // =====================================================================
                     //投资领域
@@ -211,7 +211,7 @@ Page({
                     wx.setStorageSync('payareaenchangeValue', y_payArea);
                     wx.setStorageSync('payareaenchangeId', y_payAreaId);
                     wx.setStorageSync('payareaenchangeCheck', y_payAreaAllchecked);
-
+                    //console.log(y_payAreaAllchecked)
 
                     that.setData({
                         domainValue: y_domainValue,
@@ -243,7 +243,7 @@ Page({
         var payStageId = wx.getStorageSync('y_payStageId');
         var payMoney = wx.getStorageSync('y_payMoney') || "选择金额";
         var payMoneyId = wx.getStorageSync('y_payMoneyId')
-        console.log(domainValue, domainId, describe, payArea, payAreaId, payStage, payStageId)
+        //console.log(domainValue, domainId, describe, payArea, payAreaId, payStage, payStageId)
         that.setData({
             domainValue: domainValue,
             domainId: domainId,
@@ -316,7 +316,9 @@ Page({
                 },
                 method: 'POST',
                 success: function (res) {
-                    // console.log(res)
+                  console.log(res)
+                  console.log(res.data.status_code, res.data.error_msg)
+                  if (res.data.status_code == 2000000){
                     wx.setStorageSync('investor_id', res.data.investor_id)
                     var current = that.data.current;
                     //数据清空
@@ -330,15 +332,33 @@ Page({
                     // wx.setStorageSync('y_payArea', "选择城市")
                     // wx.setStorageSync('y_payAreaId', [])
                     if (current == 1) {
-                        wx.switchTab({
-                            url:"/pages/my/my"
-                        })
+                      wx.switchTab({
+                        url: "/pages/my/my"
+                      })
                     } else {
-                        wx.switchTab({
-                            url: '../resource/resource'
-                        });
+                      wx.switchTab({
+                        url: '../resource/resource'
+                      });
                     }
+                    
+                  }else{             
+                    that.setData({
+                      error: "1",
+                      error_text: res.data.error_msg
+                    })
+                    setTimeout(
+                      function(){
+                        that.setData({
+                          error: "0"
+                        })
+                      }
+                      ,2000)                
+                  }
                 },
+              fail: function () {
+                // fail
+                console.log("fail")
+              },
             })
         } else {
             that.setData({
@@ -386,15 +406,15 @@ Page({
         wx.setStorageSync('payareaenchangeCheck', [])
         wx.setStorageSync('domainValue', []);
         wx.setStorageSync('domainId', '');
-        wx.setStorageSync('y_domainValue', "选择领域");
-        wx.setStorageSync('y_domainId', []);
-        wx.setStorageSync('m_domainValue', []);
-        wx.setStorageSync('m_domainId', []);
-        wx.setStorageSync('y_payArea', "选择城市");
-        wx.setStorageSync('y_payAreaId', []);;
-        wx.setStorageSync('y_payStage', "选择阶段"); 
-        wx.setStorageSync('y_payStageId', []);;
-        wx.setStorageSync('y_payMoney', "选择金额");
+        // wx.setStorageSync('y_domainValue', "选择领域");
+        // wx.setStorageSync('y_domainId', []);
+        // wx.setStorageSync('m_domainValue', []);
+        // wx.setStorageSync('m_domainId', []);
+        // wx.setStorageSync('y_payArea', "选择城市");
+        // wx.setStorageSync('y_payAreaId', []);;
+        // wx.setStorageSync('y_payStage', "选择阶段"); 
+        // wx.setStorageSync('y_payStageId', []);;
+        // wx.setStorageSync('y_payMoney', "选择金额");
 
       }
       console.log("close");
