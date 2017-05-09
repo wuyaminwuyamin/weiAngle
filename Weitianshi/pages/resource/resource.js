@@ -34,7 +34,6 @@ Page({
     },
     //载入页面
     onLoad: function () {
-
         //获取屏幕宽高(用于选项卡切换)
         /*wx.getSystemInfo({
           success: function (res) {
@@ -317,17 +316,14 @@ Page({
     checkInfo: function (data) {
         var that = this;
         var user_id = wx.getStorageSync('user_id');
-        var bind_mobile = wx.getStorageSync('bind_mobile');
         var complete = that.data.complete;
         var checkInfo = that.data.checkInfo;
-        that.setData({
-            bind_mobile: bind_mobile
-        });
-        if (bind_mobile == 0) {
+
+        if (user_id == 0) {
             wx.navigateTo({
                 url: '../myProject/personInfo/personInfo'
             })
-        } else if (bind_mobile == 1 && complete == 1) {
+        } else if (user_id != 1 && complete == 1) {
             if (data == "publishProject") {
                 wx.navigateTo({
                     url: "../myProject/publishProject/publishProject"
@@ -346,7 +342,7 @@ Page({
                 })
 
             }
-        } else if (bind_mobile == 1 && complete == 0) {
+        } else if (user_id != 1 && complete == 0) {
             wx.navigateTo({
                 url: '../myProject/companyInfo/companyInfo'
             })
