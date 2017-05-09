@@ -48,10 +48,10 @@ Page({
 				},
 				method: 'POST',
 				success: function (res) {
+                    console.log("我的人脉列表")
 					console.log(res)
 					var netWork = res.data.data;//所有的用户
 					var page_end = res.data.page_end;
-					console.log(netWork);
 					that.setData({
 						netWork: netWork,
 						page_end: page_end,
