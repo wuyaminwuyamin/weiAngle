@@ -7,6 +7,7 @@
       <!--<view class="title offerAdd" bindtap="offerAdd">自定义添加</view>-->
     </view>
     <view class="context flex">
+    <!--block用for来绑定数据-->
       <block wx:for="{{enchange}}" wx:key="{{item.industry_id}}">
         <label class="tips">
           <view class="{{enchangeCheck[index]==true?'checkedOne':''}}" id="{{item.resource_id}}" data-index="{{index}}" data-value='{{item.resource_name}}' data-check="false" bindtap="checkboxChange">
@@ -38,6 +39,6 @@
   <view class="error" wx:if="{{error=='1'}}">{{error_text}}</view>
   <!--发布项目-->
   <button class="nextBtn" bindtap="publish">
-    发布项目
+    发布
   </button>
 </view>

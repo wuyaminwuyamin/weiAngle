@@ -19,7 +19,8 @@ page {
   padding: 40rpx;
   margin: 0;
 }
-.user_email label{
+
+.user_email label {
   margin-right: -40rpx;
   margin-top: -40rpx;
 }
@@ -35,7 +36,8 @@ page {
 .user_left {
   width: 80%;
 }
-.user_left .flex:first-child{
+
+.user_left .flex:first-child {
   align-items: flex-end;
   margin-bottom: 96rpx;
 }
@@ -123,6 +125,8 @@ page {
   width: 36rpx;
   height: 36rpx;
   display: block;
+  padding: 0 32rpx;
+  margin-right: -32rpx;
 }
 
 .s_pro_sorts {
@@ -144,7 +148,7 @@ page {
   background: #f2f2f2;
   font-size: 20rpx;
   height: 94rpx;
-  margin:0 32rpx;
+  margin: 0 32rpx;
   border-radius: 8rpx;
 }
 
@@ -200,31 +204,36 @@ page {
   margin-bottom: 32rpx;
   padding-top: 24rpx;
 }
-.invest_info_frame .project_card{
-  border:none;
+
+.invest_info_frame .project_card {
+  border: none;
   border-left: 1px solid #e0e0e0;
   padding-top: 0;
   margin-top: 0;
-  margin-bottom:0;
+  margin-bottom: 0;
   padding-bottom: 64rpx;
 }
-.invest_info_frame .project_card:last-child{
+
+.invest_info_frame .project_card:last-child {
   border-left: 0;
   padding-bottom: 64rpx;
 }
-.case_pic{
+
+.case_pic {
   width: 16rpx;
   height: 16rpx;
   margin-left: -40rpx;
   margin-right: 32rpx;
 }
+
 .project_card {
   border: 1px solid #e0e0e0;
   border-radius: 8rpx;
   padding: 32rpx;
   margin-bottom: 22rpx;
 }
-.project_card:first-child{
+
+.project_card:first-child {
   margin-top: 32rpx;
 }
 

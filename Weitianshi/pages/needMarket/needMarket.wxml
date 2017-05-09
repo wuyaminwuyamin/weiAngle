@@ -15,7 +15,7 @@
     <scroll-view scroll-y="true" bindscrolltolower="financingNeed">
       <view class="financingNeed">
         <block wx:for="{{financingNeed}}" wx:key="{{item.pro_id}}">
-            <template is="financingCard" data="{{item:item}}"></template>
+            <template is="financingCard" data="{{item:item}}" ></template>
         </block>
       </view>
       <view style="height:98rpx;"></view>

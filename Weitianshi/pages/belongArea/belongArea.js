@@ -92,6 +92,7 @@ Page({
             console_province: province[index].area_title,
             provinceNum: province[index].area_id
         });
+        console.log(this.data.provinceNum)
 
         // console.log(this.data.console_province);
         wx.request({
@@ -121,6 +122,7 @@ Page({
             belongArea: this.data.console_province + city[index].area_title,
             cityNum: city[index].area_id
         });
+        console.log(this.data.belongArea,this.data.provinceNum,this.data.cityNum)
         if (current == 0) {
             if (this.data.belongArea == "") {
                 wx.setStorageSync('belongArea', "选择地区");
