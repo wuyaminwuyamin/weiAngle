@@ -18,7 +18,7 @@ Page({
       success: function (res) {
         if (res.code) {
           //请求查看者信息
-          wx.request({
+          /*wx.request({
             url: url + '/api/wx/returnLoginStatus',
             data: {
               code: res.code
@@ -81,7 +81,7 @@ Page({
                 user_mobile: user_mobile
               })
             }
-          })
+          })*/
         }
       }
     });
