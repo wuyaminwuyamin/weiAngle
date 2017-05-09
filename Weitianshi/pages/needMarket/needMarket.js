@@ -11,6 +11,7 @@ Page({
     investPage: 1,
     resourcePage: 1,
     user: 0,
+    userId : 0,
     investNeedcheck: true,
     financingNeedcheck: true,
     resourceNeedcheck: true
@@ -99,19 +100,38 @@ Page({
   projectDetail: function (e) {
     // 获取我自己的项目id
     var that = this;
-    // 获取当前点击的id
+    // 获取当前点击的项目id
     var id = e.currentTarget.dataset.id
     console.log(id);
     wx.request({
-      url: url + '/api/project/projectlsMine',
+      url: url + '/api/project/projectIsMine',
       data: {
         pro_id: id
       },
       method: 'POST',
       success: function (res) {
-        console.log(res)
+        var that = this;
+        var userId = res.data.user_id;
+        var user = wx.getStorageSync('user_id');
+        console.log(userId);
+        console.log(user);
+        // that.setData({
+        //   userId : userId
+        // })
+        if (userId==user ) {
+          wx.navigateTo({
+            url: '/pages/myProject/projectDetail/projectDetail?id=' + id + '&&index=' + 1
+          })
+        } else {
+          wx.navigateTo({
+            url: '../yourProject/yourDetail?id=' + id,
+          })
+        }
+        
       },
     })
+    
+
     // if (index != -1) {
     //   wx.navigateTo({
     //     url: '/pages/myProject/projectDetail/projectDetail?id=' + id + '&&index=' + index

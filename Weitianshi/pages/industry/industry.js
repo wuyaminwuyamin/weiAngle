@@ -24,6 +24,7 @@ Page({
         // console.log("this is onLoad")
         var that = this;
         var options = options;
+        console.log(options);
         var industry = wx.getStorageSync('industry');
         //console.log(industry)
         var current = options.current;
