@@ -38,15 +38,9 @@ Page({
     onShow: function () {
         var that = this;
         var current = this.data.currentTab;
-        // wx.setStorageSync("user_id", "V0VznXa0")；
-        wx.clearStorage()
+        // wx.setStorageSync("user_id", "V0VznXa0")
+        // wx.clearStorage()
         var user_id = wx.getStorageSync('user_id');
-        console.log(user_id);
-        //获取user_id和载入数据
-        rqj.loginPage(that, user_id)
-    },
-    loadData: function (that, user_id) {
-        var user_id = user_id;
         //获取我的项目匹配到的投资人
         wx.request({
             url: url + '/api/project/getMyProject',
