@@ -188,19 +188,20 @@ Page({
         }
         save = !save;
 
-  },  
-  onUnload: function () {
-    console.log(save)
-    // 页面关闭
-    if (save) {
-      wx.setStorageSync('payenchangeValue', []);
-      wx.setStorageSync('payenchangeId', []);
-      wx.setStorageSync('payenchangeCheck', []);
-      wx.setStorageSync('y_payStage', "选择阶段");
-      wx.setStorageSync('y_payStageId', []);
-      console.log("clear")
-    }
   }
+  // ,  
+  // onUnload: function () {
+  //   console.log(save)
+  //   // 页面关闭
+  //   if (save) {
+  //     wx.setStorageSync('payenchangeValue', []);
+  //     wx.setStorageSync('payenchangeId', []);
+  //     wx.setStorageSync('payenchangeCheck', []);
+  //     wx.setStorageSync('y_payStage', "选择阶段");
+  //     wx.setStorageSync('y_payStageId', []);
+  //     console.log("clear")
+  //   }
+  // }
 
 
 });

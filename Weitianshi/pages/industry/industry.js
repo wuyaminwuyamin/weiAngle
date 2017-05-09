@@ -233,15 +233,15 @@ Page({
                 delta: 1
             })
         }
-  },
-  onUnload: function () {
-    console.log(save)
-    // 页面关闭
-    if(save){   
-      wx.setStorageSync('enchangeValue', []);
-      wx.setStorageSync('enchangeId', []);
-      wx.setStorageSync('enchangeCheck',[]);
-    }
   }
+  // ,
+  // onUnload: function () {
+  //   // 页面关闭
+  //   if(save){   
+  //     wx.setStorageSync('enchangeValue', []);
+  //     wx.setStorageSync('enchangeId', []);
+  //     wx.setStorageSync('enchangeCheck',[]);
+  //   }
+  // }
 
 });

@@ -180,16 +180,17 @@ Page({
             })
         }
         save = !save;
-  },
-  onUnload: function () {
-    console.log(save)
-    // 页面关闭
-    if (save) {
-      wx.setStorageSync('paymoneyenchangeValue',[]);
-      wx.setStorageSync('paymoneyenchangeId',[]);
-      wx.setStorageSync('paymoneyenchangeCheck',[]);
-
-    }
   }
+  // ,
+  // onUnload: function () {
+  //   console.log(save)
+  //   // 页面关闭
+  //   if (save) {
+  //     wx.setStorageSync('paymoneyenchangeValue',[]);
+  //     wx.setStorageSync('paymoneyenchangeId',[]);
+  //     wx.setStorageSync('paymoneyenchangeCheck',[]);
+
+  //   }
+  // }
 
 });

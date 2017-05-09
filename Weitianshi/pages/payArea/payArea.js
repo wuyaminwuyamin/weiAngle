@@ -14,6 +14,7 @@ Page({
         enchangeValue : [],
         enchangeId : []
     },
+    
     onLoad: function () {
         var that = this;
         var payArea = '';
@@ -22,6 +23,7 @@ Page({
           data: {},
           method: 'POST', // OPTIONS, GET, HEAD, POST, PUT, DELETE, TRACE, CONNECT
           success: function(res){
+            console.log(res)
               var payArea = res.data.data;
               for(var i=0;i<payArea.length; i++){
                 payArea[i].checked =false;
@@ -29,10 +31,14 @@ Page({
              that.setData({
                 payArea: payArea
              })
+             wx.setStorageSync('hotpayArea', payArea)
           }
         });
         
-        wx.setStorageSync('payArea', payArea)
+        wx.setStorageSync('payArea', payArea);
+        var aaa = wx.getStorageSync('y_payArea');
+        var bbb = wx.getStorageSync('y_payAreaId');
+        console.log(aaa, bbb)
         var enchangeCheck = wx.getStorageSync('payareaenchangeCheck') || [];
         var enchangeValue = wx.getStorageSync('payareaenchangeValue') || [];
         var enchangeId = wx.getStorageSync('payareaenchangeId') || [];
@@ -45,7 +51,9 @@ Page({
         // console.log(enchangeValue,enchangeId)
         // var payArea = wx.getStorageSync('y_area')
     },
-
+    onShow: function () {
+      // 页面显示
+    },
     //下拉刷新
     onPullDownRefresh: function () {
         wx.stopPullDownRefresh()
@@ -190,15 +198,16 @@ Page({
         }
         save = !save;
 
-    },
-    onUnload: function () {
-      // 页面关闭
-      if (save) {
-        wx.setStorageSync('payareaenchangeValue', []);
-        wx.setStorageSync('payareaenchangeId', []);
-        wx.setStorageSync('payareaenchangeCheck', []);
-      }
     }
+    // ,
+    // onUnload: function () {
+    //   // 页面关闭
+    //   if (save) {
+    //     wx.setStorageSync('payareaenchangeValue', []);
+    //     wx.setStorageSync('payareaenchangeId', []);
+    //     wx.setStorageSync('payareaenchangeCheck', []);
+    //   }
+    // }
 
 
 });
