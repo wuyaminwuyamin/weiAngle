@@ -118,7 +118,9 @@ scroll-view {
 }
 
 /*others的卡片*/
-
+.others{
+    margin-bottom:20rpx;
+}
 .others_pic {
   width: 60rpx;
   height: 60rpx;
