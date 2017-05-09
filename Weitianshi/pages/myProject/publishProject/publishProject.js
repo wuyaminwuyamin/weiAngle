@@ -1,5 +1,6 @@
 var app=getApp();
 var url=app.globalData.url;
+var save = true;
 Page({
     data: {
         describe: "",
@@ -162,6 +163,7 @@ Page({
 
     //点击发布
     public: function () {
+        save = !save;
         var that = this;
         var theData = that.data;
         var describe = this.data.describe;
@@ -190,6 +192,7 @@ Page({
                 method: 'POST',
                 success: function (res) {
                     console.log(res)
+
                     //数据清空
                     wx.setStorageSync('project_id', res.data.project_index);
                     wx.setStorageSync('describe', "");
@@ -255,5 +258,21 @@ Page({
 
         }
 
+    },
+    onUnload: function () {
+      // 页面关闭
+      if (save) {
+        wx.setStorageSync('enchangeValue', []);
+        wx.setStorageSync('enchangeId', []);
+        wx.setStorageSync('enchangeCheck', []);
+        wx.setStorageSync('domainValue', "选择领域");
+        wx.setStorageSync('domainId', []);
+        wx.setStorageSync('y_domainValue', "选择领域");
+        wx.setStorageSync('y_domainId', []);
+        wx.setStorageSync('m_domainValue', []);
+        wx.setStorageSync('m_domainId', []);
+
+      }
+      console.log("close");
     }
 });

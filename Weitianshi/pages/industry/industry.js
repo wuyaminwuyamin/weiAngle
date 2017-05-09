@@ -2,6 +2,8 @@ var rqj = require('../Template/Template.js');
 var app = getApp();
 // 所属领域
 var url = app.globalData.url;
+var initialArr={};//初始数组
+var save = true;//是否删除缓存
 Page({
     data: {
         // 名称
@@ -31,6 +33,7 @@ Page({
         if (current == 0) {
             var domainValue = wx.getStorageSync('domainValue')
             var domainId = wx.getStorageSync('domainId')
+            console.log(domainValue,domainId)
             if (domainValue == "选择领域") {
                 domainValue = [];
                 domainId = [];
@@ -57,7 +60,7 @@ Page({
             var domainId = options.industryId;
             var domainValue = domainValue.split(",")
             var domainId = domainId.split(",")
-            console.log(domainValue,domainId)
+            // console.log(domainValue,domainId)
             for (var i = 0; i < domainId.length; i++) {
                 domainId[i] = domainId[i] * 1
             }
@@ -90,10 +93,10 @@ Page({
                 industry[i].checked = false;
             }
         }
-        console.log(industry);
+        //console.log(industry);
         wx.setStorageSync('industry', industry)
 
-        // console.log(domainValue,domainId)
+        console.log(domainValue,domainId)
         var enchangeCheck = wx.getStorageSync('enchangeCheck') || [];
         var enchangeValue = wx.getStorageSync('enchangeValue') || [];
         var enchangeId = wx.getStorageSync('enchangeId') || [];
@@ -161,24 +164,28 @@ Page({
       enchange: enchange,
       enchangeValue: enchangeValue,
       enchangeId: enchangeId,
-      enchangeCheck: enchangeCheck,
+      enchangeCheck: enchangeCheck
     });
-     wx.setStorageSync('enchangeValue', enchangeValue);
-     wx.setStorageSync('enchangeId', enchangeId);
-    console.log(enchangeValue, enchangeId)
+      // wx.setStorageSync('enchangeValue', enchangeValue);
+      // wx.setStorageSync('enchangeId', enchangeId);
+      console.log(enchangeValue, enchangeId)
   },
     //点击确定
     certain: function () {
+        save = true;
         var that = this;
-        var checked = this.data.enchangeValue || wx.getStorageSync('enchangeValue');
+        var checked = this.data.enchangeValue;
         var id = this.data.id;
-        var index = this.data.enchangeId || wx.getStorageSync('enchangeId');
+        var index = this.data.enchangeId;
         var doMain = this.data.doMain;
         var current = this.data.current;
-        var enchangeCheck = this.data.enchangeCheck || wx.getStorageSync('enchangeCheck')
+        var enchangeCheck = this.data.enchangeCheck;
         that.setData({
             error: "0"
         });
+        wx.setStorageSync('enchangeValue', checked);
+        wx.setStorageSync('enchangeId', index);
+        wx.setStorageSync('enchangeCheck', enchangeCheck);
         // 选择的标签最多是5个
         if (checked.length > 5) {
             // 如果超过5个提示锁雾
@@ -221,11 +228,20 @@ Page({
                 }
             }
             
-            
+            save =!save;
             wx.navigateBack({
-                delta: 1 // 回退前 delta(默认为1) 页面
+                delta: 1
             })
         }
+  },
+  onUnload: function () {
+    console.log(save)
+    // 页面关闭
+    if(save){   
+      wx.setStorageSync('enchangeValue', []);
+      wx.setStorageSync('enchangeId', []);
+      wx.setStorageSync('enchangeCheck',[]);
     }
+  }
 
 });
