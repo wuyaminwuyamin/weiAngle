@@ -40,6 +40,7 @@ Page({
             url: url+'/api/category/getWxProjectCategory',
             method: 'POST',
             success: function (res) {
+                console.log("各种条目分类")
                 console.log(res)
                 var thisData = res.data.data;
                 wx.setStorageSync('area', thisData.area);
