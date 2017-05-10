@@ -25,7 +25,6 @@ Page({
     var user_id = options.user_id;
     var pro_id = options.pro_id;
     var current = options.current;
-    console.log(current);
     var stageValue = [];
     var stageId = [];
     var scaleValue = [];

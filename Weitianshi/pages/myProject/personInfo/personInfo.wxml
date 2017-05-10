@@ -8,7 +8,7 @@
       <input placeholder="手机号" type="number" bindblur="checkPhone" value="{{telphone}}" />
     </view>
     <view id="checkCode" class="flex">
-      <input placeholder="验证码" type="number" value="{{checkCode}}" bindblur="checkCode2" />
+      <input placeholder="验证码" type="number" value="{{checkCode}}" bindinput="checkCode2" />
       <button class="clear {{time=='1'?'clearOn':''}}" bindtap="checkCode"  disabled="{{time==1}}" loading="{{checking==1}}">{{getCode}}</button>
     </view>
     <button form-type="submit" class="nextBtn" bindtap="nextPage" loading="{{loading=='1'}}">

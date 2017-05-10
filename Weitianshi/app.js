@@ -9,11 +9,7 @@ App({
         // console.log(options.scene);
     },
     onShow: function () {
-        var that = this;
-        //进行授权验证
-        /*this.getUserInfo(function (userInfo) {
-            console.log("已经有了userInfo");
-        });*/
+       
     },
     onError: function (msg) {//小程序发生脚本错误,或者api调用失败时,会触发onError,并带上错误信息
         console.log(msg)
@@ -23,8 +19,10 @@ App({
         var that = this;
         //如果全局变量里有userInfo就去执行cb函数,如果全局变量里没有userInfo就去调用授权接口
         if (this.globalData.userInfo) {
+            console.log("全局变量userInfo存在")
             typeof cb == "function" && cb(this.globalData.userInfo)
         } else {
+            console.log("全局变量userInfo不存在")
             //调用登录接口
             wx.login({
                 success: function (login) {
@@ -46,7 +44,7 @@ App({
                         complete: function () {
                             //如果已经存在session_time就进行比较,如果不没有就建一个session_time;
                             if (that.globalData.session_time) {
-                                var timeNow = new (Data.now())
+                                var timeNow = new (Date.now())
                                 console.log(that.globalData.session_time,timeNow)
                             } else {
                                 that.checkLogin(that);
@@ -75,10 +73,10 @@ App({
                 success: function (res) {
                     console.log("这里是获取到UserInfo后调用returnOauth")
                     console.log(res);
-                    that.gobalData.open_session = res.data.open_session;
-                    that.gobalData.session_time = new (Date.now());
-                    that.gobalData.user_id = res.data.user_id;
-                    console.log(that.gobalData.session_time)
+                    that.globalData.open_session = res.data.open_session;
+                    that.globalData.session_time = Date.now();
+                    that.globalData.user_id = res.data.user_id;
+                    console.log(that.globalData.session_time)
                     wx.setStorageSync("user_id", res.data.user_id)
                 },
                 fail: function () {
@@ -95,10 +93,10 @@ App({
                 success: function (res) {
                     console.log("这里是没拿到UserInfo后调用returnOauth")
                     console.log(res);
-                    that.gobalData.open_session = res.data.open_session;
-                    that.gobalData.session_time = new (Date.now());
-                    that.gobalData.user_id = res.data.user_id;
-                    console.log(that.gobalData.session_time)
+                    that.globalData.open_session = res.data.open_session;
+                    that.globalData.session_time = Date.now();
+                    that.globalData.user_id = res.data.user_id;
+                    console.log(that.globalData.session_time)
                     wx.setStorageSync("user_id", res.data.user_id)
                 },
                 fail: function () {

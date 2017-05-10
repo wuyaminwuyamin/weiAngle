@@ -39,7 +39,7 @@ Page({
   onShow: function () {
     var that = this;
     var current = this.data.currentTab;
-    wx.setStorageSync("user_id", "1ryE5Enr")
+    //wx.setStorageSync("user_id", "1ryE5Enr")
     // wx.clearStorage()
 
     var user_id = wx.getStorageSync('user_id');
@@ -213,7 +213,11 @@ Page({
       fail: function (res) {
         console.log(res)
       }
-    })
+    });
+     //进行授权验证
+    app.getUserInfo(function (userInfo) {
+        console.log("已经有了userInfo");
+    });
   },
   //下拉刷新
   onPullDownRefresh: function () {
@@ -269,6 +273,12 @@ Page({
             wx.navigateTo({
                 url: '../myProject/companyInfo/companyInfo'
             })
+        }
+        //修复bug
+        /*wx.navigateTo({
+            url: '../myProject/personInfo/personInfo'
+        })*/
+
 
         }
     } else if (user_id != 1 && complete == 0) {
