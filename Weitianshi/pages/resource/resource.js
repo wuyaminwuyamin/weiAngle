@@ -38,7 +38,7 @@ Page({
     onShow: function () {
         var that = this;
         var current = this.data.currentTab;
-        // wx.setStorageSync("user_id", "V0VznXa0")
+        wx.setStorageSync("user_id", "V0VznXa0")
         // wx.clearStorage()
         var user_id = wx.getStorageSync('user_id');
         //获取我的项目匹配到的投资人

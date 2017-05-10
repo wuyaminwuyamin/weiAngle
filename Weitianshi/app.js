@@ -11,9 +11,9 @@ App({
     onShow: function () {
         var that = this;
         //进行授权验证
-        this.getUserInfo(function (userInfo) {
+        /*this.getUserInfo(function (userInfo) {
             console.log("已经有了userInfo");
-        });
+        });*/
     },
     onError: function (msg) {//小程序发生脚本错误,或者api调用失败时,会触发onError,并带上错误信息
         console.log(msg)
