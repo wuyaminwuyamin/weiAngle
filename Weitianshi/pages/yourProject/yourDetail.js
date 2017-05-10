@@ -13,7 +13,6 @@ Page({
         load: 0
     },
     onLoad: function (options) {
-        app.checkLogin();
         var that = this;
         var id = options.id;
         var index = options.index;

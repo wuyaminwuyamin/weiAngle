@@ -1,6 +1,7 @@
 var rqj = require('../Template/Template.js');
 var app=getApp();
 var url=app.globalData.url;
+var save = true;//是否删除缓存
 Page({
     data: {
         payStage: [],
@@ -27,7 +28,10 @@ Page({
         var enchangeCheck = wx.getStorageSync('payenchangeCheck') || [];
         var enchangeValue = wx.getStorageSync('payenchangeValue') || [];
         var enchangeId = wx.getStorageSync('payenchangeId') || [];
-        //console.log(enchangeCheck);
+        
+        console.log(enchangeCheck);
+        console.log(enchangeValue);
+        console.log(enchangeId);
         that.setData({
             payStage: payStage,
             enchangeCheck : enchangeCheck,
@@ -78,7 +82,7 @@ Page({
         var that = this;
         // console.log(that)
         var thisData = e.currentTarget.dataset;//{value: "种子轮 ", index: 0, check: "false"}
-        console.log(thisData)
+        // console.log(thisData)
         var e_index = thisData.index;//数组下标
         var e_value = thisData.value;//值
         var e_check = thisData.check;//是否被选中
@@ -91,8 +95,8 @@ Page({
             enchangeCheck.push(enchange[i].checked)//被选中的状态
         }
 
-        console.log(enchange)
-        console.log(enchangeId)
+        // console.log(enchange)
+        // console.log(enchangeId)
         // console.log(enchangeCheck)
         // console.log(enchangeCheck[e_index]);
         if (enchangeCheck[e_index] == false) {//当确认按钮时
@@ -122,9 +126,9 @@ Page({
             enchangeCheck: enchangeCheck,
             index: enchangeId
         });
-        wx.setStorageSync('payenchangeValue', enchangeValue)
-        wx.setStorageSync('payenchangeId', enchangeId)
-        wx.setStorageSync('payenchangeCheck', enchangeCheck)
+        // wx.setStorageSync('payenchangeValue', enchangeValue)
+        // wx.setStorageSync('payenchangeId', enchangeId)
+        // wx.setStorageSync('payenchangeCheck', enchangeCheck)
         // wx.setStorageSync('enchangeValue', enchangeValue);
         // wx.setStorageSync('enchangeId', enchangeId);
         console.log(enchangeValue, enchangeId)
@@ -133,16 +137,17 @@ Page({
 
     //点击确定
     certain: function () {
+        save = true;
         var that = this;
         // var console_checked = this.data.checked.join();
         // var checked = this.data.checked;
         var id = this.data.id;
         // var index = this.data.index;
         var payStage = this.data.payStage;
-        var checked = this.data.enchangeValue || wx.getStorageSync('payenchangeValue');
-        var index = this.data.enchangeId || wx.getStorageSync('payenchangeId');
-        var enchangeCheck = this.data.enchangeCheck || wx.getStorageSync('payenchangeCheck')
-        console.log(checked)
+        var checked = this.data.enchangeValue;
+        var index = this.data.enchangeId;
+        var enchangeCheck = this.data.enchangeCheck;
+        // console.log(checked)
 
         that.setData({
             error: "0"
@@ -166,10 +171,14 @@ Page({
                 wx.setStorageSync('y_payStage', "选择阶段");
                 wx.setStorageSync('y_payStageId', '');
                 // wx.setStorageSync('domainChecked', checked)
+                wx.setStorageSync('payenchangeCheck', enchangeCheck)
+                wx.setStorageSync('payenchangeValue', checked)
             } else {
                 wx.setStorageSync('y_payStage', checked);
                 wx.setStorageSync('y_payStageId', index);
-                // wx.setStorageSync('domainChecked', checked)
+                // wx.setStorageSync('domainChecked', checked);
+                wx.setStorageSync('payenchangeCheck', enchangeCheck)
+                wx.setStorageSync('payenchangeValue', checked)
             }
 
             // console.log(checked, index);
@@ -177,8 +186,22 @@ Page({
                 delta: 1 // 回退前 delta(默认为1) 页面
             })
         }
+        save = !save;
 
-    }
+  }
+  // ,  
+  // onUnload: function () {
+  //   console.log(save)
+  //   // 页面关闭
+  //   if (save) {
+  //     wx.setStorageSync('payenchangeValue', []);
+  //     wx.setStorageSync('payenchangeId', []);
+  //     wx.setStorageSync('payenchangeCheck', []);
+  //     wx.setStorageSync('y_payStage', "选择阶段");
+  //     wx.setStorageSync('y_payStageId', []);
+  //     console.log("clear")
+  //   }
+  // }
 
 
 });
