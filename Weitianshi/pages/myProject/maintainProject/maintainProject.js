@@ -304,6 +304,12 @@ Page({
             }
 
         }
-
+    },
+    onUnload: function () {
+      // 页面关闭
+        wx.setStorageSync('enchangeValue', []);
+        wx.setStorageSync('enchangeId', []);
+        wx.setStorageSync('enchangeCheck', []);
     }
+
 });

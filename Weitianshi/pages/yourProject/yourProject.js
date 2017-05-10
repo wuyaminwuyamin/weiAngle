@@ -54,6 +54,7 @@ Page({
 
                 //期望融资
                 var scale = wx.getStorageSync('y_scale');
+                console.log(scale)
                 var console_expect = wx.getStorageSync('y_console_expect');
                 var expect_arry = [];
                 // console.log(console_expect);
@@ -182,6 +183,7 @@ Page({
                     that.setData({
                         initPayMoney: initPayMoney
                     })
+
                     //初始化
                     wx.setStorageSync('y_describe', thisData.investor_desc)
                     wx.setStorageSync('y_domainValue', y_domainValue)
@@ -211,7 +213,7 @@ Page({
                     wx.setStorageSync('payareaenchangeValue', y_payArea);
                     wx.setStorageSync('payareaenchangeId', y_payAreaId);
                     wx.setStorageSync('payareaenchangeCheck', y_payAreaAllchecked);
-                    //console.log(y_payAreaAllchecked)
+                    console.log(y_payAreaAllchecked);
 
                     that.setData({
                         domainValue: y_domainValue,
@@ -415,8 +417,8 @@ Page({
         // wx.setStorageSync('y_payStage', "选择阶段"); 
         // wx.setStorageSync('y_payStageId', []);;
         // wx.setStorageSync('y_payMoney', "选择金额");
-
+        // console.log("clear");
       }
-      console.log("close");
+      // console.log("close");
     }
 });
