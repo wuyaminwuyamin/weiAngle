@@ -4,7 +4,7 @@ page {
   height: 100%;
 }
 .s_frame{
-  /*height: 1052rpx;*/
+  height: 1052rpx;
   position:static;
 }
 /*空状态*/
