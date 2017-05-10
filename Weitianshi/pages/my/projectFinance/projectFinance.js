@@ -24,7 +24,7 @@ Page({
         console.log(res)
         var myProject = res.data.data;
         var length = myProject.length;
-        wx.setStorageSync('proLength', length);
+        wx.setStorageSync('myProjectLength', length);
         that.setData({
           myProject: myProject,
         });
