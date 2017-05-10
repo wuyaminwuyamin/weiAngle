@@ -217,7 +217,6 @@ Page({
     wx.navigateTo({
       url: '../../belongArea/belongArea?current=1' + "&&provinceNum=" + provinceNum + "&&cityNum=" + cityNum
     })
-
   },
 
   //上传BP
@@ -318,5 +317,4 @@ Page({
     }
 
   }
-
 });
