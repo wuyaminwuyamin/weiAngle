@@ -45,7 +45,6 @@ Page({
                 industry_tag.push(investor[i].industry_tag);
                 scale_tag.push(investor[i].scale_tag);
                 stage_tag.push(investor[i].stage_tag);
-
             }
             that.setData({
                 industry_tag: industry_tag,
@@ -73,7 +72,7 @@ Page({
                     user: user,
                     firstName: firstName
                 });
-                // console.log(user)
+                console.log(user)
                 var pro_industry = project.pro_industry;
                 for (var i = 0; i < pro_industry.length; i++) {
                     industy_sort.push(pro_industry[i].industry_name)
@@ -179,5 +178,11 @@ Page({
             title: '项目-' + pro_intro,
             path: '/pages/myProject/myDetail?pro_id' + that.data.id
         }
+    },
+    //跳转到我的页面
+    toMy:function(){
+        wx.switchTab({
+          url: '/pages/my/my',
+        })
     }
 });

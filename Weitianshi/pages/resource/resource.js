@@ -189,6 +189,7 @@ Page({
                   success: function (res) {
                     //循环出用户信息
                     var investor = res.data.data;
+                    console.log(investor);
                     var industry = investor.industry_tag;
                     if (investor != '') {
                       for (var i = 0; i < industry.length; i++) {
@@ -200,6 +201,7 @@ Page({
                         user_area.push(area[i].area_title);
                         user_areaId.push(area[i].area_id)
                       }
+
                       var scale = investor.scale_tag;
                       for (var i = 0; i < scale.length; i++) {
                         user_scale.push(scale[i].scale_money)

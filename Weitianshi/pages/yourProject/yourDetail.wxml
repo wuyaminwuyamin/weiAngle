@@ -89,7 +89,7 @@
       <!--资本对接-->
 
       <!--<view class=" resource ">-->
-      <view class="others ">
+      <view class="others">
         <block wx:for="{{investor}}" wx:key="{{investor_id}}" wx:for-item="{{investor}}">
           <view class="weui-cell " style="background:white;margin:32rpx;margin-bottom:0;border-radius:4px 4px 0 0 " data-id="{{investor.investor_id}} ">
             <view class="weui-cell__hd " style="position: relative;margin-right: 10px; ">
