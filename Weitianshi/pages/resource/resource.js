@@ -43,7 +43,8 @@ Page({
         // wx.clearStorage()
         //进行授权验证
         app.getUserInfo(function (userInfo) {
-            console.log("已经有了userInfo");
+            console.log("这里是cb");
+            console.log(userInfo);
         });
         var user_id = wx.getStorageSync('user_id');
         //获取我的项目匹配到的投资人
@@ -249,16 +250,13 @@ Page({
         var user_id = wx.getStorageSync('user_id');
         var complete = that.data.complete;
         var checkInfo = that.data.checkInfo;
-        wx.navigateTo({
-            url: '../myProject/personInfo/personInfo'
-        })
 
         //修复bug
         /*wx.navigateTo({
             url: '../myProject/personInfo/personInfo'
         })*/
 
-        /*if (user_id == 0) {
+        if (user_id == 0) {
             wx.navigateTo({
                 url: '../myProject/personInfo/personInfo'
             })
@@ -284,7 +282,7 @@ Page({
             wx.navigateTo({
                 url: '../myProject/companyInfo/companyInfo'
             })
-        }*/
+        }
     },
     //点击发布融资项目
     myProject: function () {
