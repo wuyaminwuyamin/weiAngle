@@ -227,9 +227,9 @@ scroll-view {
 .floatBtn button {
   width: 100%;
   justify-content: center;
-  color: white;
+  color: #cccccc;
   border-radius: 0;
-  background: #40587a;
+  background: #f2f2f2;
 }
 
 .edit {

@@ -4,10 +4,13 @@ page {
   height: 100%;
 }
 .s_frame{
-  height: 1052rpx;
+  /*height: 1052rpx;*/
+  position:static;
 }
 /*空状态*/
-
+.netWork{
+  margin-top:128rpx;
+}
 .nullState_text {
   text-align: center;
 }
@@ -44,8 +47,12 @@ page {
 }
 
 .search_frame {
+  position:fixed;
+  height:30px;
+  width:92%;
   background: white;
   padding: 16rpx 32rpx;
+  z-index:5;
 }
 
 .search_icon {
