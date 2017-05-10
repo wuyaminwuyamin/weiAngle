@@ -1,5 +1,18 @@
 var _this
 var app = getApp();
+//获取user_id
+function loginPage(that,user_id){
+    if (user_id != 0) {
+        that.loadData(that, user_id)
+    } else {
+        //获取user_id
+        app.getUserInfo(function (userInfo) {
+            console.log("已经有了userInfo");
+            wx.setStorageSync("userInfo", userInfo)
+            wx.setStorageSync('avatarUrl', userInfo.avatarUrl)
+        });
+    }
+}
 //错误提示消失
 function errorHide(target, errorText, time) {
     var that = target;
@@ -12,6 +25,40 @@ function errorHide(target, errorText, time) {
             error: "0"
         });
     }, time)
+}
+//上滑加载
+function loadMore(projectCheck, url, that, api, page, parameter, user_id, page_end) {
+    if (projectCheck) {
+        if (user_id != '') {
+            if (page_end == false) {
+                wx.showToast({
+                    title: 'loading...',
+                    icon: 'loading'
+                })
+                page++;
+                that.setData({
+                    page: page
+                });
+                wx.request({
+                    url: url + api,
+                    data: {
+                        res_id: parameter,
+                        page: page,
+                    },
+                    method: 'POST',
+                    success: function (res) {
+                        console.log("资源需求匹配的分页加载接口")
+                        console.log(res)
+                        that.callback(res, that)
+                    }
+                })
+                return
+            } else {
+                rqj.errorHide(that, "没有更多了", 3000)
+            }
+        }
+    }
+
 }
 //循环出用户投资信息
 function userNeed(that) {
@@ -112,45 +159,6 @@ function addNetWork(that, follow_user_id, followed_user_id) {
         },
     })
 }
-//上滑加载
-function loadMore(projectCheck, url, that, api, page, parameter, user_id, page_end) {
-    if (projectCheck) {
-        if (user_id != '') {
-            if (page_end == false) {
-                wx.showToast({
-                    title: 'loading...',
-                    icon: 'loading'
-                })
-                page++;
-                that.setData({
-                    page: page
-                });
-                wx.request({
-                    url: url + api,
-                    data: {
-                        res_id: parameter,
-                        page: page,
-                    },
-                    method: 'POST',
-                    success: function (res) {
-                        console.log("资源需求匹配的分页加载接口")
-                        console.log(res)
-                        that.callback(res, that)
-                    }
-                })
-                return
-            } else {
-                rqj.errorHide(that, "没有更多了", 3000)
-            }
-        }
-    }
-
-}
-
 //函数输出
-module.exports = {
-    errorHide: errorHide,
-    userNeed: userNeed,
-    loadMore: loadMore,
-}
+module.exports = { errorHide, userNeed, loadMore,loginPage}
 

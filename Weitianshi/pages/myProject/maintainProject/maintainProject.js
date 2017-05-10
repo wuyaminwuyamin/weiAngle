@@ -251,9 +251,9 @@ Page({
                 method: 'POST',
                 success: function (res) {
                     if (res.status_code = 2000000) {
-                        wx.switchTab({
-                            url: '../../resource/resource'
-                        });
+                        wx.navigateBack({
+                          delta: 1, 
+                        })
                     } else {
                         wx.showToast({
                             title: res.status_code

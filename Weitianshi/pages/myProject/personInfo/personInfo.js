@@ -179,7 +179,6 @@ Page({
                                     url: '../companyInfo/companyInfo?user_career=' + user_career + "&&user_company=" + user_company + "&&uer_email=" + uer_email,
                                 });
                                 wx.setStorageSync('user_id', res.data.user_id);
-                                wx.setStorageSync('bind_mobile', 1)
                             } else {
                                 rqj.errorHide(that, "验证码错误", 1500)
                             }
