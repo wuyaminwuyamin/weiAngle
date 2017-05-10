@@ -39,7 +39,11 @@ Page({
     onShow: function () {
         var that = this;
         var current = this.data.currentTab;
+
         //wx.setStorageSync("user_id", "1ryE5Enr")
+
+        wx.setStorageSync("user_id", "V0VznXa0")
+
         // wx.clearStorage()
         //进行授权验证
         app.getUserInfo(function (userInfo) {
