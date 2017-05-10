@@ -286,7 +286,6 @@ Page({
         });
         // console.log('提示已消失')
       }, 1500);
-
       if (describe == "") {
         that.setData({
           error_text: "介绍不能为空"
@@ -316,4 +315,5 @@ Page({
     }
 
   }
+
 });
