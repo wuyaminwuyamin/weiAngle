@@ -161,7 +161,7 @@
 
           <!--资本对接二-->
           <view class=" resource">
-            <view class="others">
+            <view class="others" style="margin-bottom:92rpx">
               <block wx:for="{{investor2}}" wx:key="{{investor_id}}">
                 <view class="investor" data-id="{{item.user_id}}" bindtap="detail">
                   <view class="weui-cell " style="background:white;margin:32rpx;margin-bottom:0;border-radius:4px 4px 0 0 ">

@@ -11,9 +11,10 @@ Page({
     investPage: 1,
     resourcePage: 1,
     user: 0,
-    investNeedcheck : true,
-    financingNeedcheck : true,
-    resourceNeedcheck : true
+    userId : 0,
+    investNeedcheck: true,
+    financingNeedcheck: true,
+    resourceNeedcheck: true
   },
   //载入页面
   onShow: function () {
@@ -21,9 +22,9 @@ Page({
     var currentTab = this.data.currentTab;
     // 获取当前用户的id
     var user = wx.getStorageSync('user_id');
-        that.setData({
-            user: user
-        }); 
+    that.setData({
+      user: user
+    });
     //融资需求获取数据
     wx.request({
       url: url + '/api/project/projectMarket',
@@ -39,26 +40,14 @@ Page({
         console.log(res)
       },
     })
-    // 获取我自己的项目id
-    wx.request({
-       url: url + '/api/project/getMyProject',
-       data: { user_id :user},
-       method: 'POST',
-       success: function (res) {
-          var myProject = res.data.data;
-          that.setData({
-              myProject: myProject
-              })
-         console.log(myProject);        
-       }
-    })
+
     //投资需求获取数据
     wx.request({
       url: url + '/api/investors/investorMarket',
       data: {},
       method: 'POST',
       success: function (res) {
-        console.log(res)
+        // console.log(res)
         var investNeed = res.data.data;
         that.setData({
           investNeed: investNeed
@@ -109,35 +98,53 @@ Page({
   },
   // 跳转项目详情(融资需求和投资需求)
   projectDetail: function (e) {
-    // console.log(e)
+    // 获取我自己的项目id
+    var that = this;
+    // 获取当前点击的项目id
     var id = e.currentTarget.dataset.id
     console.log(id);
-    var myProjectArray = this.data.myProject;
-    console.log(myProjectArray);
-    var length = myProjectArray.length;
-    // console.log(length);
-    var pro_id;
-    var arrNew = [];
-    for(let i = 0;i < length;i++){
-       pro_id = myProjectArray[i].pro_id;
-      console.log(pro_id);
-      arrNew.push(pro_id)
-    }
-    var index = arrNew.indexOf(id);
-    console.log(index)
-    if(index!=-1){
-      wx.navigateTo({
-        url:'/pages/myProject/projectDetail/projectDetail?id=' + id+'&&index='+index
-      })
-    }else{
-      wx.navigateTo({
-        url: '../yourProject/yourDetail?id=' + id
+    wx.request({
+      url: url + '/api/project/projectIsMine',
+      data: {
+        pro_id: id
+      },
+      method: 'POST',
+      success: function (res) {
+        var that = this;
+        var userId = res.data.user_id;
+        var user = wx.getStorageSync('user_id');
+        console.log(userId);
+        console.log(user);
+        // that.setData({
+        //   userId : userId
+        // })
+        if (userId==user ) {
+          wx.navigateTo({
+            url: '/pages/myProject/projectDetail/projectDetail?id=' + id + '&&index=' + 1
+          })
+        } else {
+          wx.navigateTo({
+            url: '../yourProject/yourDetail?id=' + id,
+          })
+        }
+        
+      },
     })
-    }
-   
+    
+
+    // if (index != -1) {
+    //   wx.navigateTo({
+    //     url: '/pages/myProject/projectDetail/projectDetail?id=' + id + '&&index=' + index
+    //   })
+    // } else {
+    //   wx.navigateTo({
+    //     url: '../yourProject/yourDetail?id=' + id
+    //   })
+    // }
+
   },
   // 跳转人物详情
-  userDetail:function(e) {
+  userDetail: function (e) {
     //获取当前id
     var id = e.currentTarget.dataset.id;
     // console.log(id);
@@ -145,19 +152,19 @@ Page({
     var user_id = this.data.user;
     // console.log(user_id);
     // 判断当前用户id和点击id是否一致,如果一致,点击进入我的页面
-    if(id == user_id){
+    if (id == user_id) {
       wx.switchTab({
-      url: '../my/my'
-    })
-    }else{
+        url: '../my/my'
+      })
+    } else {
       // 如果当前用户id与点击id不一致,进入用户详情页面
       wx.navigateTo({
-      url: '../userDetail/userDetail?id=' + id
-    })
+        url: '../userDetail/userDetail?id=' + id
+      })
     }
 
   },
-  
+
   // 融资需求触底刷新
   financingNeed: function () {
     var that = this;
@@ -168,7 +175,7 @@ Page({
     this.setData({
       financingPage: financingPage
     });
-    if(financingNeedcheck){
+    if (financingNeedcheck) {
       wx.request({
         url: url + '/api/project/projectMarket',
         data: {
@@ -200,7 +207,7 @@ Page({
       })
     }
     this.setData({
-      financingNeedcheck:false
+      financingNeedcheck: false
     });
   },
   // 投资需求触底刷新
@@ -212,8 +219,8 @@ Page({
     this.setData({
       investPage: investPage
     });
-    if(investNeedcheck){
-        wx.request({
+    if (investNeedcheck) {
+      wx.request({
         url: url + '/api/investors/investorMarket',
         data: {
           page: investPage
@@ -233,7 +240,7 @@ Page({
             }
             that.setData({
               investNeed: investNeed,
-              investNeedcheck : true
+              investNeedcheck: true
             })
           } else {
             rqj.errorHide(that, '没有更多了', 3000)
@@ -245,9 +252,9 @@ Page({
       })
     }
     this.setData({
-      investNeedcheck:false
+      investNeedcheck: false
     });
-    
+
 
   },
   // 资源需求触底刷新
@@ -260,7 +267,7 @@ Page({
     this.setData({
       resourcePage: resourcePage
     });
-    if(resourceNeedcheck){
+    if (resourceNeedcheck) {
       wx.request({
         url: url + '/api/resource/resourceMarket',
         data: {
@@ -282,17 +289,17 @@ Page({
             that.setData({
               resourceNeed: resourceNeed
             })
-          } 
+          }
         },
         fail: function (res) {
           console.log(res)
         },
       })
-    }else {
-            rqj.errorHide(that, '没有更多了', 3000)
-          }
+    } else {
+      rqj.errorHide(that, '没有更多了', 3000)
+    }
     this.setData({
-      resourceNeedcheck:false
+      resourceNeedcheck: false
     });
   },
   // 返回对接页面
