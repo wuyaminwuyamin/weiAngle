@@ -78,7 +78,6 @@ Page({
             },
             method: 'POST',
             success: function (res) {
-
                 console.log("获取用户投资需求")
                 console.log(res)
                 //循环出用户信息
@@ -103,7 +102,7 @@ Page({
                         user_areaId.push(area[i].area_id)
                     }
                     var scale = investor.scale_tag;
-                    for (var i = 0; i < scale.length; i++) {            
+                    for (var i = 0; i < scale.length; i++) {
                         user_scale.push(scale[i].scale_money)
                         user_scaleId.push(scale[i].scale_id)
                     }
@@ -272,6 +271,11 @@ Page({
                 url: '../myProject/companyInfo/companyInfo'
             })
         }
+
+        //修复bug
+        /*wx.navigateTo({
+            url: '../myProject/personInfo/personInfo'
+        })*/
 
 
         // if (bind_mobile == 1 && complete == 0) {
