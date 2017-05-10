@@ -102,7 +102,7 @@ Page({
         var cityNum = theData.pro_area.area_id;
         wx.setStorageSync("m_provinceNum", provinceNum);
         wx.setStorageSync('m_cityNum', cityNum)
-        console.log(provinceNum, cityNum)
+        console.log(provinceNum, cityNum, belongArea)
         // 对项目的所属领域进行处理
         if (industry) {
           for (var i = 0; i < industry.length; i++) {
@@ -142,11 +142,14 @@ Page({
     var that = this;
     var industryValue = wx.getStorageSync('m_domainValue');
     var industryId = wx.getStorageSync('m_domainId');
-    var belongArea = wx.getStorageSync('m_belongArea') || this.data.belongArea;
+    // var belongArea = wx.getStorageSync('m_belongArea') || this.data.belongArea;
+        var belongArea = wx.getStorageSync('m_belongArea');
     var provinceNum = wx.getStorageSync("m_provinceNum");
     var cityNum = wx.getStorageSync('m_cityNum');
     console.log(cityNum);
+    console.log(belongArea);
     this.setData({
+
       industryValue: industryValue,
       industryId: industryId,
       belongArea: belongArea,
