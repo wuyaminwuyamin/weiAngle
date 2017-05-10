@@ -42,7 +42,7 @@ Page({
         // wx.clearStorage()
         var user_id = wx.getStorageSync('user_id');
         //获取我的项目匹配到的投资人
-        /*wx.request({
+        wx.request({
             url: url + '/api/project/getMyProject',
             data: {
                 user_id: user_id
@@ -210,7 +210,12 @@ Page({
             fail: function (res) {
                 console.log(res)
             }
-        })*/
+        })
+
+        //进行授权验证
+        app.getUserInfo(function (userInfo) {
+            console.log("已经有了userInfo");
+        });
     },
     //下拉刷新
     onPullDownRefresh: function () {
