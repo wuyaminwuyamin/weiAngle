@@ -29,9 +29,11 @@ Page({
         var enchangeValue = wx.getStorageSync('payenchangeValue') || [];
         var enchangeId = wx.getStorageSync('payenchangeId') || [];
         
-        console.log(enchangeCheck);
-        console.log(enchangeValue);
-        console.log(enchangeId);
+        // console.log(enchangeCheck);
+        // console.log(enchangeValue);
+        // console.log(enchangeId);
+        
+        wx.setStorageSync('enchangeCheck', enchangeCheck);
         that.setData({
             payStage: payStage,
             enchangeCheck : enchangeCheck,
