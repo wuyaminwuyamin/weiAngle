@@ -26,6 +26,9 @@ Page({
         // console.log("this is onLoad");
         var that = this;
         //初始化
+        wx.setStorageSync('enchangeValue', []);
+        wx.setStorageSync('enchangeId', []);
+        wx.setStorageSync('enchangeCheck', [])
         wx.setStorageSync('describe', "");
         wx.setStorageSync('domainValue', "选择领域");
         wx.setStorageSync('domainId', []);

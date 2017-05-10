@@ -43,7 +43,8 @@ Page({
                 console.log(backgrond);
                 that.setData({
                     province: province,
-                    backgrond:backgrond
+                    backgrond:backgrond,
+                    provinceNum: provinceNum
                 })
                 wx.request({
                     url: url+'/api/category/getArea',
@@ -122,7 +123,7 @@ Page({
             belongArea: this.data.console_province + city[index].area_title,
             cityNum: city[index].area_id
         });
-        console.log(this.data.belongArea,this.data.provinceNum,this.data.cityNum)
+        console.log(this.data.console_province,this.data.belongArea,this.data.provinceNum,this.data.cityNum)
         if (current == 0) {
             if (this.data.belongArea == "") {
                 wx.setStorageSync('belongArea', "选择地区");
