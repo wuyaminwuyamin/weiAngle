@@ -60,7 +60,25 @@ Page({
             var domainValue = options.industryValue;
             var domainId = options.industryId;
             var domainValue = domainValue.split(",")
-            var domainId = domainId.split(",")
+            var domainId = domainId.split(",");
+            // console.log(industry); 
+            var industrycheck=[];
+            //checkbox 便利industry
+            for (var i = 0; i < industry.length; i++) {
+              // indexof查找是否包含内容
+              if (domainValue.indexOf(industry[i].industry_name) != -1) {
+                industry[i].checked = true;
+              } else {
+                industry[i].checked = false;
+              }
+            }
+            for (var i = 0; i < industry.length; i++){
+              industrycheck.push(industry[i].checked);
+            }
+            wx.setStorageSync('enchangeCheck', industrycheck);
+            wx.setStorageSync('enchangeValue', domainValue);
+            wx.setStorageSync('enchangeId', domainId);
+            console.log(industrycheck); 
             // console.log(domainValue,domainId)
             for (var i = 0; i < domainId.length; i++) {
                 domainId[i] = domainId[i] * 1

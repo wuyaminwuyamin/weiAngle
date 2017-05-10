@@ -22,10 +22,19 @@ Page({
     },
     onShow: function () {
         var that = this;
-        // 清零短信倒计时
-        that.setData({
-            time: "0"
-        })
+        console.log(this.data)
+        if (this.data._time) {
+            that.setData({
+                time: "1"
+            })
+        } else {
+            // 清零短信倒计时
+            that.setData({
+                time: "0"
+            })
+        }
+    },
+    onHide: function () {
     },
 
     //过滤特殊字符
@@ -63,7 +72,7 @@ Page({
         }
     },
 
-    //验证码验证
+    //获取验证码按钮
     checkCode: function (e) {
         e.detail.disabled = true;
         var telphone = this.data.telphone;
@@ -119,6 +128,11 @@ Page({
                             })
                         }
                     }, 1000)
+                    console.log(_time)
+                    console.log(typeof _time)
+                    that.setData({
+                        _time: _time
+                    })
                     setTimeout(function () {
                         that.setData({
                             time: "0",
@@ -135,6 +149,7 @@ Page({
             }
         })
     },
+    //获取验证码的值 
     checkCode2: function (e) {
         var that = this;
         that.setData({
@@ -142,7 +157,6 @@ Page({
         });
         // console.log(e.detail.value)
     },
-
 
     //点击跳转
     nextPage: function () {
@@ -156,6 +170,7 @@ Page({
                 var error_text = that.data.error_text;
                 var checkCode = that.data.checkCode;
                 var code = res.code;
+                var open_session = app.globalData.open_session;
                 // console.log(name, telphone, checkCode, code);
                 if (name !== "" && result == "1") {
                     wx.request({
@@ -164,7 +179,8 @@ Page({
                             user_real_name: name,
                             user_mobile: telphone,
                             captcha: checkCode,
-                            code: code
+                            code: code,
+                            open_session:open_session
                         },
                         method: 'POST',
                         success: function (res) {
@@ -213,8 +229,5 @@ Page({
                 }
             }
         })
-
-
-
     }
 });

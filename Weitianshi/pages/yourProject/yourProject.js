@@ -29,6 +29,21 @@ Page({
         this.setData({
             current: current
         })
+        var y_area = '';
+        wx.request({
+          url: url + '/api/category/getHotCity',
+          data: {},
+          method: 'POST',
+          success: function (res) {
+            console.log(res)
+            var y_area = res.data.data;
+            for (var i = 0; i < y_area.length; i++) {
+              y_area[i].checked = false;
+            }
+            wx.setStorageSync('hotpayArea', y_area)
+          }
+        });
+
         //请求地区,标签,期望融资,项目阶段数据
         wx.request({
             url: url + '/api/category/getWxProjectCategory',
@@ -53,6 +68,7 @@ Page({
 
                 //期望融资
                 var scale = wx.getStorageSync('y_scale');
+                console.log(scale)
                 var console_expect = wx.getStorageSync('y_console_expect');
                 var expect_arry = [];
                 // console.log(console_expect);
@@ -89,7 +105,9 @@ Page({
                     var industry = wx.getStorageSync('industry')//投资领域总数                   
                     var y_stage = wx.getStorageSync('y_stage')//投资阶段总数
                     var y_scale = wx.getStorageSync('y_scale')//投资金额总数
+                    
                     var y_area = wx.getStorageSync('hotpayArea')//地区总数
+
                     // =========================投资领域==========================//
                     var y_domainValue = [];
                     var y_domainId = [];
@@ -157,13 +175,13 @@ Page({
                     var y_payAreaId = [];
                     var y_payAreaAllchecked = [];
                     var y_payAreaAllcheckedid = [];
-
+                    console.log(y_area);
                     for (var i = 0; i < y_area.length; i++) {
                       y_payAreaAllchecked.push(y_area[i].checked);
                       y_payAreaAllcheckedid.push(y_area[i].area_id)
                     }
                     var payArea = thisData.area_tag;
-                    // console.log(payArea,y_area)
+                    console.log(payArea,y_area)
                     for (var i = 0; i < payArea.length; i++) {
                         y_payArea.push(payArea[i].area_title);
                         y_payAreaId.push(payArea[i].area_id);
@@ -173,7 +191,8 @@ Page({
                           y_payAreaAllchecked[index] = true;
                         }
                     }
-                    //console.log(y_area, y_payAreaId,y_payAreaAllchecked)
+                    
+                    console.log(y_area, y_payAreaId,y_payAreaAllchecked)
 
 
                     var initPayMoney = thisData.scale_tag[0].scale_money
@@ -181,6 +200,7 @@ Page({
                     that.setData({
                         initPayMoney: initPayMoney
                     })
+
                     //初始化
                     wx.setStorageSync('y_describe', thisData.investor_desc)
                     wx.setStorageSync('y_domainValue', y_domainValue)
@@ -202,6 +222,8 @@ Page({
                     wx.setStorageSync('payenchangeValue', y_payStage);
                     wx.setStorageSync('payenchangeId', y_StageId);
                     wx.setStorageSync('payenchangeCheck', y_StageAllchecked);
+                    console.log(y_StageId, y_StageAllchecked);
+                    wx.setStorageSync('y_payStageId', y_StageId);
                     // //投资金额
                     wx.setStorageSync('paymoneyenchangeValue', y_payMoney);
                     wx.setStorageSync('paymoneyenchangeId', y_payMoneyId);
@@ -210,7 +232,7 @@ Page({
                     wx.setStorageSync('payareaenchangeValue', y_payArea);
                     wx.setStorageSync('payareaenchangeId', y_payAreaId);
                     wx.setStorageSync('payareaenchangeCheck', y_payAreaAllchecked);
-                    //console.log(y_payAreaAllchecked)
+                    console.log(y_payAreaAllchecked);
 
                     that.setData({
                         domainValue: y_domainValue,
@@ -412,8 +434,8 @@ Page({
         // wx.setStorageSync('y_payStage', "选择阶段"); 
         // wx.setStorageSync('y_payStageId', []);;
         // wx.setStorageSync('y_payMoney', "选择金额");
-
+        // console.log("clear");
       }
-      console.log("close");
+      // console.log("close");
     }
 });

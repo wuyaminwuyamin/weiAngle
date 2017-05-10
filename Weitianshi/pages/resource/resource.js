@@ -33,13 +33,18 @@ Page({
     },
     //载入页面
     onLoad: function () {
+
     },
     //显示页面
     onShow: function () {
         var that = this;
         var current = this.data.currentTab;
-        wx.setStorageSync("user_id", "V0VznXa0")
+        //wx.setStorageSync("user_id", "1ryE5Enr")
         // wx.clearStorage()
+        //进行授权验证
+        app.getUserInfo(function (userInfo) {
+            console.log("已经有了userInfo");
+        });
         var user_id = wx.getStorageSync('user_id');
         //获取我的项目匹配到的投资人
         wx.request({
@@ -103,7 +108,7 @@ Page({
                         user_areaId.push(area[i].area_id)
                     }
                     var scale = investor.scale_tag;
-                    for (var i = 0; i < scale.length; i++) {            
+                    for (var i = 0; i < scale.length; i++) {
                         user_scale.push(scale[i].scale_money)
                         user_scaleId.push(scale[i].scale_id)
                     }
@@ -211,7 +216,8 @@ Page({
             fail: function (res) {
                 console.log(res)
             }
-        })
+        });
+
     },
     //下拉刷新
     onPullDownRefresh: function () {
@@ -243,8 +249,16 @@ Page({
         var user_id = wx.getStorageSync('user_id');
         var complete = that.data.complete;
         var checkInfo = that.data.checkInfo;
+        wx.navigateTo({
+            url: '../myProject/personInfo/personInfo'
+        })
 
-        if (user_id == 0) {
+        //修复bug
+        /*wx.navigateTo({
+            url: '../myProject/personInfo/personInfo'
+        })*/
+
+        /*if (user_id == 0) {
             wx.navigateTo({
                 url: '../myProject/personInfo/personInfo'
             })
@@ -265,30 +279,19 @@ Page({
                 wx.navigateTo({
                     url: '../myProject/companyInfo/companyInfo'
                 })
-
             }
         } else if (user_id != 1 && complete == 0) {
             wx.navigateTo({
                 url: '../myProject/companyInfo/companyInfo'
             })
-        }
-
-
-        // if (bind_mobile == 1 && complete == 0) {
-        //   if (checkInfo.user_real_name == '') {
-        //     wx.navigateTo({
-        //       url: '../myProject/personInfo/personInfo'
-        //     })
-        //   } else {
-        //     wx.navigateTo({
-        //       url: '../myProject/companyInfo/companyInfo'
-        //     })
-        //   }
-        // }
+        }*/
     },
     //点击发布融资项目
     myProject: function () {
         this.checkInfo("publishProject");
+        wx.setStorageSync('enchangeValue', []);
+        wx.setStorageSync('enchangeId', []);
+        wx.setStorageSync('enchangeCheck', []);
     },
     //点击发布投资需求
     yourProject: function () {
