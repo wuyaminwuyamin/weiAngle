@@ -170,6 +170,7 @@ Page({
                 var error_text = that.data.error_text;
                 var checkCode = that.data.checkCode;
                 var code = res.code;
+                var open_session = app.globalData.open_session;
                 // console.log(name, telphone, checkCode, code);
                 if (name !== "" && result == "1") {
                     wx.request({
@@ -178,7 +179,8 @@ Page({
                             user_real_name: name,
                             user_mobile: telphone,
                             captcha: checkCode,
-                            code: code
+                            code: code,
+                            open_session:open_session
                         },
                         method: 'POST',
                         success: function (res) {
