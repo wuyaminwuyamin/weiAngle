@@ -44,12 +44,12 @@ Page({
     }
   },
   //编辑案例
-  detail: function (e) {
+  /*detail: function (e) {
     var index = e.currentTarget.dataset.index;
     wx.navigateTo({
       url: '../investCaseEdit/investCaseEdit?index=' + index,
     })
-  },
+  },*/
 
   // 按钮一号
   buttonOne: function () {

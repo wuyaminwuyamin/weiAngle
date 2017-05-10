@@ -1,4 +1,4 @@
-
+ 
 var rqj = require('../../Template/Template.js')
 var app = getApp();
 var url = app.globalData.url;
@@ -150,7 +150,7 @@ Page({
                 },
                 method: 'POST',
                 success: function (res) {
-                    // console.log(res)
+                    console.log(res)
                     if (res.data.status_code == 2000000) {
                         // 从绑定人脉那边过来的
                         var followed_user_id = wx.getStorageSync('followed_user_id');
@@ -184,9 +184,11 @@ Page({
                             });
                         }
                     }else{
+                        var error_msg = res.data.error_msg;
+                        console.log(res.data.error_msg)
                         wx.showModal({
                             title:"错误提示",
-                            content:"用户已生成,但是公司,职位,邮箱信息绑定失败"
+                            content: error_msg
                         })
                     }
                 },
