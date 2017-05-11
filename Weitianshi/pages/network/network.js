@@ -120,13 +120,7 @@ Page({
 	},
 	// 绑定名片
 	bindUserInfo: function () {
-		var notIntegrity = this.data.notIntegrity;
-		var usr_id = this.data.user_id;
-		console.log(notIntegrity, usr_id)
-        
-		wx.navigateTo({
-			url: '../myProject/personInfo/personInfo',
-		})
+        app.checkInfo()
 	},
 	// 一键拨号
 	telephone: function (e) {

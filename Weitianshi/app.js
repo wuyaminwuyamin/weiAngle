@@ -186,12 +186,11 @@ App({
     },
 
     //根据用户信息完整度跳转不同的页面
-    //判断信息是否完整
     checkInfo: function (data) {
-        var user_id = wx.getStorageInfoSync("user_id");
+        var user_id = wx.getStorageSync("user_id");
         // 核对用户信息是否完整
         wx.request({
-            url: url + '/api/user/checkUserInfo',
+            url: this.globalData.url + '/api/user/checkUserInfo',
             data: {
                 user_id: user_id
             },
@@ -201,104 +200,93 @@ App({
                 console.log(res);
                 if (res.data.status_code == 2000000) {
                     var complete = res.data.is_complete;
-                    if (complete == 1) {
-                        that.setData({
-                            complete: 1
+                    var user_id = wx.getStorageSync('user_id');
+                    if (user_id == 0) {
+                        wx.navigateTo({
+                            url: '/pages/myProject/personInfo/personInfo'
                         })
-                    } else {
-                        that.setData({
-                            checkInfo: res.data
+                    } else if (user_id != 1 && complete == 1) {
+                        wx.navigateTo({
+                            url: data
+                        })
+                    } else if (user_id != 1 && complete == 0) {
+                        wx.navigateTo({
+                            url: '/pages/myProject/companyInfo/companyInfo'
                         })
                     }
+                } else {
+                    console.log(res.data.status_code)
                 }
-            },
-        });
-        var that = this;
-        var user_id = wx.getStorageSync('user_id');
-        var complete = that.data.complete;
-        var checkInfo = that.data.checkInfo;
-
-        if (user_id == 0) {
-            wx.navigateTo({
-                url: '../myProject/personInfo/personInfo'
-            })
-        } else if (user_id != 1 && complete == 1) {
-            wx.navigateTo({
-                url: data
-            })
-        } else if (user_id != 1 && complete == 0) {
-            wx.navigateTo({
-                url: '../myProject/companyInfo/companyInfo'
-            })
-        }
-    },
-
-    /*//登录状态维护
-    checkLogin: function (that) {
-        var code = that.globalData.code;
-        var encryptedData = that.globalData.encryptedData;
-        var iv = that.globalData.iv;
-        //判断用户是否授权了小程序
-        if (encryptedData) {
-            wx.request({
-                url: 'https://dev.weitianshi.cn/api/wx/returnOauth',
-                data: {
-                    code: code,
-                    encryptedData: encryptedData,
-                    iv: iv
-                },
-                method: 'POST',
-                success: function (res) {
-                    console.log("这里是获取到UserInfo后调用returnOauth")
-                    console.log(res);
-                    that.globalData.open_session = res.data.open_session;
-                    that.globalData.session_time = Date.now();
-                    that.globalData.user_id = res.data.user_id;
-                    console.log(that.globalData.session_time)
-                    wx.setStorageSync("user_id", res.data.user_id)
-                },
-                fail: function () {
-                    console.log("向后台发送信息失败")
-                }
-            })
-        } else {
-            wx.request({
-                url: 'https://dev.weitianshi.cn/api/wx/returnOauth',
-                data: {
-                    code: code,
-                },
-                method: 'POST',
-                success: function (res) {
-                    console.log("这里是没拿到UserInfo后调用returnOauth")
-                    console.log(res);
-                    that.globalData.open_session = res.data.open_session;
-                    that.globalData.session_time = Date.now();
-                    that.globalData.user_id = res.data.user_id;
-                    console.log(that.globalData.session_time)
-                    wx.setStorageSync("user_id", res.data.user_id)
-                },
-                fail: function () {
-                    console.log("向后台发送信息失败")
-                },
-            })
-        }
-    },
-
-    //微信登录状态维护
-    checkSession: function () {
-        wx.checkSession({
-            success: function () {
-            },
-            fail: function () {
-                //登录态过期
-                wx.login() //重新登录
             }
         })
-    },*/
+    },
 
-    //初始本地缓存
-    globalData: {
-        error: 0,
-        url: "https://dev.weitianshi.cn"
+/*//登录状态维护
+checkLogin: function (that) {
+    var code = that.globalData.code;
+    var encryptedData = that.globalData.encryptedData;
+    var iv = that.globalData.iv;
+    //判断用户是否授权了小程序
+    if (encryptedData) {
+        wx.request({
+            url: 'https://dev.weitianshi.cn/api/wx/returnOauth',
+            data: {
+                code: code,
+                encryptedData: encryptedData,
+                iv: iv
+            },
+            method: 'POST',
+            success: function (res) {
+                console.log("这里是获取到UserInfo后调用returnOauth")
+                console.log(res);
+                that.globalData.open_session = res.data.open_session;
+                that.globalData.session_time = Date.now();
+                that.globalData.user_id = res.data.user_id;
+                console.log(that.globalData.session_time)
+                wx.setStorageSync("user_id", res.data.user_id)
+            },
+            fail: function () {
+                console.log("向后台发送信息失败")
+            }
+        })
+    } else {
+        wx.request({
+            url: 'https://dev.weitianshi.cn/api/wx/returnOauth',
+            data: {
+                code: code,
+            },
+            method: 'POST',
+            success: function (res) {
+                console.log("这里是没拿到UserInfo后调用returnOauth")
+                console.log(res);
+                that.globalData.open_session = res.data.open_session;
+                that.globalData.session_time = Date.now();
+                that.globalData.user_id = res.data.user_id;
+                console.log(that.globalData.session_time)
+                wx.setStorageSync("user_id", res.data.user_id)
+            },
+            fail: function () {
+                console.log("向后台发送信息失败")
+            },
+        })
     }
+},
+
+//微信登录状态维护
+checkSession: function () {
+    wx.checkSession({
+        success: function () {
+        },
+        fail: function () {
+            //登录态过期
+            wx.login() //重新登录
+        }
+    })
+},*/
+
+//初始本地缓存
+globalData: {
+    error: 0,
+        url: "https://dev.weitianshi.cn"
+}
 });

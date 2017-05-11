@@ -41,12 +41,6 @@ Page({
         var current = this.data.currentTab;
         // wx.setStorageSync("user_id", "V0VznXa0") 
         // wx.setStorageSync("user_id", "1ryE5Enr")
-        // wx.clearStorage()
-        //进行授权验证
-        /* app.getUserInfo(function (userInfo) {
-             console.log("这里是cb");
-             console.log(userInfo);
-         });*/
         app.loginPage(function (user_id) {
             console.log("这里是cb函数")
             if (user_id != 0) {
@@ -197,30 +191,6 @@ Page({
                         console.log(res)
                     }
                 });
-                // 核对用户信息是否完整
-                wx.request({
-                    url: url + '/api/user/checkUserInfo',
-                    data: {
-                        user_id: user_id
-                    },
-                    method: 'POST',
-                    success: function (res) {
-                        console.log("检查用户信息是否完整,如果不完整则返回个人信息")
-                        console.log(res);
-                        var complete = res.data.is_complete;
-                        if (res.data.status_code == 2000000) {
-                            if (complete == 1) {
-                                that.setData({
-                                    complete: 1
-                                })
-                            } else {
-                                that.setData({
-                                    checkInfo: res.data
-                                })
-                            }
-                        }
-                    },
-                });
             }
         })
     },
@@ -248,50 +218,10 @@ Page({
             })
         }
     },
-    //判断信息是否完整
-    checkInfo: function (data) {
-
-        var that = this;
-        var user_id = wx.getStorageSync('user_id');
-        var complete = that.data.complete;
-        var checkInfo = that.data.checkInfo;
-
-        //修复bug
-        /*wx.navigateTo({
-            url: '../myProject/personInfo/personInfo'
-        })*/
-
-        if (user_id == 0) {
-            wx.navigateTo({
-                url: '../myProject/personInfo/personInfo'
-            })
-        } else if (user_id != 1 && complete == 1) {
-            if (data == "publishProject") {
-                wx.navigateTo({
-                    url: "../myProject/publishProject/publishProject"
-                })
-            } else if (data == "yourProject") {
-                wx.navigateTo({
-                    url: "../yourProject/yourProject"
-                })
-            } else if (data == "resourceNeed") {
-                wx.navigateTo({
-                    url: "../resourceEnchange/resourceEnchange"
-                })
-            } else {
-                wx.navigateTo({
-                    url: '../myProject/companyInfo/companyInfo'
-                })
-            }
-        } else if (user_id != 1 && complete == 0) {
-            wx.navigateTo({
-                url: '../myProject/companyInfo/companyInfo'
-            })
-        }
-    },
+ 
     //点击发布融资项目
     myProject: function () {
-        this.checkInfo("publishProject");
+        app.checkInfo("/pages/myProject/publishProject");
         wx.setStorageSync('enchangeValue', []);
         wx.setStorageSync('enchangeId', []);
         wx.setStorageSync('enchangeCheck', []);
