@@ -49,7 +49,7 @@ Page({
          });*/
         app.loginPage(function (user_id) {
             console.log("这里是cb函数")
-            if(user_id!=0){
+            if (user_id != 0) {
                 //获取我的项目匹配到的投资人
                 wx.request({
                     url: url + '/api/project/getMyProject',
@@ -197,6 +197,30 @@ Page({
                         console.log(res)
                     }
                 });
+                // 核对用户信息是否完整
+                wx.request({
+                    url: url + '/api/user/checkUserInfo',
+                    data: {
+                        user_id: user_id
+                    },
+                    method: 'POST',
+                    success: function (res) {
+                        console.log("检查用户信息是否完整,如果不完整则返回个人信息")
+                        console.log(res);
+                        var complete = res.data.is_complete;
+                        if (res.data.status_code == 2000000) {
+                            if (complete == 1) {
+                                that.setData({
+                                    complete: 1
+                                })
+                            } else {
+                                that.setData({
+                                    checkInfo: res.data
+                                })
+                            }
+                        }
+                    },
+                });
             }
         })
     },
@@ -226,31 +250,7 @@ Page({
     },
     //判断信息是否完整
     checkInfo: function (data) {
-        var user_id=wx.getStorageInfoSync("user_id");
-        // 核对用户信息是否完整
-        wx.request({
-            url: url + '/api/user/checkUserInfo',
-            data: {
-                user_id: user_id
-            },
-            method: 'POST',
-            success: function (res) {
-                console.log("检查用户信息是否完整,如果不完整则返回个人信息")
-                console.log(res);
-                var complete = res.data.is_complete;
-                if (res.data.status_code == 2000000) {
-                    if (complete == 1) {
-                        that.setData({
-                            complete: 1
-                        })
-                    } else {
-                        that.setData({
-                            checkInfo: res.data
-                        })
-                    }
-                }
-            },
-        });
+
         var that = this;
         var user_id = wx.getStorageSync('user_id');
         var complete = that.data.complete;

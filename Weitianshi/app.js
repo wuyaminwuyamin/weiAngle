@@ -199,8 +199,8 @@ App({
             success: function (res) {
                 console.log("检查用户信息是否完整,如果不完整则返回个人信息")
                 console.log(res);
-                var complete = res.data.is_complete;
                 if (res.data.status_code == 2000000) {
+                    var complete = res.data.is_complete;
                     if (complete == 1) {
                         that.setData({
                             complete: 1
