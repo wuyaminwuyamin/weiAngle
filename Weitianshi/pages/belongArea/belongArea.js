@@ -147,12 +147,14 @@ Page({
         } else if (current == 1) {
             if (this.data.belongArea == "") {
                 wx.setStorageSync('m_belongArea', "选择地区")
-            } else {            
+            } else {
+              
                 wx.setStorageSync('m_belongArea', this.data.belongArea);
                 wx.setStorageSync('m_provinceNum', this.data.provinceNum);
                 wx.setStorageSync('m_cityNum', this.data.cityNum);
             }
         } else if(current ==2){
+          console.log(this.data.belongArea)
             if(this.data.belongArea ==""){
                 wx.setStorage({
                   key: 'addcase_belongArea',
@@ -169,6 +171,8 @@ Page({
                       cityNum:this.data.cityNum
                   },
                 })
+                wx.setStorageSync('provinceNum', this.data.provinceNum);
+                wx.setStorageSync('cityNum', this.data.cityNum);
             }
         }
 

@@ -187,4 +187,9 @@ Page({
       }
     }
   },
+  onUnload: function () {
+    wx.setStorageSync('provinceNum', [])
+    wx.setStorageSync('cityNum', [])
+  }
+
 })
