@@ -22,7 +22,7 @@ Page({
 
         var that = this
         var user_id = wx.getStorageSync('user_id')
-        console.log(user_id)
+        // console.log(user_id)
         that.setData({
             user_id: user_id
         })
