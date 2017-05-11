@@ -58,8 +58,9 @@ Page({
 
 
 
+
         var user_id = wx.getStorageSync('user_id');
-        /*//获取我的项目匹配到的投资人
+        //获取我的项目匹配到的投资人
         wx.request({
             url: url + '/api/project/getMyProject',
             data: {
@@ -229,7 +230,7 @@ Page({
             fail: function (res) {
                 console.log(res)
             }
-        });*/
+        });
 
     },
     //下拉刷新

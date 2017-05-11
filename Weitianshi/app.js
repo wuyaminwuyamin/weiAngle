@@ -24,19 +24,19 @@ App({
             // console.log(differenceTime/3600000+"小时")
             if (differenceTime > 432000000) {//432000000
                 console.log("已超时")
-                this.getSession()
+                this.getSession(cb)
             } else {
                 console.log("未超时")
                 typeof cb == "function" && cb(this.globalData.user_id)
             }
         } else {
             console.log("open_session不存在")
-            this.getSession()//赋值 在这里
+            this.getSession(cb)//赋值 在这里
         }
     },
 
     //获取open_session  你刚才说什么意思
-    getSession() {
+    getSession(cb) {
         var that = this;
         //获取code
         wx.login({
@@ -71,7 +71,9 @@ App({
                                 console.log(Date(that.globalData.session_time))
                                 // console.log(that.globalData.user_id)
                                 wx.setStorageSync("user_id", res.data.user_id)
-                                typeof cb == "function" && cb(this.globalData.user_id)
+                                console.log(cb)
+                                console.log(cb=="function")
+                                typeof cb == "function" && cb(wx.getStorageSync("user_id"))
                             },
                             fail: function () {
                                 console.log("调用returnOauth失败")
@@ -95,8 +97,7 @@ App({
                                 that.globalData.user_id = res.data.user_id;
                                 console.log(Date(that.globalData.session_time))
                                 wx.setStorageSync("user_id", res.data.user_id)
-                                
-                                typeof cb == "function" && cb(this.globalData.user_id)
+                                typeof cb == "function" && cb(wx.getStorageSync("user_id"))
                             },
                             fail: function () {
                                 console.log("调用returnOauth失败")
