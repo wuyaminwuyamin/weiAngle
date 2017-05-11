@@ -123,6 +123,7 @@ Page({
 		var notIntegrity = this.data.notIntegrity;
 		var usr_id = this.data.user_id;
 		console.log(notIntegrity, usr_id)
+        
 		wx.navigateTo({
 			url: '../myProject/personInfo/personInfo',
 		})
