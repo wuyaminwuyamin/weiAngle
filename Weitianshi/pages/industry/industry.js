@@ -118,7 +118,13 @@ Page({
         console.log(domainValue,domainId);
         var enchangeCheck = wx.getStorageSync('enchangeCheck') || [];
         var enchangeValue = wx.getStorageSync('enchangeValue') || [];
-        var enchangeId = wx.getStorageSync('enchangeId') || [];
+        // var enchangeId = wx.getStorageSync('enchangeId')|| [];
+        var enchangeId = domainId
+        for (var i = 0; i < enchangeId.lengthl;i++){
+          enchangeId[i] = parseInt(enchangeId[i]);
+          console.log(enchangeId[i])
+        }
+        console.log(enchangeId)
         // 设置值
         that.setData({
             doMain: industry,
@@ -146,7 +152,7 @@ Page({
     var e_index = thisData.index;//数组下标
     var e_value = thisData.value;//值
     var e_check = thisData.check;//是否被选中
-    // console.log(e_index,e_value,e_check)
+    console.log(e_index,e_value,e_check)
     var enchange = this.data.doMain//返回的所有数据{checked:false,industry_id:12,industry_name:"社交网络"}
     var enchangeValue = this.data.enchangeValue;//已被选中的名字
     var enchangeId = this.data.enchangeId;//已添加的数字
@@ -155,8 +161,8 @@ Page({
         enchangeCheck.push(enchange[i].checked)//被选中的状态
     }
 
-    // console.log(enchange)
-    // console.log(enchangeId)
+    console.log(enchange)
+    console.log(enchangeId)
     // console.log(enchangeCheck)
     // console.log(enchangeCheck[e_index]);
     if (enchangeCheck[e_index] == false) {//当确认按钮时

@@ -287,6 +287,8 @@ Page({
         wx.setStorageSync('y_payStage', "选择阶段");
         wx.setStorageSync('y_payStageId', []);;
         wx.setStorageSync('y_payMoney', "选择金额");
+        wx.setStorageSync('provinceNum', 0);
+        wx.setStorageSync('cityNum', 0);
 
       }
     }

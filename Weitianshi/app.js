@@ -52,7 +52,6 @@ App({
                         that.globalData.userInfo = res.userInfo;//这里,赋完值函数就结束了
                         that.globalData.encryptedData = res.encryptedData;
                         that.globalData.iv = res.iv;
-                        typeof cb == "function" && cb(that.globalData.userInfo);
                         wx.request({
                             url: 'https://dev.weitianshi.cn/api/wx/returnOauth',
                             data: {
@@ -71,8 +70,6 @@ App({
                                 console.log(Date(that.globalData.session_time))
                                 // console.log(that.globalData.user_id)
                                 wx.setStorageSync("user_id", res.data.user_id)
-                                console.log(cb)
-                                console.log(cb=="function")
                                 typeof cb == "function" && cb(wx.getStorageSync("user_id"))
                             },
                             fail: function () {
@@ -151,7 +148,92 @@ App({
         }
     },
 
-    //登录状态维护
+    //查看缓存
+    cacheCheck: function () {
+        var res = wx.getStorageInfoSync();
+        console.log(res)
+    },
+
+    //下拉刷新
+    onPullDownRefresh: function () {
+        // console.log("开启了下拉刷新")
+        wx.stopPullDownRefresh()
+    },
+
+    // user_id为空时,返回首页或者完善信息
+    noUserId: function () {
+        wx.showModal({
+            title: "提示",
+            content: "请先绑定个人信息",
+            success: function (res) {
+                console.log(res)
+                if (res.confirm == true) {
+                    wx.navigateTo({
+                        url: '/pages/myProject/personInfo/personInfo',
+                    })
+                } else {
+                    wx.switchTab({
+                        url: '/pages/resource/resource',
+                    })
+                }
+            }
+        })
+    },
+
+    //test
+    hello: function () {
+        console.log("TEST")
+    },
+
+    //根据用户信息完整度跳转不同的页面
+    //判断信息是否完整
+    checkInfo: function (data) {
+        var user_id = wx.getStorageInfoSync("user_id");
+        // 核对用户信息是否完整
+        wx.request({
+            url: url + '/api/user/checkUserInfo',
+            data: {
+                user_id: user_id
+            },
+            method: 'POST',
+            success: function (res) {
+                console.log("检查用户信息是否完整,如果不完整则返回个人信息")
+                console.log(res);
+                var complete = res.data.is_complete;
+                if (res.data.status_code == 2000000) {
+                    if (complete == 1) {
+                        that.setData({
+                            complete: 1
+                        })
+                    } else {
+                        that.setData({
+                            checkInfo: res.data
+                        })
+                    }
+                }
+            },
+        });
+        var that = this;
+        var user_id = wx.getStorageSync('user_id');
+        var complete = that.data.complete;
+        var checkInfo = that.data.checkInfo;
+
+        if (user_id == 0) {
+            wx.navigateTo({
+                url: '../myProject/personInfo/personInfo'
+            })
+        } else if (user_id != 1 && complete == 1) {
+            wx.navigateTo({
+                url: data
+            })
+        } else if (user_id != 1 && complete == 0) {
+            wx.navigateTo({
+                url: '../myProject/companyInfo/companyInfo'
+            })
+        }
+    },
+
+    /*//登录状态维护
     checkLogin: function (that) {
         var code = that.globalData.code;
         var encryptedData = that.globalData.encryptedData;
@@ -212,44 +294,7 @@ App({
                 wx.login() //重新登录
             }
         })
-    },
-
-    //查看缓存
-    cacheCheck: function () {
-        var res = wx.getStorageInfoSync();
-        console.log(res)
-    },
-
-    //下拉刷新
-    onPullDownRefresh: function () {
-        // console.log("开启了下拉刷新")
-        wx.stopPullDownRefresh()
-    },
-
-    // user_id为空时,返回首页或者完善信息
-    noUserId: function () {
-        wx.showModal({
-            title: "提示",
-            content: "请先绑定个人信息",
-            success: function (res) {
-                console.log(res)
-                if (res.confirm == true) {
-                    wx.navigateTo({
-                        url: '/pages/myProject/personInfo/personInfo',
-                    })
-                } else {
-                    wx.switchTab({
-                        url: '/pages/resource/resource',
-                    })
-                }
-            }
-        })
-    },
-
-    //test
-    hello: function () {
-        console.log("TEST")
-    },
+    },*/
 
     //初始本地缓存
     globalData: {
