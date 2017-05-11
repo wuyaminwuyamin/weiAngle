@@ -21,6 +21,7 @@ Page({
 
   },
   onLoad: function (options) {
+
     var that = this;
     var user_id = options.user_id;
     var pro_id = options.pro_id;
@@ -142,7 +143,7 @@ Page({
     var industryValue = wx.getStorageSync('m_domainValue');
     var industryId = wx.getStorageSync('m_domainId');
     // var belongArea = wx.getStorageSync('m_belongArea') || this.data.belongArea;
-        var belongArea = wx.getStorageSync('m_belongArea');
+      var belongArea = wx.getStorageSync('m_belongArea');
     var provinceNum = wx.getStorageSync("m_provinceNum");
     var cityNum = wx.getStorageSync('m_cityNum');
     console.log(cityNum);
@@ -315,5 +316,9 @@ Page({
 
     }
 
+  },
+  onUnload: function () {
+    wx.setStorageSync('provinceNum',[])
+    wx.setStorageSync('cityNum', [])
   }
 });
