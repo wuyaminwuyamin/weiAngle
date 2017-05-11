@@ -19,7 +19,7 @@ Page({
         var position = options.user_career;
         var email = options.user_email;
         var user_id = wx.getStorageSync('user_id');
-        console.log(user_id);
+        // console.log(user_id);
         wx.request({
             url: url+'/api/user/checkUserInfo',
             data: {
@@ -27,7 +27,7 @@ Page({
             },
             method: 'POST',
             success: function(res){
-                console.log(res);
+                // console.log(res);
                 var complete = res.data.is_complete;
                 if(res.data.status_code ==2000000 || res.data.status_code==0){
                     that.setData({
@@ -43,7 +43,7 @@ Page({
             },
             complete: function(res) {
                 // complete
-                console.log(res);
+                // console.log(res);
             }
         });
         if (company == "null") {
@@ -105,10 +105,10 @@ Page({
         var that = this;
         var temp = e.detail.value;
         var email = this.data.email;
-        // console.log(temp)
+        console.log(temp)
         var myreg = /^(\w-*\.*)+@(\w-?)+(\.\w{2,})+$/;
         if (!myreg.test(temp) && temp !== '') {
-            // console.log('请输入有效的E_mail！');
+            console.log('请输入有效的E_mail！');
             that.setData({
                 result: "0"
             })
@@ -117,7 +117,7 @@ Page({
                 result: "1"
             })
         }
-        // console.log(temp);
+        console.log(temp);
         that.setData({
             email: temp
         })
