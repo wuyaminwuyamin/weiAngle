@@ -43,12 +43,23 @@ Page({
         // wx.setStorageSync("user_id", "1ryE5Enr")
         // wx.clearStorage()
         //进行授权验证
-        app.getUserInfo(function (userInfo) {
+       /* app.getUserInfo(function (userInfo) {
             console.log("这里是cb");
             console.log(userInfo);
-        });
+        });*/
+        app.loginPage(function(user_id){
+            console.log("这里是cb函数")
+        })
+
+
+
+
+
+
+
+
         var user_id = wx.getStorageSync('user_id');
-        //获取我的项目匹配到的投资人
+        /*//获取我的项目匹配到的投资人
         wx.request({
             url: url + '/api/project/getMyProject',
             data: {
@@ -218,7 +229,7 @@ Page({
             fail: function (res) {
                 console.log(res)
             }
-        });
+        });*/
 
     },
     //下拉刷新

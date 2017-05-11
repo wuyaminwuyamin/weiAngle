@@ -9,30 +9,35 @@ App({
         // console.log(options.scene);
     },
     onShow: function () {
-
     },
-    onError: function (msg) {//小程序发生脚本错误,或者api调用失败时,会触发onError,并带上错误信息
+    onError: function (msg) {
         console.log(msg)
     },
     //进入页面判断是否有open_session
     loginPage: function (cb) {
         var that = this;
         if (this.globalData.open_session) {
+            console.log("open_session已经存在")
             var timeNow = Date.now();
             var session_time = this.globalData.session_time;
             var differenceTime = timeNow - session_time;
-            if (differenceTime > 432000000) {
-                getSession(timeNow)
+            // console.log(differenceTime/3600000+"小时")
+            if (differenceTime > 432000000) {//432000000
+                console.log("已超时")
+                this.getSession()
             } else {
+                console.log("未超时")
                 typeof cb == "function" && cb(this.globalData.user_id)
             }
         } else {
-            getSession()
+            console.log("open_session不存在")
+            this.getSession()//赋值 在这里
         }
     },
 
-    //获取open_session
+    //获取open_session  你刚才说什么意思
     getSession() {
+        var that = this;
         //获取code
         wx.login({
             success: function (login) {
@@ -40,10 +45,11 @@ App({
                 that.globalData.code = code;
                 //获取encryptedData和iv
                 wx.getUserInfo({
+                    //用户授权
                     success: function (res) {
-                        console.log("这里是wx.getUserInfo")
-                        console.log(res)
-                        that.globalData.userInfo = res.userInfo;
+                        console.log("调用wx.getUserInfo成功")
+                        // console.log(res)
+                        that.globalData.userInfo = res.userInfo;//这里,赋完值函数就结束了
                         that.globalData.encryptedData = res.encryptedData;
                         that.globalData.iv = res.iv;
                         typeof cb == "function" && cb(that.globalData.userInfo);
@@ -56,20 +62,23 @@ App({
                             },
                             method: 'POST',
                             success: function (res) {
-                                console.log("这里是获取到encryptedData,iv后调用returnOauth")
-                                console.log(res);
+                                console.log("这里是获取到encryptedData,iv后调用returnOauth,获取并设置了open_session,session_time,user_id")
+                                // console.log(res);
                                 //在globalData里存入open_session,session_time,user_id;
                                 that.globalData.open_session = res.data.open_session;
                                 that.globalData.session_time = Date.now();
                                 that.globalData.user_id = res.data.user_id;
-                                console.log(that.globalData.session_time)
+                                console.log(Date(that.globalData.session_time))
+                                // console.log(that.globalData.user_id)
                                 wx.setStorageSync("user_id", res.data.user_id)
+                                typeof cb == "function" && cb(this.globalData.user_id)
                             },
                             fail: function () {
                                 console.log("调用returnOauth失败")
                             }
                         })
                     },
+                    //用户不授权
                     fail: function (res) {
                         wx.request({
                             url: 'https://dev.weitianshi.cn/api/wx/returnOauth',
@@ -78,17 +87,19 @@ App({
                             },
                             method: 'POST',
                             success: function (res) {
-                                console.log("这里是没获取到encryptedData,iv后调用returnOauth")
-                                console.log(res);
+                                console.log("这里是没获取到encryptedData,iv后调用returnOauth,获取并设置了open_session,session_time,user_id")
+                                // console.log(res);
                                 //在globalData里存入open_session,session_time,user_id;
                                 that.globalData.open_session = res.data.open_session;
                                 that.globalData.session_time = Date.now();
                                 that.globalData.user_id = res.data.user_id;
-                                console.log(that.globalData.session_time)
+                                console.log(Date(that.globalData.session_time))
                                 wx.setStorageSync("user_id", res.data.user_id)
+                                
+                                typeof cb == "function" && cb(this.globalData.user_id)
                             },
                             fail: function () {
-                                console.log("向后台发送信息失败")
+                                console.log("调用returnOauth失败")
                             },
                         })
                     },

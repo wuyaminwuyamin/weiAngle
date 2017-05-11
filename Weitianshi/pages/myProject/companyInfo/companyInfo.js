@@ -179,9 +179,11 @@ Page({
                                 },
                             })
                         } else {
+                            console.log("跳转resourece前")
                             wx.switchTab({
                                 url: "/pages/resource/resource"
                             });
+                            console.log("跳转resource页面")
                         }
                     }else{
                         var error_msg = res.data.error_msg;

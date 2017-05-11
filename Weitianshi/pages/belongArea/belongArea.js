@@ -82,6 +82,7 @@ Page({
         var index = e.target.dataset.index;
         var id = e.target.dataset.id;
         var province = this.data.province;
+        var backgroundcity=this.data.backgroundcity;
 
         var console_province = this.data.console_province;
         // console.log(index)
@@ -91,7 +92,8 @@ Page({
             backgrond: background,
             belongArea: province[index],
             console_province: province[index].area_title,
-            provinceNum: province[index].area_id
+            provinceNum: province[index].area_id,
+            backgroundcity:[]
         });
         console.log(this.data.provinceNum)
 
@@ -112,6 +114,7 @@ Page({
             }
         });
         //   console.log(province[index])
+        
     },
     city: function (e) {
         var that = this;

@@ -16,7 +16,6 @@ Page({
 			scroll: 0,
 			netWork_page: 1
 		})
-		console.log(user_id)
 		// 检查个人信息全不全
 		if (user_id) {
 			wx.request({
@@ -77,7 +76,9 @@ Page({
 		wx.request({
 			url: url + '/api/user/getUserAllInfo',
 			data: {
-				user_id: user_id
+                share_id:0,
+				user_id: user_id,
+                view_id: user_id
 			},
 			method: 'POST',
 			success: function (res) {
@@ -133,7 +134,7 @@ Page({
 			phoneNumber: telephone,
 		})
 	},
-	// 下拉加载1
+	// 下拉加载
 	loadMore: function () {
 		var that = this;
 		var netWork_page = this.data.netWork_page;

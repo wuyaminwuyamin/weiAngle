@@ -8,7 +8,7 @@
   </scroll-view>
   <scroll-view scroll-y="true" class="frame_city">
     <view>
-      <block wx:for="{{city}}" wx:for-index='idx'>
+      <block wx:for="{{city}}" wx:for-index='idx' wx:key="{{item.area_id}}">
         <view class="city" bindtap="city" data-index='{{idx}}' data-id='{{item.area_id}}' wx:key="{{item.area_id}}" style="background:{{backgroundcity[idx]==1?'#ccc':''}}">{{item.area_title}}</view>
       </block>
     </view>
