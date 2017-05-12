@@ -26,7 +26,7 @@ Page({
             wx.showShareMenu({
                 withShareTicket: true,
             })
-            if (user_id) {
+            if (user_id !=0) {
                 //载入我的个人信息
                 wx.request({
                     url: url + '/api/user/getUserAllInfo',
