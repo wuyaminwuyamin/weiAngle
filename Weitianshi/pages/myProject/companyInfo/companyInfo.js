@@ -172,18 +172,23 @@ Page({
                                                 wx.switchTab({
                                                     url: '/pages/network/network',
                                                 })
-                                                console.log(2)
+                                            
                                             }
                                         })
                                     }
                                 },
                             })
                         } else {
-                          console.log(3)
+
                             wx.switchTab({
                                 url: "/pages/resource/resource"
                             });
-                            console.log(4)
+
+                            console.log("跳转resourece前")
+                            wx.switchTab({
+                                url: "/pages/resource/resource"
+                            });
+
                         }
                     }else{
                       

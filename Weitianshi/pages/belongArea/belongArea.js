@@ -11,10 +11,12 @@ Page({
     onLoad: function (options) {
         var that = this;
         console.log(options);
+        var provinceNumFirst = wx.getStorageSync('provinceNum') || [];
+        var cityNumFirst = wx.getStorageSync('cityNum') || [];
         var current = options.current;
-        var provinceNum = parseInt(options.provinceNum);//初始地区
-        var cityNum = parseInt(options.cityNum);//市
-       
+        var provinceNum = parseInt(options.provinceNum) || parseInt(provinceNumFirst)//初始地区
+        var cityNum = parseInt(options.cityNum) || parseInt(cityNumFirst);//市
+        console.log(provinceNumFirst, provinceNum);
         that.setData({
             current: current
         });
@@ -36,8 +38,8 @@ Page({
                 for(var i=0; i<province.length; i++){
                     provinceArr.push(province[i].area_id)        
                 }
-                
-                index=provinceArr.indexOf(provinceNum)
+                index = provinceArr.indexOf(provinceNum)
+                console.log(provinceArr, provinceNum)
                 var backgrond = [];
                 backgrond[index]=1;
                 // console.log(backgrond);
@@ -46,6 +48,7 @@ Page({
                     backgrond:backgrond,
                     provinceNum: provinceNum
                 })
+                
                 wx.request({
                     url: url+'/api/category/getArea',
                     data: {
@@ -61,14 +64,22 @@ Page({
                         }
                         cityindex=cityArr.indexOf(cityNum)
                         var backgroundcity = [];
+                        
                         backgroundcity[cityindex]=1;
-                        console.log(backgroundcity);
+
+                        if (cityindex == -1) {
+                          city=""
+                        }
+
+                        console.log(backgroundcity, city);
                         that.setData({
                             city: city,
                             backgroundcity: backgroundcity
                         })
+                        console.log(backgroundcity);
                     }
                 });
+                
                 //console.log(provinceArr,provinceNum)
                 //console.log(provinceArr.indexOf(provinceNum))
 
@@ -82,6 +93,7 @@ Page({
         var index = e.target.dataset.index;
         var id = e.target.dataset.id;
         var province = this.data.province;
+        var backgroundcity=this.data.backgroundcity;
 
         var console_province = this.data.console_province;
         // console.log(index)
@@ -91,7 +103,8 @@ Page({
             backgrond: background,
             belongArea: province[index],
             console_province: province[index].area_title,
-            provinceNum: province[index].area_id
+            provinceNum: province[index].area_id,
+            backgroundcity:[]
         });
         console.log(this.data.provinceNum)
 
@@ -99,7 +112,7 @@ Page({
         wx.request({
             url: url+'/api/category/getArea',
             data: {
-                pid: id
+                pid: id 
             },
             method: 'POST',
             success: function (res) {
@@ -107,11 +120,13 @@ Page({
                 // console.log(city)
                 var city = res.data.data;
                 that.setData({
-                    city: city
+                    city: city,
+                    backgroundcity:""
                 })
             }
         });
         //   console.log(province[index])
+        
     },
     city: function (e) {
         var that = this;
@@ -135,7 +150,7 @@ Page({
         } else if (current == 1) {
             if (this.data.belongArea == "") {
                 wx.setStorageSync('m_belongArea', "选择地区")
-            } else {
+            } else {            
                 wx.setStorageSync('m_belongArea', this.data.belongArea);
                 wx.setStorageSync('m_provinceNum', this.data.provinceNum);
                 wx.setStorageSync('m_cityNum', this.data.cityNum);
