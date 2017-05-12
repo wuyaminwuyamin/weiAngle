@@ -42,11 +42,7 @@ Page({
         // wx.setStorageSync("user_id", "V0VznXa0") 
         // wx.setStorageSync("user_id", "1ryE5Enr")
         // wx.clearStorage()
-        //进行授权验证
-        /* app.getUserInfo(function (userInfo) {
-             console.log("这里是cb");
-             console.log(userInfo);
-         });*/
+        //登录状态维护
         app.loginPage(function (user_id) {
             console.log("这里是cb函数")
             if (user_id != 0) {
@@ -250,7 +246,6 @@ Page({
     },
     //判断信息是否完整
     checkInfo: function (data) {
-
         var that = this;
         var user_id = wx.getStorageSync('user_id');
         var complete = that.data.complete;
@@ -291,18 +286,18 @@ Page({
     },
     //点击发布融资项目
     myProject: function () {
-        this.checkInfo("publishProject");
+        app.infoJump("/pages/myProject/publishProject/publishProject")
         wx.setStorageSync('enchangeValue', []);
         wx.setStorageSync('enchangeId', []);
         wx.setStorageSync('enchangeCheck', []);
     },
     //点击发布投资需求
     yourProject: function () {
-        this.checkInfo("yourProject");
+        app.infoJump("/pages/yourProject/yourProject")
     },
     //点击发布资源需求
     resourceNeed: function () {
-        this.checkInfo("resourceNeed");
+        app.infoJump("/pages/resourceEnchange/resourceEnchange")
     },
     // 跳转人物详情
     userDetail(e) {

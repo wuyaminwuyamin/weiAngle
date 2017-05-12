@@ -4,11 +4,39 @@ App({
     onLaunch: function (options) {
         //调用API从本地缓存中获取数据
         var logs = wx.getStorageSync('logs') || [];
+        var options = options;
         logs.unshift(Date.now());
         wx.setStorageSync('logs', logs);
-        // console.log(options.scene);
-    },
-    onShow: function () {
+        if (options.shareTicket) {
+            wx.login({
+                success: function (login) {
+                    var code = login.code;
+                    wx.request({
+                        url: 'https://dev.weitianshi.cn/api/wx/returnOauth',
+                        data: {
+                            code: code,
+                        },
+                        method: 'POST',
+                        success: function (res) {
+                            var user_id = res.data.user_id;
+                            var path = options.path;
+                            var scene = options.scene;
+                            var shareTicket = options.shareTicket;
+                            var loginTime = Date(Date.now());
+                            wx.getShareInfo({
+                                shareTicket: options.shareTicket,
+                                success: function (res) {
+                                    var encryptedData = res.encryptedData;
+                                    var iv = res.iv;
+                                    var pack = { user_id, path, scene, loginTime, encryptedData, iv }
+                                    console.log(pack)
+                                }
+                            })
+                        }
+                    })
+                }
+            })
+        }
     },
     onError: function (msg) {
         console.log(msg)
@@ -16,6 +44,10 @@ App({
     //进入页面判断是否有open_session
     loginPage: function (cb) {
         var that = this;
+        //群分享打点准备
+        wx.showShareMenu({
+            withShareTicket: true
+        })
         if (this.globalData.open_session) {
             console.log("open_session已经存在")
             var timeNow = Date.now();
@@ -180,57 +212,75 @@ App({
         })
     },
 
+    //分布页面函数
+    sharePage: function (shareId, id) {
+        var json = {
+            title: '投资名片—智能精准匹配投融资双方的神器',
+            path: "/pages/my/sharePage/sharePage?user_id=" + id,
+            success: function (res) {
+                var shareTicket = res.shareTickets[0]
+                wx.getShareInfo({
+                    shareTicket: shareTicket,
+                    success: function (res) {
+                        console.log(res)
+                        let encryptedData = res.encryptedData
+                        let iv = res.iv
+                        let shareTime = Date(Date.now())
+                        let shareMessage = { shareId, id, shareTime, encryptedData, iv }
+                        console.log(shareMessage)
+                    },
+                    fail: function (res) {
+                        console.log(res)
+                    },
+                })
+            },
+            fail: function (res) {
+                console.log(res)
+            }
+        }
+        return json;
+    },
+
     //test
     hello: function () {
         console.log("TEST")
     },
 
     //根据用户信息完整度跳转不同的页面
-    //判断信息是否完整
-    checkInfo: function (data) {
-        var user_id = wx.getStorageInfoSync("user_id");
+    infoJump: function (data) {
+        var user_id = wx.getStorageSync("user_id");
         // 核对用户信息是否完整
         wx.request({
-            url: url + '/api/user/checkUserInfo',
+            url: this.globalData.url + '/api/user/checkUserInfo',
             data: {
                 user_id: user_id
             },
             method: 'POST',
             success: function (res) {
-                console.log("检查用户信息是否完整,如果不完整则返回个人信息")
-                console.log(res);
+                // console.log("检查用户信息是否完整,如果不完整则返回个人信息")
+                // console.log(res);
                 if (res.data.status_code == 2000000) {
                     var complete = res.data.is_complete;
-                    if (complete == 1) {
-                        that.setData({
-                            complete: 1
+                    if (user_id == 0) {
+                        wx.navigateTo({
+                            url: '../myProject/personInfo/personInfo'
                         })
-                    } else {
-                        that.setData({
-                            checkInfo: res.data
+                    } else if (user_id != 1 && complete == 1) {
+                        wx.navigateTo({
+                            url: data
+                        })
+                    } else if (user_id != 1 && complete == 0) {
+                        wx.navigateTo({
+                            url: '../myProject/companyInfo/companyInfo'
                         })
                     }
+                } else {//后台返回500状态码,可能原因为参数的user_id传了0过去
+                    wx.navigateTo({
+                        url: '../myProject/personInfo/personInfo'
+                    })
                 }
             },
         });
-        var that = this;
-        var user_id = wx.getStorageSync('user_id');
-        var complete = that.data.complete;
-        var checkInfo = that.data.checkInfo;
-
-        if (user_id == 0) {
-            wx.navigateTo({
-                url: '../myProject/personInfo/personInfo'
-            })
-        } else if (user_id != 1 && complete == 1) {
-            wx.navigateTo({
-                url: data
-            })
-        } else if (user_id != 1 && complete == 0) {
-            wx.navigateTo({
-                url: '../myProject/companyInfo/companyInfo'
-            })
-        }
     },
 
     /*//登录状态维护

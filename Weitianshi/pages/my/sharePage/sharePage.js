@@ -1,6 +1,5 @@
 var app = getApp();
 var url = app.globalData.url;
-
 Page({
     data: {
         user: "",
@@ -38,6 +37,9 @@ Page({
                         project_info: project_info,
                         invest_case: invest_case
                     })
+                    wx.setNavigationBarTitle({
+                        title: res.data.user_info.user_real_name + "的投资名片",
+                    })
                 },
                 fail: function (res) {
                     console.log(res)
@@ -57,8 +59,11 @@ Page({
             console.log(followed_user_id, followed_user_id, view_id)
             //如果进入的是自己的名片里
             if (user_id == followed_user_id) {
+                wx.setNavigationBarTitle({
+                    title: res.data.user_info.user_real_name + "的投资名片",
+                })
                 wx.switchTab({
-                    url: '/pages/network/network',
+                    url: '/pages/my/my',
                 })
             }
             that.setData({
@@ -164,4 +169,10 @@ Page({
             })
         }
     },
-});
+    //分享页面部分
+    onShareAppMessage: function () {
+        var id = this.data.followed_user_id;
+        var shareId=this.data.view_id; 
+        return app.sharePage(shareId,id)
+    }
+}); 
