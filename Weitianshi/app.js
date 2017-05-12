@@ -222,7 +222,6 @@ App({
                 wx.getShareInfo({
                     shareTicket: shareTicket,
                     success: function (res) {
-                        console.log(res)
                         let encryptedData = res.encryptedData
                         let iv = res.iv
                         let shareTime = Date(Date.now())
