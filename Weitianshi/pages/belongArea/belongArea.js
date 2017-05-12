@@ -32,7 +32,7 @@ Page({
             success: function (res) {
                 //console.log(res)
                 var province = res.data.data;
-                console.log(province)
+                // console.log(province)
                 for(var i=0; i<province.length; i++){
                     provinceArr.push(province[i].area_id)        
                 }
@@ -40,7 +40,7 @@ Page({
                 index=provinceArr.indexOf(provinceNum)
                 var backgrond = [];
                 backgrond[index]=1;
-                console.log(backgrond);
+                // console.log(backgrond);
                 that.setData({
                     province: province,
                     backgrond:backgrond,
@@ -49,15 +49,15 @@ Page({
                 wx.request({
                     url: url+'/api/category/getArea',
                     data: {
-                        pid: provinceNum
+                        pid: provinceNum//请求获取省的id
                     },
                     method: 'POST',
-                    success: function (res) {                   
+                    success: function (res) {                
                         var city = res.data.data;
-                        console.log(res)
-                        console.log(city)
+                        // console.log(res)
+                        // console.log(city)
                          for(var i=0; i<city.length; i++){
-                            cityArr.push(city[i].area_id)        
+                            cityArr.push(city[i].area_id)    
                         }
                         cityindex=cityArr.indexOf(cityNum)
                         var backgroundcity = [];

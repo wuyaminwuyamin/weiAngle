@@ -256,7 +256,7 @@ Page({
         /*wx.navigateTo({
             url: '../myProject/personInfo/personInfo'
         })*/
-
+// 如果user_id == 0用户id不存在,那么直接跳转个人信息填写
         if (user_id == 0) {
             wx.navigateTo({
                 url: '../myProject/personInfo/personInfo'
@@ -283,6 +283,7 @@ Page({
             wx.navigateTo({
                 url: '../myProject/companyInfo/companyInfo'
             })
+            //如果存在用户id 但是 信息不完整,跳转公司信息
         }
     },
     //点击发布融资项目

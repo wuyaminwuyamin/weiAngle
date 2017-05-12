@@ -60,10 +60,6 @@ Page({
             position: position,
             email: email,
         })
-
-
-
-
     },
     //下拉刷新
     onPullDownRefresh: function () {
@@ -117,7 +113,7 @@ Page({
                 result: "1"
             })
         }
-        console.log(temp);
+        // console.log(temp);
         that.setData({
             email: temp
         })
@@ -154,6 +150,7 @@ Page({
                     if (res.data.status_code == 2000000) {
                         // 从绑定人脉那边过来的
                         var followed_user_id = wx.getStorageSync('followed_user_id');
+                        console.log(followed_user_id);
                         if (followed_user_id) {
                             wx.request({
                                 url: url + '/api/user/followUser',
@@ -170,20 +167,26 @@ Page({
                                             showCancel: false,
                                             confirmText: "到人脉库",
                                             success: function () {
+                                              console.log(res);
+                                              console.log(1);
                                                 wx.switchTab({
                                                     url: '/pages/network/network',
                                                 })
+                                                console.log(2)
                                             }
                                         })
                                     }
                                 },
                             })
                         } else {
+                          console.log(3)
                             wx.switchTab({
                                 url: "/pages/resource/resource"
                             });
+                            console.log(4)
                         }
                     }else{
+                      
                         var error_msg = res.data.error_msg;
                         console.log(res.data.error_msg)
                         wx.showModal({

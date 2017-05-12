@@ -1,5 +1,5 @@
 {
-  "pages": [
+  "pages":[
     "pages/resource/resource",
     "pages/network/network",
     "pages/test/test",
