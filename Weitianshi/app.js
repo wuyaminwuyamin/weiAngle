@@ -7,6 +7,7 @@ App({
         var options = options;
         logs.unshift(Date.now());
         wx.setStorageSync('logs', logs);
+        //如果是在是点击群里名片打开的小程序,则向后台发送一些信息
         if (options.shareTicket) {
             wx.login({
                 success: function (login) {
@@ -67,7 +68,7 @@ App({
         }
     },
 
-    //获取open_session  你刚才说什么意思
+    //获取open_session  
     getSession(cb) {
         var that = this;
         //获取code
