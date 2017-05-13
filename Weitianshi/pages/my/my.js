@@ -152,6 +152,13 @@ Page({
             })
         }
     },
+    //点击modal后消失
+    hideModal(){
+        let modal=this.data.modal;
+        this.setData({
+            modal: 0
+        })
+    },
     //分享页面
     onShareAppMessage: function () {
         var id = wx.getStorageSync('user_id');

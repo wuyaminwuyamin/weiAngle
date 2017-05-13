@@ -240,11 +240,6 @@ App({
         return json;
     },
 
-    //test
-    hello: function () {
-        console.log("TEST")
-    },
-
     //根据用户信息完整度跳转不同的页面
     infoJump: function (data) {
         var user_id = wx.getStorageSync("user_id");
@@ -280,6 +275,11 @@ App({
                 }
             },
         });
+    },
+    
+    //test
+    hello: function () {
+        console.log("TEST")
     },
 
     /*//登录状态维护
