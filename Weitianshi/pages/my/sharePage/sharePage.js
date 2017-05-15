@@ -53,7 +53,7 @@ Page({
                     bindUser: 1
                 })
             }
-            console.log("share_id", "user_id", "view_id")
+            // console.log("share_id", "user_id", "view_id")
             console.log(followed_user_id, followed_user_id, view_id)
             //如果进入的是自己的名片里
             if (user_id == followed_user_id) {

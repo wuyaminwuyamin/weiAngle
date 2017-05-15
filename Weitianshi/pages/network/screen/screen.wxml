@@ -1,0 +1,10 @@
+<!--pages/network/screen/screen.wxml-->
+  <view class="context flex">
+      <block wx:for="{{doMain}}" wx:key="{{item.industry_id}}">
+        <label class="tips">
+          <view class="{{enchangeCheck[index]==true?'checkedOne':''}}" id="{{item.industry_id}}" data-index="{{index}}" data-value='{{item.industry_name}}' data-check="false" bindtap="checkboxChange">
+            {{item.industry_name}}</view>
+        </label>
+      </block>
+    </view>
+ 

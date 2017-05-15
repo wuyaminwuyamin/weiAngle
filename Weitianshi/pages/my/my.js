@@ -157,6 +157,7 @@ Page({
     onShareAppMessage: function () {
         var user_id = wx.getStorageSync('user_id');
         var modal = this.data.modal;
+        console.log(modal);
         this.setData({
             goTop: 1
         })
