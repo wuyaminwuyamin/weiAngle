@@ -1,0 +1,41 @@
+/* pages/network/search/search.wxss */
+.search_frame {
+  position:fixed;
+  height:56rpx;
+  width:94%;
+  background: white;
+  padding: 16rpx 128rpx 16rpx 32rpx;
+  z-index:5;
+}
+
+.search_icon {
+  padding: 16rpx 16rpx;
+  padding-top: 40rpx;
+}
+
+.searchBox {
+  align-items: center;
+  height: 56rpx;
+  width:590rpx;
+  line-height: 56rpx;
+  background: #f2f2f2;
+  border-radius: 8rpx;
+  float:left;
+}
+
+.search {
+  margin: 0;
+  font-size: 28rpx;
+  height: 56rpx;
+  line-height: 56rpx;
+  width:90%;
+}
+/*取消*/
+.esc{
+  /*clear:both;*/
+  float:right;
+  font-size:32rpx;
+  color:#40587a;
+  margin-top:14rpx;
+  margin-right:32rpx;
+  }
