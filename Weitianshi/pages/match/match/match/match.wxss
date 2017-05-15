@@ -1,5 +1,5 @@
-/*@import "/pages/Template/Template.wxss";
-@import "/pages/match/selectProject/selectProject.wxss";*/
+@import "/pages/Template/Template.wxss";
+@import "/pages/match/selectProject/selectProject.wxss";
 page {
   height: 100%;
 }
