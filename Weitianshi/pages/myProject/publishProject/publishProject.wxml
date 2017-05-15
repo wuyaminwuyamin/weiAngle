@@ -9,10 +9,10 @@
   </view>
   <view class="card">
     <view class="text">所属领域*</view>
-    <navigator url="../../industry/industry?current=0" id="domain">
+    <navigator url="/pages/form/industry/industry?current=0" id="domain">
       <view class="slect flex">
         <view class="{{domainValue =='选择领域' ? '':'checkOn'}}">{{domainValue}}</view>
-        <image class="downArrow" src="../../../img/downArrow.png"></image>
+        <image class="downArrow" src="/img/downArrow.png"></image>
       </view>
     </navigator>
   </view>
@@ -21,7 +21,7 @@
     <picker id="stage" bindchange="stage" value="{{stage_index}}" range="{{stage_arry}}">
       <view class="slect flex">
         <view class="{{stage_index ==0 ? '' : 'checkOn'}}">{{stage[stage_index].stage_name}}</view>
-        <image class="downArrow" src="../../../img/downArrow.png"></image>
+        <image class="downArrow" src="/img/downArrow.png"></image>
       </view>
     </picker>
   </view>
@@ -30,16 +30,16 @@
     <picker id="expect" bindchange="expect" value="{{expect_index}}" range="{{expect_arry}}">
       <view class="slect flex">
         <view class="{{expect_index ==0 ? '' : 'checkOn'}}">{{expect[expect_index].scale_money}}</view>
-        <image class="downArrow" src="../../../img/downArrow.png"></image>
+        <image class="downArrow" src="/img/downArrow.png"></image>
       </view>
     </picker>
   </view>
   <view class="card">
     <view class="text">所在地区*</view>
-    <navigator url="../../belongArea/belongArea?current=0" id="belongArea">
+    <navigator url="/pages/form/area1/area1?current=0" id="belongArea">
       <view id="belongArea" class="slect flex" bindtap="belongArea">
         <view class="{{belongArea =='选择城市' ? '':'checkOn'}}">{{belongArea}}</view>
-        <image class="downArrow" src="../../../img/downArrow.png"></image>
+        <image class="downArrow" src="/img/downArrow.png"></image>
       </view>
     </navigator>
   </view>

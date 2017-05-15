@@ -232,7 +232,7 @@ Page({
         })
         if (current == 1) {
             wx.switchTab({
-                url: '/pages/my/my',
+                url: '/pages/my/my/my',
             })
         } else {
             wx.navigateBack({//页面返回

@@ -353,7 +353,7 @@ Page({
                     // wx.setStorageSync('y_payAreaId', [])
                     if (current == 1) {
                       wx.switchTab({
-                        url: "/pages/my/my"
+                        url: "/pages/my/my/my"
                       })
                     } else {
                       wx.switchTab({

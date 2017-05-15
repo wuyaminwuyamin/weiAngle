@@ -25,7 +25,7 @@
 
       <!--空状态-->
       <view wx:if="{{financingNeed==''}}">
-        <image class="empty" src="../../img/img-wujieguo@3x.png"></image>
+        <image class="empty" src="/img/img-wujieguo@3x.png"></image>
       </view>
     </scroll-view>
   </swiper-item>
@@ -96,7 +96,7 @@
 
       <!--空状态-->
       <view wx:if="{{investNeed==''}}">
-        <image class="empty" src="../../img/img-wujieguo@3x.png"></image>
+        <image class="empty" src="/img/img-wujieguo@3x.png"></image>
       </view>
     </scroll-view>
   </swiper-item>
@@ -116,7 +116,7 @@
 
       <!--空状态-->
       <view wx:if="{{resourceNeed==''}}">
-        <image class="empty" src="../../img/img-wujieguo@3x.png"></image>
+        <image class="empty" src="/img/img-wujieguo@3x.png"></image>
       </view>
     </scroll-view>
   </swiper-item>

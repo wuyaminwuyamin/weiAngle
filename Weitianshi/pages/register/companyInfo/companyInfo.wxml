@@ -15,7 +15,7 @@
     </view>
      <button form-type="submit" class="nextBtn" bindtap="backHome" loading="{{loading=='1'}}">
       完成
-      <image class="rightArrow" src="../../img/rightArrow.png"></image>
+      <image class="rightArrow" src="/img/rightArrow.png"></image>
     </button>
   </form>
   <view class="error"wx:if="{{error=='1'}}" >{{error_text}}</view>

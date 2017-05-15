@@ -103,7 +103,7 @@ Page({
         success: function (res) {
             if (res.data.status_code == 2000000) {
                 wx.switchTab({
-                    url: '/pages/my/my',
+                    url: '/pages/my/my/my',
                 })
             } else {
                 wx.showModal({
@@ -132,7 +132,7 @@ Page({
         success: function (res) {
           if (res.data.status_code == 2000000) {
             wx.switchTab({
-              url: '/pages/my/my',
+              url: '/pages/my/my/my',
             })
           } else {
             wx.showModal({

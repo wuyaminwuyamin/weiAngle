@@ -207,7 +207,7 @@ App({
           })
         } else {
           wx.switchTab({
-            url: '/pages/resource/resource',
+            url: '/pages/match/match/match/match',
           })
         }
       }

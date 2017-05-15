@@ -4,7 +4,7 @@ var url = app.globalData.url;
 Page({
   data: {
     notIntegrity: 0,//检查个人信息是否完整
-    netWork_page: 1,//人脉列表的当前分页
+    contacts_page: 1,//人脉列表的当前分页
     page_end: false,//是否还有下一页
   },
   searchSth: function () {
@@ -24,7 +24,7 @@ Page({
       user_id: user_id,
       page_end: false,
       scroll: 0,
-      netWork_page: 1
+      contacts_page: 1
     })
     // 检查个人信息全不全
     if (user_id) {
@@ -59,12 +59,12 @@ Page({
         success: function (res) {
           console.log("我的人脉列表")
           console.log(res)
-          var netWork = res.data.data;//所有的用户
+          var contacts = res.data.data;//所有的用户
           var page_end = res.data.page_end;
           that.setData({
-            netWork: netWork,
+            contacts: contacts,
             page_end: page_end,
-            netWork_page: 1
+            contacts_page: 1
           })
         }
       })
@@ -101,7 +101,7 @@ Page({
             success: function (res) {
               if (res.confirm == true) {
                 wx.switchTab({
-                  url: '/pages/my/my',
+                  url: '/pages/my/my/my',
                 })
               }
             }

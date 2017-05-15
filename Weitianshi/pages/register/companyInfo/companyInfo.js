@@ -170,7 +170,7 @@ Page({
                                               console.log(res);
                                               console.log(1);
                                                 wx.switchTab({
-                                                    url: '/pages/network/network',
+                                                    url: '/pages/contacts/contacts/contacts',
                                                 })
                                             
                                             }
@@ -181,12 +181,12 @@ Page({
                         } else {
 
                             wx.switchTab({
-                                url: "/pages/resource/resource"
+                                url: "/pages/match/match/match/match"
                             });
 
                             console.log("跳转resourece前")
                             wx.switchTab({
-                                url: "/pages/resource/resource"
+                                url: "/pages/match/match/match/match"
                             });
 
                         }
