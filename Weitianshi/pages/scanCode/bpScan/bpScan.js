@@ -10,7 +10,7 @@ Page({
     wx.scanCode({
       success: function(res){
         wx.navigateTo({
-          url: 'scanCodeSuccess',
+          url: '/pages/scanCode/bpScanSuccess/bpScanSuccess',
           success: function(res){
             // success
           },

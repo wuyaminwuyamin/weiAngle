@@ -89,7 +89,7 @@ Page({
         var id = e.currentTarget.dataset.id
         console.log(id)
         wx.navigateTo({
-            url: '/pages/userDetail/userDetail?id=' + id,
+            url: '/pages/userDetail/networkDetail/networkDetail?id=' + id,
         })
     },
     //下拉刷新
@@ -120,7 +120,7 @@ Page({
                     wx.setStorageSync('followed_user_id', followed_user_id)
                     if (res.confirm == true) {
                         wx.navigateTo({
-                            url: '/pages/myProject/personInfo/personInfo'
+                            url: '/pages/register/personInfo/personInfo'
                         })
                     }
                 }

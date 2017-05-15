@@ -9,12 +9,12 @@ Page({
   },
   searchSth: function () {
     wx.navigateTo({
-      url: '/pages/contacts/search/search'
+      url: '/pages/search/search2/search2'
     })
   },
   screenSth: function () {
     wx.navigateTo({
-      url: '/pages/contacts/screen/screen'
+      url: '/pages/search/filter4/filter4'
     })
   },
   onShow: function () {
@@ -75,7 +75,7 @@ Page({
     var id = e.currentTarget.dataset.id
     console.log(id);
     wx.navigateTo({
-      url: '/pages/userDetail/userDetail?id=' + id,
+      url: '/pages/userDetail/networkDetail/networkDetail?id=' + id,
     })
   },
   //我的名片
@@ -106,81 +106,81 @@ Page({
               }
             }
           })
-				} else {
-					wx.showModal({
-						title: "友情提示",
-						content: "交换名片之前,请先完善自己的名片",
-						success: function (res) {
-							if (res.confirm == true) {
-								wx.navigateTo({
-									url: '../my/cardEdit/cardEdit',
-								})
-							}
-						}
-					})
-				}
-			},
-			fail: function (res) {
-				wx.showToast({
-					title: "对不起没有获取到您的个人信息"
-				})
-			},
-		})
-	},
-	// 绑定名片
-	bindUserInfo: function () {
-        app.infoJump()
-	},
-	// 一键拨号
-	telephone: function (e) {
-		var telephone = e.currentTarget.dataset.telephone;
-		wx.makePhoneCall({
-			phoneNumber: telephone,
-		})
-	},
-	// 下拉加载
-	loadMore: function () {
-		var that = this;
-		var contacts_page = this.data.contacts_page;
-		var user_id = wx.getStorageSync('user_id');
-		var page_end = this.data.page_end;
-		if (page_end == false) {
-			wx.showToast({
-				title: 'loading...',
-				icon: 'loading'
-			})
-			contacts_page++;
-			that.setData({
-				contacts_page: contacts_page
-			})
-			wx.request({
-				url: url + '/api/user/getMyFollowList',
-				data: {
-					user_id: user_id,
-					page: contacts_page,
-				},
-				method: 'POST',
-				success: function (res) {
-					console.log(res)
-					var newPage = res.data.data;
-					var contacts = that.data.contacts;
-					var page_end = res.data.page_end;
-					for (var i = 0; i < newPage.length; i++) {
-						contacts.push(newPage[i])
-					}
-					that.setData({
-						contacts: contacts,
-						page_end: page_end,
-					})
-				},
-				fail: function () {
-					wx.showToast({
-						title: '加载人脉失败',
-					})
-				},
-			})
-		} else {
-			rqj.errorHide(that, "没有更多了", 3000)
-		}
-	}
+        } else {
+          wx.showModal({
+            title: "友情提示",
+            content: "交换名片之前,请先完善自己的名片",
+            success: function (res) {
+              if (res.confirm == true) {
+                wx.navigateTo({
+                  url: '/pages/my/cardEdit/cardEdit',
+                })
+              }
+            }
+          })
+        }
+      },
+      fail: function (res) {
+        wx.showToast({
+          title: "对不起没有获取到您的个人信息"
+        })
+      },
+    })
+  },
+  // 绑定名片
+  bindUserInfo: function () {
+    app.infoJump()
+  },
+  // 一键拨号
+  telephone: function (e) {
+    var telephone = e.currentTarget.dataset.telephone;
+    wx.makePhoneCall({
+      phoneNumber: telephone,
+    })
+  },
+  // 下拉加载
+  loadMore: function () {
+    var that = this;
+    var netWork_page = this.data.netWork_page;
+    var user_id = wx.getStorageSync('user_id');
+    var page_end = this.data.page_end;
+    if (page_end == false) {
+      wx.showToast({
+        title: 'loading...',
+        icon: 'loading'
+      })
+      netWork_page++;
+      that.setData({
+        netWork_page: netWork_page
+      })
+      wx.request({
+        url: url + '/api/user/getMyFollowList',
+        data: {
+          user_id: user_id,
+          page: netWork_page,
+        },
+        method: 'POST',
+        success: function (res) {
+          console.log(res)
+          var newPage = res.data.data;
+          var netWork = that.data.netWork;
+          var page_end = res.data.page_end;
+          for (var i = 0; i < newPage.length; i++) {
+            netWork.push(newPage[i])
+          }
+          that.setData({
+            netWork: netWork,
+            page_end: page_end,
+          })
+        },
+        fail: function () {
+          wx.showToast({
+            title: '加载人脉失败',
+          })
+        },
+      })
+    } else {
+      rqj.errorHide(that, "没有更多了", 3000)
+    }
+  }
 })

@@ -115,7 +115,7 @@ Page({
                     wx.setStorageSync('followed_user_id', followed_user_id)
                     if (res.confirm == true) {
                         wx.navigateTo({
-                            url: '/pages/myProject/personInfo/personInfo'
+                            url: '/pages/register/personInfo/personInfo'
                         })
                     }
                 }

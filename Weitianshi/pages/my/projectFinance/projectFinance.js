@@ -38,7 +38,7 @@ Page({
     var id = thisData.id;
     var index = thisData.index
     wx.navigateTo({
-      url: '../../myProject/projectDetail/projectDetail?id=' + id + "&&index=" + index + "&&currentTab=" + 0
+      url: '/pages/myProject/projectDetail/projectDetail?id=' + id + "&&index=" + index + "&&currentTab=" + 0
     })
   },
   //编辑项目
@@ -46,7 +46,7 @@ Page({
     var id=e.currentTarget.dataset.id;
     var user_id = wx.getStorageSync('user_id')
     wx.navigateTo({
-      url: '/pages/myProject/maintainProject/maintainProject?pro_id=' + id + "&&user_id=" + user_id,
+      url: '/pages/myProject/editProject/editProject?pro_id=' + id + "&&user_id=" + user_id,
     })
   },
   // 按钮一号

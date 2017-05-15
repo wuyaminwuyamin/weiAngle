@@ -124,7 +124,7 @@ Page({
           })
         } else {
           wx.navigateTo({
-            url: '../yourProject/yourDetail?id=' + id,
+            url: '/pages/projectDetail/projectDetail?id=' + id,
           })
         }
         
@@ -138,7 +138,7 @@ Page({
     //   })
     // } else {
     //   wx.navigateTo({
-    //     url: '../yourProject/yourDetail?id=' + id
+    //     url: '/pages/projectDetail/projectDetail?id=' + id
     //   })
     // }
 
@@ -305,7 +305,7 @@ Page({
   // 返回对接页面
   backToResource: function () {
     wx.switchTab({
-      url: '../resource/resource',
+      url: '/pages/match/match/match/match',
     })
   }
 });

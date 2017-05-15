@@ -102,7 +102,7 @@ Page({
   // 项目领域
   case_industry: function (e) {
     wx.navigateTo({
-      url: '/pages/industry/industry?current=' + 3,
+      url: '/pages/form/industry/industry?current=' + 3,
     })
   },
   //项目阶段
@@ -135,7 +135,7 @@ Page({
   // 项目领域
   case_local: function (e) {
     wx.navigateTo({
-      url: '/pages/belongArea/belongArea?current=' + 2
+      url: '/pages/area1/area1?current=' + 2
     })
   },
   //保存

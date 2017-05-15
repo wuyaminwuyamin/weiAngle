@@ -253,34 +253,34 @@ Page({
 
         //修复bug
         /*wx.navigateTo({
-            url: '../myProject/personInfo/personInfo'
+            url: '/pages/register/personInfo/personInfo'
         })*/
 // 如果user_id == 0用户id不存在,那么直接跳转个人信息填写
         if (user_id == 0) {
             wx.navigateTo({
-                url: '../myProject/personInfo/personInfo'
+                url: '/pages/register/personInfo/personInfo'
             })
         } else if (user_id != 1 && complete == 1) {
             if (data == "publishProject") {
                 wx.navigateTo({
-                    url: "../myProject/publishProject/publishProject"
+                    url: "/pages/myProject/publishProject/publishProject"
                 })
             } else if (data == "yourProject") {
                 wx.navigateTo({
-                    url: "../yourProject/yourProject"
+                    url: "/pages/projectDetail/projectDetail"
                 })
             } else if (data == "resourceNeed") {
                 wx.navigateTo({
-                    url: "../resourceEnchange/resourceEnchange"
+                    url: "/pages/match/match/resourceDemand/resourceDemand"
                 })
             } else {
                 wx.navigateTo({
-                    url: '../myProject/companyInfo/companyInfo'
+                  url: '/pages/register/companyInfo/companyInfo'
                 })
             }
         } else if (user_id != 1 && complete == 0) {
             wx.navigateTo({
-                url: '../myProject/companyInfo/companyInfo'
+              url: '/pages/register/companyInfo/companyInfo'
             })
             //如果存在用户id 但是 信息不完整,跳转公司信息
         }
@@ -294,17 +294,17 @@ Page({
     },
     //点击发布投资需求
     yourProject: function () {
-        app.infoJump("/pages/yourProject/yourProject")
+        app.infoJump("/pages/match/match/investDemand/investDemand")
     },
     //点击发布资源需求
     resourceNeed: function () {
-        app.infoJump("/pages/resourceEnchange/resourceEnchange")
+      app.infoJump("/pages/match/match/resourceDemand/resourceDemand")
     },
     // 跳转人物详情
     userDetail(e) {
         var id = e.currentTarget.dataset.id
         wx.navigateTo({
-            url: '../userDetail/userDetail?id=' + id
+            url: '/pages/userDetail/networkDetail/networkDetail?id=' + id
         })
     },
     //点击项目融资详情
@@ -312,7 +312,7 @@ Page({
         var thisData = e.currentTarget.dataset;
         var index = thisData.index;
         wx.navigateTo({
-            url: '../myProject/projectDetail/projectDetail?id=' + thisData.id + '&&index=' + index
+            url: '/pages/myProject/projectDetail/projectDetail?id=' + thisData.id + '&&index=' + index
         })
     },
     //点击融资项目匹配出来的投资人
@@ -320,7 +320,7 @@ Page({
         var thisData = e.currentTarget.dataset;
         var index = thisData.index;
         wx.navigateTo({
-            url: '../myProject/projectDetail/projectDetail?id=' + thisData.id + '&&index=' + index + "&&currentTab=" + 1
+            url: '/pages/myProject/projectDetail/projectDetail?id=' + thisData.id + '&&index=' + index + "&&currentTab=" + 1
         })
     },
     //点击项目投资详情
@@ -328,7 +328,7 @@ Page({
         var thisData = e.currentTarget.dataset;
         var index = thisData.index;
         wx.navigateTo({
-            url: '../yourProject/yourDetail?id=' + thisData.id + '&&index=' + index
+            url: '/pages/projectDetail/projectDetail?id=' + thisData.id + '&&index=' + index
         })
     },
     //寻找项目触底刷新
@@ -477,7 +477,7 @@ Page({
         var user_id = wx.getStorageSync('user_id');
         return {
             title: '微天使帮您精准对接投融资需求',
-            path: '/pages/resource/resource'
+            path: '/pages/match/match/match/match'
         }
     }
 });

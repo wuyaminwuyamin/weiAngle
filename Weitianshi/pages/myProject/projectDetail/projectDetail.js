@@ -110,7 +110,7 @@ Page({
     detail(e) {
         var id = e.currentTarget.dataset.id;
         wx.navigateTo({
-            url: '/pages/userDetail/userDetail?id=' + id,
+            url: '/pages/userDetail/networkDetail/networkDetail?id=' + id,
         })
     },
     //触底加载
@@ -168,7 +168,7 @@ Page({
         var id = this.data.id;
         var user_id = this.data.user_id;
         wx.navigateTo({
-            url: '/pages/myProject/maintainProject/maintainProject?pro_id=' + id + "&&user_id=" + user_id,
+            url: '/pages/myProject/editProject/editProject?pro_id=' + id + "&&user_id=" + user_id,
         })
     },
     //分享当前页面

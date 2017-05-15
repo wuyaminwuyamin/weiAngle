@@ -203,7 +203,7 @@ App({
         console.log(res)
         if (res.confirm == true) {
           wx.navigateTo({
-            url: '/pages/myProject/personInfo/personInfo',
+            url: '/pages/register/personInfo/personInfo',
           })
         } else {
           wx.switchTab({
@@ -259,7 +259,7 @@ App({
           var complete = res.data.is_complete;
           if (user_id == 0) {
             wx.navigateTo({
-              url: '../myProject/personInfo/personInfo'
+              url: '/pages/register/personInfo/personInfo',
             })
           } else if (user_id != 1 && complete == 1) {
             wx.navigateTo({
@@ -267,12 +267,12 @@ App({
             })
           } else if (user_id != 1 && complete == 0) {
             wx.navigateTo({
-              url: '../myProject/companyInfo/companyInfo'
+              url: '/pages/register/companyInfo/companyInfo'
             })
           }
         } else {//后台返回500状态码,可能原因为参数的user_id传了0过去
           wx.navigateTo({
-            url: '../myProject/personInfo/personInfo'
+            url: '/pages/register/personInfo/personInfo'
           })
         }
       },
