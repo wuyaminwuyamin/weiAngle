@@ -1,3 +1,4 @@
+/* pages/network/screen/screen.wxss */
 page {
   background: white;
 }
@@ -10,10 +11,6 @@ page {
   flex-wrap: wrap;
   flex-direction: row;
 }
-
-/*#resourceEnchange {
-  padding: 0 32rpx;
-}*/
 
 .title {
   font-size: 24rpx;
@@ -63,35 +60,4 @@ page {
 
 .flex .title:first-child {
   padding-left: 0;
-}
-
-.offer .flex:first-child {
-  padding-left: 0;
-}
-.search .flex:first-child{
-  padding-left: 0
-}
-
-.offerAdd, .searchAdd {
-  color: #40587a;
-}
-
-.search{
-  margin-top: 0
-}
-
-.describe{
-  font-size: 24rpx;
-  color: #333;
-  padding-bottom: 32rpx;
-  padding-top: 24rpx;
-}
-
-textarea {
-  background: #f2f2f2;
-  border-radius: 4px;
-  padding:32rpx;
-  font-size: 28rpx;
-  margin-bottom: 64rpx;
-  height: 240rpx;
 }

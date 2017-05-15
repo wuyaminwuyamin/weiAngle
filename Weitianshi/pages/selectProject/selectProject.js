@@ -51,7 +51,7 @@ Page({
         },
         method: 'POST',
         success: function (res) {
-            console.log("精选项目触底加载内容")
+          console.log("精选项目触底加载内容")
           console.log(res);
           var slectProject_new = res.data.data;
           var slectProject = that.data.slectProject;

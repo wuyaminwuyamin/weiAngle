@@ -113,8 +113,8 @@ Page({
         var that = this;
         var userId = res.data.user_id;
         var user = wx.getStorageSync('user_id');
-        console.log(userId);
-        console.log(user);
+        // console.log(userId);
+        // console.log(user);
         // that.setData({
         //   userId : userId
         // })

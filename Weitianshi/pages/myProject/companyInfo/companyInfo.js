@@ -19,7 +19,7 @@ Page({
         var position = options.user_career;
         var email = options.user_email;
         var user_id = wx.getStorageSync('user_id');
-        console.log(user_id);
+        // console.log(user_id);
         wx.request({
             url: url+'/api/user/checkUserInfo',
             data: {
@@ -27,7 +27,7 @@ Page({
             },
             method: 'POST',
             success: function(res){
-                console.log(res);
+                // console.log(res);
                 var complete = res.data.is_complete;
                 if(res.data.status_code ==2000000 || res.data.status_code==0){
                     that.setData({
@@ -43,7 +43,7 @@ Page({
             },
             complete: function(res) {
                 // complete
-                console.log(res);
+                // console.log(res);
             }
         });
         if (company == "null") {
@@ -60,10 +60,6 @@ Page({
             position: position,
             email: email,
         })
-
-
-
-
     },
     //下拉刷新
     onPullDownRefresh: function () {
@@ -105,10 +101,10 @@ Page({
         var that = this;
         var temp = e.detail.value;
         var email = this.data.email;
-        // console.log(temp)
+        console.log(temp)
         var myreg = /^(\w-*\.*)+@(\w-?)+(\.\w{2,})+$/;
         if (!myreg.test(temp) && temp !== '') {
-            // console.log('请输入有效的E_mail！');
+            console.log('请输入有效的E_mail！');
             that.setData({
                 result: "0"
             })
@@ -154,6 +150,7 @@ Page({
                     if (res.data.status_code == 2000000) {
                         // 从绑定人脉那边过来的
                         var followed_user_id = wx.getStorageSync('followed_user_id');
+                        console.log(followed_user_id);
                         if (followed_user_id) {
                             wx.request({
                                 url: url + '/api/user/followUser',
@@ -170,22 +167,31 @@ Page({
                                             showCancel: false,
                                             confirmText: "到人脉库",
                                             success: function () {
+                                              console.log(res);
+                                              console.log(1);
                                                 wx.switchTab({
                                                     url: '/pages/network/network',
                                                 })
+                                            
                                             }
                                         })
                                     }
                                 },
                             })
                         } else {
+
+                            wx.switchTab({
+                                url: "/pages/resource/resource"
+                            });
+
                             console.log("跳转resourece前")
                             wx.switchTab({
                                 url: "/pages/resource/resource"
                             });
-                            console.log("跳转resource页面")
+
                         }
                     }else{
+                      
                         var error_msg = res.data.error_msg;
                         console.log(res.data.error_msg)
                         wx.showModal({
