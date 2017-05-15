@@ -357,7 +357,7 @@ Page({
                       })
                     } else {
                       wx.switchTab({
-                        url: '../resource/resource'
+                        url: '/pages/match/match/match/match'
                       });
                     }
                     

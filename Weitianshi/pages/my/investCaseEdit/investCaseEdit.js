@@ -135,7 +135,7 @@ Page({
   // 项目领域
   case_local: function (e) {
     wx.navigateTo({
-      url: '/pages/area1/area1?current=' + 2
+      url: '/pages/form/industry/industry?current=' + 2
     })
   },
   //保存
