@@ -8,7 +8,7 @@ page {
   position:static;
 }
 /*空状态*/
-.netWork{
+.contacts{
   margin-top:120rpx;
 }
 .nullState_text {

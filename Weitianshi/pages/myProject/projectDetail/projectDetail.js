@@ -182,7 +182,7 @@ Page({
     //跳转到我的页面
     toMy:function(){
         wx.switchTab({
-          url: '/pages/my/my',
+          url: '/pages/my/my/my',
         })
     }
 });

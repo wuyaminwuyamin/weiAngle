@@ -4,17 +4,17 @@ var url = app.globalData.url;
 Page({
   data: {
     notIntegrity: 0,//检查个人信息是否完整
-    netWork_page: 1,//人脉列表的当前分页
+    contacts_page: 1,//人脉列表的当前分页
     page_end: false,//是否还有下一页
   },
   searchSth: function () {
     wx.navigateTo({
-      url: '/pages/network/search/search'
+      url: '/pages/contacts/search/search'
     })
   },
   screenSth: function () {
     wx.navigateTo({
-      url: '/pages/network/screen/screen'
+      url: '/pages/contacts/screen/screen'
     })
   },
   onShow: function () {
@@ -24,7 +24,7 @@ Page({
       user_id: user_id,
       page_end: false,
       scroll: 0,
-      netWork_page: 1
+      contacts_page: 1
     })
     // 检查个人信息全不全
     if (user_id) {
@@ -59,12 +59,12 @@ Page({
         success: function (res) {
           console.log("我的人脉列表")
           console.log(res)
-          var netWork = res.data.data;//所有的用户
+          var contacts = res.data.data;//所有的用户
           var page_end = res.data.page_end;
           that.setData({
-            netWork: netWork,
+            contacts: contacts,
             page_end: page_end,
-            netWork_page: 1
+            contacts_page: 1
           })
         }
       })
@@ -101,7 +101,7 @@ Page({
             success: function (res) {
               if (res.confirm == true) {
                 wx.switchTab({
-                  url: '/pages/my/my',
+                  url: '/pages/my/my/my',
                 })
               }
             }
@@ -141,7 +141,7 @@ Page({
 	// 下拉加载
 	loadMore: function () {
 		var that = this;
-		var netWork_page = this.data.netWork_page;
+		var contacts_page = this.data.contacts_page;
 		var user_id = wx.getStorageSync('user_id');
 		var page_end = this.data.page_end;
 		if (page_end == false) {
@@ -149,27 +149,27 @@ Page({
 				title: 'loading...',
 				icon: 'loading'
 			})
-			netWork_page++;
+			contacts_page++;
 			that.setData({
-				netWork_page: netWork_page
+				contacts_page: contacts_page
 			})
 			wx.request({
 				url: url + '/api/user/getMyFollowList',
 				data: {
 					user_id: user_id,
-					page: netWork_page,
+					page: contacts_page,
 				},
 				method: 'POST',
 				success: function (res) {
 					console.log(res)
 					var newPage = res.data.data;
-					var netWork = that.data.netWork;
+					var contacts = that.data.contacts;
 					var page_end = res.data.page_end;
 					for (var i = 0; i < newPage.length; i++) {
-						netWork.push(newPage[i])
+						contacts.push(newPage[i])
 					}
 					that.setData({
-						netWork: netWork,
+						contacts: contacts,
 						page_end: page_end,
 					})
 				},

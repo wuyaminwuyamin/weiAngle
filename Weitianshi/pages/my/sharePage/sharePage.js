@@ -64,7 +64,7 @@ Page({
                     title: res.data.user_info.user_real_name + "的投资名片",
                 })
                 wx.switchTab({
-                    url: '/pages/my/my',
+                    url: '/pages/my/my/my',
                 })
             }
             that.setData({
@@ -138,7 +138,7 @@ Page({
                             confirmText: "到人脉库",
                             success: function (res) {
                                 wx.switchTab({
-                                    url: '/pages/network/network',
+                                    url: '/pages/contacts/contacts/contacts',
                                 })
                             }
                         })
@@ -150,7 +150,7 @@ Page({
                             confirmText: "到人脉库",
                             success: function () {
                                 wx.switchTab({
-                                    url: '/pages/network/network',
+                                    url: '/pages/contacts/contacts/contacts',
                                 })
                             }
                         })

@@ -9,7 +9,7 @@
   </view>
   <view class="card">
     <view class="text">所属领域*</view>
-    <navigator url="../../industry/industry?current=0" id="domain">
+    <navigator url="/pages/form/industry/industry?current=0" id="domain">
       <view class="slect flex">
         <view class="{{domainValue =='选择领域' ? '':'checkOn'}}">{{domainValue}}</view>
         <image class="downArrow" src="../../../img/downArrow.png"></image>
@@ -36,7 +36,7 @@
   </view>
   <view class="card">
     <view class="text">所在地区*</view>
-    <navigator url="../../belongArea/belongArea?current=0" id="belongArea">
+    <navigator url="/pages/form/area1/area1?current=0" id="belongArea">
       <view id="belongArea" class="slect flex" bindtap="belongArea">
         <view class="{{belongArea =='选择城市' ? '':'checkOn'}}">{{belongArea}}</view>
         <image class="downArrow" src="../../../img/downArrow.png"></image>

@@ -96,7 +96,7 @@ Page({
                             confirmText: "到人脉库",
                             success: function (res) {
                                 wx.switchTab({
-                                    url: '/pages/network/network',
+                                    url: '/pages/contacts/contacts/contacts',
                                 })
                             }
                         })
@@ -108,7 +108,7 @@ Page({
                             confirmText: "到人脉库",
                             success: function () {
                                 wx.switchTab({
-                                    url: '/pages/network/network',
+                                    url: '/pages/contacts/contacts/contacts',
                                 })
                             }
                         })
