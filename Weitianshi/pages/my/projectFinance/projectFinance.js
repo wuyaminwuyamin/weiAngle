@@ -50,9 +50,6 @@ Page({
   },
   // 按钮一号
   buttonOne: function () {
-    wx.navigateTo({
-      url: '/pages/myProject/publishProject/publishProject',
-    })
-
+      app.infoJump("/pages/myProject/publishProject/publishProject")
   }
 })

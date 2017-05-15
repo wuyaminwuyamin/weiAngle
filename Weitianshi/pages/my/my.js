@@ -152,52 +152,20 @@ Page({
             })
         }
     },
-    //分享名片 代码
-
-    onShareAppMessage: function () {
-        var user_id = wx.getStorageSync('user_id');
-        var modal = this.data.modal;
-        console.log(modal);
+    //点击modal后消失
+    hideModal(){
+        let modal=this.data.modal;
         this.setData({
-            goTop: 1
+            modal: 0
         })
-
-        if (modal == 1) {
-            this.setData({
-                modal: 0
-            })
-        }
-
-        return this.shareCallback(user_id)
+    },
+    //分享页面
+    onShareAppMessage: function () {
+        var id = wx.getStorageSync('user_id');
+        // var that = getCurrentPages()[getCurrentPages().length - 1].__route__
+        return app.sharePage(id,id)
     },
 
-    //分享名片回调函数
-    shareCallback: function (id) {
-        var json = {
-            title: '投资名片',
-            path: "/pages/my/sharePage/sharePage?user_id=" + id,
-            success: function (res) {
-                // 还在测试部分
-                console.log(res)
-                var shareTicket = res.shareTickets[0]
-                wx.getShareInfo({
-                    shareTicket: shareTicket,
-                    success: function (res) {
-                        console.log(res)
-                        let encryptedData = res.encryptedData
-                        let iv = res.iv
-                    },
-                    fail: function (res) {
-                        console.log(res)
-                    },
-                })
-            },
-            fail: function (res) {
-                console.log(res)
-            }
-        }
-        return json;
-    },
     //取消分享
     cancelShare: function () {
         this.setData({
