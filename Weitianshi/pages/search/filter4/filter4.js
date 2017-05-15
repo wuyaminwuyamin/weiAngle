@@ -1,4 +1,4 @@
-// var rqj = require('../../Template/Template.js')
+// var rqj = require('../../../Template/Template.js')
 var app = getApp();
 // 所属领域
 var url = app.globalData.url;
