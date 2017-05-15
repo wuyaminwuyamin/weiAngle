@@ -1,10 +1,17 @@
-<!--pages/network/screen/screen.wxml-->
-  <view class="context flex">
-      <block wx:for="{{doMain}}" wx:key="{{item.industry_id}}">
+<!--pages/network/filter4/filter4.wxml-->
+<view id="domain">
+ <view class="domainName">
+    <view class="flex">
+      <view class="title">领域</view>
+    </view>
+    <view class="context flex">
+      <block wx:for="{{industryData}}" wx:key="{{item.resource_id}}">
         <label class="tips">
-          <view class="{{enchangeCheck[index]==true?'checkedOne':''}}" id="{{item.industry_id}}" data-index="{{index}}" data-value='{{item.industry_name}}' data-check="false" bindtap="checkboxChange">
-            {{item.industry_name}}</view>
+          <view id="{{item.resource_id}}" data-index="{{index}}" data-value='{{item.resource_name}}'>
+            政府投资</view>
         </label>
       </block>
     </view>
- 
+  </view>
+ </view>
+
