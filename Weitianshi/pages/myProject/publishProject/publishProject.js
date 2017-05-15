@@ -211,7 +211,7 @@ Page({
                     wx.setStorageSync('enchangeValue', []);
                     wx.setStorageSync('enchangeId', []);
                     wx.switchTab({
-                        url: '../../resource/resource'
+                        url: '/pages/match/match/match/match'
                     });
                     
                 },

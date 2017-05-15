@@ -19,7 +19,7 @@ Page({
   },
   route:function(){
     wx.switchTab({
-      url: '../../resource/resource',
+      url: '/pages/match/match/match/match',
       success: function(res){
         // success
       },

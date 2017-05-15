@@ -23,7 +23,3 @@
 
   <view class="error" wx:if="{{error=='1'}}">{{error_text}}</view>
 </view>
-<!--<import src="../../pages/Template.wxml"/>
-<template name="multCheckPage" data="{{payMoney:payMoney}}">
-
-</template>-->

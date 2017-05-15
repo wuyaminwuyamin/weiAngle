@@ -9,7 +9,7 @@
 
   <!--空状态-->
   <view wx:if="{{myProject==''}}">
-    <image class="empty" src="../../img/empty.png"></image>
+    <image class="empty" src="/img/empty.png"></image>
   </view>
 </scroll-view>
 

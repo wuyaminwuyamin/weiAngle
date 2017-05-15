@@ -84,7 +84,7 @@
         </view>
       </view>
       <!--锁图-->
-      <image class="lock" src="../../img/lock.png"></image>
+      <image class="lock" src="/img/lock.png"></image>
 
       <!--资本对接-->
 

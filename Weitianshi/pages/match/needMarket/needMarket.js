@@ -154,7 +154,7 @@ Page({
     // 判断当前用户id和点击id是否一致,如果一致,点击进入我的页面
     if (id == user_id) {
       wx.switchTab({
-        url: '../my/my'
+        url: '/pages/my/my/my'
       })
     } else {
       // 如果当前用户id与点击id不一致,进入用户详情页面
