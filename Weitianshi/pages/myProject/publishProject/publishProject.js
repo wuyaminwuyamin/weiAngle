@@ -159,7 +159,7 @@ Page({
     //上传BP
     upLoad: function () {
         wx.navigateTo({
-            url: '../scanCode/scanCode',
+            url: '/pages/scanCode/bpScan/bpScan',
         })
     },
 

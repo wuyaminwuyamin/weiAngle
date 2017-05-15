@@ -48,14 +48,7 @@ Page({
     //进入个人详情
     userInfo:function(){
         wx.navigateTo({
-            url:"../userDetail/userDetail"
-        })
-    },
-    //进入个人详情中转编辑页面
-    resourcesIndex:function(){
-        console.log(1)
-        wx.navigateTo({
-          url: 'myInfoEdit/myInfoEdit',
+            url:"/pages/userDetail/networkDetail/networkDetail"
         })
     },
     //添加人脉
@@ -73,7 +66,7 @@ Page({
                     wx.setStorageSync('followed_user_id', followed_user_id)
                     if (res.confirm == true) {
                         wx.navigateTo({
-                            url: '/pages/myProject/personInfo/personInfo'
+                            url: '/pages/register/personInfo/personInfo'
                         })
                     }
                 }

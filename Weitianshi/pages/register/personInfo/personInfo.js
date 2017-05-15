@@ -192,7 +192,7 @@ Page({
                                 wx.setStorageSync('user_id', res.data.user_id);
                                 app.globalData.user_id = res.data.user_id;
                                 wx.navigateTo({
-                                    url: '../companyInfo/companyInfo?user_career=' + user_career + "&&user_company=" + user_company + "&&uer_email=" + uer_email,
+                                    url: '/pages/register/companyInfo/companyInfo?user_career=' + user_career + "&&user_company=" + user_company + "&&uer_email=" + uer_email,
                                 });
                             } else {
                                 rqj.errorHide(that, "验证码错误", 1500)
