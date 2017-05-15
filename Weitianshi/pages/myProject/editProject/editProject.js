@@ -183,7 +183,7 @@ Page({
     var industryId = this.data.industryId;
     console.log(typeof industryValue)
     wx.navigateTo({
-      url: '/pages/industry/industry?current=2&&industryValue=' + industryValue + '&&industryId=' + industryId
+      url: '/pages/form/industry/industry?current=2&&industryValue=' + industryValue + '&&industryId=' + industryId
     })
   },
 
@@ -216,7 +216,7 @@ Page({
     // var cityNum = wx.getStorageSync('m_cityNum')
     // console.log(provinceNum,cityNum)       
     wx.navigateTo({
-      url: '../../belongArea/belongArea?current=1' + "&&provinceNum=" + provinceNum + "&&cityNum=" + cityNum
+      url: '/pages/form/area1/area1?current=1' + "&&provinceNum=" + provinceNum + "&&cityNum=" + cityNum
     })
   },
 

@@ -55,7 +55,7 @@ Page({
   // 按钮一号
   buttonOne: function () {
     wx.navigateTo({
-      url: '../investCaseEdit/investCaseEdit',
+      url: '/pages/my/investCaseEdit/investCaseEdit',
     })
   }
 })

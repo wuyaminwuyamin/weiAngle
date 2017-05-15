@@ -124,7 +124,7 @@ Page({
           })
         } else {
           wx.navigateTo({
-            url: '../yourProject/yourDetail?id=' + id,
+            url: '/pages/projectDetail/projectDetail?id=' + id,
           })
         }
         
@@ -138,7 +138,7 @@ Page({
     //   })
     // } else {
     //   wx.navigateTo({
-    //     url: '../yourProject/yourDetail?id=' + id
+    //     url: '/pages/projectDetail/projectDetail?id=' + id
     //   })
     // }
 
@@ -159,7 +159,7 @@ Page({
     } else {
       // 如果当前用户id与点击id不一致,进入用户详情页面
       wx.navigateTo({
-        url: '../userDetail/userDetail?id=' + id
+        url: '/pages/userDetail/networkDetail/networkDetail?id=' + id
       })
     }
 
@@ -305,7 +305,7 @@ Page({
   // 返回对接页面
   backToResource: function () {
     wx.switchTab({
-      url: '../resource/resource',
+      url: '/pages/match/match/match/match',
     })
   }
 });
