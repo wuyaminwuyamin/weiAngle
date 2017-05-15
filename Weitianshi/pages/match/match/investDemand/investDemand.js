@@ -1,5 +1,6 @@
-var app = getApp();
-var url = app.globalData.url;
+var rqj = require('../../../Template/Template.js')
+var app = getApp()
+var url = app.globalData.url
 var save = true;
 Page({
     data: {
