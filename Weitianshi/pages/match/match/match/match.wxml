@@ -1,7 +1,7 @@
 <import src="/pages/Template/Template.wxml" />
 <view class="r_nav flex">
   <view class="nav_btn nav_on">精准对接</view>
-  <navigator url="../needMarket/needMarket" class="nav_btn">需求市场</navigator>
+  <navigator url="/pages/match/needMarket/needMarket" class="nav_btn">需求市场</navigator>
 </view>
 <view class="swiper-tab">
   <view class="swiper-tab-list  {{currentTab==0 ? 'on' : ''}} my_project" data-current="0" bindtap="swichNav">项目融资</view>
