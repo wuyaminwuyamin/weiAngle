@@ -1,6 +1,6 @@
-var rqj = require('../../../Template/Template.js')
-var app = getApp()
-var url = app.globalData.url
+var rqj = require('../../../Template/Template.js');
+var app = getApp();
+var url = app.globalData.url;
 Page({
     data: {
         enchange: [],//接口给的标签
