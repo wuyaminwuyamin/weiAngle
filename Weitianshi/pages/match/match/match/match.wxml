@@ -57,7 +57,7 @@
 
       <!--空状态-->
       <view wx:if="{{myProject==''}}">
-        <image class="empty" src="../../img/empty.png"></image>
+        <image class="empty" src="/img/empty.png"></image>
       </view>
     </scroll-view>
   </swiper-item>
@@ -79,7 +79,7 @@
 
         <!--空状态-->
         <view wx:if="{{yourProject==''}}">
-          <image class="empty" src="../../img/empty.png"></image>
+          <image class="empty" src="/img/empty.png"></image>
         </view>
       </view>
     </scroll-view>
@@ -100,7 +100,7 @@
 
         <!--空状态-->
         <view wx:if="{{res_match==''}}">
-          <image class="empty" src="../../img/empty.png"></image>
+          <image class="empty" src="/img/empty.png"></image>
         </view>
       </view>
     </scroll-view>

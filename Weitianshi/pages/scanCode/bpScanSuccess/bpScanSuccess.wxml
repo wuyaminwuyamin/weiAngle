@@ -6,6 +6,6 @@
   </view>
   <button class="nextBtn" bindtap="route">
     完成
-    <image class="rightArrow" src="../../../img/rightArrow.png"></image>
+    <image class="rightArrow" src="/img/rightArrow.png"></image>
   </button>
 </view>

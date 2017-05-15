@@ -11,5 +11,5 @@
   <view class="error" wx:if="{{error=='1'}}">{{error_text}}</view>
 
   <!--空状态-->
-  <image class="empty" src="../../img/empty.png" wx:if="{{myProject==''}}"></image>
+  <image class="empty" src="/img/empty.png" wx:if="{{myProject==''}}"></image>
 </scroll-view>

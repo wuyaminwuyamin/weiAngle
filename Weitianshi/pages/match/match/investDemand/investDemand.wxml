@@ -8,7 +8,7 @@
     <navigator url="/pages/form/industry/industry?current=1" id="domain">
       <view class="slect flex">
         <view class="{{domainValue =='选择领域' ? '':'checkOn'}}">{{domainValue}}</view>
-        <image class="downArrow" src="../../img/downArrow.png"></image>
+        <image class="downArrow" src="/img/downArrow.png"></image>
       </view>
     </navigator>
   </view>
@@ -18,7 +18,7 @@
     <navigator url="/pages/form/stage/stage" id="payStage">
       <view class="slect flex">
         <view class="{{payStage =='选择阶段' ? '':'checkOn'}}">{{payStage}}</view>
-        <image class="downArrow" src="../../img/downArrow.png"></image>
+        <image class="downArrow" src="/img/downArrow.png"></image>
       </view>
     </navigator>
   </view>
@@ -28,7 +28,7 @@
     <navigator url="/pages/form/scale/scale" id="payMoney">
       <view class="slect flex">
         <view class="{{payMoney =='选择金额' ? '':'checkOn'}}">{{payMoney}}</view>
-        <image class="downArrow" src="../../img/downArrow.png"></image>
+        <image class="downArrow" src="/img/downArrow.png"></image>
       </view>
     </navigator>
   </view>
@@ -38,7 +38,7 @@
     <navigator url="/pages/form/area2/area2" id="payArea">
       <view class="slect flex">
         <view class="{{payArea =='选择城市' ? '':'checkOn'}}">{{payArea}}</view>
-        <image class="downArrow" src="../../img/downArrow.png"></image>
+        <image class="downArrow" src="/img/downArrow.png"></image>
       </view>
     </navigator>
   </view>

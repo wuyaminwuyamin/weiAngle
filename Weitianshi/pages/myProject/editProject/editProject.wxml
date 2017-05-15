@@ -11,7 +11,7 @@
     <view class="text">所属领域*</view>
       <view class="slect flex" bindtap="industry">
         <view class="{{IndustryValue =='选择领域' ? '':'checkOn'}}">{{industryValue}}</view>
-        <image class="downArrow" src="../../../img/downArrow.png"></image>
+        <image class="downArrow" src="/img/downArrow.png"></image>
       </view>
   </view>
   <view class="card">
@@ -19,7 +19,7 @@
     <picker id="stage" bindchange="stage" value="{{stage_index}}" range="{{stageValue}}">
       <view class="slect flex">
         <view class="{{stage_index ==0 ? '' : 'checkOn'}}">{{stageValue[stage_index]}}</view>
-        <image class="downArrow" src="../../../img/downArrow.png"></image>
+        <image class="downArrow" src="/img/downArrow.png"></image>
       </view>
     </picker>
   </view>
@@ -28,7 +28,7 @@
     <picker id="expect" bindchange="scale" value="{{scale_index}}" range="{{scaleValue}}">
       <view class="slect flex">
         <view class="{{scale_index ==0 ? '' : 'checkOn'}}">{{scaleValue[scale_index]}}</view>
-        <image class="downArrow" src="../../../img/downArrow.png"></image>
+        <image class="downArrow" src="/img/downArrow.png"></image>
       </view>
     </picker>
   </view>
@@ -37,7 +37,7 @@
     <view id="belongArea">
       <view id="belongArea" class="slect flex" bindtap="belongArea">
         <view class="{{belongArea =='选择城市' ? '':'checkOn'}}">{{belongArea}}</view>
-        <image class="downArrow" src="../../../img/downArrow.png"></image>
+        <image class="downArrow" src="/img/downArrow.png"></image>
       </view>
     </view>
   </view>

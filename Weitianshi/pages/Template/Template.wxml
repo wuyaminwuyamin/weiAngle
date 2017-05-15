@@ -411,7 +411,7 @@
     <navigator url="{{formjump.url}}" id="domain">
       <view class="slect flex">
         <view class="{{formjump.domainValue == formjump.default ? '':'checkOn'}}">{{formjump.domainValue}}</view>
-        <image class="downArrow" src="../../../img/downArrow.png"></image>
+        <image class="downArrow" src="/img/downArrow.png"></image>
       </view>
     </navigator>
   </view>
@@ -424,7 +424,7 @@
     <picker id="stage" bindchange="stage" value="{{formbottom.index_arry}}" range="{{formbottom.name_arry}}">
       <view class="slect flex">
         <view class="{{stage_index ==0 ? '' : 'checkOn'}}">{{stage[stage_index].scale_money}}</view>
-        <image class="downArrow" src="../../../img/downArrow.png"></image>
+        <image class="downArrow" src="/img/downArrow.png"></image>
       </view>
     </picker>
   </view>
