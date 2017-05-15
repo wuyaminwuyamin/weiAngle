@@ -29,6 +29,7 @@ App({
                 success: function (res) {
                   var encryptedData = res.encryptedData;
                   var iv = res.iv;
+                  //user_id:打开小程序用户的user_id;path:打开小程序的页面路径;scene:场景值;loginTime:打开小程序的时间;
                   var pack = { user_id, path, scene, loginTime, encryptedData, iv }
                   console.log(pack)
                 }
