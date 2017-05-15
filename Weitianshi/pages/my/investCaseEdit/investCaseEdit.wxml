@@ -30,5 +30,5 @@
        <view class="card_case" id="case_local" bindtap="case_local">{{belongArea.belongArea||"请选择"}}</view>
   </view>
 </view>
-<view style="height:98rpx;"></view>
+<view style="height:118rpx;"></view>
 <template is="buttonOne" data="{{...buttonOne}}"></template>
