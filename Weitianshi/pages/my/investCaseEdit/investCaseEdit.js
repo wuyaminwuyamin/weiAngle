@@ -132,10 +132,10 @@ Page({
       case_time: e.detail.value
     })
   },
-  // 项目领域
+  // 投资地区
   case_local: function (e) {
     wx.navigateTo({
-      url: '/pages/form/industry/industry?current=' + 2
+      url: '/pages/form/area1/area1?current=' + 2
     })
   },
   //保存
