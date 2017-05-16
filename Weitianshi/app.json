@@ -1,75 +1,75 @@
 {
-  "pages":[
-    "pages/network/network",
-    "pages/resource/resource",
-    "pages/network/search/search",
-    "pages/network/screen/screen",
-    "pages/my/my",
-    "pages/my/investCase/investCase",
-    "pages/my/sharePage/sharePage",
-    "pages/my/investCaseEdit/investCaseEdit",
-    "pages/needMarket/needMarket",
-    "pages/userDetail/userDetail",
-    "pages/my/cardEdit/cardEdit",
-    "pages/selectProject/selectProject",
-    "pages/resourceEnchange/resourceEnchange",
-    "pages/my/projectFinance/projectFinance",
-    "pages/myProject/maintainProject/maintainProject",
-    "pages/myProject/scanCode/scanCode",
-    "pages/myProject/scanCode/scanCodeSuccess",
-    "pages/belongArea/belongArea",
-    "pages/myProject/projectDetail/projectDetail",
-    "pages/yourProject/yourDetail",
-    "pages/myProject/personInfo/personInfo",
-    "pages/myProject/companyInfo/companyInfo",
-    "pages/payMoney/payMoney",
-    "pages/yourProject/yourProject",
-    "pages/myProject/publishProject/publishProject",
-    "pages/industry/industry",
-    "pages/payStage/payStage",
-    "pages/payArea/payArea"  
-  ],
-  "window": {
-    "navigationBarBackgroundColor": "#fff",
-    "navigationBarTitleText": "微天使乐投平台",
-    "navigationBarTextStyle": "black",
-    "enablePullDownRefresh": true,
-    "backgroundTextStyle": "dark"
-  },
-  "tabBar": {
-    "list": [
-      {
-        "iconPath": "img/resource.png",
-        "selectedIconPath": "img/resourceOn.png",
-        "pagePath": "pages/resource/resource",
-        "text": "对接"
-      },
-      {
-        "iconPath": "img/project.png",
-        "selectedIconPath": "img/projectOn.png",
-        "pagePath": "pages/selectProject/selectProject",
-        "text": "项目"
-      },
-      {
-        "iconPath": "img/people.png",
-        "selectedIconPath": "img/peopleOn.png",
-        "pagePath": "pages/network/network",
-        "text": "人脉"
-      },
-      {
-        "iconPath": "img/my.png",
-        "selectedIconPath": "img/myOn.png",
-        "pagePath": "pages/my/my",
-        "text": "我的"
-      }
+    "pages": [
+        "pages/resource/resource",
+        "pages/network/network",
+        "pages/network/search/search",
+        "pages/network/screen/screen",
+        "pages/my/my",
+        "pages/my/investCase/investCase",
+        "pages/my/sharePage/sharePage",
+        "pages/my/investCaseEdit/investCaseEdit",
+        "pages/needMarket/needMarket",
+        "pages/userDetail/userDetail",
+        "pages/my/cardEdit/cardEdit",
+        "pages/selectProject/selectProject",
+        "pages/resourceEnchange/resourceEnchange",
+        "pages/my/projectFinance/projectFinance",
+        "pages/myProject/maintainProject/maintainProject",
+        "pages/myProject/scanCode/scanCode",
+        "pages/myProject/scanCode/scanCodeSuccess",
+        "pages/belongArea/belongArea",
+        "pages/myProject/projectDetail/projectDetail",
+        "pages/yourProject/yourDetail",
+        "pages/myProject/personInfo/personInfo",
+        "pages/myProject/companyInfo/companyInfo",
+        "pages/payMoney/payMoney",
+        "pages/yourProject/yourProject",
+        "pages/myProject/publishProject/publishProject",
+        "pages/industry/industry",
+        "pages/payStage/payStage",
+        "pages/payArea/payArea"
     ],
-    "selectedColor": "black",
-    "borderStyle": "white"
-  },
-  "networkTimeout": {
-    "request": 20000,
-    "connectSocket": 20000,
-    "uploadFile": 20000,
-    "downloadFile": 20000
-  }
+    "window": {
+        "navigationBarBackgroundColor": "#fff",
+        "navigationBarTitleText": "微天使乐投平台",
+        "navigationBarTextStyle": "black",
+        "enablePullDownRefresh": true,
+        "backgroundTextStyle": "dark"
+    },
+    "tabBar": {
+        "list": [
+            {
+                "iconPath": "img/resource.png",
+                "selectedIconPath": "img/resourceOn.png",
+                "pagePath": "pages/resource/resource",
+                "text": "对接"
+            },
+            {
+                "iconPath": "img/project.png",
+                "selectedIconPath": "img/projectOn.png",
+                "pagePath": "pages/selectProject/selectProject",
+                "text": "项目"
+            },
+            {
+                "iconPath": "img/people.png",
+                "selectedIconPath": "img/peopleOn.png",
+                "pagePath": "pages/network/network",
+                "text": "人脉"
+            },
+            {
+                "iconPath": "img/my.png",
+                "selectedIconPath": "img/myOn.png",
+                "pagePath": "pages/my/my",
+                "text": "我的"
+            }
+        ],
+        "selectedColor": "black",
+        "borderStyle": "white"
+    },
+    "networkTimeout": {
+        "request": 20000,
+        "connectSocket": 20000,
+        "uploadFile": 20000,
+        "downloadFile": 20000
+    }
 }
