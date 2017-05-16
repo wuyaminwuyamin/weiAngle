@@ -112,7 +112,7 @@ Page({
                 title: "提示",
                 content: "请先绑定个人信息",
                 success: function (res) {
-                    wx.setStorageSync('followed_user_id', followed_user_id)
+                    wx.setStorageSync('followed_user_id', followed_user_id);
                     if (res.confirm == true) {
                         wx.navigateTo({
                             url: '/pages/register/personInfo/personInfo'
