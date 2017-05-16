@@ -163,7 +163,7 @@ Page({
     onShareAppMessage: function () {
         var id = wx.getStorageSync('user_id');
         // var that = getCurrentPages()[getCurrentPages().length - 1].__route__
-        return app.sharePage(id,id)
+        return app.sharePage(id)
     },
 
     //取消分享
