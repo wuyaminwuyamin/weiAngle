@@ -18,6 +18,7 @@ App({
                             success(res){
                                 let  encryptedData = res.encryptedData;
                                 let iv = res.iv;
+                                console.log(code, path, encryptedData,iv)
                                 //向后台发送信息
                                 wx.request({
                                     url: url +'api/log/clickLogRecord',
@@ -234,7 +235,8 @@ App({
                                     success: function (res) {
                                         let encryptedData = res.encryptedData;
                                         let iv = res.iv;
-                                        //发送请求到后对
+                                        console.log(code, path)
+                                        //发送请求到后台
                                         wx.request({
                                             url: url + '/log/shareLogRecord',
                                             method: "POST",
@@ -251,7 +253,8 @@ App({
                                     },
                                 })
                             } else{//如果不是分享到群里
-                                //发送请求到后对
+                                console.log(code, path)
+                                //发送请求到后台
                                 wx.request({
                                     url: url + '/log/shareLogRecord',
                                     method: "POST",
