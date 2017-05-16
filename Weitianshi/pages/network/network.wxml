@@ -3,9 +3,11 @@
 <view class="search_frame">
   <label class="searchBox flex">
     <icon type="search" size="12" class="search_icon"></icon>
-    <input class="search" placeholder="暂时不可用" disabled="true" />
-  </label>
+    <input class="search" placeholder="姓名、公司、标签" bindfocus="searchSth" /> 
+  </label> 
+  <view class="screen" bindtap="screenSth">筛选</view>
 </view>
+
 
 <!--资本对接-->
 <view class="s_frame" hidden="{{netWork=='' || !netWork}}">

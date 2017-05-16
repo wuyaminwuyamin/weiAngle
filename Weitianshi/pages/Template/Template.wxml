@@ -390,7 +390,7 @@
 <!--为浮动按钮留空-->
 <template name="forButton">
   <view style="height:98rpx;"></view>
-</template>?
+</template>
 
 <!--自定义黄色背景小提示-->
 <template name="toast">
@@ -427,12 +427,5 @@
         <image class="downArrow" src="../../../img/downArrow.png"></image>
       </view>
     </picker>
-  </view>
-</template>
-
-<!--模板测试-->
-<template name="test">
-  <view class="test1">
-    {{msg}}
   </view>
 </template>

@@ -41,6 +41,9 @@ Page({
         var current = this.data.currentTab;
         // wx.setStorageSync("user_id", "V0VznXa0") 
         // wx.setStorageSync("user_id", "1ryE5Enr")
+
+        // wx.clearStorage()
+        //登录状态维护
         app.loginPage(function (user_id) {
             console.log("这里是cb函数")
             if (user_id != 0) {
@@ -218,21 +221,62 @@ Page({
             })
         }
     },
- 
+
+    //判断信息是否完整
+    checkInfo: function (data) {
+        var that = this;
+        var user_id = wx.getStorageSync('user_id');
+        var complete = that.data.complete;
+        var checkInfo = that.data.checkInfo;
+
+        //修复bug
+        /*wx.navigateTo({
+            url: '../myProject/personInfo/personInfo'
+        })*/
+// 如果user_id == 0用户id不存在,那么直接跳转个人信息填写
+        if (user_id == 0) {
+            wx.navigateTo({
+                url: '../myProject/personInfo/personInfo'
+            })
+        } else if (user_id != 1 && complete == 1) {
+            if (data == "publishProject") {
+                wx.navigateTo({
+                    url: "../myProject/publishProject/publishProject"
+                })
+            } else if (data == "yourProject") {
+                wx.navigateTo({
+                    url: "../yourProject/yourProject"
+                })
+            } else if (data == "resourceNeed") {
+                wx.navigateTo({
+                    url: "../resourceEnchange/resourceEnchange"
+                })
+            } else {
+                wx.navigateTo({
+                    url: '../myProject/companyInfo/companyInfo'
+                })
+            }
+        } else if (user_id != 1 && complete == 0) {
+            wx.navigateTo({
+                url: '../myProject/companyInfo/companyInfo'
+            })
+            //如果存在用户id 但是 信息不完整,跳转公司信息
+        }
+    },
     //点击发布融资项目
     myProject: function () {
-        app.checkInfo("/pages/myProject/publishProject");
+        app.infoJump("/pages/myProject/publishProject/publishProject")
         wx.setStorageSync('enchangeValue', []);
         wx.setStorageSync('enchangeId', []);
         wx.setStorageSync('enchangeCheck', []);
     },
     //点击发布投资需求
     yourProject: function () {
-        this.checkInfo("yourProject");
+        app.infoJump("/pages/yourProject/yourProject")
     },
     //点击发布资源需求
     resourceNeed: function () {
-        this.checkInfo("resourceNeed");
+        app.infoJump("/pages/resourceEnchange/resourceEnchange")
     },
     // 跳转人物详情
     userDetail(e) {

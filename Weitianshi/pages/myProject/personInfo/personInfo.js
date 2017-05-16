@@ -21,8 +21,6 @@ Page({
         wx.stopPullDownRefresh()
     },
     onShow: function () {
-        var that = this;
-        console.log(this.data)
         if (this.data._time) {
             that.setData({
                 time: "1"
@@ -180,7 +178,7 @@ Page({
                             user_mobile: telphone,
                             captcha: checkCode,
                             code: code,
-                            open_session:open_session
+                            open_session: open_session
                         },
                         method: 'POST',
                         success: function (res) {
@@ -192,14 +190,13 @@ Page({
                             // console.log(user_career, user_company, uer_email);  
                             if (res.data.status_code == 2000000) {
                                 wx.setStorageSync('user_id', res.data.user_id);
-                                app.globalData.user_id=res.data.user_id;
+                                app.globalData.user_id = res.data.user_id;
                                 wx.navigateTo({
                                     url: '../companyInfo/companyInfo?user_career=' + user_career + "&&user_company=" + user_company + "&&uer_email=" + uer_email,
                                 });
                             } else {
                                 rqj.errorHide(that, "验证码错误", 1500)
                             }
-
                         }
                     })
                 } else {

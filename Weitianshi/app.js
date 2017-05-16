@@ -2,13 +2,43 @@
 App({
     // onLaunch 用于监听小程序初始化,当完成时会触发onLaunch(全局只会触发一次)
     onLaunch: function (options) {
-        //调用API从本地缓存中获取数据
-        var logs = wx.getStorageSync('logs') || [];
-        logs.unshift(Date.now());
-        wx.setStorageSync('logs', logs);
-        // console.log(options.scene);
-    },
-    onShow: function () {
+        var options = options;
+        //如果是在是点击群里名片打开的小程序,则向后台发送一些信息
+        if (options.shareTicket) {
+            //获取code
+            wx.login({
+                success: function (login) {
+                    let code = login.code;
+                    if(code){
+                        let path=options.path;
+                        let shareTicket=options.shareTicket;
+                        //获取群ID
+                        wx.getShareInfo({
+                            shareTicket: shareTicket,
+                            success(res){
+                                let  encryptedData = res.encryptedData;
+                                let iv = res.iv;
+                                console.log(code, path, encryptedData,iv)
+                                //向后台发送信息
+                                wx.request({
+                                    url: url +'api/log/clickLogRecord',
+                                    data:{
+                                        code:code,
+                                        path:path,
+                                        encryptedData: encryptedData,
+                                        iv:iv
+                                    },
+                                    method:"POST",
+                                    success(res){
+                                        console.log(res)
+                                    }
+                                })
+                            }
+                        })
+                    }
+                }
+            })
+        }
     },
     onError: function (msg) {
         console.log(msg)
@@ -16,6 +46,10 @@ App({
     //进入页面判断是否有open_session
     loginPage: function (cb) {
         var that = this;
+        //群分享打点准备
+        wx.showShareMenu({
+            withShareTicket: true
+        })
         if (this.globalData.open_session) {
             console.log("open_session已经存在")
             var timeNow = Date.now();
@@ -35,7 +69,7 @@ App({
         }
     },
 
-    //获取open_session  你刚才说什么意思
+    //获取open_session  
     getSession(cb) {
         var that = this;
         //获取code
@@ -180,13 +214,69 @@ App({
         })
     },
 
-    //test
-    hello: function () {
-        console.log("TEST")
+    //分布页面函数
+    sharePage: function (id) {
+        let path = "/pages/my/sharePage/sharePage?user_id=" + id;
+        //获取code
+        wx.login({
+            success(res){
+                let code=res.code
+                if(code){
+                    let json = {
+                        title: '投资名片—智能精准匹配投融资双方的神器',
+                        path: path,
+                        //分享成功后的回调
+                        success: function (res) {
+                            let shareTicket = res.shareTickets[0];
+                            //如果是分享到群里
+                            if (shareTicket){
+                                wx.getShareInfo({
+                                    shareTicket: shareTicket,
+                                    success: function (res) {
+                                        let encryptedData = res.encryptedData;
+                                        let iv = res.iv;
+                                        console.log(code, path)
+                                        //发送请求到后台
+                                        wx.request({
+                                            url: url + '/log/shareLogRecord',
+                                            method: "POST",
+                                            data: {
+                                                code: code,
+                                                path: path,
+                                                encryptedData: encryptedData,
+                                                iv: iv
+                                            },
+                                            success(res) {
+                                                console.log(res)
+                                            }
+                                        })
+                                    },
+                                })
+                            } else{//如果不是分享到群里
+                                console.log(code, path)
+                                //发送请求到后台
+                                wx.request({
+                                    url: url + '/log/shareLogRecord',
+                                    method: "POST",
+                                    data: {
+                                        code: code,
+                                        path: path,
+                                    },
+                                    success(res) {
+                                        console.log(res)
+                                    }
+                                })
+                            }
+                        },
+                    }
+                    return json;
+                }
+            }
+        })
     },
 
     //根据用户信息完整度跳转不同的页面
-    checkInfo: function (data) {
+    infoJump: function (data) {
         var user_id = wx.getStorageSync("user_id");
         // 核对用户信息是否完整
         wx.request({
@@ -196,14 +286,13 @@ App({
             },
             method: 'POST',
             success: function (res) {
-                console.log("检查用户信息是否完整,如果不完整则返回个人信息")
-                console.log(res);
+                // console.log("检查用户信息是否完整,如果不完整则返回个人信息")
+                // console.log(res);
                 if (res.data.status_code == 2000000) {
                     var complete = res.data.is_complete;
-                    var user_id = wx.getStorageSync('user_id');
                     if (user_id == 0) {
                         wx.navigateTo({
-                            url: '/pages/myProject/personInfo/personInfo'
+                            url: '../myProject/personInfo/personInfo'
                         })
                     } else if (user_id != 1 && complete == 1) {
                         wx.navigateTo({
@@ -211,39 +300,78 @@ App({
                         })
                     } else if (user_id != 1 && complete == 0) {
                         wx.navigateTo({
-                            url: '/pages/myProject/companyInfo/companyInfo'
+                            url: '../myProject/companyInfo/companyInfo'
                         })
                     }
-                } else {
-                    console.log(res.data.status_code)
+                } else {//后台返回500状态码,可能原因为参数的user_id传了0过去
+                    wx.navigateTo({
+                        url: '../myProject/personInfo/personInfo'
+                    })
                 }
-            }
-        })
+            },
+        });
     },
 
-/*//登录状态维护
-checkLogin: function (that) {
-    var code = that.globalData.code;
-    var encryptedData = that.globalData.encryptedData;
-    var iv = that.globalData.iv;
-    //判断用户是否授权了小程序
-    if (encryptedData) {
-        wx.request({
-            url: 'https://dev.weitianshi.cn/api/wx/returnOauth',
-            data: {
-                code: code,
-                encryptedData: encryptedData,
-                iv: iv
-            },
-            method: 'POST',
-            success: function (res) {
-                console.log("这里是获取到UserInfo后调用returnOauth")
-                console.log(res);
-                that.globalData.open_session = res.data.open_session;
-                that.globalData.session_time = Date.now();
-                that.globalData.user_id = res.data.user_id;
-                console.log(that.globalData.session_time)
-                wx.setStorageSync("user_id", res.data.user_id)
+    //test
+    hello: function () {
+        console.log("TEST")
+    },
+
+    /*//登录状态维护
+    checkLogin: function (that) {
+        var code = that.globalData.code;
+        var encryptedData = that.globalData.encryptedData;
+        var iv = that.globalData.iv;
+        //判断用户是否授权了小程序
+        if (encryptedData) {
+            wx.request({
+                url: 'https://dev.weitianshi.cn/api/wx/returnOauth',
+                data: {
+                    code: code,
+                    encryptedData: encryptedData,
+                    iv: iv
+                },
+                method: 'POST',
+                success: function (res) {
+                    console.log("这里是获取到UserInfo后调用returnOauth")
+                    console.log(res);
+                    that.globalData.open_session = res.data.open_session;
+                    that.globalData.session_time = Date.now();
+                    that.globalData.user_id = res.data.user_id;
+                    console.log(that.globalData.session_time)
+                    wx.setStorageSync("user_id", res.data.user_id)
+                },
+                fail: function () {
+                    console.log("向后台发送信息失败")
+                }
+            })
+        } else {
+            wx.request({
+                url: 'https://dev.weitianshi.cn/api/wx/returnOauth',
+                data: {
+                    code: code,
+                },
+                method: 'POST',
+                success: function (res) {
+                    console.log("这里是没拿到UserInfo后调用returnOauth")
+                    console.log(res);
+                    that.globalData.open_session = res.data.open_session;
+                    that.globalData.session_time = Date.now();
+                    that.globalData.user_id = res.data.user_id;
+                    console.log(that.globalData.session_time)
+                    wx.setStorageSync("user_id", res.data.user_id)
+                },
+                fail: function () {
+                    console.log("向后台发送信息失败")
+                },
+            })
+        }
+    },
+  
+    //微信登录状态维护
+    checkSession: function () {
+        wx.checkSession({
+            success: function () {
             },
             fail: function () {
                 console.log("向后台发送信息失败")

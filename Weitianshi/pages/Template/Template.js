@@ -1,5 +1,6 @@
 var _this
 var app = getApp();
+var url=app.globalData.url;
 
 //错误提示消失
 function errorHide(target, errorText, time) {
@@ -62,7 +63,7 @@ function userNeed(that) {
     var user_id = wx.getStorageSync('user_id')
     if (user_id != 0) {
         wx.request({
-            url: 'https://www.weitianshi.cn/api/investors/checkInvestorInfo',
+            url: url+'/api/investors/checkInvestorInfo',
             data: {
                 user_id: user_id
             },

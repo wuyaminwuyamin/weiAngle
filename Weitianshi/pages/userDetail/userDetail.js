@@ -126,5 +126,10 @@ Page({
                 content: "bindUser部分出问题了"
             })
         }
+    },
+    //分享页面
+    onShareAppMessage:function(){
+        var id = this.data.user_id;
+        return app.sharePage(id)
     }
 });

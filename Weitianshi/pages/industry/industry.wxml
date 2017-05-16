@@ -29,11 +29,6 @@
     确定
   </button>
 
-  <!--引用尝试-->
-
-  <!--<import src='../../utils/util.wxml' />
-  <template is='error' data="{{error_text: 'forbar'}}" />-->
-
   <!--错误提示-->
   <view class="error" wx:if="{{error=='1'}}">{{error_text}}</view>
 </view>

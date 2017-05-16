@@ -44,7 +44,9 @@ Page({
     //投资需求获取数据
     wx.request({
       url: url + '/api/investors/investorMarket',
-      data: {},
+      data: {
+          user_id:user
+      },
       method: 'POST',
       success: function (res) {
         // console.log(res)
@@ -60,7 +62,9 @@ Page({
     //资源需求获取数据
     wx.request({
       url: url + '/api/resource/resourceMarket',
-      data: {},
+      data: {
+          user_id:user
+      },
       method: 'POST',
       success: function (res) {
         var resourceNeed = res.data.data;
@@ -113,8 +117,8 @@ Page({
         var that = this;
         var userId = res.data.user_id;
         var user = wx.getStorageSync('user_id');
-        console.log(userId);
-        console.log(user);
+        // console.log(userId);
+        // console.log(user);
         // that.setData({
         //   userId : userId
         // })
