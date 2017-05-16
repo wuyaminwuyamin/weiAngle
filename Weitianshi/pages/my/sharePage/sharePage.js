@@ -173,7 +173,6 @@ Page({
     //分享页面部分
     onShareAppMessage: function () {
         var id = this.data.followed_user_id;
-        var shareId=this.data.view_id; 
-        return app.sharePage(shareId,id)
+        return app.sharePage(id)
     }
 }); 
