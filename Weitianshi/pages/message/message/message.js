@@ -4,16 +4,14 @@ var url = app.globalData.url;
 // pages/message/message/message.js
 Page({
 
-  /**
-   * 页面的初始数据
-   */
   data: {
   
   },
-
-  /**
-   * 生命周期函数--监听页面加载
-   */
+  beAddedContacts:function(e){
+      wx.navigateTo({
+        url: '/pages/message/beAddedContacts/beAddedContacts',
+      })
+  },
   onLoad: function (options) {
   
   },

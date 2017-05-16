@@ -1,2 +1,34 @@
 <!--pages/message/message/message.wxml-->
-<text>pages/message/message/message.wxml</text>
+<view class="myApplyProject" bindtap="myApplyProject">
+  <view class="flex title">
+    <view class="title">
+      项目申请
+    </view>
+    <view class="radius">
+    <label class="huo-num">5</label>
+    </view>
+    <image class="iconEdit" src="/img/icon-edit@3x.png"></image>
+  </view>
+</view>
+<view class="myPushProject" bindtap="myPushProject">
+  <view class="flex title">
+    <view class="title">
+      项目推送
+    </view>
+    <view class="radius">
+    <label class="huo-num">5</label>
+    </view>
+    <image class="iconEdit" src="/img/icon-edit@3x.png"></image>
+  </view>
+</view>
+<view class="beAddedContacts" bindtap="beAddedContacts">
+  <view class="flex title">
+    <view class="title">
+      人脉申請
+    </view>
+    <view class="radius">
+      <label class="huo-num">5</label>
+    </view>
+    <image class="iconEdit" src="/img/icon-edit@3x.png"></image>
+  </view>
+</view>

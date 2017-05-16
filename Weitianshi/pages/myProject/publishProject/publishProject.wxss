@@ -33,6 +33,20 @@ page {
   font-size: 28rpx;
   margin-bottom: 16rpx;
 }
+.text {
+  padding: 32rpx 0;
+  font-size: 24rpx;
+  color: #333;
+  margin-top: 16rpx;
+}
+
+.card input {
+  padding: 0 32rpx;
+  background: #f2f2f2;
+  border: 1px solid #f2f2f2;
+  height: 88rpx;
+  line-height: 88rpx;
+}
 
 .slect {
   border-radius: 4px;

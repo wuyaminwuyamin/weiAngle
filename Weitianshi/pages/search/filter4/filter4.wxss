@@ -1,4 +1,5 @@
 /* pages/network/filter4/filter4.wxss */
+
 page {
   background: white;
 }
@@ -6,11 +7,22 @@ page {
 #domain {
   padding: 0 32rpx;
 }
-.domainName{
-  width:56rpx;
-  height:28rpx;
+
+#turn{
+  padding:0 32rpx;
+}
+
+
+#btn {
+  padding: 0 32rpx;
+  margin-bottom: 16rpx;
+}
+
+.domainName {
+  width: 56rpx;
+  height: 28rpx;
   font-size: 28rpx;
-  padding:32rpx 0;
+  padding: 32rpx 0;
 }
 
 .context {
@@ -53,7 +65,8 @@ page {
 .offer view:first-child {
   justify-content: space-between;
 }
-.search view:first-child{
+
+.search view:first-child {
   justify-content: space-between;
 }
 
@@ -66,4 +79,28 @@ page {
 
 .flex .title:first-child {
   padding-left: 0;
+}
+
+.cancel {
+  height: 66rpx;
+  width: 218rpx;
+  font-size: 32rpx;
+  text-align: center;
+  float: left;
+  color: #40587a;
+  letter-spacing: 0;
+  line-height: 32px;
+  vertical-align:middle ;
+}
+
+.yes {
+  height: 66rpx;
+  width: 436rpx;
+  float: right;
+  font-size: 32rpx;
+  text-align: center;
+  background: #40587a;
+  border-radius: 4px;
+  color: #fff;
+  letter-spacing: 0;
 }

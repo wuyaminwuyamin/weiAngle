@@ -1,39 +1,36 @@
-// var rqj = require('../../../Template/Template.js')
+// var rqj = require('../../Template/Template.js')
 var app = getApp();
 // 所属领域
 var url = app.globalData.url;
 var initialArr = {};//初始数组
 Page({
-    data: {
-    
+  data: {
+    industryData: [],
+    industryId: [],
+    industryName: [],
+    stageData :[],
+    stageId:[],
+    stageName:[]
   },
 
   onLoad: function (options) {
     var that = this;
-    var current = options.current;//current=1:从my页面跳转过来的
-    this.setData({
-       current :current
+    var options = options;
+    var industryData = wx.getStorageSync('industry');//获取所属领域的全部信息
+    var stageData = wx.getStorageSync('stage');//获取轮次信息
+    // console.log(stageData);
+    var stageData_name = [];
+    var stageData_id = [];
+    var stage
+    for (let i = 0; i < stageData.length; i++) {
+      stageData_name.push(stageData[i].stage_name);
+      console.log(stageData[i].stage_name);
+      stageData_id.push(stageData[i].stage_id)
+    }
+    that.setData({
+      industryData : industryData,
+      stageData: stageData
     })
-      wx.request({
-        url: url + '/api/category/getResourceCategory',
-        data: {},
-        method: 'POST',
-        success: function (res) {
-          // console.log(res);
-          var industryData = res.data.data;
-          // console.log(industryData);
-          var industryData_name =[];
-          var industryData_id = [];
-          for(let i =0 ; i <industryData.length;i++){
-            industryData_name.push(industryData[i].resource_name);
-            console.log(industryData[i].resource_name);
-            industryData_id.push(industryData[i].resource_id)
-          }
-          console.log(industryData_name);
-          console.log(industryData_id);
-         
-        }
-      })
   },
   /**
    * 生命周期函数--监听页面初次渲染完成

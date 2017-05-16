@@ -1,1 +1,47 @@
 /* pages/message/message/message.wxss */
+.myApplyProject,.myPushProject,.beAddedContacts{
+  background: white;
+  padding: 32rpx;
+  margin-bottom: 32rpx;
+}
+
+.title {
+  font-size: 28rpx;
+  color: #333;
+  justify-content: space-between;
+  vertical-align: middle;
+}
+.title view {
+  font-size: 28rpx;
+  color: #333;
+  align-items: center;
+  height: 32rpx;
+  line-height: 32rpx;
+  display: flex;
+}
+
+.title image {
+  width: 22rpx;
+  height: 22rpx;
+}
+.title .iconEdit {
+  width: 36rpx;
+  height: 36rpx;
+  display: block;
+  padding: 0 32rpx;
+  margin-right: -32rpx;
+}
+.radius{
+ margin-left:70%;
+}
+.huo-num{
+  border-radius:50%;
+  color:white;
+  width:40rpx;
+  height:40rpx;
+  text-align:center;
+  line-height: 40rpx; 
+  background-color:red;
+  align-content:center;
+ 
+}

@@ -1,12 +1,13 @@
 {
     "pages": [
+       "pages/message/message/message",
         "pages/match/match/match/match",
         "pages/form/area1/area1",
         "pages/form/area2/area2",
         "pages/form/industry/industry",
         "pages/form/scale/scale",
         "pages/form/stage/stage",
-        "pages/form/businessContribution/businessContribution",
+    "pages/form/businessContribution/businessContribution",
         "pages/form/tollType/tollType",
         "pages/form/hasRunningBusiness/hasRunningBusiness",
         "pages/scanCode/bpScan/bpScan",
@@ -21,7 +22,7 @@
         "pages/identity/buyerFA/buyerFA",
         "pages/identity/investorFA/investorFA",
         "pages/identity/entrepreneurFA/entrepreneurFA",
-        "pages/message/message/message",
+        
         "pages/message/applyMyProject/applyMyProject",
         "pages/message/myApplyProject/myApplyProject",
         "pages/message/bePushedProject/bePushedProject",
