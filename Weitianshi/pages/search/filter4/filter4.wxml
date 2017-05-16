@@ -1,17 +1,33 @@
 <!--pages/network/filter4/filter4.wxml-->
 <view id="domain">
- <view class="domainName">
-    <view class="flex">
-      <view class="title">领域</view>
-    </view>
-    <view class="context flex">
-      <block wx:for="{{industryData}}" wx:key="{{item.resource_id}}">
-        <label class="tips">
-          <view id="{{item.resource_id}}" data-index="{{index}}" data-value='{{item.resource_name}}'>
-            政府投资</view>
-        </label>
-      </block>
-    </view>
+  <view class="flex">
+    <view class="title">领域</view>
   </view>
- </view>
-
+  <view class="context flex">
+    <block wx:for="{{industryData}}">
+      <label class="tips">
+        <view data-index="{{index}}" data-value='{{item.industry_name}}' id="{{item.industry_id}}" data-check="false">{{industryData[index].industry_name}}
+         </view>
+      </label>
+    </block>
+  </view>
+</view>
+<view id="turn">
+  <view class="flex">
+    <view class="title">轮次</view>
+  </view>
+  <view class="context flex">
+    <block wx:for="{{stageData}}">
+      <label class="tips">
+        <view data-index="{{index}}" data-value='{{item.stage_name}}' id="{{item.stage_id}}" data-check="false">
+          {{stageData[index].stage_name}}</view>
+      </label>
+    </block>
+  </view>
+</view>
+<view id="btn">
+<view class="flex">
+  <button class="cancel" bindtap="reset"><label class="hcy-cancel">重置</label></button>
+  <button class="yes">确定</button>
+</view>
+</view>

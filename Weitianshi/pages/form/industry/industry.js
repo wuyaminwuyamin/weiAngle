@@ -1,9 +1,7 @@
 var rqj = require('../../Template/Template.js')
 var app = getApp()
 var url = app.globalData.url
-var app = getApp();
 // 所属领域
-var url = app.globalData.url;
 var initialArr={};//初始数组
 var save = true;//是否删除缓存
 Page({

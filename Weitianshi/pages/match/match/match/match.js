@@ -33,7 +33,7 @@ Page({
     },
     //载入页面
     onLoad: function () {
-
+      
     },
     //显示页面
     onShow: function () {
@@ -244,6 +244,7 @@ Page({
             })
         }
     },
+  
     //判断信息是否完整
     checkInfo: function (data) {
         var that = this;
