@@ -89,7 +89,7 @@ Page({
     var describe = this.data.describe;
     var user_id = wx.getStorageSync('user_id')
     // 修复bug临时使用(公司,职位,姓名改为非必填)
-    /*wx.request({
+    wx.request({
         url: url + '/api/wx/updateUser',
         data: {
             user_id: user_id,
@@ -116,8 +116,8 @@ Page({
         fail: function (res) {
             console.log(res)
         },
-    })*/
-    if (name != '' && company != '' && career != '') {
+    })
+    /*if (name != '' && company != '' && career != '') {
       wx.request({
         url: url + '/api/wx/updateUser',
         data: {
@@ -154,6 +154,6 @@ Page({
       } else if (career == '') {
         rqj.errorHide(that, "职位不能为空", 1500)
       }
-    }
+    }*/
   }
 })

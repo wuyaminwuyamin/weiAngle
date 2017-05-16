@@ -19,6 +19,7 @@ Page({
         var that = this
         app.loginPage(function (user_id) {
             console.log("这里是cb函数")
+            console.log(user_id)
             that.setData({
                 user_id: user_id
             })

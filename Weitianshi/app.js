@@ -374,15 +374,47 @@ App({
             success: function () {
             },
             fail: function () {
-                //登录态过期
-                wx.login() //重新登录
+                console.log("向后台发送信息失败")
             }
         })
-    },*/
-
-    //初始本地缓存
-    globalData: {
-        error: 0,
-        url: "https://dev.weitianshi.cn"
+    } else {
+        wx.request({
+            url: 'https://dev.weitianshi.cn/api/wx/returnOauth',
+            data: {
+                code: code,
+            },
+            method: 'POST',
+            success: function (res) {
+                console.log("这里是没拿到UserInfo后调用returnOauth")
+                console.log(res);
+                that.globalData.open_session = res.data.open_session;
+                that.globalData.session_time = Date.now();
+                that.globalData.user_id = res.data.user_id;
+                console.log(that.globalData.session_time)
+                wx.setStorageSync("user_id", res.data.user_id)
+            },
+            fail: function () {
+                console.log("向后台发送信息失败")
+            },
+        })
     }
+},
+
+//微信登录状态维护
+checkSession: function () {
+    wx.checkSession({
+        success: function () {
+        },
+        fail: function () {
+            //登录态过期
+            wx.login() //重新登录
+        }
+    })
+},*/
+
+//初始本地缓存
+globalData: {
+    error: 0,
+        url: "https://dev.weitianshi.cn"
+}
 });
