@@ -18,6 +18,7 @@ App({
                             success(res) {
                                 let encryptedData = res.encryptedData;
                                 let iv = res.iv;
+                                console.log(code, path, encryptedData, iv)
                                 //向后台发送信息
                                 wx.request({
                                     url: url + 'api/log/clickLogRecord',
@@ -39,9 +40,11 @@ App({
             })
         }
     },
+
     onError: function (msg) {
         console.log(msg)
     },
+
     //进入页面判断是否有open_session
     loginPage: function (cb) {
         var that = this;
@@ -213,20 +216,22 @@ App({
         })
     },
 
-    //分布页面函数
+    //分享页面函数
     sharePage: function (id) {
         let path = "/pages/my/sharePage/sharePage?user_id=" + id;
-        //获取code
-        wx.login({
-            success(res) {
-                let code = res.code
-                if (code) {
-                    let json = {
-                        title: '投资名片—智能精准匹配投融资双方的神器',
-                        path: path,
-                        //分享成功后的回调
-                        success: function (res) {
-                            let shareTicket = res.shareTickets[0];
+        let url=this.globalData.url;
+        let json = {
+            title: '投资名片—智能精准匹配投融资双方的神器',
+            path: path,
+            //分享成功后的回调
+            success: function (res) {
+                console.log(1)
+                let shareTicket = res.shareTickets[0];
+                //获取code
+                wx.login({
+                    success(res){
+                        let code=res.code;
+                        if(code){
                             //如果是分享到群里
                             if (shareTicket) {
                                 wx.getShareInfo({
@@ -234,7 +239,8 @@ App({
                                     success: function (res) {
                                         let encryptedData = res.encryptedData;
                                         let iv = res.iv;
-                                        //发送请求到后对
+                                        console.log(code, path)
+                                        //发送请求到后台
                                         wx.request({
                                             url: url + '/log/shareLogRecord',
                                             method: "POST",
@@ -251,7 +257,8 @@ App({
                                     },
                                 })
                             } else {//如果不是分享到群里
-                                //发送请求到后对
+                                console.log(code, path)
+                                //发送请求到后台
                                 wx.request({
                                     url: url + '/log/shareLogRecord',
                                     method: "POST",
@@ -264,12 +271,12 @@ App({
                                     }
                                 })
                             }
-                        },
+                        }
                     }
-                    return json;
-                }
-            }
-        })
+                })
+            },
+        }
+        return json
     },
 
     //根据用户信息完整度跳转不同的页面
@@ -364,18 +371,6 @@ App({
             })
 
         }
-    },
-  
-    //微信登录状态维护
-    checkSession: function () {
-        wx.checkSession({
-            success: function () {
-            },
-            fail: function () {
-                //登录态过期
-                wx.login() //重新登录
-            }
-        })
     },*/
 
     //初始本地缓存

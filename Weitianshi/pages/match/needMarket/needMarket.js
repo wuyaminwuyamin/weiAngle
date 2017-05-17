@@ -47,7 +47,7 @@ Page({
     wx.request({
       url: url + '/api/investors/investorMarket',
       data: {
-          user_id: user
+          user_id:user
       },
       method: 'POST',
       success: function (res) {
@@ -65,7 +65,7 @@ Page({
     wx.request({
       url: url + '/api/resource/resourceMarket',
       data: {
-          user_id: user
+          user_id:user
       },
       method: 'POST',
       success: function (res) {
