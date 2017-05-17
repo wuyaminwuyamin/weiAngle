@@ -1,4 +1,3 @@
-
 <!--发布投资需求和资源需求的按钮-->
 <template name="publish">
   <view wx:if="{{hasPublic==0}}">
@@ -428,4 +427,9 @@
       </view>
     </picker>
   </view>
+</template>
+
+<!--全网人脉卡片-->
+<template name="networkCard">
+
 </template>
