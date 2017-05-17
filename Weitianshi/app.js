@@ -89,7 +89,7 @@ App({
                         that.globalData.encryptedData = res.encryptedData;
                         that.globalData.iv = res.iv;
                         wx.request({
-                            url: 'https://dev.weitianshi.cn/api/wx/returnOauth',
+                            url: 'https://www.weitianshi.cn/api/wx/returnOauth',
                             data: {
                                 code: code,
                                 encryptedData: res.encryptedData,
@@ -116,7 +116,7 @@ App({
                     //用户不授权
                     fail: function (res) {
                         wx.request({
-                            url: 'https://dev.weitianshi.cn/api/wx/returnOauth',
+                            url: 'https://www.weitianshi.cn/api/wx/returnOauth',
                             data: {
                                 code: code,
                             },
@@ -329,7 +329,7 @@ App({
         //判断用户是否授权了小程序
         if (encryptedData) {
             wx.request({
-                url: 'https://dev.weitianshi.cn/api/wx/returnOauth',
+                url: 'https://www.weitianshi.cn/api/wx/returnOauth',
                 data: {
                     code: code,
                     encryptedData: encryptedData,
@@ -351,7 +351,7 @@ App({
             })
         } else {
             wx.request({
-                url: 'https://dev.weitianshi.cn/api/wx/returnOauth',
+                url: 'https://www.weitianshi.cn/api/wx/returnOauth',
                 data: {
                     code: code,
                 },
@@ -376,6 +376,6 @@ App({
     //初始本地缓存
     globalData: {
         error: 0,
-        url: "https://dev.weitianshi.cn"
+        url: "https://www.weitianshi.cn"
     }
 });
