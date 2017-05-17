@@ -8,14 +8,14 @@ page {
   padding: 0 32rpx;
 }
 
-#turn{
-  padding:0 32rpx;
+#turn {
+  padding: 0 32rpx;
 }
 
-
 #btn {
-  padding: 0 32rpx;
-  margin-bottom: 16rpx;
+  position:fixed;
+			height:66rpx;
+			width:100%;
 }
 
 .domainName {
@@ -81,26 +81,14 @@ page {
   padding-left: 0;
 }
 
-.cancel {
-  height: 66rpx;
-  width: 218rpx;
-  font-size: 32rpx;
-  text-align: center;
-  float: left;
-  color: #40587a;
-  letter-spacing: 0;
-  line-height: 32px;
-  vertical-align:middle ;
-}
+.cancel{
+			height:66rpx;
+			width:40%;
+			float:left;
+		}
+		.yes{
+			float:right;
+			width:60%;
+			height:66rpx;
+		}
 
-.yes {
-  height: 66rpx;
-  width: 436rpx;
-  float: right;
-  font-size: 32rpx;
-  text-align: center;
-  background: #40587a;
-  border-radius: 4px;
-  color: #fff;
-  letter-spacing: 0;
-}
