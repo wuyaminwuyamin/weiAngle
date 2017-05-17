@@ -87,7 +87,7 @@ App({
                         that.globalData.encryptedData = res.encryptedData;
                         that.globalData.iv = res.iv;
                         wx.request({
-                            url: 'https://dev.weitianshi.cn/api/wx/returnOauth',
+                            url: 'https://www.weitianshi.cn/api/wx/returnOauth',
                             data: {
                                 code: code,
                                 encryptedData: res.encryptedData,
@@ -114,7 +114,7 @@ App({
                     //用户不授权
                     fail: function (res) {
                         wx.request({
-                            url: 'https://dev.weitianshi.cn/api/wx/returnOauth',
+                            url: 'https://www.weitianshi.cn/api/wx/returnOauth',
                             data: {
                                 code: code,
                             },
@@ -217,16 +217,18 @@ App({
     //分布页面函数
     sharePage: function (id) {
         let path = "/pages/my/sharePage/sharePage?user_id=" + id;
+        let json;
         //获取code
         wx.login({
-            success(res){
+              success(res){
                 let code=res.code
-                if(code){
-                    let json = {
+                if(code){ 
+                    json = {
                         title: '投资名片—智能精准匹配投融资双方的神器',
                         path: path,
                         //分享成功后的回调
                         success: function (res) {
+                            console.log(1)
                             let shareTicket = res.shareTickets[0];
                             //如果是分享到群里
                             if (shareTicket){
@@ -269,10 +271,14 @@ App({
                             }
                         },
                     }
-                    return json;
                 }
             }
         })
+        var a=setTimeout(function(){
+            console.log(json);
+            return json;
+        },1000)
+        console.log(a)
     },
 
     //根据用户信息完整度跳转不同的页面
@@ -325,7 +331,7 @@ App({
         //判断用户是否授权了小程序
         if (encryptedData) {
             wx.request({
-                url: 'https://dev.weitianshi.cn/api/wx/returnOauth',
+                url: 'https://www.weitianshi.cn/api/wx/returnOauth',
                 data: {
                     code: code,
                     encryptedData: encryptedData,
@@ -347,7 +353,7 @@ App({
             })
         } else {
             wx.request({
-                url: 'https://dev.weitianshi.cn/api/wx/returnOauth',
+                url: 'https://www.weitianshi.cn/api/wx/returnOauth',
                 data: {
                     code: code,
                 },
@@ -379,7 +385,7 @@ App({
         })
     } else {
         wx.request({
-            url: 'https://dev.weitianshi.cn/api/wx/returnOauth',
+            url: 'https://www.weitianshi.cn/api/wx/returnOauth',
             data: {
                 code: code,
             },
@@ -415,6 +421,6 @@ checkSession: function () {
 //初始本地缓存
 globalData: {
     error: 0,
-        url: "https://dev.weitianshi.cn"
+        url: "https://www.weitianshi.cn"
 }
 });
