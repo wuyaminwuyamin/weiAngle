@@ -7,14 +7,14 @@ Page({
     contacts_page: 1,//人脉列表的当前分页
     page_end: false,//是否还有下一页
   },
-  searchSth: function () {
+  searchSth:function(){
     wx.navigateTo({
-      url: '/pages/search/search2/search2'
+      url: '/pages/search/search2/search2',
     })
   },
-  screenSth: function () {
+  screenSth:function(){
     wx.navigateTo({
-      url: '/pages/search/filter4/filter4'
+      url: '/pages/search/filter4/filter4',
     })
   },
   onShow: function () {

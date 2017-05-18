@@ -7,7 +7,7 @@
     <block wx:for="{{industryData}}">
       <label class="tips">
         <view data-index="{{index}}" data-value='{{item.industry_name}}' id="{{item.industry_id}}" data-check="false">{{industryData[index].industry_name}}
-         </view>
+        </view>
       </label>
     </block>
   </view>
@@ -25,9 +25,10 @@
     </block>
   </view>
 </view>
-<view id="btn">
-<view class="flex">
-  <button class="cancel" bindtap="reset"><label class="hcy-cancel">重置</label></button>
-  <button class="yes">确定</button>
-</view>
+<view id="btn" class="flex">
+
+    <button class="cancel flex">重置</button>
+ 
+    <button class="yes flex">确定</button>
+
 </view>

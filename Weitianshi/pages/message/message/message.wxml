@@ -1,5 +1,6 @@
 <!--pages/message/message/message.wxml-->
-<view class="myApplyProject" bindtap="myApplyProject">
+
+<!--<view class="myApplyProject" bindtap="myApplyProject">
   <view class="flex title">
     <view class="title">
       项目申请
@@ -20,15 +21,19 @@
     </view>
     <image class="iconEdit" src="/img/icon-edit@3x.png"></image>
   </view>
-</view>
-<view class="beAddedContacts" bindtap="beAddedContacts">
-  <view class="flex title">
-    <view class="title">
-      人脉申請
+</view>-->
+<view class="beAddedContacts">
+  <view class="addedContacts flex" bindtap="beAddedContacts">
+    <view class="flex title">
+      <image class="title_icon" src="/img/icon-miaoshu@3x.png"></image>
+      <view class="title">
+        人脉申請
+      </view>
     </view>
-    <view class="radius">
+    <view class="flex number">
       <label class="huo-num">5</label>
+      <image class="iconEdit" src="/img/icon-edit@3x.png"></image>
     </view>
-    <image class="iconEdit" src="/img/icon-edit@3x.png"></image>
+    
   </view>
 </view>

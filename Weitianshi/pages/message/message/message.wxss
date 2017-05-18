@@ -1,47 +1,55 @@
 /* pages/message/message/message.wxss */
-.myApplyProject,.myPushProject,.beAddedContacts{
+
+.myApplyProject, .myPushProject, .beAddedContacts {
   background: white;
-  padding: 32rpx;
-  margin-bottom: 32rpx;
+  text-align: center;
+  margin-top: 32rpx;
 }
 
-.title {
-  font-size: 28rpx;
-  color: #333;
-  justify-content: space-between;
-  vertical-align: middle;
+.addedContacts {
+  height: 56rpx;
+  padding: 40rpx 21rpx 36rpx 50rpx;
+  
 }
-.title view {
-  font-size: 28rpx;
-  color: #333;
-  align-items: center;
-  height: 32rpx;
-  line-height: 32rpx;
-  display: flex;
+.title{
+  justify-content:space-between;
+
+}
+.title_icon {
+  width: 52rpx;
+  height: 56rpx;
+  margin-right: 46rpx;
 }
 
-.title image {
-  width: 22rpx;
-  height: 22rpx;
+.addedContacts .title {
+  font-size: 36rpx;
+  text-align: center;
 }
-.title .iconEdit {
+
+.flex {
+  display:flex;
+}
+
+.huo-num {
+  background: #f44c4c;
+  width: 20px;
+  height: 16px;
+  border-radius: 50%;
+  margin-left:298rpx;
+}
+
+.huo-num label {
+  width: 26rpx;
+  height: 24rpx;
+  font-size: 24rpx;
+  color: #fff;
+  letter-spacing: 0;
+  line-height: 24rpx;
+}
+
+.iconEdit {
   width: 36rpx;
   height: 36rpx;
   display: block;
-  padding: 0 32rpx;
-  margin-right: -32rpx;
-}
-.radius{
- margin-left:70%;
-}
-.huo-num{
-  border-radius:50%;
-  color:white;
-  width:40rpx;
-  height:40rpx;
-  text-align:center;
-  line-height: 40rpx; 
-  background-color:red;
-  align-content:center;
- 
+  padding: 0 8rpx;
 }
