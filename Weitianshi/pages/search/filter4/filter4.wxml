@@ -25,10 +25,14 @@
     </block>
   </view>
 </view>
-<view id="btn" class="flex">
-
-    <button class="cancel flex">重置</button>
- 
-    <button class="yes flex">确定</button>
-
+<view class="screenBox">
+  <view style="position:fixed;bottom:16rpx;display:flex">
+    <view>
+      <button class="btn1">重置</button>
+    </view>
+    <view>
+      <button class="btn2">确定</button>
+    </view>
+  </view>
+  <!--此处的重置有样式问题,在手机上,整个页面大一块-->
 </view>

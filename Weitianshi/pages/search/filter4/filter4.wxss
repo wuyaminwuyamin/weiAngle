@@ -12,18 +12,6 @@ page {
   padding: 0 32rpx;
 }
 
-#btn {
-  position:fixed;
-			height:66rpx;
-			width:100%;
-}
-
-.domainName {
-  width: 56rpx;
-  height: 28rpx;
-  font-size: 28rpx;
-  padding: 32rpx 0;
-}
 
 .context {
   flex-wrap: wrap;
@@ -81,14 +69,34 @@ page {
   padding-left: 0;
 }
 
-.cancel{
-			height:66rpx;
-			width:40%;
-			float:left;
-		}
-		.yes{
-			float:right;
-			width:60%;
-			height:66rpx;
-		}
+.screenBox {
+  height: 70rpx;
+  width: 100%;
+  padding: 94rpx 32rpx 16rpx 32rpx;
+}
 
+.btn1 {
+  border: 2rpx solid #40587a;
+  border-radius: 8rpx;
+  width: 214rpx;
+  height: 62rpx;
+  margin-right: 32rpx;
+  color: #40587a;
+  letter-spacing: 0;
+  line-height: 60rpx;
+  text-align: center;
+  font-size: 32rpx;
+  list-style-type:none;
+}
+
+.btn2 {
+  background: #40587a;
+  border-radius: 8rpx;
+  width: 436rpx;
+  height: 66rpx;
+  font-size: 32rpx;
+  color: #fff;
+  letter-spacing: 0;
+  line-height: 60rpx;
+  text-align: center;
+}
