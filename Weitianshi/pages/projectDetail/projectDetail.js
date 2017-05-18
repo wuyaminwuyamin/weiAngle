@@ -101,9 +101,10 @@ Page({
     //分享当前页面
     onShareAppMessage: function () {
         var pro_intro = this.data.project.pro_intro;
+        console.log(pro_intro)
         return {
-            title: '项目-' + pro_intro,
-            path: '/pages/projectDetail/projectDetail?pro_id=' + that.data.id
+            title: pro_intro,
+            path: '/pages/projectDetail/projectDetail?pro_id=' + this.data.id
         }
         console.log(data.project.pro_intro);
     },
