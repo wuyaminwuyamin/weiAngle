@@ -98,7 +98,7 @@ Page({
   findProjectEdit: function () {
     if (!this.data.options) {
       wx.navigateTo({
-        url: '/pages/projectDetail/projectDetail?current=' + 1,
+        url: '/pages/match/match/investDemand/investDemand?current=' + 1,
       })
     }
 
