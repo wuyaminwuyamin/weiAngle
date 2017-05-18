@@ -52,7 +52,7 @@ Page({
     //进入个人详情
     userInfo:function(){
         wx.navigateTo({
-            url:"/pages/userDetail/networkDetail/networkDetail"
+        url:"/pages/userDetail/networkDetail/networkDetail"
         })
     },
     //添加人脉

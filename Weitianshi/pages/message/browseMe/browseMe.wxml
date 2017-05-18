@@ -1,2 +1,86 @@
 <!--pages/message/browseMe/browseMe.wxml-->
-<text>pages/message/browseMe/browseMe.wxml</text>
+<import src="/pages/Template/Template.wxml" />
+<view class="browseMeTitle flex" style="justify-content: space-between;">
+  <view class="title flex">
+    <view class="block"></view>
+    浏览了我的用户
+  </view>
+  <view class="num">
+  <!--动态改变数字-->
+   共 <label>10</label>个</view>
+</view>
+
+<!--资本对接-->
+<view class="s_frame" hidden="{{contacts=='' || !contacts}}">
+  <scroll-view scroll-y="true" bindscrolltolower="loadMore" scroll-top="{{scroll}}" >
+    <view class="contacts">
+      <block wx:for="{{contacts}}" wx:key="{{item.user_id}}">
+        <view class="card" data-id="{{item.user_id}}" bindtap="userDetail">
+          <view class="user_info flex">
+            <view class="user_text" wx:if="{{item.user_avatar_text}}">{{item.user_avatar_text}}</view>
+            <image class="user_pic" src="{{item.user_avatar_url}}" wx:if="{{item.user_avatar_url}}"></image>
+            <view class="user_info_right">
+              <view class="flex frame">
+                <view class="name_flex flex">
+                  <view class="user_name">{{item.user_real_name}}</view>
+                  <view class="user_career">{{item.user_company_career}}</view>
+                </view>
+               <!--加人脉窗口-->
+               <label>
+                <view class="addNetwork"><label class="addNet">加人脉</label></view>
+                <!--需要进行判断1.加人脉2.待验证3.互为好友-->
+               </label>
+              </view>
+              <view class="user_company" wx:if="{{item.user_company_name !=''}}">{{item.user_company_name}}</view>
+            </view>
+          </view>
+          <view class="investor_info">
+
+            <!--投资领域-->
+            <view class="investor_industry_frame flex" wx:if="{{item.user_invest_industry !=''}}">
+              <view class="investor_text">投资领域:</view>
+              <view class="investor_right flex">
+                <block wx:for="{{item.user_invest_industry}}" wx:for-item="industry" wx:key="{{industry.industry_id}}">
+                  <view class="industry" hidden="{{index>3}}">{{industry.industry_name}}</view>
+                </block>
+              </view>
+            </view>
+
+            <!--投资轮次-->
+            <view class="investor_industry_frame flex" wx:if="{{item.user_invest_stage !=''}}">
+              <view class="investor_text">投资轮次:</view>
+              <view class="investor_right flex">
+                <block wx:for="{{item.user_invest_stage}}" wx:for-item="stage" wx:key="{{stage.stage_id}}">
+                  <view class="stage">{{stage.stage_name}}</view>
+                </block>
+              </view>
+            </view>
+
+            <!--拥有资源-->
+            <view class="investor_industry_frame flex" wx:if="{{item.user_resource_find !=''}}">
+              <view class="investor_text">拥有资源:</view>
+              <view class="investor_right flex">
+                <block wx:for="{{item.user_resource_find}}" wx:for-item="res_find" wx:key="{{res_find.resource_id}}">
+                  <view class="res_find">{{res_find.resource_name}}</view>
+                </block>
+              </view>
+            </view>
+
+            <!--寻求资源-->
+            <view class="investor_industry_frame flex" wx:if="{{item.user_resource_give !=''}}">
+              <view class="investor_text">寻求资源:</view>
+              <view class="investor_right flex">
+                <block wx:for="{{item.user_resource_give}}" wx:for-item="res_give" wx:key="{{res_give.resource_id}}">
+                  <view class="res_give">{{res_give.resource_name}}</view>
+                </block>
+              </view>
+            </view>
+          </view>
+        </view>
+      </block>
+    </view>
+  </scroll-view>
+</view>
+
+<!--没有更多-->
+<view class="error" wx:if="{{error=='1'}}">{{error_text}}</view>

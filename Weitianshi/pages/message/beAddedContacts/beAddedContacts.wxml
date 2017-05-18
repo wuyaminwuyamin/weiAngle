@@ -1,5 +1,15 @@
 <!--pages/message/beAddedContacts/beAddedContacts.wxml-->
 
+<view class="browseMeTitle flex" style="justify-content: space-between;">
+  <view class="title flex">
+    <view class="block"></view>
+    浏览了我的用户
+  </view>
+  <view class="num">
+  <!--动态改变数字-->
+   共 <label>10</label>个</view>
+</view>
+
 <!--资本对接-->
 <view class="s_frame" hidden="{{contacts=='' || !contacts}}">
   <scroll-view scroll-y="true" bindscrolltolower="loadMore" scroll-top="{{scroll}}" >
@@ -15,9 +25,10 @@
                   <view class="user_name">{{item.user_real_name}}</view>
                   <view class="user_career">{{item.user_company_career}}</view>
                 </view>
-                <label class="telephoneLab" data-telephone="{{item.user_mobile}}" catchtap="telephone">
-                  <image class="telephone" src="/img/icon-phone@3x.png"></image>
-                </label>
+               <!--加人脉窗口-->
+               <label>
+                <view class="addPic"></view>
+               </label>
               </view>
               <view class="user_company" wx:if="{{item.user_company_name !=''}}">{{item.user_company_name}}</view>
             </view>
@@ -64,11 +75,18 @@
               </view>
             </view>
           </view>
+          <view class="addFriend flex">
+           <input type="button" class="agree" value="同意加人脉"/>
+           <label class="long"></label>
+           <input type="button" class="pass" value="拒绝"/>
+          </view>
         </view>
       </block>
     </view>
   </scroll-view>
 </view>
+
+
 
 <!--没有更多-->
 <view class="error" wx:if="{{error=='1'}}">{{error_text}}</view>

@@ -84,6 +84,16 @@ Page({
       })
     }
   },
+  popularity:function(){
+    wx.navigateTo({
+      url:'/pages/message/browseMe/browseMe'
+    })
+  },
+  attention:function(){
+    wx.navigateTo({
+      url: '/pages/message/beAddedContacts/beAddedContacts'
+    })
+  },
   //寻找案源
   findProjectEdit: function () {
     if (!this.data.options) {
