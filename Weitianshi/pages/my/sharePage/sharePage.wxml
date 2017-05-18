@@ -12,9 +12,6 @@
   <!--资源对接-->
   <template is="resourceInfo" data="{{resource:resource}}"></template>
 
-  <!--项目融资-->
-  <template is="projectInfo" data="{{project_info:project_info}}"></template>
-
   <!--他的项目库-->
   <template is="financingProject" data="{{project_info:project_info,text:'他的项目库',canEdit:canEdit}}"></template>
 

@@ -41,6 +41,7 @@ Page({
         var current = this.data.currentTab;
         // wx.setStorageSync("user_id", "V0VznXa0") 
         // wx.setStorageSync("user_id", "1ryE5Enr")
+
         // wx.clearStorage()
         //登录状态维护
         app.loginPage(function (user_id) {
@@ -193,30 +194,6 @@ Page({
                         console.log(res)
                     }
                 });
-                // 核对用户信息是否完整
-                wx.request({
-                    url: url + '/api/user/checkUserInfo',
-                    data: {
-                        user_id: user_id
-                    },
-                    method: 'POST',
-                    success: function (res) {
-                        console.log("检查用户信息是否完整,如果不完整则返回个人信息")
-                        console.log(res);
-                        var complete = res.data.is_complete;
-                        if (res.data.status_code == 2000000) {
-                            if (complete == 1) {
-                                that.setData({
-                                    complete: 1
-                                })
-                            } else {
-                                that.setData({
-                                    checkInfo: res.data
-                                })
-                            }
-                        }
-                    },
-                });
             }
         })
     },
@@ -244,7 +221,6 @@ Page({
             })
         }
     },
-  
     //判断信息是否完整
     checkInfo: function (data) {
         var that = this;

@@ -28,7 +28,9 @@ Page({
     //融资需求获取数据
     wx.request({
       url: url + '/api/project/projectMarket',
-      data: {},
+      data: {
+      
+      },
       method: 'POST',
       success: function (res) {
         var financingNeed = res.data.data;
@@ -44,7 +46,9 @@ Page({
     //投资需求获取数据
     wx.request({
       url: url + '/api/investors/investorMarket',
-      data: {},
+      data: {
+          user_id:user
+      },
       method: 'POST',
       success: function (res) {
         // console.log(res)
@@ -60,7 +64,9 @@ Page({
     //资源需求获取数据
     wx.request({
       url: url + '/api/resource/resourceMarket',
-      data: {},
+      data: {
+          user_id:user
+      },
       method: 'POST',
       success: function (res) {
         var resourceNeed = res.data.data;
