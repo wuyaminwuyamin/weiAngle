@@ -298,3 +298,14 @@ page {
 textarea{
     width: auto;
 }
+
+/*多选标签选中时样式*/
+/*.tips .checkedOne {
+  border: 1px solid #333;
+  color: #fff;
+  background: #40587a;
+}*/
+.tips .checkedOne {
+  border: 1px solid #333;
+  color: #333;
+}
