@@ -23,10 +23,10 @@ Page({
       that.setData({
         user_id: user_id
       })
-      //分享至群打点准备
-      wx.showShareMenu({
-        withShareTicket: true,
-      })
+      // //分享至群打点准备
+      // wx.showShareMenu({
+      //   withShareTicket: true,
+      // })
       if (user_id != 0) {
         //载入我的个人信息
         wx.request({
@@ -174,7 +174,13 @@ Page({
   onShareAppMessage: function () {
     var id = wx.getStorageSync('user_id');
     // var that = getCurrentPages()[getCurrentPages().length - 1].__route__
-    return app.sharePage(id, id)
+    // return app.sharePage(id, id)
+    // console.log(app.sharePage(id,id));
+    
+    return {
+      title: '项目-' + id,
+      path: '/pages/my/my/my?user_id=' + that.data.id
+    }
   },
 
   //取消分享
