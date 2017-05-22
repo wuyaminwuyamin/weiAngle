@@ -3,7 +3,7 @@ App({
     // onLaunch 用于监听小程序初始化,当完成时会触发onLaunch(全局只会触发一次)
     onLaunch: function (options) {
         var options = options;
-        let url=this.globalData.url;
+        let url = this.globalData.url;
         //如果是在是点击群里名片打开的小程序,则向后台发送一些信息
         if (options.shareTicket) {
             //获取code
@@ -19,7 +19,7 @@ App({
                             success(res) {
                                 let encryptedData = res.encryptedData;
                                 let iv = res.iv;
-                                console.log(code, path, encryptedData, iv,url)
+                                console.log(code, path, encryptedData, iv, url)
                                 //向后台发送信息
                                 wx.request({
                                     url: url + '/api/log/clickLogRecord',
@@ -40,6 +40,25 @@ App({
                 }
             })
         }
+
+        //获取各分类的信息
+        wx.request({
+            url: url + '/api/category/getWxProjectCategory',
+            method: 'POST',
+            success: function (res) {
+                console.log("获取分类成功")
+                var thisData = res.data.data;
+                thisData.area.forEach((x) => { x.check = false })
+                thisData.industry.forEach((x) => { x.check = false })
+                thisData.scale.forEach((x) => { x.check = false })
+                thisData.stage.forEach((x) => { x.check = false })
+                wx.setStorageSync('area', thisData.area);
+                wx.setStorageSync('industry', thisData.industry);
+                wx.setStorageSync('scale', thisData.scale);
+                wx.setStorageSync('stage', thisData.stage);
+                console.log(thisData.area, thisData.industry, thisData.scale, thisData.stage)
+            },
+        })
     },
 
     onError: function (msg) {
@@ -220,7 +239,7 @@ App({
     //分享页面函数
     sharePage: function (id) {
         let path = "/pages/my/sharePage/sharePage?user_id=" + id;
-        let url=this.globalData.url;
+        let url = this.globalData.url;
         let json = {
             title: '投资名片—智能精准匹配投融资双方的神器',
             path: path,
@@ -230,9 +249,9 @@ App({
                 let shareTicket = res.shareTickets[0];
                 //获取code
                 wx.login({
-                    success(res){
-                        let code=res.code;
-                        if(code){
+                    success(res) {
+                        let code = res.code;
+                        if (code) {
                             //如果是分享到群里
                             if (shareTicket) {
                                 wx.getShareInfo({
