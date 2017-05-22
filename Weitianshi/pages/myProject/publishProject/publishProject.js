@@ -158,12 +158,62 @@ Page({
 
     //上传BP
     upLoad: function () {
-        wx.navigateTo({
-            url: '/pages/scanCode/bpScan/bpScan',
-        })
+      wx.showModal({
+        titel: "友情提示",
+        content: "需要到电脑端上传",
+        showCancel: true,
+        success: function (res) {
+          if (res.confirm) {
+            // console.log('用户点击确定')
+            wx.scanCode({
+              success: function (res) {
+                console.log(res);
+                var user_id = wx.getStorageSync("user_id");//用戶id
+                var credential = res.result;//二维码扫描信息
+
+                wx.request({
+                  url: url + '/api/auth/writeUserInfo',
+                  data: {
+                    credential: credential,
+                    user_id: user_id,
+                    pro_data: {
+                      "pro_intro": pro_intro,
+                      "industry": industry,
+                      "pr_finance_stage": pro_finance_stage,
+                      "pro_finance_scale": pro_finance_scale,
+                      "is_excluseve": is_excluseve
+                    }
+                  },
+                  method: 'POST',
+                  success: function (res) {
+                    if(res.data.status_code ==2000000){
+                      wx.navigateTo({
+                        url: '/pages/scanCode/bpScanSuccess/bpScanSuccess',
+                      })
+                    }
+                  }
+                })
+
+              },
+            })
+          } else if (res.cancel) {
+            console.log('用户点击取消')
+          }
+        
+         
+        }
+      })
+
+      var pro_intro = this.data.describe;//描述
+      var industry = this.data.domainId;//id
+      var pro_finance_stage = this.data.stage[this.data.stage_index].stage_id;
+      var pro_finance_scale = this.data.expect[this.data.expect_index].scale_id;
+      var is_excluseve = this.data.tips_index;
+      console.log(pro_intro);
+      console.log(industry);
     },
 
-
+   
     //点击发布
     public: function () {
         save = !save;

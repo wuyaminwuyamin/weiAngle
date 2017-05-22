@@ -79,16 +79,16 @@
         <input class="slectInput" placeholder="投后股权占比" />
       </view>
     </view>
-  </view>
+  </view>-->
+
 
   <view class="bp flex">
     <view>项目计划书</view>
     <view class="bpBtn" bindtap="upLoad">去PC上传</view>
   </view>
-  <view class="grey">
+  <!--<view class="grey">
     BP私密保护,投资人可通过申请查看来了解项目价值
   </view>-->
-
   
   <button class="nextBtn" bindtap="public">
     维护项目
