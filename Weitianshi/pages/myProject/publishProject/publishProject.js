@@ -187,8 +187,8 @@ Page({
                   method: 'POST',
                   success: function (res) {
                     if(res.data.status_code ==2000000){
-                      wx.navigateBack({
-                        delta: 1,
+                      wx.navigateTo({
+                        url: '/pages/scanCode/bpScanSuccess/bpScanSuccess',
                       })
                     }
                   }
