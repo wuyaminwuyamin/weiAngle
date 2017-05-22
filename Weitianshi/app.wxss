@@ -305,7 +305,12 @@ textarea{
   color: #fff;
   background: #40587a;
 }*/
+
 .tips .checkedOne {
+  border: 1px solid #333;
+  color: #333;
+}
+.checkedOne {
   border: 1px solid #333;
   color: #333;
 }

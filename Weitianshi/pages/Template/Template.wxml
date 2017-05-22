@@ -442,7 +442,7 @@
 <template name="tags">
   <block wx:for="{{tagsData}}" wx:key="{{item.industry_id||item.stage_id||item.scale_id||item.area_id}}">
     <label class="tips">
-      <view class="{{tagsData.check[index]==true?'checkedOne':''}}" data-id="{{item.industry_id||item.stage_id||item.scale_id||item.area_id}}" data-index="{{index}}" data-value='{{item.industry_name||item.stage_name||item.scale_money||item.area_title}}' data-check="false" bindtap="{{bindEvent}}">
+      <view class="{{item.check==true?'checkedOne':''}}" data-id="{{item.industry_id||item.stage_id||item.scale_id||item.area_id}}" data-index="{{index}}" data-value='{{item.industry_name||item.stage_name||item.scale_money||item.area_title}}'  bindtap="{{bindEvent}}">
         {{item.industry_name||item.stage_name||item.scale_money||item.area_title}}</view>
     </label>
   </block>

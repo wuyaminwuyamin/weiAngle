@@ -1,8 +1,8 @@
 {
     "pages": [
-        "pages/match/match/resourceDemand/resourceDemand",
         "pages/match/match/match/match",
         "pages/search/filter4/filter4",
+        "pages/match/match/resourceDemand/resourceDemand",
         "pages/form/area1/area1",
         "pages/form/area2/area2",
         "pages/form/industry/industry",
@@ -73,6 +73,12 @@
                 "selectedIconPath": "img/resourceOn.png",
                 "pagePath": "pages/match/match/match/match",
                 "text": "对接"
+            },
+            {
+                "iconPath": "img/project.png",
+                "selectedIconPath": "img/projectOn.png",
+                "pagePath": "pages/match/selectProject/selectProject",
+                "text": "精选"
             },
             {
                 "iconPath": "img/people.png",

@@ -4,6 +4,7 @@ App({
     onLaunch: function (options) {
         var options = options;
         let url = this.globalData.url;
+        var that = this;
         //如果是在是点击群里名片打开的小程序,则向后台发送一些信息
         if (options.shareTicket) {
             //获取code
@@ -41,22 +42,24 @@ App({
             })
         }
 
-        //获取各分类的信息
+        //获取各分类的信息并存入缓存
         wx.request({
             url: url + '/api/category/getWxProjectCategory',
             method: 'POST',
             success: function (res) {
-                console.log("获取分类成功")
                 var thisData = res.data.data;
                 thisData.area.forEach((x) => { x.check = false })
                 thisData.industry.forEach((x) => { x.check = false })
                 thisData.scale.forEach((x) => { x.check = false })
                 thisData.stage.forEach((x) => { x.check = false })
-                wx.setStorageSync('area', thisData.area);
+                /*wx.setStorageSync('area', thisData.area);
                 wx.setStorageSync('industry', thisData.industry);
                 wx.setStorageSync('scale', thisData.scale);
-                wx.setStorageSync('stage', thisData.stage);
-                console.log(thisData.area, thisData.industry, thisData.scale, thisData.stage)
+                wx.setStorageSync('stage', thisData.stage);*/
+                that.globalData.area = thisData.area;
+                that.globalData.industry = thisData.industry;
+                that.globalData.scale = thisData.scale;
+                that.globalData.stage = thisData.stage;
             },
         })
     },
@@ -392,6 +395,34 @@ App({
 
         }
     },*/
+
+    //多选标签事件封装
+    tagsCheck(that,rqj,e,tags,cb) {
+        console.log(e.currentTarget.dataset);
+        let target = e.currentTarget.dataset;
+        let tagsData = tags.tagsData;
+        let checkObject = [];
+
+        tagsData[target.index].check = !tagsData[target.index].check;
+        let checkedNum = 0
+        tagsData.forEach((x) => {
+            if (x.check == true) {
+                checkedNum++
+            }
+        })
+        if (checkedNum == 6) {
+            tagsData[target.index].check = !tagsData[target.index].check;
+            rqj.errorHide(that, "最多可选择五项", 1000)
+        } else {
+            cb(tags)
+        }
+        tagsData.forEach((x) => {
+            if (x.check == true) {
+                checkObject.push(x)
+            }
+        })
+        return checkObject
+    },
 
     //初始本地缓存
     globalData: {
