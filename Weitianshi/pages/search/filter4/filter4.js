@@ -11,6 +11,10 @@ Page({
     industryTags:{
         tagsData:"",
         bindEvent:"industryChoose"
+    },
+    stageTags:{
+        tagsData:"",
+        bindEvent:"stageChoose"
     }
   },
 
@@ -20,14 +24,13 @@ Page({
     var industryData = wx.getStorageSync('industry');//获取所属领域的全部信息
     var industryTags=this.data.industryTags;
     var stageData = wx.getStorageSync('stage');//获取轮次信息
-
-    console.log(industryData,stageData)
+    var stageTags = this.data.stageTags;
 
     industryTags.tagsData=industryData;
+    stageTags .tagsData=stageData;
     that.setData({
-      industryData : industryData,
-      stageData: stageData,
-      industryTags:industryTags
+      industryTags:industryTags,
+      stageTags:stageTags
     })
   },
 //领域选择
