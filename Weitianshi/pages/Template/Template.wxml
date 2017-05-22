@@ -35,10 +35,10 @@
         </label>
       </view>
       <view class="user_email flex" wx:if="{{!user.user_email}}">邮箱号码：暂无编辑
-       <label>
+        <label>
           <image class="user_edit" wx:if="{{canEdit}}" src="/img/icon-Share2@3x.png" catchtap="cardChange"></image>
         </label>
-        </view>
+      </view>
     </view>
     <view class="user_right">
       <image wx:if="{{user.user_avatar_url}}" class="user_pic" src="{{user.user_avatar_url}}"></image>
@@ -166,7 +166,7 @@
     </view>
     <view class="projcet_info_frame">
       <block wx:for="{{project_info}}" wx:key="{{item.pro_intro}}">
-      
+
         <view class="project_card" data-id="{{item.pro_id}}" data-index="{{index}}" bindtap="financingDetail">
           <view class="pro_intro">
             {{item.pro_intro||item.case_name}}
@@ -214,7 +214,7 @@
           <view class="flex s_pro_sorts">
             <view class="pro_sorts flex">
               <view class="pro_sort" wx:if="{{item.stage.stage_name}}">{{item.stage.stage_name}}</view>
-               <view class="pro_sort" wx:if="{{item.case_area}}">{{item.case_area.area_title}}</view>
+              <view class="pro_sort" wx:if="{{item.case_area}}">{{item.case_area.area_title}}</view>
               <view class="pro_sort" wx:if="{{item.case_money}}">{{item.case_money}}万</view>
             </view>
           </view>
@@ -436,4 +436,14 @@
 <!--全网人脉卡片-->
 <template name="networkCard">
 
+</template>
+
+<!--多选标签模块-->
+<template name="tags">
+  <block wx:for="{{tagsData}}" wx:key="{{item.industry_id||item.stage_id||item.scale_id||item.area_id}}">
+    <label class="tips">
+      <view class="{{tagsData.check[index]==true?'checkedOne':''}}" data-id="{{item.industry_id||item.stage_id||item.scale_id||item.area_id}}" data-index="{{index}}" data-value='{{item.industry_name||item.stage_name||item.scale_money||item.area_title}}' data-check="false" bindtap="{{bindEvent}}">
+        {{item.industry_name||item.stage_name||item.scale_money||item.area_title}}</view>
+    </label>
+  </block>
 </template>

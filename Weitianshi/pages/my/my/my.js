@@ -98,7 +98,7 @@ Page({
   findProjectEdit: function () {
     if (!this.data.options) {
       wx.navigateTo({
-        url: '/pages/projectDetail/projectDetail?current=' + 1,
+        url: '/pages/match/match/investDemand/investDemand?current=' + 1,
       })
     }
 
@@ -174,13 +174,7 @@ Page({
   onShareAppMessage: function () {
     var id = wx.getStorageSync('user_id');
     // var that = getCurrentPages()[getCurrentPages().length - 1].__route__
-    // return app.sharePage(id, id)
-    // console.log(app.sharePage(id,id));
-    
-    return {
-      title: '项目-' + id,
-      path: '/pages/my/my/my?user_id=' + that.data.id
-    }
+    return app.sharePage(id)
   },
 
   //取消分享

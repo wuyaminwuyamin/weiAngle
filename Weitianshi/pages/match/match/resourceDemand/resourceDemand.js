@@ -26,8 +26,8 @@ Page({
             success: function (res) {
                 //判断用户是否填写过资源需求
                 var resource_data = wx.getStorageSync('resource_data');
-                // console.log(res);
-                // console.log(resource_data);
+                console.log(res);
+                console.log(resource_data)
                 var res_find = resource_data.res_find;//寻求的资源
                 var res_give = resource_data.res_give; //可提供的资源
                 var describe = resource_data.res_desc;//具体描述
