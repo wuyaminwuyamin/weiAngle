@@ -13,11 +13,17 @@ page {
 
 .user_edit {
   display: block;
-  width: 40rpx;
-  height: 40rpx;
+  width: 80rpx;
+  height: 80rpx;
   border-radius: 0;
-  padding: 40rpx;
   margin: 0;
+  padding: 0;
+  border: none !important;
+}
+.user_edit image{
+    width: 40rpx;
+    height: 40rpx;
+    margin: auto;
 }
 
 .user_email label {

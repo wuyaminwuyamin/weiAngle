@@ -74,7 +74,7 @@ Page({
   yourDetail: function (e) {
     var thisData = e.currentTarget.dataset;
     wx.navigateTo({
-      url: 'pages/projectDetail/projectDetail?id=' + thisData.id
+      url: '/pages/projectDetail/projectDetail?id=' + thisData.id
     })
   },
   //分享当前页面

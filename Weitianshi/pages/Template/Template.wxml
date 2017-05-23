@@ -31,12 +31,16 @@
       <view class="user_email flex" wx:if="{{user.user_email}}">
         <view>邮箱：{{user.user_email}}</view>
         <label>
-          <image class="user_edit" wx:if="{{canEdit}}" src="/img/icon-Share2@3x.png" catchtap="cardChange"></image>
+          <button open-type="share" class="user_edit" plain="{{true}}">
+            <image  src="/img/icon-Share2@3x.png"></image>
+          </button>
         </label>
       </view>
       <view class="user_email flex" wx:if="{{!user.user_email}}">邮箱号码：暂无编辑
         <label>
-          <image class="user_edit" wx:if="{{canEdit}}" src="/img/icon-Share2@3x.png" catchtap="cardChange"></image>
+          <button open-type="share" class="user_edit" plain="{{true}}">
+            <image  src="/img/icon-Share2@3x.png"></image>
+          </button>
         </label>
       </view>
     </view>
@@ -49,16 +53,16 @@
   <view class="user_down flex">
     <view class="user_popularity user_tips" bindtap="popularity">
       <view wx:if="{{user.user_popularity}}">{{user.user_popularity}}</view>
-       <label class="popularityNum">99+</label>
+      <label class="popularityNum">99+</label>
       <view wx:if="{{!user.user_popularity}}" class="popularity-Num">10</view>
       <view class="popularity-people">人气</view>
-     
+
     </view>
     <view class="user_attention user_tips" bindtap="attention">
       <view wx:if="{{user.user_attention}}">{{user.user_attention}}</view>
       <label class="attentionNum">99+</label>
       <view wx:if="{{!user.user_attention}}" class="attention-Num">6666</view>
-      <view  class="attention-people">加我为人脉</view>
+      <view class="attention-people">加我为人脉</view>
     </view>
     <view class="user_potential user_tips">
       <view wx:if="{{user.user_potential}}">{{user.user_potential}}</view>
@@ -368,28 +372,6 @@
   </view>
 </template>
 
-<!--原投资项目卡片-->
-<template name="preSelectedCard">
-  <view class="weui-panel__bd" style="background:white;margin:16px">
-    <view class="weui-media-box weui-media-box_text your_Detail" data-id='{{myProject.pro_id}}' data-index="{{index}}" bindtap="yourDetail">
-      <view class="weui-media-box__title weui-media-box__title_in-text" style="text-align:left;">{{myProject.pro_intro}}</view>
-      <view class="sort">
-        <block wx:for="{{myProject.pro_industry}}" wx:for-item="sort" wx:key="*this">
-          <view class="weui-media-box__desc" wx:if="{{index<4}}">
-            {{sort.industry_name}}
-          </view>
-        </block>
-      </view>
-      <view class="tips flex">
-        <view style="width:1px"></view>
-        <view class="weui-media-box__desc tip" wx:if="{{myProject.pro_stage.stage_name}}">{{myProject.pro_stage.stage_name}}</view>
-        <view class="weui-media-box__desc tip" wx:if="{{myProject.pro_area.area_title}}">{{myProject.pro_area.area_title}}</view>
-        <view class="weui-media-box__desc tip" wx:if="{{myProject.pro_scale.scale_money}}">{{myProject.pro_scale.scale_money}}</view>
-      </view>
-    </view>
-  </view>
-</template>
-
 <!--为浮动按钮留空-->
 <template name="forButton">
   <view style="height:98rpx;"></view>
@@ -420,19 +402,6 @@
   </view>
 </template>
 
-<!--底下弹框表单封装-->
-<template name="formbottom">
-  <view class="card formjump">
-    <view class="text">{{formbottom.name}}*</view>
-    <picker id="stage" bindchange="stage" value="{{formbottom.index_arry}}" range="{{formbottom.name_arry}}">
-      <view class="slect flex">
-        <view class="{{stage_index ==0 ? '' : 'checkOn'}}">{{stage[stage_index].scale_money}}</view>
-        <image class="downArrow" src="/img/downArrow.png"></image>
-      </view>
-    </picker>
-  </view>
-</template>
-
 <!--全网人脉卡片-->
 <template name="networkCard">
 
@@ -442,8 +411,18 @@
 <template name="tags">
   <block wx:for="{{tagsData}}" wx:key="{{item.industry_id||item.stage_id||item.scale_id||item.area_id}}">
     <label class="tips">
-      <view class="{{tagsData.check[index]==true?'checkedOne':''}}" data-id="{{item.industry_id||item.stage_id||item.scale_id||item.area_id}}" data-index="{{index}}" data-value='{{item.industry_name||item.stage_name||item.scale_money||item.area_title}}' data-check="false" bindtap="{{bindEvent}}">
+      <view class="{{item.check==true?'checkedOne':''}}" data-id="{{item.industry_id||item.stage_id||item.scale_id||item.area_id}}" data-index="{{index}}" data-value='{{item.industry_name||item.stage_name||item.scale_money||item.area_title}}' bindtap="{{bindEvent}}">
         {{item.industry_name||item.stage_name||item.scale_money||item.area_title}}</view>
     </label>
   </block>
 </template>
+
+<!--input_jump-->
+<template name="input_jump"></template>
+
+<!--input_picker-->
+<template name="input_picker">
+
+</template>
+
+<!--input_text-->

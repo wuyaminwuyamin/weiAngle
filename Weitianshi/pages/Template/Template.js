@@ -148,19 +148,6 @@ function addNetWork(that, follow_user_id, followed_user_id) {
         },
     })
 }
-//获取user_id
-// function loginPage(that, user_id) {
-//     if (user_id != 0) {
-//         that.loadData(that, user_id)
-//     } else {
-//         //获取user_id
-//         app.getUserInfo(function (userInfo) {
-//             console.log("已经有了userInfo");
-//             wx.setStorageSync("userInfo", userInfo)
-//             wx.setStorageSync('avatarUrl', userInfo.avatarUrl)
-//         });
-//     }
-// }
 //函数输出
-module.exports = { errorHide, userNeed, loadMore}
+module.exports = {errorHide, userNeed, loadMore}
 
