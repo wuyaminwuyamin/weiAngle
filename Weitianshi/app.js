@@ -52,10 +52,6 @@ App({
                 thisData.industry.forEach((x) => { x.check = false })
                 thisData.scale.forEach((x) => { x.check = false })
                 thisData.stage.forEach((x) => { x.check = false })
-                /*wx.setStorageSync('area', thisData.area);
-                wx.setStorageSync('industry', thisData.industry);
-                wx.setStorageSync('scale', thisData.scale);
-                wx.setStorageSync('stage', thisData.stage);*/
                 that.globalData.area = thisData.area;
                 that.globalData.industry = thisData.industry;
                 that.globalData.scale = thisData.scale;
