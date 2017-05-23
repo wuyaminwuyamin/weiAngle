@@ -24,7 +24,6 @@ Page({
 
     },
     onLoad: function () {
-        // console.log("this is onLoad");
         var that = this;
         //初始化
         wx.setStorageSync('enchangeValue', []);
@@ -81,18 +80,10 @@ Page({
                     expect_arry: expect_arry
                 })
             },
-            fail: function () {
-                // fail
-            },
-            complete: function () {
-                // complete
-            }
         })
-
     },
     //页面显示
     onShow: function () {
-        // console.log("this is onShow")
         var that = this;
 
         //填入所属领域,项目介绍,所在地区
@@ -107,7 +98,7 @@ Page({
         var provinceNum = wx.getStorageSync('provinceNum');
         // 城市信息
         var cityNum = wx.getStorageSync('cityNum');
-        // console.log(domainValue, domainId, describe, belongArea, provinceNum, cityNum, this.data.tips_index);
+        
         that.setData({
             domainValue: domainValue,
             domainId: domainId,
@@ -143,7 +134,6 @@ Page({
     stage: function (e) {
         this.setData({
             stage_index: e.detail.value,
-            // console_stage: this.data.stage[this.data.stage_index].stage_id,
         });
     },
 
@@ -153,7 +143,6 @@ Page({
             expect_index: e.detail.value,
             console_expect: this.data.expect[this.data.expect_index].scale_id,
         });
-        // console.log(this.data.expect_index)
     },
 
     //上传BP
@@ -193,14 +182,11 @@ Page({
                     }
                   }
                 })
-
               },
             })
           } else if (res.cancel) {
             console.log('用户点击取消')
           }
-        
-         
         }
       })
 
@@ -245,7 +231,6 @@ Page({
                 method: 'POST',
                 success: function (res) {
                     console.log(res)
-
                     //数据清空
                     wx.setStorageSync('project_id', res.data.project_index);
                     wx.setStorageSync('describe', "");
@@ -265,12 +250,6 @@ Page({
                     });
                     
                 },
-                fail: function () {
-                    // fail
-                },
-                complete: function () {
-                    // complete
-                }
             })
         } else {
             that.setData({
@@ -308,9 +287,7 @@ Page({
                     error_text: "请选择是否独家"
                 })
             }
-
         }
-
     },
     onUnload: function () {
       // 页面关闭
@@ -340,7 +317,6 @@ Page({
         wx.setStorageSync('y_payMoney', "选择金额");
         wx.setStorageSync('provinceNum', 0);
         wx.setStorageSync('cityNum', 0);
-
       }
     }
 });
