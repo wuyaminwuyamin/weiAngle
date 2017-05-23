@@ -19,10 +19,8 @@ Page({
     error: '0',
     error_text: "",
     loading: '0'
-
   },
   onLoad: function (options) {
-
     var that = this;
     var user_id = options.user_id;
     var pro_id = options.pro_id;
@@ -39,7 +37,7 @@ Page({
     if (current == 1) {
       console.log("项目融资")
     }
-
+    
     // 获取项目分类
     wx.request({
       url: url + '/api/category/getWxProjectCategory',
@@ -90,6 +88,7 @@ Page({
       method: 'POST',
       success: function (res) {
         console.log(res)
+        // console.log(pro_id);
         var theData = res.data.data;
         var describe = theData.pro_intro;
         var industry = theData.pro_industry;
@@ -147,15 +146,16 @@ Page({
     var belongArea = wx.getStorageSync('m_belongArea');
     var provinceNum = wx.getStorageSync("m_provinceNum");
     var cityNum = wx.getStorageSync('m_cityNum');
-    console.log(cityNum);
-    console.log(belongArea);
+    var pro_goodness = wx.getStorageSync("pro_goodness");
+    // console.log(cityNum);
+    // console.log(belongArea);
     this.setData({
-
       industryValue: industryValue,
       industryId: industryId,
       belongArea: belongArea,
+      pro_goodness:pro_goodness
     })
-    if (cityNum) {//如果u取到了cityNum
+    if (cityNum) {//如果取到了cityNum
       this.setData({
         provinceNum: provinceNum,
         cityNum: cityNum
@@ -174,6 +174,14 @@ Page({
     wx.setStorageSync('describe', e.detail.value);
     that.setData({
       describe: e.detail.value
+    })
+  },
+  // 项目亮点
+  slectInput:function(e){
+    var that = this;
+    wx.setStorageSync("pro_goodness",e.detail.value );
+    that.setData({
+      pro_goodness:e.detail.value
     })
   },
 
@@ -222,30 +230,36 @@ Page({
 
   //上传BP
   upLoad: function () {
+    var that = this;
+    // var upLoad =true;
+    // this.public();
     wx.showModal({
       titel: "友情提示",
-      content: "需要到电脑端上传",
+      content: "请到www.weitianshi.cn/qr上传",
       showCancel: true,
       success: function (res) {
         if (res.confirm) {
-          // console.log('用户点击确定')
           wx.scanCode({
             success: function (res) {
-              console.log(res);
+              // console.log(res);
               var user_id = wx.getStorageSync("user_id");//用戶id
               var credential = res.result;//二维码扫描信息
-
+              var project_id= that.data.pro_id;
+              console.log(project_id);
               wx.request({
                 url: url + '/api/auth/writeUserInfo',
                 data: {
-                  credential: credential,
+                  type: 'update',
                   user_id: user_id,
+                  project_id: project_id,
+                  credential: credential,
                   pro_data: {
                     "pro_intro": pro_intro,
                     "industry": industry,
-                    "pr_finance_stage": pro_finance_stage,
+                    "pro_finance_stage": pro_finance_stage,
                     "pro_finance_scale": pro_finance_scale,
-                    "is_excluseve": is_excluseve
+                    "is_exclusive": is_exclusive,
+                    "pro_goodness": pro_goodness
                   }
                 },
                 method: 'POST',
@@ -267,17 +281,24 @@ Page({
     })
 
     var pro_intro = this.data.describe;//描述
-    var industry = this.data.domainId;//id
-    var pro_finance_stage = this.data.stage[this.data.stage_index].stage_id;
-    var pro_finance_scale = this.data.expect[this.data.expect_index].scale_id;
-    var is_excluseve = this.data.tips_index;
+    var industry = this.data.industryId;//id
+    var pro_finance_stage = this.data.stage_index;
+    var pro_finance_scale = this.data.scale_index;
+    var is_exclusive = this.data.tipsIndex;
+    var pro_goodness = this.data.pro_goodness;
     console.log(pro_intro);
     console.log(industry);
+    console.log(pro_finance_scale);
+    console.log(pro_finance_stage);
+    console.log(is_exclusive);
+    console.log(pro_goodness);
+    
   },
 
 
   //点击发布
   public: function () {
+    console.log("調用public")
     var that = this;
     var describe = this.data.describe;
     var industryValue = this.data.industryValue;
@@ -294,7 +315,10 @@ Page({
     var user_id = wx.getStorageSync('user_id');
     var pro_id = this.data.pro_id;
     var current = this.data.current;
-    console.log(user_id, describe, industryId, console_stage, console_scale, provinceNum, cityNum, tipsIndex)
+    // var upLoad = this.data.upLoad;
+    var pro_goodness = this.data.pro_goodness;
+    // console.log(user_id, describe, industryId, console_stage, console_scale, provinceNum, cityNum, tipsIndex)
+    console.log(pro_goodness);
     if (describe !== "" && industryValue !== "选择领域" && console_stage !== 0 && console_scale != 0 && provinceNum !== 0 && cityNum !== 0 && tipsIndex !== 4) {
       wx.request({
         url: url + '/api/project/updateProject',
@@ -307,15 +331,15 @@ Page({
           pro_finance_scale: console_scale,
           pro_area_province: provinceNum,
           pro_area_city: cityNum,
-          is_exclusive: tipsIndex
+          is_exclusive: tipsIndex,
+          pro_goodness:pro_goodness
         },
         method: 'POST',
-        success: function (res) {
+        success: function (res) { 
           if (res.status_code = 2000000) {
-            wx.navigateBack({//页面返回
-              delta: 2 // 回退前 delta(默认为1) 页面
-            })
-
+              wx.navigateBack({//页面返回
+                delta: 2 // 回退前 delta(默认为1) 页面
+              })
           } else {
             wx.showToast({
               title: res.status_code

@@ -2,7 +2,7 @@
 <!--pages/myProject/scanCode/scanCodeSuccess.wxml-->
 <view id="scanCodeSuccess">
   <view class="flex">
-    <image class="pic" src=""></image>
+    <image class="pic" src="/img/img-computer.png"></image>
   </view>
   <button class="nextBtn" bindtap="route">
     完成

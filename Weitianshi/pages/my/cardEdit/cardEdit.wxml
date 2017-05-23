@@ -31,6 +31,7 @@
   </view>
 </view>
 <!--错误提示-->
-<view class="error" wx:if="{{error=='1'}}">{{error_text}}</view>
-
-<view class="save" bindtap="save">保存</view>
+<!--<view class="error" wx:if="{{error=='1'}}">{{error_text}}</view>-->
+<view class="floatBtn flex" bindtap="save">
+  <button class="save">保存</button>
+</view>
