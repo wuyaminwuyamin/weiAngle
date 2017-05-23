@@ -8,7 +8,7 @@
         "pages/form/industry/industry",
         "pages/form/scale/scale",
         "pages/form/stage/stage",
-        "pages/form/businessContribution/businessContribution",
+        "pages/match/match/resourceDemand/resourceDemand","pages/form/businessContribution/businessContribution",
         "pages/form/tollType/tollType",
         "pages/form/hasRunningBusiness/hasRunningBusiness",
         "pages/scanCode/bpScan/bpScan",

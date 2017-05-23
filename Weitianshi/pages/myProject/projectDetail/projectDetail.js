@@ -9,11 +9,18 @@ Page({
         firstName: "代",
         id: "",
         page: 0,
+        user_id:0,
         industy_sort: [],
-        bpName: "",
-        pro_goodness:"",
+        bp_title: "",//bp名称
+        ipo_release:"",//
+        pro_company_name:"",//公司的名称
+        pro_company_start_name:"",//
+        pro_goodness:"",//项目亮点
         projectName: "",
         companyName: "",
+        pro_name:"",//项目名称
+        pro_source:"",//项目来源
+        pro_intro:"",//项目介绍
         stock: 0,
         page_end: false,
         loadMorecheck : true//下拉加载更多判断
@@ -34,7 +41,6 @@ Page({
             avatarUrl: avatarUrl,
             investor: investors[index],
             currentTab:options.currentTab
-
         });
         var investor = this.data.investor;
         console.log(investor)
@@ -57,6 +63,9 @@ Page({
         // console.log(investor)
         // console.log(industry_tag)
         //项目详情(不包括投资人)
+        var id = wx.getStorageSync('user_id');
+        if (user_id == id ){
+        console.log(user_id);
         wx.request({
             url: url + '/api/project/showProjectDetail',
             data: {
@@ -66,9 +75,12 @@ Page({
             method: 'POST',
             success: function (res) {
                 var project = res.data.data;
+                console.log(project);
                 var user = res.data.user;
-                var pro_goodness = res.data.pro_goodness;
-                console.log(pro_goodness);
+                var pro_goodness = res.data.data.pro_goodness;
+                var pro_source = project.pro_source;
+                var  pro_company_name = project.pro_company_name;
+                var pro_name = project.pro_name;
                 var industy_sort = [];
                 var firstName = user.user_name.substr(0, 1);
                 that.setData({
@@ -87,7 +99,7 @@ Page({
                 });
             },
         })
-
+        }
     },
     //下拉刷新
     onPullDownRefresh: function () {

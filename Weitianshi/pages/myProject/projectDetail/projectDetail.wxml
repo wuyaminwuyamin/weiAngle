@@ -55,7 +55,7 @@
         <!--项目亮点-->
         <view class="greatPoint" wx:if="{{project.pro_goodness!==''}}">
           <view style="font-size:24rpx;line-height:1.8;">项目亮点</view>
-          <view style="font-size:24rpx;line-height:1.8;">{{pro_goodness}}</view>
+          <view style="font-size:24rpx;line-height:1.8;">{{project.pro_goodness}}</view>
         </view>
       </view>
     </view>
@@ -71,34 +71,37 @@
 
       <!--项目详情-->
       <swiper-item>
+       <scroll-view scroll-y="true">
         <view class="detail">
           <view class="grey">项目BP</view>
           <view class="bpName">
-            <view class="item1 ">BP名称</view>
-            <view class="item2 ">{{bpName}}</view>
+            <view class="item1">BP名称</view>
+            <view class="item2">{{bpName}}</view>
           </view>
           <view class="grey">项目机密</view>
           <view class="projectName">
-            <view class="item1 ">项目名称</view>
-            <view class="item2 ">{{projectName}}</view>
+            <view class="item1">项目名称</view>
+            <view class="item2">{{project.pro_name}}</view>
           </view>
           <view class="companyName">
-            <view class="item1 ">公司名称</view>
-            <view class="item2 ">{{companyName}}</view>
+            <view class="item1">公司名称</view>
+            <view class="item2">{{project.pro_company_name}}</view>
           </view>
           <view class="projectFrom">
             <view class="item1">项目来源</view>
-            <view class="item2 ">{{projectFrom}}</view>
+            <view class="item2">{{project.pro_source}}</view>
           </view>
           <view class="time">
             <view class="item1">注册时间</view>
-            <view class="item2 ">{{time}}</view>
+            <view class="item2">{{time}}</view>
           </view>
           <view class="state">
             <view class="item1">运营状态</view>
-            <view class="item2 ">{{state}}</view>
+            <view class="item2">{{state}}</view>
           </view>
         </view>
+        <view style="height:160rpx;"></view>
+      </scroll-view >
       </swiper-item>
 
       <!--资本对接-->
@@ -238,7 +241,7 @@
 
 <!--下面的浮动按钮-->
 <view class="floatBtn flex" hidden="{{currentTab==0}}">
-  <button class="push " disabled="true">一键推送(近期开放)</button>
+  <button class="push" disabled="true">一键推送(近期开放)</button>
 </view>
 <view class="floatBtn flex maintainProject" hidden="{{currentTab==1}}" bindtap="maintainProject">
   <button class="push maintainProject">维护项目</button>
