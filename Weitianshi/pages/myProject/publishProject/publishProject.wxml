@@ -53,13 +53,13 @@
   </view>
   
   <view class="card">
-    <view class="text">项目亮点</view>
-    <input  />
+    <view class="text">项目亮点*</view>
+    <input class="slectInput" placeholder="请输入项目亮点" placeholder-style='color:#ccc' value="{{pro_goodness}}" bindblur="slectInput" />
   </view>
-  <view class="card">
+  <!--<view class="card">
   <view class="text">投后股份(%)</view>
   <input  />
-  </view>
+  </view>-->
   <!--上传BP-->
   <view class="bp flex">
     <view>项目计划书</view>

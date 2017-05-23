@@ -11,6 +11,7 @@ Page({
         page: 0,
         industy_sort: [],
         bpName: "",
+        pro_goodness:"",
         projectName: "",
         companyName: "",
         stock: 0,
@@ -40,6 +41,7 @@ Page({
         var industry_tag = [];
         var scale_tag = [];
         var stage_tag = [];
+        var pro_goodness = "";
         if (investors != '') {
             for (var i = 0; i < investor.length; i++) {
                 industry_tag.push(investor[i].industry_tag);
@@ -59,12 +61,14 @@ Page({
             url: url + '/api/project/showProjectDetail',
             data: {
                 user_id: user_id,
-                pro_id: this.data.id
+                pro_id: this.data.id,
             },
             method: 'POST',
             success: function (res) {
                 var project = res.data.data;
                 var user = res.data.user;
+                var pro_goodness = res.data.pro_goodness;
+                console.log(pro_goodness);
                 var industy_sort = [];
                 var firstName = user.user_name.substr(0, 1);
                 that.setData({
@@ -78,7 +82,8 @@ Page({
                     industy_sort.push(pro_industry[i].industry_name)
                 }
                 that.setData({
-                    industy_sort: industy_sort
+                    industy_sort: industy_sort,
+                    pro_goodness :pro_goodness
                 });
             },
         })

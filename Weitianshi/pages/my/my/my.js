@@ -101,7 +101,6 @@ Page({
                 url: '/pages/match/match/investDemand/investDemand?current=' + 1,
             })
         }
-
     },
     //资源对接
     resourceEnchangeEdit: function () {

@@ -8,7 +8,7 @@
   <template is="userIntro" data="{{user:user,canEdit:canEdit}}"></template>
 
   <!--寻找案源-->
-  <template is="InvestInfo" data="{{invest:invest,canEdit:canEdit}}"></template>
+  <template is="InvestInfo" data="{{invesst:invest,canEdit:canEdit}}"></template>
 
   <!--资源对接-->
   <template is="resourceInfo" data="{{resource:resource,canEdit:canEdit}}"></template>
@@ -18,14 +18,13 @@
 
   <!--投资案例-->
   <template is="investProject" data="{{invest_case:invest_case,canEdit:canEdit}}"></template>
-
   <view style="height:92rpx;"></view>
 
   <!--交换名片-->
   <view class="changeCard flex" wx:if="{{!options}}">
     <view>交换名片,搭建我的人脉库</view>
     <button bindtap="cardChange">去交换</button>
-  </view>
+  </view>-->
 
   <!--我的人脉和加入人脉-->
   <view class="aboutNetwork flex" wx:if="{{options}}">

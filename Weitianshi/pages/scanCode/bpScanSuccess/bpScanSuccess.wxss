@@ -6,6 +6,6 @@
     width: 276rpx;
     height: 302rpx;
     margin: 254rpx auto;
-    background: lightgoldenrodyellow;
+    /*background: lightgoldenrodyellow;*/
     margin-bottom: 172rpx;
 }

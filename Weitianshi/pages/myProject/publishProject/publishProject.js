@@ -20,7 +20,8 @@ Page({
         console_tips: "",
         error: '0',
         error_text: "",
-        loading: '0'
+        loading: '0',
+        pro_goodness: ""
 
     },
     onLoad: function () {
@@ -30,6 +31,7 @@ Page({
         wx.setStorageSync('enchangeId', []);
         wx.setStorageSync('enchangeCheck', [])
         wx.setStorageSync('describe', "");
+        wx.setStorageSync('pro_goodness',"" );
         wx.setStorageSync('domainValue', "选择领域");
         wx.setStorageSync('domainId', []);
         wx.setStorageSync('console_stage', 0);
@@ -98,14 +100,17 @@ Page({
         var provinceNum = wx.getStorageSync('provinceNum');
         // 城市信息
         var cityNum = wx.getStorageSync('cityNum');
-        
+        // 项目亮点
+        var pro_goodness = wx.getStorageSync('pro_goodness');
+        // console.log(domainValue, domainId, describe, belongArea, provinceNum, cityNum, this.data.tips_index);
         that.setData({
             domainValue: domainValue,
             domainId: domainId,
             describe: describe,
             belongArea: belongArea,
             provinceNum: provinceNum,
-            cityNum: cityNum
+            cityNum: cityNum,
+            pro_goodness:pro_goodness
         })
     },
     //下拉刷新
@@ -120,6 +125,14 @@ Page({
         that.setData({
             describe: e.detail.value
         })
+    },
+    //项目亮点
+    slectInput:function(e){
+      var that = this;
+      wx.setStorageSync('pro_goodness',e.detail.value);
+      that.setData({
+        pro_goodness : e.detail.value
+      })
     },
 
     //是否独家的效果实现
@@ -149,7 +162,7 @@ Page({
     upLoad: function () {
       wx.showModal({
         titel: "友情提示",
-        content: "需要到电脑端上传",
+        content: "请到www.weitianshi.cn/qr上传",
         showCancel: true,
         success: function (res) {
           if (res.confirm) {
@@ -158,19 +171,22 @@ Page({
               success: function (res) {
                 console.log(res);
                 var user_id = wx.getStorageSync("user_id");//用戶id
+                console.log(user_id);
                 var credential = res.result;//二维码扫描信息
 
                 wx.request({
                   url: url + '/api/auth/writeUserInfo',
                   data: {
+                    type: 'create',
                     credential: credential,
                     user_id: user_id,
                     pro_data: {
                       "pro_intro": pro_intro,
                       "industry": industry,
-                      "pr_finance_stage": pro_finance_stage,
+                      "pro_finance_stage": pro_finance_stage,
                       "pro_finance_scale": pro_finance_scale,
-                      "is_excluseve": is_excluseve
+                      "is_exclusive": is_exclusive,
+                      "pro_goodness":pro_goodness
                     }
                   },
                   method: 'POST',
@@ -192,11 +208,12 @@ Page({
 
       var pro_intro = this.data.describe;//描述
       var industry = this.data.domainId;//id
+      var pro_goodness = this.data.pro_goodness;//亮点
       var pro_finance_stage = this.data.stage[this.data.stage_index].stage_id;
       var pro_finance_scale = this.data.expect[this.data.expect_index].scale_id;
-      var is_excluseve = this.data.tips_index;
-      console.log(pro_intro);
-      console.log(industry);
+      var is_exclusive = this.data.tips_index*1;
+      // console.log(pro_intro);
+      // console.log(is_exclusive);
     },
 
    
@@ -206,6 +223,7 @@ Page({
         var that = this;
         var theData = that.data;
         var describe = this.data.describe;
+        var pro_goodness = this.data.pro_goodness;
         var domainValue = this.data.domainValue;
         var domainId = this.data.domainId;
         var provinceNum = this.data.provinceNum;
@@ -215,7 +233,7 @@ Page({
         var tips = this.data.tips_index;
         var user_id = wx.getStorageSync('user_id');
         // console.log(user_id, describe, domainId, console_stage, console_expect, provinceNum, cityNum, tips)
-        if (describe !== "" && domainValue !== "选择领域" && console_stage !== 0 && console_expect != 0 && provinceNum !== 0 && cityNum !== 0 && tips !== 4) {
+        if (describe !== "" && domainValue !== "选择领域" && console_stage !== 0 && console_expect != 0 && provinceNum !== 0 && cityNum !== 0 && tips !== 4 && pro_goodness !== "") {
             wx.request({
                 url: url+'/api/project/insertProject',
                 data: {
@@ -226,7 +244,8 @@ Page({
                     pro_finance_scale: console_expect,
                     pro_area_province: provinceNum,
                     pro_area_city: cityNum,
-                    is_exclusive: tips
+                    is_exclusive: tips,
+                    pro_goodness : pro_goodness
                 },
                 method: 'POST',
                 success: function (res) {
@@ -245,6 +264,7 @@ Page({
                     wx.setStorageSync('enchangeCheck', [])
                     wx.setStorageSync('enchangeValue', []);
                     wx.setStorageSync('enchangeId', []);
+                    wx.setStorageSync('pro_goodness',"");
                     wx.switchTab({
                         url: '/pages/match/match/match/match'
                     });
@@ -286,6 +306,10 @@ Page({
                 that.setData({
                     error_text: "请选择是否独家"
                 })
+            }else if(pro_goodness == ""){
+              that.setData({
+                error_text :"请填写项目亮点"
+              })
             }
         }
     },
