@@ -24,7 +24,7 @@ Page({
           url: url+'/api/user/getUserAllInfo',
           data: {
               share_id:0,
-              user_id:user_id,
+              user_id: user_id,
               view_id:view_id, 
           },
           method: 'POST',
@@ -59,7 +59,6 @@ Page({
     addNetWork: function () {
         var that = this;
         var user_id = wx.getStorageSync('user_id');//获取我的user_id
-
         var followed_user_id = this.data.user_id;//当前用户的
         console.log(user_id, followed_user_id);
         if (user_id==false) {

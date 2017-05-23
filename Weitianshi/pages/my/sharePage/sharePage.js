@@ -8,6 +8,7 @@ Page({
     },
     onLoad: function (options) {
         var that = this;
+        console.log(options);
         var followed_user_id = options.user_id;
         that.setData({
             followed_user_id: followed_user_id,
@@ -60,9 +61,6 @@ Page({
             console.log(followed_user_id, followed_user_id, view_id)
             //如果进入的是自己的名片里
             if (user_id == followed_user_id) {
-                wx.setNavigationBarTitle({
-                    title: res.data.user_info.user_real_name + "的投资名片",
-                })
                 wx.switchTab({
                     url: '/pages/my/my/my',
                 })
