@@ -21,7 +21,7 @@
   <template is="forButton"></template>
 
   <!--我的人脉和加入人脉-->
-  <view class="aboutNetwork flex">
+  <view class="aboutNetwork flex" hidden="{{followed_user_id==user_id}}">
     <view bindtap="addNetwork">加入人脉</view>
   </view>
 </scroll-view>
