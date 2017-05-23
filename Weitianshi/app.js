@@ -77,7 +77,7 @@ App({
             var session_time = this.globalData.session_time;
             var differenceTime = timeNow - session_time;
             // console.log(differenceTime/3600000+"小时")
-            if (differenceTime > 432000000) {//432000000
+            if (differenceTime > 432000000) {//432000000代表2个小时
                 console.log("已超时")
                 this.getSession(cb)
             } else {
