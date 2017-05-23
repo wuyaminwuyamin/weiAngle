@@ -33,7 +33,7 @@ Page({
     },
     //载入页面
     onLoad: function () {
-
+      
     },
     //显示页面
     onShow: function () {
@@ -228,8 +228,11 @@ Page({
         var complete = that.data.complete;
         var checkInfo = that.data.checkInfo;
 
-
-        // 如果user_id == 0用户id不存在,那么直接跳转个人信息填写
+        //修复bug
+        /*wx.navigateTo({
+            url: '/pages/register/personInfo/personInfo'
+        })*/
+// 如果user_id == 0用户id不存在,那么直接跳转个人信息填写
         if (user_id == 0) {
             wx.navigateTo({
                 url: '/pages/register/personInfo/personInfo'
@@ -249,12 +252,12 @@ Page({
                 })
             } else {
                 wx.navigateTo({
-                    url: '/pages/register/companyInfo/companyInfo'
+                  url: '/pages/register/companyInfo/companyInfo'
                 })
             }
         } else if (user_id != 1 && complete == 0) {
             wx.navigateTo({
-                url: '/pages/register/companyInfo/companyInfo'
+              url: '/pages/register/companyInfo/companyInfo'
             })
             //如果存在用户id 但是 信息不完整,跳转公司信息
         }
@@ -272,7 +275,7 @@ Page({
     },
     //点击发布资源需求
     resourceNeed: function () {
-        app.infoJump("/pages/match/match/resourceDemand/resourceDemand")
+      app.infoJump("/pages/match/match/resourceDemand/resourceDemand")
     },
     // 跳转人物详情
     userDetail(e) {
@@ -448,6 +451,7 @@ Page({
     },
     //分享当前页面
     onShareAppMessage: function () {
+        var user_id = wx.getStorageSync('user_id');
         return {
             title: '微天使帮您精准对接投融资需求',
             path: '/pages/match/match/match/match'
