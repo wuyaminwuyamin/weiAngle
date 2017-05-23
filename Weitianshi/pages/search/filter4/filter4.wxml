@@ -1,30 +1,24 @@
+<import src="/pages/Template/Template.wxml" />
 <!--pages/network/filter4/filter4.wxml-->
 <view id="domain">
   <view class="flex">
     <view class="title">领域</view>
   </view>
   <view class="context flex">
-    <block wx:for="{{industryData}}">
-      <label class="tips">
-        <view data-index="{{index}}" data-value='{{item.industry_name}}' id="{{item.industry_id}}" data-check="false">{{industryData[index].industry_name}}
-        </view>
-      </label>
-    </block>
+    <template is="tags" data="{{...industryTags}}"></template>
   </view>
 </view>
+
+
 <view id="turn">
   <view class="flex">
     <view class="title">轮次</view>
   </view>
   <view class="context flex">
-    <block wx:for="{{stageData}}">
-      <label class="tips">
-        <view data-index="{{index}}" data-value='{{item.stage_name}}' id="{{item.stage_id}}" data-check="false">
-          {{stageData[index].stage_name}}</view>
-      </label>
-    </block>
+        <template is="tags" data="{{...stageTags}}"></template>
   </view>
 </view>
+
 <view class="screenBox">
   <view style="position:fixed;bottom:16rpx;display:flex">
     <view>

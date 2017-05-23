@@ -1,13 +1,14 @@
 {
     "pages": [
-      
+        "pages/match/match/resourceDemand/resourceDemand",
         "pages/match/match/match/match",
+        "pages/search/filter4/filter4",
         "pages/form/area1/area1",
         "pages/form/area2/area2",
         "pages/form/industry/industry",
         "pages/form/scale/scale",
         "pages/form/stage/stage",
-     "pages/form/businessContribution/businessContribution",
+        "pages/form/businessContribution/businessContribution",
         "pages/form/tollType/tollType",
         "pages/form/hasRunningBusiness/hasRunningBusiness",
         "pages/scanCode/bpScan/bpScan",
@@ -34,9 +35,7 @@
         "pages/search/filter1/filter1",
         "pages/search/filter2/filter2",
         "pages/search/filter3/filter3",
-        "pages/search/filter4/filter4",
         "pages/match/match/investDemand/investDemand",
-        "pages/match/match/resourceDemand/resourceDemand",
         "pages/match/selectProject/selectProject",
         "pages/match/needMarket/needMarket",
         "pages/contacts/contacts/contacts",
@@ -104,4 +103,3 @@
         "downloadFile": 20000
     }
 }
-
