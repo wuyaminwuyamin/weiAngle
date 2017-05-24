@@ -3,9 +3,11 @@
 <view class="search_frame">
   <label class="searchBox flex">
     <icon type="search" size="12" class="search_icon"></icon>
-    <input class="search" placeholder="姓名、公司、标签" bindfocus="searchSth" /> 
+    <input class="search" placeholder="暂时不可用" disabled="true" /> 
   </label> 
-  <view class="screen" bindtap="screenSth">筛选</view>
+  <view class="screen">筛选</view>
+  <!--bindfocus="searchSth" -->
+  <!-- bindtap="screenSth"-->
 </view>
 
 

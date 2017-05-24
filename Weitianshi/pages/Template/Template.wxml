@@ -53,15 +53,15 @@
   <view class="user_down flex">
     <view class="user_popularity user_tips" bindtap="popularity">
       <view wx:if="{{user.user_popularity}}">{{user.user_popularity}}</view>
-      <label class="popularityNum">99+</label>
-      <view wx:if="{{!user.user_popularity}}" class="popularity-Num">10</view>
+      <!--<label class="popularityNum">99+</label>-->
+      <view wx:if="{{!user.user_popularity}}" class="popularity-Num">-</view>
       <view class="popularity-people">人气</view>
 
     </view>
     <view class="user_attention user_tips" bindtap="attention">
       <view wx:if="{{user.user_attention}}">{{user.user_attention}}</view>
-      <label class="attentionNum">99+</label>
-      <view wx:if="{{!user.user_attention}}" class="attention-Num">6666</view>
+      <!--<label class="attentionNum">99+</label>-->
+      <view wx:if="{{!user.user_attention}}" class="attention-Num">-</view>
       <view class="attention-people">加我为人脉</view>
     </view>
     <view class="user_potential user_tips">
