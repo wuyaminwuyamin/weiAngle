@@ -13,14 +13,14 @@ Page({
     investor_page: 1,//投资人分页
     resource_page: 1,//资源分页
     myPublicProject_page:1,
-    myPublicProject_page_end:false,
     investor_page_end: false,//投资人数据是否完结
     resource_page_end: false,//资源数据是否完结
+    myPublic_page_end:false,//項目融資數據是否完結
     hasPublic: 0,//是否发布过投资需求
     hasPublic2: 0,//是否发布过资源需求
     resourceProjectcheck: true, //资源对接下拉判断
     investorProjectcheck: true,
-    myPublicProjectCheck:true,
+    myPublicCheck :true,
     complete: 0,  //个人信息是否完整 默认是否
     investText: {
       text1: "发布投资需求",
@@ -316,36 +316,36 @@ Page({
   myPublicProject: function () {
     var that = this;
     var user_id = wx.getStorageSync('user_id');
-    var myProject = this.data.myProject;
     var myPublicProject_page = this.data.myPublicProject_page;
-    var myPublicProject_page_end = this.data.myPublicProject_page_end;
-    var myPublicProjectCheck = this.data.myPublicProjectCheck;
-    var myPublicProject = this.data.myPublicProject;
-    console.log(myProject)
+    var myPublicCheck = this.data.myPublicCheck ;
+    var myPublic_page_end = this.data.myPublic_page_end;
+    console.log(user_id, myPublicProject_page, myPublicCheck)
     
-    if (myPublicProjectCheck) {
+    if (myPublicCheck) {
       if (user_id != '') {
-        if (myPublicProject_page_end == false) {
-          wx.showToast({
-            title: 'loading...',
-            icon: 'loading'
-          })
-          myPublicProject_page++;
-          that.setData({
-            myPublicProject_page: myPublicProject_page
-          });
-          wx.request({
-            url: url + '/api/project/getMyProject',
-            data: {
-              user_id: user_id,
-              page: myPublicProject_page,
-            },
-            method: 'POST',
-            success: function (res) {
-              console.log("分页加载项目融资")
-              console.log(res);
-              var newPage = res.data.data;
-              var myPublicProject_page_end = res.data.page_end;
+        myPublicProject_page++;
+        this.setData({
+          myPublicProject_page: myPublicProject_page
+        });
+        wx.request({
+          url: url + '/api/project/getMyProject',
+          data: {
+            user_id: user_id,
+            page: myPublicProject_page,
+          },
+          method: 'POST',
+          success: function (res) {
+            console.log("分页加载项目融资")
+            console.log(res);
+           var  myPublic_page_end = res.data.page_end;
+           console.log(myPublic_page_end)
+            var newPage = res.data.data;
+            console.log(newPage);
+            if (newPage != "") {
+              wx.showToast({
+                title: 'loading...',
+                icon: 'loading'
+              })
               var myProject = that.data.myProject;
               for (var i = 0; i < newPage.length; i++) {
                 myProject.push(newPage[i])
@@ -353,19 +353,24 @@ Page({
               console.log(myPublicProject_page);
               that.setData({
                 myProject: myProject,
-                myPublicProject_page_end: res.data.page_end
+                myPublicCheck: true,
+                myPublic_page_end:myPublic_page_end
               })
+            } else {
+              rqj.errorHide(that, "没有更多了",3000)
             }
-          })
-        }
-      }
-    } else {
-      rqj.errorHide(that, "没有更多了", 3000)
+      },
+          fail: function (res) {
+            console.log(res)
+          },
+    })
+  } 
     }
+
     this.setData({
-      myPublicProjectProjectcheck: false
+      myPublicCheck: false
     });
-  },
+},
   //寻找项目触底刷新
   yourPayProject: function () {
     var that = this;
