@@ -300,7 +300,7 @@ App({
 
     //根据用户信息完整度跳转不同的页面
     infoJump: function (data) {
-        var user_id = wx.getStorageSync("user_id");
+        var user_id = this.globalData.user_id;
         // 核对用户信息是否完整
         wx.request({
             url: this.globalData.url + '/api/user/checkUserInfo',

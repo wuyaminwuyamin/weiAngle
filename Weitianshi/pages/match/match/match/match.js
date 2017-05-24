@@ -33,10 +33,11 @@ Page({
     },
     //载入页面
     onLoad: function () {
-      
+
     },
     //显示页面
     onShow: function () {
+        console.log(wx.getStorageSync("user_id"))
         var that = this;
         var current = this.data.currentTab;
         // wx.setStorageSync("user_id", "V0VznXa0") 
@@ -228,11 +229,8 @@ Page({
         var complete = that.data.complete;
         var checkInfo = that.data.checkInfo;
 
-        //修复bug
-        /*wx.navigateTo({
-            url: '/pages/register/personInfo/personInfo'
-        })*/
-// 如果user_id == 0用户id不存在,那么直接跳转个人信息填写
+
+        // 如果user_id == 0用户id不存在,那么直接跳转个人信息填写
         if (user_id == 0) {
             wx.navigateTo({
                 url: '/pages/register/personInfo/personInfo'
@@ -252,22 +250,20 @@ Page({
                 })
             } else {
                 wx.navigateTo({
-                  url: '/pages/register/companyInfo/companyInfo'
+                    url: '/pages/register/companyInfo/companyInfo'
                 })
             }
         } else if (user_id != 1 && complete == 0) {
             wx.navigateTo({
-              url: '/pages/register/companyInfo/companyInfo'
+                url: '/pages/register/companyInfo/companyInfo'
             })
             //如果存在用户id 但是 信息不完整,跳转公司信息
         }
     },
+
     //点击发布融资项目
     myProject: function () {
         app.infoJump("/pages/myProject/publishProject/publishProject")
-        wx.setStorageSync('enchangeValue', []);
-        wx.setStorageSync('enchangeId', []);
-        wx.setStorageSync('enchangeCheck', []);
     },
     //点击发布投资需求
     yourProject: function () {
@@ -275,7 +271,7 @@ Page({
     },
     //点击发布资源需求
     resourceNeed: function () {
-      app.infoJump("/pages/match/match/resourceDemand/resourceDemand")
+        app.infoJump("/pages/match/match/resourceDemand/resourceDemand")
     },
     // 跳转人物详情
     userDetail(e) {

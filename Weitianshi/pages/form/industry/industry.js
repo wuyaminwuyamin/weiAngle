@@ -17,6 +17,7 @@ Page({
         var current = options.current;
         var industryTags = this.data.industryTags;
 
+        // 0:发布融资项目  1:发布投资需求 2:维护我的项目 3:发布投资案例
         //设置模版数据
         if (current == 0) {
             industryTags.tagsData = wx.getStorageSync("industryCurrent0") || app.globalData.industry;
@@ -59,7 +60,6 @@ Page({
     //点击确定
     certain() {
         let current = this.data.current;
-        console.log(this.data.industryTags, this.data.stageTags)
         if (current == 0) {
             wx.setStorageSync("industryCurrent0", this.data.industryTags.tagsData);
         } else if (current == 1) {
