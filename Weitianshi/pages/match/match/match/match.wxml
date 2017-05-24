@@ -12,7 +12,7 @@
 
   <!-- 项目融资 -->
   <swiper-item>
-    <scroll-view style="height:100%;" scroll-y="true">
+    <scroll-view style="height:100%;" scroll-y="true"  bindscrolltolower='myPublicProject'>
       <view>
         <view class="publish publish_my_project" bindtap="myProject">
           <view>发布融资项目</view>

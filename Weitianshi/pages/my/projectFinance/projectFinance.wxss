@@ -36,3 +36,6 @@
   line-height: 26rpx;
   margin-top: 20rpx;
 }
+.block{
+   height:80rpx;
+}
