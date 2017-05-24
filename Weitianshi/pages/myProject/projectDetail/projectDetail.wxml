@@ -93,11 +93,11 @@
           </view>
           <view class="time">
             <view class="item1">注册时间</view>
-            <view class="item2">{{time}}</view>
+            <view class="item2">{{project.pro_company_start_time}}</view>
           </view>
           <view class="state">
             <view class="item1">运营状态</view>
-            <view class="item2">{{state}}</view>
+            <view class="item2">{{project.pro_status.status_name}}</view>
           </view>
         </view>
         <view style="height:160rpx;"></view>
