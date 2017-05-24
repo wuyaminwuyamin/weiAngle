@@ -16,8 +16,6 @@ Page({
         console_stage: "",
         console_expect: "",
         console_tips: "",
-        error: '0',
-        error_text: "",
         loading: '0',
         pro_goodness: "",
 
@@ -104,27 +102,10 @@ Page({
         var pro_goodness = wx.getStorageSync('pro_goodness');
         // console.log(industryValue, industryId, describe, belongArea, provinceNum, cityNum, this.data.tips_index);
 
-
-        //项目领域
-        let industryCurrent0 = wx.getStorageSync("industryCurrent0");
-        let industryCard = this.data.industryCard;
-        if (industryCurrent0) {
-            industryCard.value = [];
-            industryCard.id = [];
-            industryCurrent0.forEach((x) => {
-                if (x.check == true) {
-                    industryCard.id.push(x.industry_id)
-                    industryCard.value.push(x.industry_name)
-                }
-            })
-        }
-        if (industryCard.value != "选择领域") {
-            industryCard.css = "checkOn"
-        } else {
-            industryCard.css = ""
-        }
-        console.log(industryCard.id, industryCard.value)
-
+        // 项目领域数据处理
+        var industryCurrent0 = wx.getStorageSync("industryCurrent0");
+        var industryCard = this.data.industryCard;
+        rqj.dealTagsData(that, industryCurrent0, industryCard, "industry_name", "industry_id")
 
         that.setData({
             industryCard: industryCard,
@@ -268,7 +249,7 @@ Page({
                 method: 'POST',
                 success: function (res) {
                     console.log(res)
-                    if (res.data.status_code==2000000){
+                    if (res.data.status_code == 2000000) {
                         //数据清空
                         wx.setStorageSync('project_id', res.data.project_index);
                         wx.setStorageSync('describe', "");
