@@ -77,8 +77,9 @@ Page({
         method: 'POST',
         success: function (res) {
           var project = res.data.data;
-          console.log(project);
+          // console.log(project);
           var user = res.data.user;
+          var bp_title = project.bp_title;
           var pro_goodness = res.data.data.pro_goodness;
           var pro_source = project.pro_source;
           var pro_company_name = project.pro_company_name;

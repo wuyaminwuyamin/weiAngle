@@ -96,6 +96,7 @@ page {
 .slect .slectInput{
   height: 82rpx;
   line-height: 82rpx;
+  width:98%;
 }
 
 .grey{
