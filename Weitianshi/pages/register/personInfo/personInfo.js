@@ -53,7 +53,7 @@ Page({
     //手机号码验证
     checkPhone: function (e) {
         var temp = e.detail.value;
-        // console.log(temp)
+        console.log(temp)
         var myreg = /^(1+\d{10})|(159+\d{8})|(153+\d{8})$/;
         var that = this;
         if (!myreg.test(temp)) {

@@ -54,3 +54,6 @@ input, textarea {
   height: 88rpx;
   line-height: 88rpx;
 }
+#describe{
+  margin-bottom: 90rpx;
+}

@@ -85,7 +85,10 @@ page {
   color: #999;
   margin-bottom: 20rpx;
 }
-
+#user_mobile{
+  color:#009eff;
+  text-decoration: underline;
+}
 .user_email {
   justify-content: space-between;
   margin-bottom: 0;

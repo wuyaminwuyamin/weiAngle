@@ -7,6 +7,13 @@ Page({
         resourcesIndex:9.9,
         user:"",
     },
+    // 好友直接拨打电话
+    telephone: function (e) {
+      var telephone = e.currentTarget.dataset.telephone;
+      wx.makePhoneCall({
+        phoneNumber: telephone,
+      })
+    },
     onLoad: function (options) {
         var that = this
         console.log(options);
@@ -19,6 +26,7 @@ Page({
         wx.showShareMenu({
             withShareTicket: true,
         })
+       
         //我的个人信息
         wx.request({
           url: url+'/api/user/getUserAllInfo',

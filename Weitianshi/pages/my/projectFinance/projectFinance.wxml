@@ -6,6 +6,7 @@
   <block wx:for="{{myProject}}" wx:key="{{pro_id}}" wx:for-item="myProject">
     <template is="projectList" data="{{myProject:myProject,index:index}}"></template>
   </block>
+   <view class="block"></view>
 
   <!--空状态-->
   <view wx:if="{{myProject==''}}">

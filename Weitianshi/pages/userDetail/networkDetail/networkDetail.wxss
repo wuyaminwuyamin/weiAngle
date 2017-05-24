@@ -13,3 +13,7 @@
   border-radius: 0;
   background: #40587a;
 }
+
+#userInfo{
+  color:aqua;
+}
