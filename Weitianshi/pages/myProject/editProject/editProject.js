@@ -97,6 +97,7 @@ Page({
         var stage_index = stageValue.indexOf(theData.pro_stage.stage_name);
         var scale_index = scaleValue.indexOf(theData.pro_scale.scale_money);
         var tipsIndex = theData.is_exclusive;
+        var pro_goodness = theData.pro_goodness;
         var belongArea = theData.pro_area.area_title;//地区
         var provinceNum = theData.pro_area.pid;
         var cityNum = theData.pro_area.area_id;
@@ -127,7 +128,8 @@ Page({
           tipsIndex: tipsIndex,
           belongArea: belongArea,
           provinceNum: provinceNum,
-          cityNum: cityNum
+          cityNum: cityNum,
+          pro_goodness: pro_goodness
         })
 
       },
@@ -147,6 +149,7 @@ Page({
     var provinceNum = wx.getStorageSync("m_provinceNum");
     var cityNum = wx.getStorageSync('m_cityNum');
     var pro_goodness = wx.getStorageSync("pro_goodness");
+    console.log(pro_goodness);
     // console.log(cityNum);
     // console.log(belongArea);
     this.setData({
@@ -231,8 +234,9 @@ Page({
   //上传BP
   upLoad: function () {
     var that = this;
-    // var upLoad =true;
-    // this.public();
+    var upLoad = 0;
+    console.log(upLoad)
+    this.public();
     wx.showModal({
       titel: "友情提示",
       content: "请到www.weitianshi.cn/qr上传",
@@ -285,14 +289,7 @@ Page({
     var pro_finance_stage = this.data.stage_index;
     var pro_finance_scale = this.data.scale_index;
     var is_exclusive = this.data.tipsIndex;
-    var pro_goodness = this.data.pro_goodness;
-    console.log(pro_intro);
-    console.log(industry);
-    console.log(pro_finance_scale);
-    console.log(pro_finance_stage);
-    console.log(is_exclusive);
-    console.log(pro_goodness);
-    
+    var pro_goodness = this.data.pro_goodness; 
   },
 
 
@@ -315,11 +312,11 @@ Page({
     var user_id = wx.getStorageSync('user_id');
     var pro_id = this.data.pro_id;
     var current = this.data.current;
-    // var upLoad = this.data.upLoad;
+    var upLoad = this.data.upLoad;
     var pro_goodness = this.data.pro_goodness;
     // console.log(user_id, describe, industryId, console_stage, console_scale, provinceNum, cityNum, tipsIndex)
     console.log(pro_goodness);
-    if (describe !== "" && industryValue !== "选择领域" && console_stage !== 0 && console_scale != 0 && provinceNum !== 0 && cityNum !== 0 && tipsIndex !== 4) {
+    if (describe !== "" && industryValue !== "选择领域" && console_stage !== 0 && console_scale != 0 && provinceNum !== 0 && cityNum !== 0 && tipsIndex !== 4 && pro_goodness !== "") {
       wx.request({
         url: url + '/api/project/updateProject',
         data: {
@@ -337,9 +334,14 @@ Page({
         method: 'POST',
         success: function (res) { 
           if (res.status_code = 2000000) {
+            if(upLoad !== 0){
+              console.log("upLoad")
+            }else{
+              console.log("delta");
               wx.navigateBack({//页面返回
                 delta: 2 // 回退前 delta(默认为1) 页面
               })
+            }
           } else {
             wx.showToast({
               title: res.status_code
