@@ -159,7 +159,7 @@
   </view>
 </template>
 
-<!--My项目融资-->
+<!--My我的项目库-->
 <template name="financingProject">
   <view class="user_project_info">
     <view class="flex title">
@@ -171,8 +171,7 @@
     </view>
     <view class="projcet_info_frame">
       <block wx:for="{{project_info}}" wx:key="{{item.pro_intro}}">
-
-        <view class="project_card" data-id="{{item.pro_id}}" data-index="{{index}}" bindtap="financingDetail">
+        <view class="project_card" data-id="{{item.pro_id}}" data-index="{{index}}" bindtap="financingDetail" wx:if="{{index<3}}">
           <view class="pro_intro">
             {{item.pro_intro||item.case_name}}
           </view>

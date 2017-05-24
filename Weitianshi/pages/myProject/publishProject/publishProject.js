@@ -18,9 +18,8 @@ Page({
         console_tips: "",
         loading: '0',
         pro_goodness: "",
-
         industryCard: {
-            text: "项目领域",
+            text: "项目领域*",
             url: "/pages/form/industry/industry?current=0",
             css: "",
             value: ["选择领域"],

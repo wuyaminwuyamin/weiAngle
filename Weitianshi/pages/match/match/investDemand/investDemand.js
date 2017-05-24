@@ -426,16 +426,6 @@ Page({
         wx.setStorageSync('payareaenchangeCheck', [])
         wx.setStorageSync('domainValue', []);
         wx.setStorageSync('domainId', '');
-        // wx.setStorageSync('y_domainValue', "选择领域");
-        // wx.setStorageSync('y_domainId', []);
-        // wx.setStorageSync('m_domainValue', []);
-        // wx.setStorageSync('m_domainId', []);
-        // wx.setStorageSync('y_payArea', "选择城市");
-        // wx.setStorageSync('y_payAreaId', []);;
-        // wx.setStorageSync('y_payStage', "选择阶段"); 
-        // wx.setStorageSync('y_payStageId', []);;
-        // wx.setStorageSync('y_payMoney', "选择金额");
-        // console.log("clear");
       }
       // console.log("close");
     }

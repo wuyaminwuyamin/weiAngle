@@ -42,7 +42,7 @@ App({
             })
         }
 
-        //获取各分类的信息并存入缓存
+        //获取各分类的信息并存入globalData
         wx.request({
             url: url + '/api/category/getWxProjectCategory',
             method: 'POST',
