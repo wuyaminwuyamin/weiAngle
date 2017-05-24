@@ -2,6 +2,7 @@ var rqj = require('../../../Template/Template.js')
 var app = getApp()
 var url = app.globalData.url
 Page({
+
   data: {
     winWidth: 0,//选项卡
     winHeight: 0,//选项卡
@@ -124,6 +125,7 @@ Page({
             that.setData({
               user_industry: user_industry
             })
+
             // console.log(user_industry,user_industryId,user_area,user_areaId,user_scale,user_scaleId,user_stage,user_stageId)
           }
         });

@@ -51,6 +51,6 @@ Page({
   },
   // 按钮一号
   buttonOne: function () {
-      app.infoJump("/pages/myProject/publishProject/publishProject")
+      app.infoJump("/pages/myProject/publishProject/publishProject");
   }
 })

@@ -1,11 +1,9 @@
 var rqj = require('../../Template/Template.js');
 var app = getApp();
 var url = app.globalData.url;
-var save = true;
 Page({
     data: {
         describe: "",
-        domainValue: "选择领域",
         belongArea: "选择城市",
         stage: [],
         stage_index: 0,
@@ -18,22 +16,24 @@ Page({
         console_stage: "",
         console_expect: "",
         console_tips: "",
-        error: '0',
-        error_text: "",
         loading: '0',
-        pro_goodness: ""
+        pro_goodness: "",
 
+        industryCard: {
+            text: "项目领域",
+            url: "/pages/form/industry/industry?current=0",
+            css: "",
+            value: ["选择领域"],
+            id: []
+        }
     },
     onLoad: function () {
         var that = this;
         //初始化
-        wx.setStorageSync('enchangeValue', []);
-        wx.setStorageSync('enchangeId', []);
-        wx.setStorageSync('enchangeCheck', [])
+        wx.clearStorageSync("industryCurrent0")
+
         wx.setStorageSync('describe', "");
-        wx.setStorageSync('pro_goodness',"" );
-        wx.setStorageSync('domainValue', "选择领域");
-        wx.setStorageSync('domainId', []);
+        wx.setStorageSync('pro_goodness', "");
         wx.setStorageSync('console_stage', 0);
         wx.setStorageSync('console_expect', 0);
         wx.setStorageSync('belongArea', "选择城市");
@@ -42,7 +42,7 @@ Page({
         wx.setStorageSync('tips', 4);
         //请求地区,标签,期望融资,项目阶段数据
         wx.request({
-            url: url+'/api/category/getWxProjectCategory',
+            url: url + '/api/category/getWxProjectCategory',
             method: 'POST',
             success: function (res) {
                 console.log("各种条目分类")
@@ -90,8 +90,6 @@ Page({
 
         //填入所属领域,项目介绍,所在地区
         var that = this;
-        var domainValue = wx.getStorageSync('domainValue');
-        var domainId = wx.getStorageSync('domainId');
         // 项目介绍
         var describe = wx.getStorageSync('describe');
         // 所在地区
@@ -102,15 +100,20 @@ Page({
         var cityNum = wx.getStorageSync('cityNum');
         // 项目亮点
         var pro_goodness = wx.getStorageSync('pro_goodness');
-        // console.log(domainValue, domainId, describe, belongArea, provinceNum, cityNum, this.data.tips_index);
+        // console.log(industryValue, industryId, describe, belongArea, provinceNum, cityNum, this.data.tips_index);
+
+        // 项目领域数据处理
+        var industryCurrent0 = wx.getStorageSync("industryCurrent0");
+        var industryCard = this.data.industryCard;
+        rqj.dealTagsData(that, industryCurrent0, industryCard, "industry_name", "industry_id")
+
         that.setData({
-            domainValue: domainValue,
-            domainId: domainId,
+            industryCard: industryCard,
             describe: describe,
             belongArea: belongArea,
             provinceNum: provinceNum,
             cityNum: cityNum,
-            pro_goodness:pro_goodness
+            pro_goodness: pro_goodness
         })
     },
     //下拉刷新
@@ -127,12 +130,12 @@ Page({
         })
     },
     //项目亮点
-    slectInput:function(e){
-      var that = this;
-      wx.setStorageSync('pro_goodness',e.detail.value);
-      that.setData({
-        pro_goodness : e.detail.value
-      })
+    slectInput: function (e) {
+        var that = this;
+        wx.setStorageSync('pro_goodness', e.detail.value);
+        that.setData({
+            pro_goodness: e.detail.value
+        })
     },
 
     //是否独家的效果实现
@@ -160,115 +163,110 @@ Page({
 
     //上传BP
     upLoad: function () {
-      wx.showModal({
-        titel: "友情提示",
-        content: "请到www.weitianshi.cn/qr上传",
-        showCancel: true,
-        success: function (res) {
-          if (res.confirm) {
-            // console.log('用户点击确定')
-            wx.scanCode({
-              success: function (res) {
-                console.log(res);
-                var user_id = wx.getStorageSync("user_id");//用戶id
-                console.log(user_id);
-                var credential = res.result;//二维码扫描信息
+        var pro_intro = this.data.describe;//描述
+        var industry = this.data.industryCard.id;//id
+        var pro_goodness = this.data.pro_goodness;//亮点
+        var pro_finance_stage = this.data.stage[this.data.stage_index].stage_id;
+        var pro_finance_scale = this.data.expect[this.data.expect_index].scale_id;
+        var is_exclusive = this.data.tips_index * 1;
 
-                wx.request({
-                  url: url + '/api/auth/writeUserInfo',
-                  data: {
-                    type: 'create',
-                    credential: credential,
-                    user_id: user_id,
-                    pro_data: {
-                      "pro_intro": pro_intro,
-                      "industry": industry,
-                      "pro_finance_stage": pro_finance_stage,
-                      "pro_finance_scale": pro_finance_scale,
-                      "is_exclusive": is_exclusive,
-                      "pro_goodness":pro_goodness
-                    }
-                  },
-                  method: 'POST',
-                  success: function (res) {
-                    if(res.data.status_code ==2000000){
-                      wx.navigateTo({
-                        url: '/pages/scanCode/bpScanSuccess/bpScanSuccess',
-                      })
-                    }
-                  }
-                })
-              },
-            })
-          } else if (res.cancel) {
-            console.log('用户点击取消')
-          }
-        }
-      })
-
-      var pro_intro = this.data.describe;//描述
-      var industry = this.data.domainId;//id
-      var pro_goodness = this.data.pro_goodness;//亮点
-      var pro_finance_stage = this.data.stage[this.data.stage_index].stage_id;
-      var pro_finance_scale = this.data.expect[this.data.expect_index].scale_id;
-      var is_exclusive = this.data.tips_index*1;
-      // console.log(pro_intro);
-      // console.log(is_exclusive);
+        //弹出PC端url提示文本模态框
+        wx.showModal({
+            titel: "友情提示",
+            content: "请到www.weitianshi.cn/qr上传",
+            showCancel: true,
+            success: function (res) {
+                // console.log('用户点击确定')
+                if (res.confirm) {
+                    wx.scanCode({
+                        success: function (res) {
+                            var user_id = app.globalData.user_id;
+                            var credential = res.result;//二维码扫描信息
+                            //发送扫描结果和项目相关数据到后台
+                            wx.request({
+                                url: url + '/api/auth/writeUserInfo',
+                                data: {
+                                    type: 'create',
+                                    credential: credential,
+                                    user_id: user_id,
+                                    pro_data: {
+                                        "pro_intro": pro_intro,
+                                        "industry": industry,
+                                        "pro_finance_stage": pro_finance_stage,
+                                        "pro_finance_scale": pro_finance_scale,
+                                        "is_exclusive": is_exclusive,
+                                        "pro_goodness": pro_goodness
+                                    }
+                                },
+                                method: 'POST',
+                                success: function (res) {
+                                    if (res.data.status_code == 2000000) {
+                                        wx.navigateTo({
+                                            url: '/pages/scanCode/bpScanSuccess/bpScanSuccess',
+                                        })
+                                    }
+                                }
+                            })
+                        },
+                    })
+                } else if (res.cancel) {
+                    console.log('用户点击取消')
+                }
+            }
+        })
     },
 
-   
+
     //点击发布
     public: function () {
-        save = !save;
         var that = this;
         var theData = that.data;
         var describe = this.data.describe;
         var pro_goodness = this.data.pro_goodness;
-        var domainValue = this.data.domainValue;
-        var domainId = this.data.domainId;
+        var industryValue = this.data.industryCard.value;
+        var industryId = this.data.industryCard.id;
         var provinceNum = this.data.provinceNum;
         var cityNum = this.data.cityNum;
         var console_stage = this.data.stage[this.data.stage_index].stage_id;
         var console_expect = this.data.expect[this.data.expect_index].scale_id;
         var tips = this.data.tips_index;
-        var user_id = wx.getStorageSync('user_id');
-        // console.log(user_id, describe, domainId, console_stage, console_expect, provinceNum, cityNum, tips)
-        if (describe !== "" && domainValue !== "选择领域" && console_stage !== 0 && console_expect != 0 && provinceNum !== 0 && cityNum !== 0 && tips !== 4 && pro_goodness !== "") {
+        var user_id = app.globalData.user_id;
+        // console.log(user_id, describe, industryId, console_stage, console_expect, provinceNum, cityNum, tips)
+        if (describe !== "" && industryValue !== "选择领域" && console_stage !== 0 && console_expect != 0 && provinceNum !== 0 && cityNum !== 0 && tips !== 4 && pro_goodness !== "") {
             wx.request({
-                url: url+'/api/project/insertProject',
+                url: url + '/api/project/insertProject',
                 data: {
                     user_id: user_id,
                     pro_intro: describe,
-                    industry: domainId,
+                    industry: industryId,
                     pro_finance_stage: console_stage,
                     pro_finance_scale: console_expect,
                     pro_area_province: provinceNum,
                     pro_area_city: cityNum,
                     is_exclusive: tips,
-                    pro_goodness : pro_goodness
+                    pro_goodness: pro_goodness
                 },
                 method: 'POST',
                 success: function (res) {
                     console.log(res)
-                    //数据清空
-                    wx.setStorageSync('project_id', res.data.project_index);
-                    wx.setStorageSync('describe', "");
-                    wx.setStorageSync('domainValue', "选择领域");
-                    wx.setStorageSync('domainId', []);
-                    wx.setStorageSync('console_stage', 0);
-                    wx.setStorageSync('console_expect', 0);
-                    wx.setStorageSync('belongArea', "选择城市");
-                    wx.setStorageSync('provinceNum', 0);
-                    wx.setStorageSync('cityNum', 0);
-                    wx.setStorageSync('tips', 4);
-                    wx.setStorageSync('enchangeCheck', [])
-                    wx.setStorageSync('enchangeValue', []);
-                    wx.setStorageSync('enchangeId', []);
-                    wx.setStorageSync('pro_goodness',"");
-                    wx.switchTab({
-                        url: '/pages/match/match/match/match'
-                    });
-                    
+                    if (res.data.status_code == 2000000) {
+                        //数据清空
+                        wx.setStorageSync('project_id', res.data.project_index);
+                        wx.setStorageSync('describe', "");
+                        wx.setStorageSync('console_stage', 0);
+                        wx.setStorageSync('console_expect', 0);
+                        wx.setStorageSync('belongArea', "选择城市");
+                        wx.setStorageSync('provinceNum', 0);
+                        wx.setStorageSync('cityNum', 0);
+                        wx.setStorageSync('tips', 4);
+                        wx.setStorageSync('enchangeCheck', [])
+                        wx.setStorageSync('enchangeValue', []);
+                        wx.setStorageSync('enchangeId', []);
+                        wx.setStorageSync('pro_goodness', "");
+                        wx.switchTab({
+                            url: '/pages/match/match/match/match'
+                        });
+                    }
                 },
             })
         } else {
@@ -286,7 +284,7 @@ Page({
                 that.setData({
                     error_text: "介绍不能为空"
                 })
-            } else if (domainId == 0) {
+            } else if (industryId == 0) {
                 that.setData({
                     error_text: "领域不能为空"
                 })
@@ -306,41 +304,11 @@ Page({
                 that.setData({
                     error_text: "请选择是否独家"
                 })
-            }else if(pro_goodness == ""){
-              that.setData({
-                error_text :"请填写项目亮点"
-              })
+            } else if (pro_goodness == "") {
+                that.setData({
+                    error_text: "请填写项目亮点"
+                })
             }
         }
     },
-    onUnload: function () {
-      // 页面关闭
-      if (save) {
-        wx.setStorageSync('enchangeValue', []);
-        wx.setStorageSync('enchangeId', []);
-        wx.setStorageSync('enchangeCheck', [])
-        wx.setStorageSync('payenchangeValue', [])
-        wx.setStorageSync('payenchangeId', [])
-        wx.setStorageSync('payenchangeCheck', [])
-        wx.setStorageSync('paymoneychangeValue', [])
-        wx.setStorageSync('paymoneychangeId', [])
-        wx.setStorageSync('paymoneyenchangeCheck', [])
-        wx.setStorageSync('payareachangeValue', [])
-        wx.setStorageSync('payareachangeId', [])
-        wx.setStorageSync('payareaenchangeCheck', [])
-        wx.setStorageSync('domainValue', []);
-        wx.setStorageSync('domainId', '');
-        wx.setStorageSync('y_domainValue', "选择领域");
-        wx.setStorageSync('y_domainId', []);
-        wx.setStorageSync('m_domainValue', []);
-        wx.setStorageSync('m_domainId', []);
-        wx.setStorageSync('y_payArea', "选择城市");
-        wx.setStorageSync('y_payAreaId', []);;
-        wx.setStorageSync('y_payStage', "选择阶段");
-        wx.setStorageSync('y_payStageId', []);;
-        wx.setStorageSync('y_payMoney', "选择金额");
-        wx.setStorageSync('provinceNum', 0);
-        wx.setStorageSync('cityNum', 0);
-      }
-    }
 });

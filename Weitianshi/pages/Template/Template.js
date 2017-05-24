@@ -1,8 +1,8 @@
 var _this
 var app = getApp();
-var url=app.globalData.url;
+var url = app.globalData.url;
 
-//错误提示消失
+// 错误提示消失
 function errorHide(target, errorText, time) {
     var that = target;
     that.setData({
@@ -15,7 +15,29 @@ function errorHide(target, errorText, time) {
         });
     }, time)
 }
-//上滑加载
+
+// 多选标签页面间传值显示
+function dealTagsData(that,data,dataCard,itemValue, itemId) {
+    if (data) {
+        dataCard.value = [];
+        dataCard.id = [];
+        data.forEach((x) => {
+            if (x.check == true) {
+                dataCard.id.push(x[itemId])
+                dataCard.value.push(x[itemValue])
+            }
+        })
+    }
+    if (dataCard.value != "选择领域") {
+        dataCard.css = "checkOn"
+    } else {
+        dataCard.css = ""
+    }
+    console.log(dataCard.value,dataCard.id)
+}
+
+
+// 上滑加载
 function loadMore(projectCheck, url, that, api, page, parameter, user_id, page_end) {
     if (projectCheck) {
         if (user_id != '') {
@@ -49,7 +71,7 @@ function loadMore(projectCheck, url, that, api, page, parameter, user_id, page_e
     }
 
 }
-//循环出用户投资信息
+// 循环出用户投资信息
 function userNeed(that) {
     var userNeed = {};
     var user_industry = [];
@@ -63,7 +85,7 @@ function userNeed(that) {
     var user_id = wx.getStorageSync('user_id')
     if (user_id != 0) {
         wx.request({
-            url: url+'/api/investors/checkInvestorInfo',
+            url: url + '/api/investors/checkInvestorInfo',
             data: {
                 user_id: user_id
             },
@@ -103,7 +125,7 @@ function userNeed(that) {
     userNeed.user_scaleId = user_scaleId;
     return userNeed;
 }
-//添加人脉
+// 添加人脉
 function addNetWork(that, follow_user_id, followed_user_id) {
     wx.request({
         url: url + '/api/user/followUser',
@@ -148,6 +170,6 @@ function addNetWork(that, follow_user_id, followed_user_id) {
         },
     })
 }
-//函数输出
-module.exports = {errorHide, userNeed, loadMore}
+// 函数输出
+module.exports = { errorHide, userNeed, loadMore, dealTagsData }
 
