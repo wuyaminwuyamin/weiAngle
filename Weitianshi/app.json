@@ -87,12 +87,6 @@
                 "text": "人脉"
             },
             {
-                "iconPath": "img/message.png",
-                "selectedIconPath": "img/messageOn.png",
-                "pagePath": "pages/message/message/message",
-                "text": "消息"
-            },
-            {
                 "iconPath": "img/my.png",
                 "selectedIconPath": "img/myOn.png",
                 "pagePath": "pages/my/my/my",
