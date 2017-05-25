@@ -20,6 +20,12 @@ scroll-view {
   color: #40587a;
   text-align: center;
 }
+.empty{
+  padding-top:92rpx;
+  width:90%;
+  height:342rpx;
+  /*background:red;*/
+}
 
 .swiper-box {
   display: block;
