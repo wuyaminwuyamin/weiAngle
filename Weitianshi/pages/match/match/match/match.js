@@ -59,11 +59,7 @@ Page({
           success: function (res) {
             console.log("获取我的项目匹配到的投资人")
             console.log(res)
-            var proLength = wx.getStorageSync('proLength');
-            //判断是否有新的项目
-            if (res.data.data.length !== proLength) {
               var myProject = res.data.data;
-              wx.setStorageSync('proLength', proLength);
               //将匹配出来的四个人放入缓存
               var investors = [];
               var cards = res.data.data;
@@ -71,12 +67,10 @@ Page({
                 investors.push(cards[i].match_investors)
               }
               wx.setStorageSync('investors', investors);
-              console.log(investors);
               //刷新数据
               that.setData({
                 myProject: myProject
               })
-            }
           }
         });
         //获取用户投资需求
@@ -233,10 +227,6 @@ Page({
     var complete = that.data.complete;
     var checkInfo = that.data.checkInfo;
 
-    //修复bug
-    /*wx.navigateTo({
-        url: '/pages/register/personInfo/personInfo'
-    })*/
     // 如果user_id == 0用户id不存在,那么直接跳转个人信息填写
     if (user_id == 0) {
       wx.navigateTo({
