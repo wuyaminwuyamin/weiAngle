@@ -9,17 +9,23 @@ Page({
     stage_index: 0,
     buttonOne: {
       text: "保存"
+    },
+     industryCard: {
+        text: "项目领域*",
+        url: "/pages/form/industry/industry?current=3",
+        css: "",
+        value: ["选择领域"],
+        id: []
     }
   },
   onLoad: function (options) {
     var that = this;
+    var industry=wx.getStorageSync("industry");
     wx.request({
       url: url + '/api/category/getWxProjectCategory',
       method: 'POST',
       success: function (res) {
         var stage = res.data.data.stage;
-        var industry = res.data.data.industry;
-        wx.setStorageSync('industry', industry)
         var stage_arr = [];
         var stageId = [];
         stage.unshift({
@@ -77,6 +83,7 @@ Page({
     var industry = wx.getStorageSync('case_domainValue');
     var industryId = wx.getStorageSync('case_domainId');
     var belongArea = wx.getStorageSync('addcase_belongArea');
+
     //如果维护项目就不用再去读领域的缓存
     if (case_index) {
       this.setData({
@@ -90,7 +97,17 @@ Page({
       })
     }
 
+    // -------------------对industry相关数据进行处理---------------------------------
+    var industryCard = this.data.industryCard;
+    var that = this;
+    var industryCurrent3 = wx.getStorageSync("industryCurrent3");
+    rqj.dealTagsData(that, industryCurrent3, industryCard, "industry_name", "industry_id")
+    this.setData({
+        industryCard:industryCard
+    })
+
   },
+
   //项目名称
   case_name: function (e) {
     var that = this;
@@ -99,12 +116,7 @@ Page({
       case_name: case_name
     })
   },
-  // 项目领域
-  case_industry: function (e) {
-    wx.navigateTo({
-      url: '/pages/form/industry/industry?current=' + 3,
-    })
-  },
+
   //项目阶段
   case_stage: function (e) {
     var case_stage = this.data.case_stage;
@@ -140,11 +152,12 @@ Page({
   },
   //保存
   buttonOne: function () {
+    var that=this;
     var case_index = this.data.case_index;
     var user_id = wx.getStorageSync('user_id');
     var case_name = this.data.case_name;
-    var industry = this.data.industry;
-    var case_industry = this.data.industryId;
+    var industry = this.data.industryCard.value;
+    var case_industry = this.data.industryCard.id;
     var stageId = this.data.stageId;
     var stage_index = this.data.stage_index;
     var case_stage = case_stage || stageId[stage_index];
@@ -154,10 +167,11 @@ Page({
     var case_province = belongArea.provinceNum;
     var case_city = belongArea.cityNum;
     console.log("名称,标签名,标签Id,阶段ID,金额,时间,省份ID,城市ID")
-    console.log(case_name, industry, case_industry, case_stage, case_money, case_time, case_province, case_city)
+    console.log(user_id,case_name, industry, case_industry, case_stage, case_money, case_time, case_province, case_city)
     if (user_id && case_name != undefined && case_industry != '' && case_stage != 0 && case_money != undefined && case_time != '请选择') {
+        console.log(1)
       if (case_index) {
-
+        console.log(case_index)
       } else {
         wx.request({
           url: url + '/api/user/createUserProjectCase',
@@ -174,6 +188,7 @@ Page({
           method: 'POST',
           success: function (res) {
             if (res.data.status_code == 2000000) {
+            wx.removeStorageSync("industryCurrent3")
               wx.removeStorageSync('case_domainValue');
               wx.removeStorageSync('case_domainId')
               wx.navigateBack({
@@ -186,11 +201,12 @@ Page({
           },
         })
       }
+    }else{
+        rqj.errorHide(that,"请完整填写信息",1500)
     }
   },
   onUnload: function () {
     wx.setStorageSync('provinceNum', [])
     wx.setStorageSync('cityNum', [])
   }
-
 })

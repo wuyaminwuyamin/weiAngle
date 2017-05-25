@@ -42,7 +42,7 @@ App({
             })
         }
 
-        //获取各分类的信息并存入globalData
+        //获取各分类的信息并存入缓存
         wx.request({
             url: url + '/api/category/getWxProjectCategory',
             method: 'POST',
@@ -56,8 +56,26 @@ App({
                 that.globalData.industry = thisData.industry;
                 that.globalData.scale = thisData.scale;
                 that.globalData.stage = thisData.stage;
+                wx.setStorageSync("industry", thisData.industry)
+                wx.setStorageSync("scale", thisData.scale)
+                wx.setStorageSync("stage", thisData.stage)
+           console.log(that.globalData.industry)
             },
         })
+
+        //获取热门城市并存入缓存
+        wx.request({
+            url: url + '/api/category/getHotCity',
+            data: {},
+            method: 'POST',
+            success: function (res) {
+                var hotCity = res.data.data;
+                hotCity.forEach((x)=>{
+                    x.checked=false;
+                })
+                wx.setStorageSync('hotCity', hotCity)
+            }
+        });
     },
 
     onError: function (msg) {
@@ -406,7 +424,7 @@ App({
                 checkedNum++
             }
         })
-        if (checkedNum == 6) {
+        if (checkedNum >= 6) {
             tagsData[target.index].check = !tagsData[target.index].check;
             rqj.errorHide(that, "最多可选择五项", 1000)
         } else {

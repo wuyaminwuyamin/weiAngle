@@ -5,10 +5,10 @@
     <view class="text">项目名称</view>
     <input class="card_case" id="case_name" placeholder="请输入" value="{{case_name}}" bindblur="case_name" maxlength="15" />
   </view>
-  <view class="card">
-    <view class="text">项目领域</view>
-    <view class="card_case" id="case_industry" bindtap="case_industry">{{industry||"请选择"}}</view>
-  </view>
+
+  <!--项目领域-->
+  <template is="input_jump" data="{{...industryCard}}" ></template>
+
   <view class="card">
     <view class="text">项目轮次</view>
     <picker class="card_case" bindchange="case_stage" value="{{stage_index}}" range="{{stage}}">
@@ -32,3 +32,6 @@
 </view>
 <view style="height:118rpx;"></view>
 <template is="buttonOne" data="{{...buttonOne}}"></template>
+
+  <!--错语提示-->
+  <view class="error" wx:if="{{error=='1'}}">{{error_text}}</view>
