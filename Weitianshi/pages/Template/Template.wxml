@@ -29,8 +29,6 @@
       <view class="user_mobile" wx:if="{{user.user_mobile}}">手机：
 
         <label data-telephone="{{user.user_mobile}}" id="user_mobile" catchtap="telephone">{{user.user_mobile}}</label>
-        <label data-telephone="{{user.user_mobile}}" wx:if="{{(user.user_mobile).indexOf("**")?}}">{{user.user_mobile}}</label>
-
       </view>
 
       <view class="user_mobile" wx:if="{{!user.user_mobile}}">手机号码：暂无编辑</view>
@@ -167,12 +165,12 @@
 <!--My我的项目库-->
 <template name="financingProject">
   <view class="user_project_info">
-    <view class="flex title">
+    <view class="flex title" catchtap="projectFinance">
       <view>
         <image class="title_icon" src="/img/icon-rongzi@3x.png"></image>
         {{text}}
       </view>
-      <image class="iconEdit" wx:if="{{canEdit}}" src="/img/icon-edit@3x.png" catchtap="projectFinance"></image>
+      <image class="iconEdit" wx:if="{{canEdit}}" src="/img/icon-edit@3x.png"></image>
     </view>
     <view class="projcet_info_frame">
       <block wx:for="{{project_info}}" wx:key="{{item.pro_intro}}">
@@ -201,12 +199,12 @@
 <!--My投资案例-->
 <template name="investProject">
   <view class="user_project_info">
-    <view class="flex title">
+    <view class="flex title" catchtap="investCase">
       <view>
         <image class="title_icon" src="/img/icon-anli@3x.png"></image>
         投资案例
       </view>
-      <image class="iconEdit" wx:if="{{canEdit}}" src="/img/icon-edit@3x.png" catchtap="investCase"></image>
+      <image class="iconEdit" wx:if="{{canEdit}}" src="/img/icon-edit@3x.png"></image>
     </view>
     <view class="invest_info_frame">
       <block wx:for="{{invest_case}}" wx:key="{{item.case_id}}">
