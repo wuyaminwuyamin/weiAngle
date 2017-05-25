@@ -11,13 +11,16 @@ Page({
     // 好友直接拨打电话
     telephone: function (e) {
       var telephone = e.currentTarget.dataset.telephone;
-      // var tel = telephone.indexOf("****");
-      // var b = 1;
-      // b = tel == -1 ?　"1":"-1";
-      // console.log(b);
-      wx.makePhoneCall({
-        phoneNumber: telephone,
-      })
+      var tel = telephone.indexOf("****");
+      console.log(tel);
+      if(tel==-1){
+        wx.makePhoneCall({
+          phoneNumber: telephone,
+        })
+      }else{
+
+      }
+     
     },
     onLoad: function (options) {
         var that = this
