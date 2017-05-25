@@ -22,8 +22,8 @@ scroll-view {
 }
 .empty{
   padding-top:92rpx;
-  width:90%;
-  height:342rpx;
+  width:252rpx;
+  height:190rpx;
   /*background:red;*/
 }
 
