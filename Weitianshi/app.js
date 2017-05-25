@@ -42,7 +42,7 @@ App({
             })
         }
 
-        //获取各分类的信息并存入globalData
+        //获取各分类的信息并存入缓存
         wx.request({
             url: url + '/api/category/getWxProjectCategory',
             method: 'POST',
@@ -62,6 +62,20 @@ App({
            console.log(that.globalData.industry)
             },
         })
+
+        //获取热门城市并存入缓存
+        wx.request({
+            url: url + '/api/category/getHotCity',
+            data: {},
+            method: 'POST',
+            success: function (res) {
+                var hotCity = res.data.data;
+                hotCity.forEach((x)=>{
+                    x.checked=false;
+                })
+                wx.setStorageSync('hotCity', hotCity)
+            }
+        });
     },
 
     onError: function (msg) {

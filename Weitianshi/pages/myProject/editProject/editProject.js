@@ -98,7 +98,7 @@ Page({
                 wx.setStorageSync("m_provinceNum", provinceNum);
                 wx.setStorageSync('m_cityNum', cityNum)
                 console.log(provinceNum, cityNum, belongArea)
-                //项目领域进行处理
+                //----------------------------项目领域进行处理----------------------
                 if (industry) {
                     industry.forEach((x) => {
                         industryValue.push(x.industry_name);

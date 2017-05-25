@@ -101,7 +101,7 @@ Page({
         var pro_goodness = wx.getStorageSync('pro_goodness');
         // console.log(industryValue, industryId, describe, belongArea, provinceNum, cityNum, this.data.tips_index);
 
-        // 项目领域数据处理
+        // ------------------项目领域数据处理--------------------------------
         var industryCard = this.data.industryCard;
         var industryCurrent0 = wx.getStorageSync("industryCurrent0");
         rqj.dealTagsData(that, industryCurrent0, industryCard, "industry_name", "industry_id")

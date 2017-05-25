@@ -36,7 +36,6 @@ function dealTagsData(that,data,dataCard,itemValue, itemId) {
     console.log(dataCard.value,dataCard.id)
 }
 
-
 // 上滑加载
 function loadMore(projectCheck, url, that, api, page, parameter, user_id, page_end) {
     if (projectCheck) {

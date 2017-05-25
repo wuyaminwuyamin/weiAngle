@@ -7,7 +7,10 @@
     <view class="text">项目介绍*</view>
     <textarea placeholder="一句话介绍,30字以内." placeholder-style='color:#ccc' bindblur="bindTextAreaBlur" maxlength="30" value="{{describe}}" />
   </view>
+
+  <!--项目领域-->
   <template is="input_jump" data="{{...industryCard}}" ></template>
+
   <view class="card">
     <view class="text">项目阶段*</view>
     <picker id="stage" bindchange="stage" value="{{stage_index}}" range="{{stageValue}}">
