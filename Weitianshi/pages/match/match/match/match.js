@@ -2,7 +2,6 @@ var rqj = require('../../../Template/Template.js')
 var app = getApp()
 var url = app.globalData.url
 Page({
-
   data: {
     winWidth: 0,//选项卡
     winHeight: 0,//选项卡
@@ -171,6 +170,7 @@ Page({
                 data: res.data.res_data
               })
               var res_match = res.data.res_match;
+              console.log(res_match);
               var res_find = res.data.res_data.res_find;
               var res_find_arry = [];
               var res_id = res.data.res_data.res_id;
@@ -350,14 +350,16 @@ Page({
               for (var i = 0; i < newPage.length; i++) {
                 myProject.push(newPage[i])
               }
-              console.log(myPublicProject_page);
+              // console.log(myPublicProject_page);
               that.setData({
                 myProject: myProject,
                 myPublicCheck: true,
                 myPublic_page_end:myPublic_page_end
               })
+              console.log("还有")
             } else {
-              rqj.errorHide(that, "没有更多了",3000)
+              console.log("没有");
+              rqj.errorHide(that, "没有更多了")
             }
       },
           fail: function (res) {

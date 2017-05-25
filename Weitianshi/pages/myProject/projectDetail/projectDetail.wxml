@@ -73,34 +73,39 @@
       <swiper-item>
         <scroll-view scroll-y="true">
           <view class="detail">
-            <view class="grey">项目BP</view>
-            <view class="bpName">
+            <view class="grey"  wx:if="{{project.bp_title!==''}}">项目BP</view>
+            <view class="bpName"  wx:if="{{project.bp_title!==''}}">
               <view class="item1">BP名称</view>
-              <view class="item2" wx:if="{{project.bp_title!==''}}">{{project.bp_title}}</view>
+              <view class="item2">{{project.bp_title}}</view>
             </view>
-            <view class="grey">项目机密</view>
-            <view class="projectName">
+            <view class="grey"  wx:if="{{project.pro_name!==''||project.pro_company_name!==''||project.pro_source!==''||project.pro_company_start_time!==''||project.pro_status!==''}}">项目机密</view>
+            <view class="projectName" wx:if="{{project.pro_name!==''}}">
               <view class="item1">项目名称</view>
-              <view class="item2" wx:if="{{project.pro_name!==''}}">{{project.pro_name}}</view>
+              <view class="item2">{{project.pro_name}}</view>
             </view>
-            <view class="companyName">
+            <view class="companyName" wx:if="{{project.pro_company_name!==''}}">
               <view class="item1">公司名称</view>
-              <view class="item2" wx:if="{{project.pro_company_name!==''}}">{{project.pro_company_name}}</view>
+              <view class="item2">{{project.pro_company_name}}</view>
             </view>
-            <view class="projectFrom">
+            <view class="projectFrom"  wx:if="{{project.pro_source!==''}}">
               <view class="item1">项目来源</view>
-              <view class="item2" wx:if="{{project.pro_source!==''}}">{{project.pro_source}}</view>
+              <view class="item2">{{project.pro_source}}</view>
             </view>
-            <view class="time">
+            <view class="time"  wx:if="{{project.pro_company_start_time!==''}}">
               <view class="item1">注册时间</view>
-              <view class="item2" wx:if="{{project.pro_company_start_time!==''}}">{{project.pro_company_start_time}}</view>
+              <view class="item2">{{project.pro_company_start_time}}</view>
             </view>
-            <view class="state">
+            <view class="state" wx:if="{{project.pro_status!==''}}">
               <view class="item1">运营状态</view>
-              <view class="item2" wx:if="{{project.pro_status!==''}}">{{project.pro_status.status_name}}</view>
+              <view class="item2" >{{project.pro_status.status_name}}</view>
             </view>
           </view>
-          <view style="height:160rpx;"></view>
+          <view style="height:160rpx;">
+        </view>
+          <!--空状态-->
+        <view wx:if="{{project.bp_title==''&&project.pro_name==''&&project.pro_company_name==''&&project.pro_source==''&&project.pro_company_start_time==''&&project.pro_status==''}}">
+           <image class="empty" src="/img/img-xiangmukong@3x.png"></image>
+          </view>
         </scroll-view>
       </swiper-item>
 
