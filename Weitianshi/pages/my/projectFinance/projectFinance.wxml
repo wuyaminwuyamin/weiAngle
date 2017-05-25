@@ -1,12 +1,14 @@
 <import src="/pages/Template/Template.wxml" />
 <!--pages/my/projectFinance/projectFinance.wxml-->
-<scroll-view style="height:100%;" scroll-y="true"  bindscrolltolower='myPublicProject'>
+<scroll-view style="height:2378rpx;" scroll-y="true" bindscrolltolower='myPublicProject'>
 
   <!--已发布的项目-->
-  <block wx:for="{{myProject}}" wx:key="{{pro_id}}" wx:for-item="myProject"  >
+  <block wx:for="{{myProject}}" wx:key="{{pro_id}}" wx:for-item="myProject">
     <template is="projectList" data="{{myProject:myProject,index:index}}"></template>
   </block>
-   <view class="block"></view>
+  <view class="block"></view>
+  <!--没有更多-->
+  <view class="error" wx:if="{{error=='1'}}">{{error_text}}</view>
 
   <!--空状态-->
   <view wx:if="{{myProject==''}}">
@@ -16,4 +18,3 @@
 
 <!--按钮-->
 <template is="buttonOne" data="{{...buttonOne}}"></template>
-
