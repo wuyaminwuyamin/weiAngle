@@ -182,6 +182,7 @@ Page({
     this.setData({
       financingPage: financingPage
     });
+    console.log(financingPage);
     if (financingNeedcheck) {
       wx.request({
         url: url + '/api/project/projectMarket',
@@ -202,7 +203,7 @@ Page({
             for (var i = 0; i < new_data.length; i++) {
               financingNeed.push(new_data[i])
             }
-            console.log(financingPage);
+            
             that.setData({
               financingNeed: financingNeed,
               financingNeed_end: financingNeed_end,
