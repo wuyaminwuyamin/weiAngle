@@ -28,6 +28,9 @@ Page({
         }
     },
     onLoad: function (options) {
+        console.log("onload industryCurrent2")
+        console.log(wx.getStorageSync("industryCurrent2"))
+        console.log(app.globalData.industry)
         var that = this;
         var user_id = options.user_id;
         var pro_id = options.pro_id;
@@ -91,11 +94,10 @@ Page({
                 var belongArea = theData.pro_area.area_title;//地区
                 var provinceNum = theData.pro_area.pid;
                 var cityNum = theData.pro_area.area_id;
+                var industryCurrent2 =wx.getStorageSync("industry");
                 wx.setStorageSync("m_provinceNum", provinceNum);
                 wx.setStorageSync('m_cityNum', cityNum)
                 console.log(provinceNum, cityNum, belongArea)
-                console.log("============")
-                console.log(industry)
                 //项目领域进行处理
                 if (industry) {
                     industry.forEach((x) => {
@@ -103,8 +105,7 @@ Page({
                         industryId.push(x.industry_id)
                     })
                 }
-                var industryCurrent2=app.globalData.industry;
-                console.log(app.globalData.industry)
+
                 industryCurrent2.forEach((x)=>{
                     if(industryValue.indexOf(x.industry_name)!=-1){
                         console.log(x.industry_name)
@@ -115,8 +116,6 @@ Page({
                 industryCard.id=industryId;
                 console.log(industryValue)
                 wx.setStorageSync("industryCurrent2", industryCurrent2)
-                console.log("===========================")
-                console.log(wx.getStorageSync("industryCurrent2"))
 
                 that.setData({
                     industryCard:industryCard,
@@ -138,6 +137,9 @@ Page({
         })
     },
     onShow: function () {
+        console.log("onshow industryCurrent2")
+        console.log(wx.getStorageSync("industryCurrent2"))
+        console.log(app.globalData.industry)
         var that = this;
         if(wx.getStorageSync("m_belongArea")!=''){
             var belongArea = wx.getStorageSync('m_belongArea') 
@@ -150,7 +152,6 @@ Page({
 
         //如果已经进入项目领域后时,对返回该页面的值进行修正
         var industryCurrent2=wx.getStorageSync("industryCurrent2");
-        console.log(industryCurrent2)
         var industryCard=this.data.industryCard;
         if(industryCurrent2){
             console.log(2)

@@ -1,9 +1,9 @@
-
+<import src="/pages/Template/Template.wxml"></import>
 <!--<view class="title">
   您的项目会推送给匹配的投资人,去电脑上创建更方面
 </view>-->
 <view id="myProject">
-  <view class="card">
+  <!--<view class="card">
     <view class="text">投资领域*</view>
     <navigator url="/pages/form/industry/industry?current=1" id="domain">
       <view class="slect flex">
@@ -11,7 +11,9 @@
         <image class="downArrow" src="/img/downArrow.png"></image>
       </view>
     </navigator>
-  </view>
+  </view>-->
+
+ <template is="input_jump" data="{{...industryCard}}" ></template>
 
   <view class="card">
     <view class="text">投资阶段*</view>

@@ -56,6 +56,10 @@ App({
                 that.globalData.industry = thisData.industry;
                 that.globalData.scale = thisData.scale;
                 that.globalData.stage = thisData.stage;
+                wx.setStorageSync("industry", thisData.industry)
+                wx.setStorageSync("scale", thisData.scale)
+                wx.setStorageSync("stage", thisData.stage)
+           console.log(that.globalData.industry)
             },
         })
     },
@@ -406,7 +410,7 @@ App({
                 checkedNum++
             }
         })
-        if (checkedNum == 6) {
+        if (checkedNum >= 6) {
             tagsData[target.index].check = !tagsData[target.index].check;
             rqj.errorHide(that, "最多可选择五项", 1000)
         } else {

@@ -7,13 +7,6 @@
     <view class="text">项目介绍*</view>
     <textarea placeholder="一句话介绍,30字以内." placeholder-style='color:#ccc' bindblur="bindTextAreaBlur" maxlength="30" value="{{describe}}" />
   </view>
-  <!--<view class="card">
-    <view class="text">所属领域*</view>
-      <view class="slect flex" bindtap="industry">
-        <view class="{{IndustryValue =='选择领域' ? '':'checkOn'}}">{{industryValue}}</view>
-        <image class="downArrow" src="/img/downArrow.png"></image>
-      </view>
-  </view>-->
   <template is="input_jump" data="{{...industryCard}}" ></template>
   <view class="card">
     <view class="text">项目阶段*</view>

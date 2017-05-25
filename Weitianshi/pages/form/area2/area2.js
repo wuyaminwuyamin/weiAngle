@@ -31,7 +31,7 @@ Page({
              that.setData({
                 payArea: payArea
              })
-             wx.setStorageSync('hotpayArea', payArea)
+             wx.setStorageSync('hotCity', payArea)
           }
         });
         

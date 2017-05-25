@@ -20,14 +20,13 @@ Page({
         // 0:发布融资项目  1:发布投资需求 2:维护我的项目 3:发布投资案例
         //设置模版数据
         if (current == 0) {
-            industryTags.tagsData = wx.getStorageSync("industryCurrent0") || app.globalData.industry;
+            industryTags.tagsData = wx.getStorageSync("industryCurrent0") || wx.getStorageSync("industry");
         } else if (current == 1) {
-            industryTags.tagsData = wx.getStorageSync("industryCurrent1") || app.globalData.industry;
+            industryTags.tagsData = wx.getStorageSync("industryCurrent1") || wx.getStorageSync("industry");
         } else if (current == 2) {
-            industryTags.tagsData = wx.getStorageSync("industryCurrent2") || app.globalData.industry;
-            console.log(industryTags.tagsData)
+            industryTags.tagsData = wx.getStorageSync("industryCurrent2") || wx.getStorageSync("industry");
         } else if (current == 3) {
-            industryTags.tagsData = wx.getStorageSync("industryCurrent3") || app.globalData.industry;
+            industryTags.tagsData = wx.getStorageSync("industryCurrent3") || wx.getStorageSync("industry");
         }
         that.setData({
             current: current,
@@ -46,6 +45,7 @@ Page({
         }
         let checkObject = app.tagsCheck(that, rqj, e, tags, cb)
         this.setData({
+            industryTags: tags,
             contactsFilter1: checkObject
         })
         console.log(checkObject)
@@ -61,17 +61,30 @@ Page({
     //点击确定
     certain() {
         let current = this.data.current;
-        if (current == 0) {
-            wx.setStorageSync("industryCurrent0", this.data.industryTags.tagsData);
-        } else if (current == 1) {
-            wx.setStorageSync("industryCurrent1", this.data.industryTags.tagsData);
-        } else if (current == 2) {
-            wx.setStorageSync("industryCurrent2", this.data.industryTags.tagsData);
-        } else if (current == 3) {
-            wx.setStorageSync("industryCurrent3", this.data.industryTags.tagsData);
-        }
-        wx.navigateBack({
-            delta: 1,
+        let checkNum = 0;
+        let that=this;
+        this.data.industryTags.tagsData.forEach((x) => {
+            if (x.check == true) {
+                checkNum++
+            }
         })
+        if (checkNum != 0) {
+            if (current == 0) {
+                wx.setStorageSync("industryCurrent0", this.data.industryTags.tagsData);
+            } else if (current == 1) {
+                wx.setStorageSync("industryCurrent1", this.data.industryTags.tagsData);
+            } else if (current == 2) {
+                wx.setStorageSync("industryCurrent2", this.data.industryTags.tagsData);
+                console.log(this.data.industryTags.tagsData)
+                console.log(app.globalData.industry)
+            } else if (current == 3) {
+                wx.setStorageSync("industryCurrent3", this.data.industryTags.tagsData);
+            }
+            wx.navigateBack({
+                delta: 1,
+            })
+        } else {
+            rqj.errorHide(that, "至少选择一项领域标签", 1500)
+        }
     },
 });
