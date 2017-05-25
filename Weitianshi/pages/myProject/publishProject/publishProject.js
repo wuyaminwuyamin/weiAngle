@@ -28,9 +28,9 @@ Page({
     },
     onLoad: function () {
         var that = this;
+      
         //初始化
         wx.removeStorageSync("industryCurrent0")
-
         wx.setStorageSync('describe', "");
         wx.setStorageSync('pro_goodness', "");
         wx.setStorageSync('console_stage', 0);

@@ -232,12 +232,6 @@ Page({
     var user_id = wx.getStorageSync('user_id');
     var complete = that.data.complete;
     var checkInfo = that.data.checkInfo;
-
-    //修复bug
-    /*wx.navigateTo({
-        url: '/pages/register/personInfo/personInfo'
-    })*/
-    // 如果user_id == 0用户id不存在,那么直接跳转个人信息填写
     if (user_id == 0) {
       wx.navigateTo({
         url: '/pages/register/personInfo/personInfo'

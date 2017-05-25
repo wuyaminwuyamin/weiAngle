@@ -73,13 +73,13 @@
       <swiper-item>
         <scroll-view scroll-y="true">
           <view class="detail">
-            <view class="backColor">
+            <view class="backColor"  wx:if="{{project.bp_title !==''||project.pro_name !==''||project.pro_company_name !==''||project.pro_source !==''||project.pro_company_start_time!==''||project.pro_status !==''}}">
               <view class="flex title">
                     <image class="title_icon" src="/img/icon-jieshao.png"></image>
                 <view class="title_name">项目介绍</view>
               </view>
-              <view class="bpName" wx:if="{{project.bp_title!==''}}">
-                <view class="item1">商业计划书</view>
+              <view class="bpName" >
+                <view class="item1" wx:if="{{project.bp_title !==''}}">商业计划书</view>
                 <view class="item2">{{project.bp_title}}</view>
               </view>
               <view wx:if="{{project.pro_name!==''||project.pro_company_name!==''||project.pro_source!==''||project.pro_company_start_time!==''||project.pro_status!==''}}">
