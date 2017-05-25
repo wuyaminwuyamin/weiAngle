@@ -42,8 +42,8 @@ Page({
         var industryCard=this.data.industryCard;
 
         // 为项目阶段picker和期望融资pikcer做准备
-        var scale = app.globalData.scale;
-        var stage = app.globalData.stage;
+        var scale = wx.getStorageSync("scale");
+        var stage = wx.getStorageSync("stage");
         scale.unshift({
             scale_id: 0,
             scale_money: "选择融资"
