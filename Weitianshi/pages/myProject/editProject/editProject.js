@@ -138,8 +138,11 @@ Page({
     },
     onShow: function () {
         var that = this;
+        if(wx.getStorageSync("m_belongArea")!=''){
+            var belongArea = wx.getStorageSync('m_belongArea') 
+        }
         // var belongArea = wx.getStorageSync('m_belongArea') || this.data.belongArea;
-        var belongArea = wx.getStorageSync('m_belongArea');
+        // var belongArea = wx.getStorageSync('m_belongArea');
         var provinceNum = wx.getStorageSync("m_provinceNum");
         var cityNum = wx.getStorageSync('m_cityNum');
         var pro_goodness = wx.getStorageSync("pro_goodness");
