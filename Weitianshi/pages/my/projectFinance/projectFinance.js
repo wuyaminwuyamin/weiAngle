@@ -5,11 +5,11 @@ Page({
   data: {
     buttonOne: {
       text: "新增项目",
-      myPublicCheck: true,
-      myProject: "",//项目融资数据的字段 ,
-      myPublicProject_page: 1,
-      myPublic_page_end: false,
-    }
+      myProject: "",//项目融资数据的字段 
+    },
+    myPublicProject_page: 1,
+    myPublicCheck: true,
+    myPublic_page_end: false
   },
   onShow: function () {
     var that = this;

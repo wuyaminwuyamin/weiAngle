@@ -12,7 +12,7 @@
 
   <!-- 项目融资 -->
   <swiper-item>
-    <scroll-view style="height:100%;" scroll-y="true"  bindscrolltolower='myPublicProject'>
+    <scroll-view style="height:100%;" scroll-y="true" bindscrolltolower='myPublicProject'>
       <view>
         <view class="publish publish_my_project" bindtap="myProject">
           <view>发布融资项目</view>
@@ -23,7 +23,7 @@
       <!--已发布的项目-->
       <block wx:for="{{myProject}}" wx:key="{{pro_id}}" wx:for-item="myProject" wx:for-index="proindex">
         <view class="weui-panel__bd" style="background:white;margin:16px">
-          <view class="weui-media-box weui-media-box_text my_detail" data-id='{{myProject.pro_id}}'  data-index="{{proindex}}" bindtap="detail">
+          <view class="weui-media-box weui-media-box_text my_detail" data-id='{{myProject.pro_id}}' data-index="{{proindex}}" bindtap="detail">
             <view class="weui-media-box__title weui-media-box__title_in-text" style="text-align:left;">{{myProject.pro_intro}}</view>
             <view class="sort">
               <block wx:for="{{myProject.pro_industry}}" wx:for-item="sort" wx:key="sort.industry_id">
@@ -54,7 +54,8 @@
           </view>
         </view>
       </block>
-
+      <!--没有更多-->
+      <view class="error" wx:if="{{error=='1'}}">{{error_text}}</view>
       <!--空状态-->
       <view wx:if="{{myProject==''}}">
         <image class="empty" src="/img/empty.png"></image>
@@ -64,7 +65,7 @@
 
   <!-- 寻找项目 -->
   <swiper-item>
-    <scroll-view style="height:100%;" scroll-y="true" bindscrolltolower='yourPayProject' >
+    <scroll-view style="height:100%;" scroll-y="true" bindscrolltolower='yourPayProject'>
       <template is="publish" data="{{hasPublic:hasPublic,user_industry:user_industry,text:investText,jumpProject:'yourProject'}}"></template>
       <view class="foryou2" hidden="{{yourProject==''}}">为您对接到的项目</view>
 
