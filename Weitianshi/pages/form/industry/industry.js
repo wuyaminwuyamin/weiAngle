@@ -25,6 +25,7 @@ Page({
             industryTags.tagsData = wx.getStorageSync("industryCurrent1") || app.globalData.industry;
         } else if (current == 2) {
             industryTags.tagsData = wx.getStorageSync("industryCurrent2") || app.globalData.industry;
+            console.log(industryTags.tagsData)
         } else if (current == 3) {
             industryTags.tagsData = wx.getStorageSync("industryCurrent3") || app.globalData.industry;
         }

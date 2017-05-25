@@ -103,6 +103,7 @@ Page({
                     })
                 }
                 var industryCurrent2=app.globalData.industry;
+                console.log(app.globalData.industry)
                 industryCurrent2.forEach((x)=>{
                     if(industryValue.indexOf(x.industry_name)!=-1){
                         console.log(x.industry_name)
@@ -111,7 +112,10 @@ Page({
                 })
                 industryCard.value=industryValue;
                 industryCard.id=industryId;
+                console.log(industryValue)
                 wx.setStorageSync("industryCurrent2", industryCurrent2)
+                console.log("===========================")
+                console.log(wx.getStorageSync("industryCurrent2"))
 
                 that.setData({
                     industryCard:industryCard,
@@ -142,8 +146,10 @@ Page({
 
         //如果已经进入项目领域后时,对返回该页面的值进行修正
         var industryCurrent2=wx.getStorageSync("industryCurrent2");
+        console.log(industryCurrent2)
         var industryCard=this.data.industryCard;
         if(industryCurrent2){
+            console.log(2)
             var industryValue = [];
             var industryId = [];
             industryCurrent2.forEach((x)=>{
@@ -151,6 +157,7 @@ Page({
                     industryValue.push(x.industry_name);
                     industryId.push(x.industry_id);
                 }
+                wx.setStorageSync("industryCurrent2", industryCurrent2)
             })
             industryCard.value=industryValue;
             industryCard.id=industryId;
@@ -199,6 +206,7 @@ Page({
         wx.navigateTo({
             url: '/pages/form/industry/industry?current='+2
         })
+        console.log(wx.getStorageSync("industryCurrent2"))
     },
 
     //是否独家的效果实现
@@ -238,7 +246,7 @@ Page({
     upLoad: function () {
         var that = this;
         var pro_intro = this.data.describe;//描述
-        var industry = this.data.industryId;//id
+        var industry = this.data.industryCard.id;//id
         var pro_finance_stage = this.data.stage_index;
         var pro_finance_scale = this.data.scale_index;
         var is_exclusive = this.data.tipsIndex;
@@ -304,10 +312,11 @@ Page({
 
     //点击发布
     public: function () {
+        console.log(1)
         var that = this;
         var describe = this.data.describe;
-        var industryValue = this.data.industryValue;
-        var industryId = this.data.industryId;
+        var industryValue = this.data.industryCard.value;
+        var industryId = this.data.industryCard.id;
         var provinceNum = this.data.provinceNum;
         var cityNum = this.data.cityNum;
         var stageId = this.data.stageId;
@@ -325,7 +334,7 @@ Page({
         this.setData({
             upLoad: 1
         })
-        // console.log(user_id, describe, industryId, console_stage, console_scale, provinceNum, cityNum, tipsIndex)
+        console.log(user_id, describe, industryId, console_stage, console_scale, provinceNum, cityNum, tipsIndex)
         if (describe !== "" && industryValue !== "选择领域" && console_stage !== 0 && console_scale != 0 && provinceNum !== 0 && cityNum !== 0 && tipsIndex !== 4 && pro_goodness !== "") {
             //保存项目更改
             that.updata(that)
@@ -350,10 +359,11 @@ Page({
 
     //更新项目
     updata(that) {
+        console.log(1)
         var user_id = wx.getStorageSync('user_id');
         var pro_id = that.data.pro_id;
         var describe = that.data.describe;
-        var industryId = that.data.industryId;
+        var industryId = that.data.industryCard.id;
         var stageId = that.data.stageId;
         var scaleId = that.data.scaleId;
         var stage_index = that.data.stage_index;
@@ -381,8 +391,8 @@ Page({
             },
             method: 'POST',
             success: function (res) {
+                wx.removeStorageSync("industryCurrent2");
                 if (res.status_code = 2000000) {
-                    console.log(upLoad)
                     if (upLoad == 1) {
                         wx.navigateBack({//页面返回
                             delta: 2 // 回退前 delta(默认为1) 页面

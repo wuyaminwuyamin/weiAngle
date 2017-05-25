@@ -29,7 +29,7 @@ Page({
     onLoad: function () {
         var that = this;
         //初始化
-        wx.clearStorageSync("industryCurrent0")
+        wx.removeStorageSync("industryCurrent0")
 
         wx.setStorageSync('describe', "");
         wx.setStorageSync('pro_goodness', "");
