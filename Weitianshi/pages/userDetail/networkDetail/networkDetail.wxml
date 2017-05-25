@@ -2,7 +2,7 @@
 <view id="my">
 
   <!--我的名片-->
-  <template is="userInfo" data="{{user:user}}"></template>
+  <template is="userInfo" data="{{user:user,blue:blue}}"></template>
 
   <!--个人描述-->
   <template is="userIntro" data="{{user:user}}"></template>

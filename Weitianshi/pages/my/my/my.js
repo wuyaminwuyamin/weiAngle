@@ -8,6 +8,7 @@ Page({
         modal: 0,
         goTop: 0,
         canEdit: 1,
+        blue:-1
     },
     onLoad: function (options) {
         if (options) {

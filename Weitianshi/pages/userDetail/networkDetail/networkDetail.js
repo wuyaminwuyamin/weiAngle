@@ -6,21 +6,9 @@ Page({
         integrity:30,
         resourcesIndex:9.9,
         user:"",
-        tel:0
-    },
-    // 好友直接拨打电话
-    telephone: function (e) {
-      var telephone = e.currentTarget.dataset.telephone;
-      var tel = telephone.indexOf("****");
-      console.log(tel);
-      if(tel==-1){
-        wx.makePhoneCall({
-          phoneNumber: telephone,
-        })
-      }else{
-
-      }
-     
+        tel:0,
+        telephone:0,
+        blue:-1
     },
     onLoad: function (options) {
         var that = this
@@ -35,7 +23,7 @@ Page({
             withShareTicket: true,
         })
        
-        //我的个人信息
+        //用戶的个人信息
         wx.request({
           url: url+'/api/user/getUserAllInfo',
           data: {
@@ -51,7 +39,14 @@ Page({
             var resource=res.data.resource_info;
             var project_info=res.data.project_info;
             var invest_case=res.data.invest_case;
-            console.log(invest_case)
+            var tel = user.user_mobile;
+            if (tel.indexOf("*") !=-1){
+              console.log(1111111)
+              that.setData({
+                blue:1
+              })
+            }
+            console.log(that.data.blue)
             that.setData({
                 user:user,
                 invest:invest,
@@ -70,6 +65,20 @@ Page({
         wx.navigateTo({
         url:"/pages/userDetail/networkDetail/networkDetail"
         })
+    },
+    // 好友直接拨打电话
+    telephone: function (e) {
+      var telephone = e.currentTarget.dataset.telephone;
+      var tel = telephone.indexOf("****") * 1;
+     
+      if (tel == -1) {
+        wx.makePhoneCall({
+          phoneNumber: telephone,
+        })
+      } else {
+
+      }
+
     },
     //添加人脉
     addNetWork: function () {
