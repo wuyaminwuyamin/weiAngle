@@ -10,6 +10,12 @@ Page({
     // 好友直接拨打电话
     telephone: function (e) {
       var telephone = e.currentTarget.dataset.telephone;
+      var tel = telephone.indexOf("****");
+      if(tel == -1){
+        console.log("隱藏")
+      }else{
+        console.log(tel)
+      }
       wx.makePhoneCall({
         phoneNumber: telephone,
       })

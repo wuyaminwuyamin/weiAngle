@@ -71,6 +71,7 @@ Page({
                 investors.push(cards[i].match_investors)
               }
               wx.setStorageSync('investors', investors);
+              console.log(investors);
               //刷新数据
               that.setData({
                 myProject: myProject

@@ -49,7 +49,7 @@
       <view class="card">
       <view class="text">项目亮点*</view>
       <view id="greatPoint" class="slect flex">
-        <input class="slectInput" placeholder="请输入项目亮点" placeholder-style='color:#ccc' value="{{pro_goodness}}"bindblur="slectInput" />
+        <input class="slectInput" placeholder="请输入项目亮点" placeholder-style='color:#ccc' value="{{pro_goodness}}"bindblur="slectInput" maxlength="500"/>
       </view>
     </view>
 

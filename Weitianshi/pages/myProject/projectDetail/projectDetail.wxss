@@ -2,7 +2,8 @@ page {
   background: white;
   height: 100%;
 }
-#myDetail,.weui-panel__bd{
+
+#myDetail, .weui-panel__bd {
   height: 100%;
 }
 
@@ -10,7 +11,7 @@ scroll-view {
   height: 93%;
 }
 
-.ziben{
+.ziben {
   color: #ccc;
 }
 
@@ -20,10 +21,11 @@ scroll-view {
   color: #40587a;
   text-align: center;
 }
-.empty{
-  padding-top:92rpx;
-  width:90%;
-  height:342rpx;
+
+.empty {
+  padding-top: 92rpx;
+  width: 252rpx;
+  height: 190rpx;
   /*background:red;*/
 }
 
@@ -124,9 +126,11 @@ scroll-view {
 }
 
 /*others的卡片*/
-.others{
-    margin-bottom:20rpx;
+
+.others {
+  margin-bottom: 20rpx;
 }
+
 .others_pic {
   width: 60rpx;
   height: 60rpx;
@@ -262,19 +266,43 @@ scroll-view {
 }
 
 .item1 {
-  padding: 32rpx 0;
+  padding-top: 48rpx;
   font-size: 24rpx;
-  color: #333;
+  color: #999;
+  line-height: 24rpx;
+  text-align: left;
+  margin-bottom: 24rpx;
 }
 
 .item2 {
-  text-align: center;
-  color: #333;
+  font-size: 26rpx;
+  /*padding: 32rpx 0;*/
+  /*padding-top: 48rpx;*/
+  color: #666;
+  letter-spacing: 0;
+  line-height: 26rpx;
+  text-align: left;
+}
+
+.backColor {
+  margin-top: 32rpx;
+  background: #fafafa;
+  padding: 32rpx;
+}
+.title{
+  text-align: left;
+  /*margin-bottom:48rpx;*/
+}
+.title_icon{
+  height:28rpx;
+  width:28rpx;
+  margin-right:24rpx;
+}
+.title_name {
   font-size: 28rpx;
-  padding: 30rpx 32rpx;
-  border: 1px solid #e0e0e0;
-  border-radius: 4px;
-  margin-bottom: 16rpx;
+  color: #333;
+  line-height: 28rpx;
+  text-align: left;
 }
 
 .sort_item {
@@ -303,16 +331,20 @@ scroll-view {
   text-align: center;
 }
 
-.ziben{
+.ziben {
   width: 50%;
   padding-bottom: 32rpx;
 }
 
-.detail .grey,.detail .item1,.detail .item2{
+.detail .grey, .detail .item1, .detail .item2 {
   text-align: left;
 }
 
-.maintainProject{
-  background:#40587a;
+.detail {
+  background: white;
+}
+
+.maintainProject {
+  background: #40587a;
   color: white;
 }

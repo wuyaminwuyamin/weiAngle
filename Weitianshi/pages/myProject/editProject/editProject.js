@@ -317,7 +317,7 @@ Page({
 
     //点击发布
     public: function () {
-        console.log(1)
+
         var that = this;
         var describe = this.data.describe;
         var industryValue = this.data.industryCard.value;
@@ -380,6 +380,7 @@ Page({
         var tipsIndex = that.data.tipsIndex;
         var pro_goodness = that.data.pro_goodness;
         var upLoad = that.data.upLoad;
+        console.log(2222)
         wx.request({
             url: url + '/api/project/updateProject',
             data: {
@@ -399,10 +400,12 @@ Page({
                 wx.removeStorageSync("industryCurrent2");
                 if (res.status_code = 2000000) {
                     if (upLoad == 1) {
+                      console.log("yes");
                         wx.navigateBack({//页面返回
                             delta: 2 // 回退前 delta(默认为1) 页面
                         })
                     }
+                    console.log(2);
                 } else {
                     wx.showToast({
                         title: res.status_code
