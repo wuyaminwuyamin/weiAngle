@@ -1,9 +1,9 @@
 <import src="/pages/Template/Template.wxml" />
 <!--pages/my/projectFinance/projectFinance.wxml-->
-<scroll-view style="height:100%;" scroll-y="true">
+<scroll-view style="height:100%;" scroll-y="true"  bindscrolltolower='myPublicProject'>
 
   <!--已发布的项目-->
-  <block wx:for="{{myProject}}" wx:key="{{pro_id}}" wx:for-item="myProject">
+  <block wx:for="{{myProject}}" wx:key="{{pro_id}}" wx:for-item="myProject"  >
     <template is="projectList" data="{{myProject:myProject,index:index}}"></template>
   </block>
    <view class="block"></view>

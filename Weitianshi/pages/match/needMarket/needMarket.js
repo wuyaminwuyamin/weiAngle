@@ -14,7 +14,8 @@ Page({
     userId : 0,
     investNeedcheck: true,
     financingNeedcheck: true,
-    resourceNeedcheck: true
+    resourceNeedcheck: true,
+    financingNeed_end:false
   },
   //载入页面
   onShow: function () {
@@ -176,7 +177,7 @@ Page({
     var that = this;
     var financingPage = this.data.financingPage;
     var financingNeedcheck = this.data.financingNeedcheck;
-    console.log(financingNeedcheck);
+    var financingNeed_end = this.data.financingNeed_end;
     financingPage++;
     this.setData({
       financingPage: financingPage
@@ -191,6 +192,7 @@ Page({
         success: function (res) {
           console.log(res)
           var new_data = res.data.data;
+          var financingNeed_end = res.data.page_end
           if (new_data != '') {
             wx.showToast({
               title: 'loading...',
@@ -200,8 +202,11 @@ Page({
             for (var i = 0; i < new_data.length; i++) {
               financingNeed.push(new_data[i])
             }
+            console.log(financingPage);
             that.setData({
-              financingNeed: financingNeed
+              financingNeed: financingNeed,
+              financingNeed_end: financingNeed_end,
+              financingNeedcheck: true
             })
           } else {
             rqj.errorHide(that, '没有更多了', 3000)
@@ -222,6 +227,7 @@ Page({
     var investPage = this.data.investPage;
     var investNeedcheck = this.data.investNeedcheck;
     investPage++;
+    console.log(investPage,investNeedcheck)
     this.setData({
       investPage: investPage
     });
