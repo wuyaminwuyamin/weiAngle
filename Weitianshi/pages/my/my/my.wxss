@@ -136,7 +136,7 @@ page {
   width: 36rpx;
   height: 36rpx;
   display: block;
-  padding: 0 32rpx  0 480rpx;
+  padding: 0 32rpx  0 462rpx;
   margin-right: -32rpx;
 }
 

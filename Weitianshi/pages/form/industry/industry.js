@@ -67,6 +67,7 @@ Page({
             wx.setStorageSync("industryCurrent1", this.data.industryTags.tagsData);
         } else if (current == 2) {
             wx.setStorageSync("industryCurrent2", this.data.industryTags.tagsData);
+            console.log(this.data.industryTags.tagsData)
         } else if (current == 3) {
             wx.setStorageSync("industryCurrent3", this.data.industryTags.tagsData);
         }

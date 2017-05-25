@@ -7,6 +7,7 @@ Page({
       text: "新增项目",
       myProject: "",//项目融资数据的字段 
     },
+    publicArray: [],
     myPublicProject_page: 1,
     myPublicCheck: true,
     myPublic_page_end: false
@@ -15,7 +16,8 @@ Page({
     var that = this;
     var user_id = wx.getStorageSync('user_id')
     this.setData({
-      text: "新增项目"
+      text: "新增项目",
+      publicArray: []
     })
     //获取我的项目 
     wx.request({
@@ -29,6 +31,10 @@ Page({
         var myProject = res.data.data;
         var length = myProject.length;
         wx.setStorageSync('myProjectLength', length);
+        for (var i = 0; i < length; i++) {
+          console.log(myProject[i]);
+          investNeed.push(new_data[i])
+        }
         that.setData({
           myProject: myProject,
         });
@@ -104,10 +110,10 @@ Page({
       url: '/pages/myProject/projectDetail/projectDetail?id=' + id + "&&index=" + index + "&&currentTab=" + 0
     })
   },
-  
+
   //编辑项目
   editDetail: function (e) {
-    var id=e.currentTarget.dataset.id;
+    var id = e.currentTarget.dataset.id;
     var user_id = wx.getStorageSync('user_id')
     wx.navigateTo({
       url: '/pages/myProject/editProject/editProject?pro_id=' + id + "&&user_id=" + user_id,
@@ -115,6 +121,6 @@ Page({
   },
   // 按钮一号
   buttonOne: function () {
-      app.infoJump("/pages/myProject/publishProject/publishProject");
+    app.infoJump("/pages/myProject/publishProject/publishProject");
   }
 })

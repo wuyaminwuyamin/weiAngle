@@ -399,7 +399,7 @@ Page({
                 wx.removeStorageSync("industryCurrent2");
                 if (res.status_code = 2000000) {
                     if (upLoad == 1) {
-                      console.log(yes);
+                      console.log("yes");
                         wx.navigateBack({//页面返回
                             delta: 2 // 回退前 delta(默认为1) 页面
                         })

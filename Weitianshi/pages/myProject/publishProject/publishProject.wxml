@@ -52,10 +52,9 @@
       <view class="tips {{tips_index==0 ? 'tips_on' : ''}}" id="tips3" bindtap="tipsOn" data-tips="0">其他</view>
     </view>
   </view>
-  
   <view class="card">
     <view class="text">项目亮点*</view>
-    <input class="slectInput" placeholder="请输入项目亮点" placeholder-style='color:#ccc' value="{{pro_goodness}}" bindblur="slectInput" />
+    <input class="slectInput" placeholder="请输入项目亮点" placeholder-style='color:#ccc' value="{{pro_goodness}}" bindblur="slectInput" maxlength="500" />
   </view>
   <!--<view class="card">
   <view class="text">投后股份(%)</view>
