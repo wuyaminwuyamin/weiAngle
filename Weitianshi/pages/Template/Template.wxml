@@ -27,7 +27,6 @@
       <view class="user_company" wx:if="{{user.user_company_name}}">公司：{{user.user_company_name}}</view>
       <view class="user_company" wx:if="{{!user.user_company_name}}">公司名称：暂无编辑</view>
       <view class="user_mobile" wx:if="{{user.user_mobile}}">手机：
-
         <label data-telephone="{{user.user_mobile}}" id="user_mobile" catchtap="telephone">{{user.user_mobile}}</label>
       </view>
 

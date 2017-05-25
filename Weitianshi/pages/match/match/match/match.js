@@ -256,31 +256,50 @@ Page({
                     url: '/pages/register/companyInfo/companyInfo'
                 })
             }
-        } else if (user_id != 1 && complete == 0) {
-            wx.navigateTo({
-                url: '/pages/register/companyInfo/companyInfo'
-            })
-            //如果存在用户id 但是 信息不完整,跳转公司信息
-        }
-    },
-    //点击发布融资项目
-    myProject: function () {
-        app.infoJump("/pages/myProject/publishProject/publishProject")
-        wx.setStorageSync('enchangeValue', []);
-        wx.setStorageSync('enchangeId', []);
-        wx.setStorageSync('enchangeCheck', []);
-    },
-    //点击发布投资需求
-    yourProject: function () {
-        app.infoJump("/pages/match/match/investDemand/investDemand")
-    },
-    //点击发布资源需求
-    resourceNeed: function () {
-        app.infoJump("/pages/match/match/resourceDemand/resourceDemand")
-    },
-    // 跳转人物详情
-    userDetail(e) {
-        var id = e.currentTarget.dataset.id
+          },
+          fail: function (res) {
+            console.log(res)
+          }
+        });
+      }
+    })
+  },
+  //下拉刷新
+  onPullDownRefresh: function () {
+    // wx.stopPullDownRefresh()
+  },
+  /*滑动切换tab*/
+  bindChange: function (e) {
+    var that = this;
+    var current = e.detail.current;
+    that.setData({ currentTab: e.detail.current });
+    var user_id = wx.getStorageSync('user_id');
+    var loadData = wx.getStorageSync("loadData");
+  },
+  /*点击tab切换*/
+  swichNav: function (e) {
+    var user_id = wx.getStorageSync("user_id")
+    var that = this;
+    if (this.data.currentTab === e.target.dataset.current) {
+      return false;
+    } else {
+      that.setData({
+        currentTab: e.target.dataset.current
+      })
+    }
+  },
+  //判断信息是否完整
+  checkInfo: function (data) {
+    var that = this;
+    var user_id = wx.getStorageSync('user_id');
+    var complete = that.data.complete;
+    var checkInfo = that.data.checkInfo;
+    if (user_id == 0) {
+      wx.navigateTo({
+        url: '/pages/register/personInfo/personInfo'
+      })
+    } else if (user_id != 1 && complete == 1) {
+      if (data == "publishProject") {
         wx.navigateTo({
             url: '/pages/userDetail/networkDetail/networkDetail?id=' + id
         })

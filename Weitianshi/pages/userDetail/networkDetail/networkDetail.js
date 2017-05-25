@@ -6,16 +6,15 @@ Page({
         integrity:30,
         resourcesIndex:9.9,
         user:"",
+        tel:0
     },
     // 好友直接拨打电话
     telephone: function (e) {
       var telephone = e.currentTarget.dataset.telephone;
-      var tel = telephone.indexOf("****");
-      if(tel == -1){
-        console.log("隱藏")
-      }else{
-        console.log(tel)
-      }
+      // var tel = telephone.indexOf("****");
+      // var b = 1;
+      // b = tel == -1 ?　"1":"-1";
+      // console.log(b);
       wx.makePhoneCall({
         phoneNumber: telephone,
       })
