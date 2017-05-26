@@ -189,9 +189,10 @@ Page({
   //分享当前页面
   onShareAppMessage: function () {
     var pro_intro = this.data.project.pro_intro;
+    console.log(this.data.id)
     return {
       title: pro_intro,
-      path: '/pages/myProject/projectDetail/projectDetail?pro_id' + this.data.id
+      path: '/pages/projectDetail/projectDetail?id=' + this.data.id
     }
   },
   //跳转到我的页面
