@@ -5,7 +5,7 @@
       <input placeholder="您的姓名" maxlength="10" value="{{name}}" bindblur="stripscript" />
     </view>
     <view id="telephone" class="flex">
-      <input placeholder="手机号" type="number" bindinput="checkPhone" value="{{telphone}}" />
+      <input placeholder="手机号" type="number" bindblur="checkPhone" value="{{telphone}}" />
     </view>
     <view id="checkCode" class="flex">
       <input placeholder="验证码" type="number" value="{{checkCode}}" bindinput="checkCode2" />
