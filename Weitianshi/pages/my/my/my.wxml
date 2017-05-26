@@ -8,7 +8,7 @@
   <template is="userIntro" data="{{user:user,canEdit:canEdit}}"></template>
 
   <!--寻找案源-->
-  <template is="InvestInfo" data="{{invesst:invest,canEdit:canEdit}}"></template>
+  <template is="InvestInfo" data="{{invest:invest,canEdit:canEdit}}"></template>
 
   <!--资源对接-->
   <template is="resourceInfo" data="{{resource:resource,canEdit:canEdit}}"></template>
