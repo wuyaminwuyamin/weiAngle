@@ -18,7 +18,7 @@ Page({
         console_tips: "",
         error: '0',
         error_text: "",
-        loading: '0',
+       loading: '0',
         industryCard: {
             text: "项目领域*",
             url: "/pages/form/industry/industry?current=2",
@@ -30,7 +30,8 @@ Page({
     onLoad: function (options) {
         console.log("onload industryCurrent2")
         console.log(wx.getStorageSync("industryCurrent2"))
-        console.log(app.globalData.industry)
+        console.log(app.globalData.industry);
+        console.log(options)
         var that = this;
         var user_id = options.user_id;
         var pro_id = options.pro_id;
@@ -149,7 +150,7 @@ Page({
         var provinceNum = wx.getStorageSync("m_provinceNum");
         var cityNum = wx.getStorageSync('m_cityNum');
         var pro_goodness = wx.getStorageSync("pro_goodness");
-
+console.log(pro_goodness);
         //如果已经进入项目领域后时,对返回该页面的值进行修正
         var industryCurrent2=wx.getStorageSync("industryCurrent2");
         var industryCard=this.data.industryCard;
@@ -171,15 +172,16 @@ Page({
             })
         }
         
-        this.setData({
-            belongArea: belongArea,
-            pro_goodness: pro_goodness
-        })
+        // this.setData({
+        //     belongArea: belongArea,
+        //     pro_goodness: pro_goodness
+        // })
 
         if (cityNum) {//如果取到了cityNum
             this.setData({
                 provinceNum: provinceNum,
-                cityNum: cityNum
+                cityNum: cityNum,
+                belongArea: belongArea,
             })
         }
     },
@@ -211,7 +213,7 @@ Page({
         wx.navigateTo({
             url: '/pages/form/industry/industry?current='+2
         })
-        console.log(wx.getStorageSync("industryCurrent2"))
+        console.log(wx.getStorageSync("industryCurrent2"));
     },
 
     //是否独家的效果实现
