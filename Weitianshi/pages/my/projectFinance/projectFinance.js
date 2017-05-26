@@ -13,6 +13,7 @@ Page({
     myPublic_page_end: false
   },
   onShow: function () {
+    wx.removeStorageSync("investors")
     var that = this;
     var user_id = wx.getStorageSync('user_id')
     this.setData({
@@ -30,18 +31,16 @@ Page({
         console.log(res)
         var myProject = res.data.data;
         var length = myProject.length;
-        wx.setStorageSync('myProjectLength', length);
-        for (var i = 0; i < length; i++) {
-          console.log(myProject[i]);
-          investNeed.push(new_data[i])
-        }
+        myProject.forEach((x)=>{
+            myProject.push(x);
+        })
         that.setData({
           myProject: myProject,
         });
       }
     })
   },
-  // 到底加載更多
+  // 上拉加载
   myPublicProject: function () {
     console.log(1);
     var that = this;
@@ -68,7 +67,6 @@ Page({
             console.log("分页加载项目融资")
             console.log(res);
             var myPublic_page_end = res.data.page_end;
-            console.log(myPublic_page_end)
             var newPage = res.data.data;
             console.log(newPage);
             if (newPage != "") {
