@@ -58,7 +58,6 @@ Page({
         var that = this;
         if (!myreg.test(temp)) {
             // console.log('请输入有效的手机号码！');
-            return false;
             that.setData({
                 result: "0"
             })
