@@ -20,6 +20,7 @@ Page({
         var user_id = wx.getStorageSync('user_id');//获取我的user_id
         var page = this.data.page;
         var avatarUrl = wx.getStorageSync('avatarUrl');
+        console.log(user_id,id)
         that.setData({
             index: index,
             id: id,
@@ -39,6 +40,7 @@ Page({
                 console.log(res)
                 var project = res.data.data;
                 var user = res.data.user;
+            
                 var firstName = user.user_name.substr(0, 1) || '';
                 var pro_industry = project.pro_industry;
                 console.log(project)
@@ -104,7 +106,7 @@ Page({
         console.log(pro_intro)
         return {
             title: pro_intro,
-            path: '/pages/projectDetail/projectDetail?pro_id=' + this.data.id
+            path: '/pages/projectDetail/projectDetail?id=' + this.data.id
         }
         console.log(data.project.pro_intro);
     },
