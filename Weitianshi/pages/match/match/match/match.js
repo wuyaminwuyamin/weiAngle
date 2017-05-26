@@ -42,9 +42,10 @@ Page({
     onShow: function () {
         var that = this;
         var current = this.data.currentTab;
+        wx.removeStorageSync("investor");
         // wx.setStorageSync("user_id", "V0VznXa0") 
         // wx.setStorageSync("user_id", "1ryE5Enr")
-        // wx.clearStorage()
+
         //登录状态维护
         app.loginPage(function (user_id) {
             console.log("这里是cb函数")
@@ -168,7 +169,6 @@ Page({
                                 data: res.data.res_data
                             })
                             var res_match = res.data.res_match;
-                            console.log(res_match);
                             var res_find = res.data.res_data.res_find;
                             var res_find_arry = [];
                             var res_id = res.data.res_data.res_id;
@@ -306,29 +306,25 @@ Page({
             url: '/pages/projectDetail/projectDetail?id=' + thisData.id + '&&index=' + index
         })
     },
-    // 项目融资 触底刷新
+    // 项目融资触底刷新
     myPublicProject: function () {
         var that = this;
         var user_id = wx.getStorageSync('user_id');
         var myPublicProject_page = this.data.myPublicProject_page;
         var myPublicCheck = this.data.myPublicCheck;
         var myPublic_page_end = this.data.myPublic_page_end;
-        console.log(user_id, myPublicProject_page, myPublic_page_end)
-        if (myPublicCheck) {
+        if (myPublicCheck) {        
             if (user_id != '') {
-                myPublicProject_page++;
-                this.setData({
-                    myPublicProject_page: myPublicProject_page
-                });
+                //判断数据是不是已经全部显示了
                 if (myPublic_page_end == false) {
-                    wx.showToast({
-                        title: 'loading...',
-                        icon: 'loading'
-                    })
                     myPublicProject_page++;
-                    that.setData({
-                        myPublicProject_page: myPublicProject_page
+                    this.setData({
+                        myPublicProject_page: myPublicProject_page,
+                        myPublicCheck:false
                     });
+                    wx.showLoading({
+                        title: 'loading',
+                    })
                     wx.request({
                         url: url + '/api/project/getMyProject',
                         data: {
@@ -336,49 +332,37 @@ Page({
                             page: myPublicProject_page,
                         },
                         method: 'POST',
-                        success: function (res) {
-                            console.log("分页加载项目融资")
-                            console.log(res);
-                            console.log(myPublic_page_end)
+                        success: function (res) {                  
                             var myPublic_page_end = res.data.page_end;
-                            var newPage = res.data.data;
-
-                            console.log(newPage);
-                            if (newPage != "") {
-                                wx.showToast({
-                                    title: 'loading...',
-                                    icon: 'loading'
-                                })
-                                var myProject = that.data.myProject;
-                                var investors = that.data.investors;
-                                newPage.forEach((x) => {
-                                    myProject.push(x)
-                                    investors.push(x.match_investors)
-                                })
-                                wx.setStorageSync("investors", investors)
-                                // console.log(myPublicProject_page);
-                                that.setData({
-                                    myProject: myProject,
-                                    investors: investors,
-                                    myPublicCheck: true,
-                                    myPublic_page_end: myPublic_page_end
-                                })
-                                console.log("还有")
-                            } else {
-                                console.log("没有");
-                                rqj.errorHide(that, "没有更多了")
-                            }
+                            var newPage = res.data.data;//新请求到的数据
+                            var myProject = that.data.myProject;//现在显示的数据
+                            var investors = that.data.investors;
+                            console.log("触发刷新")
+                            console.log(myPublicProject_page, myPublic_page_end)
+                            console.log("分页加载项目融资")
+                            console.log(res.data);
+                            newPage.forEach((x) => {
+                                myProject.push(x)
+                                investors.push(x.match_investors)
+                            })
+                            wx.setStorageSync("investors", investors)
+                            that.setData({
+                                myProject: myProject,
+                                investors: investors,
+                                myPublicCheck: true,
+                                myPublic_page_end: myPublic_page_end
+                            })                    
+                            wx.hideLoading()
                         },
-                        fail: function (res) {
-                            console.log(res)
-                        },
+                    })
+                }else{
+                    rqj.errorHide(that,"没有更多了",that,3000)
+                    that.setData({
+                        myPublicCheck:true
                     })
                 }
             }
         }
-        this.setData({
-            myPublicCheck: false
-        });
     },
     //寻找项目触底刷新
     yourPayProject: function () {
@@ -491,20 +475,6 @@ Page({
             resourceProjectcheck: false
         });
     },
-    // 资源对接触底刷新
-    /* resourceProject: function () {
-       var that = this;
-       var res_id = this.data.res_id;
-       var resource_page = this.data.resource_page;
-       var user_id = wx.getStorageSync('user_id');
-       var resource_page_end = this.data.resource_page_end;
-       var res_match = this.data.res_match;
-       var resourceProjectcheck = this.data.resourceProjectcheck;
-       rqj.loadMore(resourceProjectcheck,url,that,'/api/resource/getMatchResourceForPage',resource_page,res_id,user_id,resource_page_end)
-       this.setData({
-         resourceProjectcheck: false
-       });
-     },*/
     //回调函数
     callback: function (res, that) {
         console.log("这里是回调函数");

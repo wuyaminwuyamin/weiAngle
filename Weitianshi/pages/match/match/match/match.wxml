@@ -8,11 +8,11 @@
   <view class="swiper-tab-list  {{currentTab==1 ? 'on' : ''}} find_project" data-current="1" bindtap="swichNav">寻找项目</view>
   <view class="swiper-tab-list {{currentTab==2 ? 'on' : ''}}" data-current="2" bindtap="swichNav">资源对接</view>
 </view>
-<swiper current="{{currentTab}}" class="swiper-box" duration="300" style="height:83%" bindchange="bindChange">
+<swiper current="{{currentTab}}" class="swiper-box" duration="300" style="height:82%" bindchange="bindChange">
 
   <!-- 项目融资 -->
   <swiper-item>
-    <scroll-view style="height:100%;" scroll-y="true" bindscrolltolower='myPublicProject'>
+    <scroll-view style="height:100%;" scroll-y="true" scroll-top="0"  bindscrolltolower='myPublicProject'>
       <view>
         <view class="publish publish_my_project" bindtap="myProject">
           <view>发布融资项目</view>

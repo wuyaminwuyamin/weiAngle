@@ -59,7 +59,6 @@ App({
                 wx.setStorageSync("industry", thisData.industry)
                 wx.setStorageSync("scale", thisData.scale)
                 wx.setStorageSync("stage", thisData.stage)
-           console.log(that.globalData.industry)
             },
         })
 

@@ -45,7 +45,6 @@ Page({
       currentTab: options.currentTab
     });
     var investor = this.data.investor;
-    console.log(investor)
     var industry_tag = [];
     var scale_tag = [];
     var stage_tag = [];
@@ -62,12 +61,9 @@ Page({
         scale_tag: scale_tag
       });
     }
-    // console.log(investor)
-    // console.log(industry_tag)
     //项目详情(不包括投资人)
     var id = wx.getStorageSync('user_id');
     if (user_id == id) {
-      console.log(user_id);
       wx.request({
         url: url + '/api/project/showProjectDetail',
         data: {
@@ -77,6 +73,7 @@ Page({
         method: 'POST',
         success: function (res) {
           var project = res.data.data;
+          console.log("项目详情")
           console.log(project);
           var user = res.data.user;
           var bp_title = project.bp_title;
@@ -84,11 +81,9 @@ Page({
           var pro_source = project.pro_source;
           var pro_company_name = project.pro_company_name;
           var pro_company_start_time = project.pro_company_start_time;
-          console.log(pro_company_start_time);
           var pro_name = project.pro_name;
           var pro_statusObject = project.pro_status;
           var pro_status = pro_statusObject.status_name;
-          console.log(pro_status);
           var industy_sort = [];
           var firstName = user.user_name.substr(0, 1);
           that.setData({
@@ -96,7 +91,6 @@ Page({
             user: user,
             firstName: firstName
           });
-          console.log(user)
           var pro_industry = project.pro_industry;
           for (var i = 0; i < pro_industry.length; i++) {
             industy_sort.push(pro_industry[i].industry_name)
@@ -111,7 +105,6 @@ Page({
   },
   //下拉刷新
   onPullDownRefresh: function () {
-    // console.log("开启了下拉刷新");
     wx.stopPullDownRefresh()
   },
   /*滑动切换tab*/
@@ -147,9 +140,6 @@ Page({
     var page_end = this.data.page_end;
     var loadMorecheck = this.data.loadMorecheck;
     if (loadMorecheck) {
-      console.log(
-        user_id, pro_id
-      )
       if (page_end == false) {
         wx.showToast({
           title: 'loading...',
