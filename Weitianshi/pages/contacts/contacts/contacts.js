@@ -163,13 +163,13 @@ Page({
                 success: function (res) {
                     console.log(res)
                     var newPage = res.data.data;
-                    var constacts = that.data.constacts;
+                    var contacts = that.data.contacts;
                     var page_end = res.data.page_end;
                     for (var i = 0; i < newPage.length; i++) {
-                        constacts.push(newPage[i])
+                        contacts.push(newPage[i])
                     }
                     that.setData({
-                        constacts: constacts,
+                        contacts: contacts,
                         page_end: page_end,
                     })
                 },
