@@ -15,5 +15,6 @@
 }
 
 #mobileStyle{
-  color:aqua;
+  color:#009eff;
+  text-decoration: underline;
 }
