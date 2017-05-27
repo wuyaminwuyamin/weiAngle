@@ -141,7 +141,7 @@ Page({
     // 下拉加载
     loadMore: function () {
         var that = this;
-        var netWork_page = this.data.netWork_page;
+        var contacts_page = this.data.contacts_page;
         var user_id = wx.getStorageSync('user_id');
         var page_end = this.data.page_end;
         if (page_end == false) {
@@ -149,15 +149,15 @@ Page({
                 title: 'loading...',
                 icon: 'loading'
             })
-            netWork_page++;
+            contacts_page++;
             that.setData({
-                netWork_page: netWork_page
+                contacts_page: contacts_page
             })
             wx.request({
                 url: url + '/api/user/getMyFollowList',
                 data: {
                     user_id: user_id,
-                    page: netWork_page,
+                    page: contacts_page,
                 },
                 method: 'POST',
                 success: function (res) {
