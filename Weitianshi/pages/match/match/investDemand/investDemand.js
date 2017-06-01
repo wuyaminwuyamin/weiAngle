@@ -22,7 +22,8 @@ Page({
             css: "checkOn",
             value: ["选择领域"],
             id: []
-        }
+        },
+        describle:""
     },
     onLoad: function (options) {
         var user_id = wx.getStorageSync('user_id');
@@ -51,6 +52,7 @@ Page({
                 wx.setStorageSync('industry', thisData.industry);//投资领域
                 wx.setStorageSync('y_scale', thisData.scale);//投资金额
                 wx.setStorageSync('y_stage', thisData.stage);//投资阶段
+                wx.setStorageSync('describle',thisData.describle)
 
 
                 //期望融资
@@ -92,6 +94,7 @@ Page({
                     var y_scale = wx.getStorageSync('y_scale')//投资金额总数
 
                     var y_area = wx.getStorageSync('hotCity')//地区总数
+                    var describle = wx.getStorageSync('describle')//具体描述
 
                     // =========================投资领域==========================//
                     var y_domainValue = [];
@@ -207,7 +210,8 @@ Page({
                     wx.setStorageSync('payareaenchangeValue', y_payArea);
                     wx.setStorageSync('payareaenchangeId', y_payAreaId);
                     wx.setStorageSync('payareaenchangeCheck', y_payAreaAllchecked);
-
+// 具体描述
+                    wx.setStorageSync('describle', describle)
                     that.setData({
                         domainValue: y_domainValue,
                         domainId: y_domainId,
@@ -217,7 +221,8 @@ Page({
                         payStage: y_payStage,
                         payStageId: y_StageId,
                         payMoney: y_payMoney,
-                        payMoneyId: y_payMoneyId
+                        payMoneyId: y_payMoneyId,
+                        investor_desc:describle
                     })
                 }
             },
@@ -274,7 +279,8 @@ Page({
         var payStage = wx.getStorageSync('y_payStage') || "选择阶段";
         var payStageId = wx.getStorageSync('y_payStageId');
         var payMoney = wx.getStorageSync('y_payMoney') || "选择金额";
-        var payMoneyId = wx.getStorageSync('y_payMoneyId')
+        var payMoneyId = wx.getStorageSync('y_payMoneyId');
+        var describle = wx.getStorageSync('describle');
         that.setData({
             domainValue: domainValue,
             domainId: domainId,
@@ -284,7 +290,8 @@ Page({
             payStage: payStage,
             payStageId: payStageId,
             payMoney: payMoney,
-            payMoneyId: payMoneyId
+            payMoneyId: payMoneyId,
+            describle: describle
         })
         // -------------------------项目领域处理部份---------------------------------
         let industryCard=this.data.industryCard;

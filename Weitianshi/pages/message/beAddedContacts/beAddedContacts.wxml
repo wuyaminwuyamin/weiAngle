@@ -27,7 +27,8 @@
                 </view>
                <!--加人脉窗口-->
                <label>
-                <view class="addPic"></view>
+                <!--<view class="addPic"></view>-->
+                <view class="refuse">已拒绝</view>
                </label>
               </view>
               <view class="user_company" wx:if="{{item.user_company_name !=''}}">{{item.user_company_name}}</view>
@@ -76,9 +77,9 @@
             </view>
           </view>
           <view class="addFriend flex">
-           <input type="button" class="agree" value="同意加人脉"/>
+           <input type="button" id="agree" value="同意加人脉"/>
            <label class="long"></label>
-           <input type="button" class="pass" value="拒绝"/>
+           <input type="button" id="pass" value="拒绝"/>
           </view>
         </view>
       </block>

@@ -1,5 +1,4 @@
 /* pages/message/message/message.wxss */
-
 .myApplyProject, .myPushProject, .beAddedContacts {
   background: white;
   text-align: center;

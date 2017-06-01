@@ -86,17 +86,17 @@ Page({
         }
     },
     // 人气
-    // popularity: function () {
-    //     wx.navigateTo({
-    //         url: '/pages/message/browseMe/browseMe'
-    //     })
-    // },
+    popularity: function () {
+        wx.navigateTo({
+            url: '/pages/message/browseMe/browseMe'
+        })
+    },
     // 加我为人脉
-    // attention: function () {
-    //     wx.navigateTo({
-    //         url: '/pages/message/beAddedContacts/beAddedContacts'
-    //     })
-    // },
+    attention: function () {
+        wx.navigateTo({
+            url: '/pages/message/beAddedContacts/beAddedContacts'
+        })
+    },
     //寻找案源
     findProjectEdit: function () {
         if (!this.data.options) {

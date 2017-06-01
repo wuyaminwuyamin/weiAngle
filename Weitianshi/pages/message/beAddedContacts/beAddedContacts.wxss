@@ -37,6 +37,15 @@
   border-radius: 100%;
 }
 
+.refuse {
+  opacity: 0.8;
+  font-size: 28rpx;
+  color: #ccc;
+  letter-spacing: 0;
+  line-height: 28rpx;
+  text-align: left;
+}
+
 /*----------------------------------*/
 
 page {
@@ -89,7 +98,7 @@ page {
   background: white;
   margin-bottom: 32rpx;
   /*width: 686rpx;*/
-  width:100%;
+  width: 100%;
   padding: 32rpx 32rpx 0 32rpx;
 }
 
@@ -286,21 +295,21 @@ page {
 
 .addFriend {
   width: 94%;
-  padding-top:30rpx;
-  padding-bottom:30rpx;
+  padding-top: 30rpx;
+  padding-bottom: 30rpx;
   text-align: center;
   line-height: 88rpx;
   background: #fff;
-  align-items:center;
+  align-items: center;
   justify-content: space-around;
 }
 
-.agree {
+#agree {
   font-size: 28rpx;
   color: #40587a;
   letter-spacing: 0;
-  top:50%;
-  text-align:center;
+  top: 50%;
+  text-align: center;
   background: #fff;
   outline: none;
   border: none;
@@ -312,11 +321,12 @@ page {
   height: 30rpx;
 }
 
-.pass {
+#pass {
   font-size: 28rpx;
   color: #f44c4c;
   letter-spacing: 0;
   line-height: 76rpx;
   text-align: center;
   background: #fff;
+  border: none;
 }

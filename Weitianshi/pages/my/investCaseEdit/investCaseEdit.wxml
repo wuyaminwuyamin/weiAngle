@@ -2,7 +2,7 @@
 <!--pages/my/investCaseEdit/investCaseEdit.wxml-->
 <view id="cardEdit">
   <view class="card">
-    <view class="text">项目名称</view>
+    <view class="text">项目名称*</view>
     <input class="card_case" id="case_name" placeholder="请输入" value="{{case_name}}" bindblur="case_name" maxlength="15" />
   </view>
 
@@ -10,23 +10,23 @@
   <template is="input_jump" data="{{...industryCard}}" ></template>
 
   <view class="card">
-    <view class="text">项目轮次</view>
+    <view class="text">项目轮次*</view>
     <picker class="card_case" bindchange="case_stage" value="{{stage_index}}" range="{{stage}}">
       {{case_stage_name||stage[stage_index]}}
     </picker>
   </view>
   <view class="card">
-    <view class="text">投资金额(万元)</view>
+    <view class="text">投资金额(万元)*</view>
     <input class="" id="case_money" placeholder="请输入" value="{{case_money}}" bindblur="case_money" maxlength="10" type="number"/>
   </view>
   <view class="card">
-    <view class="text">交易时间</view>
+    <view class="text">交易时间*</view>
     <picker class="card_case" mode="date" value="{{case_time}}" start="2017-01-01" end="2027-01-01" bindchange="case_time">
       {{case_time}}
     </picker>
   </view>
   <view class="card">
-    <view class="text">投资地区</view>
+    <view class="text">投资地区*</view>
        <view class="card_case" id="case_local" bindtap="case_local">{{belongArea.belongArea||"请选择"}}</view>
   </view>
 </view>
