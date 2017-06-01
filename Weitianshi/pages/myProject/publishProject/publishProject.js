@@ -269,45 +269,44 @@ Page({
                 },
             })
         } else {
-            that.setData({
-                error: "1"
-            });
-            var errorTime = setTimeout(function () {
-                that.setData({
-                    error: "0"
-                });
-                // console.log('提示已消失')
-            }, 1500);
+          console.log(6);
+           rqj.errorHide(that,"请完整填写信息",1500)
+            // var errorTime = setTimeout(function () {
+            //     that.setData({
+            //         error: "0"
+            //     });
+            //     console.log('提示已消失')
+            // }, 1500);
 
-            if (describe == "") {
-                that.setData({
-                    error_text: "介绍不能为空"
-                })
-            } else if (industryId == 0) {
-                that.setData({
-                    error_text: "领域不能为空"
-                })
-            } else if (console_stage == 0) {
-                that.setData({
-                    error_text: "轮次不能为空"
-                })
-            } else if (console_expect == 0) {
-                that.setData({
-                    error_text: "金额不能为空"
-                })
-            } else if (provinceNum == 0 || cityNum == 0) {
-                that.setData({
-                    error_text: "地区不能为空"
-                })
-            } else if (tips == 4) {
-                that.setData({
-                    error_text: "请选择是否独家"
-                })
-            } else if (pro_goodness == "") {
-                that.setData({
-                    error_text: "请填写项目亮点"
-                })
-            }
+            // if (describe == "") {
+            //     that.setData({
+            //         error_text: "介绍不能为空"
+            //     })
+            // } else if (industryId == 0) {
+            //     that.setData({
+            //         error_text: "领域不能为空"
+            //     })
+            // } else if (console_stage == 0) {
+            //     that.setData({
+            //         error_text: "轮次不能为空"
+            //     })
+            // } else if (console_expect == 0) {
+            //     that.setData({
+            //         error_text: "金额不能为空"
+            //     })
+            // } else if (provinceNum == 0 || cityNum == 0) {
+            //     that.setData({
+            //         error_text: "地区不能为空"
+            //     })
+            // } else if (tips == 4) {
+            //     that.setData({
+            //         error_text: "请选择是否独家"
+            //     })
+            // } else if (pro_goodness == "") {
+            //     that.setData({
+            //         error_text: "请填写项目亮点"
+            //     })
+            // }
         }
     },
 });
