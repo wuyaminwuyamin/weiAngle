@@ -1,1 +1,18 @@
 /* pages/myProject/scanCode/scanCode.wxss */
+.bigBox {
+  margin: 32rpx 32rpx 0 32rpx;
+  background:white;
+}
+
+.followPerson, .brightPoint, .material, .corePerson, .information, .milestone,
+.signFA {
+  background: #fafafa;
+  border-radius: 2px;
+  padding:32rpx 24rpx 32rpx 24rpx;
+}
+.title{
+  font-size:14px;
+color:#333333;
+line-height:14px;
+text-align:left;
+}
