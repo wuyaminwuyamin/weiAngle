@@ -29,10 +29,10 @@
       <view class="QR_point">长按或微信扫码查看更多</view>
     </view>
   </view>
-  <view class="addFriend flex">
+</view>
+ <view class="addFriend flex">
     <!--<input type="button" id="share" value="分享给朋友" bindtap="sharePic" />-->
     <button open-type="share" id="share">分享给朋友</button>
     <label class="long"></label>
     <input type="button" id="QR_save" value="保存二维码图片" bindtap="savePic" />
   </view>
-</view>

@@ -155,7 +155,9 @@ page {
   background: #40587a;
   width: 750rpx;
   height: 98rpx;
-  
+  position: fixed;
+  left: 0;
+  bottom:0
 }
 
 #share {
@@ -165,15 +167,16 @@ page {
   text-align: center;
   background: #40587a;
   padding: 24rpx 98rpx 30rpx 122rpx;
-  border: 0rpx solid #40587a;
-outline: none;
+  border: none !important;
+  outline: none;
+  position:static;
 }
 
 .addFriend .long {
   background: #e6e6e6;
   width: 4rpx;
   height: 30rpx;
-  margin-top:32rpx;
+  margin-top: 32rpx;
 }
 
 #QR_save {

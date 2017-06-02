@@ -19,7 +19,7 @@ Page({
         var that = this;
         var payArea = '';
         wx.request({
-          url: url+'/api/category/getHotCity',
+          url: app.url_common+'/api/category/getHotCity',
           data: {},
           method: 'POST',
           success: function(res){

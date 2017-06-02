@@ -20,7 +20,7 @@ Page({
     })
     //获取资源分类名称和id
     wx.request({
-      url: url + '/api/category/getResourceCategory',
+      url: app.url_common + '/api/category/getResourceCategory',
       data: {},
       method: 'POST',
       success: function (res) {
