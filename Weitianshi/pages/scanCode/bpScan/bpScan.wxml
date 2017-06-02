@@ -87,7 +87,7 @@
             13年开发经验，这里是一段话，这里是一段他的个人介绍，字数
           </view>
         </view>
-        <view class="line"></view>
+
         <view class="personInfo">
           <view class="personInfoList flex">
             <label class="personName">顾源</label>
@@ -95,7 +95,7 @@
             <label class="scale">股权比例：10%</label>
           </view>
           <view class="introduce">
-            13年开发经验，这里是一段话，这里是一段他的个人介绍，字数
+            13年开发经验，这里是一段话，这里是一段他的个人介绍，字数需要少于500个字,如果超过500个字,那么点击更多
           </view>
         </view>
       </view>
@@ -130,6 +130,28 @@
         <view class="purposeContent">这里是项目的亮点，字数会在500个字以内，所以很有可能一行显示不下，默认就显示两行如果显示…
         </view>
       </view>
+      <view class="investBox">
+        <view class="invest">
+          <view class="investBoxContent flex">
+            <image class="case_pic" src="/img/dot@3x.png"></image>
+            <view class="case_time">2014.04</view>
+            <view class="case_money">100-500万</view>
+            <view class="case_turn">A轮</view>
+          </view>
+          <view class="investContent">
+            天使融资
+          </view>
+        </view>
+        <view class="invest">
+          <view class="investBoxContent flex">
+            <image class="case_pic" src="/img/dot@3x.png"></image>
+            <view class="case_time">2014.04</view>
+            <view class="case_money">100-500万</view>
+            <view class="case_turn">A轮</view>
+          </view>
+          <view class="investContent">天使投资、华人资本、微天使</view>
+        </view>
+      </view>
     </view>
   </view>
   <view class="milestone">
@@ -138,11 +160,16 @@
       <view class="title">里程碑</view>
     </view>
     <view class="milestoneContentBox">
-        <view class="milestoneContent flex">
-          <image class="case_pic" src="/img/dot@3x.png"></image>
-          <view class="case_time">2014.07</view>
-          <view class="case_content">App的下载量冲破1000万</view>
-        </view>
+      <view class="milestoneContent flex">
+        <image class="case_pic" src="/img/dot@3x.png"></image>
+        <view class="case_time">2014.07</view>
+        <view class="case_content">App的下载量冲破1000万</view>
+      </view>
+      <view class="milestoneContent flex">
+        <image class="case_pic" src="/img/dot@3x.png"></image>
+        <view class="case_time">2014.07</view>
+        <view class="case_content">App的下载量，冲破1000万，冲破1000,用户很多的呢</view>
+      </view>
     </view>
   </view>
   <view class="signFA">
@@ -176,5 +203,3 @@
     </view>
   </view>
 </view>
-
-
