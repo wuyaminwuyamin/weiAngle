@@ -22,7 +22,7 @@ Page({
     var that = this;
     var industry=wx.getStorageSync("industry");
     wx.request({
-      url: url + '/api/category/getWxProjectCategory',
+      url: app.url_common + '/api/category/getWxProjectCategory',
       method: 'POST',
       success: function (res) {
         var stage = res.data.data.stage;

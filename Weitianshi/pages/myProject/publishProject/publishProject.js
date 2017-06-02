@@ -41,7 +41,7 @@ Page({
         wx.setStorageSync('tips', 4);
         //请求地区,标签,期望融资,项目阶段数据
         wx.request({
-            url: url + '/api/category/getWxProjectCategory',
+            url: app.url_common + '/api/category/getWxProjectCategory',
             method: 'POST',
             success: function (res) {
                 console.log("各种条目分类")
@@ -183,7 +183,7 @@ Page({
                             var credential = res.result;//二维码扫描信息
                             //发送扫描结果和项目相关数据到后台
                             wx.request({
-                                url: url + '/api/auth/writeUserInfo',
+                                url: app.url_common + '/api/auth/writeUserInfo',
                                 data: {
                                     type: 'create',
                                     credential: credential,

@@ -27,7 +27,7 @@ Page({
         var cityindex=0
         // current==0发布融资项目 current==1 维护融资项目 current==2 添加投资案例
         wx.request({
-            url: url+'/api/category/getArea',
+            url:app.url_common+'/api/category/getArea',
             data: {
                 pid: 0
             },
@@ -51,7 +51,7 @@ Page({
                 })
                 
                 wx.request({
-                    url: url+'/api/category/getArea',
+                    url: app.url_common+'/api/category/getArea',
                     data: {
                         pid: provinceNum//请求获取省的id
                     },
@@ -111,7 +111,7 @@ Page({
 
         // console.log(this.data.console_province);
         wx.request({
-            url: url+'/api/category/getArea',
+            url: app.url_common+'/api/category/getArea',
             data: {
                 pid: id 
             },
