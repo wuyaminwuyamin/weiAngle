@@ -1,5 +1,6 @@
 {
     "pages": [
+       "pages/scanCode/bpScan/bpScan",
         "pages/match/match/match/match",
         "pages/search/filter4/filter4",
         "pages/match/match/resourceDemand/resourceDemand",
@@ -52,7 +53,7 @@
         "pages/myProject/pushTo/pushTo",
         "pages/myProject/progress/progress",
         "pages/myProject/follow/follow",
-        "pages/my/my/my",
+      "pages/my/my/my",
         "pages/my/investCase/investCase",
         "pages/my/sharePage/sharePage",
         "pages/my/investCaseEdit/investCaseEdit",

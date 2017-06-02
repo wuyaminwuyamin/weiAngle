@@ -33,15 +33,15 @@
       <view class="user_email flex" wx:if="{{user.user_email}}">
         <view>邮箱：{{user.user_email}}</view>
         <label>
-          <button open-type="share" class="user_edit" plain="{{true}}">
-            <image src="/img/icon-Share2@3x.png"></image>
+          <button  class="user_edit" plain="{{true}}" bindtap="shareSth">
+            <image src="/img/img-share.png"></image>
           </button>
         </label>
       </view>
       <view class="user_email flex" wx:if="{{!user.user_email}}">邮箱号码：暂无编辑
         <label>
           <button open-type="share" class="user_edit" plain="{{true}}">
-            <image src="/img/icon-Share2@3x.png"></image>
+            <image src="/img/img-share.png"></image>
           </button>
         </label>
       </view>

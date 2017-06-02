@@ -172,10 +172,14 @@ Page({
             modal: 0
         })
     },
+    shareSth:function(){
+      wx.navigateTo({
+        url: '/pages/my/qrCode/qrCode',
+      })
+    },
     //分享页面
     onShareAppMessage: function () {
         var id = wx.getStorageSync('user_id');
-        // var that = getCurrentPages()[getCurrentPages().length - 1].__route__
         return app.sharePage(id)
     },
 

@@ -1,3 +1,22 @@
 <!--pages/myProject/scanCode/scanCode.wxml-->
-<view>请在pc端登录</view>
-<view>v.weitianshi.cn</view>
+<view class="bigBox">
+<view class="followPerson">
+<view class="title">
+<image src="/img/myOn.png" class="titlePic"></image>
+跟进人</view>
+</view>
+<view class="brightPoint">
+<view class="title">項目亮点</view></view>
+<view class="material">
+<view class="title">项目资料
+<image src="/img/icon-jieshao.png" class="titlePic"></image>
+</view></view>
+<view class="corePerson">
+<view class="title">核心成员</view></view>
+<view class="information">
+<view class="title">信息</view></view>
+<view class="milestone">
+<view class="title">里程碑</view></view>
+<view class="signFA">
+<view class="title">FA签约</view></view>
+</view>

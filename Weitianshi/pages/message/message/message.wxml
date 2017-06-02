@@ -25,7 +25,7 @@
 <view class="beAddedContacts">
   <view class="addedContacts flex" bindtap="beAddedContacts">
     <view class="flex title">
-      <image class="title_icon" src="/img/icon-miaoshu@3x.png"></image>
+      <image class="title_icon" src="/img/img-personMessage.png"></image>
       <view class="title">
         人脉申請
       </view>

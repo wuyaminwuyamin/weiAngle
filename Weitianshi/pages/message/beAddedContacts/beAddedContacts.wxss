@@ -295,13 +295,14 @@ page {
 
 .addFriend {
   width: 94%;
-  padding-top: 30rpx;
-  padding-bottom: 30rpx;
+  padding-top: 16rpx;
+  /*padding-bottom: 30rpx;*/
   text-align: center;
   line-height: 88rpx;
   background: #fff;
   align-items: center;
   justify-content: space-around;
+  border-top:2rpx solid #e6e6e6;
 }
 
 #agree {
