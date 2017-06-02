@@ -12,7 +12,7 @@
       "pages/scanCode/bpScan/bpScan","pages/form/businessContribution/businessContribution",
         "pages/form/tollType/tollType",
         "pages/form/hasRunningBusiness/hasRunningBusiness",
-        
+        "pages/scanCode/bpScan/bpScan",
         "pages/scanCode/bpScanSuccess/bpScanSuccess",
         "pages/scanCode/cardScan/cardScan",
         "pages/scanCode/cardScanEdit/cardScanEdit",

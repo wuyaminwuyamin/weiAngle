@@ -124,18 +124,21 @@ page {
   text-align: left;
 }
 
-.line {
-  margin: 24rpx 0;
+.personInfo:last-child {
+  border-bottom: none;
+}
+
+.personInfo:first-child {
+  padding: 24rpx 0;
+}
+
+.personInfo {
+  border-bottom: 2rpx solid #e6e6e6;
+  padding-top: 24rpx;
 }
 
 .personInfoList {
   margin-bottom: 16rpx;
-}
-
-.line {
-  height: 2rpx;
-  width: 100%;
-  background: #e6e6e6;
 }
 
 .scale {
@@ -151,7 +154,7 @@ page {
   font-size: 22rpx;
   color: #666;
   letter-spacing: 0;
-  line-height: 22rpx;
+  line-height: 30rpx;
   text-align: left;
 }
 
@@ -198,6 +201,10 @@ page {
   text-align: center;
 }
 
+.purpose {
+  margin-bottom: 48rpx;
+}
+
 .purposeTitle {
   font-size: 24rpx;
   color: #999;
@@ -209,11 +216,53 @@ page {
 .purposeContent {
   font-size: 26rpx;
   color: #666;
-  line-height: 26rpx;
+  line-height: 30rpx;
   text-align: left;
 }
-.milestoneContentBox{
-  
+
+.case_money {
+  font-size: 26rpx;
+  color: #333;
+  line-height: 26rpx;
+  text-align: left;
+  width:64%;
+}
+
+.case_turn {
+  border-radius: 62rpx;
+  font-size: 20rpx;
+  text-align: right;
+  border: 1rpx solid #40587a;
+  padding: 2rpx;
+}
+.invest{
+  padding-bottom:48rpx;
+  border-left:1px solid #e6e6e6;
+}
+.invest:last-child{
+  border:none;
+  padding:0;
+}
+.investContent {
+  font-size: 22rpx;
+  color: #666;
+  line-height: 22rpx;
+  text-align: left;
+  padding-left:32rpx;
+}
+
+.milestoneBox {
+  margin-bottom: 48rpx;
+}
+
+.milestoneContent:last-child {
+  border-left: none;
+  padding: 0;
+}
+
+.milestoneContent {
+  border-left: 2rpx solid #e6e6e6;
+  padding-bottom: 48rpx;
 }
 
 .case_time {
@@ -221,15 +270,22 @@ page {
   color: #333;
   line-height: 24rpx;
   text-align: left;
+  margin-right: 48rpx;
 }
-.case_pic{
-  width:16rpx;
-  height:16rpx;
+
+.case_pic {
+  margin-top: -1rpx;
+  width: 16rpx;
+  height: 16rpx;
+  margin-right: 24rpx;
+  margin-left: -6rpx;
+  z-index: 3;
 }
+
 .case_content {
   font-size: 24rpx;
   color: #666;
-  line-height: 24rpx;
+  line-height: 32rpx;
   text-align: left;
 }
 
