@@ -4,6 +4,7 @@ App({
     onLaunch: function (options) {
         var options = options;
         let url = this.globalData.url;
+        let url_common = this.globalData.url_common;
         var that = this;
         //如果是在是点击群里名片打开的小程序,则向后台发送一些信息
         if (options.shareTicket) {
@@ -23,7 +24,7 @@ App({
                                 console.log(code, path, encryptedData, iv, url)
                                 //向后台发送信息
                                 wx.request({
-                                    url: url + '/api/log/clickLogRecord',
+                                    url: url_common + '/api/log/clickLogRecord',
                                     data: {
                                         code: code,
                                         path: path,
@@ -44,7 +45,7 @@ App({
 
         //获取各分类的信息并存入缓存
         wx.request({
-            url: url + '/api/category/getWxProjectCategory',
+            url: app.url_common + '/api/category/getWxProjectCategory',
             method: 'POST',
             success: function (res) {
                 var thisData = res.data.data;
@@ -64,7 +65,7 @@ App({
 
         //获取热门城市并存入缓存
         wx.request({
-            url: url + '/api/category/getHotCity',
+            url: url_common + '/api/category/getHotCity',
             data: {},
             method: 'POST',
             success: function (res) {
@@ -278,7 +279,7 @@ App({
                                         console.log(code, path)
                                         //发送请求到后台
                                         wx.request({
-                                            url: url + '/api/log/shareLogRecord',
+                                            url: url_common + '/api/log/shareLogRecord',
                                             method: "POST",
                                             data: {
                                                 code: code,
@@ -296,7 +297,7 @@ App({
                                 console.log(code, path)
                                 //发送请求到后台
                                 wx.request({
-                                    url: url + '/api/log/shareLogRecord',
+                                    url: url_common + '/api/log/shareLogRecord',
                                     method: "POST",
                                     data: {
                                         code: code,
@@ -440,6 +441,7 @@ App({
     //初始本地缓存
     globalData: {
         error: 0,
-        url: "https://dev.weitianshi.cn"
+        url: "https://wx.dev.weitianshi.cn",
+        url_common:"https://dev.weitianshi.cn"
     }
 });

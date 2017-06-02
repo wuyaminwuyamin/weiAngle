@@ -286,7 +286,7 @@ Page({
               var project_id = that.data.pro_id;
               console.log(project_id);
               wx.request({
-                url: url + '/api/auth/writeUserInfo',
+                url: app.url_common + 'api/auth/writeUserInfo',
                 data: {
                   type: 'update',
                   user_id: user_id,
