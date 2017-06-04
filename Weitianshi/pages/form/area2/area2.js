@@ -11,30 +11,30 @@ Page({
         error: "0",
         error_text: "",
         enchangeCheck: [],
-        enchangeValue : [],
-        enchangeId : []
+        enchangeValue: [],
+        enchangeId: []
     },
-    
+
     onLoad: function () {
         var that = this;
         var payArea = '';
         wx.request({
-          url: app.url_common+'/api/category/getHotCity',
-          data: {},
-          method: 'POST',
-          success: function(res){
-            console.log(res)
-              var payArea = res.data.data;
-              for(var i=0;i<payArea.length; i++){
-                payArea[i].checked =false;
+            url: app.globalData.url_common + '/api/category/getHotCity',
+            data: {},
+            method: 'POST',
+            success: function (res) {
+                console.log(res)
+                var payArea = res.data.data;
+                for (var i = 0; i < payArea.length; i++) {
+                    payArea[i].checked = false;
+                }
+                that.setData({
+                    payArea: payArea
+                })
+                wx.setStorageSync('hotCity', payArea)
             }
-             that.setData({
-                payArea: payArea
-             })
-             wx.setStorageSync('hotCity', payArea)
-          }
         });
-        
+
         wx.setStorageSync('payArea', payArea);
         var aaa = wx.getStorageSync('y_payArea');
         var bbb = wx.getStorageSync('y_payAreaId');
@@ -43,16 +43,16 @@ Page({
         var enchangeValue = wx.getStorageSync('payareaenchangeValue') || [];
         var enchangeId = wx.getStorageSync('payareaenchangeId') || [];
         that.setData({
-            enchangeCheck : enchangeCheck,
-            enchangeValue : enchangeValue,
-            enchangeId : enchangeId,
+            enchangeCheck: enchangeCheck,
+            enchangeValue: enchangeValue,
+            enchangeId: enchangeId,
             index: enchangeId
         });
         // console.log(enchangeValue,enchangeId)
         // var payArea = wx.getStorageSync('y_area')
     },
     onShow: function () {
-      // 页面显示
+        // 页面显示
     },
     //下拉刷新
     onPullDownRefresh: function () {
@@ -100,7 +100,7 @@ Page({
         var enchangeValue = this.data.enchangeValue;//已被选中的名字
         var enchangeId = this.data.enchangeId;//已添加的数字
         var enchangeCheck = this.data.enchangeCheck;//是否被选中
-        for(var i=0; i<enchange.length; i++){
+        for (var i = 0; i < enchange.length; i++) {
             enchangeCheck.push(enchange[i].checked)//被选中的状态
         }
 
@@ -109,24 +109,24 @@ Page({
         // console.log(enchangeCheck)
         // console.log(enchangeCheck[e_index]);
         if (enchangeCheck[e_index] == false) {//当确认按钮时
-        if (enchangeValue.length < 5) {
-            enchangeCheck[e_index] = true;
-            enchange[e_index].checked = true;
-            enchangeValue.push(enchange[e_index].area_title)
-            // console.log(enchange[e_index].area_id);
-            enchangeId.push(enchange[e_index].area_id)//点击时把数据的ID添加起来
-        } else {
-            rqj.errorHide(that, "最多可选择五项", 1000)
-        }
+            if (enchangeValue.length < 5) {
+                enchangeCheck[e_index] = true;
+                enchange[e_index].checked = true;
+                enchangeValue.push(enchange[e_index].area_title)
+                // console.log(enchange[e_index].area_id);
+                enchangeId.push(enchange[e_index].area_id)//点击时把数据的ID添加起来
+            } else {
+                rqj.errorHide(that, "最多可选择五项", 1000)
+            }
         } else {//当取消按钮时
-        enchangeCheck[e_index] = false;
-        enchange[e_index].checked = false;
-        //   console.log(enchangeValue);
-        //   console.log(enchangeValue.indexOf(e_value))
-        enchangeValue.splice(enchangeValue.indexOf(e_value), 1)
-        //   console.log(enchangeId);
-        //   console.log(enchangeId.indexOf(enchange[e_index].area_id))
-        enchangeId.splice(enchangeId.indexOf(enchange[e_index].area_id), 1)
+            enchangeCheck[e_index] = false;
+            enchange[e_index].checked = false;
+            //   console.log(enchangeValue);
+            //   console.log(enchangeValue.indexOf(e_value))
+            enchangeValue.splice(enchangeValue.indexOf(e_value), 1)
+            //   console.log(enchangeId);
+            //   console.log(enchangeId.indexOf(enchange[e_index].area_id))
+            enchangeId.splice(enchangeId.indexOf(enchange[e_index].area_id), 1)
         }
         this.setData({
             enchange: enchange,
@@ -180,7 +180,7 @@ Page({
                 wx.setStorageSync('y_payAreaId', '');
                 wx.setStorageSync('payareaenchangeValue', checked)
                 wx.setStorageSync('payareaenchangeId', index)
-                wx.setStorageSync('payareaenchangeCheck',enchangeCheck)
+                wx.setStorageSync('payareaenchangeCheck', enchangeCheck)
                 // wx.setStorageSync('domainChecked', checked)
             } else {
                 wx.setStorageSync('y_payArea', checked);
@@ -188,7 +188,7 @@ Page({
                 // wx.setStorageSync('domainChecked', checked)
                 wx.setStorageSync('payareaenchangeValue', checked)
                 wx.setStorageSync('payareaenchangeId', index)
-                wx.setStorageSync('payareaenchangeCheck',enchangeCheck)
+                wx.setStorageSync('payareaenchangeCheck', enchangeCheck)
             }
 
             // console.log(checked, index);

@@ -28,7 +28,7 @@ Page({
     },
     onLoad: function () {
         var that = this;
-      
+
         //初始化
         wx.removeStorageSync("industryCurrent0")
         wx.setStorageSync('describe', "");
@@ -41,7 +41,7 @@ Page({
         wx.setStorageSync('tips', 4);
         //请求地区,标签,期望融资,项目阶段数据
         wx.request({
-            url: app.url_common + '/api/category/getWxProjectCategory',
+            url: app.globalData.url_common + '/api/category/getWxProjectCategory',
             method: 'POST',
             success: function (res) {
                 console.log("各种条目分类")
@@ -183,7 +183,7 @@ Page({
                             var credential = res.result;//二维码扫描信息
                             //发送扫描结果和项目相关数据到后台
                             wx.request({
-                                url: app.url_common + '/api/auth/writeUserInfo',
+                                url: app.globalData.url_common + '/api/auth/writeUserInfo',
                                 data: {
                                     type: 'create',
                                     credential: credential,
@@ -269,8 +269,8 @@ Page({
                 },
             })
         } else {
-          console.log(6);
-           rqj.errorHide(that,"请完整填写信息",1500)
+            console.log(6);
+            rqj.errorHide(that, "请完整填写信息", 1500)
             // var errorTime = setTimeout(function () {
             //     that.setData({
             //         error: "0"
