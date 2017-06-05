@@ -21,11 +21,11 @@
   <view class="brightPoint">
     <view class="brightPointBox flex">
       <image src="/img/img-star.png" class="titlePic"></image>
-      <view class="title star">項目亮点</view>
+      <view class="title star">项目亮点</view>
     </view>
-    <view class="brightContent">
-      这里是项目的亮点，字数会在500个字以内，所以很有可能一行显示不下，默认就显示两行如果显示…
-    </view>
+    <view class="brightContent" bindtap="more" value="{{number}}">
+      这里是项目的亮点，字数会在500个字以内，所以很有可能一行显示不下，默认就显示两行如果显示容<label class="more">…更多</label>
+   </view>
   </view>
   <view class="material">
     <view class="materialBox flex">

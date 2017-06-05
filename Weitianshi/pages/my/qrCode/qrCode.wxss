@@ -63,7 +63,7 @@ page {
 }
 
 .user_right {
-  width: 26%;
+  width: 22%;
   height: 120rpx;
 }
 

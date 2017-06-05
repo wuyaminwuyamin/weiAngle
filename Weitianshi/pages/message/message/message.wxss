@@ -1,4 +1,5 @@
 /* pages/message/message/message.wxss */
+
 .myApplyProject, .myPushProject, .beAddedContacts {
   background: white;
   text-align: center;
@@ -8,12 +9,12 @@
 .addedContacts {
   height: 56rpx;
   padding: 40rpx 21rpx 36rpx 50rpx;
-  
 }
-.title{
-  justify-content:space-between;
 
+.title {
+  justify-content: space-between;
 }
+
 .title_icon {
   width: 52rpx;
   height: 56rpx;
@@ -22,28 +23,27 @@
 
 .addedContacts .title {
   font-size: 36rpx;
-  text-align: center;
+  text-align: left;
+  color: #333;
+  line-height: 54rpx;
 }
 
 .flex {
-  display:flex;
+  display: flex;
+}
+.number{
+  margin-top:4rpx;
 }
 
 .huo-num {
   background: #f44c4c;
+  color: #fff;
   width: 20px;
   height: 16px;
-  border-radius: 50%;
-  margin-left:298rpx;
-}
-
-.huo-num label {
-  width: 26rpx;
-  height: 24rpx;
   font-size: 24rpx;
-  color: #fff;
-  letter-spacing: 0;
-  line-height: 24rpx;
+  border-radius: 50%;
+  margin-left: 298rpx;
+  padding-top: 6rpx;
 }
 
 .iconEdit {

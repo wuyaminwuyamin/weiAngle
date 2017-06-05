@@ -1,6 +1,7 @@
 var rqj = require('../../Template/Template.js')
 var app = getApp();
 var url = app.globalData.url;
+var url_common = app.globalData.url_common;
 Page({
     data: {
         name: "",
@@ -41,7 +42,7 @@ Page({
         var pattern = new RegExp("[`~!@#$^&*()=|{}':;',\\[\\].<>/?~！@#￥……&*（）——|{}【】‘；：”“'。，、？]");
         var rs = "";
         var name = e.detail.value;
-        // console.log(name)
+        console.log(name)
         for (var i = 0; i < name.length; i++) {
             rs = rs + name.substr(i, 1).replace(pattern, '');
         }
