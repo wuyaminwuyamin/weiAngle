@@ -1,6 +1,7 @@
 var rqj = require('../../../Template/Template.js');
 var app = getApp()
 var url = app.globalData.url
+var url_common = app.globalData.url_common;
 var save = true;
 Page({
     data: {
@@ -52,8 +53,8 @@ Page({
                 wx.setStorageSync('industry', thisData.industry);//投资领域
                 wx.setStorageSync('y_scale', thisData.scale);//投资金额
                 wx.setStorageSync('y_stage', thisData.stage);//投资阶段
-                wx.setStorageSync('describle',thisData.describle)
-
+                wx.setStorageSync('describle',thisData.describle);//具體描述
+console.log
 
                 //期望融资
                 var scale = wx.getStorageSync('y_scale');
@@ -87,7 +88,7 @@ Page({
                 console.log("检查是否发布过信息")
                 console.log(res)
                 if (res.data.data != '') {
-                    //获取已存有的投资领域,投资阶段,投资金额,投次地区
+                    //获取已存有的投资领域,投资阶段,投资金额,投資地区
                     var thisData = res.data.data;
                     var industry = wx.getStorageSync('industry')//投资领域总数                   
                     var y_stage = wx.getStorageSync('y_stage')//投资阶段总数
@@ -95,7 +96,7 @@ Page({
 
                     var y_area = wx.getStorageSync('hotCity')//地区总数
                     var describle = wx.getStorageSync('describle')//具体描述
-
+                    
                     // =========================投资领域==========================//
                     var y_domainValue = [];
                     var y_domainId = [];
@@ -210,7 +211,7 @@ Page({
                     wx.setStorageSync('payareaenchangeValue', y_payArea);
                     wx.setStorageSync('payareaenchangeId', y_payAreaId);
                     wx.setStorageSync('payareaenchangeCheck', y_payAreaAllchecked);
-// 具体描述
+                    // 具体描述
                     wx.setStorageSync('describle', describle)
                     that.setData({
                         domainValue: y_domainValue,
@@ -273,7 +274,7 @@ Page({
         //填入所属领域,项目介绍,所在地区
         var domainValue = wx.getStorageSync('y_domainValue') || "选择领域";
         var domainId = wx.getStorageSync('y_domainId');
-        var describe = wx.getStorageSync('y_describe');
+        var y_describe = wx.getStorageSync('y_describe');
         var payArea = wx.getStorageSync('y_payArea') || "选择城市";
         var payAreaId = wx.getStorageSync('y_payAreaId');
         var payStage = wx.getStorageSync('y_payStage') || "选择阶段";
@@ -284,14 +285,14 @@ Page({
         that.setData({
             domainValue: domainValue,
             domainId: domainId,
-            describe: describe,
+            y_describe: y_describe,
             payArea: payArea,
             payAreaId: payAreaId,
             payStage: payStage,
             payStageId: payStageId,
             payMoney: payMoney,
-            payMoneyId: payMoneyId,
-            describle: describle
+            payMoneyId: payMoneyId
+            // describle: describle
         })
         // -------------------------项目领域处理部份---------------------------------
         let industryCard=this.data.industryCard;
@@ -329,7 +330,7 @@ Page({
         var that = this;
         wx.setStorageSync('y_describe', e.detail.value);
         that.setData({
-            describe: e.detail.value
+          y_describe: e.detail.value
         })
     },
 
@@ -350,7 +351,7 @@ Page({
         save = !save;
         var that = this;
         var theData = that.data;
-        var describe = this.data.describe;
+        var y_describe = this.data.y_describe;
         var industryValue = this.data.industryCard.value;
         var industryId = this.data.industryCard.id;
         var payArea = this.data.payArea;
@@ -361,7 +362,7 @@ Page({
         var payMoneyId = this.data.payMoneyId;
         var user_id = wx.getStorageSync('user_id');
 
-        console.log(industryId, payStageId, payMoneyId, payAreaId, describe)
+        console.log(industryId, payStageId, payMoneyId, payAreaId, y_describe)
         if (industryValue !== "选择领域" && payMoney != "选择金额" && payArea !== "选择城市" && payStage !== "选择阶段") {
             wx.request({
                 url: url + '/api/investors/insertInvestor',
@@ -371,7 +372,7 @@ Page({
                     investor_stage: payStageId,
                     investor_scale: payMoneyId,
                     investor_area: payAreaId,
-                    investor_desc: describe
+                    investor_desc: y_describe
 
                 },
                 method: 'POST',

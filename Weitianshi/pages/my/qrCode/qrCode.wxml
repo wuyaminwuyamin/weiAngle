@@ -25,7 +25,7 @@
   <view class="QR_box">
     <view class="QR_title">投资名片-智能精准匹配投融资双方神器</view>
     <view class="QR_img">
-      <image class="QR_pic" src="/img/img-example.png"></image>
+      <image class="QR_pic" src="{{url}}"></image>
       <view class="QR_point">长按或微信扫码查看更多</view>
     </view>
   </view>

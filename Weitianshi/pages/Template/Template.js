@@ -1,7 +1,7 @@
 var _this
 var app = getApp();
 var url = app.globalData.url;
-
+var url_common = app.globalData.url_common;
 // 错误提示消失
 function errorHide(target, errorText, time) {
     var that = target;

@@ -1,6 +1,7 @@
 var rqj = require('../../Template/Template.js');
 var app = getApp();
 var url = app.globalData.url;
+var url_common = app.globalData.url_common;
 Page({
     data: {
         describe: "",
@@ -286,7 +287,7 @@ Page({
                             var project_id = that.data.pro_id;
                             console.log(project_id);
                             wx.request({
-                                url: app.globalData.url_common + 'api/auth/writeUserInfo',
+                                url: app.globalData.url_common + '/api/auth/writeUserInfo',
                                 data: {
                                     type: 'update',
                                     user_id: user_id,
