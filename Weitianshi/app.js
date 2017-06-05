@@ -126,7 +126,7 @@ App({
                         that.globalData.encryptedData = res.encryptedData;
                         that.globalData.iv = res.iv;
                         wx.request({
-                            url: 'https://dev.weitianshi.cn/api/wx/returnOauth',
+                            url: 'https://wx.dev.weitianshi.cn/api/wx/returnOauth',
                             data: {
                                 code: code,
                                 encryptedData: res.encryptedData,
@@ -153,7 +153,7 @@ App({
                     //用户不授权
                     fail: function (res) {
                         wx.request({
-                            url: 'https://dev.weitianshi.cn/api/wx/returnOauth',
+                            url: 'https://wx.dev.weitianshi.cn/api/wx/returnOauth',
                             data: {
                                 code: code,
                             },
