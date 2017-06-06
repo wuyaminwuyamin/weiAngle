@@ -33,7 +33,7 @@ Page({
                 var res_give = resource_data.res_give; //可提供的资源
                 var describe = resource_data.res_desc;//具体描述
                 var enchange = res.data.data;//当前可提供资源的object
-                // console.log(enchange);
+                console.log(describe);
                 var target = res.data.data;//当前在寻求资源的object
                 var res_find_name = [];//寻求的资源名称和id
                 var res_find_id = []; //提供的名称和id
