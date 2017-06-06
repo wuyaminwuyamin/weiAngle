@@ -26,12 +26,10 @@ Page({
             method: 'POST',
             success: function (res) {
                 //判断用户是否填写过资源需求
-                var resource_data = wx.getStorageSync('resource_data');
                 console.log(res);
-                console.log(resource_data)
-                var res_find = resource_data.res_find;//寻求的资源
-                var res_give = resource_data.res_give; //可提供的资源
-                var describe = resource_data.res_desc;//具体描述
+                var res_find = wx.getStorageSync("resource_find");//寻求的资源
+                var res_give = wx.getStorageSync("resource_give"); //可提供的资源
+                var describe = wx.getStorageSync("resource_desc");//具体描述
                 var enchange = res.data.data;//当前可提供资源的object
                 console.log(describe);
                 var target = res.data.data;//当前在寻求资源的object
@@ -39,7 +37,6 @@ Page({
                 var res_find_id = []; //提供的名称和id
                 var res_give_name = [];//可提供的资源添加名称和id
                 var res_give_id = [];
-
                 if (res_find) { // 可寻求的资源
                     // 遍历 可寻求资源的长度,遍历取出可提供的名字和id
                     for (var i = 0; i < res_find.length; i++) {
@@ -76,13 +73,7 @@ Page({
                         target[i].checked = false;
                     }
                     targetCheck.push(target[i].checked)
-                    // console.log(targetCheck)
                 }
-                /*console.log("资源需求可提供资源处理后数据")
-                console.log(enchange)
-                console.log( enchangeValue)
-                console.log( enchangeId)
-                console.log(enchangeCheck)*/
                 that.setData({
                     enchange: enchange,
                     enchangeValue: enchangeValue,

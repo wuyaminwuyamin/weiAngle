@@ -37,7 +37,7 @@ Page({
     },
     //载入页面
     onLoad: function () {
-
+         
     },
     //显示页面
     onShow: function () {
@@ -165,10 +165,9 @@ Page({
                         console.log("资源需求匹配结果")
                         console.log(res)
                         if (res.data.status_code != "450002") {
-                            wx.setStorage({
-                                key: 'resource_data',
-                                data: res.data.res_data
-                            })
+                            wx.setStorageSync("resource_find", res.data.res_data.res_find);
+                            wx.setStorageSync("resource_give", res.data.res_data.res_give);
+                            wx.setStorageSync("resource_desc", res.data.res_data.res_desc);
                             var res_match = res.data.res_match;
                             var res_find = res.data.res_data.res_find;
                             var res_find_arry = [];
