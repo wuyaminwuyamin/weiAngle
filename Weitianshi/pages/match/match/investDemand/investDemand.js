@@ -23,8 +23,7 @@ Page({
             css: "checkOn",
             value: ["选择领域"],
             id: []
-        },
-        describle:""
+        }
     },
     onLoad: function (options) {
         var user_id = wx.getStorageSync('user_id');
@@ -53,9 +52,7 @@ Page({
                 wx.setStorageSync('industry', thisData.industry);//投资领域
                 wx.setStorageSync('y_scale', thisData.scale);//投资金额
                 wx.setStorageSync('y_stage', thisData.stage);//投资阶段
-                wx.setStorageSync('describle',thisData.describle);//具體描述
-console.log
-
+    
                 //期望融资
                 var scale = wx.getStorageSync('y_scale');
                 var console_expect = wx.getStorageSync('y_console_expect');
@@ -90,12 +87,14 @@ console.log
                 if (res.data.data != '') {
                     //获取已存有的投资领域,投资阶段,投资金额,投資地区
                     var thisData = res.data.data;
-                    var industry = wx.getStorageSync('industry')//投资领域总数                   
+                    var industry = wx.getStorageSync('industry')//项目领域总数                   
                     var y_stage = wx.getStorageSync('y_stage')//投资阶段总数
                     var y_scale = wx.getStorageSync('y_scale')//投资金额总数
-
                     var y_area = wx.getStorageSync('hotCity')//地区总数
-                    var describle = wx.getStorageSync('describle')//具体描述
+                    var y_describe = thisData.investor_desc;
+                    // var describle = wx.getStorageSync('investor_desc')//具体描述
+                    console.log(y_stage);
+                    console.log(y_describe)
                     
                     // =========================投资领域==========================//
                     var y_domainValue = [];
@@ -184,7 +183,7 @@ console.log
                     })
 
                     //初始化
-                    wx.setStorageSync('y_describe', thisData.investor_desc)
+                    wx.setStorageSync('y_describe', y_describe)
                     wx.setStorageSync('y_domainValue', y_domainValue)
                     wx.setStorageSync('y_domainId', y_domainId)
                     wx.setStorageSync('y_payStage', y_payStage)
@@ -212,18 +211,17 @@ console.log
                     wx.setStorageSync('payareaenchangeId', y_payAreaId);
                     wx.setStorageSync('payareaenchangeCheck', y_payAreaAllchecked);
                     // 具体描述
-                    wx.setStorageSync('describle', describle)
+                    wx.setStorageSync('y_describe', y_describe)
                     that.setData({
                         domainValue: y_domainValue,
                         domainId: y_domainId,
-                        describe: thisData.investor_desc,
+                        describe: y_describe,
                         payArea: y_payArea,
                         payAreaId: y_payAreaId,
                         payStage: y_payStage,
                         payStageId: y_StageId,
                         payMoney: y_payMoney,
-                        payMoneyId: y_payMoneyId,
-                        investor_desc:describle
+                        payMoneyId: y_payMoneyId
                     })
                 }
             },
@@ -281,7 +279,7 @@ console.log
         var payStageId = wx.getStorageSync('y_payStageId');
         var payMoney = wx.getStorageSync('y_payMoney') || "选择金额";
         var payMoneyId = wx.getStorageSync('y_payMoneyId');
-        var describle = wx.getStorageSync('describle');
+ 
         that.setData({
             domainValue: domainValue,
             domainId: domainId,
@@ -292,8 +290,8 @@ console.log
             payStageId: payStageId,
             payMoney: payMoney,
             payMoneyId: payMoneyId
-            // describle: describle
         })
+        console.log(y_describe)
         // -------------------------项目领域处理部份---------------------------------
         let industryCard=this.data.industryCard;
         let industryCurrent1=wx.getStorageSync("industryCurrent1");
@@ -331,7 +329,7 @@ console.log
         wx.setStorageSync('y_describe', e.detail.value);
         that.setData({
           y_describe: e.detail.value
-        })
+        })  
     },
 
 
@@ -351,7 +349,7 @@ console.log
         save = !save;
         var that = this;
         var theData = that.data;
-        var y_describe = this.data.y_describe;
+        var y_describe = theData.y_describe;
         var industryValue = this.data.industryCard.value;
         var industryId = this.data.industryCard.id;
         var payArea = this.data.payArea;
@@ -361,8 +359,8 @@ console.log
         var payMoney = this.data.payMoney;
         var payMoneyId = this.data.payMoneyId;
         var user_id = wx.getStorageSync('user_id');
-
-        console.log(industryId, payStageId, payMoneyId, payAreaId, y_describe)
+        console.log(y_describe)
+        // console.log(industryId, payStageId, payMoneyId, payAreaId, y_describe)
         if (industryValue !== "选择领域" && payMoney != "选择金额" && payArea !== "选择城市" && payStage !== "选择阶段") {
             wx.request({
                 url: url + '/api/investors/insertInvestor',
@@ -373,7 +371,6 @@ console.log
                     investor_scale: payMoneyId,
                     investor_area: payAreaId,
                     investor_desc: y_describe
-
                 },
                 method: 'POST',
                 success: function (res) {

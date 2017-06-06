@@ -42,12 +42,11 @@ Page({
             var invest_case=res.data.invest_case;
             var tel = user.user_mobile;
             if (tel.indexOf("*") !=-1){
-              console.log(1111111)
               that.setData({
                 blue:1
               })
             }
-            console.log(that.data.blue)
+            // console.log(that.data.blue)
             that.setData({
                 user:user,
                 invest:invest,
