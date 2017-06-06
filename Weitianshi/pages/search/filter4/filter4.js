@@ -95,6 +95,15 @@ Page({
         console.log(this.data.industryTags, this.data.stageTags)
         wx.setStorageSync("contactsIndustry", this.data.industryTags.tagsData);
         wx.setStorageSync("contactsStage", this.data.stageTags.tagsData);
+        var industryArray = this.data.industryTags.tagsData;
+        var stageArray = this.data.stageTags.tagsData;
+        this.data.industryTags.tagsData.forEach((x) => {
+          if (x.check == true) {
+            console.log(1)
+          }
+        })
+        console.log(industryArray);
+        console.log(stageArray);
         wx.navigateBack({
             delta: 1,
         })

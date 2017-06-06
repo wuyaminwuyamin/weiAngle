@@ -8,7 +8,6 @@
   <view class="screen" bindtap="screenSth">筛选</view>
 </view>
 
-
 <!--资本对接-->
 <view class="s_frame" hidden="{{contacts=='' || !contacts}}">
   <scroll-view scroll-y="true" bindscrolltolower="loadMore" scroll-top="{{scroll}}" >

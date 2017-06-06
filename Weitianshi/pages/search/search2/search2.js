@@ -1,4 +1,8 @@
 // pages/network/search/search.js
+var rqj = require('../../Template/Template.js')
+var app = getApp();
+var url = app.globalData.url;
+var url_common = app.globalData.url_common;
 Page({
 
   /**
@@ -8,9 +12,6 @@ Page({
   
   },
 
-  /**
-   * 生命周期函数--监听页面加载
-   */
   onLoad: function (options) {
   
   },
@@ -26,19 +27,44 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-  
+    var that = this;
+    var user_id = wx.getStorageSync('user_id');
+    that.setData({
+      user_id: user_id,
+      page_end: false,
+      scroll: 0,
+      contacts_page: 1
+    })
+    wx.request({
+      url: url + '/api/user/getMyFollowList',
+      data: {
+        user_id: user_id,
+        page: 1
+      },
+      method: 'POST',
+      success: function (res) {
+        console.log("我的人脉列表")
+        console.log(res)
+        var contacts = res.data.data;//所有的用户
+        var page_end = res.data.page_end;
+        that.setData({
+          contacts: contacts,
+          page_end: page_end,
+          contacts_page: 1
+        })
+      }
+    })
   },
-
-  /**
-   * 生命周期函数--监听页面隐藏
-   */
+  searchEsc:function(){
+    console.log(1)
+    wx.switchTab({
+      url: '/pages/contacts/contacts/contacts'
+    })
+  },
   onHide: function () {
   
   },
 
-  /**
-   * 生命周期函数--监听页面卸载
-   */
   onUnload: function () {
   
   },

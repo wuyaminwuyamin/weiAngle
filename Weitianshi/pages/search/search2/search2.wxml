@@ -3,7 +3,7 @@
   <label class="searchBox flex">
     <icon type="search" size="12" class="search_icon"></icon>
 <!--<input type="text" value="公司" onfocus="if (value =='公司'){value ='请输入'}" onblur="if (value =='请输入'){value='公司'}" />-->
-<input class="search" placeholder="姓名、公司、标签" />
+<input class="search" placeholder="姓名、公司、标签" bindinput="searchSth" />
   </label> 
-  <view class="esc">取消</view>
+  <view class="esc" bindtap="searchEsc">取消</view>
 </view>
