@@ -86,55 +86,41 @@ Page({
             industryTags: industryTags,
             stageTags: stageTags
         })
-        /*wx.setStorageSync("contactsFilter1",'');
-        wx.setStorageSync("contactsFilter2",'');*/
+        wx.setStorageSync("industryFilter",'');
+        wx.setStorageSync("stageFilter",'');
     },
 
     //确定
     certain(){
+      var that = this;
+      var user_id = this.data.user_id;
         console.log(this.data.industryTags, this.data.stageTags)
         wx.setStorageSync("contactsIndustry", this.data.industryTags.tagsData);
         wx.setStorageSync("contactsStage", this.data.stageTags.tagsData);
-        var industryArray = this.data.industryTags.tagsData;
-        var stageArray = this.data.stageTags.tagsData;
+        var industryFilter = [];
+        var stageFilter =[];
         this.data.industryTags.tagsData.forEach((x) => {
           if (x.check == true) {
-            var industryArray = [];
-            industryArray.push(x.industry_id)
-            console.log(industryArray)
+            industryFilter.push(x.industry_id)
+            console.log(industryFilter)
           }
         })
         this.data.stageTags.tagsData.forEach((x) => {
           if (x.check == true) {
-            console.log(x.stage_id)
+            stageFilter.push(x.stage_id)
+            console.log(stageFilter)
           }
         })
-        // wx.request({
-        //   url: url + '/api/user/getMyFollowList',
-        //   data: {
-        //     user_id: user_id,
-        //     page: 1,
-        //     filter: {
-        //       search: '',
-        //       industry: [],
-        //       stage: []
-        //     }
-        //   },
-        //   method: 'POST',
-        //   success: function (res) {
-        //     console.log(res)
-        //     var contacts = res.data.data;//所有的用户
-        //     var page_end = res.data.page_end;
-        //     that.setData({
-        //       contacts: contacts,
-        //       page_end: page_end,
-        //       contacts_page: 1
-        //     })
-        //   }
+        wx.setStorageSync('industryFilter', industryFilter);
+        wx.setStorageSync('stageFilter', stageFilter);
+        // wx.navigateBack({
+        //     delta: 1,
         // })
-        wx.navigateBack({
-            delta: 1,
+        wx.switchTab({
+          url: '/pages/contacts/contacts/contacts',
         })
+        //查看缓存
+        app.cacheCheck();
     },
 
     // 开启了下拉刷新
