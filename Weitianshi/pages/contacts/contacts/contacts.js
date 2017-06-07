@@ -21,6 +21,9 @@ Page({
     onShow: function () {
         var that = this;
         var user_id = wx.getStorageSync('user_id');
+        var industryFilter = wx.getStorageSync("industryFilter");
+        var stageFilter = wx.getStorageSync("stageFilter");
+        console.log(industryFilter, stageFilter)
         that.setData({
             user_id: user_id,
             page_end: false,
@@ -28,8 +31,6 @@ Page({
             contacts_page: 1
         })
         // 检查个人信息全不全
-        if(user_id){
-          console.log(user_id)
         if (user_id != 0) {
           console.log(user_id != 0)
             wx.request({
@@ -50,19 +51,17 @@ Page({
                 },
             })
         }
-        }
         // 获取人脉库信息
         if (user_id) {
             wx.request({
                 url: url + '/api/user/getMyFollowList',
                 data: {
-                    // user_id: "V0VznXa0",
                     user_id: user_id,
                     page: 1,
                     filter: {
                       search: "",
-                      industry: [],
-                      stage: []
+                      'industry': industryFilter,
+                      'stage': stageFilter
                     }
                 },
                 method: 'POST',
