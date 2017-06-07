@@ -99,11 +99,39 @@ Page({
         var stageArray = this.data.stageTags.tagsData;
         this.data.industryTags.tagsData.forEach((x) => {
           if (x.check == true) {
-            console.log(1)
+            var industryArray = [];
+            industryArray.push(x.industry_id)
+            console.log(industryArray)
           }
         })
-        console.log(industryArray);
-        console.log(stageArray);
+        this.data.stageTags.tagsData.forEach((x) => {
+          if (x.check == true) {
+            console.log(x.stage_id)
+          }
+        })
+        // wx.request({
+        //   url: url + '/api/user/getMyFollowList',
+        //   data: {
+        //     user_id: user_id,
+        //     page: 1,
+        //     filter: {
+        //       search: '',
+        //       industry: [],
+        //       stage: []
+        //     }
+        //   },
+        //   method: 'POST',
+        //   success: function (res) {
+        //     console.log(res)
+        //     var contacts = res.data.data;//所有的用户
+        //     var page_end = res.data.page_end;
+        //     that.setData({
+        //       contacts: contacts,
+        //       page_end: page_end,
+        //       contacts_page: 1
+        //     })
+        //   }
+        // })
         wx.navigateBack({
             delta: 1,
         })

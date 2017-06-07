@@ -28,7 +28,10 @@ Page({
             contacts_page: 1
         })
         // 检查个人信息全不全
-        if (user_id) {
+        if(user_id){
+          console.log(user_id)
+        if (user_id != 0) {
+          console.log(user_id != 0)
             wx.request({
                 url: url + '/api/user/checkUserInfo',
                 data: {
@@ -46,6 +49,7 @@ Page({
                     })
                 },
             })
+        }
         }
         // 获取人脉库信息
         if (user_id) {
