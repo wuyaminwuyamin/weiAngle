@@ -28,7 +28,10 @@ Page({
             contacts_page: 1
         })
         // 检查个人信息全不全
-        if (user_id) {
+        if(user_id){
+          console.log(user_id)
+        if (user_id != 0) {
+          console.log(user_id != 0)
             wx.request({
                 url: url + '/api/user/checkUserInfo',
                 data: {
@@ -47,6 +50,7 @@ Page({
                 },
             })
         }
+        }
         // 获取人脉库信息
         if (user_id) {
             wx.request({
@@ -54,7 +58,12 @@ Page({
                 data: {
                     // user_id: "V0VznXa0",
                     user_id: user_id,
-                    page: 1
+                    page: 1,
+                    filter: {
+                      search: "",
+                      industry: [],
+                      stage: []
+                    }
                 },
                 method: 'POST',
                 success: function (res) {
@@ -62,6 +71,7 @@ Page({
                     console.log(res)
                     var contacts = res.data.data;//所有的用户
                     var page_end = res.data.page_end;
+                    console.log(typeof contacts);
                     that.setData({
                         contacts: contacts,
                         page_end: page_end,
@@ -159,14 +169,21 @@ Page({
                 data: {
                     user_id: user_id,
                     page: contacts_page,
+                    filter: {
+                      search: "",
+                      industry: [],
+                      stage: []
+                    }
                 },
                 method: 'POST',
                 success: function (res) {
                     console.log(res)
                     var newPage = res.data.data;
                     var contacts = that.data.contacts;
+                    console.log(newPage);
                     var page_end = res.data.page_end;
                     for (var i = 0; i < newPage.length; i++) {
+                      console.log(i)
                         contacts.push(newPage[i])
                     }
                     that.setData({
