@@ -81,6 +81,8 @@
 <view class="error" wx:if="{{error=='1'}}">{{error_text}}</view>
 
 <!--搜索结果无-->
-<view class="nullState" wx:if="{{contacts=='' || !contacts}}">
-  <view>暂无搜索内容</view>
+<view class="nullState" wx:if="{{empty == '1'}}">
+  <view class="nullState_text">
+    <view>暂无人脉</view>
+  </view>
 </view>

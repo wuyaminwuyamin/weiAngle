@@ -45,6 +45,14 @@ page {
   border-radius: 8rpx;
   padding: 0;
 }
+.nullPerson {
+  position: absolute;
+  top: 642rpx;
+  left: 302rpx;
+  font-size: 36rpx;
+  color: #999;
+}
+
 
 .search_frame {
   position:fixed;
