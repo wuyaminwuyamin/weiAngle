@@ -1,6 +1,6 @@
 {
     "pages": [
-      "pages/contacts/contacts/contacts",
+      
         "pages/match/match/match/match",
         "pages/search/filter4/filter4",
         "pages/match/match/resourceDemand/resourceDemand",
@@ -9,7 +9,7 @@
         "pages/form/industry/industry",
         "pages/form/scale/scale",
         "pages/form/stage/stage",     
-        "pages/form/businessContribution/businessContribution",
+        "pages/contacts/contacts/contacts","pages/form/businessContribution/businessContribution",
         "pages/form/tollType/tollType",
         "pages/form/hasRunningBusiness/hasRunningBusiness",
         "pages/scanCode/bpScan/bpScan",

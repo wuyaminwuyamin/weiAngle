@@ -1,5 +1,6 @@
 /* pages/userDetail/userDetail.wxss */
 @import "/pages/my/my/my.wxss";
+
 .floatBtn {
   position: fixed;
   bottom: 0;
@@ -14,7 +15,37 @@
   background: #40587a;
 }
 
-#mobileStyle{
-  color:#009eff;
+#mobileStyle {
+  color: #009eff;
   text-decoration: underline;
+}
+
+.addPersonBtn {
+  font-family: PingFangSC-Regular;
+  font-size: 30rpx;
+  /*color: #fff;*/
+  padding-top: 34rpx;
+  line-height: 30rpx;
+  text-align: center;
+}
+
+.addPerson {
+  background: #2b405e;
+  border: 0;
+  width: 100%;
+  height: 98rpx;
+}
+
+#waitPerson {
+  background: #f2f2f2;
+  width: 100%;
+  height: 98rpx;
+}
+
+#waitPersonBtn {
+  font-family: PingFangSC-Regular;
+  font-size: 30rpx;
+  padding-top: 34rpx;
+  line-height: 30rpx;
+  text-align: center;
 }
