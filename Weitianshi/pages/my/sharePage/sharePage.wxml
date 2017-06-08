@@ -21,7 +21,8 @@
   <template is="forButton"></template>
 
   <!--我的人脉和加入人脉-->
-  <view class="aboutNetwork flex" hidden="{{followed_user_id==user_id}}">
-    <view bindtap="addNetwork">加入人脉</view>
+  <!--<view class="aboutNetwork flex" hidden="{{followed_user_id==user_id}}" >-->
+  <view class="aboutNetwork flex" wx:if="{{button_type != '0'}}">
+    <view bindtap="addNetwork">加人脉</view>
   </view>
 </scroll-view>
