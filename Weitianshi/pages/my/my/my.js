@@ -180,8 +180,9 @@ Page({
     },
     //分享页面
     onShareAppMessage: function () {
-        var id = wx.getStorageSync('user_id');
-        return app.sharePage(id)
+        var user_id = wx.getStorageSync('user_id');
+        var share_id=wx.getStorageSync("user_id");
+        return app.sharePage(user_id,share_id)
     },
 
     //取消分享

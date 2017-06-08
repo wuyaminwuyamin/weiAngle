@@ -193,8 +193,8 @@ Page({
   },
   //分享页面
   onShareAppMessage: function () {
-    var id = this.data.user_id;
-    
-    return app.sharePage(id)
+    var user_id = this.data.user_id;
+    var share_id=wx.getStorageSync("user_id");
+    return app.sharePage(user_id,share_id)
   }
 });

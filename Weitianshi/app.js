@@ -254,15 +254,15 @@ App({
     },
 
     //分享页面函数
-    sharePage: function (id) {
-        let path = "/pages/my/sharePage/sharePage?user_id=" + id;
+    sharePage: function (user_id,share_id) {
+        let path = "/pages/my/sharePage/sharePage?user_id=" + user_id+"&&share_id="+share_id;
         let url = this.globalData.url;
         let json = {
             title: '投资名片—智能精准匹配投融资双方的神器',
             path: path,
             //分享成功后的回调
             success: function (res) {
-                console.log(1)
+                console.log("分享成功")
                 let shareTicket = res.shareTickets[0];
                 //获取code
                 wx.login({

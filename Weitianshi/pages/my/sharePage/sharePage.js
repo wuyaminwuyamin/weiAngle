@@ -11,8 +11,10 @@ Page({
     var that = this;
     console.log(options);
     var followed_user_id = options.user_id;
+    var share_id=options.share_id;
     that.setData({
       followed_user_id: followed_user_id,
+      share_id:share_id
     })
     //登录态维护
     app.loginPage(function (user_id) {
@@ -22,7 +24,7 @@ Page({
       wx.request({
         url: url + '/api/user/getUserAllInfo',
         data: {
-          share_id: followed_user_id,
+          share_id: share_id,
           user_id: followed_user_id,
           view_id: view_id,
         },
@@ -82,36 +84,7 @@ Page({
       })
     })
   },
-  //载入分享者的个人信息 
-  getSharedInfo: function (share_id, user_id, view_id) {
-    wx.request({
-      url: url + '/api/user/getUserAllInfo',
-      data: {
-        share_id: share_id,
-        user_id: user_id,
-        view_id: view_id,
-      },
-      method: 'POST',
-      success: function (res) {
-        var user = res.data.user_info;
-        var invest = res.data.invest_info;
-        var resource = res.data.resource_info;
-        var project_info = res.data.project_info;
-        var invest_case = res.data.invest_case;
-        that.setData({
-          user: user,
-          invest: invest,
-          resource: resource,
-          project_info: project_info,
-          invest_case: invest_case
-        })
-
-      },
-      fail: function (res) {
-        console.log(res)
-      },
-    })
-  },
+  
   // 添加人脉
   addNetwork: function () {
     var user_id = this.data.user_id;//我的id,查看者的id
