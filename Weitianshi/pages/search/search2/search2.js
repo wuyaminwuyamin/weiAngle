@@ -4,9 +4,8 @@ var app = getApp();
 var url = app.globalData.url;
 var url_common = app.globalData.url_common;
 Page({
-
   data: {
-    contacts: ''
+    empty: 0
   },
 
   onLoad: function (options) {
@@ -18,6 +17,7 @@ Page({
   },
 
   onShow: function () {
+
   },
   userDetail: function (e) {
     var id = e.currentTarget.dataset.id
@@ -26,53 +26,60 @@ Page({
       url: '/pages/userDetail/networkDetail/networkDetail?id=' + id,
     })
   },
-  //我的名片
-  myCard: function () {
+  searchSth: function (e) {
     var that = this;
-    var user_id = this.data.user_id;
-    //获取用户信息
-    wx.request({
-      url: url + '/api/user/getUserAllInfo',
-      data: {
-        share_id: 0,
-        user_id: user_id,
-        view_id: user_id
-      },
-      method: 'POST',
-      success: function (res) {
-        console.log(res)
-        if (res.data.status_code == 2000000) {
-          wx.showModal({
-            titel: "友情提示",
-            content: "分享名片功能需要在个人页面点击去交换按钮实现",
-            showCancel: false,
-            success: function (res) {
-              if (res.confirm == true) {
-                wx.switchTab({
-                  url: '/pages/my/my/my',
-                })
-              }
-            }
+    var user_id = wx.getStorageSync('user_id');
+    that.setData({
+      user_id: user_id,
+      page_end: false,
+      scroll: 0,
+      contacts_page: 1
+    })
+    var find = e.detail.value;
+    console.log(find)
+    if (find === '') {
+      that.setData({
+        contacts: '',
+        empty: 0
+      })
+    } else {
+      wx.request({
+        url: url + '/api/user/getMyFollowList',
+        data: {
+          user_id: user_id,
+          page: 1,
+          filter: {
+            search: find,
+            industry: [],
+            stage: []
+          }
+        },
+        method: 'POST',
+        success: function (res) {
+          var contacts = res.data.data;//所有的用户
+          var page_end = res.data.page_end;
+          that.setData({
+            contacts: contacts,
+            page_end: page_end,
+            contacts_page: 1
           })
-        } else {
-          wx.showModal({
-            title: "友情提示",
-            content: "交换名片之前,请先完善自己的名片",
-            success: function (res) {
-              if (res.confirm == true) {
-                wx.navigateTo({
-                  url: '/pages/my/cardEdit/cardEdit',
-                })
-              }
-            }
-          })
+          console.log(contacts.length)
+          if (contacts.length !== 0) {
+            that.setData({
+              empty: 0
+            })
+          } else {
+            that.setData({
+              empty: 1
+            })
+          }
         }
-      },
-      fail: function (res) {
-        wx.showToast({
-          title: "对不起没有获取到您的个人信息"
-        })
-      },
+      })
+    }
+  },
+  searchEsc: function () {
+    wx.switchTab({
+      url: '/pages/contacts/contacts/contacts'
     })
   },
   // 绑定名片
@@ -138,86 +145,13 @@ Page({
   //     rqj.errorHide(that, "没有更多了", 3000)
   //   }
   // },
-  searchSth: function (e) {
-    var that = this;
-    var user_id = wx.getStorageSync('user_id');
-    that.setData({
-      user_id: user_id,
-      page_end: false,
-      scroll: 0,
-      contacts_page: 1
-    })
-    console.log(e.detail.value);
-    var find = e.detail.value;
-    console.log(find)
-    if (find === '') {
-      console.log(1)
-      that.setData({
-        contacts: ''
-      })
 
-    } else {
-      console.log('yes')
-      wx.request({
-        url: url + '/api/user/getMyFollowList',
-        data: {
-          user_id: user_id,
-          page: 1,
-          filter: {
-            search: find,
-            industry: [],
-            stage: []
-          }
-        },
-        method: 'POST',
-        success: function (res) {
-          console.log(res)
-          var contacts = res.data.data;//所有的用户
-          var page_end = res.data.page_end;
-          that.setData({
-            contacts: contacts,
-            page_end: page_end,
-            contacts_page: 1
-          })
-        }
-      })
-    }
-  },
-  searchEsc: function () {
-    wx.switchTab({
-      url: '/pages/contacts/contacts/contacts'
-    })
-  },
-  onHide: function () {
+  // onUnload: function () {
 
-  },
+  // },
 
-  onUnload: function () {
-
-  },
-
-  /**
-   * 页面相关事件处理函数--监听用户下拉动作
-   */
   onPullDownRefresh: function () {
-
-  },
-
-  /**
-   * 页面上拉触底事件的处理函数
-   */
-  onReachBottom: function () {
-
-  },
-
-  onReachBottom: function () {
-
-  },
-
-  /**
-   * 页面相关事件处理函数--监听用户下拉动作
-   */
-  onPullDownRefresh: function () {
-
+    // console.log("开启了下拉刷新");
+    wx.stopPullDownRefresh()
   }
 })

@@ -7,6 +7,10 @@ Page({
         notIntegrity: 0,//检查个人信息是否完整
         contacts_page: 1,//人脉列表的当前分页
         page_end: false,//是否还有下一页
+        industryFilter:[],
+        stageFilter:[],
+        empty: 0
+
     },
     searchSth: function () {
         wx.navigateTo({
@@ -31,8 +35,7 @@ Page({
             contacts_page: 1
         })
         // 检查个人信息全不全
-        if (user_id != 0) {
-          console.log(user_id != 0)
+        if (user_id!=0) {
             wx.request({
                 url: url + '/api/user/checkUserInfo',
                 data: {
@@ -70,7 +73,18 @@ Page({
                     console.log(res)
                     var contacts = res.data.data;//所有的用户
                     var page_end = res.data.page_end;
-                    console.log(typeof contacts);
+                    if (contacts.length !== 0) {
+                      that.setData({
+                        empty: 0
+                      })
+                    } else {
+                      that.setData({
+                        empty: 1
+                      })
+                    }
+                    if (stageFilter || stageFilter){
+                      
+                    }
                     that.setData({
                         contacts: contacts,
                         page_end: page_end,
