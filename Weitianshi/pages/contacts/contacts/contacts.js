@@ -74,28 +74,24 @@ Page({
           var contacts = res.data.data;//所有的用户
           var page_end = res.data.page_end;
           if (contacts.length !== 0) {
-            console.log("有内容")
+            // console.log("有内容")
             that.setData({
               empty: 0
             })
           } else if (contacts.length == 0) {
             if (stageFilter != 0 || industryFilter !=0 ) {
-              console.log("筛选没人脉")
+              // console.log("筛选没人脉")
               that.setData({
                 empty: 2
               })
             }
             else {
-              console.log("没人脉")
+              // console.log("没人脉")
               that.setData({
                 empty: 1
               })
             }
           }
-          // if (stageFilter || industryFilter) {
-          //   console.log(stageFilter.length);
-          //   console.log(industryFilter)
-          // }
           that.setData({
             contacts: contacts,
             page_end: page_end,
