@@ -82,7 +82,7 @@
 <view class="error" wx:if="{{error=='1'}}">{{error_text}}</view>
 
 <!--空状态-->
-<view  wx:if="{{empty == '0'}}">
+<view wx:if="{{empty == 1}}">
 <view class="nullState" wx:if="{{contacts=='' || !contacts}}">
   <view class="nullState_text">
     <image src="/img/connection.png"></image>
@@ -94,7 +94,7 @@
 </view>
 </view>
 <!--搜索人脈為空-->
-<view class="nullPerson" wx:if="{{empty == '1'}}">
+<view class="nullPerson" wx:if="{{empty == 2}}">
   <view class="nullperson_text">
     <view>暂无人脉</view>
   </view>
