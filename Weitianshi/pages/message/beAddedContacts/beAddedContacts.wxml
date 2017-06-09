@@ -7,7 +7,7 @@
   </view>
   <view class="num">
   <!--动态改变数字-->
-   共 <label>10</label>个</view>
+   共 <label>{{count}}</label> 个</view>
 </view>
 
 <!--资本对接-->
@@ -76,21 +76,12 @@
               </view>
             </view>
           </view>
-          <view class="addFriend flex">
-           <input type="button" id="agree" value="同意加人脉"/>
-           <label class="long"></label>
-           <input type="button" id="pass" value="拒绝"/>
-          </view>
         </view>
       </block>
     </view>
   </scroll-view>
 </view>
 
-
-
-<!--没有更多-->
-<view class="error" wx:if="{{error=='1'}}">{{error_text}}</view>
 <!--没有数据-->
 <view class="nullState" wx:if="{{contacts=='' || !contacts}}">
  <!--<view class="nothing">没有数据</view>-->
