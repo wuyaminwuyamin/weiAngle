@@ -12,7 +12,7 @@ Page({
     var that = this;
     console.log(options);
     var followed_user_id = options.user_id;
-    var share_id = 0;
+    var share_id = options.share_id;
     that.setData({
       followed_user_id: followed_user_id,
       share_id:0
@@ -146,8 +146,6 @@ Page({
   //分享页面部分
   onShareAppMessage: function () {
     var id = this.data.followed_user_id;
-    var share_id = wx.getStorageSync("user_id");
     return app.sharePage(id)
-    return app.sharePage(user_id, share_id)
   }
 }); 
