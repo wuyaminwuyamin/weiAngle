@@ -163,7 +163,7 @@ Page({
     var followed_user_id = this.data.user_id;//当前用户的
     let view_id = wx.getStorageSync('user_id');//获取我自己的user_id/查看者的id
     let button_type = this.data.button_type;
-    console.log(followed_user_id)
+    console.log(button_type)
     if(button_type == 1){
       wx.request({
         url: url + '/api/user/followUser',
@@ -184,8 +184,8 @@ Page({
           applied_user_id: view_id
         },
         method: 'POST',
-        success: function () {
-          // console.log("button_type=2")
+        success: function (res) {
+          console.log(res)
         }
       })
     }

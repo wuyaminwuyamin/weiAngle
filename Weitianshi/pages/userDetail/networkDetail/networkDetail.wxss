@@ -20,6 +20,13 @@
   text-decoration: underline;
 }
 
+
+.addPerson {
+  background: #2b405e;
+  border: 0;
+  width: 100%;
+  height: 98rpx;
+}
 .addPersonBtn {
   font-family: PingFangSC-Regular;
   font-size: 30rpx;
@@ -27,13 +34,6 @@
   padding-top: 34rpx;
   line-height: 30rpx;
   text-align: center;
-}
-
-.addPerson {
-  background: #2b405e;
-  border: 0;
-  width: 100%;
-  height: 98rpx;
 }
 
 #waitPerson {
