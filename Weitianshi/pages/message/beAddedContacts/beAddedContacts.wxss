@@ -46,6 +46,28 @@
   text-align: left;
 }
 
+.addPerson {
+  border-radius: 200rpx;
+  width: 120rpx;
+  height: 48rpx;
+  position:static;
+}
+
+.addPersonBtn {
+  background: #40587a;
+  font-family: PingFangSC-Regular;
+  font-size: 20rpx;
+  border-radius: 100px;
+  color: #fff;
+  padding:14rpx 0;
+  line-height: 20rpx;
+  text-align: center;
+  position:static;
+}
+.addPersonBtn::after{
+  border:0;
+}
+
 /*----------------------------------*/
 
 page {

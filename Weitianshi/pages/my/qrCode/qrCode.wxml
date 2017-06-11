@@ -25,7 +25,7 @@
   <view class="QR_box">
     <view class="QR_title">投资名片-智能精准匹配投融资双方神器</view>
     <view class="QR_img">
-      <image class="QR_pic" src="{{url}}"></image>
+      <image class="QR_pic" src="{{access_token}}"></image>
       <view class="QR_point">长按或微信扫码查看更多</view>
     </view>
   </view>
@@ -34,5 +34,5 @@
     <!--<input type="button" id="share" value="分享给朋友" bindtap="sharePic" />-->
     <button open-type="share" id="share">分享给朋友</button>
     <label class="long"></label>
-    <input type="button" id="QR_save" value="保存二维码图片" bindtap="savePic" />
+    <button type="button" id="QR_save" value="保存二维码图片" bindtap="savePic"></button>
   </view>
