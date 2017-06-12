@@ -181,8 +181,13 @@ page {
 
 #QR_save {
   font-size: 24rpx;
-  color: #fff;
+  color:#ffffff;
   letter-spacing: 0;
   text-align: center;
+  width:50%;
+  background:#40587a;
   padding: 22rpx 68rpx 30rpx 46rpx;
+}
+#QR_save::after{
+  border:0;
 }

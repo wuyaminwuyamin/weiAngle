@@ -43,12 +43,13 @@ Page({
         var tel = user.user_mobile;
         var button_type = res.data.button_type;
         if (button_type == 0) {
-          console.log("是好友或者是我")
+          console.log("是好友或单项人脉")
         } else if (button_type == 1) {
-          console.log("我分享出去的名片")
+          console.log("分享出去的页面,直接添加")
         } else if (button_type == 2) {
-          console.log("正常添加方式")
-        }
+          console.log("正常申请添加人脉")
+        } else if (button_type == 3) {
+          console.log("待处理状态")}
         if (tel.indexOf("*") != -1) {
           that.setData({
             blue: 1
@@ -61,7 +62,7 @@ Page({
           resource: resource,
           project_info: project_info,
           invest_case: invest_case,
-          button_type:button_type
+          button_type: button_type
         })
       },
       fail: function (res) {
@@ -85,7 +86,6 @@ Page({
         phoneNumber: telephone,
       })
     } else {
-
     }
 
   },
@@ -164,7 +164,7 @@ Page({
     let view_id = wx.getStorageSync('user_id');//获取我自己的user_id/查看者的id
     let button_type = this.data.button_type;
     console.log(button_type)
-    if(button_type == 1){
+    if (button_type == 1){
       wx.request({
         url: url + '/api/user/followUser',
         data: {
@@ -173,10 +173,10 @@ Page({
           },
         method: 'POST',
         success: function (res) {
-          // console.log("button_type=1")
+          console.log("button_type=1")
         }
       })
-    }else if(button_type ==2){
+    } else if (button_type ==2){
       wx.request({
         url: url + '/api/user/UserApplyFollowUser',
         data: {

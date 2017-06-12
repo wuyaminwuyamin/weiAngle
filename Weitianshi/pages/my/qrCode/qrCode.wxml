@@ -33,5 +33,5 @@
  <view class="addFriend flex">
     <button open-type="share" id="share">分享给朋友</button>
     <label class="long"></label>
-    <button type="button" id="QR_save" value="保存二维码图片" bindtap="savePic"></button>
+    <button type="button" id="QR_save" bindtap="savePic">保存二维码图片</button>
   </view>
