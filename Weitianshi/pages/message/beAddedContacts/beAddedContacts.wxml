@@ -29,9 +29,9 @@
                 <!--加人脉窗口-->
                 <label>
                   <!--<view class="addPic"></view>-->
-                  <view class="refuse" wx:if="{{follow_status == 0}}">{{follow_status}}</view>
-                  <view class="addPerson"  wx:if="{{follow_status == 3}}">
-                    <button class="addPersonBtn" wx:if="{{follow_status == 3}}">加人脉</button>
+                  <view class="refuse" wx:if="{{item.follow_status ==1 ||item.follow_status ==2}}">互为人脉</view>
+                  <view class="addPerson"  wx:if="{{item.follow_status  == 0}}">
+                    <button class="addPersonBtn" bindtap="addPerson">加人脉</button>
                   </view>
                 </label>
               </view>

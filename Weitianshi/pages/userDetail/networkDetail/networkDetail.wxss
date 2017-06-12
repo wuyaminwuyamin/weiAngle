@@ -36,16 +36,17 @@
   text-align: center;
 }
 
-#waitPerson {
+.waitPerson {
   background: #f2f2f2;
   width: 100%;
   height: 98rpx;
 }
 
-#waitPersonBtn {
+.waitPersonBtn {
   font-family: PingFangSC-Regular;
   font-size: 30rpx;
   padding-top: 34rpx;
   line-height: 30rpx;
   text-align: center;
+  height:98rpx;
 }

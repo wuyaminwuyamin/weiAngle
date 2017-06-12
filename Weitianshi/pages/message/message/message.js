@@ -23,6 +23,7 @@ Page({
         var that = this;
         var user_id = wx.getStorageSync('user_id');
         var messageList = this.data.messageList;
+        console.log(messageList)
         wx.request({
             url: url_common + '/api/message/messageType',
             data: {
