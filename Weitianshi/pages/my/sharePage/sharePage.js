@@ -6,28 +6,27 @@ Page({
   data: {
     user: "",
     followed_user_id: "",
-    share_id:""
   },
   onLoad: function (options) {
     var that = this;
     console.log(options);
     var followed_user_id = options.user_id;
-    var share_id = 0;
+    var share_id=options.share_id;
     that.setData({
       followed_user_id: followed_user_id,
-      share_id:0
+      share_id:share_id
     })
     //登录态维护
     app.loginPage(function (user_id) {
-      var view_id = user_id;//查看者的id
+      var view_id = user_id;
       wx.setStorageSync('user_id', user_id);
       //载入被分享者的个人信息
       wx.request({
         url: url + '/api/user/getUserAllInfo',
         data: {
-          share_id: share_id,//分享者id
-          user_id: followed_user_id,//被分享者id
-          view_id: view_id,//查看者的id
+          share_id: share_id,
+          user_id: followed_user_id,
+          view_id: view_id,
         },
         method: 'POST',
         success: function (res) {
@@ -73,7 +72,7 @@ Page({
         })
       }
       // console.log("share_id", "user_id", "view_id")
-      console.log(share_id, followed_user_id, view_id)
+      console.log(followed_user_id, followed_user_id, view_id)
       //如果进入的是自己的名片里
       if (user_id == followed_user_id) {
         wx.switchTab({
@@ -112,14 +111,14 @@ Page({
       console.log(followed_user_id)
       if (button_type == 1) {
         wx.request({
-          url: url + '/api/user/followUser',
+          url: url + '/api/user/UserApplyFollowUser',
           data: {
-            follow_user_id: user_id,
-            followed_user_id: followed_user_id
+            user_id: followed_user_id,
+            applied_user_id: user_id
           },
           method: 'POST',
           success: function (res) {
-            // console.log("button_type=1")
+            console.log("button_type=1")
           }
         })
       } else if (button_type == 2) {
@@ -146,8 +145,6 @@ Page({
   //分享页面部分
   onShareAppMessage: function () {
     var id = this.data.followed_user_id;
-    var share_id = wx.getStorageSync("user_id");
     return app.sharePage(id)
-    return app.sharePage(user_id, share_id)
   }
 }); 
