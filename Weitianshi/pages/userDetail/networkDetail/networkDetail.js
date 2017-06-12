@@ -44,11 +44,13 @@ Page({
                 var tel = user.user_mobile;
                 var button_type = res.data.button_type;
                 if (button_type == 0) {
-                    console.log("是好友或者是我")
+                    console.log("是好友或单项人脉")
                 } else if (button_type == 1) {
-                    console.log("我分享出去的名片")
+                    console.log("分享出去的页面,直接添加")
                 } else if (button_type == 2) {
-                    console.log("正常添加方式")
+                    console.log("正常申请添加人脉")
+                } else if (button_type == 3) {
+                    console.log("待处理状态")
                 }
                 if (tel.indexOf("*") != -1) {
                     that.setData({
@@ -81,6 +83,12 @@ Page({
         var telephone = e.currentTarget.dataset.telephone;
         var tel = telephone.indexOf("****") * 1;
 
+        if (tel == -1) {
+            wx.makePhoneCall({
+                phoneNumber: telephone,
+            })
+        } else {
+        }
         if (tel == -1) {
             wx.makePhoneCall({
                 phoneNumber: telephone,
@@ -196,7 +204,6 @@ Page({
                 }
             })
         }
-
     },
     //分享页面
     onShareAppMessage: function () {

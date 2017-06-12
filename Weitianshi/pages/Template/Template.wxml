@@ -41,7 +41,7 @@
       </view>
       <view class="user_email flex" wx:if="{{!user.user_email}}">邮箱号码：暂无编辑
         <label>
-          <button open-type="share" class="user_edit" plain="{{true}}">
+          <button class="user_edit" plain="{{true}}">
             <image src="/img/img-share.png"></image>
           </button>
         </label>
@@ -56,7 +56,7 @@
   <view class="user_down flex">
     <view class="user_popularity user_tips" bindtap="popularity">
       <view wx:if="{{user.user_popularity}}">{{user.user_popularity}}</view>
-      <label class="popularityNum">99+</label>
+      <label class="popularityNum">{{num}}+</label>
       <view wx:if="{{!user.user_popularity}}" class="popularity-Num">5</view>
       <view class="popularity-people">人气</view>
 

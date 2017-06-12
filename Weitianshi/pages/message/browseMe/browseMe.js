@@ -56,10 +56,8 @@ Page({
           project_info: project_info,
           invest_case: invest_case,
           button_type: button_type
-        })
-        
-        }
-        
+        }) 
+        } 
     })
     // 获取人脉库信息
     if (user_id) {
@@ -73,13 +71,16 @@ Page({
         method: 'POST',
         success: function (res) {
           console.log("我的人脉列表")
-          console.log(res)
           var contacts = res.data.data;//所有的用户
+          console.log(res.data.data.length)
+          var numLen = res.data.data.length;
           var page_end = res.data.page_end;
+         wx.setStorageSync('numLen', numLen);
           that.setData({
             contacts: contacts,
             page_end: page_end,
-            contacts_page: 1
+            contacts_page: 1,
+            numLen: numLen
           })
         }
       })
@@ -154,48 +155,56 @@ Page({
     })
   },
   // 下拉加载
-  loadMore: function () {
-    var that = this;
-    var netWork_page = this.data.netWork_page;
-    var user_id = wx.getStorageSync('user_id');
-    var page_end = this.data.page_end;
-    if (page_end == false) {
-      wx.showToast({
-        title: 'loading...',
-        icon: 'loading'
-      })
-      netWork_page++;
-      that.setData({
-        netWork_page: netWork_page
-      })
-      wx.request({
-        url: url + '/api/user/getMyFollowList',
-        data: {
-          user_id: user_id,
-          page: netWork_page,
-        },
-        method: 'POST',
-        success: function (res) {
-          console.log(res)
-          var newPage = res.data.data;
-          var netWork = that.data.netWork;
-          var page_end = res.data.page_end;
-          for (var i = 0; i < newPage.length; i++) {
-            netWork.push(newPage[i])
-          }
-          that.setData({
-            netWork: netWork,
-            page_end: page_end,
-          })
-        },
-        fail: function () {
-          wx.showToast({
-            title: '加载人脉失败',
-          })
-        },
-      })
-    } else {
-      rqj.errorHide(that, "没有更多了", 3000)
-    }
-  }
+  // loadMore: function () {
+  //   var that = this;
+  //   that.setData({
+  //     user_id: user_id,
+  //     page_end: false,
+  //     scroll: 0,
+  //     netWork_page: 1
+  //   })
+  //   var netWork_page = this.data.netWork_page;
+  //   console.log(netWork_page)
+  //   var user_id = wx.getStorageSync('user_id');
+  //   var page_end = this.data.page_end;
+  //   if (page_end == false) {
+  //     wx.showToast({
+  //       title: 'loading...',
+  //       icon: 'loading'
+  //     })
+  //     netWork_page++;
+  //     that.setData({
+  //       netWork_page: netWork_page
+  //     })
+      
+  //     wx.request({
+  //       url: url + '/api/user/getMyFollowList',
+  //       data: {
+  //         user_id: user_id,
+  //         page: netWork_page,
+  //       },
+  //       method: 'POST',
+  //       success: function (res) {
+  //         console.log(res)
+  //         var newPage = res.data.data;
+  //         var netWork = that.data.netWork;
+  //         var page_end = res.data.page_end;
+  //         for (var i = 0; i < newPage.length; i++) {
+  //           netWork.push(newPage[i])
+  //         }
+  //         that.setData({
+  //           netWork: netWork,
+  //           page_end: page_end,
+  //         })
+  //       },
+  //       fail: function () {
+  //         wx.showToast({
+  //           title: '加载人脉失败',
+  //         })
+  //       },
+  //     })
+  //   } else {
+  //     rqj.errorHide(that, "没有更多了", 3000)
+  //   }
+  // }
 })
