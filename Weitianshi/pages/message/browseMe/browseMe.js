@@ -8,16 +8,6 @@ Page({
     contacts_page: 1,//人脉列表的当前分页
     page_end: false,//是否还有下一页
   },
-  searchSth: function () {
-    wx.navigateTo({
-      url: '/pages/search/search2/search2',
-    })
-  },
-  screenSth: function () {
-    wx.navigateTo({
-      url: '/pages/search/filter4/filter4',
-    })
-  },
   onShow: function () {
     var that = this;
     var user_id = wx.getStorageSync('user_id');
@@ -27,34 +17,58 @@ Page({
       scroll: 0,
       contacts_page: 1
     })
-    // 检查个人信息全不全
-    if (user_id) {
-      wx.request({
-        url: url + '/api/user/checkUserInfo',
-        data: {
-          user_id: user_id
-        },
-        method: 'POST',
-        success: function (res) {
+    wx.request({
+      url: url + '/api/user/getUserAllInfo',
+      data: {
+        share_id: 0,
+        user_id: user_id,
+        view_id: user_id,
+      },
+      method: 'POST',
+      success: function (res) {
+        console.log(res)
+        var user = res.data.user_info;
+        var invest = res.data.invest_info;
+        var resource = res.data.resource_info;
+        var project_info = res.data.project_info;
+        var invest_case = res.data.invest_case;
+        var tel = user.user_mobile;
+        var button_type = res.data.button_type;
+        if (button_type == 0) {
+          console.log("不是人脉并没有发送人脉申请")
+        } else if (button_type == 1) {
+          console.log("单方人脉")
+        } else if (button_type == 2) {
+          console.log("互为人脉")
+        } else if (button_type == 3){
+          console.log("待验证")
+        }
+        if (tel.indexOf("*") != -1) {
           that.setData({
-            notIntegrity: res.data.is_complete,
+            blue: 1
           })
-        },
-        fail: function (res) {
-          wx.showToast({
-            title: res
-          })
-        },
-      })
-    }
+        }
+        // console.log(that.data.blue)
+        that.setData({
+          user: user,
+          invest: invest,
+          resource: resource,
+          project_info: project_info,
+          invest_case: invest_case,
+          button_type: button_type
+        })
+        
+        }
+        
+    })
     // 获取人脉库信息
     if (user_id) {
       wx.request({
-        url: url + '/api/user/getMyFollowList',
+        url: url_common + '/api/message/viewCardMessage',
         data: {
-          // user_id: "V0VznXa0",
           user_id: user_id,
-          page: 1
+          page: 1,
+          type_id:3
         },
         method: 'POST',
         success: function (res) {

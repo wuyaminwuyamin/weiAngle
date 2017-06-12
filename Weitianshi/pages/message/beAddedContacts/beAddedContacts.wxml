@@ -6,13 +6,14 @@
     加我为人脉的用户
   </view>
   <view class="num">
-  <!--动态改变数字-->
-   共 <label>10</label>个</view>
+    <!--动态改变数字-->
+    共
+    <label>{{count}}</label> 个</view>
 </view>
 
 <!--资本对接-->
 <view class="s_frame" hidden="{{contacts=='' || !contacts}}">
-  <scroll-view scroll-y="true" bindscrolltolower="loadMore" scroll-top="{{scroll}}" >
+  <scroll-view scroll-y="true" bindscrolltolower="loadMore" scroll-top="{{scroll}}">
     <view class="contacts">
       <block wx:for="{{contacts}}" wx:key="{{item.user_id}}">
         <view class="card" data-id="{{item.user_id}}" bindtap="userDetail">
@@ -25,11 +26,14 @@
                   <view class="user_name">{{item.user_real_name}}</view>
                   <view class="user_career">{{item.user_company_career}}</view>
                 </view>
-               <!--加人脉窗口-->
-               <label>
-                <!--<view class="addPic"></view>-->
-                <view class="refuse">已拒绝</view>
-               </label>
+                <!--加人脉窗口-->
+                <label>
+                  <!--<view class="addPic"></view>-->
+                  <view class="refuse" wx:if="{{follow_status == 0}}">{{follow_status}}</view>
+                  <view class="addPerson"  wx:if="{{follow_status == 3}}">
+                    <button class="addPersonBtn" wx:if="{{follow_status == 3}}">加人脉</button>
+                  </view>
+                </label>
               </view>
               <view class="user_company" wx:if="{{item.user_company_name !=''}}">{{item.user_company_name}}</view>
             </view>
@@ -76,22 +80,13 @@
               </view>
             </view>
           </view>
-          <view class="addFriend flex">
-           <input type="button" id="agree" value="同意加人脉"/>
-           <label class="long"></label>
-           <input type="button" id="pass" value="拒绝"/>
-          </view>
         </view>
       </block>
     </view>
   </scroll-view>
 </view>
 
-
-
-<!--没有更多-->
-<view class="error" wx:if="{{error=='1'}}">{{error_text}}</view>
 <!--没有数据-->
 <view class="nullState" wx:if="{{contacts=='' || !contacts}}">
- <!--<view class="nothing">没有数据</view>-->
- </view>
+  <!--<view class="nothing">没有数据</view>-->
+</view>

@@ -41,7 +41,6 @@ page {
   position: static;
 }
 
-
 .nullState_text {
   text-align: center;
 }
@@ -265,6 +264,16 @@ page {
   font-size: 20rpx;
   color: #fff;
   line-height: 54rpx;
-  display:block;
+  display: block;
   text-align: center;
+}
+
+.netWork {
+  opacity: 0.8;
+  font-family: PingFangSC-Regular;
+  font-size: 28rpx;
+  color: #999;
+  letter-spacing: 0;
+  line-height: 28rpx;
+  text-align: left;
 }

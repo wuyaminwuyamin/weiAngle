@@ -27,11 +27,11 @@
     <view class="flex title">
       <image class="title_icon" src="/img/img-personMessage.png"></image>
       <view class="title">
-        人脉申請
+        {{message_name}}
       </view>
     </view>
     <view class="flex number">
-      <label class="huo-num">5</label>
+      <label class="huo-num">{{count}}</label>
       <image class="iconEdit" src="/img/icon-edit@3x.png"></image>
     </view>    
   </view>

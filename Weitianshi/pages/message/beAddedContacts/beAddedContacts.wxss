@@ -46,6 +46,28 @@
   text-align: left;
 }
 
+.addPerson {
+  border-radius: 200rpx;
+  width: 120rpx;
+  height: 48rpx;
+  position:static;
+}
+
+.addPersonBtn {
+  background: #40587a;
+  font-family: PingFangSC-Regular;
+  font-size: 20rpx;
+  border-radius: 100px;
+  color: #fff;
+  padding:14rpx 0;
+  line-height: 20rpx;
+  text-align: center;
+  position:static;
+}
+.addPersonBtn::after{
+  border:0;
+}
+
 /*----------------------------------*/
 
 page {
@@ -289,45 +311,4 @@ page {
   color: #999;
   text-align: left;
   margin: 65% auto;
-}
-
-/*这里是同意 或 拒绝的样式框*/
-
-.addFriend {
-  width: 94%;
-  padding-top: 16rpx;
-  /*padding-bottom: 30rpx;*/
-  text-align: center;
-  line-height: 88rpx;
-  background: #fff;
-  align-items: center;
-  justify-content: space-around;
-  border-top:2rpx solid #e6e6e6;
-}
-
-#agree {
-  font-size: 28rpx;
-  color: #40587a;
-  letter-spacing: 0;
-  top: 50%;
-  text-align: center;
-  background: #fff;
-  outline: none;
-  border: none;
-}
-
-.addFriend .long {
-  background: #e6e6e6;
-  width: 4rpx;
-  height: 30rpx;
-}
-
-#pass {
-  font-size: 28rpx;
-  color: #f44c4c;
-  letter-spacing: 0;
-  line-height: 76rpx;
-  text-align: center;
-  background: #fff;
-  border: none;
 }

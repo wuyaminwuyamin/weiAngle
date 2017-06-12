@@ -53,30 +53,22 @@ Page({
         })
         // 获取二维码接口
         wx.request({
-          url: url + '/api/wx/getQrAccessToken',
+          url: url + '/api/wx/getCardQr',
           data: {
+            'user_id':user_id,
+            'path':'/pages/my/my/my',
+            'width':430,
+            'auto_color': false,
+            'line_color': { "r": "0", "g": "0", "b": "0" }
           },
           method: 'POST',
           success: function (res) {
-            var access_token = res.data.access_token;
-            console.log(access_token)
-            wx.request({
-              url: 'https://api.weixin.qq.com/cgi-bin/wxaapp/createwxaqrcode?access_token=' + access_token,
-              data: {
-                'path': "/pages/my/my/my",
-                'width': 430,
-                auto_color: false,
-                line_color: { "r": "0", "g": "0", "b": "0" }
-              },
-              method: 'POST',
-              success: function (res) {
-               var img = res
-                console.log(1)
-                var dataUrl = res.data;
-                console.log(dataUrl);
-              },
+            var net = res.data;
+            var access_token = net.qrcode;
+            that.setData({
+              access_token: access_token
             })
-
+            var filPath = wx.setStorageSync('access_token', access_token );
           },
           fail: function (res) {
             console.log(res)
@@ -90,13 +82,34 @@ Page({
   sharePic: function () {
     console.log("1")
   },
-  savePic: function () {
-    console.log(2)
-    wx.saveImageToPhotosAlbum({
+  savePic: function (res) {
+    
+    var filePath = wx.getStorageSync('access_token');
+    // 查看用户是否授权给小程序,可以保存图片
+    wx.getSetting({
       success(res) {
-        console.log("成功")
+        if (!res['scope.writePhotosAlbum']) {
+          wx.authorize({
+            scope: 'scope.writePhotosAlbum',
+            success() {
+              wx.saveImageToPhotosAlbum()
+            }
+          })
+        }
       }
     })
+    wx.saveImageToPhotosAlbum({
+      complete(res) {
+        console.log("完成")
+      }
+    })
+
+    wx.getSavedFileList({
+      success: function (res) {
+        console.log(res.fileList)
+      }
+    })
+  
   },
   //分享页面
   onShareAppMessage: function () {
