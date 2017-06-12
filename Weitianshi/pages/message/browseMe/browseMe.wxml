@@ -7,7 +7,7 @@
   </view>
   <view class="num">
   <!--动态改变数字-->
-   共 <label>10</label>个</view>
+   共 <label>{{numLen}}</label> 个</view>
 </view>
 
 <!--资本对接-->

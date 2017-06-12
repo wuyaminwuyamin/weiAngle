@@ -72,7 +72,6 @@ Page({
           bindUser: 1
         })
       }
-      // console.log("share_id", "user_id", "view_id")
       console.log(share_id, followed_user_id, view_id)
       //如果进入的是自己的名片里
       if (user_id == followed_user_id) {
@@ -90,8 +89,6 @@ Page({
   addNetwork: function () {
     var user_id = this.data.user_id;//我的id,查看者的id
     var followed_user_id = this.data.followed_user_id;//当前被查看的用户id
-    // console.log(user_id)
-    // console.log(followed_user_id)
     var bindUser = this.data.bindUser;
     let button_type = this.data.button_type;
     console.log(button_type)
