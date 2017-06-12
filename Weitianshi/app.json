@@ -1,114 +1,112 @@
 {
-  "pages": [
-    "pages/message/message/message",
-    "pages/my/my/my",
-    "pages/match/match/match/match",
-    "pages/search/filter4/filter4",
-    "pages/match/match/resourceDemand/resourceDemand",
-    "pages/form/area1/area1",
-    "pages/form/area2/area2",
-    "pages/form/industry/industry",
-    "pages/form/scale/scale",
-    "pages/form/stage/stage",
-    "pages/contacts/contacts/contacts",
-    "pages/form/businessContribution/businessContribution",
-    "pages/form/tollType/tollType",
-    "pages/form/hasRunningBusiness/hasRunningBusiness",
-    "pages/scanCode/bpScan/bpScan",
-    "pages/scanCode/bpScanSuccess/bpScanSuccess",
-    "pages/scanCode/cardScan/cardScan",
-    "pages/scanCode/cardScanEdit/cardScanEdit",
-    "pages/register/personInfo/personInfo",
-    "pages/register/companyInfo/companyInfo",
-    "pages/identity/chooseIdentity/chooseIdentity",
-    "pages/identity/identityResult/identityResult",
-    "pages/identity/sellerFA/sellerFA",
-    "pages/identity/buyerFA/buyerFA",
-    "pages/identity/investorFA/investorFA",
-    "pages/identity/entrepreneurFA/entrepreneurFA",
-
-    "pages/message/applyMyProject/applyMyProject",
-    "pages/message/myApplyProject/myApplyProject",
-    "pages/message/bePushedProject/bePushedProject",
-    "pages/message/myPushProject/myPushProject",
-    "pages/message/beAddedContacts/beAddedContacts",
-    "pages/message/browseMe/browseMe",
-    "pages/search/search1/search1",
-    "pages/search/search2/search2",
-    "pages/search/filter1/filter1",
-    "pages/search/filter2/filter2",
-    "pages/search/filter3/filter3",
-    "pages/match/match/investDemand/investDemand",
-    "pages/match/selectProject/selectProject",
-    "pages/match/needMarket/needMarket",
-    "pages/contacts/contactsEdit/constactsEdit",
-    "pages/contacts/tipsEdit/tipsEdit",
-    "pages/userDetail/networkDetail/networkDetail",
-    "pages/userDetail/cardDetail/cardDetail",
-    "pages/projectDetail/projectDetail",
-    "pages/myProject/editProject/editProject",
-    "pages/myProject/projectDetail/projectDetail",
-    "pages/myProject/publishProject/publishProject",
-    "pages/myProject/browse/browse",
-    "pages/myProject/apply/apply",
-    "pages/myProject/pushTo/pushTo",
-    "pages/myProject/progress/progress",
-    "pages/myProject/follow/follow",
-    
-    "pages/my/investCase/investCase",
-    "pages/my/sharePage/sharePage",
-    "pages/my/investCaseEdit/investCaseEdit",
-    "pages/my/cardEdit/cardEdit",
-    "pages/my/projectFinance/projectFinance",
-    "pages/my/qrCode/qrCode"
-  ],
-  "window": {
-    "navigationBarBackgroundColor": "#fff",
-    "navigationBarTitleText": "微天使乐投平台",
-    "navigationBarTextStyle": "black",
-    "enablePullDownRefresh": true,
-    "backgroundTextStyle": "dark"
-  },
-  "tabBar": {
-    "list": [
-      {
-        "iconPath": "img/resource.png",
-        "selectedIconPath": "img/resourceOn.png",
-        "pagePath": "pages/match/match/match/match",
-        "text": "对接"
-      },
-      {
-        "iconPath": "img/project.png",
-        "selectedIconPath": "img/projectOn.png",
-        "pagePath": "pages/match/selectProject/selectProject",
-        "text": "精选"
-      },
-      {
-        "iconPath": "img/people.png",
-        "selectedIconPath": "img/peopleOn.png",
-        "pagePath": "pages/contacts/contacts/contacts",
-        "text": "人脉"
-      },
-      {
-        "iconPath": "img/message.png",
-        "selectedIconPath": "img/messageOn.png",
-        "pagePath": "pages/message/message/message",
-        "text": "消息"
-      },
-      {
-        "iconPath": "img/my.png",
-        "selectedIconPath": "img/myOn.png",
-        "pagePath": "pages/my/my/my",
-        "text": "我的"
-      }
+    "pages": [
+        "pages/match/match/match/match",
+        "pages/my/my/my",
+        "pages/search/filter4/filter4",
+        "pages/match/match/resourceDemand/resourceDemand",
+        "pages/form/area1/area1",
+        "pages/form/area2/area2",
+        "pages/form/industry/industry",
+        "pages/form/scale/scale",
+        "pages/form/stage/stage",
+        "pages/contacts/contacts/contacts",
+        "pages/form/businessContribution/businessContribution",
+        "pages/form/tollType/tollType",
+        "pages/form/hasRunningBusiness/hasRunningBusiness",
+        "pages/scanCode/bpScan/bpScan",
+        "pages/scanCode/bpScanSuccess/bpScanSuccess",
+        "pages/scanCode/cardScan/cardScan",
+        "pages/scanCode/cardScanEdit/cardScanEdit",
+        "pages/register/personInfo/personInfo",
+        "pages/register/companyInfo/companyInfo",
+        "pages/identity/chooseIdentity/chooseIdentity",
+        "pages/identity/identityResult/identityResult",
+        "pages/identity/sellerFA/sellerFA",
+        "pages/identity/buyerFA/buyerFA",
+        "pages/identity/investorFA/investorFA",
+        "pages/identity/entrepreneurFA/entrepreneurFA",
+        "pages/message/message/message",
+        "pages/message/applyMyProject/applyMyProject",
+        "pages/message/myApplyProject/myApplyProject",
+        "pages/message/bePushedProject/bePushedProject",
+        "pages/message/myPushProject/myPushProject",
+        "pages/message/beAddedContacts/beAddedContacts",
+        "pages/message/browseMe/browseMe",
+        "pages/search/search1/search1",
+        "pages/search/search2/search2",
+        "pages/search/filter1/filter1",
+        "pages/search/filter2/filter2",
+        "pages/search/filter3/filter3",
+        "pages/match/match/investDemand/investDemand",
+        "pages/match/selectProject/selectProject",
+        "pages/match/needMarket/needMarket",
+        "pages/contacts/contactsEdit/constactsEdit",
+        "pages/contacts/tipsEdit/tipsEdit",
+        "pages/userDetail/networkDetail/networkDetail",
+        "pages/userDetail/cardDetail/cardDetail",
+        "pages/projectDetail/projectDetail",
+        "pages/myProject/editProject/editProject",
+        "pages/myProject/projectDetail/projectDetail",
+        "pages/myProject/publishProject/publishProject",
+        "pages/myProject/browse/browse",
+        "pages/myProject/apply/apply",
+        "pages/myProject/pushTo/pushTo",
+        "pages/myProject/progress/progress",
+        "pages/myProject/follow/follow",
+        "pages/my/investCase/investCase",
+        "pages/my/sharePage/sharePage",
+        "pages/my/investCaseEdit/investCaseEdit",
+        "pages/my/cardEdit/cardEdit",
+        "pages/my/projectFinance/projectFinance",
+        "pages/my/qrCode/qrCode"
     ],
-    "selectedColor": "black",
-    "borderStyle": "white"
-  },
-  "networkTimeout": {
-    "request": 20000,
-    "connectSocket": 20000,
-    "uploadFile": 20000,
-    "downloadFile": 20000
-  }
+    "window": {
+        "navigationBarBackgroundColor": "#fff",
+        "navigationBarTitleText": "微天使乐投平台",
+        "navigationBarTextStyle": "black",
+        "enablePullDownRefresh": true,
+        "backgroundTextStyle": "dark"
+    },
+    "tabBar": {
+        "list": [
+            {
+                "iconPath": "img/resource.png",
+                "selectedIconPath": "img/resourceOn.png",
+                "pagePath": "pages/match/match/match/match",
+                "text": "对接"
+            },
+            {
+                "iconPath": "img/project.png",
+                "selectedIconPath": "img/projectOn.png",
+                "pagePath": "pages/match/selectProject/selectProject",
+                "text": "精选"
+            },
+            {
+                "iconPath": "img/people.png",
+                "selectedIconPath": "img/peopleOn.png",
+                "pagePath": "pages/contacts/contacts/contacts",
+                "text": "人脉"
+            },
+            {
+                "iconPath": "img/message.png",
+                "selectedIconPath": "img/messageOn.png",
+                "pagePath": "pages/message/message/message",
+                "text": "消息"
+            },
+            {
+                "iconPath": "img/my.png",
+                "selectedIconPath": "img/myOn.png",
+                "pagePath": "pages/my/my/my",
+                "text": "我的"
+            }
+        ],
+        "selectedColor": "black",
+        "borderStyle": "white"
+    },
+    "networkTimeout": {
+        "request": 20000,
+        "connectSocket": 20000,
+        "uploadFile": 20000,
+        "downloadFile": 20000
+    }
 }

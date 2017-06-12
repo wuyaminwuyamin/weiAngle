@@ -209,6 +209,7 @@ Page({
     onShareAppMessage: function () {
         var user_id = this.data.user_id;
         var share_id = wx.getStorageSync("user_id");
+        console.log(user_id,share_id)
         return app.sharePage(user_id, share_id)
     }
 });
