@@ -1,5 +1,4 @@
-<!--pages/message/message/message.wxml-->
-
+<import src="/pages/Template/Template.wxml" />
 <!--<view class="myApplyProject" bindtap="myApplyProject">
   <view class="flex title">
     <view class="title">
@@ -22,17 +21,6 @@
     <image class="iconEdit" src="/img/icon-edit@3x.png"></image>
   </view>
 </view>-->
-<view class="beAddedContacts">
-  <view class="addedContacts flex" bindtap="beAddedContacts">
-    <view class="flex title">
-      <image class="title_icon" src="/img/img-personMessage.png"></image>
-      <view class="title">
-        {{message_name}}
-      </view>
-    </view>
-    <view class="flex number">
-      <label class="huo-num">{{count}}</label>
-      <image class="iconEdit" src="/img/icon-edit@3x.png"></image>
-    </view>    
-  </view>
-</view>
+<block wx:for="{{messageList}}" wx:key="index">
+  <template is="messageList" data="{{item:item}}"></template>
+</block>

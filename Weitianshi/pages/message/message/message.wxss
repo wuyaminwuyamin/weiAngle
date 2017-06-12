@@ -10,6 +10,16 @@
   height: 56rpx;
   padding: 40rpx 21rpx 36rpx 50rpx;
 }
+.messageList {
+  height: 56rpx;
+  padding: 40rpx 21rpx 36rpx 50rpx;
+}
+.messageList .title {
+  font-size: 36rpx;
+  text-align: left;
+  color: #333;
+  line-height: 54rpx;
+}
 
 .title {
   justify-content: space-between;
@@ -27,6 +37,7 @@
   color: #333;
   line-height: 54rpx;
 }
+
 
 .flex {
   display: flex;

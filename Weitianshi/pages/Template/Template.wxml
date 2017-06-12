@@ -26,14 +26,15 @@
       </view>
       <view class="user_company" wx:if="{{user.user_company_name}}">公司：{{user.user_company_name}}</view>
       <view class="user_company" wx:if="{{!user.user_company_name}}">公司名称：暂无编辑</view>
-      <view class="user_mobile" wx:if="{{user.user_mobile}}">手机：<label data-telephone="{{user.user_mobile}}" id="{{blue==-1?'mobileStyle':''}}" catchtap="telephone">{{user.user_mobile}}</label>
+      <view class="user_mobile" wx:if="{{user.user_mobile}}">手机：
+        <label data-telephone="{{user.user_mobile}}" id="{{blue==-1?'mobileStyle':''}}" catchtap="telephone">{{user.user_mobile}}</label>
       </view>
 
       <view class="user_mobile" wx:if="{{!user.user_mobile}}">手机号码：暂无编辑</view>
       <view class="user_email flex" wx:if="{{user.user_email}}">
         <view>邮箱：{{user.user_email}}</view>
         <label>
-          <button  class="user_edit" plain="{{true}}" catchtap="shareSth">
+          <button class="user_edit" plain="{{true}}" catchtap="shareSth">
             <image src="/img/img-share.png"></image>
           </button>
         </label>
@@ -168,7 +169,7 @@
         <image class="title_icon" src="/img/icon-rongzi@3x.png"></image>
         {{text}}
       </view>
-      <image class="iconEdit" wx:if="{{canEdit}}" src="/img/icon-edit@3x.png" ></image>
+      <image class="iconEdit" wx:if="{{canEdit}}" src="/img/icon-edit@3x.png"></image>
     </view>
     <view class="projcet_info_frame">
       <block wx:for="{{project_info}}" wx:key="{{item.pro_intro}}">
@@ -202,7 +203,7 @@
         <image class="title_icon" src="/img/icon-anli@3x.png"></image>
         投资案例
       </view>
-      <image class="iconEdit" wx:if="{{canEdit}}" src="/img/icon-edit@3x.png" ></image>
+      <image class="iconEdit" wx:if="{{canEdit}}" src="/img/icon-edit@3x.png"></image>
     </view>
     <view class="invest_info_frame">
       <block wx:for="{{invest_case}}" wx:key="{{item.case_id}}">
@@ -436,4 +437,20 @@
 
 </template>
 
-<!--input_text-->
+<!--卡片列表-->
+<template name="messageList">
+  <view class="beAddedContacts">
+    <view class="messageList flex" bindtap="{{item.event}}">
+      <view class="flex title">
+        <image class="title_icon" src="{{item.iconPath}}"></image>
+        <view class="title">
+          {{item.message_name}}
+        </view>
+      </view>
+      <view class="flex number">
+        <label class="huo-num">{{item.count}}</label>
+        <image class="iconEdit" src="/img/icon-edit@3x.png"></image>
+      </view>
+    </view>
+  </view>
+</template>
