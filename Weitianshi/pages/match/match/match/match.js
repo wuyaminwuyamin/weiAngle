@@ -365,86 +365,86 @@ Page({
         }
     },
     //寻找项目触底刷新
-    /* yourPayProject: function () {
-         var that = this;
-         var investor_id = this.data.investor_id;
-         var investor_page = this.data.investor_page;
-         var user_id = wx.getStorageSync('user_id');
-         var yourProject = this.data.yourProject;
-         var investor_page_end = this.data.investor_page_end;
-         var investorProjectcheck = this.data.investorProjectcheck;
-         if (investorProjectcheck) {
-             if (user_id != '') {
-                 if (investor_page_end == false) {
-                     wx.showToast({
-                         title: 'loading...',
-                         icon: 'loading'
-                     })
-                     investor_page++;
-                     that.setData({
-                         investor_page: investor_page
-                     });
-                     wx.request({
-                         url: url + '/api/investors/withPageGetMatchProjects',
-                         data: {
-                             investor_id: investor_id,
-                             page: investor_page,
-                         },
-                         method: 'POST',
-                         success: function (res) {
-                             console.log("分页加载的投资需求的匹配项目")
-                             // console.log(res);
-                             var newPage = res.data.data;
-                             var investor_page_end = res.data.page_end;
-                             var yourProject = that.data.yourProject;
-                             for (var i = 0; i < newPage.length; i++) {
-                                 yourProject.push(newPage[i])
-                             }
-                             console.log(investor_page);
-                             that.setData({
-                                 yourProject: yourProject,
-                                 investor_page_end: res.data.page_end
-                             })
-                         }
-                     })
-                 }
-             }
-         } else {
-             rqj.errorHide(that, "没有更多了", 3000)
-         }
-         this.setData({
-             resourceProjectcheck: false
-         });
-     },*/
-
-
     yourPayProject: function () {
         var that = this;
         var investor_id = this.data.investor_id;
+        var investor_page = this.data.investor_page;
         var user_id = wx.getStorageSync('user_id');
         var yourProject = this.data.yourProject;
-        var investorProjectcheck = this.data.investorProjectcheck;
         var investor_page_end = this.data.investor_page_end;
-        var investor_page = this.data.investor_page;
-        var request = {
-            url: "https://wx.dev.weitianshi.cn/api/investors/withPageGetMatchProjects",
-            investorProjectcheck: investorProjectcheck,
-            investor_page_end: investor_page_end,
-            investor_page:investor_page,
-            data:{
-                investor_id: investor_id,
-                page: investor_page,
+        var investorProjectcheck = this.data.investorProjectcheck;
+        if (investorProjectcheck) {
+            if (user_id != '') {
+                if (investor_page_end == false) {
+                    wx.showToast({
+                        title: 'loading...',
+                        icon: 'loading'
+                    })
+                    investor_page++;
+                    that.setData({
+                        investor_page: investor_page,
+                        investorProjectcheck: false
+                    });
+                    wx.request({
+                        url: url + '/api/investors/withPageGetMatchProjects',
+                        data: {
+                            investor_id: investor_id,
+                            page: investor_page,
+                        },
+                        method: 'POST',
+                        success: function (res) {
+                            console.log("分页加载的投资需求的匹配项目")
+                            console.log(res);
+                            var newPage = res.data.data;
+                            var investor_page_end = res.data.page_end;
+                            var yourProject = that.data.yourProject;
+                            for (var i = 0; i < newPage.length; i++) {
+                                yourProject.push(newPage[i])
+                            }
+                            console.log(investor_page);
+                            that.setData({
+                                yourProject: yourProject,
+                                investor_page_end: res.data.page_end,
+                                investorProjectcheck: true
+                            })
+                        }
+                    })
+                }
             }
-        }
-        app.loadMore(that, request, this.callback)
+        } else
+            rqj.errorHide(that, "没有更多了", 3000)
+        this.setData({
+            investorProjectcheck: false
+        });
     },
 
-    //设置属性
+
+    /*    yourPayProject: function () {
+            var that = this;
+            var investor_id = this.data.investor_id;
+            var user_id = wx.getStorageSync('user_id');
+            var yourProject = this.data.yourProject;
+            var investorProjectcheck = this.data.investorProjectcheck;
+            var investor_page_end = this.data.investor_page_end;
+            var investor_page = this.data.investor_page;
+            var request = {
+                url: "https://wx.dev.weitianshi.cn/api/investors/withPageGetMatchProjects",
+                requestCheck: investorProjectcheck,
+                pageEnd: investor_page_end,
+                currentPage:investor_page,
+                data:{
+                    investor_id: investor_id,
+                    page: investor_page,
+                }
+            }
+            app.loadMore(that, request, this.callback)
+        },*/
 
 
     //回调函数
     callback: function (res, that) {
         console.log("分页加载的投资需求的匹配项目")
+        console.log(res)
         var newPage = res.data.data;
         var pageEnd = res.data.page_end;
         var yourProject = that.data.yourProject;
@@ -457,6 +457,7 @@ Page({
             pageEnd: res.data.page_end
         })
     },
+
     // 资源对接触底刷新
     resourceProject: function () {
         var that = this;
@@ -489,32 +490,25 @@ Page({
                             console.log("分页加载的资源需求的匹配项目")
                             console.log(res);
                             var newPage = res.data.res_match;
-                            console.log(newPage);
                             var resource_page_end = res.data.page_end;
                             var res_match = that.data.res_match;
                             for (var i = 0; i < newPage.length; i++) {
                                 res_match.push(newPage[i])
                             }
-                            console.log(res_match);
                             that.setData({
                                 res_match: res_match, //资源需求匹配出来的项目
                                 resource_page_end: resource_page_end,
                             })
-
                         }
                     })
-                } else {
-                    // rqj.errorHide(that, "没有更多了", 3000)
-
-                }
+                } 
             }
         } else {
             rqj.errorHide(that, "没有更多了", 3000)
-            console.log("yes");
+            this.setData({
+                resourceProjectcheck: false
+            });
         }
-        this.setData({
-            resourceProjectcheck: false
-        });
     },
     //分享当前页面
     onShareAppMessage: function () {

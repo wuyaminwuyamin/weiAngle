@@ -443,18 +443,19 @@ App({
         var user_id = wx.getStorageSync("user_id");
         var rqj = require('./pages/Template/Template.js');
         var keys = Object.keys(request);
-        if (request[keys[1]]) {
+        console.log(investorProjectcheck)
+        if (investorProjectcheck) {
             if (user_id != '') {
-                if (request[keys[2]] == false) {
+                if (request.pageEnd == false) {
                     wx.showToast({
                         title: 'loading...',
                         icon: 'loading'
                     })
-                    request[keys[3]]++;
+                    request.currentPage++;
                     that.setData({
-                        'keys[3]': request[keys[3]]
+                        investor_page:request.currentPage
                     });
-                    console.log(keys[3])
+                    console.log(that.data.investor_page)
                     console.log(that.data)
                     //请求加载数据
                     wx.request({
@@ -472,7 +473,7 @@ App({
             rqj.errorHide(that, "没有更多了", 3000)
         }
         that.setData({
-            'keys[1]': false
+            investorProjectcheck: false
         });
     },
 
