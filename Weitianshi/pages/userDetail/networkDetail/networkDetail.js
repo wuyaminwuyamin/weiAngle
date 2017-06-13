@@ -211,6 +211,13 @@ Page({
       })
     }
   },
+  // 二维码分享页面
+  shareSth:function(e){
+    console.log(e)
+    wx.navigateTo({
+      url: '/pages/my/qrCode/qrCode',
+    })
+  },
   //分享页面
   onShareAppMessage: function () {
     var user_id = this.data.user_id;

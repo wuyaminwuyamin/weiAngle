@@ -34,6 +34,7 @@
   width: 16rpx;
   height: 16rpx;
   border-radius: 100%;
+  margin-top:-4rpx;
 }
 
 .refuse {
@@ -310,4 +311,12 @@ page {
   color: #999;
   text-align: left;
   margin: 65% auto;
+}
+.addTime{
+  font-size:20rpx;
+  margin-top:20rpx;
+  margin-right:64rpx;
+  padding-bottom:40rpx;
+  text-align: right;
+  color:#cccccc;
 }
