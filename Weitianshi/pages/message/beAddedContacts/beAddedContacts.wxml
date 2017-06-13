@@ -80,8 +80,10 @@
               </view>
             </view>
           </view>
+         
         </view>
       </block>
+       <view class="addTime">2016-01-01 04-22</view>
     </view>
   </scroll-view>
 </view>
