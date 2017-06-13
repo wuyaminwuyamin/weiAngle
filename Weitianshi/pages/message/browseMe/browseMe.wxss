@@ -23,6 +23,13 @@
   margin-right: 12rpx;
 }
 
+.redPoint {
+  background: #f44c4c;
+  width: 16rpx;
+  height: 16rpx;
+  border-radius: 100%;
+}
+
 .browseMeTitle .num {
   font-size: 24rpx;
   color: #666;
@@ -278,11 +285,12 @@ page {
   line-height: 28rpx;
   text-align: left;
 }
+
 .addPerson {
   border-radius: 200rpx;
   width: 120rpx;
   height: 48rpx;
-  position:static;
+  position: static;
 }
 
 .addPersonBtn {
@@ -291,11 +299,12 @@ page {
   font-size: 20rpx;
   border-radius: 100px;
   color: #fff;
-  padding:14rpx 0;
+  padding: 14rpx 0;
   line-height: 20rpx;
   text-align: center;
-  position:static;
+  position: static;
 }
-.addPersonBtn::after{
-  border:0;
+
+.addPersonBtn::after {
+  border: 0;
 }

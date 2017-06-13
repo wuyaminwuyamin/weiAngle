@@ -29,8 +29,7 @@
   line-height: 24rpx;
   text-align: right;
 }
-
-.addPic {
+.redPoint {
   background: #f44c4c;
   width: 16rpx;
   height: 16rpx;

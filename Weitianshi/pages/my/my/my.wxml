@@ -2,7 +2,7 @@
 <scroll-view id="my" scroll-y="true" scroll-top="{{goTop==1?0:''}}">
 
   <!--我的名片-->
-  <template is="userInfo" data="{{user:user,canEdit:canEdit,blue:blue}}"></template>
+  <template is="userInfo" data="{{user:user,canEdit:canEdit,blue:blue,count:count}}"></template>
 
   <!--个人描述-->
   <template is="userIntro" data="{{user:user,canEdit:canEdit}}"></template>

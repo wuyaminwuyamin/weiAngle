@@ -28,13 +28,16 @@ Page({
         },
         method: 'POST',
         success: function (res) {
+          console.log(res)
           var contacts = res.data.data;//所有的用户
+          var count = res.data.count;
           console.log(contacts)
           var page_end = res.data.page_end;
           that.setData({
             contacts: contacts,
             page_end: page_end,
-            contacts_page: 1
+            contacts_page: 1,
+            count:count
           })
         }
       })

@@ -24,8 +24,12 @@ Page({
       success: function (res) {
         console.log(res);
         var data = res.data.data;
-        var count = data[0].count;
-        var type_id = data[0].type_id;
+        var count = 0;
+        var type_id =0;
+        data.forEach((x) => {
+         count = x.count;
+         type_id = x.type_id;
+        })
         that.setData({
           type_id: type_id,
           count: count
@@ -49,9 +53,21 @@ Page({
       }
     })
   },
-  addPerson:function(options){
-    console.log(options)
+  addPerson:function(e){
     var user_id = wx.getStorageSync('user_id');
+    var apply_user_id = e.currentTarget.dataset.id
+    console.log(apply_user_id);
+    wx.request({
+      url: url +'/api/user/handleApplyFollowUser',
+      data:{
+        user_id :user_id,
+        apply_user_id: apply_user_id
+      },
+      method:'POST',
+      success:function(){
+        console.log("yes")
+      }
+    })
     
   },
   // 用户详情=========================================================================================

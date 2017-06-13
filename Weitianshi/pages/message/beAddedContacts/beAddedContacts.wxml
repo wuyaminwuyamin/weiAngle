@@ -18,6 +18,7 @@
       <block wx:for="{{contacts}}" wx:key="{{item.user_id}}">
         <view class="card" data-id="{{item.user_id}}" bindtap="userDetail">
           <view class="user_info flex">
+          <view class="redPoint" wx:if="{item.message_status == 0}}"></view>
             <view class="user_text" wx:if="{{item.user_avatar_text}}">{{item.user_avatar_text}}</view>
             <image class="user_pic" src="{{item.user_avatar_url}}" wx:if="{{item.user_avatar_url}}"></image>
             <view class="user_info_right">
@@ -28,10 +29,9 @@
                 </view>
                 <!--加人脉窗口-->
                 <label>
-                  <!--<view class="addPic"></view>-->
                   <view class="refuse" wx:if="{{item.follow_status ==1 ||item.follow_status ==2}}">互为人脉</view>
                   <view class="addPerson"  wx:if="{{item.follow_status  == 0}}">
-                    <button class="addPersonBtn" bindtap="addPerson">加人脉</button>
+                    <button class="addPersonBtn" data-id="{{item.user_id}}" bindtap="addPerson">加人脉</button>
                   </view>
                 </label>
               </view>

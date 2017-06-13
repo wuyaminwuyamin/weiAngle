@@ -10,7 +10,7 @@ Page({
         goTop: 0,
         canEdit: 1,
         blue:-1,
-        num:0
+        count:""
     },
     onLoad: function (options) {
         if (options) {
@@ -21,13 +21,10 @@ Page({
     },
     onShow: function () {
         var that = this
-        var num = wx.getStorageSync('numLen')
-        console.log(num)
         app.loginPage(function (user_id) {
             console.log("这里是cb函数")
             that.setData({
                 user_id: user_id,
-                num : num
             })
             //分享至群打点准备
             wx.showShareMenu({
@@ -47,7 +44,7 @@ Page({
                         console.log("我的getUserAllInfo信息")
                         console.log(res);
                         var user = res.data.user_info;
-                       
+                        var count = res.data.count;
                         var invest = res.data.invest_info;
                         var resource = res.data.resource_info;
                         var project_info = res.data.project_info;
@@ -71,7 +68,8 @@ Page({
                             project_info: project_info,
                             invest_case: invest_case,
                             status_code: status_code,
-                            financingProject: financingProject
+                            financingProject: financingProject,
+                            count:count
                         })
                     },
                     fail: function (res) {
