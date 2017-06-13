@@ -16,9 +16,9 @@
   <scroll-view scroll-y="true" bindscrolltolower="loadMore" scroll-top="{{scroll}}">
     <view class="contacts">
       <block wx:for="{{contacts}}" wx:key="{{item.user_id}}">
-        <view class="card" data-id="{{item.user_id}}" data-index="{{index}}" data-followedId="{{item.user_id}}" bindtap="userDetail">
+        <view class="card" data-id="{{item.user_id}}" bindtap="userDetail">
           <view class="user_info flex">
-            <view class="redPoint" hidden="{item.message_status != 0}}"></view>
+            <view class="redPoint" wx:if="{{item.message_status==0}}"></view>
             <view class="user_text" wx:if="{{item.user_avatar_text}}">{{item.user_avatar_text}}</view>
             <image class="user_pic" src="{{item.user_avatar_url}}" wx:if="{{item.user_avatar_url}}"></image>
             <view class="user_info_right">
@@ -31,7 +31,7 @@
                 <label>
                   <!--需要进行判断 0:加人脉1.单项人脉2.互为人脉3.待同意-->
                   <view class="addPerson" wx:if="{{item.follow_status == 0}}">
-                    <button class="addPersonBtn" bindtap="addNetWork">加人脉</button>
+                    <button class="addPersonBtn" data-followedId="{{item.user_id}}"  data-index="{{index}}"   catchtap="addNetWork">加人脉</button>
                   </view>
                   <view class="netWork" wx:if="{{item.follow_status == 3}}">
                     <label class="addNet">待验证</label>

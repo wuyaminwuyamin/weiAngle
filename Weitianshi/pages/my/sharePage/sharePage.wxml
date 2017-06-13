@@ -22,7 +22,8 @@
 
   <!--我的人脉和加入人脉-->
   <!--<view class="aboutNetwork flex" hidden="{{followed_user_id==user_id}}" >-->
-  <view class="aboutNetwork flex" wx:if="{{button_type != '0'}}">
-    <view bindtap="addNetwork">加人脉</view>
+  <view class="aboutNetwork flex" wx:if="{{button_type != 0}}">
+    <view bindtap="addNetwork" hidden="{{button_type==3}}">加人脉</view>
+    <view style="background: #f2f2f2;color:#cccccc;" wx:if="{{button_type==3}}">待验证</view>
   </view>
 </scroll-view>
