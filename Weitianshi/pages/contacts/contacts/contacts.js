@@ -101,7 +101,7 @@ Page({
       })
     }
   },
-  // 用户详情=========================================================================================
+  // 用户详情
   userDetail: function (e) {
     var id = e.currentTarget.dataset.id
     console.log(id);

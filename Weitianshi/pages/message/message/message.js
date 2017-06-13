@@ -10,7 +10,7 @@ Page({
                 event: "beAddedContacts",
                 iconPath: "/img/img-personMessage.png",
                 message_name: "人脉申请",
-                count: 5
+                count: 0
             }
         ]
     },

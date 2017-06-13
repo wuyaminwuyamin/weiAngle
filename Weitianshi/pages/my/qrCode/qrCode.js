@@ -56,7 +56,7 @@ Page({
                     url: url + '/api/wx/getCardQr',
                     data: {
                         'user_id': user_id,
-                        'path': '/pages/my/my/my',
+                        'path': '/pages/my/sharePage/sharePage?user_id=' + user_id + "&&share_id=" + user_id,
                         'width': 430,
                         'auto_color': false,
                         'line_color': { "r": "0", "g": "0", "b": "0" }
@@ -81,37 +81,12 @@ Page({
     },
 
     //保存小程序码
-    /*savePic: function (res) {
-        var filePath = wx.getStorageSync('access_token');
-        wx.getSetting({
-            success(res) {
-                if (!res['scope.writePhotosAlbum']) {
-                    wx.authorize({
-                        scope: 'scope.writePhotosAlbum',
-                        success() {
-                            wx.saveImageToPhotosAlbum({
-                                filePath: "http://cdn.weitianshi.cn/test_qrcode/20170612/mr93M3KW.jpg",
-                                success: function (res) {
-                                    console.log(res)
-                                },
-                                fail: function (res) {
-                                    console.log(filePath)
-                                    console.log(res)
-                                }
-                            })
-                        }
-                    })
-                }
-            }
-        })
-    },*/
-
     savePic: function () {
         var filePath = wx.getStorageSync('access_token');
         wx.getImageInfo({
             src: filePath,
-            success:function(res){
-                var picPath=res.path;
+            success: function (res) {
+                var picPath = res.path;
                 wx.getSetting({
                     success(res) {
                         if (!res['scope.writePhotosAlbum']) {
@@ -135,14 +110,12 @@ Page({
                 })
             },
         })
-
-      
     },
 
     //分享页面
     onShareAppMessage: function () {
         var id = wx.getStorageSync('user_id');
-        return app.sharePage(id)
+        return app.sharePage(id,id)
     },
 
     //取消分享

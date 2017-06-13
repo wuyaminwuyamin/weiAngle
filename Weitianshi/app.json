@@ -1,7 +1,7 @@
 {
     "pages": [
-        "pages/my/my/my",
         "pages/match/match/match/match",
+        "pages/my/my/my",
         "pages/search/filter4/filter4",
         "pages/match/match/resourceDemand/resourceDemand",
         "pages/form/area1/area1",

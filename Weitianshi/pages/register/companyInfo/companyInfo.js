@@ -155,7 +155,7 @@ Page({
                             wx.request({
                                 url: url + '/api/user/followUser',
                                 data: {
-                                    follow_user_id: user_id,
+                                   user_id: user_id,
                                     followed_user_id: followed_user_id
                                 },
                                 method: 'POST',

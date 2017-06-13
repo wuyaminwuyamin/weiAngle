@@ -109,45 +109,36 @@ Page({
                 }
             })
         } else if (bindUser == 1) {
-          var that = this;
-          var followed_user_id = this.data.user_id;//当前用户的
-          let view_id = wx.getStorageSync('user_id');//获取我自己的user_id/查看者的id
-          let button_type = this.data.button_type;
-          // console.log(button_type) 
-          // button_type==0 互为好友或单项人脉,1.分享出去的页面,直接添加2.需要通过申请去添加人脉3.待处理状态
-          if (button_type == 1) {
-            wx.request({
-              url: url + '/api/user/followUser',
-              data: {
-                follow_user_id: user_id,
-                followed_user_id: followed_user_id
-              },
-              method: 'POST',
-              success: function (res) {
-                that.setData({
-                  condition: 2
+            console.log(followed_user_id)
+            //直接添加人脉的情况
+            if (button_type == 1) {
+                wx.request({
+                    url: url + '/api/user/followUser',
+                    data: {
+                        user_id: user_id,
+                        followed_user_id: followed_user_id
+                    },
+                    method: 'POST',
+                    success: function (res) {
+                        console.log("这里是直接添加人脉")
+                        console.log(res)
+                    }
                 })
-              }
-            })
-          } else if (button_type == 2) {
-            wx.request({
-              url: url + '/api/user/UserApplyFollowUser',
-              data: {
-                user_id: view_id,
-                applied_user_id: followed_user_id
-              },
-              method: 'POST',
-              success: function (res) {
-                that.setData({
-                  condition: 2
+                //需要走正常申请流程的情况
+            } else if (button_type == 2) {
+                wx.request({
+                    url: url + '/api/user/UserApplyFollowUser',
+                    data: {
+                        user_id: user_id,
+                        applied_user_id: followed_user_id
+                    },
+                    method: 'POST',
+                    success: function (res) {
+                        console.log("这里是走正常申请过程");
+                        console.log(res);
+                    }
                 })
-              }
-            })
-          } else if (button_type == 0) {
-            that.setData({
-              condition: 0
-            })
-          }
+            } 
         } else {
             showModal({
                 title: "错误提示",

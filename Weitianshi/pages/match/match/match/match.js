@@ -417,57 +417,15 @@ Page({
             investorProjectcheck: false
         });
     },
-
-
-    /*    yourPayProject: function () {
-            var that = this;
-            var investor_id = this.data.investor_id;
-            var user_id = wx.getStorageSync('user_id');
-            var yourProject = this.data.yourProject;
-            var investorProjectcheck = this.data.investorProjectcheck;
-            var investor_page_end = this.data.investor_page_end;
-            var investor_page = this.data.investor_page;
-            var request = {
-                url: "https://wx.dev.weitianshi.cn/api/investors/withPageGetMatchProjects",
-                requestCheck: investorProjectcheck,
-                pageEnd: investor_page_end,
-                currentPage:investor_page,
-                data:{
-                    investor_id: investor_id,
-                    page: investor_page,
-                }
-            }
-            app.loadMore(that, request, this.callback)
-        },*/
-
-
-    //回调函数
-    callback: function (res, that) {
-        console.log("分页加载的投资需求的匹配项目")
-        console.log(res)
-        var newPage = res.data.data;
-        var pageEnd = res.data.page_end;
-        var yourProject = that.data.yourProject;
-        // console.log(that.data.investorProjectcheck, that.data.investor_page)
-        newPage.forEach((x) => {
-            yourProject.push(x)
-        })
-        that.setData({
-            yourProject: yourProject,
-            pageEnd: res.data.page_end
-        })
-    },
-
     // 资源对接触底刷新
     resourceProject: function () {
         var that = this;
         var res_id = this.data.res_id;
-        var resource_page = this.data.resource_page;
         var user_id = wx.getStorageSync('user_id');
-        var resource_page_end = this.data.resource_page_end;
-        var res_match = this.data.res_match;
         var resourceProjectcheck = this.data.resourceProjectcheck;
-        console.log(resourceProjectcheck)
+        var resource_page_end = this.data.resource_page_end;
+        var resource_page = this.data.resource_page;
+        var res_match = this.data.res_match;
         if (resourceProjectcheck) {
             if (user_id != '') {
                 if (resource_page_end == false) {
@@ -501,7 +459,7 @@ Page({
                             })
                         }
                     })
-                } 
+                }
             }
         } else {
             rqj.errorHide(that, "没有更多了", 3000)
