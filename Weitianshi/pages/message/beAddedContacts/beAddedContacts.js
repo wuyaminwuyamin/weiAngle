@@ -39,38 +39,20 @@ Page({
           method: 'POST',
           success: function (res) {
             var contacts = res.data.data;
-          
-            for(var i =0; i <contacts.length;i++){
-              console.log(contacts[i].follow_status)
-             let follow_status = contacts[i].follow_status;
-              if (follow_status == 0) {
-                console.log("follow_status== 0")
-                that.setData({
-                  follow_status: follow_status
-                })
-              } else if (follow_status == 1) {
-                console.log("follow_status== 1")
-                that.setData({
-                  follow_stauts: follow_status
-                })
-              } else if (follow_status == 2) {
-                console.log("follow_status== 2")
-                that.setData({
-                  contacts: contacts,
-                  follow_stauts: follow_status
-                })
-              } else if (follow_status == 3) {
-                console.log("follow_status== 3")
-                that.setData({
-                  contacts: contacts,
-                  follow_stauts: follow_status
-                })
-              }
-            }
+            console.log(contacts)
+            that.setData({
+              contacts: contacts,
+              contacts_page: 1
+            })
           }
         })
       }
     })
+  },
+  addPerson:function(options){
+    console.log(options)
+    var user_id = wx.getStorageSync('user_id');
+    
   },
   // 用户详情=========================================================================================
   userDetail: function (e) {

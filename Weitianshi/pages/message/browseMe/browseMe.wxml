@@ -6,13 +6,14 @@
     浏览了我的用户
   </view>
   <view class="num">
-  <!--动态改变数字-->
-   共 <label>{{numLen}}</label> 个</view>
+    <!--动态改变数字-->
+    共
+    <label>{{numLen}}</label> 个</view>
 </view>
 
 <!--资本对接-->
 <view class="s_frame" hidden="{{contacts=='' || !contacts}}">
-  <scroll-view scroll-y="true" bindscrolltolower="loadMore" scroll-top="{{scroll}}" >
+  <scroll-view scroll-y="true" bindscrolltolower="loadMore" scroll-top="{{scroll}}">
     <view class="contacts">
       <block wx:for="{{contacts}}" wx:key="{{item.user_id}}">
         <view class="card" data-id="{{item.user_id}}" bindtap="userDetail">
@@ -25,14 +26,19 @@
                   <view class="user_name">{{item.user_real_name}}</view>
                   <view class="user_career">{{item.user_company_career}}</view>
                 </view>
-               <!--加人脉窗口-->
-               <label>
-                <!--需要进行判断1.加人脉2.待验证3.互为好友-->
-                <view class="addNetwork" wx:if="{{button_type==0||button_type==1}}"><label class="addNet">加人脉</label></view>
-                <view class="netWork" wx:if="{{button_type==3}}"><label class="addNet">待验证</label></view>
-                <view class="netWork" wx:if="{{button_type==2}}"><label class="addNet">互为人脉</label></view>
-               
-               </label>
+                <!--加人脉窗口-->
+                <label>
+                  <!--需要进行判断 0:加人脉1.单项人脉2.互为人脉3.待同意-->
+                  <view class="addPerson" wx:if="{{item.follow_status == 0||condition == 0}}">
+                    <button class="addPersonBtn" bindtap="addNetWork">加人脉</button>
+                  </view>
+                  <view class="netWork" wx:if="{{item.follow_status == 3  ||condition == 2}}">
+                    <label class="addNet">待验证</label>
+                  </view>
+                  <view class="netWork" wx:if="{{item.follow_status == 1||item.follow_status == 2 || condition==1}}">
+                    <label class="addNet">互为人脉</label>
+                  </view>
+                </label>
               </view>
               <view class="user_company" wx:if="{{item.user_company_name !=''}}">{{item.user_company_name}}</view>
             </view>
