@@ -15,10 +15,12 @@ Page({
     that.setData({
       user_id: user_id
     })
+
+    //获取消息列表
     wx.request({
       url: url_common + '/api/message/messageType',
       data: {
-        user_id: user_id
+        user_id: user_id,
       },
       method: 'POST',
       success: function (res) {
