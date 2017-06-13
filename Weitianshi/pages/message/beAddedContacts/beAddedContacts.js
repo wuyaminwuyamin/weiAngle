@@ -56,7 +56,6 @@ Page({
   addPerson:function(e){
     var user_id = wx.getStorageSync('user_id');
     var apply_user_id = e.currentTarget.dataset.id
-    console.log(apply_user_id);
     wx.request({
       url: url +'/api/user/handleApplyFollowUser',
       data:{

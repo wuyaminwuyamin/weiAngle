@@ -32,6 +32,7 @@ Page({
                 success: function (res) {
                     console.log(res)
                     var user = res.data.user_info;
+                    var count = res.data.count;
                     var invest = res.data.invest_info;
                     var resource = res.data.resource_info;
                     var project_info = res.data.project_info;
@@ -44,7 +45,8 @@ Page({
                         resource: resource,
                         project_info: project_info,
                         invest_case: invest_case,
-                        button_type: button_type
+                        button_type: button_type,
+                        count:count
                     })
 
                     if (button_type == 0) {
