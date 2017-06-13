@@ -70,8 +70,8 @@ App({
             method: 'POST',
             success: function (res) {
                 var hotCity = res.data.data;
-                hotCity.forEach((x)=>{
-                    x.checked=false;
+                hotCity.forEach((x) => {
+                    x.checked = false;
                 })
                 wx.setStorageSync('hotCity', hotCity)
             }
@@ -254,8 +254,8 @@ App({
     },
 
     //分享页面函数
-    sharePage: function (user_id,share_id) {
-        let path = "/pages/my/sharePage/sharePage?user_id=" + user_id+"&&share_id="+share_id;
+    sharePage: function (user_id, share_id) {
+        let path = "/pages/my/sharePage/sharePage?user_id=" + user_id + "&&share_id=" + share_id;
         let url = this.globalData.url;
         let json = {
             title: '投资名片—智能精准匹配投融资双方的神器',
@@ -411,7 +411,7 @@ App({
     },*/
 
     //多选标签事件封装
-    tagsCheck(that,rqj,e,tags,cb) {
+    tagsCheck(that, rqj, e, tags, cb) {
         console.log(e.currentTarget.dataset);
         let target = e.currentTarget.dataset;
         let tagsData = tags.tagsData;
@@ -438,10 +438,48 @@ App({
         return checkObject
     },
 
+    //下拉加载事件封装
+    loadMore(that, request, callBack) {
+        var user_id = wx.getStorageSync("user_id");
+        var rqj = require('./pages/Template/Template.js');
+        var keys = Object.keys(request);
+        if (request[keys[1]]) {
+            if (user_id != '') {
+                if (request[keys[2]] == false) {
+                    wx.showToast({
+                        title: 'loading...',
+                        icon: 'loading'
+                    })
+                    request[keys[3]]++;
+                    that.setData({
+                        'keys[3]': request[keys[3]]
+                    });
+                    console.log(keys[3])
+                    console.log(that.data)
+                    //请求加载数据
+                    wx.request({
+                        url: request.url,
+                        data: request.data,
+                        method: 'POST',
+                        success: function (res) {
+                            console.log(request.data)
+                            callBack(res, that)
+                        }
+                    })
+                }
+            }
+        } else {
+            rqj.errorHide(that, "没有更多了", 3000)
+        }
+        that.setData({
+            'keys[1]': false
+        });
+    },
+
     //初始本地缓存
     globalData: {
         error: 0,
         url: "https://wx.dev.weitianshi.cn",
-        url_common:"https://dev.weitianshi.cn"
+        url_common: "https://dev.weitianshi.cn"
     }
 });
