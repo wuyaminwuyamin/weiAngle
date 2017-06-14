@@ -29,7 +29,7 @@ Page({
             success: function (res) {
                 console.log(res)
                 var contacts = res.data.data;
-                console.log(contacts)
+                console.log(contacts);
                 that.setData({
                     contacts: contacts,
                     count: res.data.count

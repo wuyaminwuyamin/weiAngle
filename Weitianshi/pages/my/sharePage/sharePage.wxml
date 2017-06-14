@@ -21,13 +21,12 @@
   <template is="forButton"></template>
 
   <!--我的人脉和加入人脉-->
-  <!--<view class="aboutNetwork flex" hidden="{{followed_user_id==user_id}}" >-->
+<!--button——type = 0：好友关系或单项人脉；1：分享出去的页面，直接添加2：需要同通过申请去添加3：待处理的状态-->
   <view class="aboutNetwork flex" wx:if="{{button_type != 0}}">
-    <view bindtap="addNetwork" hidden="{{button_type==3}}">加人脉</view>
-    <view style="background: #f2f2f2;color:#cccccc;" wx:if="{{button_type==3}}">待验证</view>
+    <view bindtap="addNetwork" wx:if="{{button_type==1 || button_type ==2}}">加人脉</view>
   </view>
-  <view class="floatBtn flex waitPerson" wx:if="{{condition ==2||button_type == 3}}">
+  <view class="floatBtn flex waitPerson" wx:if="{{button_type == 3}}">
     <button class="waitPersonBtn" style="background: #f2f2f2;color:#cccccc;">待验证</button>
   </view>
-  <label wx:if="{{condition == 0}}"></label>
+  <label wx:if="{{button_type == 0}}"></label>
 </scroll-view>
