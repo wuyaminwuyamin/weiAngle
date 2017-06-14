@@ -48,7 +48,6 @@ Page({
         var that = this;
         var user_id = wx.getStorageSync('user_id');
         var messageList = this.data.messageList;
-        console.log(messageList)
         wx.request({
             url: url_common + '/api/message/messageType',
             data: {
@@ -59,7 +58,6 @@ Page({
                 console.log(res)
                 var data = res.data.data;
                 data.forEach((x, index) => {
-                    console.log(messageList,x,index)
                     messageList[index].message_name = x.message_name;
                     if(x.count){
                         messageList[index].count = x.count
