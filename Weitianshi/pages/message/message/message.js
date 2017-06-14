@@ -11,6 +11,36 @@ Page({
                 iconPath: "/img/img-personMessage.png",
                 message_name: "人脉申请",
                 count: 0
+            },
+            {
+                event: "beAddedContacts",
+                iconPath: "/img/img-personMessage.png",
+                message_name: "人脉申请",
+                count: 0
+            },
+            {
+                event: "beAddedContacts",
+                iconPath: "/img/img-personMessage.png",
+                message_name: "人脉申请",
+                count: 0
+            },
+            {
+                event: "beAddedContacts",
+                iconPath: "/img/img-personMessage.png",
+                message_name: "人脉申请",
+                count: 0
+            },
+            {
+                event: "beAddedContacts",
+                iconPath: "/img/img-personMessage.png",
+                message_name: "人脉申请",
+                count: 0
+            },
+            {
+                event: "beAddedContacts",
+                iconPath: "/img/img-personMessage.png",
+                message_name: "人脉申请",
+                count: 0
             }
         ]
     },
@@ -29,8 +59,11 @@ Page({
                 console.log(res)
                 var data = res.data.data;
                 data.forEach((x, index) => {
+                    console.log(messageList,x,index)
                     messageList[index].message_name = x.message_name;
-                    messageList[index].count = x.count
+                    if(x.count){
+                        messageList[index].count = x.count
+                    }
                 })
                 that.setData({
                     messageList: messageList
