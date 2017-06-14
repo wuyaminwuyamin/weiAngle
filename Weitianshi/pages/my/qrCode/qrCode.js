@@ -38,7 +38,6 @@ Page({
                         var user = res.data.user_info;
                         var invest = res.data.invest_info;
                         var user_name = res.data.user_info.user_real_name;
-                        console.log(user_name)
                         //设置缓存==========
                         wx.setStorage({
                             key: 'resource_data',
@@ -120,9 +119,9 @@ Page({
 
     //分享页面
     onShareAppMessage: function () {
-        var user_id = wx.getStorageSync('user_id');
-        var share_id=wx.getStorageSync('QR_id')
-        return app.sharePage(user_id,QR_id)
+        var user_id = wx.getStorageSync('QR_id');
+        var share_id = wx.getStorageSync('user_id');
+        return app.sharePage(user_id, share_id)
     },
 
     //取消分享
