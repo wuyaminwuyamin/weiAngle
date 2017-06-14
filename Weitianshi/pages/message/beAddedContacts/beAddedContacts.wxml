@@ -18,7 +18,7 @@
       <block wx:for="{{contacts}}" wx:key="{{item.user_id}}">
         <view class="card" data-id="{{item.user_id}}" bindtap="userDetail">
           <view class="user_info flex">
-           <view class="redPoint" wx:if="{{item.message_status==0}}"></view>
+            <view class="redPoint" wx:if="{{item.message_status==0}}"></view>
             <view class="user_text" wx:if="{{item.user_avatar_text}}">{{item.user_avatar_text}}</view>
             <image class="user_pic" src="{{item.user_avatar_url}}" wx:if="{{item.user_avatar_url}}"></image>
             <view class="user_info_right">
@@ -27,15 +27,15 @@
                   <view class="user_name">{{item.user_real_name}}</view>
                   <view class="user_career">{{item.user_company_career}}</view>
                 </view>
-                <!--加人脉窗口-->
-                <label>
-                  <view class="refuse" wx:if="{{item.follow_status ==1 || item.follow_status ==2}}">已为人脉</view>
-                  <view class="addPerson"  wx:if="{{item.follow_status  == 0 || item.follow_status  == 3}}">
-                    <button class="addPersonBtn" data-follow_status="{{item.follow_status}}" data-followedId="{{item.user_id}}" catchtap="addPerson">加人脉</button>
-                  </view>
-                </label>
               </view>
               <view class="user_company" wx:if="{{item.user_company_name !=''}}">{{item.user_company_name}}</view>
+            </view>
+            <!--加人脉窗口-->
+            <view class="flex addNetwork">
+              <view class="refuse" wx:if="{{item.follow_status ==1 || item.follow_status ==2}}">已为人脉</view>
+              <view class="addPerson" wx:if="{{item.follow_status  == 0 || item.follow_status  == 3}}">
+                <button class="addPersonBtn" data-follow_status="{{item.follow_status}}" data-followedId="{{item.user_id}}" catchtap="addPerson">加人脉</button>
+              </view>
             </view>
           </view>
           <view class="investor_info">
@@ -80,10 +80,9 @@
               </view>
             </view>
           </view>
-         
+           <view class="addTime" style="background:black">{{item.created_at}}</view>
         </view>
       </block>
-       <view class="addTime">2016-01-01 04-22</view>
     </view>
   </scroll-view>
 </view>

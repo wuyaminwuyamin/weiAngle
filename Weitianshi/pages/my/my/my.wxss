@@ -11,21 +11,20 @@ page {
 
 /*用户名片*/
 
-.user_edit {
+#user_edit {
   display: block;
   width: 80rpx;
   height: 80rpx;
   border-radius: 0;
-  margin: 0;
-  padding: 0;
-  margin-right:-80rpx;
+  padding-left:20rpx;
+  margin-top:110rpx;
   text-align: right;
   border: none !important;
 }
-.user_edit image{
+#user_edit image{
     width: 40rpx;
     height: 40rpx;
-    margin: auto;
+    border-radius:0;
 }
 
 .user_email label {
@@ -94,7 +93,7 @@ page {
 .user_email {
   justify-content: space-between;
   margin-bottom: 0;
-  width: auto;
+  width:auto;
 }
 
 .user_popularity, .user_attention, .user_potential {

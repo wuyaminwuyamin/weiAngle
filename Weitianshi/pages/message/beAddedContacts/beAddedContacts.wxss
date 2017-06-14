@@ -67,6 +67,9 @@
 .addPersonBtn::after{
   border:0;
 }
+.addNetwork{
+  float:right;
+}
 
 /*----------------------------------*/
 
@@ -147,7 +150,7 @@ page {
 
 .frame {
   justify-content: space-between;
-  width: 540rpx;
+  width: 430rpx;
 }
 
 .name_flex {

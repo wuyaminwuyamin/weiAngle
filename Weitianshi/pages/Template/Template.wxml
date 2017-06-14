@@ -29,35 +29,28 @@
       <view class="user_mobile" wx:if="{{user.user_mobile}}">手机：
         <label data-telephone="{{user.user_mobile}}" id="{{blue==-1?'mobileStyle':''}}" catchtap="telephone">{{user.user_mobile}}</label>
       </view>
-
       <view class="user_mobile" wx:if="{{!user.user_mobile}}">手机号码：暂无编辑</view>
       <view class="user_email flex" wx:if="{{user.user_email}}">
         <view>邮箱：{{user.user_email}}</view>
-        <label>
-          <button class="user_edit" plain="{{true}}" catchtap="shareSth" data-id="{{user.user_id}}">
-            <image src="/img/img-share.png"></image>
-          </button>
-        </label>
       </view>
       <view class="user_email flex" wx:if="{{!user.user_email}}">邮箱号码：暂无编辑
-        <label>
-          <button class="user_edit" plain="{{true}}">
-            <image src="/img/img-share.png"></image>
-          </button>
-        </label>
       </view>
     </view>
     <view class="user_right">
       <image wx:if="{{user.user_avatar_url}}" class="user_pic" src="{{user.user_avatar_url}}"></image>
       <view wx:if="{{user.user_avatar_text}}" class="user_text noPic">{{user.user_avatar_text}}</view>
       <image wx:if="{{!user}}" class="user_pic" src="/img/img-avatar@3x.png"></image>
+      <button id="user_edit"  plain="{{true}}" catchtap="shareSth" data-id="{{user.user_id}}">
+        <image src="/img/img-share.png"></image>
+      </button>
     </view>
+      
   </view>
   <view class="user_down flex">
     <view class="user_popularity user_tips" bindtap="popularity">
       <view wx:if="{{user.user_popularity}}">{{user.user_popularity}}</view>
       <label class="popularityNum" wx:if="{{count.user_view_new}}">{{count.user_view_new}}+</label>
-       <label class="popularityNum" wx:if="{{count.user_view_new==0}}"></label>
+      <label class="popularityNum" wx:if="{{count.user_view_new==0}}"></label>
       <view wx:if="{{!user.user_popularity}}" class="popularity-Num">{{count.user_view_all}}</view>
       <view class="popularity-people">人气</view>
 
@@ -66,8 +59,8 @@
       <view wx:if="{{user.user_attention}}">{{user.user_attention}}</view>
       <label class="attentionNum" wx:if="{{count.user_followed_new}}">{{count.user_followed_new}}+</label>
       <label class="popularityNum" wx:if="{{count.user_followed_new==0}}"></label>
-      <view wx:if="{{!user.user_attention}}" class="attention-Num">{{count.user_followed_all
-}}</view>
+      <view wx:if="{{!user.user_attention}}" class="attention-Num">{{count.user_followed_all }}
+      </view>
       <view class="attention-people">{{text}}</view>
     </view>
     <view class="user_potential user_tips">
