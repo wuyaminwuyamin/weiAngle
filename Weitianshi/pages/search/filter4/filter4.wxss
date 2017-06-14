@@ -68,7 +68,7 @@ page {
 }
 
 .btn1 {
-  border: 2rpx solid #40587a;
+  /*border: 2rpx solid #40587a;*/
   border-radius: 8rpx;
   width: 214rpx;
   height: 62rpx;

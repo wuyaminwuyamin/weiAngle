@@ -34,7 +34,7 @@
       <view class="user_email flex" wx:if="{{user.user_email}}">
         <view>邮箱：{{user.user_email}}</view>
         <label>
-          <button class="user_edit" plain="{{true}}" catchtap="shareSth" data-id="{{user_id}}">
+          <button class="user_edit" plain="{{true}}" catchtap="shareSth" data-id="{{user.user_id}}">
             <image src="/img/img-share.png"></image>
           </button>
         </label>

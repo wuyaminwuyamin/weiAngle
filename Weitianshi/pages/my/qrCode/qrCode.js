@@ -7,9 +7,14 @@ Page({
         dataUrl: ""
     },
     onShow: function () {
-        var that = this
+        var that = this;
+        var QR_id = wx.getStorageSync('QR_id');//点击二维码页面的用户id
+        //登录态维护
         app.loginPage(function (user_id) {
             console.log("这里是cb函数")
+            var view_id = QR_id;
+            console.log(view_id);
+            wx.setStorageSync('user_id', user_id);
             that.setData({
                 user_id: user_id
             })
@@ -23,7 +28,7 @@ Page({
                     url: url + '/api/user/getUserAllInfo',
                     data: {
                         share_id:user_id,
-                        user_id: user_id,
+                        user_id: QR_id,
                         view_id: user_id,
                     },
                     method: 'POST',
@@ -33,6 +38,7 @@ Page({
                         var user = res.data.user_info;
                         var invest = res.data.invest_info;
                         var user_name = res.data.user_info.user_real_name;
+                        console.log(user_name)
                         //设置缓存==========
                         wx.setStorage({
                             key: 'resource_data',
@@ -116,6 +122,7 @@ Page({
     onShareAppMessage: function () {
         var id = wx.getStorageSync('user_id');
         return app.sharePage(id,id)
+        console.log(id);
     },
 
     //取消分享
