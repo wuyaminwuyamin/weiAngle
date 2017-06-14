@@ -12,11 +12,13 @@ Page({
     empty: 0
 
   },
+  // 搜索姓名公司和电话
   searchSth: function () {
     wx.navigateTo({
       url: '/pages/search/search2/search2',
     })
   },
+  // 筛选内容
   screenSth: function () {
     wx.navigateTo({
       url: '/pages/search/filter4/filter4',
@@ -73,7 +75,7 @@ Page({
           console.log(res)
           var contacts = res.data.data;//所有的用户
           var page_end = res.data.page_end;
-          if (contacts.length !== 0) {
+          if (contacts.length != 0) {
             // console.log("有内容")
             that.setData({
               empty: 0

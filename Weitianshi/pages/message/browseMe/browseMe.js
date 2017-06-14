@@ -7,6 +7,7 @@ Page({
         page_end: false,//是否还有下一页
         currentPage: 1,
         requestCheck: true,
+        count:0
     },
     onShow: function () {
         var that = this;

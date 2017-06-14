@@ -67,9 +67,9 @@
 .addPersonBtn::after{
   border:0;
 }
-.addNetwork{
+/*.addNetwork{
   float:right;
-}
+}*/
 
 /*----------------------------------*/
 
@@ -121,14 +121,14 @@ page {
 
 .card {
   background: white;
-  margin-bottom: 32rpx;
-  /*width: 686rpx;*/
+  /*margin-bottom: 32rpx;*/
   width: 100%;
-  padding: 32rpx 32rpx 0 32rpx;
+  padding: 32rpx 32rpx 0 0;
 }
 
 .user_info {
   margin-bottom: 20rpx;
+  margin-left: 32rpx;
 }
 
 .user_text, .user_pic {
@@ -267,6 +267,9 @@ page {
 .investor_intro, .investor_industry_frame, .investor_stage_frame {
   align-items: baseline;
 }
+.investor_industry_frame{
+  margin-left: 32rpx;
+}
 
 .investor_text {
   font-size: 24rpx;
@@ -317,9 +320,9 @@ page {
 }
 .addTime{
   font-size:20rpx;
-  margin-top:20rpx;
-  margin-right:64rpx;
-  padding-bottom:40rpx;
+  padding-top:10rpx;
+  padding-right:32rpx;
+  padding-bottom:20rpx;
   text-align: right;
   color:#cccccc;
 }
