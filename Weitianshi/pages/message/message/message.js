@@ -57,7 +57,9 @@ Page({
             success: function (res) {
                 console.log(res)
                 var data = res.data.data;
+                console.log(data)
                 data.forEach((x, index) => {
+                  console.log(x,index)
                     messageList[index].message_name = x.message_name;
                     if(x.count){
                         messageList[index].count = x.count

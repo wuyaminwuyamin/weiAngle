@@ -34,7 +34,7 @@
             <view class="flex addNetwork">
               <view class="refuse" wx:if="{{item.follow_status ==1 || item.follow_status ==2}}">已为人脉</view>
               <view class="addPerson" wx:if="{{item.follow_status  == 0 || item.follow_status  == 3}}">
-                <button class="addPersonBtn" data-follow_status="{{item.follow_status}}" data-followedId="{{item.user_id}}" catchtap="addPerson">加人脉</button>
+                <view class="addPersonBtn" data-follow_status="{{item.follow_status}}" data-followedId="{{item.user_id}}" catchtap="addPerson">加人脉</view>
               </view>
             </view>
           </view>
@@ -80,7 +80,7 @@
               </view>
             </view>
           </view>
-           <view class="addTime" style="background:black">{{item.created_at}}</view>
+           <view class="addTime" style="background:#f3f4f8;">{{item.created_at}}</view>
         </view>
       </block>
     </view>

@@ -31,7 +31,7 @@
                 <label>
                   <!--需要进行判断 0:加人脉1.单项人脉2.互为人脉3.待同意-->
                   <view class="addPerson" wx:if="{{item.follow_status == 0}}">
-                    <button class="addPersonBtn" data-followedId="{{item.user_id}}"  data-index="{{index}}"   catchtap="addNetWork">加人脉</button>
+                    <view class="addPersonBtn" data-followedId="{{item.user_id}}"  data-index="{{index}}"   catchtap="addNetWork">加人脉</view>
                   </view>
                   <view class="netWork" wx:if="{{item.follow_status == 3}}">
                     <label class="addNet">待验证</label>
