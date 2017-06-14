@@ -14,12 +14,7 @@ Page({
             }
         ]
     },
-    beAddedContacts: function (e) {
-        wx.navigateTo({
-            url: '/pages/message/beAddedContacts/beAddedContacts',
-        })
-    },
-    onLoad: function (options) {
+    onShow:function(){
         var that = this;
         var user_id = wx.getStorageSync('user_id');
         var messageList = this.data.messageList;
@@ -41,6 +36,13 @@ Page({
                     messageList: messageList
                 })
             }
+        })
+    },
+
+    //跳转到人脉申请页面
+    beAddedContacts: function (e) {
+        wx.navigateTo({
+            url: '/pages/message/beAddedContacts/beAddedContacts',
         })
     },
 })
