@@ -11,7 +11,7 @@ page {
 
 /*用户名片*/
 
-#user_edit {
+.user_edit {
   display: block;
   width: 80rpx;
   height: 80rpx;
@@ -21,7 +21,7 @@ page {
   text-align: right;
   border: none !important;
 }
-#user_edit image{
+.user_edit image{
     width: 40rpx;
     height: 40rpx;
     border-radius:0;
