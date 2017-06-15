@@ -22,6 +22,7 @@ Page({
         wx.stopPullDownRefresh()
     },
     onShow: function () {
+        var that=this;
         if (this.data._time) {
             that.setData({
                 time: "1"

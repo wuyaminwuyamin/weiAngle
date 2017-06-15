@@ -39,7 +39,7 @@
       <image wx:if="{{user.user_avatar_url}}" class="user_pic" src="{{user.user_avatar_url}}"></image>
       <view wx:if="{{user.user_avatar_text}}" class="user_text noPic">{{user.user_avatar_text}}</view>
       <image wx:if="{{!user}}" class="user_pic" src="/img/img-avatar@3x.png"></image>
-      <button class="user_edit"  plain="{{true}}" catchtap="shareSth" data-clickid="{{user.user_id}}">
+      <view class="user_edit"  plain="{{true}}" catchtap="shareSth" data-clickid="{{user.user_id}}">
         <image src="/img/img-share.png" style="width: 40rpx;height: 40rpx; border-radius:0;"></image>
       </button>
     </view>
@@ -306,7 +306,7 @@
       <view class="investor_industry_frame flex" hidden="{{item.res_find==''}}">
         <view class="investor_text">可提供资源:</view>
         <view class="investor_right flex">
-          <block wx:for="{{item.res_find}}" wx:for-item="res_find" wx:key="{{res_find.resource_id}}">
+          <block wx:for="{{item.res_give}}" wx:for-item="res_find" wx:key="{{res_find.resource_id}}">
             <view class="res_find">{{res_find.resource_name}}</view>
           </block>
         </view>
@@ -314,7 +314,7 @@
       <view class="investor_industry_frame flex" hidden="{{item.res_give==''}}">
         <view class="investor_text">在寻求资源:</view>
         <view class="investor_right flex">
-          <block wx:for="{{item.res_give}}" wx:for-item="res_give" wx:key="{{res_give.resource_id}}">
+          <block wx:for="{{item.res_find}}" wx:for-item="res_give" wx:key="{{res_give.resource_id}}">
             <view class="res_give">{{res_give.resource_name}}</view>
           </block>
         </view>
@@ -432,7 +432,7 @@
 
 </template>
 
-<!--卡片列表-->
+<!--消息卡片列表-->
 <template name="messageList">
   <view class="beAddedContacts">
     <view class="messageList flex" bindtap="{{item.event}}">

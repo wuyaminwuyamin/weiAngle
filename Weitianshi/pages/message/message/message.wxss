@@ -19,7 +19,7 @@
   text-align: left;
   color: #333;
   line-height: 54rpx;
-  width: 330rpx;
+  width: 400rpx;
 }
 
 .title {
@@ -64,7 +64,7 @@
   height: 16px;
   font-size: 24rpx;
   border-radius: 50%;
-  margin-left: 250rpx;
+  margin-left: 170rpx;
   padding-top: 6rpx;
 }
 

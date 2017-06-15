@@ -86,7 +86,7 @@ Page({
             },
         })
     },
-    // 用户详情=========================================================================================
+    // 用户详情
     userDetail: function (e) {
         console.log(e);
         var id = e.currentTarget.dataset.id
@@ -110,73 +110,5 @@ Page({
             path: '/pages/projectDetail/projectDetail?id=' + this.data.id
         }
         console.log(data.project.pro_intro);
-    },
-    //添加人脉
-    addNetWork: function () {
-        var user_id = this.data.user_id;
-        var followed_user_id = this.data.followed_user_id;
-        console.log(user_id, followed_user_id);
-        if (user_id==false) {
-            wx.showModal({
-                title: "提示",
-                content: "请先绑定个人信息",
-                success: function (res) {
-                    wx.setStorageSync('followed_user_id', followed_user_id)
-                    if (res.confirm == true) {
-                        wx.navigateTo({
-                            url: '/pages/register/personInfo/personInfo'
-                        })
-                    }
-                }
-            })
-        } else if (user_id!=false) {
-            wx.request({
-                url: url + '/api/user/followUser',
-                data: {
-                    user_id: user_id,
-                    followed_user_id: followed_user_id
-                },
-                method: 'POST',
-                success: function (res) {
-                    console.log(res)
-                    if (res.data.status_code == 2000000) {
-                        wx.showModal({
-                            title: "提示",
-                            content: "添加人脉成功",
-                            showCancel: false,
-                            confirmText: "到人脉库",
-                            success: function (res) {
-                                wx.switchTab({
-                                    url: '/pages/contacts/contacts/contacts',
-                                })
-                            }
-                        })
-                    } else {
-                        wx.showModal({
-                            title: "提示",
-                            content: "您已经添加过此人脉",
-                            showCancel: false,
-                            confirmText: "到人脉库",
-                            success: function () {
-                                wx.switchTab({
-                                    url: '/pages/contacts/contacts/contacts',
-                                })
-                            }
-                        })
-                    }
-                },
-                fail: function (res) {
-                    wx.showModal({
-                        title: "错误提示",
-                        content: "添加人脉失败" + res
-                    })
-                },
-            })
-        } else {
-            showModal({
-                title: "错误提示",
-                content: "bindUser部分出问题了"
-            })
-        }
     }
 });

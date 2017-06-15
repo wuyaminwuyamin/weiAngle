@@ -9,7 +9,7 @@ Page({
             {
                 event: "beAddedContacts",
                 iconPath: "/img/img-personMessage.png",
-                message_name: "人脉申请",
+                message_name: "项目申请",
                 count: 0
             },
             {
@@ -21,19 +21,19 @@ Page({
             {
                 event: "beAddedContacts",
                 iconPath: "/img/img-personMessage.png",
-                message_name: "人脉申请",
+                message_name: "浏览我的名片",
                 count: 0
             },
             {
                 event: "beAddedContacts",
                 iconPath: "/img/img-personMessage.png",
-                message_name: "人脉申请",
+                message_name: "加我为人脉",
                 count: 0
             },
             {
                 event: "beAddedContacts",
                 iconPath: "/img/img-personMessage.png",
-                message_name: "人脉申请",
+                message_name: "同意/拒绝添加人脉",
                 count: 0
             },
             {
@@ -44,7 +44,7 @@ Page({
             }
         ]
     },
-    onShow:function(){
+    onShow: function () {
         var that = this;
         var user_id = wx.getStorageSync('user_id');
         var messageList = this.data.messageList;
@@ -59,15 +59,17 @@ Page({
                 var data = res.data.data;
                 console.log(data)
                 data.forEach((x, index) => {
-                  console.log(x,index)
                     messageList[index].message_name = x.message_name;
-                    if(x.count){
+                    if (x.count) {
                         messageList[index].count = x.count
+                    } else {
+                        messageList[index].count = 0
                     }
                 })
                 that.setData({
                     messageList: messageList
                 })
+                console.log(that.data.messageList)
             }
         })
     },

@@ -54,7 +54,7 @@
 
             <!--拥有资源-->
             <view class="investor_industry_frame flex" wx:if="{{item.user_resource_find !=''}}">
-              <view class="investor_text">拥有资源:</view>
+              <view class="investor_text">寻求资源:</view>
               <view class="investor_right flex">
                 <block wx:for="{{item.user_resource_find}}" wx:for-item="res_find" wx:key="{{res_find.resource_id}}">
                   <view class="res_find">{{res_find.resource_name}}</view>
@@ -64,7 +64,7 @@
 
             <!--寻求资源-->
             <view class="investor_industry_frame flex" wx:if="{{item.user_resource_give !=''}}">
-              <view class="investor_text">寻求资源:</view>
+              <view class="investor_text">拥有资源:</view>
               <view class="investor_right flex">
                 <block wx:for="{{item.user_resource_give}}" wx:for-item="res_give" wx:key="{{res_give.resource_id}}">
                   <view class="res_give">{{res_give.resource_name}}</view>
