@@ -178,8 +178,10 @@ Page({
     },
     // 二维码分享按钮
     shareSth:function(e){
-      var QR_id = e.target.dataset.id;
+      console.log(e)
+      var QR_id = e.currentTarget.dataset.clickid;
       wx.setStorageSync('QR_id', QR_id)
+      console.log(QR_id)
       wx.navigateTo({
         url: '/pages/my/qrCode/qrCode',
       })

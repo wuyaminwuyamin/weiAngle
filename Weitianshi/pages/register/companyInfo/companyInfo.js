@@ -153,17 +153,17 @@ Page({
                         console.log(followed_user_id);
                         if (followed_user_id) {
                             wx.request({
-                                url: url + '/api/user/followUser',
+                              url: url + '/api/user/UserApplyFollowUser',
                                 data: {
                                    user_id: user_id,
-                                    followed_user_id: followed_user_id
+                                   applied_user_id: followed_user_id
                                 },
                                 method: 'POST',
                                 success: function (res) {
                                     if (res.data.status_code == 2000000) {
                                         wx.showModal({
                                             title: "提示",
-                                            content: "添加人脉成功",
+                                            content: "添加成功,等待对方同意",
                                             showCancel: false,
                                             confirmText: "到人脉库",
                                             success: function () {

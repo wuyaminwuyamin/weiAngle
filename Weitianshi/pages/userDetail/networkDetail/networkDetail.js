@@ -119,6 +119,7 @@ Page({
             wx.navigateTo({
               url: '/pages/register/personInfo/personInfo'
             })
+            return 
           }
         }
       })
@@ -161,7 +162,7 @@ Page({
   },
   // 二维码分享页面
   shareSth:function(e){
-    var QR_id = e.target.dataset.id;
+    var QR_id = e.currentTarget.dataset.clickid;
     wx.setStorageSync('QR_id', QR_id)
     wx.navigateTo({
       url: '/pages/my/qrCode/qrCode',
