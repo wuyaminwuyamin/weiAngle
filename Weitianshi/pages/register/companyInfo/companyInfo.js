@@ -21,15 +21,15 @@ Page({
         var user_id = wx.getStorageSync('user_id');
         // console.log(user_id);
         wx.request({
-            url: url+'/api/user/checkUserInfo',
+            url: url + '/api/user/checkUserInfo',
             data: {
                 user_id: user_id
             },
             method: 'POST',
-            success: function(res){
+            success: function (res) {
                 // console.log(res);
                 var complete = res.data.is_complete;
-                if(res.data.status_code ==2000000 || res.data.status_code==0){
+                if (res.data.status_code == 2000000 || res.data.status_code == 0) {
                     that.setData({
                         company: res.data.user_company_name,
                         position: res.data.user_company_career,
@@ -38,13 +38,6 @@ Page({
 
                 }
             },
-            fail: function(res) {
-                // fail\
-            },
-            complete: function(res) {
-                // complete
-                // console.log(res);
-            }
         });
         if (company == "null") {
             company = ''
@@ -148,54 +141,79 @@ Page({
                 success: function (res) {
                     console.log(res)
                     if (res.data.status_code == 2000000) {
-                        // 从绑定人脉那边过来的
                         var followed_user_id = wx.getStorageSync('followed_user_id');
                         console.log(followed_user_id);
                         if (followed_user_id) {
-                            wx.request({
-                              url: url + '/api/user/UserApplyFollowUser',
-                                data: {
-                                   user_id: user_id,
-                                   applied_user_id: followed_user_id
-                                },
-                                method: 'POST',
-                                success: function (res) {
-                                    if (res.data.status_code == 2000000) {
-                                        wx.showModal({
-                                            title: "提示",
-                                            content: "添加成功,等待对方同意",
-                                            showCancel: false,
-                                            confirmText: "到人脉库",
-                                            success: function () {
-                                              console.log(res);
-                                              console.log(1);
-                                                wx.switchTab({
-                                                    url: '/pages/contacts/contacts/contacts',
-                                                })
-                                            
-                                            }
-                                        })
-                                    }
-                                },
-                            })
+                            var driectAdd = wx.getStorageSync("driectAdd");
+                            console.log(driectAdd)
+                            if (driectAdd) {
+                                //直接添加为好友
+                                console.log(user_id,followed_user_id)
+                                wx.request({
+                                    url: url + '/api/user/followUser',
+                                    data: {
+                                        user_id: user_id,
+                                        followed_user_id: followed_user_id
+                                    },
+                                    method: 'POST',
+                                    success: function (res) {
+                                        console.log(res)
+                                        if (res.data.status_code == 2000000) {
+                                            wx.showModal({
+                                                title: "提示",
+                                                content: "添加成功,请到人脉列表查看",
+                                                showCancel: false,
+                                                confirmText: "到人脉库",
+                                                success: function () {
+                                                    console.log(res);
+                                                    wx.switchTab({
+                                                        url: '/pages/contacts/contacts/contacts',
+                                                    })
+                                                }
+                                            })
+                                        }
+                                    },
+                                })
+                            } else {
+                                //正常申请添加为好友
+                                console.log(2)
+                                wx.request({
+                                    url: url + '/api/user/UserApplyFollowUser',
+                                    data: {
+                                        user_id: user_id,
+                                        applied_user_id: followed_user_id
+                                    },
+                                    method: 'POST',
+                                    success: function (res) {
+                                        if (res.data.status_code == 2000000) {
+                                            wx.showModal({
+                                                title: "提示",
+                                                content: "添加成功,等待对方同意",
+                                                showCancel: false,
+                                                confirmText: "到人脉库",
+                                                success: function () {
+                                                    console.log(res);
+                                                    wx.switchTab({
+                                                        url: '/pages/contacts/contacts/contacts',
+                                                    })
+
+                                                }
+                                            })
+                                        }
+                                    },
+                                })
+                            }
+
                         } else {
-
                             wx.switchTab({
                                 url: "/pages/match/match/match/match"
                             });
-
-                            console.log("跳转resourece前")
-                            wx.switchTab({
-                                url: "/pages/match/match/match/match"
-                            });
-
                         }
-                    }else{
-                      
+                    } else {
                         var error_msg = res.data.error_msg;
                         console.log(res.data.error_msg)
                         wx.showModal({
-                            title:"错误提示",
+                            title: "错误提示",
                             content: error_msg
                         })
                     }

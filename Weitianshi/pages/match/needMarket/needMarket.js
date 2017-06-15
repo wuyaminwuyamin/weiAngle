@@ -71,6 +71,7 @@ Page({
       },
       method: 'POST',
       success: function (res) {
+          console.log(res)
         var resourceNeed = res.data.data;
         that.setData({
           resourceNeed: resourceNeed

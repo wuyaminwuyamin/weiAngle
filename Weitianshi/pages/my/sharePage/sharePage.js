@@ -103,14 +103,12 @@ Page({
         success: function (res) {
           wx.setStorageSync('followed_user_id', followed_user_id);
           if (res.confirm == true) {
-            wx.navigateTo({
-              url: '/pages/register/personInfo/personInfo'
-            })
+              wx.setStorageSync("driectAdd", 1)
+              app.infoJump()
           }
         }
       })
     } else if (bindUser == 1) {
-      console.log(followed_user_id)
       //直接添加人脉的情况
       if (button_type == 1) {
         wx.request({
@@ -139,7 +137,6 @@ Page({
           method: 'POST',
           success: function (res) {
             console.log("这里是走正常申请过程");
-            console.log(res);
             that.setData({
               button_type: 3
             })

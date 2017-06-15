@@ -22,66 +22,49 @@ Page({
             wx.showShareMenu({
                 withShareTicket: true,
             })
-            if (user_id != 0 ||user_id != '') {
-                //载入我的个人信息
-                wx.request({
-                    url: url + '/api/user/getUserAllInfo',
-                    data: {
-                        share_id:user_id,
-                        user_id: QR_id,
-                        view_id: user_id,
-                    },
-                    method: 'POST',
-                    success: function (res) {
-                        console.log("我的getUserAllInfo信息")
-                        console.log(res);
-                        var user = res.data.user_info;
-                        var invest = res.data.invest_info;
-                        var user_name = res.data.user_info.user_real_name;
-                        //设置缓存==========
-                        wx.setStorage({
-                            key: 'resource_data',
-                            data: res.data.resource_info
-                        })
-
-                        wx.setNavigationBarTitle({
-                            title: user_name + "的投资名片",
-                        })
-                        that.setData({
-                            user: user,
-                            invest: invest
-                        })
-                    },
-                    fail: function (res) {
-                        console.log(res)
-                    },
-                })
-                // 获取二维码接口
-                wx.request({
-                    url: url + '/api/wx/getCardQr',
-                    data: {
-                        'user_id': user_id,
-                        'path': '/pages/my/sharePage/sharePage?user_id=' + user_id + "&&share_id=" + user_id,
-                        'width': 430,
-                        'auto_color': false,
-                        'line_color': { "r": "0", "g": "0", "b": "0" }
-                    },
-                    method: 'POST',
-                    success: function (res) {
-                        var net = res.data;
-                        var access_token = net.qrcode;
-                        that.setData({
-                            access_token: access_token
-                        })
-                        var filPath = wx.setStorageSync('access_token', access_token);
-                    },
-                    fail: function (res) {
-                        console.log(res)
-                    }
-                })
-            } else {
-                app.noUserId()
-            }
+            console.log(user_id)
+            //载入我的个人信息
+            wx.request({
+                url: url + '/api/user/getUserAllInfo',
+                data: {
+                    share_id: user_id,
+                    user_id: QR_id,
+                    view_id: user_id,
+                },
+                method: 'POST',
+                success: function (res) {
+                    console.log("我的getUserAllInfo信息")
+                    console.log(res);
+                    var user = res.data.user_info;
+                    that.setData({
+                        user: user,
+                    })
+                },
+            })
+            // 获取二维码接口
+            wx.request({
+                url: url + '/api/wx/getCardQr',
+                data: {
+                    'user_id': QR_id,
+                    'path': '/pages/my/sharePage/sharePage?user_id=' + QR_id + "&&share_id=" + user_id,
+                    'width': 430,
+                    'auto_color': false,
+                    'line_color': { "r": "0", "g": "0", "b": "0" }
+                },
+                method: 'POST',
+                success: function (res) {
+                    console.log(res)
+                    var net = res.data;
+                    var access_token = net.qrcode;
+                    that.setData({
+                        access_token: access_token
+                    })
+                    var filPath = wx.setStorageSync('access_token', access_token);
+                },
+                fail: function (res) {
+                    console.log(res)
+                }
+            })
         })
     },
 
@@ -120,7 +103,7 @@ Page({
     //分享页面
     onShareAppMessage: function () {
         var user_id = wx.getStorageSync('QR_id');
-        var share_id = wx.getStorageSync('user_id');
+        var share_id = wx.getStorageSync('user_id') || 0;
         return app.sharePage(user_id, share_id)
     },
 

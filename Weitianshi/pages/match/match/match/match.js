@@ -223,43 +223,7 @@ Page({
             })
         }
     },
-    //判断信息是否完整
-    checkInfo: function (data) {
-        var that = this;
-        var user_id = wx.getStorageSync('user_id');
-        var complete = that.data.complete;
-        var checkInfo = that.data.checkInfo;
 
-        // 如果user_id == 0用户id不存在,那么直接跳转个人信息填写
-        if (user_id == 0) {
-            wx.navigateTo({
-                url: '/pages/register/personInfo/personInfo'
-            })
-        } else if (user_id != 1 && complete == 1) {
-            if (data == "publishProject") {
-                wx.navigateTo({
-                    url: "/pages/myProject/publishProject/publishProject"
-                })
-            } else if (data == "yourProject") {
-                wx.navigateTo({
-                    url: "/pages/projectDetail/projectDetail"
-                })
-            } else if (data == "resourceNeed") {
-                wx.navigateTo({
-                    url: "/pages/match/match/resourceDemand/resourceDemand"
-                })
-            } else {
-                wx.navigateTo({
-                    url: '/pages/register/companyInfo/companyInfo'
-                })
-            }
-        } else if (user_id != 1 && complete == 0) {
-            wx.navigateTo({
-                url: '/pages/register/companyInfo/companyInfo'
-            })
-            //如果存在用户id 但是 信息不完整,跳转公司信息
-        }
-    },
     //点击发布融资项目
     myProject: function () {
         app.infoJump("/pages/myProject/publishProject/publishProject")

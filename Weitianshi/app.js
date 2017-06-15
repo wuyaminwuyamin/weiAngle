@@ -227,12 +227,6 @@ App({
         console.log(res)
     },
 
-    //下拉刷新
-    onPullDownRefresh: function () {
-        // console.log("开启了下拉刷新")
-        wx.stopPullDownRefresh()
-    },
-
     // user_id为空时,返回首页或者完善信息
     noUserId: function () {
         wx.showModal({
@@ -318,7 +312,7 @@ App({
     },
 
     //根据用户信息完整度跳转不同的页面
-    infoJump: function (data) {
+    infoJump: function (targetUrl) {
         var user_id = this.globalData.user_id;
         // 核对用户信息是否完整
         wx.request({
@@ -338,7 +332,7 @@ App({
                         })
                     } else if (user_id != 1 && complete == 1) {
                         wx.navigateTo({
-                            url: data
+                            url: targetUrl
                         })
                     } else if (user_id != 1 && complete == 0) {
                         wx.navigateTo({
@@ -353,63 +347,6 @@ App({
             },
         });
     },
-
-    //test
-    hello: function () {
-        console.log("TEST")
-    },
-
-    /*//登录状态维护
-    checkLogin: function (that) {
-        var code = that.globalData.code;
-        var encryptedData = that.globalData.encryptedData;
-        var iv = that.globalData.iv;
-        //判断用户是否授权了小程序
-        if (encryptedData) {
-            wx.request({
-                url: 'https://dev.weitianshi.cn/api/wx/returnOauth',
-                data: {
-                    code: code,
-                    encryptedData: encryptedData,
-                    iv: iv
-                },
-                method: 'POST',
-                success: function (res) {
-                    console.log("这里是获取到UserInfo后调用returnOauth")
-                    console.log(res);
-                    that.globalData.open_session = res.data.open_session;
-                    that.globalData.session_time = Date.now();
-                    that.globalData.user_id = res.data.user_id;
-                    console.log(that.globalData.session_time)
-                    wx.setStorageSync("user_id", res.data.user_id)
-                },
-                fail: function () {
-                    console.log("向后台发送信息失败")
-                }
-            })
-        } else {
-            wx.request({
-                url: 'https://dev.weitianshi.cn/api/wx/returnOauth',
-                data: {
-                    code: code,
-                },
-                method: 'POST',
-                success: function (res) {
-                    console.log("这里是没拿到UserInfo后调用returnOauth")
-                    console.log(res);
-                    that.globalData.open_session = res.data.open_session;
-                    that.globalData.session_time = Date.now();
-                    that.globalData.user_id = res.data.user_id;
-                    console.log(that.globalData.session_time)
-                    wx.setStorageSync("user_id", res.data.user_id)
-                },
-                fail: function () {
-                    console.log("向后台发送信息失败")
-                },
-            })
-
-        }
-    },*/
 
     //多选标签事件封装
     tagsCheck(that, rqj, e, tags, cb) {
@@ -452,7 +389,7 @@ App({
                     })
                     request.currentPage++;
                     that.setData({
-                        currentPage:request.currentPage
+                        currentPage: request.currentPage
                     });
                     //请求加载数据
                     wx.request({
@@ -471,6 +408,37 @@ App({
         that.setData({
             requestCheck: false
         });
+    },
+
+    //添加人脉
+    addContacts(that, addType, user_id, followed_id, callBack1, callBack2) {
+        if (addType == 1) {
+            wx.request({
+                url: url + '/api/user/followUser',
+                data: {
+                    user_id: user_id,
+                    followed_user_id: followed_id
+                },
+                method: 'POST',
+                success: function (res) {
+                    callBack1(res)
+                }
+            })
+        } else if (addType == 2) {
+            wx.request({
+                url: url + '/api/user/UserApplyFollowUser',
+                data: {
+                    user_id: user_id,
+                    applied_user_id: followed_id
+                },
+                method: 'POST',
+                success: function (res) {
+                    callBack2(res)
+                }
+            })
+        } else {
+            console.log("addType写错了")
+        }
     },
 
     //初始本地缓存
