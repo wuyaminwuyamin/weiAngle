@@ -42,7 +42,7 @@ Page({
       id: id,
       user_id: user_id,
       avatarUrl: avatarUrl,
-      investor: investors[index],
+      investor: investors[index-1],
       currentTab: options.currentTab
     });
     var investor = this.data.investor;
