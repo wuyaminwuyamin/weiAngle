@@ -149,8 +149,18 @@ Page({
         content: "bindUser部分出问题了"
       })
     }
-  }
-  ,
+  },
+  // 二维码分享按钮
+  shareSth: function (e) {
+    console.log(e)
+    var QR_id = e.currentTarget.dataset.clickid;
+    wx.setStorageSync('QR_id', QR_id)
+    console.log(QR_id)
+    wx.navigateTo({
+      url: '/pages/my/qrCode/qrCode',
+    })
+  },
+
   //分享页面部分
   onShareAppMessage: function () {
     var id = this.data.followed_user_id;

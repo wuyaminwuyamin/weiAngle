@@ -41,7 +41,7 @@
       <image wx:if="{{!user}}" class="user_pic" src="/img/img-avatar@3x.png"></image>
       <view class="user_edit"  plain="{{true}}" catchtap="shareSth" data-clickid="{{user.user_id}}">
         <image src="/img/img-share.png" style="width: 40rpx;height: 40rpx; border-radius:0;"></image>
-      </view>
+      </button>
     </view>
       
   </view>
@@ -443,8 +443,8 @@
         </view>
       </view>
       <view class="flex number">
-        <label class="netWorkNum" wx:if="{{item.count}}">{{item.count}}</label>
-        <label class="netWorkNumAfter" wx:if="{{item.count==0}}"></label>
+        <label class="netWorkNum" wx:if="{{item.count !=0}}">{{item.count}}</label>
+        <label class="netWorkNumAfter" wx:if="{{item.count == 0}}"></label>
         <image class="iconEdit" src="/img/icon-edit@3x.png"></image>
       </view>
     </view>
