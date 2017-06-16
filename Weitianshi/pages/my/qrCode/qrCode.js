@@ -27,7 +27,7 @@ Page({
             wx.request({
                 url: url + '/api/user/getUserAllInfo',
                 data: {
-                    share_id: user_id,
+                    share_id: 0,
                     user_id: QR_id,
                     view_id: user_id,
                 },

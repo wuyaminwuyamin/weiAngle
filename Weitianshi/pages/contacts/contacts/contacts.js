@@ -12,18 +12,6 @@ Page({
     empty: 0
 
   },
-  // 搜索姓名公司和电话
-  searchSth: function () {
-    wx.navigateTo({
-      url: '/pages/search/search2/search2',
-    })
-  },
-  // 筛选内容
-  screenSth: function () {
-    wx.navigateTo({
-      url: '/pages/search/filter4/filter4',
-    })
-  },
   onShow: function () {
     var that = this;
     var user_id = wx.getStorageSync('user_id');
@@ -158,6 +146,18 @@ Page({
           title: "对不起没有获取到您的个人信息"
         })
       },
+    })
+  },
+  // 搜索姓名公司和电话
+  searchSth: function () {
+    wx.navigateTo({
+      url: '/pages/search/search2/search2',
+    })
+  },
+  // 筛选内容
+  screenSth: function () {
+    wx.navigateTo({
+      url: '/pages/search/filter4/filter4',
     })
   },
   // 绑定名片
