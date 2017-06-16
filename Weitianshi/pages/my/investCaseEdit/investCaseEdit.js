@@ -169,8 +169,8 @@ Page({
         var case_province = belongArea.provinceNum;
         var case_city = belongArea.cityNum;
         console.log("名称,标签名,标签Id,阶段ID,金额,时间,省份ID,城市ID")
-        console.log(user_id, case_name, industry, case_industry, case_stage, case_money, case_time, case_province, case_city)
-        if (user_id && case_name != undefined && case_industry != '' && case_stage != 0 && case_money != undefined && case_time != '请选择') {
+        console.log(user_id, case_name, industry, case_industry, case_stage, case_money, case_time, case_province, case_city,belongArea)
+        if (user_id && case_name != undefined && case_industry != '' && case_stage != 0 && case_money != undefined && case_time != '请选择' && case_province != undefined && case_city !=undefined) {
             if (case_index) {
                 console.log(case_index)
             } else {
@@ -203,6 +203,7 @@ Page({
                 })
             }
         } else {
+          console.log("不能为空")
             if (case_name == undefined) {
                 console.log(2)
                 rqj.errorHide(that, "项目名称不能为空", 1500)
@@ -218,7 +219,8 @@ Page({
             } else if (case_time == '请选择') {
                 console.log(6)
                 rqj.errorHide(that, "交易时间不能为空", 1500)
-            } else if (case_city == "") {
+            } else if (belongArea == '' ) {
+              // case_city == [] || case_province == undefined
                 console.log(7)
                 rqj.errorHide(that, "地区不能为空", 1500)
             }

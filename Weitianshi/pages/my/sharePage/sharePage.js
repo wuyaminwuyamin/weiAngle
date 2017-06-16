@@ -48,7 +48,6 @@ Page({
                         button_type: button_type,
                         count: count
                     })
-
                     if (button_type == 0) {
                         console.log("是好友或者是我")
                     } else if (button_type == 1) {

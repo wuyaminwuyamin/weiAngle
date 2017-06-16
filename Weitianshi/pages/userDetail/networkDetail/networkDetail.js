@@ -45,13 +45,13 @@ Page({
                 var tel = user.user_mobile;
                 var button_type = res.data.button_type;
                 if (button_type == 0) {
-                    console.log("是好友或单项人脉")
+                  console.log("正常申请添加人脉")
                 } else if (button_type == 1) {
-                    console.log("分享出去的页面,直接添加")
+                  console.log("是好友或单项人脉")
                 } else if (button_type == 2) {
-                    console.log("正常申请添加人脉")
+                  console.log("待处理状态")
                 } else if (button_type == 3) {
-                    console.log("待处理状态")
+                    console.log("同意添加人脉")
                 }
                 if (tel.indexOf("*") != -1) {
                     that.setData({
