@@ -51,33 +51,38 @@ Page({
     },
     //添加人脉
     addPerson: function (e) {
+      console.log("添加人脉")
         var that=this;
         var user_id = wx.getStorageSync('user_id');
         var apply_user_id = e.currentTarget.dataset.followedid;
         var follow_status = e.currentTarget.dataset.follow_status;
         var contacts = this.data.contacts;
         console.log(user_id, apply_user_id)
-        wx.request({
+        console.log("follow_status")
+        console.log(follow_status)
+       if(follow_status ==3){
+         console.log(follow_status == 3)
+          wx.request({
             url: url + '/api/user/handleApplyFollowUser',
             data: {
-                user_id: user_id,
-                apply_user_id: apply_user_id
+              user_id: user_id,
+              apply_user_id: apply_user_id
             },
             method: 'POST',
             success: function (res) {
-                console.log(res);
-                //将状态改为"已互为人脉"
-                contacts.forEach((x) => {
-                    if (x.user_id == apply_user_id) {
-                        x.follow_status = 2
-                    }
-                })
-                that.setData({
-                    contacts:contacts
-                })
+              console.log(res);
+              //将状态改为"已互为人脉"
+              contacts.forEach((x) => {
+                if (x.user_id == apply_user_id) {
+                  x.follow_status = 1
+                }
+              })
+              that.setData({
+                contacts: contacts
+              })
             }
-        })
-
+          })
+        }
     },
     // 用户详情
     userDetail: function (e) {

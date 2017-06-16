@@ -45,13 +45,13 @@ Page({
                 var tel = user.user_mobile;
                 var button_type = res.data.button_type;
                 if (button_type == 0) {
-                    console.log("是好友或单项人脉")
+                  console.log("正常申请添加人脉")
                 } else if (button_type == 1) {
-                    console.log("分享出去的页面,直接添加")
+                  console.log("是好友或单项人脉")
                 } else if (button_type == 2) {
-                    console.log("正常申请添加人脉")
+                  console.log("待处理状态")
                 } else if (button_type == 3) {
-                    console.log("待处理状态")
+                    console.log("同意添加人脉")
                 }
                 if (tel.indexOf("*") != -1) {
                     that.setData({
@@ -107,7 +107,7 @@ Page({
         var followed_user_id = this.data.user_id;//当前用户的
         let view_id = wx.getStorageSync('user_id');//获取我自己的user_id/查看者的id
         let button_type = this.data.button_type;
-        // button_type==0 互为好友或单项人脉,1.分享出去的页面,直接添加2.需要通过申请去添加人脉3.待处理状态
+        // button_type==  0申请加人脉按钮，1不显示任何按钮  2待验证   3同意加为人脉  4加为单方人脉
         if (!view_id) {
             wx.showModal({
                 title: "提示",
@@ -122,27 +122,62 @@ Page({
                 }
             })
         } else {
-            if (button_type == 2) {
-                wx.request({
-                    url: url + '/api/user/UserApplyFollowUser',
-                    data: {
-                        user_id: view_id,
-                        applied_user_id: followed_user_id
-                    },
-                    method: 'POST',
-                    success: function (res) {
-                        that.setData({
-                            condition: 2
-                        })
-                    }
-                })
-            } else if (button_type == 0) {
+          if(button_type ==0){
+            wx.request({
+              url: url + '/api/user/UserApplyFollowUser',
+              data: {
+                user_id: view_id,
+                applied_user_id: followed_user_id
+              },
+              method: 'POST',
+              success: function (res) {
+                console.log(res)
+                console.log("正常申请添加人脉")
                 that.setData({
-                    condition: 0
+                  button_type: 2
                 })
-            }
-        }
+              }
+            })
 
+          }else if(button_type ==1){
+                  console.log("我的人脉--不显示内容")
+          }else if(button_type == 2){
+                console.log("待验证===显示待验证")
+          }else if(button_type == 3){
+            wx.request({
+              url: url + '/api/user/handleApplyFollowUser',
+              data: {
+                user_id: user_id,
+                apply_user_id: apply_user_id
+              },
+              method: 'POST',
+              success: function (res) {
+              console.log(res)
+              console.log("同意申請")
+              that.setData({
+                button_type: 1
+              })
+              }
+            })
+          }else if(button_type == 4){
+            // 单方人脉添加
+            wx.request({
+              url: url + '/api/user/followUser',
+              data: {
+                user_id: user_id,
+                followed_user_id: followed_user_id
+              },
+              method: 'POST',
+              success: function (res) {
+                console.log("这里是单方人脉添加")
+                console.log(res)
+                that.setData({
+                  button_type: 1
+                })
+              }
+            })
+          }
+        }
     },
     // 二维码分享页面
     shareSth: function (e) {

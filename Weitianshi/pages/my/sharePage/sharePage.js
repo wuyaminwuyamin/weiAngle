@@ -38,6 +38,7 @@ Page({
           var project_info = res.data.project_info;
           var invest_case = res.data.invest_case;
           var button_type = res.data.button_type;
+          console.log("button_type")
           console.log(button_type)
           that.setData({
             user: user,
@@ -48,14 +49,6 @@ Page({
             button_type: button_type,
             count: count
           })
-
-          if (button_type == 0) {
-            console.log("是好友或者是我")
-          } else if (button_type == 1) {
-            console.log("我分享出去的名片")
-          } else if (button_type == 2) {
-            console.log("正常添加方式")
-          }
           wx.setNavigationBarTitle({
             title: res.data.user_info.user_real_name + "的投资名片",
           })
@@ -103,14 +96,53 @@ Page({
         success: function (res) {
           wx.setStorageSync('followed_user_id', followed_user_id);
           if (res.confirm == true) {
-              wx.setStorageSync("driectAdd", 1)
-              app.infoJump()
+            wx.setStorageSync("driectAdd", 1)
+            app.infoJump()
           }
         }
       })
     } else if (bindUser == 1) {
-      //直接添加人脉的情况
-      if (button_type == 1) {
+      // button_type==  0申请加人脉按钮，1不显示任何按钮  2待验证   3同意加为人脉  4加为单方人脉
+      console.log(button_type)
+      if (button_type == 0) {
+        console.log("这里是走正常申请过程");
+        wx.request({
+          url: url + '/api/user/UserApplyFollowUser',
+          data: {
+            user_id: user_id,
+            applied_user_id: followed_user_id
+          },
+          method: 'POST',
+          success: function (res) {
+            console.log("这里是走正常申请过程");
+            that.setData({
+              button_type: 2
+            })
+          }
+        })
+      } else if (button_type == 1) {
+        console.log("我的人脉")
+      } else if (button_type == 2) {
+        console.log("待验证")
+      } else if (button_type == 3) {
+        console.log("同意申請")
+        wx.request({
+          url: url + '/api/user/handleApplyFollowUser',
+          data: {
+            user_id: user_id,
+            apply_user_id: followed_user_id
+          },
+          method: 'POST',
+          success: function (res) {
+            console.log(res)
+            console.log("同意申請")
+            that.setData({
+              button_type: 1
+            })
+          }
+        })
+      } else if (button_type == 4) {
+        console.log("这里是直接添加人脉")
         wx.request({
           url: url + '/api/user/followUser',
           data: {
@@ -122,26 +154,11 @@ Page({
             console.log("这里是直接添加人脉")
             console.log(res)
             that.setData({
-              button_type: 0
+              button_type: 1
             })
           }
         })
-        //需要走正常申请流程的情况
-      } else if (button_type == 2) {
-        wx.request({
-          url: url + '/api/user/UserApplyFollowUser',
-          data: {
-            user_id: user_id,
-            applied_user_id: followed_user_id
-          },
-          method: 'POST',
-          success: function (res) {
-            console.log("这里是走正常申请过程");
-            that.setData({
-              button_type: 3
-            })
-          }
-        })
+
       }
     } else {
       showModal({

@@ -20,11 +20,13 @@
   <template is="investProject" data="{{invest_case:invest_case,canEdit:canEdit}}"></template>
 
   <!--加人脉按钮-->
-  <view class="floatBtn flex addPerson" wx:if="{{condition ==1||button_type ==1||button_type ==2}}">
-    <button class="addPersonBtn" bindtap="addPerson" >加人脉</button>
+  <view class="floatBtn flex addPerson" wx:if="{{button_type==0}}">
+    <button class="addPersonBtn" bindtap="addPerson" >申请添加人脉</button>
   </view>
-  <view class="floatBtn flex waitPerson" wx:if="{{condition ==2||button_type == 3}}">
+  <view class="floatBtn flex waitPerson" wx:if="{{button_type==2}}">
     <button class="waitPersonBtn" style="background: #f2f2f2;color:#cccccc;">待验证</button>
   </view>
-  <label wx:if="{{condition == 0}}"></label>
+   <view class="floatBtn flex waitPerson" wx:if="{{button_type==3}}">
+    <button class="addPersonBtn" style="background: #f2f2f2;color:#cccccc;" bindtap="addPerson">同意添加</button>
+  </view>
 </view>
