@@ -147,8 +147,10 @@ Page({
             wx.request({
               url: url + '/api/user/handleApplyFollowUser',
               data: {
-                user_id: user_id,
-                apply_user_id: apply_user_id
+                // 当前登录者的
+                user_id: view_id,
+                // 当前申请的用户
+                apply_user_id: followed_user_id
               },
               method: 'POST',
               success: function (res) {

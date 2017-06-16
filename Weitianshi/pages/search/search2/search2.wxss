@@ -50,7 +50,7 @@ page {
 }
 
 .s_frame {
-  height: 1052rpx;
+  height: 2000rpx;
   position: static;
 }
 

@@ -60,8 +60,6 @@ Page({
         console.log(user_id, apply_user_id)
         console.log("follow_status")
         console.log(follow_status)
-       if(follow_status ==3){
-         console.log(follow_status == 3)
           wx.request({
             url: url + '/api/user/handleApplyFollowUser',
             data: {
@@ -82,7 +80,7 @@ Page({
               })
             }
           })
-        }
+        
     },
     // 用户详情
     userDetail: function (e) {
