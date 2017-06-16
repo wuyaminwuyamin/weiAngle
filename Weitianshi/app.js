@@ -326,15 +326,11 @@ App({
                 // console.log(res);
                 if (res.data.status_code == 2000000) {
                     var complete = res.data.is_complete;
-                    if (user_id == 0) {
-                        wx.navigateTo({
-                            url: '/pages/register/personInfo/personInfo',
-                        })
-                    } else if (user_id != 1 && complete == 1) {
+                    if (complete == 1) {
                         wx.navigateTo({
                             url: targetUrl
                         })
-                    } else if (user_id != 1 && complete == 0) {
+                    } else if (complete == 0) {
                         wx.navigateTo({
                             url: '/pages/register/companyInfo/companyInfo'
                         })

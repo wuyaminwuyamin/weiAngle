@@ -64,34 +64,9 @@ Page({
                     console.log(res)
                 },
             })
-            // 如果用户已经注册过并信息完整,bindUser=1,否则bindUser=0
-            if (user_id == 0) {
-                that.setData({
-                    bindUser: 0
-                })
-            } else {
-                //检查用户信息是否完整
-                wx.request({
-                    url: url + '/api/user/checkUserInfo',
-                    data: {
-                        user_id: user_id
-                    },
-                    method: 'POST',
-                    success(res) {
-                        if (res.data.is_complete == 0) {
-                            that.setData({
-                                bindUser: 0
-                            })
-                        } else {
-                            that.setData({
-                                bindUser: 1
-                            })
-                        }
-                    }
-                })
-            }
-            // console.log("share_id", "user_id", "view_id")
+
             console.log(share_id, followed_user_id, view_id)
+
             //如果进入的是自己的名片里
             if (user_id == followed_user_id) {
                 wx.switchTab({
@@ -108,61 +83,103 @@ Page({
     addNetwork: function () {
         var that = this;
         var user_id = this.data.user_id;//我的id,查看者的id
-        var followed_user_id = this.data.followed_user_id;//当前被查看的用户id
-        var bindUser = this.data.bindUser;
+        var followed_user_id = this.data.followed_user_id;//当前被查看的用户id;
         let button_type = this.data.button_type;
+        // button_type==0 互为好友或单项人脉,1.分享出去的页面,直接添加2.需要通过申请去添加人脉3.待处理状态
         console.log(button_type)
-        if (bindUser == 0) {
-            wx.showModal({
-                title: "提示",
-                content: "请先绑定个人信息",
+
+        //直接可添加好友的情况
+        if (button_type == 1) {
+            wx.setStorageSync("driectAdd", 1)
+            //判断用户信息是否完整
+            wx.request({
+                url: url + '/api/user/checkUserInfo',
+                data: {
+                    user_id: user_id
+                },
+                method: 'POST',
                 success: function (res) {
-                    wx.setStorageSync('followed_user_id', followed_user_id);
-                    if (res.confirm == true) {
-                        wx.setStorageSync("driectAdd", 1)
-                        app.infoJump()
-                    }
-                }
-            })
-        } else if (bindUser == 1) {
-            //直接添加人脉的情况
-            if (button_type == 1) {
-                wx.request({
-                    url: url + '/api/user/followUser',
-                    data: {
-                        user_id: user_id,
-                        followed_user_id: followed_user_id
-                    },
-                    method: 'POST',
-                    success: function (res) {
-                        console.log("这里是直接添加人脉")
-                        console.log(res)
-                        that.setData({
-                            button_type: 0
+                    if (res.data.status_code == 2000000) {
+                        var complete = res.data.is_complete;
+
+                        if (complete == 1) {
+                           //如果信息完整就直接添加人脉
+                            wx.request({
+                                url: url + '/api/user/followUser',
+                                data: {
+                                    user_id: user_id,
+                                    followed_user_id: followed_user_id
+                                },
+                                method: 'POST',
+                                success: function (res) {
+                                    console.log("这里是直接添加人脉")
+                                    console.log(res)
+                                    that.setData({
+                                        button_type: 0
+                                    })
+                                }
+                            })
+                        } else if (complete == 0) {
+                            //如果有user_id但信息不全则跳companyInfo页面
+                            wx.navigateTo({
+                                url: '/pages/register/companyInfo/companyInfo'
+                            })
+                        }
+                    } else {
+                        //如果没有user_id则跳personInfo
+                        wx.navigateTo({
+                            url: '/pages/register/personInfo/personInfo'
                         })
                     }
-                })
-                //需要走正常申请流程的情况
-            } else if (button_type == 2) {
-                wx.request({
-                    url: url + '/api/user/UserApplyFollowUser',
-                    data: {
-                        user_id: user_id,
-                        applied_user_id: followed_user_id
-                    },
-                    method: 'POST',
-                    success: function (res) {
-                        console.log("这里是走正常申请过程");
-                        that.setData({
-                            button_type: 3
+                },
+            });
+        } else if (button_type == 2) {
+            //走正常申请流程
+            wx.request({
+                url: url + '/api/user/checkUserInfo',
+                data: {
+                    user_id: user_id
+                },
+                method: 'POST',
+                success: function (res) {
+                    if (res.data.status_code == 2000000) {
+                        var complete = res.data.is_complete;
+
+                        if (complete == 1) {
+                            //如果信息完整就正常申请添加人脉
+                            wx.request({
+                                url: url + '/api/user/UserApplyFollowUser',
+                                data: {
+                                    user_id: user_id,
+                                    applied_user_id: followed_user_id
+                                },
+                                method: 'POST',
+                                success: function (res) {
+                                    console.log("这里是正常申请添加人脉")
+                                    console.log(res)
+                                    that.setData({
+                                        button_type: 0
+                                    })
+                                }
+                            })
+                        } else if (complete == 0) {
+                            //如果有user_id但信息不全则跳companyInfo页面
+                            wx.navigateTo({
+                                url: '/pages/register/companyInfo/companyInfo'
+                            })
+                        }
+                    } else {
+                        //如果没有user_id则跳personInfo
+                        wx.navigateTo({
+                            url: '/pages/register/personInfo/personInfo'
                         })
                     }
-                })
-            }
+                },
+            });
         } else {
             showModal({
                 title: "错误提示",
-                content: "bindUser部分出问题了"
+                content: "button_type为"+button_type
             })
         }
     },

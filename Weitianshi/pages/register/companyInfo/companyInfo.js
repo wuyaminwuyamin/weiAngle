@@ -171,6 +171,7 @@ Page({
                                                     })
                                                 }
                                             })
+                                            wx.removeStorageSync("driectAdd")
                                         }
                                     },
                                 })
