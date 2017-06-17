@@ -171,8 +171,67 @@ Page({
                         }
                     })
                 }
-            }
-        })
+            })
+        } else {
+          if(button_type ==0){
+            wx.request({
+              url: url + '/api/user/UserApplyFollowUser',
+              data: {
+                user_id: view_id,
+                applied_user_id: followed_user_id
+              },
+              method: 'POST',
+              success: function (res) {
+                console.log(res)
+                console.log("正常申请添加人脉")
+                that.setData({
+                  button_type: 2
+                })
+              }
+            })
+
+          }else if(button_type ==1){
+                  console.log("我的人脉--不显示内容")
+          }else if(button_type == 2){
+                console.log("待验证===显示待验证")
+          }else if(button_type == 3){
+            wx.request({
+              url: url + '/api/user/handleApplyFollowUser',
+              data: {
+                // 当前登录者的
+                user_id: view_id,
+                // 当前申请的用户
+                apply_user_id: followed_user_id
+              },
+              method: 'POST',
+              success: function (res) {
+              console.log(res)
+              console.log("同意申請")
+              that.setData({
+                button_type: 1
+              })
+              }
+            })
+          }else if(button_type == 4){
+            // 单方人脉添加
+            wx.request({
+              url: url + '/api/user/followUser',
+              data: {
+                user_id: user_id,
+                followed_user_id: followed_user_id
+              },
+              method: 'POST',
+              success: function (res) {
+                console.log("这里是单方人脉添加")
+                console.log(res)
+                that.setData({
+                  button_type: 1
+                })
+              }
+            })
+          }
+        }
+
     },
     // 二维码分享页面
     shareSth: function (e) {
