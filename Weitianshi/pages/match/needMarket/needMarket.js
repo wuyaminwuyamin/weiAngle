@@ -129,7 +129,7 @@ Page({
         // })
         if (userId==user ) {
           wx.navigateTo({
-            url: '/pages/myProject/projectDetail/projectDetail?id=' + id + '&&index=' + 1
+            url: '/pages/myProject/projectDetail/projectDetail?id=' + id + '&&index=' + 0
           })
         } else {
           wx.navigateTo({

@@ -107,18 +107,69 @@ Page({
         var followed_user_id = this.data.user_id;//当前用户的
         let view_id = wx.getStorageSync('user_id');//获取我自己的user_id/查看者的id
         let button_type = this.data.button_type;
-        // button_type==  0申请加人脉按钮，1不显示任何按钮  2待验证   3同意加为人脉  4加为单方人脉
-        if (!view_id) {
-            wx.showModal({
-                title: "提示",
-                content: "请先绑定个人信息",
-                success: function (res) {
-                    wx.setStorageSync('followed_user_id', followed_user_id)
-                    if (res.confirm == true) {
-                        wx.navigateTo({
-                            url: '/pages/register/personInfo/personInfo'
+        // button_type==0 互为好友或单项人脉,1.分享出去的页面,直接添加2.需要通过申请去添加人脉3.待处理状态
+        //判断用户信息是否完整
+        wx.request({
+            url: url + '/api/user/checkUserInfo',
+            data: {
+                user_id: view_id
+            },
+            method: 'POST',
+            success: function (res) {
+                if (res.data.status_code == 2000000) {
+                    var complete = res.data.is_complete;
+                    if (complete == 1) {
+                        //信息完整
+                        if (button_type == 2) {
+                            // 需要申请添加人脉
+                            wx.request({
+                                url: url + '/api/user/UserApplyFollowUser',
+                                data: {
+                                    user_id: view_id,
+                                    applied_user_id: followed_user_id
+                                },
+                                method: 'POST',
+                                success: function (res) {
+                                    that.setData({
+                                        condition: 2
+                                    })
+                                }
+                            })
+                        } else if (button_type == 0) {
+                            // 已为人脉
+                            that.setData({
+                                condition: 0
+                            })
+                        }
+                    } else if (complete == 0) {
+                        //有user_id但信息不全
+                        wx.showModal({
+                            title: "提示",
+                            content: "请先绑定个人信息",
+                            success: function (res) {
+                                wx.setStorageSync('followed_user_id', followed_user_id)
+                                if (res.confirm == true) {
+                                    wx.navigateTo({
+                                        url: '/pages/register/companyInfo/companyInfo'
+                                    })
+                                }
+                            }
                         })
                     }
+                } else {
+                    //没有user_id
+                    wx.showModal({
+                        title: "提示",
+                        content: "请先绑定个人信息",
+                        success: function (res) {
+                            wx.setStorageSync('followed_user_id', followed_user_id)
+                            if (res.confirm == true) {
+                                wx.navigateTo({
+                                    url: '/pages/register/personInfo/personInfo'
+                                })
+                            }
+                        }
+                    })
                 }
             })
         } else {
@@ -180,6 +231,7 @@ Page({
             })
           }
         }
+
     },
     // 二维码分享页面
     shareSth: function (e) {

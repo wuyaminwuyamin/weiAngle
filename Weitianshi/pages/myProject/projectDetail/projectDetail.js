@@ -37,12 +37,14 @@ Page({
     var page = this.data.page;
     var avatarUrl = wx.getStorageSync('avatarUrl');
     var investors = wx.getStorageSync('investors') || '';//所有项目对应四位投资人
+    console.log(investors )
+    console.log(index)
     that.setData({
       index: index,
       id: id,
       user_id: user_id,
       avatarUrl: avatarUrl,
-      investor: investors[index-1],
+      investor: investors[index],
       currentTab: options.currentTab
     });
     var investor = this.data.investor;
