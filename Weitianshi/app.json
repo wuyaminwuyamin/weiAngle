@@ -10,7 +10,7 @@
         "pages/form/scale/scale",
         "pages/form/stage/stage",
         "pages/contacts/contacts/contacts",
-        "pages/match/match/match/match","pages/form/businessContribution/businessContribution",
+    "pages/form/businessContribution/businessContribution",
         "pages/form/tollType/tollType",
         "pages/form/hasRunningBusiness/hasRunningBusiness",
         "pages/scanCode/bpScan/bpScan",

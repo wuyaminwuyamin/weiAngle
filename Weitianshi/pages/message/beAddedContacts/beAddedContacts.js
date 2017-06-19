@@ -18,16 +18,18 @@ Page({
             page_end: false,
             currentPage: 1
         })
-
+       if(user_id){
         //获取加我为人脉的用户信息
         wx.request({
-            url: url_common + '/api/message/cardMessage ',
+            url: url_common + '/api/message/cardMessage',
             data: {
                 user_id: user_id,
                 type_id: 2
             },
             method: 'POST',
             success: function (res) {
+              console.log(url)
+              console.log("获取加我为人脉的信心")
                 console.log(res)
                 var contacts = res.data.data;
                 console.log(contacts);
@@ -37,7 +39,7 @@ Page({
                 })
             }
         })
-
+       }
         //向后台发送信息取消红点
         wx.request({
             url: url_common + '/api/message/setMessageToRead',

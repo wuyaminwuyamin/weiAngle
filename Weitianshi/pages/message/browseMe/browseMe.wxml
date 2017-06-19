@@ -31,7 +31,7 @@
                 <label>
                   <!--需要进行判断 0:不是当前用户人脉1.当前用户的人脉2.待验证3.同意加为人脉-->
                   <view class="addPerson" wx:if="{{item.follow_status == 0||item.follow_status == 3}}">
-                    <view class="addPersonBtn" data-followedId="{{item.user_id}}"  data-index="{{index}}"   catchtap="addNetWork" data-follow_status="{{item.follow_status}}">加人脉</view>
+                    <view class="addPersonBtn" data-followedId="{{item.user_id}}" data-index="{{index}}" catchtap="addNetWork" data-follow_status="{{item.follow_status}}">加人脉</view>
                   </view>
                   <view class="netWork" wx:if="{{item.follow_status == 2}}">
                     <label class="addNet">待验证</label>
@@ -86,6 +86,7 @@
               </view>
             </view>
           </view>
+          <view class="addTime" style="background:#f3f4f8;">{{item.created_at}}</view>
         </view>
       </block>
     </view>
