@@ -1,3 +1,4 @@
+<import src="/pages/Template/Template.wxml" />
 <!--pages/network/search/search.wxml-->
 <view class="search_frame">
   <label class="searchBox flex">
@@ -77,7 +78,7 @@
 </view>
 
 <!--没有更多-->
-<view class="error" wx:if="{{error=='1'}}">{{error_text}}</view>
+<view class="error" wx:if="{{error==1}}">{{error_text}}</view>
 
 <!--搜索结果无-->
 <view class="nullState" wx:if="{{empty == '1'}}">

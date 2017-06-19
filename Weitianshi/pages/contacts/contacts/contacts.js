@@ -206,7 +206,6 @@ Page({
           console.log(newPage);
           var page_end = res.data.page_end;
           for (var i = 0; i < newPage.length; i++) {
-            console.log(i)
             contacts.push(newPage[i])
           }
           that.setData({
