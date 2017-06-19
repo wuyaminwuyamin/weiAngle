@@ -49,11 +49,15 @@ Page({
                         count: count
                     })
                     if (button_type == 0) {
-                        console.log("是好友或者是我")
+                        console.log("申請添加人脈")
                     } else if (button_type == 1) {
-                        console.log("我分享出去的名片")
+                        console.log("不显示任何按钮")
                     } else if (button_type == 2) {
-                        console.log("正常添加方式")
+                        console.log("待验证")
+                    } else if (button_type == 3) {
+                      console.log("同意加人脉")
+                    } else if (button_type == 4) {
+                      console.log("单方加人脉")
                     }
                     wx.setNavigationBarTitle({
                         title: res.data.user_info.user_real_name + "的投资名片",
@@ -84,8 +88,8 @@ Page({
         var user_id = this.data.user_id;//我的id,查看者的id
         var followed_user_id = this.data.followed_user_id;//当前被查看的用户id;
         let button_type = this.data.button_type;
-        // button_type==0 互为好友或单项人脉,1.分享出去的页面,直接添加2.需要通过申请去添加人脉3.待处理状态
-        // 0申请加人脉按钮，1不显示任何按钮  2待验证   3同意加为人脉  4加为单方人脉
+        // button_type==0  0申请加人脉按钮，1不显示任何按钮  2待验证   3同意加为人脉  4加为单方人脉
+
         console.log(button_type)
 
         //直接可添加好友的情况
@@ -115,7 +119,7 @@ Page({
                                     console.log("这里是直接添加人脉")
                                     console.log(res)
                                     that.setData({
-                                        button_type: 0
+                                        button_type: 1
                                     })
                                 }
                             })
