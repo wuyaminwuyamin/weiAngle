@@ -87,14 +87,13 @@ page {
 
 .card {
   background: white;
-  margin-bottom: 32rpx;
   width: 100%;
-  padding: 32rpx;
-  padding-bottom: 38rpx;
+  padding: 32rpx 38rpx 0 0;
 }
 
 .user_info {
   margin-bottom: 20rpx;
+  margin-left: 32rpx;
 }
 
 .user_text, .user_pic {
@@ -307,4 +306,13 @@ page {
 
 .addPersonBtn::after {
   border: 0;
+}
+
+.addTime {
+  font-size: 20rpx;
+  padding-top: 10rpx;
+  padding-right: 32rpx;
+  padding-bottom: 20rpx;
+  text-align: right;
+  color: #ccc;
 }
