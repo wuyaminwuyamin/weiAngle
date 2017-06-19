@@ -61,8 +61,8 @@ Page({
     var followed_user_id = e.target.dataset.followedid;//当前用户的user_id
     var follow_status = e.currentTarget.dataset.follow_status;
     var index = e.target.dataset.index;
-    console.log(e)
     var contacts = this.data.contacts
+    console.log(contacts)
     console.log(user_id, followed_user_id);
     if (follow_status == 0) {
       //添加人脉接口
@@ -101,15 +101,23 @@ Page({
         url: url + '/api/user/handleApplyFollowUser',
         data: {
           user_id: user_id,
-          apply_user_id: apply_user_id
+          apply_user_id: followed_user_id
         },
         method: 'POST',
         success: function (res) {
           console.log(res)
           console.log("同意申請")
-          that.setData({
-            follow_status: 1
-          })
+          if (res.data.status_code == 2000000) {
+            //将状态设为"未验证"
+            contacts.forEach((x) => {
+              if (x.user_id == followed_user_id) {
+                x.follow_status = 1
+              }
+            })
+            that.setData({
+              contacts: contacts
+            })
+          }
         }
       })
     }
