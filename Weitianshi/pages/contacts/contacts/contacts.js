@@ -15,8 +15,9 @@ Page({
   onShow: function () {
     var that = this;
     var user_id = wx.getStorageSync('user_id');
-    var industryFilter = wx.getStorageSync("industryFilter");
-    var stageFilter = wx.getStorageSync("stageFilter");
+    var industryFilter = wx.getStorageSync("industryFilter") || [];
+    var stageFilter = wx.getStorageSync("stageFilter") || [];
+    console.log("industryFilter","stageFilter")
     console.log(industryFilter, stageFilter)
     that.setData({
       user_id: user_id,
@@ -205,7 +206,6 @@ Page({
           console.log(newPage);
           var page_end = res.data.page_end;
           for (var i = 0; i < newPage.length; i++) {
-            console.log(i)
             contacts.push(newPage[i])
           }
           that.setData({
