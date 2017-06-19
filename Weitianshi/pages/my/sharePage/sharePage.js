@@ -85,10 +85,11 @@ Page({
         var followed_user_id = this.data.followed_user_id;//当前被查看的用户id;
         let button_type = this.data.button_type;
         // button_type==0 互为好友或单项人脉,1.分享出去的页面,直接添加2.需要通过申请去添加人脉3.待处理状态
+        // 0申请加人脉按钮，1不显示任何按钮  2待验证   3同意加为人脉  4加为单方人脉
         console.log(button_type)
 
         //直接可添加好友的情况
-        if (button_type == 1) {
+        if (button_type == 4) {
             wx.setStorageSync("driectAdd", 1)
             //判断用户信息是否完整
             wx.request({
@@ -132,7 +133,7 @@ Page({
                     }
                 },
             });
-        } else if (button_type == 2) {
+        } else if (button_type == 0) {
             //走正常申请流程
             wx.request({
                 url: url + '/api/user/checkUserInfo',
@@ -157,7 +158,7 @@ Page({
                                     console.log("这里是正常申请添加人脉")
                                     console.log(res)
                                     that.setData({
-                                        button_type: 0
+                                        button_type: 2
                                     })
                                 }
                             })
@@ -175,7 +176,31 @@ Page({
                     }
                 },
             });
-        } else {
+        }else if(button_type == 1){
+          console.log("互為好友或單方人脈")
+        } else if(button_type ==2){
+          console.log("待驗證")
+        } else if (button_type == 3){    
+          wx.request({
+            url: url + '/api/user/handleApplyFollowUser',
+            data: {
+              // 当前登录者的
+              user_id: user_id,
+              // 当前申请的用户
+              apply_user_id: followed_user_id
+            },
+            method: 'POST',
+            success: function (res) {
+              console.log(res)
+              console.log("同意加為人脈")
+              that.setData({
+                button_type: 1
+              })
+            }
+          })
+
+        }
+        else {
             showModal({
                 title: "错误提示",
                 content: "button_type为"+button_type
