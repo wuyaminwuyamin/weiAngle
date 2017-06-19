@@ -178,6 +178,9 @@ Page({
     var contacts_page = this.data.contacts_page;
     var user_id = wx.getStorageSync('user_id');
     var page_end = this.data.page_end;
+    var industryFilter = wx.getStorageSync("industryFilter");
+    var stageFilter = wx.getStorageSync("stageFilter");
+    console.log(industryFilter, stageFilter)
     if (page_end == false) {
       wx.showToast({
         title: 'loading...',
@@ -194,8 +197,8 @@ Page({
           page: contacts_page,
           filter: {
             search: "",
-            industry: [],
-            stage: []
+            'industry': industryFilter,
+            'stage': stageFilter
           }
         },
         method: 'POST',
@@ -211,6 +214,8 @@ Page({
           that.setData({
             contacts: contacts,
             page_end: page_end,
+            industryFilter : industryFilter,
+            'stage': stageFilter
           })
         },
         fail: function () {
