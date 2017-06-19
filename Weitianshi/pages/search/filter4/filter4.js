@@ -113,14 +113,9 @@ Page({
         })
         wx.setStorageSync('industryFilter', industryFilter);
         wx.setStorageSync('stageFilter', stageFilter);
-        // wx.navigateBack({
-        //     delta: 1,
-        // })
         wx.switchTab({
           url: '/pages/contacts/contacts/contacts',
         })
-        //查看缓存
-        app.cacheCheck();
     },
 
     // 开启了下拉刷新
