@@ -67,7 +67,6 @@ Page({
         this.setData({
             contactsFilter2: checkObject
         })
-        console.log(checkObject)
     },
 
     //重置
@@ -95,6 +94,7 @@ Page({
       var that = this;
       var user_id = this.data.user_id;
         console.log(this.data.industryTags, this.data.stageTags)
+        //将有标记的领域和轮次对象存入缓存
         wx.setStorageSync("contactsIndustry", this.data.industryTags.tagsData);
         wx.setStorageSync("contactsStage", this.data.stageTags.tagsData);
         var industryFilter = [];
@@ -102,15 +102,14 @@ Page({
         this.data.industryTags.tagsData.forEach((x) => {
           if (x.check == true) {
             industryFilter.push(x.industry_id)
-            console.log(industryFilter)
           }
         })
         this.data.stageTags.tagsData.forEach((x) => {
           if (x.check == true) {
             stageFilter.push(x.stage_id)
-            console.log(stageFilter)
           }
         })
+        //将选中的领域和轮次的id存入缓存
         wx.setStorageSync('industryFilter', industryFilter);
         wx.setStorageSync('stageFilter', stageFilter);
         wx.switchTab({
