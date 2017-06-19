@@ -1,6 +1,5 @@
 {
     "pages": [
-        "pages/search/search2/search2",
         "pages/match/match/match/match",
         "pages/my/my/my",
         "pages/search/filter4/filter4",
@@ -11,7 +10,7 @@
         "pages/form/scale/scale",
         "pages/form/stage/stage",
         "pages/contacts/contacts/contacts",
-        "pages/form/businessContribution/businessContribution",
+        "pages/match/match/match/match","pages/form/businessContribution/businessContribution",
         "pages/form/tollType/tollType",
         "pages/form/hasRunningBusiness/hasRunningBusiness",
         "pages/scanCode/bpScan/bpScan",
@@ -34,7 +33,7 @@
         "pages/message/beAddedContacts/beAddedContacts",
         "pages/message/browseMe/browseMe",
         "pages/search/search1/search1",
-    
+        "pages/search/search2/search2",
         "pages/search/filter1/filter1",
         "pages/search/filter2/filter2",
         "pages/search/filter3/filter3",
