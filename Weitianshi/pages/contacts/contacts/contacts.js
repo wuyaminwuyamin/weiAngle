@@ -15,8 +15,9 @@ Page({
   onShow: function () {
     var that = this;
     var user_id = wx.getStorageSync('user_id');
-    var industryFilter = wx.getStorageSync("industryFilter");
-    var stageFilter = wx.getStorageSync("stageFilter");
+    var industryFilter = wx.getStorageSync("industryFilter") || [];
+    var stageFilter = wx.getStorageSync("stageFilter") || [];
+    console.log("industryFilter","stageFilter")
     console.log(industryFilter, stageFilter)
     that.setData({
       user_id: user_id,
