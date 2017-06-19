@@ -4,13 +4,13 @@ var url = app.globalData.url;
 var url_common = app.globalData.url_common;
 Page({
     data: {
-        winWidth: 0,//选项卡
-        winHeight: 0,//选项卡
-        currentTab: 0,//选项卡
-        myProject: "",//项目融资数据的字段 
-        yourProject: "",//寻找项目数据的字段
-        res_match: "",//资源对接数据的字段
-        investor_page: 1,//投资人分页
+        winWidth: 0,
+        winHeight: 0,
+        currentTab: 0,
+        myProject: "",
+        yourProject: "",
+        res_match: "",
+        investor_page: 1,
         resource_page: 1,//资源分页
         myPublicProject_page: 1,
         investor_page_end: false,//投资人数据是否完结
