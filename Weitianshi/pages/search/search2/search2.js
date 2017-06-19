@@ -12,10 +12,6 @@ Page({
 
   },
 
-  onReady: function () {
-
-  },
-
   onShow: function () {
 
   },
@@ -93,62 +89,66 @@ Page({
       phoneNumber: telephone,
     })
   },
-  // 下拉加载
-  // loadMore: function () {
-  //   var that = this;
-  //   var contacts_page = this.data.contacts_page;
-  //   var user_id = wx.getStorageSync('user_id');
-  //   var page_end = this.data.page_end;
-  //   if (page_end == false) {
-  //     wx.showToast({
-  //       title: 'loading...',
-  //       icon: 'loading'
-  //     })
-  //     contacts_page++;
-  //     that.setData({
-  //       contacts_page: contacts_page
-  //     })
-  //     wx.request({
-  //       url: url + '/api/user/getMyFollowList',
-  //       data: {
-  //         user_id: user_id,
-  //         page: contacts_page,
-  //         filter: {
-  //           search: "",
-  //           industry: [],
-  //           stage: []
-  //         }
-  //       },
-  //       method: 'POST',
-  //       success: function (res) {
-  //         console.log(res)
-  //         var newPage = res.data.data;
-  //         var contacts = that.data.contacts;
-  //         console.log(newPage);
-  //         var page_end = res.data.page_end;
-  //         for (var i = 0; i < newPage.length; i++) {
-  //           console.log(i)
-  //           contacts.push(newPage[i])
-  //         }
-  //         that.setData({
-  //           contacts: contacts,
-  //           page_end: page_end,
-  //         })
-  //       },
-  //       fail: function () {
-  //         wx.showToast({
-  //           title: '加载人脉失败',
-  //         })
-  //       },
-  //     })
-  //   } else {
-  //     rqj.errorHide(that, "没有更多了", 3000)
-  //   }
-  // },
 
-  // onUnload: function () {
-
-  // },
+  loadMore: function () {
+    var that = this;
+    var user_id = wx.getStorageSync('user_id');
+    var currentPage = this.data.currentPage;
+    var searchCheck = this.data.searchCheck;
+    var page_end = this.data.page_end;
+    var contacts = this.data.contacts;
+    if (searchCheck) {
+      if (user_id != '') {
+        if (page_end == false) {
+          currentPage++;
+          this.setData({
+            currentPage: currentPage,
+            searchCheck: false
+          });
+          wx.showLoading({
+            title: 'loading',
+          });
+          wx.request({
+            url: url + '/api/user/getMyFollowList',
+            data: {
+              user_id: user_id,
+              page: currentPage,
+              filter: {
+                search: find,
+                industry: [],
+                stage: []
+              }
+            },
+            method: 'POST',
+            success: function (res) {
+              console.log("筛选内容");
+              console.log(res)
+              var page_end = res.data.page_end;
+              var newPage = res.data.data;//新请求到的数据
+              var search = that.data.search;//现在显示的数据
+              console.log("触发刷新")
+              console.log(search_page, page_end)
+              console.log(res.data);
+              newPage.forEach((x) => {
+                search.push(x)
+              })
+              that.setData({
+                search: search,
+                searchCheck: true,
+                page_end: page_end
+              })
+              wx.hideLoading()
+            },
+          })
+        }
+      } else {
+        rqj.errorHide(that, "没有更多了", that, 3000)
+        that.setData({
+          searchCheck: true
+        })
+      }
+    }
+  },
 
   onPullDownRefresh: function () {
     // console.log("开启了下拉刷新");

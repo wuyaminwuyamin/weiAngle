@@ -7,7 +7,6 @@
   </label>
   <view class="esc" bindtap="searchEsc">取消</view>
 </view>
-<!--资本对接-->
 <view class="s_frame" hidden="{{contacts=='' || !contacts}}">
   <scroll-view scroll-y="true" bindscrolltolower="loadMore" scroll-top="{{scroll}}">
     <view class="contacts">
