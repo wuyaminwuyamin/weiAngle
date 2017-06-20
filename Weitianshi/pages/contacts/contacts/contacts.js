@@ -70,7 +70,7 @@ Page({
               empty: 0
             })
           } else if (contacts.length == 0) {
-            if (stageFilter != 0 || industryFilter !=0 ) {
+            if (stageFilter != [] || industryFilter !=[] ) {
               // console.log("筛选没人脉")
               that.setData({
                 empty: 2
