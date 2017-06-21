@@ -46,7 +46,8 @@ Page({
                         project_info: project_info,
                         invest_case: invest_case,
                         button_type: button_type,
-                        count: count
+                        count: count,
+                        view_id:view_id
                     })
                     if (button_type == 0) {
                         console.log("申請添加人脈")
@@ -67,7 +68,7 @@ Page({
                     console.log(res)
                 },
             })
-
+            console.log("分享","用户","查看的人")
             console.log(share_id, followed_user_id, view_id)
 
             //如果进入的是自己的名片里
@@ -88,6 +89,9 @@ Page({
         var user_id = this.data.user_id;//我的id,查看者的id
         var followed_user_id = this.data.followed_user_id;//当前被查看的用户id;
         let button_type = this.data.button_type;
+        var view_id = this.data.view_id;
+        console.log("当前查看的人")
+        console.log(view_id)
         // button_type==0  0申请加人脉按钮，1不显示任何按钮  2待验证   3同意加为人脉  4加为单方人脉
 
         console.log(button_type)
