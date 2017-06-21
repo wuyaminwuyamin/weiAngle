@@ -228,7 +228,8 @@ Page({
 
     //分享页面部分
     onShareAppMessage: function () {
-        var id = this.data.followed_user_id;
-        return app.sharePage(id)
+        var user_id = this.data.followed_user_id;
+        var share_id=this.data.share_id;
+        return app.sharePage(user_id,share_id)
     }
 }); 

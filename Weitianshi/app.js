@@ -126,7 +126,7 @@ App({
                         that.globalData.encryptedData = res.encryptedData;
                         that.globalData.iv = res.iv;
                         wx.request({
-                            url: 'https://wx.debug.weitianshi.cn/api/wx/returnOauth',
+                            url: that.globalData.url+'/api/wx/returnOauth',
                             data: {
                                 code: code,
                                 encryptedData: res.encryptedData,
@@ -153,7 +153,7 @@ App({
                     //用户不授权
                     fail: function (res) {
                         wx.request({
-                            url: 'https://wx.debug.weitianshi.cn/api/wx/returnOauth',
+                            url: that.globalData.url+'/api/wx/returnOauth',
                             data: {
                                 code: code,
                             },
@@ -440,6 +440,8 @@ App({
     //初始本地缓存
     globalData: {
         error: 0,
+        // url: "https://wx.weitianshi.cn",
+        // url_common: "https://www.weitianshi.cn"
         url: "https://wx.debug.weitianshi.cn",
         url_common: "https://debug.weitianshi.cn"
     }
