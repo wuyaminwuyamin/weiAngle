@@ -21,9 +21,15 @@ Page({
     },
     onLoad: function (options) {
         //获取当前时间,以备picker使用
-        var d=new Date();
-        var time = d.getFullYear() + '-' + (d.getMonth() + 1) + '-' + d.getDate();
-        console.log(time)
+        var d = new Date();
+        var yearBefore = d.getFullYear() - 20;
+        var yearNow = d.getFullYear();
+        var month = (d.getMonth() + 1) > 9 ? (d.getMonth() + 1) : '0' + (d.getMonth() + 1);
+        var day = d.getDate() > 9 ? d.getDate() : '0' + d.getDate()
+        var timeBefore = yearBefore + '-' + month + '-' + day;
+        var timeNow = yearNow + '-' + month + '-' + day;
+
+
         var that = this;
         var industry = wx.getStorageSync("industry");
         wx.request({
@@ -43,6 +49,8 @@ Page({
                 }
                 stage = stage_arr;
                 that.setData({
+                    timeNow:timeNow,
+                    timeBefore:timeBefore,
                     stage: stage,
                     stageId: stageId,
                 })
@@ -173,8 +181,8 @@ Page({
         var case_province = belongArea.provinceNum;
         var case_city = belongArea.cityNum;
         console.log("名称,标签名,标签Id,阶段ID,金额,时间,省份ID,城市ID")
-        console.log(user_id, case_name, industry, case_industry, case_stage, case_money, case_time, case_province, case_city,belongArea)
-        if (user_id && case_name != undefined && case_industry != '' && case_stage != 0 && case_money != undefined && case_time != '请选择' && case_province != undefined && case_city !=undefined) {
+        console.log(user_id, case_name, industry, case_industry, case_stage, case_money, case_time, case_province, case_city, belongArea)
+        if (user_id && case_name != undefined && case_industry != '' && case_stage != 0 && case_money != undefined && case_time != '请选择' && case_province != undefined && case_city != undefined) {
             if (case_index) {
                 console.log(case_index)
             } else {
@@ -207,7 +215,7 @@ Page({
                 })
             }
         } else {
-          console.log("不能为空")
+            console.log("不能为空")
             if (case_name == undefined) {
                 console.log(2)
                 rqj.errorHide(that, "项目名称不能为空", 1500)
@@ -223,8 +231,8 @@ Page({
             } else if (case_time == '请选择') {
                 console.log(6)
                 rqj.errorHide(that, "交易时间不能为空", 1500)
-            } else if (belongArea == '' ) {
-              // case_city == [] || case_province == undefined
+            } else if (belongArea == '') {
+                // case_city == [] || case_province == undefined
                 console.log(7)
                 rqj.errorHide(that, "地区不能为空", 1500)
             }
