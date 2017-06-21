@@ -20,6 +20,10 @@ Page({
         }
     },
     onLoad: function (options) {
+        //获取当前时间,以备picker使用
+        var d=new Date();
+        var time = d.getFullYear() + '-' + (d.getMonth() + 1) + '-' + d.getDate();
+        console.log(time)
         var that = this;
         var industry = wx.getStorageSync("industry");
         wx.request({
