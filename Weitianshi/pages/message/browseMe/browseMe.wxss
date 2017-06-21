@@ -16,6 +16,15 @@
   text-align: left;
 }
 
+.nothing {
+  font-size: 36rpx;
+  width: 146rpx;
+  height: 50rpx;
+  color: #999;
+  text-align: left;
+  margin: 65% auto;
+}
+
 .title .block {
   background: #40587a;
   width: 4rpx;

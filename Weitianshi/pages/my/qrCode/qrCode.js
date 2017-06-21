@@ -85,6 +85,10 @@ Page({
                                         filePath: picPath,
                                         success: function (res) {
                                             console.log(res)
+                                            wx.showToast({
+                                              title: '保存图片成功',
+                                              icon: 'success'
+                                            })
                                         },
                                         fail: function (res) {
                                             console.log(filePath)
