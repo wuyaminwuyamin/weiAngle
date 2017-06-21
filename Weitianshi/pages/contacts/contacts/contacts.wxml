@@ -83,15 +83,15 @@
 
 <!--空状态-->
 <view wx:if="{{empty == 1}}">
-<view class="nullState" wx:if="{{contacts=='' || !contacts}}">
-  <view class="nullState_text">
-    <image src="/img/connection.png"></image>
-    <view>暂无人脉</view>
-    <view>分享我的名片，拓展我的人脉</view>
-  </view>
-  <button bindtap="myCard" wx:if="{{notIntegrity==1}}">我的名片</button>
-  <button bindtap="bindUserInfo" wx:if="{{notIntegrity==0 ||!user_id}}">请先绑定用户信息</button>
-</view>
+    <view class="nullState" wx:if="{{contacts=='' || !contacts}}">
+    <view class="nullState_text">
+        <image src="/img/connection.png"></image>
+        <view>暂无人脉</view>
+        <view>分享我的名片，拓展我的人脉</view>
+    </view>
+    <button bindtap="myCard" wx:if="{{notIntegrity==1}}">我的名片</button>
+    <button bindtap="bindUserInfo" wx:if="{{notIntegrity==0 ||!user_id}}">请先绑定用户信息</button>
+    </view>
 </view>
 <!--搜索人脈為空-->
 <view class="nullPerson" wx:if="{{empty == 2}}">
