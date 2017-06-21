@@ -178,8 +178,8 @@ Page({
     var contacts_page = this.data.contacts_page;
     var user_id = wx.getStorageSync('user_id');
     var page_end = this.data.page_end;
-    var industryFilter = wx.getStorageSync("industryFilter");
-    var stageFilter = wx.getStorageSync("stageFilter");
+    var industryFilter = wx.getStorageSync("industryFilter") || [];
+    var stageFilter = wx.getStorageSync("stageFilter") || [];
     console.log(industryFilter, stageFilter)
     if (page_end == false) {
       wx.showToast({
