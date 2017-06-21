@@ -17,7 +17,7 @@ Page({
     var user_id = wx.getStorageSync('user_id');
     var industryFilter = wx.getStorageSync("industryFilter") || [];
     var stageFilter = wx.getStorageSync("stageFilter") || [];
-    console.log("industryFilter","stageFilter")
+    console.log("industryFilter", "stageFilter")
     console.log(industryFilter, stageFilter)
     that.setData({
       user_id: user_id,
@@ -26,7 +26,8 @@ Page({
       contacts_page: 1
     })
     // 检查个人信息全不全
-    if (user_id != 0) {
+    if (user_id == 0) {
+      console.log(user_id)
       wx.request({
         url: url + '/api/user/checkUserInfo',
         data: {
@@ -36,7 +37,9 @@ Page({
         success: function (res) {
           that.setData({
             notIntegrity: res.data.is_complete,
+            empty: 1
           })
+          console.log(notIntegrity)
         },
         fail: function (res) {
           wx.showToast({
@@ -47,6 +50,7 @@ Page({
     }
     // 获取人脉库信息
     if (user_id) {
+      console.log(user_id)
       wx.request({
         url: url + '/api/user/getMyFollowList',
         data: {
@@ -61,25 +65,25 @@ Page({
         method: 'POST',
         success: function (res) {
           console.log("我的人脉列表")
-          console.log(res)
           var contacts = res.data.data;//所有的用户
           var page_end = res.data.page_end;
+          console.log(res.data.data.length)
           if (contacts.length != 0) {
-            // console.log("有内容")
+            console.log("有人脉")
             that.setData({
               empty: 0
             })
           } else if (contacts.length == 0) {
-            if (stageFilter != [] || industryFilter !=[] ) {
-              // console.log("筛选没人脉")
+            if (stageFilter.length != 0  || industryFilter.length !=0) {
+              console.log("筛选没人脉")
               that.setData({
                 empty: 2
               })
-            }
-            else {
-              // console.log("没人脉")
+            }else {
+              console.log("没人脉")
               that.setData({
-                empty: 1
+                empty: 1,
+                notIntegrity : 1
               })
             }
           }
@@ -214,7 +218,7 @@ Page({
           that.setData({
             contacts: contacts,
             page_end: page_end,
-            industryFilter : industryFilter,
+            industryFilter: industryFilter,
             'stage': stageFilter
           })
         },
