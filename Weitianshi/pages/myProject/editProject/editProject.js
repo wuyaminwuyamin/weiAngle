@@ -31,7 +31,6 @@ Page({
     onLoad: function (options) {
         console.log("onload industryCurrent2")
         console.log(wx.getStorageSync("industryCurrent2"))
-        console.log(app.globalData.industry);
         console.log(options)
         var that = this;
         var user_id = options.user_id;
@@ -143,7 +142,6 @@ Page({
     onShow: function () {
         console.log("onshow industryCurrent2")
         console.log(wx.getStorageSync("industryCurrent2"))
-        console.log(app.globalData.industry)
         var that = this;
         // console.log(that.data)
         // console.log(that.data.belongArea)

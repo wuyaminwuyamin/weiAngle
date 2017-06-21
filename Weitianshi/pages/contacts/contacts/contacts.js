@@ -50,7 +50,6 @@ Page({
     }
     // 获取人脉库信息
     if (user_id) {
-      console.log(user_id)
       wx.request({
         url: url + '/api/user/getMyFollowList',
         data: {
@@ -65,22 +64,19 @@ Page({
         method: 'POST',
         success: function (res) {
           console.log("我的人脉列表")
+          console.log(res)
           var contacts = res.data.data;//所有的用户
           var page_end = res.data.page_end;
-          console.log(res.data.data.length)
           if (contacts.length != 0) {
-            console.log("有人脉")
             that.setData({
               empty: 0
             })
           } else if (contacts.length == 0) {
             if (stageFilter.length != 0  || industryFilter.length !=0) {
-              console.log("筛选没人脉")
               that.setData({
                 empty: 2
               })
             }else {
-              console.log("没人脉")
               that.setData({
                 empty: 1,
                 notIntegrity : 1
@@ -182,8 +178,8 @@ Page({
     var contacts_page = this.data.contacts_page;
     var user_id = wx.getStorageSync('user_id');
     var page_end = this.data.page_end;
-    var industryFilter = wx.getStorageSync("industryFilter");
-    var stageFilter = wx.getStorageSync("stageFilter");
+    var industryFilter = wx.getStorageSync("industryFilter") || [];
+    var stageFilter = wx.getStorageSync("stageFilter") || [];
     console.log(industryFilter, stageFilter)
     if (page_end == false) {
       wx.showToast({

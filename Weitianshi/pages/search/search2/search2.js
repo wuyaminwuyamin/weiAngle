@@ -13,16 +13,16 @@ Page({
     },
 
     onLoad: function (options) {
-
+        this.setData({
+            currentPage: 1,
+            searchCheck: true,
+            page_end: false,
+            contacts: []
+        })
     },
 
     onShow: function () {
-        this.setData({
-            currentPage:1,
-            searchCheck:true,
-            page_end:false,
-            contacts:[]
-        })
+
     },
     // 用户详情
     userDetail: function (e) {
@@ -43,8 +43,6 @@ Page({
             contacts_page: 1
         })
         var find = e.detail.value;
-        console.log("搜索内容")
-        console.log(find)
         if (find === '') {
             that.setData({
                 contacts: '',
@@ -64,8 +62,6 @@ Page({
                 },
                 method: 'POST',
                 success: function (res) {
-                    console.log("搜索结果")
-                    console.log(res)
                     var contacts = res.data.data;//所有的用户
                     var page_end = res.data.page_end;
                     that.setData({

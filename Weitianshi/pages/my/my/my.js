@@ -9,8 +9,8 @@ Page({
         modal: 0,
         goTop: 0,
         canEdit: 1,
-        blue:-1,
-        count:""
+        blue: -1,
+        count: ""
     },
     onLoad: function (options) {
         if (options) {
@@ -20,6 +20,9 @@ Page({
         }
     },
     onShow: function () {
+        //消除人脉缓存
+        app.contactsCacheClear();
+
         var that = this
         app.loginPage(function (user_id) {
             console.log("这里是cb函数")
@@ -69,7 +72,7 @@ Page({
                             invest_case: invest_case,
                             status_code: status_code,
                             financingProject: financingProject,
-                            count:count
+                            count: count
                         })
                     },
                     fail: function (res) {
@@ -177,20 +180,20 @@ Page({
         })
     },
     // 二维码分享按钮
-    shareSth:function(e){
-      console.log(e)
-      var QR_id = e.currentTarget.dataset.clickid;
-      wx.setStorageSync('QR_id', QR_id)
-      console.log(QR_id)
-      wx.navigateTo({
-        url: '/pages/my/qrCode/qrCode',
-      })
+    shareSth: function (e) {
+        console.log(e)
+        var QR_id = e.currentTarget.dataset.clickid;
+        wx.setStorageSync('QR_id', QR_id)
+        console.log(QR_id)
+        wx.navigateTo({
+            url: '/pages/my/qrCode/qrCode',
+        })
     },
     //分享页面
     onShareAppMessage: function () {
         var user_id = wx.getStorageSync('user_id');
-        var share_id=wx.getStorageSync("user_id");
-        return app.sharePage(user_id,share_id)
+        var share_id = wx.getStorageSync("user_id");
+        return app.sharePage(user_id, share_id)
     },
 
     //取消分享

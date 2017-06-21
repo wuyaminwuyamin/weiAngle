@@ -158,21 +158,21 @@ Page({
                                     method: 'POST',
                                     success: function (res) {
                                         console.log(res)
-                                        // if (res.data.status_code == 2000000) {
-                                        //     wx.showModal({
-                                        //         title: "提示",
-                                        //         content: "添加成功,请到人脉列表查看",
-                                        //         showCancel: false,
-                                        //         confirmText: "到人脉库",
-                                        //         success: function () {
-                                        //             console.log(res);
-                                        //             wx.switchTab({
-                                        //                 url: '/pages/contacts/contacts/contacts',
-                                        //             })
-                                        //         }
-                                        //     })
-                                        //     wx.removeStorageSync("driectAdd")
-                                        // }
+                                        if (res.data.status_code == 2000000) {
+                                            wx.showModal({
+                                                title: "提示",
+                                                content: "添加成功,请到人脉列表查看",
+                                                showCancel: false,
+                                                confirmText: "到人脉库",
+                                                success: function () {
+                                                    console.log(res);
+                                                    wx.switchTab({
+                                                        url: '/pages/contacts/contacts/contacts',
+                                                    })
+                                                }
+                                            })
+                                            wx.removeStorageSync("driectAdd")
+                                        }
                                     },
                                 })
                             } else {
@@ -197,14 +197,12 @@ Page({
                                                     wx.switchTab({
                                                         url: '/pages/contacts/contacts/contacts',
                                                     })
-
                                                 }
                                             })
                                         }
                                     },
                                 })
                             }
-
                         } else {
                             wx.switchTab({
                                 url: "/pages/match/match/match/match"

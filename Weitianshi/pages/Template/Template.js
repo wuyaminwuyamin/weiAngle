@@ -1,4 +1,3 @@
-var _this
 var app = getApp();
 var url = app.globalData.url;
 var url_common = app.globalData.url_common;
@@ -70,6 +69,7 @@ function loadMore(projectCheck, url, that, api, page, parameter, user_id, page_e
     }
 
 }
+
 // 循环出用户投资信息
 function userNeed(that) {
     var userNeed = {};
@@ -124,6 +124,7 @@ function userNeed(that) {
     userNeed.user_scaleId = user_scaleId;
     return userNeed;
 }
+
 // 添加人脉
 function addNetWork(that, follow_user_id, followed_user_id) {
     wx.request({
@@ -169,6 +170,7 @@ function addNetWork(that, follow_user_id, followed_user_id) {
         },
     })
 }
+
 // 函数输出
 module.exports = { errorHide, userNeed, loadMore, dealTagsData }
 
