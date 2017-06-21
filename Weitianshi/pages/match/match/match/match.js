@@ -44,6 +44,10 @@ Page({
         var that = this;
         var current = this.data.currentTab;
         wx.removeStorageSync("investor");
+
+        //消除人脉缓存
+        app.contactsCacheClear();
+
         // wx.setStorageSync("user_id", "V0VznXa0") 
         // wx.setStorageSync("user_id", "1ryE5Enr")
 

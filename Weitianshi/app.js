@@ -53,10 +53,6 @@ App({
                 thisData.industry.forEach((x) => { x.check = false })
                 thisData.scale.forEach((x) => { x.check = false })
                 thisData.stage.forEach((x) => { x.check = false })
-                that.globalData.area = thisData.area;
-                that.globalData.industry = thisData.industry;
-                that.globalData.scale = thisData.scale;
-                that.globalData.stage = thisData.stage;
                 wx.setStorageSync("industry", thisData.industry)
                 wx.setStorageSync("scale", thisData.scale)
                 wx.setStorageSync("stage", thisData.stage)
@@ -435,6 +431,14 @@ App({
         } else {
             console.log("addType写错了")
         }
+    },
+
+    //消除人脉筛选的四个缓存
+    contactsCacheClear(){
+        wx.removeStorageSync('industryFilter');
+        wx.removeStorageSync('stageFilter');
+        wx.removeStorageSync('contactsIndustry');
+        wx.removeStorageSync('contactsStage');
     },
 
     //初始本地缓存

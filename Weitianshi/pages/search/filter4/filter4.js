@@ -27,9 +27,8 @@ Page({
         //设置模版数据
         var industryTags = this.data.industryTags;
         var stageTags = this.data.stageTags;
-        
-        industryTags.tagsData = wx.getStorageSync("contactsIndustry") || app.globalData.industry;
-        stageTags.tagsData = wx.getStorageSync("contactsStage") || app.globalData.stage;
+        industryTags.tagsData = wx.getStorageSync("contactsIndustry") || wx.getStorageSync('industry');
+        stageTags.tagsData = wx.getStorageSync("contactsStage") || wx.getStorageSync('stage');
 
         that.setData({
             industryTags: industryTags,
