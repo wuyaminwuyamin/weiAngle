@@ -441,6 +441,6 @@ App({
     globalData: {
         error: 0,
         url: "https://wx.weitianshi.cn",
-        url_common: "https://weitianshi.cn"
+        url_common: "https://www.weitianshi.cn"
     }
 });
