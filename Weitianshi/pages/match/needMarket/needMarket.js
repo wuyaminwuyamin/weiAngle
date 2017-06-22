@@ -269,8 +269,6 @@ Page({
     this.setData({
       investNeedcheck: false
     });
-
-
   },
   // 资源需求触底刷新
   resourceNeed: function () {
