@@ -11,7 +11,8 @@
         </view>
       </view>
       <view class="flex number">
-        <label class="netWorkNum" wx:if="{{count !=0}}">{{count}}</label>
+        <!--<label class="netWorkNum" wx:if="{{count !=0}}">{{count}}</label>-->
+          <label class="netWorkNum" wx:if="{{count !=0}}">99</label>
         <label class="netWorkNumAfter" wx:if="{{count == 0}}"></label>
         <image class="iconEdit" src="/img/icon-edit@3x.png"></image>
       </view>

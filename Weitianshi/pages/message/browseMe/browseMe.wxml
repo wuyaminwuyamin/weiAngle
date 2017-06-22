@@ -86,7 +86,7 @@
               </view>
             </view>
           </view>
-          <view class="addTime" style="background:#f3f4f8;">{{item.created_at}}</view>
+          <view class="addTime" style="background:#f8f8f8;">{{item.created_at}}</view>
         </view>
       </block>
     </view>

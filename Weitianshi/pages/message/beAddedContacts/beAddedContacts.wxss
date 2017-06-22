@@ -324,5 +324,5 @@ page {
   padding-right:32rpx;
   padding-bottom:20rpx;
   text-align: right;
-  color:#cccccc;
+  color: #999999;
 }

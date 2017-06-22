@@ -8,12 +8,15 @@
 
 .addedContacts {
   height: 56rpx;
-  padding: 40rpx 21rpx 36rpx 50rpx;
+  padding: 40rpx 20rpx 40rpx 50rpx;
 }
+
 .messageList {
   height: 56rpx;
-  padding: 40rpx 21rpx 36rpx 50rpx;
+  padding: 40rpx 20rpx 40rpx 50rpx;
+  align-items: center;
 }
+
 .messageList .title {
   font-size: 36rpx;
   text-align: left;
@@ -27,7 +30,7 @@
 }
 
 .title_icon {
-  width: 52rpx;
+  width: 68rpx;
   height: 56rpx;
   margin-right: 46rpx;
 }
@@ -39,27 +42,25 @@
   line-height: 54rpx;
 }
 
-
 .flex {
   display: flex;
 }
-.number{
-  margin-top:4rpx;
+
+.number {
 }
 
-.netWorkNum{
-   background: #f44c4c;
+.netWorkNum {
+  background: #f44c4c;
   color: #fff;
-  width: 20px;
-  height: 16px;
+  width: 40rpx;
+  height: 40rpx;
   font-size: 24rpx;
   border-radius: 50%;
   margin-left: 176rpx;
-  padding-top: 6rpx;
+  line-height: 40rpx;
 }
-.netWorkNumAfter{
-  /*background: none;
-  color: none;*/
+
+.netWorkNumAfter {
   width: 20px;
   height: 16px;
   font-size: 24rpx;
