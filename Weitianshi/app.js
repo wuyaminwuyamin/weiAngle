@@ -446,7 +446,7 @@ App({
         error: 0,
         // url: "https://wx.weitianshi.cn",
         // url_common: "https://www.weitianshi.cn"
-        url: "https://wx.debug.weitianshi.cn",
-        url_common: "https://debug.weitianshi.cn"
+        url: "https://wx.dev.weitianshi.cn",
+        url_common: "https://dev.weitianshi.cn"
     }
 });
