@@ -11,6 +11,7 @@ Page({
     telephone: 0,
     blue: -1,
     condition: 0,
+    IdentificationShow:0
   },
   onLoad: function (options) {
     var that = this

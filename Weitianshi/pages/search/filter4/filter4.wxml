@@ -22,7 +22,7 @@
 
 <!--操作按钮-->
 <view class="screenBox">
-  <view style="position:fixed;bottom:16rpx;display:flex">
+  <view style="position:fixed;bottom:16rpx;display:flex;">
     <view>
       <button class="btn1" bindtap="reset">重置</button>
     </view>

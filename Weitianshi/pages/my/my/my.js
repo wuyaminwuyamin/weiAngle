@@ -10,7 +10,9 @@ Page({
         goTop: 0,
         canEdit: 1,
         blue: -1,
-        count: ""
+        count: "",
+        modalBox:0,
+        IdentificationShow:1
     },
     onLoad: function (options) {
         if (options) {
@@ -150,6 +152,7 @@ Page({
         var user_id = this.data.user_id;
         var modal = this.data.modal;
         var status_code = this.data.status_code;
+        console.log(modal,status_code)
         if (status_code == 2000000) {
             that.setData({
                 modal: 1
@@ -202,4 +205,41 @@ Page({
             modal: 0
         })
     },
+    // 查税号
+    searchIdentification:function(){
+      var that = this;
+      var user_id = this.data.user_id;
+      var modal = this.data.modal;
+      var status_code = this.data.status_code;
+      if (status_code == 2000000) {
+        that.setData({
+          modalBox: 1
+        })
+      } else {
+
+      }
+    },
+    //完善公司信息
+    writeInformation:function(){
+      wx.navigateTo({
+        url: '/pages/my/cardEdit/cardEdit',
+      })
+      this.setData({
+        modalBox: 0
+      })
+    },
+    //确定或稍后再试
+    laterOn:function(){
+      console.log("laterOn")
+      this.setData({
+        modalBox: 0
+      })
+      wx.switchTab({
+        url: '/pages/my/my/my',
+      })
+      this.setData({
+        modalBox:0
+      })
+    }
+
 });

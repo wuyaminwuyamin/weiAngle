@@ -64,7 +64,7 @@ page {
 
 .screenBox {
   height: 70rpx;
-  padding: 94rpx 32rpx 16rpx 32rpx;
+  margin: 94rpx 32rpx 16rpx 32rpx;
 }
 
 .btn1 {
