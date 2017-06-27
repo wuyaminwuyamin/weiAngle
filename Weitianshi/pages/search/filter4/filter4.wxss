@@ -63,8 +63,13 @@ page {
 }
 
 .screenBox {
-  height: 70rpx;
-  margin: 94rpx 32rpx 16rpx 32rpx;
+  height: 66rpx;
+  padding: 23rpx 32rpx 23rpx 32rpx;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  background: white;
+  width: 100%;
 }
 
 .btn1 {

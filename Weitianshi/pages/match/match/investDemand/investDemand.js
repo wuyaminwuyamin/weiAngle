@@ -291,7 +291,6 @@ Page({
             payMoney: payMoney,
             payMoneyId: payMoneyId
         })
-        console.log(y_describe)
         // -------------------------项目领域处理部份---------------------------------
         let industryCard=this.data.industryCard;
         let industryCurrent1=wx.getStorageSync("industryCurrent1");
@@ -359,7 +358,6 @@ Page({
         var payMoney = this.data.payMoney;
         var payMoneyId = this.data.payMoneyId;
         var user_id = wx.getStorageSync('user_id');
-        console.log(y_describe)
         // console.log(industryId, payStageId, payMoneyId, payAreaId, y_describe)
         if (industryValue !== "选择领域" && payMoney != "选择金额" && payArea !== "选择城市" && payStage !== "选择阶段") {
             wx.request({
