@@ -1,6 +1,8 @@
 @import "/pages/my/my/my.wxss";
+
 /*加入人脉按钮*/
-.aboutNetwork view{
+
+/*.aboutNetwork view{
     width: 100%;
     text-align: center;
     color: white;
@@ -18,7 +20,6 @@
 .addPersonBtn {
   font-family: PingFangSC-Regular;
   font-size: 30rpx;
-  /*color: #fff;*/
   padding-top: 34rpx;
   line-height: 30rpx;
   text-align: center;
@@ -37,4 +38,27 @@
   line-height: 30rpx;
   text-align: center;
   height:98rpx;
+}*/
+
+.sharePageButton {
+  width: 100%;
+  height: 88rpx;
+  background:#40587a; 
+}
+
+.giveProject, .addNetwork, .myContacts {
+   display:flex;
+  align-items: center;/*垂直居中*/
+  justify-content: center;/*水平居中*/
+  width: 33.33%;
+  font-family: PingFangSC-Regular;
+  font-size: 28rpx;
+  color: #fff;
+  height: 88rpx;
+  letter-spacing: 0;
+  line-height: 28rpx;
+  text-align: center;
+}
+.giveProject{
+  background:#e6e6e6;
 }

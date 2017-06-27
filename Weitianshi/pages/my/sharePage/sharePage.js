@@ -119,20 +119,6 @@ Page({
                                     that.setData({
                                         button_type: 2
                                     })
-                                    wx.showModal({
-                                        title: '提示',
-                                        content: '去小程序查看我的人脉库',
-                                        confirmText: '去看看',
-                                        success: function (res) {
-                                            if (res.confirm) {
-                                                wx.switchTab({
-                                                    url: '/pages/contacts/contacts/contacts',
-                                                })
-                                            } else if (res.cancel) {
-                                                console.log('用户点击取消')
-                                            }
-                                        }
-                                    })
                                 }
                             })
                         } else if (complete == 0) {
@@ -283,4 +269,10 @@ Page({
             url: '/pages/projectDetail/projectDetail?id=' + id,
         })
     },
+    //跳转到我的人脉
+    toContacts:function(){
+      wx.switchTab({
+        url: '/pages/contacts/contacts/contacts',
+      })
+    }
 }); 
