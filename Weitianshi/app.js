@@ -122,7 +122,7 @@ App({
                         that.globalData.encryptedData = res.encryptedData;
                         that.globalData.iv = res.iv;
                         wx.request({
-                            url: that.globalData.url+'/api/wx/returnOauth',
+                            url: that.globalData.url + '/api/wx/returnOauth',
                             data: {
                                 code: code,
                                 encryptedData: res.encryptedData,
@@ -149,7 +149,7 @@ App({
                     //用户不授权
                     fail: function (res) {
                         wx.request({
-                            url: that.globalData.url+'/api/wx/returnOauth',
+                            url: that.globalData.url + '/api/wx/returnOauth',
                             data: {
                                 code: code,
                             },
@@ -372,16 +372,17 @@ App({
     loadMore(that, request, callBack) {
         var user_id = wx.getStorageSync("user_id");
         var rqj = require('./pages/Template/Template.js');
-        if (request.requestCheck) {
+        if (that.data.requestCheck) {
             if (user_id != '') {
-                if (request.page_end == false) {
+                if (that.data.page_end == false) {
                     wx.showToast({
                         title: 'loading...',
                         icon: 'loading'
                     })
-                    request.currentPage++;
+                    request.data.page++;
                     that.setData({
-                        currentPage: request.currentPage
+                        currentPage: request.data.page,
+                        requestCheck:false
                     });
                     //请求加载数据
                     wx.request({
@@ -389,17 +390,20 @@ App({
                         data: request.data,
                         method: 'POST',
                         success: function (res) {
+                            that.setData({
+                                requestCheck:true
+                            })
                             callBack(res, that)
                         }
                     })
+                } else {
+                    rqj.errorHide(that, "没有更多了", 3000)
+                    that.setData({
+                        requestCheck: true
+                    });
                 }
             }
-        } else {
-            rqj.errorHide(that, "没有更多了", 3000)
         }
-        that.setData({
-            requestCheck: false
-        });
     },
 
     //添加人脉
@@ -434,7 +438,7 @@ App({
     },
 
     //消除人脉筛选的四个缓存
-    contactsCacheClear(){
+    contactsCacheClear() {
         wx.removeStorageSync('industryFilter');
         wx.removeStorageSync('stageFilter');
         wx.removeStorageSync('contactsIndustry');
