@@ -17,4 +17,4 @@
 </scroll-view>
 
 <!--按钮-->
-<template is="buttonOne" data="{{...buttonOne}}"></template>
+<template is="buttonOne" wx:if="{{currentTab!=1}}" data="{{...buttonOne}}"></template>

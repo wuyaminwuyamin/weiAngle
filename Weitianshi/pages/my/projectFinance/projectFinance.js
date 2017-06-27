@@ -11,10 +11,25 @@ Page({
         myPublicCheck: true,
         myPublic_page_end: false
     },
+    onLoad: function (options) {
+        var currentTab = options.currentTab;//从sharePage页面跳转过来的
+        var followed_user_id = options.followed_user_id;
+        console.log(currentTab, followed_user_id)
+        if (currentTab == 1) {
+            this.setData({
+                currentTab: currentTab,
+                followed_user_id: followed_user_id
+            })
+        }
+    },
     onShow: function () {
         wx.removeStorageSync("investors")
         var that = this;
-        var user_id = wx.getStorageSync('user_id')
+        if (this.data.currentTab == 1) {
+            var user_id = this.data.followed_user_id
+        } else {
+            var user_id = wx.getStorageSync('user_id')
+        }
         //获取我的项目匹配到的投资人
         wx.request({
             url: url + '/api/project/getMyProject',
@@ -23,7 +38,7 @@ Page({
             },
             method: 'POST',
             success: function (res) {
-                console.log("获取我的项目匹配到的投资人")
+                console.log("我的项目")
                 console.log(res)
                 var myProject = res.data.data;
                 //将匹配出来的四个人放入缓存
@@ -46,7 +61,6 @@ Page({
     // 上拉加载
     myPublicProject: function () {
         var that = this;
-        var user_id = wx.getStorageSync('user_id');
         var myPublicProject_page = this.data.myPublicProject_page;
         var myPublicCheck = this.data.myPublicCheck;
         var myPublic_page_end = this.data.myPublic_page_end;
@@ -105,18 +119,28 @@ Page({
     detail: function (e) {
         var thisData = e.currentTarget.dataset;
         var id = thisData.id;
-        var index = thisData.index
-        wx.navigateTo({
-            url: '/pages/myProject/projectDetail/projectDetail?id=' + id + "&&index=" + index + "&&currentTab=" + 0
-        })
+        var index = thisData.index;
+        var currentTab = this.data.currentTab;
+        if (currentTab == 1) {
+            wx.navigateTo({
+                url: '/pages/projectDetail/projectDetail?id=' + id,
+            })
+        } else {
+            wx.navigateTo({
+                url: '/pages/myProject/projectDetail/projectDetail?id=' + id + "&&index=" + index + "&&currentTab=" + 0
+            })
+        }
     },
     //编辑项目
     editDetail: function (e) {
         var id = e.currentTarget.dataset.id;
-        var user_id = wx.getStorageSync('user_id')
-        wx.navigateTo({
-            url: '/pages/myProject/editProject/editProject?pro_id=' + id + "&&user_id=" + user_id,
-        })
+        var user_id = wx.getStorageSync('user_id');
+        var currentTab=this.data.currentTab;
+        if(currentTab!=1){
+            wx.navigateTo({
+                url: '/pages/myProject/editProject/editProject?pro_id=' + id + "&&user_id=" + user_id,
+            })
+        }
     },
     // 按钮一号
     buttonOne: function () {

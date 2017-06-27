@@ -29,7 +29,6 @@
       <button class="btn2" bindtap="certain">确定</button>
     </view>
   </view>
-</view>
 
  <!--错语提示-->
   <view class="error" wx:if="{{error=='1'}}">{{error_text}}</view>

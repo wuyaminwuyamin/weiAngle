@@ -120,18 +120,18 @@ Page({
                                         button_type: 2
                                     })
                                     wx.showModal({
-                                      title: '提示',
-                                      content: '去小程序查看我的人脉库',
-                                      confirmText:'去看看',
-                                      success: function (res) {
-                                        if (res.confirm) {
-                                          wx.switchTab({
-                                            url: '/pages/contacts/contacts/contacts',
-                                          })
-                                        } else if (res.cancel) {
-                                          console.log('用户点击取消')
+                                        title: '提示',
+                                        content: '去小程序查看我的人脉库',
+                                        confirmText: '去看看',
+                                        success: function (res) {
+                                            if (res.confirm) {
+                                                wx.switchTab({
+                                                    url: '/pages/contacts/contacts/contacts',
+                                                })
+                                            } else if (res.cancel) {
+                                                console.log('用户点击取消')
+                                            }
                                         }
-                                      }
                                     })
                                 }
                             })
@@ -172,18 +172,18 @@ Page({
                         button_type: 1
                     })
                     wx.showModal({
-                      title: '提示',
-                      content: '去小程序查看我的人脉库',
-                      confirmText:'去看看',
-                      success: function (res) {
-                        if (res.confirm) {
-                          wx.switchTab({
-                            url: '/pages/contacts/contacts/contacts',
-                          })
-                        } else if (res.cancel) {
-                          console.log('用户点击取消')
+                        title: '提示',
+                        content: '去小程序查看我的人脉库',
+                        confirmText: '去看看',
+                        success: function (res) {
+                            if (res.confirm) {
+                                wx.switchTab({
+                                    url: '/pages/contacts/contacts/contacts',
+                                })
+                            } else if (res.cancel) {
+                                console.log('用户点击取消')
+                            }
                         }
-                      }
                     })
                 }
             })
@@ -217,18 +217,18 @@ Page({
                                         button_type: 1
                                     })
                                     wx.showModal({
-                                      title: '提示',
-                                      content: '去小程序查看我的人脉库',
-                                      confirmText: '去看看',
-                                      success: function (res) {
-                                        if (res.confirm) {
-                                          wx.switchTab({
-                                            url: '/pages/contacts/contacts/contacts',
-                                          })
-                                        } else if (res.cancel) {
-                                          console.log('用户点击取消')
+                                        title: '提示',
+                                        content: '去小程序查看我的人脉库',
+                                        confirmText: '去看看',
+                                        success: function (res) {
+                                            if (res.confirm) {
+                                                wx.switchTab({
+                                                    url: '/pages/contacts/contacts/contacts',
+                                                })
+                                            } else if (res.cancel) {
+                                                console.log('用户点击取消')
+                                            }
                                         }
-                                      }
                                     })
                                 }
                             })
@@ -263,11 +263,24 @@ Page({
             url: '/pages/my/qrCode/qrCode',
         })
     },
-
     //分享页面部分
     onShareAppMessage: function () {
         var user_id = this.data.followed_user_id;
         var share_id = this.data.share_id;
         return app.sharePage(user_id, share_id)
-    }
+    },
+    //项目融资
+    projectFinance: function () {
+        var followed_user_id = this.data.followed_user_id;
+        wx.navigateTo({
+            url: '/pages/my/projectFinance/projectFinance?currentTab=1' + '&&followed_user_id=' + followed_user_id,
+        })
+    },
+    //融资项目详情
+    financingDetail: function (e) {
+        var id = e.currentTarget.dataset.id;
+        wx.navigateTo({
+            url: '/pages/projectDetail/projectDetail?id=' + id,
+        })
+    },
 }); 
