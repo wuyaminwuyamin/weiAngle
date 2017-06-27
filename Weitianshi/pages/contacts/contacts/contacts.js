@@ -193,23 +193,7 @@ Page({
                 }
             }
         }
-        //请求回新页面的数据后的回调处理函数
-        var callBack = function (res, that) {
-            console.log(res)
-            var newPage = res.data.data;
-            var contacts = that.data.contacts;
-            console.log(newPage);
-            var page_end = res.data.page_end;
-            for (var i = 0; i < newPage.length; i++) {
-                contacts.push(newPage[i])
-            }
-            that.setData({
-                contacts: contacts,
-                page_end: page_end,
-            })
-            console.log(page_end)
-        }
         //调用通用加载函数
-        app.loadMore(that, request, callBack)
+        app.loadMore(that, request, "contacts",that.data.contacts)
     },
 })

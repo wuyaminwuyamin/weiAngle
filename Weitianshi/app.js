@@ -369,7 +369,7 @@ App({
     },
 
     //下拉加载事件封装
-    loadMore(that, request, callBack) {
+    loadMore(that, request,str,dataSum) {
         var user_id = wx.getStorageSync("user_id");
         var rqj = require('./pages/Template/Template.js');
         if (that.data.requestCheck) {
@@ -382,7 +382,7 @@ App({
                     request.data.page++;
                     that.setData({
                         currentPage: request.data.page,
-                        requestCheck:false
+                        requestCheck: false
                     });
                     //请求加载数据
                     wx.request({
@@ -390,10 +390,18 @@ App({
                         data: request.data,
                         method: 'POST',
                         success: function (res) {
+                            console.log(res)
+                            var newPage = res.data.data;
+                            console.log(newPage);
+                            var page_end = res.data.page_end;
+                            for (var i = 0; i < newPage.length; i++) {
+                                dataSum.push(newPage[i])
+                            }
                             that.setData({
-                                requestCheck:true
+                                [str]: dataSum,
+                                page_end: page_end,
+                                requestCheck: true
                             })
-                            callBack(res, that)
                         }
                     })
                 } else {
