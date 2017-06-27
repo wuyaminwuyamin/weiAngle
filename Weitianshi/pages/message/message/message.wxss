@@ -23,6 +23,7 @@
   color: #333;
   line-height: 54rpx;
   width: 400rpx;
+  margin-top:6rpx;
 }
 
 .title {
@@ -47,6 +48,7 @@
 }
 
 .number {
+  margin-top: 10rpx;
 }
 
 .netWorkNum {

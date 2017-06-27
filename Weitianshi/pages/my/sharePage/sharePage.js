@@ -91,7 +91,6 @@ Page({
         let button_type = this.data.button_type;
         var view_id = this.data.view_id;
         // button_type==0  0.申请加人脉按钮 1.不显示任何按钮  2.待验证   3.同意加为人脉  4.加为单方人脉
-
         console.log(button_type)
         //直接可添加好友的情况
         if (button_type == 0) {
@@ -119,6 +118,20 @@ Page({
                                     console.log(res)
                                     that.setData({
                                         button_type: 2
+                                    })
+                                    wx.showModal({
+                                      title: '提示',
+                                      content: '去小程序查看我的人脉库',
+                                      confirmText:'去看看',
+                                      success: function (res) {
+                                        if (res.confirm) {
+                                          wx.switchTab({
+                                            url: '/pages/contacts/contacts/contacts',
+                                          })
+                                        } else if (res.cancel) {
+                                          console.log('用户点击取消')
+                                        }
+                                      }
                                     })
                                 }
                             })
@@ -158,6 +171,20 @@ Page({
                     that.setData({
                         button_type: 1
                     })
+                    wx.showModal({
+                      title: '提示',
+                      content: '去小程序查看我的人脉库',
+                      confirmText:'去看看',
+                      success: function (res) {
+                        if (res.confirm) {
+                          wx.switchTab({
+                            url: '/pages/contacts/contacts/contacts',
+                          })
+                        } else if (res.cancel) {
+                          console.log('用户点击取消')
+                        }
+                      }
+                    })
                 }
             })
         } else if (button_type == 4) {
@@ -184,10 +211,24 @@ Page({
                                 },
                                 method: 'POST',
                                 success: function (res) {
-                                    console.log("这里是直接添加人脉")
-                                    console.log(res)
+                                    // console.log("这里是直接添加人脉")
+                                    // console.log(res)
                                     that.setData({
                                         button_type: 1
+                                    })
+                                    wx.showModal({
+                                      title: '提示',
+                                      content: '去小程序查看我的人脉库',
+                                      confirmText: '去看看',
+                                      success: function (res) {
+                                        if (res.confirm) {
+                                          wx.switchTab({
+                                            url: '/pages/contacts/contacts/contacts',
+                                          })
+                                        } else if (res.cancel) {
+                                          console.log('用户点击取消')
+                                        }
+                                      }
                                     })
                                 }
                             })
