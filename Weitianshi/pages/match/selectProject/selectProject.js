@@ -5,16 +5,15 @@ var url_common = app.globalData.url_common;
 Page({
     data: {
         slectProject: '',
-        page: 1,
-        page_end: false
     },
     onShow: function () {
-        //消除人脉缓存
-        app.contactsCacheClear();
-
-
         var that = this;
-        var user_id = wx.getStorageSync('user_id')
+        //初始化数据
+        app.initPage(that)
+        var user_id=this.data.user_id;
+        //消除人脉筛选缓存(非contacts都需要)
+        app.contactsCacheClear();
+        //请求精选项目数据
         wx.request({
             url: url + '/api/project/getSelectedProjects',
             data: {
@@ -25,56 +24,26 @@ Page({
                 var slectProject = res.data.data;
                 that.setData({
                     slectProject: slectProject,
-                    page: 1,
-                    page_end: false,
                 })
             }
         })
     },
-
-    //触底加载
-    loadMore: function () {
-        console.log("正在加载更多")
+    //上拉加载
+    loadMore:function(){
+        //请求上拉加载接口所需要的参数
         var that = this;
-        var page = this.data.page
-        var user_id = wx.getStorageSync('user_id');
-        var page_end = this.data.page_end;
-        if (page_end == false) {
-            wx.showToast({
-                title: 'loading...',
-                icon: 'loading'
-            })
-            page++;
-            that.setData({
-                page: page,
-            });
-            wx.request({
-                url: url + '/api/project/getSelectedProjects',
-                data: {
-                    user_id: user_id,
-                    page: page
-                },
-                method: 'POST',
-                success: function (res) {
-                    console.log("精选项目触底加载内容")
-                    console.log(res);
-                    var slectProject_new = res.data.data;
-                    var slectProject = that.data.slectProject;
-                    for (var i = 0; i < slectProject_new.length; i++) {
-                        slectProject.push(slectProject_new[i])
-                    }
-                    that.setData({
-                        slectProject: slectProject,
-                        page_end: res.data.page_end
-                    })
-                }
-            })
-        } else {
-            rqj.errorHide(that, '没有更多了', 3000)
+        var user_id=this.data.user_id;
+        var currentPage = this.data.currentPage;
+        var request = {
+            url: url + '/api/project/getSelectedProjects',
+            data: {
+                user_id: user_id,
+                page: this.data.currentPage,
+            }
         }
-
+        //调用通用加载函数
+        app.loadMore(that, request, "slectProject", that.data.slectProject)
     },
-
     //项目详情
     yourDetail: function (e) {
         var thisData = e.currentTarget.dataset;

@@ -5,9 +5,6 @@ var url_common = app.globalData.url_common;
 Page({
     data: {
         notIntegrity: 0,//检查个人信息是否完整
-        requestCheck:true,//阻止上拉加载多次请求
-        currentPage: 1,//人脉列表的当前分页
-        page_end: false,//是否还有下一页
         industryFilter: [],
         stageFilter: [],
         empty: 0
@@ -15,16 +12,16 @@ Page({
     },
     onShow: function () {
         var that = this;
-        var user_id = wx.getStorageSync('user_id');
+        app.initPage(that);
+        var user_id=this.data.user_id;
         var industryFilter = wx.getStorageSync("industryFilter") || [];
         var stageFilter = wx.getStorageSync("stageFilter") || [];
-        console.log("industryFilter", "stageFilter")
-        console.log(industryFilter, stageFilter)
         that.setData({
             user_id: user_id,
-            page_end: false,
             scroll: 0,
-            currentPage: 1
+           requestCheck:true,
+            currentPage: 1,
+            page_end: false,
         })
         // 检查个人信息全不全
         if (user_id == 0) {
