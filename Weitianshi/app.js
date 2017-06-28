@@ -448,7 +448,7 @@ App({
         }
     },
 
-    //消除人脉筛选的四个缓存
+    //消除人脉筛选的四个缓存(以实现人脉切到其他tab页再切回来数据初始化)
     contactsCacheClear() {
         wx.removeStorageSync('contactsIndustry');
         wx.removeStorageSync('contactsStage');

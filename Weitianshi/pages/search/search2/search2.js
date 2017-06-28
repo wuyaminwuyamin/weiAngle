@@ -100,64 +100,25 @@ Page({
             phoneNumber: telephone,
         })
     },
-    //加载更多
-    loadMore: function () {
-        var that = this;
-        var user_id = wx.getStorageSync('user_id');
-        var currentPage = this.data.currentPage;
-        var searchCheck = this.data.searchCheck;
-        var page_end = this.data.page_end;
-        var contacts = this.data.contacts;
+    //上拉加载
+    loadMore:function(){
+        var that=this;
+        var user_id=this.data.user_id;
         var find = this.data.find;
-        if (searchCheck) {
-            console.log(page_end)
-            if (user_id != '') {
-                if (page_end == false) {
-                    console.log(user_id, currentPage, contacts)
-                    currentPage++;
-                    this.setData({
-                        currentPage: currentPage,
-                        searchCheck: false
-                    });
-                    wx.showLoading({
-                        title: 'loading',
-                    });
-                    wx.request({
-                        url: url + '/api/user/getMyFollowList',
-                        data: {
-                            user_id: user_id,
-                            page: currentPage,
-                            filter: {
-                                search: find,
-                                industry: [],
-                                stage: []
-                            }
-                        },
-                        method: 'POST',
-                        success: function (res) {
-                            wx.hideLoading();
-                            console.log("newPage")
-                            console.log(res);
-                            var newPage = res.data.data;
-                            var page_end = res.data.page_end;
-                            newPage.forEach((x) => {
-                                contacts.push(x)
-                            })
-                            that.setData({
-                                contacts: contacts,
-                                page_end: page_end,
-                                searchCheck: true
-                            })
-                        },
-                    })
-                } else {
-                    rqj.errorHide(that, "没有更多了", 3000)
-                    that.setData({
-                        searchCheck: true
-                    })
+        var request={
+            url: url + '/api/user/getMyFollowList',
+            data:{
+                user_id: user_id,
+                page: this.data.currentPage,
+                filter: {
+                    search: find,
+                    industry: [],
+                    stage: []
                 }
             }
         }
+        //调用通用加载函数
+        app.loadMore(that, request, "contacts", that.data.contacts)
     },
     //下拉刷新
     onPullDownRefresh: function () {

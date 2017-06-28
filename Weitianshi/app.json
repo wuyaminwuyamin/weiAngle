@@ -1,6 +1,5 @@
 {
     "pages": [
-        "pages/contacts/contacts/contacts",
         "pages/match/match/match/match",
         "pages/my/my/my",
         "pages/search/filter4/filter4",
@@ -40,6 +39,7 @@
         "pages/match/match/investDemand/investDemand",
         "pages/match/selectProject/selectProject",
         "pages/match/needMarket/needMarket",
+        "pages/contacts/contacts/contacts",
         "pages/contacts/contactsEdit/constactsEdit",
         "pages/contacts/tipsEdit/tipsEdit",
         "pages/userDetail/networkDetail/networkDetail",

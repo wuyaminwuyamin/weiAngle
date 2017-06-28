@@ -4,42 +4,32 @@ var url = app.globalData.url;
 var url_common = app.globalData.url_common;
 Page({
     data: {
-        currentPage: 1,
-        requestCheck: true,
-        page_end: false,//是否还有下一页
         type_id: 2,
-        count:0
+        count: 0
     },
     onShow: function () {
         var that = this;
-        var user_id = wx.getStorageSync('user_id');
-        that.setData({
-            user_id: user_id,
-            page_end: false,
-            currentPage: 1
-        })
-       if(user_id){
+        app.initPage(that);
+        var user_id = this.data.user_id;
         //获取加我为人脉的用户信息
-        wx.request({
-            url: url_common + '/api/message/cardMessage',
-            data: {
-                user_id: user_id,
-                type_id: 2
-            },
-            method: 'POST',
-            success: function (res) {
-              console.log(url)
-              console.log("获取加我为人脉的信心")
-                console.log(res)
-                var contacts = res.data.data;
-                console.log(contacts);
-                that.setData({
-                    contacts: contacts,
-                    count: res.data.count
-                })
-            }
-        })
-       }
+        if (user_id) {
+            wx.request({
+                url: url_common + '/api/message/cardMessage',
+                data: {
+                    user_id: user_id,
+                    type_id: 2
+                },
+                method: 'POST',
+                success: function (res) {
+                    console.log("获取加我为人脉的信息")
+                    console.log(res)
+                    that.setData({
+                        contacts: res.data.data,
+                        count: res.data.count
+                    })
+                }
+            })
+        }
         //向后台发送信息取消红点
         wx.request({
             url: url_common + '/api/message/setMessageToRead',
@@ -53,8 +43,8 @@ Page({
     },
     //添加人脉
     addPerson: function (e) {
-      console.log("添加人脉")
-        var that=this;
+        console.log("添加人脉")
+        var that = this;
         var user_id = wx.getStorageSync('user_id');
         var apply_user_id = e.currentTarget.dataset.followedid;
         var follow_status = e.currentTarget.dataset.follow_status;
@@ -62,27 +52,27 @@ Page({
         console.log(user_id, apply_user_id)
         console.log("follow_status")
         console.log(follow_status)
-          wx.request({
+        wx.request({
             url: url + '/api/user/handleApplyFollowUser',
             data: {
-              user_id: user_id,
-              apply_user_id: apply_user_id
+                user_id: user_id,
+                apply_user_id: apply_user_id
             },
             method: 'POST',
             success: function (res) {
-              console.log(res);
-              //将状态改为"已互为人脉"
-              contacts.forEach((x) => {
-                if (x.user_id == apply_user_id) {
-                  x.follow_status = 1
-                }
-              })
-              that.setData({
-                contacts: contacts
-              })
+                console.log(res);
+                //将状态改为"已互为人脉"
+                contacts.forEach((x) => {
+                    if (x.user_id == apply_user_id) {
+                        x.follow_status = 1
+                    }
+                })
+                that.setData({
+                    contacts: contacts
+                })
             }
-          })
-        
+        })
+
     },
     // 用户详情
     userDetail: function (e) {
@@ -152,13 +142,4 @@ Page({
             phoneNumber: telephone,
         })
     },
-    //下拉加载
-    loadMore: function () {
-        var that = this;
-        var request = {
-            requestCheck: this.data.requestCheck,
-            page_end: this.data.page_end,
-            currentPage: currentPage,
-        }
-    }
 }) 
