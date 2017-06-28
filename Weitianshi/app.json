@@ -1,5 +1,6 @@
 {
     "pages": [
+        "pages/oneKeyInfo/oneKeyInfo",
         "pages/match/match/match/match",
         "pages/my/my/my",
         "pages/search/filter4/filter4",
@@ -58,8 +59,7 @@
         "pages/my/investCaseEdit/investCaseEdit",
         "pages/my/cardEdit/cardEdit",
         "pages/my/projectFinance/projectFinance",
-        "pages/my/qrCode/qrCode",
-        "pages/oneKeyInfo/oneKeyInfo"
+        "pages/my/qrCode/qrCode"
     ],
     "window": {
         "navigationBarBackgroundColor": "#fff",
