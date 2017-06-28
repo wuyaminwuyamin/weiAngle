@@ -342,7 +342,7 @@ App({
 
     //多选标签事件封装(tags需要要data里设置相关,str为标签数所字段)
     tagsCheck(that, rqj, e, tags, str) {
-       console.log(tags)
+        console.log(tags)
         let target = e.currentTarget.dataset;
         let tagsData = tags.tagsData;
         let checkObject = [];
@@ -358,9 +358,9 @@ App({
             tagsData[target.index].check = !tagsData[target.index].check;
             rqj.errorHide(that, "最多可选择五项", 1000)
         } else {
-                that.setData({
-                    [str]: tags
-                })
+            that.setData({
+                [str]: tags
+            })
         }
         tagsData.forEach((x) => {
             if (x.check == true) {
@@ -372,7 +372,7 @@ App({
 
     //下拉加载事件封装(request需要设置,包括url和请求request所需要的data,str为展示数据字段,dataSum为展示数据)
     //初始必须在onShow()里初始化requestCheck:true(防多次请求),currentPage:1(当前页数),page_end:false(是否为最后一页)
-    loadMore(that, request,str,dataSum) {
+    loadMore(that, request, str, dataSum) {
         var user_id = wx.getStorageSync("user_id");
         var rqj = require('./pages/Template/Template.js');
         if (that.data.requestCheck) {
@@ -450,22 +450,22 @@ App({
 
     //消除人脉筛选的四个缓存
     contactsCacheClear() {
-        wx.removeStorageSync('industryFilter');
-        wx.removeStorageSync('stageFilter');
         wx.removeStorageSync('contactsIndustry');
         wx.removeStorageSync('contactsStage');
+        wx.setStorageSync("industryFilter", '');
+        wx.setStorageSync("stageFilter", '');
     },
 
     //初始化页面(others为其他要初始化的数据,格式为键值对.如{key:value})
-    initPage:function(that,others){
-        var user_id=wx.getStorageSync('user_id');
+    initPage: function (that, others) {
+        var user_id = wx.getStorageSync('user_id');
         that.setData({
-            user_id:user_id,
-            requestCheck:true,
-            currentPage:1,
-            page_end:false
+            user_id: user_id,
+            requestCheck: true,
+            currentPage: 1,
+            page_end: false
         })
-        if(others){
+        if (others) {
             that.setData(others)
         }
     },
