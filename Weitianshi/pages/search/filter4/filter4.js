@@ -41,12 +41,7 @@ Page({
     industryChoose(e) {
         let tags = this.data.industryTags;
         let that = this;
-        let cb = function (tags) {
-            that.setData({
-                industryTags: tags
-            })
-        }
-        let checkObject = app.tagsCheck(that, rqj, e, tags, cb)
+        let checkObject = app.tagsCheck(that, rqj, e, tags, 'industryTags')
         this.setData({
             contactsFilter1:checkObject
         })
@@ -57,12 +52,7 @@ Page({
     stageChoose(e) {
         let tags = this.data.stageTags;
         let that = this;
-        let cb = function (tags) {
-            that.setData({
-                stageTags: tags
-            })
-        }
-        let checkObject = app.tagsCheck(that, rqj, e, tags, cb)
+        let checkObject = app.tagsCheck(that, rqj, e, tags, 'stageTags')
         this.setData({
             contactsFilter2: checkObject
         })

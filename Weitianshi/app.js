@@ -122,7 +122,7 @@ App({
                         that.globalData.encryptedData = res.encryptedData;
                         that.globalData.iv = res.iv;
                         wx.request({
-                            url: that.globalData.url+'/api/wx/returnOauth',
+                            url: that.globalData.url + '/api/wx/returnOauth',
                             data: {
                                 code: code,
                                 encryptedData: res.encryptedData,
@@ -149,7 +149,7 @@ App({
                     //用户不授权
                     fail: function (res) {
                         wx.request({
-                            url: that.globalData.url+'/api/wx/returnOauth',
+                            url: that.globalData.url + '/api/wx/returnOauth',
                             data: {
                                 code: code,
                             },
@@ -243,7 +243,7 @@ App({
         })
     },
 
-    //分享页面函数
+    //分享页面函数(user_id为数据所有人ID,share_Id为分享人的ID)
     sharePage: function (user_id, share_id) {
         let path = "/pages/my/sharePage/sharePage?user_id=" + user_id + "&&share_id=" + share_id;
         let url = this.globalData.url;
@@ -340,9 +340,9 @@ App({
         });
     },
 
-    //多选标签事件封装
-    tagsCheck(that, rqj, e, tags, cb) {
-        console.log(e.currentTarget.dataset);
+    //多选标签事件封装(tags需要要data里设置相关,str为标签数所字段)
+    tagsCheck(that, rqj, e, tags, str) {
+        console.log(tags)
         let target = e.currentTarget.dataset;
         let tagsData = tags.tagsData;
         let checkObject = [];
@@ -358,7 +358,9 @@ App({
             tagsData[target.index].check = !tagsData[target.index].check;
             rqj.errorHide(that, "最多可选择五项", 1000)
         } else {
-            cb(tags)
+            that.setData({
+                [str]: tags
+            })
         }
         tagsData.forEach((x) => {
             if (x.check == true) {
@@ -368,20 +370,22 @@ App({
         return checkObject
     },
 
-    //下拉加载事件封装
-    loadMore(that, request, callBack) {
+    //下拉加载事件封装(request需要设置,包括url和请求request所需要的data,str为展示数据字段,dataSum为展示数据)
+    //初始必须在onShow()里初始化requestCheck:true(防多次请求),currentPage:1(当前页数),page_end:false(是否为最后一页)
+    loadMore(that, request, str, dataSum) {
         var user_id = wx.getStorageSync("user_id");
         var rqj = require('./pages/Template/Template.js');
-        if (request.requestCheck) {
+        if (that.data.requestCheck) {
             if (user_id != '') {
-                if (request.page_end == false) {
+                if (that.data.page_end == false) {
                     wx.showToast({
                         title: 'loading...',
                         icon: 'loading'
                     })
-                    request.currentPage++;
+                    request.data.page++;
                     that.setData({
-                        currentPage: request.currentPage
+                        currentPage: request.data.page,
+                        requestCheck: false
                     });
                     //请求加载数据
                     wx.request({
@@ -389,17 +393,28 @@ App({
                         data: request.data,
                         method: 'POST',
                         success: function (res) {
-                            callBack(res, that)
+                            console.log(res)
+                            var newPage = res.data.data;
+                            console.log(newPage);
+                            var page_end = res.data.page_end;
+                            for (var i = 0; i < newPage.length; i++) {
+                                dataSum.push(newPage[i])
+                            }
+                            that.setData({
+                                [str]: dataSum,
+                                page_end: page_end,
+                                requestCheck: true
+                            })
                         }
                     })
+                } else {
+                    rqj.errorHide(that, "没有更多了", 3000)
+                    that.setData({
+                        requestCheck: true
+                    });
                 }
             }
-        } else {
-            rqj.errorHide(that, "没有更多了", 3000)
         }
-        that.setData({
-            requestCheck: false
-        });
     },
 
     //添加人脉
@@ -433,12 +448,26 @@ App({
         }
     },
 
-    //消除人脉筛选的四个缓存
-    contactsCacheClear(){
-        wx.removeStorageSync('industryFilter');
-        wx.removeStorageSync('stageFilter');
+    //消除人脉筛选的四个缓存(以实现人脉切到其他tab页再切回来数据初始化)
+    contactsCacheClear() {
         wx.removeStorageSync('contactsIndustry');
         wx.removeStorageSync('contactsStage');
+        wx.setStorageSync("industryFilter", '');
+        wx.setStorageSync("stageFilter", '');
+    },
+
+    //初始化页面(others为其他要初始化的数据,格式为键值对.如{key:value})
+    initPage: function (that, others) {
+        var user_id = wx.getStorageSync('user_id');
+        that.setData({
+            user_id: user_id,
+            requestCheck: true,
+            currentPage: 1,
+            page_end: false
+        })
+        if (others) {
+            that.setData(others)
+        }
     },
 
     //初始本地缓存

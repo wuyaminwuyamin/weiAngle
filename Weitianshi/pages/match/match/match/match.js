@@ -37,7 +37,6 @@ Page({
     },
     //载入页面
     onLoad: function () {
-
     },
     //显示页面
     onShow: function () {
@@ -227,7 +226,6 @@ Page({
             })
         }
     },
-
     //点击发布融资项目
     myProject: function () {
         app.infoJump("/pages/myProject/publishProject/publishProject")
@@ -377,13 +375,14 @@ Page({
                             })
                         }
                     })
+                } else{
+                    rqj.errorHide(that, "没有更多了", 3000)
+                    this.setData({
+                        investorProjectcheck: true
+                    });
                 }
             }
-        } else
-            rqj.errorHide(that, "没有更多了", 3000)
-        this.setData({
-            investorProjectcheck: false
-        });
+        } 
     },
     // 资源对接触底刷新
     resourceProject: function () {

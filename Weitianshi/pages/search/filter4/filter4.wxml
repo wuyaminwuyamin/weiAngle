@@ -16,11 +16,12 @@
     <view class="title">轮次</view>
   </view>
   <view class="context flex">
-        <template is="tags" data="{{...stageTags}}"></template>
+    <template is="tags" data="{{...stageTags}}"></template>
   </view>
 </view>
 
 <!--操作按钮-->
+<view class="screenBox">
   <view style="position:fixed;bottom:16rpx;display:flex;">
     <view>
       <button class="btn1" bindtap="reset">重置</button>
@@ -29,6 +30,7 @@
       <button class="btn2" bindtap="certain">确定</button>
     </view>
   </view>
+</view>
 
- <!--错语提示-->
-  <view class="error" wx:if="{{error=='1'}}">{{error_text}}</view>
+<!--错语提示-->
+<view class="error" wx:if="{{error=='1'}}">{{error_text}}</view>
