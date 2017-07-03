@@ -470,12 +470,21 @@ App({
         }
     },
 
+    //重新封装console.log
+    console(x){
+        if (this.globalData.url =='https://wx.weitianshi.cn'){
+
+        }else{
+            console.log(x)
+        }
+    },
+
     //初始本地缓存
     globalData: {
         error: 0,
-        url: "https://wx.weitianshi.cn",
-        url_common: "https://www.weitianshi.cn"
-        // url: "https://wx.dev.weitianshi.cn",
-        // url_common: "https://dev.weitianshi.cn"
+        // url: "https://wx.weitianshi.cn",
+        // url_common: "https://www.weitianshi.cn"
+        url: "https://wx.dev.weitianshi.cn",
+        url_common: "https://dev.weitianshi.cn"
     }
 });
