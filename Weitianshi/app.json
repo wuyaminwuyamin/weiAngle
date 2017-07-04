@@ -1,6 +1,7 @@
 {
     "pages": [
         "pages/match/match/match/match",
+        "pages/oneKeyInfo/oneKeyInfo",
         "pages/my/my/my",
         "pages/oneKeyInfo/oneKeyInfo",
         "pages/search/filter4/filter4",
