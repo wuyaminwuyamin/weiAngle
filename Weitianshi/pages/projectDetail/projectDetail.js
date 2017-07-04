@@ -12,13 +12,14 @@ Page({
         projectName: "",
         companyName: "",
         stock: 0,
-        load: 0
+        load: 0,
+        button_type:0
     },
     onLoad: function (options) {
         var that = this;
-        var id = options.id;
+        var id = options.id;//当前被查看用户的项目id
         var index = options.index;
-        var user_id = wx.getStorageSync('user_id');//获取我的user_id
+        var user_id = wx.getStorageSync('user_id');//获取我的user_id==view_id
         var page = this.data.page;
         var avatarUrl = wx.getStorageSync('avatarUrl');
         console.log(user_id,id)
@@ -28,7 +29,6 @@ Page({
             user_id: user_id,
             avatarUrl: avatarUrl,
         });
-
         //项目详情(不包括投资人)
         wx.request({
             url: url + '/api/project/showProjectDetail',
@@ -40,12 +40,29 @@ Page({
             success: function (res) {
                 console.log(res)
                 var project = res.data.data;
-                var user = res.data.user;
-            
+                var user = res.data.user; 
                 var firstName = user.user_name.substr(0, 1) || '';
                 var pro_industry = project.pro_industry;
                 console.log(project)
                 var followed_user_id=res.data.user.user_id
+                // 加載個人信息
+                wx.request({
+                  url: url + '/api/user/getUserAllInfo',
+                  data: {
+                    share_id: 0,
+                    user_id: followed_user_id,
+                    view_id: user_id,
+                  },
+                  method: 'POST',
+                  success: function (res) {
+                    console.log(res)
+                    var button_type = res.data.button_type;
+                    console.log(button_type)
+                    that.setData({
+                      button_type: button_type
+                    })
+                  }
+                })
                 that.setData({
                     project: project,
                     user: user,
@@ -84,7 +101,8 @@ Page({
                     })
                 }
             },
-        })
+        });
+        
     },
     // 用户详情
     userDetail: function (e) {
@@ -110,5 +128,134 @@ Page({
             path: '/pages/projectDetail/projectDetail?id=' + this.data.id
         }
         console.log(data.project.pro_intro);
+    },
+    // 加人脉
+    addPerson: function (e) {
+      var that = this
+      var followed_user_id = e.currentTarget.dataset.id;//当前用户的
+      var view_id = wx.getStorageSync('user_id');//获取我自己的user_id/查看者的id
+      //用戶的个人信息
+      wx.request({
+        url: url + '/api/user/getUserAllInfo',
+        data: {
+          share_id: 0,
+          user_id: followed_user_id,
+          view_id: view_id,
+        },
+        method: 'POST',
+        success: function (res) {
+          console.log(res)
+          var button_type = res.data.button_type;
+          console.log(button_type)
+          that.setData({
+            button_type : button_type
+          })
+          // button_type==0  0申请加人脉按钮，1不显示任何按钮  2待验证   3同意加为人脉  4加为单方人脉
+          //判断用户信息是否完整
+          wx.request({
+            url: url + '/api/user/checkUserInfo',
+            data: {
+              user_id: view_id
+            },
+            method: 'POST',
+            success: function (res) {
+              if (res.data.status_code == 2000000) {
+                var complete = res.data.is_complete;
+                if (complete == 1) {
+                  //信息完整
+                  if (button_type == 0) {
+                    wx.request({
+                      url: url + '/api/user/UserApplyFollowUser',
+                      data: {
+                        user_id: view_id,
+                        applied_user_id: followed_user_id
+                      },
+                      method: 'POST',
+                      success: function (res) {
+                        console.log(res)
+                        console.log("正常申请添加人脉")
+                        that.setData({
+                          button_type: 2
+                        })
+                      }
+                    })
+
+                  } else if (button_type == 1) {
+                    console.log("我的人脉--不显示内容")
+                  } else if (button_type == 2) {
+                    console.log("待验证===显示待验证")
+                  } else if (button_type == 3) {
+                    wx.request({
+                      url: url + '/api/user/handleApplyFollowUser',
+                      data: {
+                        // 当前登录者的
+                        user_id: view_id,
+                        // 当前申请的用户
+                        apply_user_id: followed_user_id
+                      },
+                      method: 'POST',
+                      success: function (res) {
+                        console.log(res)
+                        console.log("同意申請")
+                        that.setData({
+                          button_type: 1
+                        })
+                      }
+                    })
+                  } else if (button_type == 4) {
+                    // 单方人脉添加
+                    wx.request({
+                      url: url + '/api/user/followUser',
+                      data: {
+                        user_id: user_id,
+                        followed_user_id: followed_user_id
+                      },
+                      method: 'POST',
+                      success: function (res) {
+                        console.log("这里是单方人脉添加")
+                        console.log(res)
+                        that.setData({
+                          button_type: 1
+                        })
+                      }
+                    })
+                  }
+                } else if (complete == 0) {
+                  //有user_id但信息不全
+                  wx.showModal({
+                    title: "提示",
+                    content: "请先绑定个人信息",
+                    success: function (res) {
+                      wx.setStorageSync('followed_user_id', followed_user_id)
+                      if (res.confirm == true) {
+                        wx.navigateTo({
+                          url: '/pages/register/companyInfo/companyInfo'
+                        })
+                      }
+                    }
+                  })
+                }
+              } else {
+                //没有user_id
+                wx.showModal({
+                  title: "提示",
+                  content: "请先绑定个人信息",
+                  success: function (res) {
+                    wx.setStorageSync('followed_user_id', followed_user_id)
+                    if (res.confirm == true) {
+                      wx.navigateTo({
+                        url: '/pages/register/personInfo/personInfo'
+                      })
+                    }
+                  }
+                })
+              }
+            }
+          })
+        },
+        fail: function (res) {
+          console.log(res)
+        },
+      }) 
     }
-});
+})

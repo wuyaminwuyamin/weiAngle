@@ -54,6 +54,16 @@ Page({
     var that = this;
     var company = e.detail.value;
     console.log(company)
+    wx.request({
+      url: url_common + '/api/dataTeam/checkCompany ',
+      data:{
+        com_name:company
+      },
+      method: 'POST',
+      success: function (res) {
+        console.log(res)
+      }
+    })
     that.setData({
       company: company
     })

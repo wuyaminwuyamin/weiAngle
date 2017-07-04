@@ -227,7 +227,7 @@ scroll-view {
 .floatBtn button {
   width: 100%;
   justify-content: center;
-  color: #cccccc;
+  color: #ccc;
   border-radius: 0;
   background: #f2f2f2;
 }
@@ -295,4 +295,72 @@ scroll-view {
   padding-left: 295rpx;
   padding-top: 170rpx;
   padding-bottom: 295rpx;
+}
+
+/*加人脉*/
+
+.addNetwork {
+  background: #40587a;
+  border-radius: 200rpx;
+  width: 120rpx;
+  height: 48rpx;
+  color: #fff;
+}
+
+.addNetwork .addNet {
+  font-size: 20rpx;
+  color: #fff;
+  line-height: 54rpx;
+  display: block;
+  text-align: center;
+}
+
+.netWork {
+  opacity: 0.8;
+  font-family: PingFangSC-Regular;
+  font-size: 28rpx;
+  color: #999;
+  letter-spacing: 0;
+  line-height: 28rpx;
+  text-align: left;
+}
+
+.addPerson {
+  border-radius: 200rpx;
+  width: 120rpx;
+  height: 50rpx;
+  position:absolute;
+  right:12rpx;
+}
+
+.addPersonBtn {
+  background: #40587a;
+  font-family: PingFangSC-Regular;
+  font-size: 20rpx;
+  border-radius: 100px;
+  color: #fff;
+  padding: 14rpx 0;
+  line-height: 20rpx;
+  text-align: center;
+  position: static;
+}
+
+.addPersonBtn::after {
+  border: 0;
+}
+
+.waitPerson {
+  position:absolute;
+  right:12rpx;
+  font-size: 20rpx;
+  color: #999;
+  line-height: 20rpx;
+  text-align: center;
+}
+
+.waitPersonBtn {
+  font-size: 20rpx;
+  color: #999;
+  line-height: 20rpx;
+  text-align: center;
 }

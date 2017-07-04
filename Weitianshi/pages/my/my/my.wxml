@@ -2,7 +2,7 @@
 <scroll-view id="my" scroll-y="true" scroll-top="{{goTop==1?0:''}}">
 
   <!--我的名片-->
-  <template is="userInfo" data="{{user:user,canEdit:canEdit,blue:blue,count:count,text:'加我为人脉',show : 1,IdentificationShow :1}}"></template>
+  <template is="userInfo" data="{{user:user,canEdit:canEdit,blue:blue,count:count,text:'加我为人脉',show : 1,IdentificationShow :1,playTime:0}}"></template>
 
   <!--个人描述-->
   <template is="userIntro" data="{{user:user,canEdit:canEdit}}"></template>
@@ -32,18 +32,25 @@
     <view bindtap="addNetwork">加入人脉</view>
   </view>
 
-  <!--税号-->
+  
+  
+</scroll-view>
+<view class="showModal" hidden="{{modal==0}}" bindtap="hideModal">
+  <image src="/img/img-share@3x.png"></image>
+</view>
+<!--税号-->
   <view class="modalBox" hidden="{{modalBox==0}}">
     <view class="IdentificationNum">
       <view class="IdentificationTitle">-公司税号-</view>
       <view class="IdentificationNumText">*未办理三证合一、五证合一的公司不适用此税号</view>
       <view class="IdentificationNumCompany" wx:if="{{modalStyle == 0}}">
         <view class="companyTitle">公司</view>
-        <view class="companyName">杭州投着乐网络科技有限公司</view>
+        <view class="companyName">{{data.com_name}}</view>
         <view class="companyTitle">税号</view>
-        <view class="IdentificationNumber">91330108MA27YMUN</view>
-        <view class="modalBtn">
-          <view class="modalYes" catchtap="laterOn">确定</view>
+        <text class="IdentificationNumber">{{tax_member}}</text>
+        <view class="modalBtn flex">
+          <view class="modalYes" bindtap="copyNum">复制税号</view>
+           <view class="modalYes" bindtap="laterOn">确定</view>
         </view>
       </view>
       <view class="IdentificationNumCompany" wx:if="{{modalStyle == 1}}">
@@ -56,9 +63,3 @@
       </view>
     </view>
   </view>
-</scroll-view>
-<view class="showModal" hidden="{{modal==0}}" bindtap="hideModal">
-  <image src="/img/img-share@3x.png"></image>
-</view>
-
-<!--<view class="modalBox" hidden="{{modalBox==0}}">-->
