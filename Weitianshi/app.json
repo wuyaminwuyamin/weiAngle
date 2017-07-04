@@ -1,5 +1,6 @@
 {
     "pages": [
+        "pages/projectDetai/projectDetai",
         "pages/oneKeyInfo/oneKeyInfo",
         "pages/match/match/match/match",
         "pages/my/my/my",
@@ -10,13 +11,14 @@
         "pages/form/industry/industry",
         "pages/form/scale/scale",
         "pages/form/stage/stage",
-        "pages/form/businessContribution/businessContribution",
+       "pages/form/businessContribution/businessContribution",
         "pages/form/tollType/tollType",
         "pages/form/hasRunningBusiness/hasRunningBusiness",
         "pages/scanCode/bpScan/bpScan",
         "pages/scanCode/bpScanSuccess/bpScanSuccess",
         "pages/scanCode/cardScan/cardScan",
         "pages/scanCode/cardScanEdit/cardScanEdit",
+        "pages/scanCode/bpScan/bpScan",
         "pages/register/personInfo/personInfo",
         "pages/register/companyInfo/companyInfo",
         "pages/identity/chooseIdentity/chooseIdentity",
@@ -60,6 +62,7 @@
         "pages/my/cardEdit/cardEdit",
         "pages/my/projectFinance/projectFinance",
         "pages/my/qrCode/qrCode"
+        
     ],
     "window": {
         "navigationBarBackgroundColor": "#fff",

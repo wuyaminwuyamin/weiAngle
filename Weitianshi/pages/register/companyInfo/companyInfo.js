@@ -69,6 +69,14 @@ Page({
         for (var i = 0; i < company.length; i++) {
             rs = rs + company.substr(i, 1).replace(pattern, '');
         }
+        wx.request({
+          url: url_common + '/api/dataTeam/checkCompany ',
+          data: {
+            com_name: company
+          },
+          method: 'POST',
+          success: function (res) { }
+        })
         that.setData({
             company: rs
         })

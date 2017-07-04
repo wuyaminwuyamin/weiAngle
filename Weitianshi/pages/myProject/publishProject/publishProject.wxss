@@ -33,6 +33,7 @@ page {
   font-size: 28rpx;
   margin-bottom: 16rpx;
 }
+
 .text {
   padding: 32rpx 0;
   font-size: 24rpx;
@@ -64,7 +65,8 @@ page {
   width: 90%;
   color: #ccc;
 }
-.slect .checkOn{
+
+.slect .checkOn {
   color: #333;
 }
 
@@ -84,29 +86,43 @@ page {
   color: #999;
   font-size: 28rpx;
 }
-.card .tips_on{
-    border:1px solid #333;
-    color: 333;
+
+.card .tips_on {
+  border: 1px solid #333;
+  color: 333;
 }
 
-.card_tips .flex{
+.card_tips .flex {
   justify-content: space-between;
 }
 
-.bp{
-    display: flex;
-    justify-content: space-between;
-    padding: 48rpx 0;
-}
-.bp view:first-child{
-    font-size: 24rpx;
-    color: #333;
-}
-.bpBtn{
-    background: #40587a;
-    border-radius: 200rpx;
-    font-size: 20rpx;
-    color: white;
-    padding: 15rpx;
+.bp {
+  display: flex;
+  justify-content: space-between;
+  padding: 48rpx 0;
 }
 
+.bp view:first-child {
+  font-size: 24rpx;
+  color: #333;
+}
+
+.bpBtn {
+  background: #40587a;
+  border-radius: 200rpx;
+  font-size: 20rpx;
+  color: white;
+  padding: 15rpx;
+}
+
+.pointToPC {
+  background: #fff1e8;
+  width: 100%;
+  height: 80rpx;
+  font-family: PingFangSC-Regular;
+  font-size: 28rpx;
+  color: #666;
+  letter-spacing: 0;
+  line-height: 80rpx;
+  text-align: center;
+}
