@@ -1,8 +1,8 @@
 {
     "pages": [
-        "pages/oneKeyInfo/oneKeyInfo",
         "pages/match/match/match/match",
         "pages/my/my/my",
+        "pages/oneKeyInfo/oneKeyInfo",
         "pages/search/filter4/filter4",
         "pages/match/match/resourceDemand/resourceDemand",
         "pages/form/area1/area1",
@@ -11,7 +11,6 @@
         "pages/form/scale/scale",
         "pages/form/stage/stage",
         "pages/projectDetai/projectDetai",
-
 "pages/form/businessContribution/businessContribution",
         "pages/form/tollType/tollType",
         "pages/form/hasRunningBusiness/hasRunningBusiness",

@@ -17,7 +17,7 @@ Page({
     },
     onLoad: function (options) {
         var that = this;
-        var id = options.id;//当前被查看用户的id
+        var id = options.id;//当前被查看用户的项目id
         var index = options.index;
         var user_id = wx.getStorageSync('user_id');//获取我的user_id==view_id
         var page = this.data.page;
@@ -45,6 +45,24 @@ Page({
                 var pro_industry = project.pro_industry;
                 console.log(project)
                 var followed_user_id=res.data.user.user_id
+                // 加載個人信息
+                wx.request({
+                  url: url + '/api/user/getUserAllInfo',
+                  data: {
+                    share_id: 0,
+                    user_id: followed_user_id,
+                    view_id: user_id,
+                  },
+                  method: 'POST',
+                  success: function (res) {
+                    console.log(res)
+                    var button_type = res.data.button_type;
+                    console.log(button_type)
+                    that.setData({
+                      button_type: button_type
+                    })
+                  }
+                })
                 that.setData({
                     project: project,
                     user: user,
@@ -83,7 +101,8 @@ Page({
                     })
                 }
             },
-        })
+        });
+        
     },
     // 用户详情
     userDetail: function (e) {
@@ -128,7 +147,7 @@ Page({
           console.log(res)
           var button_type = res.data.button_type;
           console.log(button_type)
-          that.setDat({
+          that.setData({
             button_type : button_type
           })
           // button_type==0  0申请加人脉按钮，1不显示任何按钮  2待验证   3同意加为人脉  4加为单方人脉
@@ -239,4 +258,4 @@ Page({
         },
       }) 
     }
-});
+})
