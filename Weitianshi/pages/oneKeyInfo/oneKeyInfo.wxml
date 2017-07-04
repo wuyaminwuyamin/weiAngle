@@ -3,8 +3,9 @@
     <button type="primary" bindtap="updateData">更新数据</button>
 </view>-->
 <view class="classname">
+  <!--项目信息-->
   <view class="projectDetailsBox">
-    <view class="BoxName">项目信息</view>
+    <view class="boxName">项目信息</view>
     <view class="pro_sorts flex">
       <view class="pro_sort">标签一</view>
       <view class="pro_sort">标签二</view>
@@ -29,8 +30,9 @@
       <view class="companyNet">www.weitianshi.cn</view>
     </view>
   </view>
+  <!--公司信息-->
   <view class="companyIntroduce">
-    <view class="BoxName">公司信息</view>
+    <view class="boxName">公司信息</view>
     <view class="companyIntroduceName">公司名称
       <view class="companyIntroduceNameText">杭州投着乐网络科技有限公司</view>
     </view>
@@ -39,20 +41,304 @@
     </view>
     <view class="flex">
       <view class="companyIntroduceLeft">
-        <view class="companyDate">成立日期
+        <view class="companyDateTitle">成立日期
           <view class="companyDateText">2014-03-23</view>
         </view>
-        <view class="companyEmail">邮箱地址
-          <view class="companyEmailText">HR@weitianshi.cn</view>
+        <view class="companyDateTitle">邮箱地址
+          <view class="companyDateText">HR@weitianshi.cn</view>
         </view>
       </view>
       <view class="companyIntroduceRight">
-        <view class="companyLarge">公司规模
-          <view class="companyLargeText">500-2000人</view>
+        <view class="companyDateTitle">公司规模
+          <view class="companyDateText">500-2000人</view>
         </view>
-        <view class="companyTel">联系电话
-          <view class="companyTelText">0571-86427664</view>
+        <view class="companyDateTitle">联系电话
+          <view class="companyDateText">0571-86427664</view>
         </view>
+      </view>
+    </view>
+  </view>
+  <!--产品信息-->
+  <view class="projectExample">
+    <view class="boxName">产品信息</view>
+    <view class="projectExample1 flex">
+      <view class="projectExample1Logo"></view>
+      <view class="projectExample1Right">
+        <view class="projectExample1Info flex">
+          <view class="projectExample1Name">滴滴打车</view>
+          <view class="projectExample1Type">交通</view>
+        </view>
+        <view class="projectExampleText">一句话介绍</view>
+      </view>
+    </view>
+    <view class="projectExample1 flex">
+      <view class="projectExample1Logo"></view>
+      <view class="projectExample1Right">
+        <view class="projectExample1Info flex">
+          <view class="projectExample1Name">滴滴打车</view>
+          <view class="projectExample1Type">交通</view>
+        </view>
+        <view class="projectExampleText">近3亿用户的选择，2012年诞生的滴12年诞生滴...</view>
+      </view>
+    </view>
+  </view>
+  <!--项目信息-->
+  <view class="projectTrade">
+    <view class="boxName">项目信息</view>
+    <view class="projectTradeInfo">这里是一个商标信息</view>
+    <view class="flex">
+      <view class="projectTradeInfoLeft">
+        <view class="projectTradeTitle flex">注册时间：
+          <view class="projectTradeText">2014-03-23</view>
+        </view>
+        <view class="projectTradeTitle flex">状态：
+          <view class="projectTradeText">转让程序中</view>
+        </view>
+      </view>
+      <view class="projectTradeInfoRight">
+        <view class="projectTradeTitle flex">注册号：
+          <view class="projectTradeText">17680971A</view>
+        </view>
+        <view class="projectTradeTitle flex">类型：
+          <view class="projectTradeText">20</view>
+        </view>
+      </view>
+    </view>
+  </view>
+  <!--工商变更-->
+  <view class="industrialChange">
+    <view class="boxName">工商变更</view>
+    <view class="industrialChangeInfo">
+      <view class="industrialChangeTime">2015-08-17</view>
+      <view class="industrialChangeBoxTitle">经营范围</view>
+      <view class="industrialChangeTextBox flex">
+        <view class="industrialChangeBefore">
+          <view class="industrialChangeTitle">变更前</view>
+          <view class="industrialChangeText">技术开发、技术咨询、技术服务、技术推广；基础软件服务；应用软件服务。（未取得行政许可的项目除外）</view>
+        </view>
+        <view class="industrialChangeAfter">
+          <view class="industrialChangeTitle">变更后</view>
+          <view class="industrialChangeText">技术开发、技术咨询、技术服务、技术推广；基础软件服务；应用软件服务。（未取得行政许可的项目除外）</view>
+        </view>
+      </view>
+    </view>
+    <view class="industrialChangeInfo">
+      <view class="industrialChangeTime">2015-08-08</view>
+      <view class="industrialChangeBoxTitle">注册资本</view>
+      <view class="industrialChangeTextBox flex">
+        <view class="industrialChangeBefore">
+          <view class="industrialChangeTitle">变更前</view>
+          <view class="industrialChangeText">5000万元</view>
+        </view>
+        <view class="industrialChangeAfter">
+          <view class="industrialChangeTitle">变更后</view>
+          <view class="industrialChangeText">5000万元</view>
+        </view>
+      </view>
+    </view>
+  </view>
+  <!--工商信息-->
+  <view class="industrialInfo">
+    <view class="boxName">工商信息</view>
+    <view class="bossInfo flex">
+      <view class="bossName">法定代表人
+        <view class="bossInfoText">程川</view>
+      </view>
+      <view class="bossMoney">注册资本
+        <view class="bossInfoText">1000万</view>
+      </view>
+      <view class="bossStatus">经营状态
+        <view class="bossInfoText">开业</view>
+      </view>
+    </view>
+    <view class="companyEstablish">
+      <view class="flex">
+        <view class="companyIntroduceLeft">
+          <view class="companyEstablishTitle">成立日期
+            <view class="companyEstablishText">2017-08-12</view>
+          </view>
+          <view class="companyEstablishTitle">工商注册号
+            <view class="companyEstablishText">110108015068911</view>
+          </view>
+          <view class="companyEstablishTitle">登记机关
+            <view class="companyEstablishText">海淀分局</view>
+          </view>
+          <view class="companyEstablishTitle">组织机构代码
+            <view class="companyEstablishText">59963405-X</view>
+          </view>
+        </view>
+        <view class="companyIntroduceRight">
+          <view class="companyEstablishTitle">企业类型
+            <view class="companyEstablishText">有限责任公司（自然人投资)</view>
+          </view>
+          <view class="companyEstablishTitle">营业期限
+            <view class="companyEstablishText">2012-07-10 至 2032-07-09</view>
+          </view>
+          <view class="companyEstablishTitle">统一社会信用代码
+            <view class="companyEstablishText">2019388</view>
+          </view>
+        </view>
+      </view>
+    </view>
+    <view class="companyRange">
+      <view class="companyRangeTitle">经营范围</view>
+      <view class="companyRangeText">
+        我们重点解决的是行中问题，同时兼顾行前和行后。 1.行前：定制个性化的用户攻略 发现旅行前环节最大的特色是为用户定制专属的用户攻略，内部称“小册子”。小册子不仅对每个订单用户而言都不一样，小册子本身还会根据用户的人数以及特
+      </view>
+    </view>
+  </view>
+  <!--核心成员-->
+  <view class="coreMember">
+    <view class="boxName">核心成员</view>
+    <view class="coreMemberInfo">
+      <view class="coreMemberLeft"></view>
+      <view class="coreMemberRight">
+        <view class="coreMemberRightBox flex">
+          <view class="coreMemberName">顾嘉</view>
+          <view class="coreMemberPosition">创始人</view>
+        </view>
+        <view class="coreMemberIntro">
+          13年开发经验，这里是一段话这里是一段他的个人介绍，这里是他的介绍，字数可能会很长，长的话也要显示出来。
+        </view>
+      </view>
+    </view>
+    <view class="coreMemberInfo">
+      <view class="coreMemberLeft"></view>
+      <view class="coreMemberRight">
+        <view class="coreMemberRightBox flex">
+          <view class="coreMemberName">顾嘉</view>
+          <view class="coreMemberPosition">创始人</view>
+        </view>
+        <view class="coreMemberIntro">
+          13年开发经验，这里是一段话这里是一段他的个人介绍，这里是他的介绍，字数可能会很长，长的话也要显示出来。
+        </view>
+      </view>
+    </view>
+  </view>
+  <!--APP下载量-->
+  <view class="downloadApp">
+    <view class="boxName">App下载量</view>
+    <view class="flex downloadAppChoice">
+      <view class="average">行业平均</view>
+      <view class="companySheet">微天使乐投平台</view>
+    </view>
+    <view class="downloadAppSheet">
+      <canvas canvas-id="lineCanvas" disable-scroll="true" class="canvas" bindtouchstart="touchHandler"></canvas>
+      <button type="primary" bindtap="updateData">更新数据</button>
+    </view>
+  </view>
+  <!--历史融资-->
+  <view class="historyFinance">
+    <view class="boxName">历史融资</view>
+    <view class="milestone">
+      <view class="milestoneContentBox">
+        <view class="companyMilestoneContent flex">
+          <image class="case_pic" src="/img/dot@3x.png"></image>
+          <view class="companyCase_time">2017.05.04</view>
+          <view class="flex">
+            <view class="companyCase_content">100-500万</view>
+            <view class="pro_sort competitorTips">种子轮</view>
+          </view>
+          <view>
+            <view class="companyNewsNetWork">天使投资、华人资本、微天使</view>
+          </view>
+        </view>
+        <view class="companyMilestoneContent flex">
+          <image class="case_pic" src="/img/dot@3x.png"></image>
+          <view class="companyCase_time">2017.05.04</view>
+          <view>
+            <view class="companyCase_content">100-500万</view>
+            <view class="companyNewsNetWork">天使投资</view>
+          </view>
+        </view>
+      </view>
+    </view>
+  </view>
+  <!--里程碑-->
+  <view class="companyMileStone">
+    <view class="boxName">里程碑</view>
+    <view class="milestone">
+      <view class="milestoneContentBox">
+        <view class="companyMilestoneContent flex">
+          <image class="case_pic" src="/img/dot@3x.png"></image>
+          <view class="companyCase_time">2014.07</view>
+          <view class="companyCase_content">App的下载量冲破1000万</view>
+        </view>
+        <view class="companyMilestoneContent flex">
+          <image class="case_pic" src="/img/dot@3x.png"></image>
+          <view class="companyCase_time">2014.07</view>
+          <view class="companyCase_content">App的下载量，冲破1000万，冲破1000,用户很多的呢</view>
+        </view>
+      </view>
+    </view>
+  </view>
+  <!--新闻-->
+  <view class="companyNews">
+    <view class="boxName">新闻</view>
+    <view class="milestone">
+      <view class="milestoneContentBox">
+        <view class="companyMilestoneContent flex">
+          <image class="case_pic" src="/img/dot@3x.png"></image>
+          <view class="companyCase_time">2017.05.04</view>
+          <view>
+            <view class="companyCase_content">滴滴首推五星级出行服务 「豪 ...</view>
+            <view class="companyNewsNetWork">view.inews.qq.com</view>
+          </view>
+        </view>
+        <view class="companyMilestoneContent flex">
+          <image class="case_pic" src="/img/dot@3x.png"></image>
+          <view class="companyCase_time">2017.05.04</view>
+          <view>
+            <view class="companyCase_content">滴滴出行资深副总裁陶然离职</view>
+            <view class="companyNewsNetWork">tech.sina.com.cn</view>
+          </view>
+        </view>
+      </view>
+    </view>
+  </view>
+  <!--竞品-->
+  <view class="competitor">
+    <view class="boxName">竟品</view>
+    <view class="competitorBox">
+      <view class="competitorBoxTop flex">
+        <view class="competitorBoxLeft"></view>
+        <view class="competitorBoxRight">
+          <view class="competitorName">英科医疗</view>
+          <view class="competitorTime">2014-07</view>
+        </view>
+      </view>
+      <view class="competitorBoxTime">
+        <view class="competitorBoxTimeLeft flex">
+          <view class="competitorTitle">2014.04</view>
+          <view class="competitorText">100-500万</view>
+          <view class="pro_sort competitorTips">种子轮</view>
+        </view>
+        <view class="competitorBoxTimeRight">天使投资、华人资本、微天使</view>
+      </view>
+      <view class="competitorDomain flex">
+        <view class="competitorTitle">领域：</view>
+        <view class="competitorText">医疗健康、医疗器械及硬件</view>
+      </view>
+    </view>
+    <view class="competitorBox">
+      <view class="competitorBoxTop flex">
+        <view class="competitorBoxLeft"></view>
+        <view class="competitorBoxRight">
+          <view class="competitorName">英科医疗</view>
+          <view class="competitorTime">2014-07</view>
+        </view>
+      </view>
+      <view class="competitorBoxTime">
+        <view class="competitorBoxTimeLeft flex">
+          <view class="competitorTitle">2014.04</view>
+          <view class="competitorText">100-500万</view>
+          <view class="pro_sort competitorTips">种子轮</view>
+        </view>
+        <view class="competitorBoxTimeRight">天使投资、华人资本、微天使</view>
+      </view>
+      <view class="competitorDomain flex">
+        <view class="competitorTitle">领域：</view>
+        <view class="competitorText">医疗健康、医疗器械及硬件</view>
       </view>
     </view>
   </view>

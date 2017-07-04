@@ -60,7 +60,9 @@ Page({
         com_name:company
       },
       method: 'POST',
-      success: function (res) {}
+      success: function (res) {
+        console.log(res)
+      }
     })
     that.setData({
       company: company
