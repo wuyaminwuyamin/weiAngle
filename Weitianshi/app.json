@@ -1,7 +1,8 @@
 {
     "pages": [
+      "pages/oneKeyInfo/oneKeyInfo",
         "pages/match/match/match/match",
-        "pages/oneKeyInfo/oneKeyInfo",
+        
         "pages/my/my/my",
         "pages/search/filter4/filter4",
         "pages/match/match/resourceDemand/resourceDemand",

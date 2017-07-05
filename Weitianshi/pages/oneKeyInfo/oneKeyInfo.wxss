@@ -491,7 +491,6 @@
 .competitorBoxLeft {
   width: 82rpx;
   height: 82rpx;
-  border: 1rpx solid black;
   margin-right: 24rpx;
 }
 
@@ -550,4 +549,5 @@
 .oneKeyIcon {
   width: 24rpx;
   height: 24rpx;
+  margin-right:16rpx;
 }

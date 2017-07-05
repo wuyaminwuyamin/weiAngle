@@ -20,12 +20,27 @@ Page({
       },
       method: 'POST',
       success: function (res) {
-        app.console(res)
         let company = res.data.data.company;
         let com_id = company.com_id;
-        app.console(company)
+        let com_time = company.company_register_date;
+        
+        var time = app.changeTime(com_time)
+        app.console("时间")
+        console.log(time)
         that.setData({
           company: company,
+          time : time
+        })
+        // 项目信息
+        wx.request({
+          url: url_common + '/api/dataTeam/getCrawlerProject',
+          data: {
+            com_id: com_id
+          },
+          method: 'POST',
+          success: function (res) {
+        app.console(res)
+          }
         })
         // 核心成员
         wx.request({
@@ -35,7 +50,13 @@ Page({
           },
           method: 'POST',
           success: function (res) {
-            app.console(res)
+            let teamList = res.data.data; 
+            teamList.forEach((x,index) => {
+              teamList[index].team_member_name = x.team_member_name; 
+            })
+            that.setData({
+              teamList: teamList
+            })
           }
         })
         // 里程碑
@@ -46,8 +67,16 @@ Page({
           },
           method: 'POST',
           success: function (res) {
-            app.console("里程碑")
-            app.console(res)
+            let mileStone = res.data.data;
+            let mileStoneTime =
+            mileStone.forEach((x, index) => {
+              mileStone[index].milestone_event = x.milestone_event;       
+              mileStone[index].milestone_time = x.milestone_time;
+              app.changeTime(mileStone[index].milestone_time)
+            })
+            that.setData({
+              mileStone: mileStone
+            })
           }
         })
         //新闻
@@ -58,8 +87,41 @@ Page({
           },
           method: 'POST',
           success: function (res) {
-            app.console("新闻")
+            let newsList = res.data.data;
+               newsList.forEach((x, index) => {
+              newsList[index].source = x.source;
+              newsList[index].project_news_time = x.project_news_time;
+              newsList[index].project_news_title = x.project_news_title;
+              that.setData({
+                newsList: newsList
+              })
+            })
+          }
+        })
+        // 竞品
+        wx.request({
+          url: url_common + '/api/dataTeam/getCrawlerCompeting',
+          data: {
+            com_id: com_id
+          },
+          method: 'POST',
+          success: function (res) {
             app.console(res)
+            let competeList = res.data.data;
+            competeList.forEach((x, index) => {
+              competeList[index].source = x.source;
+              competeList[index].competing_goods_name = x.competing_goods_name;
+              competeList[index].competing_goods_label = x.competing_goods_label;
+              competeList[index].competing_goods_logo = x.competing_goods_logo;
+              competeList[index].competing_goods_Financing_rounds = x.competing_goods_Financing_rounds;
+              competeList[index].competing_goods_Financing_time = x.competing_goods_Financing_time;
+              competeList[index].competing_goods_Set_up = x.competing_goods_Set_up;
+              competeList[index].competing_goods_industry = x.competing_goods_industry;
+              competeList[index].competing_goods_Financing_amount = x.competing_goods_Financing_amount;
+              that.setData({
+                competeList: competeList
+              })
+            })
           }
         })
       }

@@ -49,7 +49,7 @@
     </view>
     <view class="companyIntroduceTop flex">
       <view class="companyDateTitle">成立日期
-        <view class="companyDateText" wx:if="{{company.company_register_date != null}}">{{company.company_register_date}}</view>
+        <view class="companyDateText" wx:if="{{company.company_register_date != null}}">{{time}}</view>
         <view class="companyDateTextEmpty" wx:if="{{company.company_register_date==null}}">-</view>
       </view>
       <view class="companyDateTitle">公司规模
@@ -165,7 +165,7 @@
       <view class="flex">
         <view class="companyIntroduceLeft">
           <view class="companyEstablishTitle">成立日期
-            <view class="companyEstablishText">{{company.company_register_date}}</view>
+            <view class="companyEstablishText">{{time}}</view>
           </view>
           <view class="companyEstablishTitle">工商注册号
             <view class="companyEstablishText">{{company.company_business_number}}</view>
@@ -196,30 +196,16 @@
     </view>
   </view>
   <!--核心成员-->
-  <view class="coreMember">
+  <view class="coreMember" wx:for="{{teamList}}">
     <view class="boxName">核心成员</view>
     <view class="coreMemberInfo">
-      <view class="coreMemberLeft"></view>
+      <!--<view class="coreMemberLeft">{{teamList[index].team_member_photo}}</view>-->
       <view class="coreMemberRight">
         <view class="coreMemberRightBox flex">
-          <view class="coreMemberName">顾嘉</view>
-          <view class="coreMemberPosition">创始人</view>
+          <view class="coreMemberName">{{teamList[index].team_member_name}}</view>
+          <view class="coreMemberPosition">{{teamList[index].team_member_position}}</view>
         </view>
-        <view class="coreMemberIntro">
-          13年开发经验，这里是一段话这里是一段他的个人介绍，这里是他的介绍，字数可能会很长，长的话也要显示出来。
-        </view>
-      </view>
-    </view>
-    <view class="coreMemberInfo">
-      <view class="coreMemberLeft"></view>
-      <view class="coreMemberRight">
-        <view class="coreMemberRightBox flex">
-          <view class="coreMemberName">顾嘉</view>
-          <view class="coreMemberPosition">创始人</view>
-        </view>
-        <view class="coreMemberIntro">
-          13年开发经验，这里是一段话这里是一段他的个人介绍，这里是他的介绍，字数可能会很长，长的话也要显示出来。
-        </view>
+        <view class="coreMemberIntro">{{teamList[index].team_member_introduce}}</view>
       </view>
     </view>
   </view>
@@ -266,16 +252,11 @@
   <view class="companyMileStone">
     <view class="boxName">里程碑</view>
     <view class="milestone">
-      <view class="milestoneContentBox">
+      <view class="milestoneContentBox" wx:for="{{mileStone}}">
         <view class="companyMilestoneContent flex">
           <image class="case_pic" src="/img/dot@3x.png"></image>
-          <view class="companyCase_time">2014.07</view>
-          <view class="companyCase_content">App的下载量冲破1000万</view>
-        </view>
-        <view class="companyMilestoneContent flex">
-          <image class="case_pic" src="/img/dot@3x.png"></image>
-          <view class="companyCase_time">2014.07</view>
-          <view class="companyCase_content">App的下载量，冲破1000万，冲破1000,用户很多的呢</view>
+          <view class="companyCase_time">{{mileStone[index].milestone_time}}</view>
+          <view class="companyCase_content">{{mileStone[index].milestone_event}}</view>
         </view>
       </view>
     </view>
@@ -284,21 +265,13 @@
   <view class="companyNews">
     <view class="boxName">新闻</view>
     <view class="milestone">
-      <view class="milestoneContentBox">
+      <view class="milestoneContentBox" wx:for="{{newsList}}">
         <view class="companyMilestoneContent flex">
           <image class="case_pic" src="/img/dot@3x.png"></image>
-          <view class="companyCase_time">2017.05.04</view>
+          <view class="companyCase_time">{{newsList[index].project_news_time}}</view>
           <view>
-            <view class="companyCase_content">滴滴首推五星级出行服务 「豪 ...</view>
-            <view class="companyNewsNetWork">view.inews.qq.com</view>
-          </view>
-        </view>
-        <view class="companyMilestoneContent flex">
-          <image class="case_pic" src="/img/dot@3x.png"></image>
-          <view class="companyCase_time">2017.05.04</view>
-          <view>
-            <view class="companyCase_content">滴滴出行资深副总裁陶然离职</view>
-            <view class="companyNewsNetWork">tech.sina.com.cn</view>
+            <view class="companyCase_content">{{newsList[index].project_news_title}}</view>
+            <view class="companyNewsNetWork">{{newsList[index].source}}</view>
           </view>
         </view>
       </view>
@@ -307,46 +280,27 @@
   <!--竞品-->
   <view class="competitor">
     <view class="boxName">竟品</view>
-    <view class="competitorBox">
+    <view class="competitorBox" wx:for="{{competeList}}">
       <view class="competitorBoxTop flex">
-        <view class="competitorBoxLeft"></view>
+        <view class="competitorBoxLeft">
+          <image src="{{competeList[index].competing_goods_logo}}" class="competitorBoxLeft"></image>
+        </view>
         <view class="competitorBoxRight">
-          <view class="competitorName">英科医疗</view>
+          <view class="competitorName">{{competeList[index].competing_goods_name}}</view>
           <view class="competitorTime">2014-07</view>
         </view>
       </view>
       <view class="competitorBoxTime">
         <view class="competitorBoxTimeLeft flex">
           <view class="competitorTitle">2014.04</view>
-          <view class="competitorText">100-500万</view>
-          <view class="pro_sort competitorTips">种子轮</view>
+          <view class="competitorText">{{competeList[index].competing_goods_Financing_amount}}</view>
+          <view class="pro_sort competitorTips" wx:if="{{competeList[index].competing_goods_Financing_rounds != '--' }}">{{competeList[index].competing_goods_Financing_rounds}}</view>
         </view>
         <view class="competitorBoxTimeRight">天使投资、华人资本、微天使</view>
       </view>
       <view class="competitorDomain flex">
         <view class="competitorTitle">领域：</view>
-        <view class="competitorText">医疗健康、医疗器械及硬件</view>
-      </view>
-    </view>
-    <view class="competitorBox">
-      <view class="competitorBoxTop flex">
-        <view class="competitorBoxLeft"></view>
-        <view class="competitorBoxRight">
-          <view class="competitorName">英科医疗</view>
-          <view class="competitorTime">2014-07</view>
-        </view>
-      </view>
-      <view class="competitorBoxTime">
-        <view class="competitorBoxTimeLeft flex">
-          <view class="competitorTitle">2014.04</view>
-          <view class="competitorText">100-500万</view>
-          <view class="pro_sort competitorTips">种子轮</view>
-        </view>
-        <view class="competitorBoxTimeRight">天使投资、华人资本、微天使</view>
-      </view>
-      <view class="competitorDomain flex">
-        <view class="competitorTitle">领域：</view>
-        <view class="competitorText">医疗健康、医疗器械及硬件</view>
+        <view class="competitorText">{{competeList[index].competing_goods_industry}}</view>
       </view>
     </view>
   </view>
