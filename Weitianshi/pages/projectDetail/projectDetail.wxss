@@ -329,8 +329,9 @@ scroll-view {
   border-radius: 200rpx;
   width: 120rpx;
   height: 50rpx;
-  position:absolute;
-  right:12rpx;
+  position: absolute;
+  right: 12rpx;
+  top: 38rpx;
 }
 
 .addPersonBtn {
@@ -350,17 +351,25 @@ scroll-view {
 }
 
 .waitPerson {
-  position:absolute;
-  right:12rpx;
+  position: absolute;
+  right: 12rpx;
   font-size: 20rpx;
   color: #999;
   line-height: 20rpx;
   text-align: center;
+  top: 38rpx;
+  background: none;
 }
 
 .waitPersonBtn {
-  font-size: 20rpx;
-  color: #999;
+  background:#ffffff;
+  border:1rpx solid #cccccc;
+  border-radius: 100px;
+  width: 118rpx;
+  /*height: 48rpx;*/
+  color: #fff;
+  padding: 14rpx 0;
   line-height: 20rpx;
   text-align: center;
+  position: static;
 }

@@ -24,7 +24,8 @@
         <view class="user_career" wx:if="{{user.user_company_career}}">{{user.user_company_career}}</view>
         <view class="user_career" wx:if="{{!user.user_company_career}}">职位名称</view>
       </view>
-      <view class="user_play_time" wx:if="{{playTime==1}}">刚刚活跃</view>
+      <!--<view class="user_play_time" wx:if="{{playTime==1}}">刚刚活跃</view>-->
+      <view class="user_play_time" wx:if="{{playTime==1}}"></view>
       <view class="user_company" wx:if="{{user.user_company_name}}">公司：{{user.user_company_name}}</view>
       <view class="user_company" wx:if="{{!user.user_company_name}}">公司：暂无编辑</view>
       <view class="user_mobile" wx:if="{{user.user_mobile}}">手机：<label data-telephone="{{user.user_mobile}}" id="{{blue==-1?'mobileStyle':''}}" catchtap="telephone">{{user.user_mobile}}</label>
@@ -459,5 +460,11 @@
 
 <!--提示详情填写请到pc端-->
 <template name="pointPC">
- <view class="pointToPC">去电脑上创建项目更方便</view>
+  <view class="flex">
+    <view class="pointToPC" bindtap="upLoad">
+    <image src="/img/icon-wangzhan@2x.png" class="pointPcIcon"></image>
+    去电脑上创建项目更方便
+    <label class="pointPcToNet">></label>
+    </view>
+  </view>
 </template>

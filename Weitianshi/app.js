@@ -477,5 +477,13 @@ App({
         // url_common: "https://www.weitianshi.cn"
         url: "https://wx.dev.weitianshi.cn",
         url_common: "https://dev.weitianshi.cn"
-    }
+    },
+     //重新封装console.log
+    console(x){
+        if (this.globalData.url =='https://wx.weitianshi.cn'){
+
+        }else{
+            console.log(x)
+        }
+    },
 });

@@ -22,9 +22,9 @@
         <view class="classname">佣金收讫</view>
       </view>
       <view class="ProjectDetailInfo flex">
-        <view class="sceenPerson">浏览:1000</view>
-        <view class="applyPerson">申请查看:-</view>
-        <view class="investPerson">意向投资人:-</view>
+        <view class="sceenPerson">浏览：1000</view>
+        <view class="applyPerson">申请查看：-</view>
+        <view class="investPerson">意向投资人：-</view>
       </view>
     </view>
   </view>

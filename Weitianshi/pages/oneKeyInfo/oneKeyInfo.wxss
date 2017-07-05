@@ -1,6 +1,6 @@
 .projectDetailsBox, .companyIntroduce, .projectExample, .projectTrade,
 .industrialChange, .industrialInfo, .coreMember, .downloadApp, .companyMileStone,
-.companyNews, .competitor,.historyFinance {
+.companyNews, .competitor, .historyFinance {
   background: #fff;
   width: 92%;
   height: auto;
@@ -100,6 +100,10 @@
   text-align: left;
 }
 
+.companyIntroduceRight, .companyIntroduceLeft {
+  width: 50%;
+}
+
 .companyIntroduceAddText, .companyIntroduceNameText {
   font-family: PingFangSC-Regular;
   font-size: 26rpx;
@@ -109,10 +113,6 @@
   margin: 16rpx 0 32rpx 0;
 }
 
-.companyIntroduceLeft, .companyIntroduceRight {
-  width: 50%;
-}
-
 .companyDateTitle {
   font-family: PingFangSC-Regular;
   font-size: 22rpx;
@@ -120,6 +120,12 @@
   line-height: 22rpx;
   text-align: left;
   margin-bottom: 32rpx;
+  width: 50%;
+}
+
+.companyDateTextEmpty {
+  margin-left: 20rpx;
+  margin-top: 20rpx;
 }
 
 .companyDateText {
@@ -464,25 +470,29 @@
 /*竞品*/
 
 .competitorBox {
-  background:#fafafa;
+  background: #fafafa;
   padding: 24rpx;
   padding-bottom: 28rpx;
-  margin-bottom:24rpx;
+  margin-bottom: 24rpx;
 }
-.competitorBox:last-child{
-  margin-bottom:0
+
+.competitorBox:last-child {
+  margin-bottom: 0;
 }
-.competitorBoxTop{
-  margin-bottom:32rpx;
+
+.competitorBoxTop {
+  margin-bottom: 32rpx;
 }
-.competitorBoxTop:last-child{
-  margin-bottom:0;
+
+.competitorBoxTop:last-child {
+  margin-bottom: 0;
 }
+
 .competitorBoxLeft {
   width: 82rpx;
   height: 82rpx;
   border: 1rpx solid black;
-  margin-right:24rpx;
+  margin-right: 24rpx;
 }
 
 .competitorName {
@@ -491,7 +501,7 @@
   letter-spacing: 0;
   line-height: 28rpx;
   text-align: left;
-  margin-bottom:12rpx;
+  margin-bottom: 12rpx;
 }
 
 .competitorTime {
@@ -508,7 +518,7 @@
   line-height: 26rpx;
   text-align: left;
   /*margin-right:38rpx;*/
-  width:132rpx;
+  width: 132rpx;
 }
 
 .competitorText {
@@ -516,7 +526,7 @@
   color: #333;
   line-height: 26rpx;
   text-align: left;
-  margin-bottom:20rpx;
+  margin-bottom: 20rpx;
 }
 
 .competitorBoxTimeRight {
@@ -524,13 +534,20 @@
   color: #666;
   line-height: 22rpx;
   text-align: left;
-  margin-left:132rpx;
+  margin-left: 132rpx;
 }
-.competitorBoxTimeRight{
-  margin-bottom:24rpx;
+
+.competitorBoxTimeRight {
+  margin-bottom: 24rpx;
 }
-.competitorTips{
-position:absolute;
-right:48rpx;
-margin:0;
+
+.competitorTips {
+  position: absolute;
+  right: 48rpx;
+  margin: 0;
+}
+
+.oneKeyIcon {
+  width: 24rpx;
+  height: 24rpx;
 }
