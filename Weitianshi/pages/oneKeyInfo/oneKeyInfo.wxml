@@ -21,40 +21,50 @@
       </view>
     </view>
     <view class="projectInfo">
-      <view class="industry">人工智能、大数据、理财</view>
+      <view class="industry">
+        <image src="/img/icon-lingyu@2x" class="oneKeyIcon"></image>
+        人工智能、大数据、理财
+      </view>
       <view class="projectInfoText flex">
+        <image src="/img/icon-jine@2x" class="oneKeyIcon"></image>
         <label>100-500万</label>
         <label>IPO上市后</label>
         <label>杭州市</label>
       </view>
-      <view class="companyNet">www.weitianshi.cn</view>
+      <view class="companyNet">
+        <image src="/img/icon-jine@2x" class="oneKeyIcon"></image>
+        www.weitianshi.cn
+      </view>
     </view>
   </view>
   <!--公司信息-->
   <view class="companyIntroduce">
     <view class="boxName">公司信息</view>
     <view class="companyIntroduceName">公司名称
-      <view class="companyIntroduceNameText">杭州投着乐网络科技有限公司</view>
+      <view class="companyIntroduceNameText">{{company.company_name}}</view>
     </view>
     <view class="companyIntroduceAdd">公司地址
-      <view class="companyIntroduceAddText">浙江省杭州市西湖区文三路90号东部软件园一楼之韵社</view>
+      <view class="companyIntroduceAddText" wx:if="{{company.company_address != null}}">{{company.company_address}}</view>
+      <view class="companyDateTextEmpty" wx:if="{{company.company_address ==null}}">-</view>
     </view>
-    <view class="flex">
-      <view class="companyIntroduceLeft">
-        <view class="companyDateTitle">成立日期
-          <view class="companyDateText">2014-03-23</view>
-        </view>
-        <view class="companyDateTitle">邮箱地址
-          <view class="companyDateText">HR@weitianshi.cn</view>
-        </view>
+    <view class="companyIntroduceTop flex">
+      <view class="companyDateTitle">成立日期
+        <view class="companyDateText" wx:if="{{company.company_register_date != null}}">{{company.company_register_date}}</view>
+        <view class="companyDateTextEmpty" wx:if="{{company.company_register_date==null}}">-</view>
       </view>
-      <view class="companyIntroduceRight">
-        <view class="companyDateTitle">公司规模
-          <view class="companyDateText">500-2000人</view>
-        </view>
-        <view class="companyDateTitle">联系电话
-          <view class="companyDateText">0571-86427664</view>
-        </view>
+      <view class="companyDateTitle">公司规模
+        <view class="companyDateText" wx:if="{{company.company_team_size !=null}}">{{company.company_team_size}}</view>
+        <view class="companyDateTextEmpty" wx:if="{{company.company_team_size==null}}">-</view>
+      </view>
+    </view>
+    <view class="companyIntroduceBottom flex">
+      <view class="companyDateTitle">邮箱地址
+        <view class="companyDateText" wx:if="{{company.company_email != null}}">{{company.company_email}}</view>
+        <view class="companyDateTextEmpty" wx:if="{{company.company_email==null}}">-</view>
+      </view>
+      <view class="companyDateTitle">联系电话
+        <view class="companyDateText" wx:if="{{company.company_contact != null}}">{{company.company_contact}}</view>
+        <view class="companyDateTextEmpty" wx:if="{{company.company_contact==null}}">-</view>
       </view>
     </view>
   </view>
@@ -142,49 +152,47 @@
     <view class="boxName">工商信息</view>
     <view class="bossInfo flex">
       <view class="bossName">法定代表人
-        <view class="bossInfoText">程川</view>
+        <view class="bossInfoText">{{company.company_legal_representative}}</view>
       </view>
       <view class="bossMoney">注册资本
-        <view class="bossInfoText">1000万</view>
+        <view class="bossInfoText">{{company.company_registered_capital}}</view>
       </view>
       <view class="bossStatus">经营状态
-        <view class="bossInfoText">开业</view>
+        <view class="bossInfoText">{{company.company_operating_state}}</view>
       </view>
     </view>
     <view class="companyEstablish">
       <view class="flex">
         <view class="companyIntroduceLeft">
           <view class="companyEstablishTitle">成立日期
-            <view class="companyEstablishText">2017-08-12</view>
+            <view class="companyEstablishText">{{company.company_register_date}}</view>
           </view>
           <view class="companyEstablishTitle">工商注册号
-            <view class="companyEstablishText">110108015068911</view>
+            <view class="companyEstablishText">{{company.company_business_number}}</view>
           </view>
           <view class="companyEstablishTitle">登记机关
-            <view class="companyEstablishText">海淀分局</view>
+            <view class="companyEstablishText">{{company.company_register_office}}</view>
           </view>
           <view class="companyEstablishTitle">组织机构代码
-            <view class="companyEstablishText">59963405-X</view>
+            <view class="companyEstablishText">{{company.company_organization_code}}</view>
           </view>
         </view>
         <view class="companyIntroduceRight">
           <view class="companyEstablishTitle">企业类型
-            <view class="companyEstablishText">有限责任公司（自然人投资)</view>
+            <view class="companyEstablishText">{{company.company_type}})</view>
           </view>
           <view class="companyEstablishTitle">营业期限
-            <view class="companyEstablishText">2012-07-10 至 2032-07-09</view>
+            <view class="companyEstablishText">{{company.company_business_term}}</view>
           </view>
           <view class="companyEstablishTitle">统一社会信用代码
-            <view class="companyEstablishText">2019388</view>
+            <view class="companyEstablishText">{{company.company_organization_code}}</view>
           </view>
         </view>
       </view>
     </view>
     <view class="companyRange">
       <view class="companyRangeTitle">经营范围</view>
-      <view class="companyRangeText">
-        我们重点解决的是行中问题，同时兼顾行前和行后。 1.行前：定制个性化的用户攻略 发现旅行前环节最大的特色是为用户定制专属的用户攻略，内部称“小册子”。小册子不仅对每个订单用户而言都不一样，小册子本身还会根据用户的人数以及特
-      </view>
+      <view class="companyRangeText">{{company.company_empirical_range}}</view>
     </view>
   </view>
   <!--核心成员-->

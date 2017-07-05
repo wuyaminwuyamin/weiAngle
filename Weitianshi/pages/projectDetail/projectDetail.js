@@ -12,8 +12,7 @@ Page({
         projectName: "",
         companyName: "",
         stock: 0,
-        load: 0,
-        button_type:0
+        load: 0
     },
     onLoad: function (options) {
         var that = this;
@@ -57,9 +56,11 @@ Page({
                   success: function (res) {
                     console.log(res)
                     var button_type = res.data.button_type;
+                    console.log(user_id)
                     console.log(button_type)
                     that.setData({
-                      button_type: button_type
+                      button_type: button_type,
+
                     })
                   }
                 })

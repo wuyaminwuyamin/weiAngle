@@ -169,7 +169,6 @@ Page({
         var pro_finance_stage = this.data.stage[this.data.stage_index].stage_id;
         var pro_finance_scale = this.data.expect[this.data.expect_index].scale_id;
         var is_exclusive = this.data.tips_index * 1;
-
         //弹出PC端url提示文本模态框
         wx.showModal({
             titel: "友情提示",
