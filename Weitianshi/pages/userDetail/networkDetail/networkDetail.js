@@ -11,7 +11,8 @@ Page({
         telephone: 0,
         blue: -1,
         condition: 0,
-        IdentificationShow: 0
+        IdentificationShow: 0,
+        playTime:1
     },
     onLoad: function (options) {
         var that = this
@@ -98,6 +99,7 @@ Page({
         var followed_user_id = this.data.user_id;//当前用户的
         let view_id = wx.getStorageSync('user_id');//获取我自己的user_id/查看者的id
         let button_type = this.data.button_type;
+        console.log(button_type)
         // button_type==0  0申请加人脉按钮，1不显示任何按钮  2待验证   3同意加为人脉  4加为单方人脉
         //判断用户信息是否完整
         wx.request({

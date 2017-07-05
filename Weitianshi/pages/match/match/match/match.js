@@ -37,6 +37,7 @@ Page({
     },
     //载入页面
     onLoad: function () {
+        
     },
     //显示页面
     onShow: function () {

@@ -39,6 +39,7 @@ border-radius: 100rpx;*/
 }
 
 /*用户信息*/
+
 .card {
   background: white;
   margin-top: 32rpx;
@@ -204,10 +205,7 @@ border-radius: 100rpx;*/
   height: 256rpx;
 }
 
-
-
 /*点击跳转表单封装*/
-
 
 .formjump .text {
   padding: 32rpx 0;
@@ -233,14 +231,16 @@ border-radius: 100rpx;*/
   color: #ccc;
 }
 
-.formjump .slect .checkOn{
+.formjump .slect .checkOn {
   color: #333;
 }
+
 .formjump .slect image {
   height: 12rpx;
   width: 24rpx;
   display: flex;
 }
+
 .formjump textarea {
   background: #f2f2f2;
   border-radius: 4px;

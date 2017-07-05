@@ -1,6 +1,6 @@
-<scroll-view  scroll-y="true">
+<scroll-view scroll-y="true">
 
-<!--头部名片-->
+  <!--头部名片-->
   <view id="myDetail">
     <view class="weui-panel__bd" style="background:white;">
 
@@ -15,12 +15,21 @@
             <view class="others_name">{{user.user_name}}</view>
             <view class="others_email">{{user.user_email}}</view>
           </view>
-          <view class="others_company">{{user.user_company}} | {{user.user_career}}</view>
-
+          <view class="flex">
+            <view class="others_company">{{user.user_company}} | {{user.user_career}}</view>
+            <view class="addPerson" wx:if="{{button_type == 0 ||button_type == 3||button_type == 4}}">
+              <view class="addPersonBtn" catchtap="addPerson" data-id="{{user.user_id}}" >加人脉</view>
+            </view>
+             <view class="waitPerson" wx:if="{{button_type == 1 && followed_user_id!==user_id}}">
+              <view class="waitPersonBtn" style="background:#ffffff;color:#cccccc;">已为人脉</view>
+            </view>
+            <view class="waitPerson" wx:if="{{button_type == 2}}">
+              <view class="waitPersonBtn" style="background:#ffffff;color:#cccccc;">待验证</view>
+            </view>
+          </view>
           <!--<view class="ohters_position"></view>-->
         </view>
       </view>
-
       <view class="greyFrame">
 
         <!--项目完成度-->
