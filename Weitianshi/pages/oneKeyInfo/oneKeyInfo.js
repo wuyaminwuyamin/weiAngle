@@ -147,8 +147,5 @@ Page({
       categories: simulationData.categories,
       series: series
     });
-  },
-
-
-
+  }
 })
