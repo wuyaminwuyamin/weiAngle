@@ -537,15 +537,15 @@ page {
   height: 616rpx;
   width: 534rpx;
   background-color: white;
-  margin: 308rpx 64rpx;
-  opacity: 1;
+  margin-top: 206rpx;
+  margin-left: 64rpx;
   padding: 56rpx 44rpx 48rpx 44rpx;
 }
 
 .modalBox {
   background: rgba(0, 0, 0, 0.5);
   width: 100%;
-  height: 120%;
+  height: 100%;
   position: absolute;
   left: 0;
   top: 0;
