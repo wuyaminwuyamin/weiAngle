@@ -55,7 +55,7 @@ Page({
     var company = e.detail.value;
     console.log(company)
     wx.request({
-      url: url_common + '/api/dataTeam/checkCompany ',
+      url: url_common + '/api/dataTeam/checkCompany',
       data:{
         com_name:company
       },
