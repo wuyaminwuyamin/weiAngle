@@ -487,7 +487,6 @@ App({
             }
       },
  changeTime: function (x) {
-   console.log("进来了")
     var n = x * 1000;
     var date = new Date(n);
     var Y = date.getFullYear() + '-';

@@ -23,13 +23,10 @@ Page({
         let company = res.data.data.company;
         let com_id = company.com_id;
         let com_time = company.company_register_date;
-        
         var time = app.changeTime(com_time)
-        app.console("时间")
-        console.log(time)
         that.setData({
           company: company,
-          time : time
+          time: time
         })
         // 项目信息
         wx.request({
@@ -39,7 +36,54 @@ Page({
           },
           method: 'POST',
           success: function (res) {
-        app.console(res)
+            app.console("项目信息")
+            app.console(res)
+            let projectDetailsList = res.data.data;
+            projectDetailsList.forEach((x, index) => {
+              projectDetailsList[index].project_logo = x.project_logo;
+              projectDetailsList[index].company_name = x.company_name;
+              projectDetailsList[index].project_industry = x.project_industry;
+              projectDetailsList[index].project_introduce = x.project_introduce;
+              projectDetailsList[index].project_label = x.project_label;
+              projectDetailsList[index].project_name = x.project_name;
+              projectDetailsList[index].project_website = x.project_website;
+           let projectLabelList= [] 
+            })
+            that.setData({
+              projectDetailsList: projectDetailsList
+            })
+          }
+        })
+        //工商变更
+        wx.request({
+          url: url_common + '/api/dataTeam/getCrawlerBrand',
+          data: {
+            com_id: com_id
+          },
+          method: 'POST',
+          success: function (res) {
+            app.console("工商变更")
+            app.console(res)
+            // 变更信息
+            let brandInfoList = res.data.data.brand;
+            let companyChangeList = res.data.data.company_change;
+            brandInfoList.forEach((x, index) => {
+              brandInfoList[index].company_brand_name = x.company_brand_name;
+              brandInfoList[index].company_brand_registration_number = x.company_brand_registration_number;
+              brandInfoList[index].company_brand_status = x.company_brand_status;
+              brandInfoList[index].company_brand_time = app.changeTime(x.company_brand_time);
+              brandInfoList[index].company_brand_type = x.company_brand_type;
+            })
+            companyChangeList.forEach((x, index) => {
+              companyChangeList[index].company_change_after = x.company_change_after;
+              companyChangeList[index].company_change_before = x.company_change_before;
+              companyChangeList[index].company_change_matter = x.company_change_matter;
+              companyChangeList[index].company_change_time = app.changeTime(x.company_change_time);
+            })
+            that.setData({
+              brandInfoList: brandInfoList,
+              companyChangeList: companyChangeList
+            })
           }
         })
         // 核心成员
@@ -50,12 +94,34 @@ Page({
           },
           method: 'POST',
           success: function (res) {
-            let teamList = res.data.data; 
-            teamList.forEach((x,index) => {
-              teamList[index].team_member_name = x.team_member_name; 
+            let teamList = res.data.data;
+            teamList.forEach((x, index) => {
+              teamList[index].team_member_name = x.team_member_name;
             })
             that.setData({
               teamList: teamList
+            })
+          }
+        })
+        // 历史融资
+        wx.request({
+          url: url_common + '/api/dataTeam/getCrawlerHistoryFinance',
+          data: {
+            com_id: com_id
+          },
+          method: 'POST',
+          success: function (res) {
+            app.console("历史融资")
+            app.console(res)
+            let historyFinance = res.data.data;
+            historyFinance.forEach((x, index) => {
+              historyFinance[index].history_financing_money = x.history_financing_money;
+              historyFinance[index].history_financing_rounds = x.history_financing_rounds;
+              historyFinance[index].history_financing_who = x.history_financing_who;
+              historyFinance[index].history_financing_time = app.changeTime(x.history_financing_time);           
+            })
+            that.setData({
+              historyFinance: historyFinance
             })
           }
         })
@@ -69,11 +135,10 @@ Page({
           success: function (res) {
             let mileStone = res.data.data;
             let mileStoneTime =
-            mileStone.forEach((x, index) => {
-              mileStone[index].milestone_event = x.milestone_event;       
-              mileStone[index].milestone_time = x.milestone_time;
-              app.changeTime(mileStone[index].milestone_time)
-            })
+              mileStone.forEach((x, index) => {
+                mileStone[index].milestone_event = x.milestone_event;
+                mileStone[index].milestone_time = app.changeTime(x.milestone_time);
+              })
             that.setData({
               mileStone: mileStone
             })
@@ -88,9 +153,9 @@ Page({
           method: 'POST',
           success: function (res) {
             let newsList = res.data.data;
-               newsList.forEach((x, index) => {
+            newsList.forEach((x, index) => {
               newsList[index].source = x.source;
-              newsList[index].project_news_time = x.project_news_time;
+              newsList[index].project_news_time = app.changeTime(x.project_news_time);
               newsList[index].project_news_title = x.project_news_title;
               that.setData({
                 newsList: newsList
@@ -106,6 +171,7 @@ Page({
           },
           method: 'POST',
           success: function (res) {
+            app.console("竞品")
             app.console(res)
             let competeList = res.data.data;
             competeList.forEach((x, index) => {
@@ -114,10 +180,9 @@ Page({
               competeList[index].competing_goods_label = x.competing_goods_label;
               competeList[index].competing_goods_logo = x.competing_goods_logo;
               competeList[index].competing_goods_Financing_rounds = x.competing_goods_Financing_rounds;
-              competeList[index].competing_goods_Financing_time = x.competing_goods_Financing_time;
-              competeList[index].competing_goods_Set_up = x.competing_goods_Set_up;
+              competeList[index].competing_goods_Financing_time = app.changeTime(x.competing_goods_Financing_time);
+              competeList[index].competing_goods_Set_up = app.changeTime(x.competing_goods_Set_up);
               competeList[index].competing_goods_industry = x.competing_goods_industry;
-              competeList[index].competing_goods_Financing_amount = x.competing_goods_Financing_amount;
               that.setData({
                 competeList: competeList
               })
