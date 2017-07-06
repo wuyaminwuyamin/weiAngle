@@ -70,7 +70,7 @@ Page({
             rs = rs + company.substr(i, 1).replace(pattern, '');
         }
         wx.request({
-          url: url_common + '/api/dataTeam/checkCompany ',
+          url: url_common + '/api/dataTeam/checkCompany',
           data: {
             com_name: company
           },
