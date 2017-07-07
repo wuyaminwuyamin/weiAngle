@@ -65,7 +65,6 @@ Page({
         var pattern = new RegExp("[`~!@#$^&*()=|{}':;',\\[\\].<>/?~！@#￥……&*（）——|{}【】‘；：”“'。，、？]");
         var rs = "";
         var company = e.detail.value;
-        // console.log(company)
         for (var i = 0; i < company.length; i++) {
             rs = rs + company.substr(i, 1).replace(pattern, '');
         }
