@@ -1,6 +1,5 @@
 {
     "pages": [
-      
         "pages/match/match/match/match",
        "pages/oneKeyInfo/oneKeyInfo",
         "pages/my/my/my",
@@ -12,7 +11,7 @@
         "pages/form/scale/scale",
         "pages/form/stage/stage",
         "pages/projectDetai/projectDetai",
-"pages/form/businessContribution/businessContribution",
+        "pages/form/businessContribution/businessContribution",
         "pages/form/tollType/tollType",
         "pages/form/hasRunningBusiness/hasRunningBusiness",
         "pages/scanCode/bpScan/bpScan",
