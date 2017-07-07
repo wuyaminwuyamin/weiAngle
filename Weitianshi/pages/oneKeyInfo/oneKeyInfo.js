@@ -47,7 +47,18 @@ Page({
               projectDetailsList[index].project_label = x.project_label;
               projectDetailsList[index].project_name = x.project_name;
               projectDetailsList[index].project_website = x.project_website;
-           let projectLabelList= [] 
+              // 分割字符串
+              var project_labelList = projectDetailsList[0].project_label;
+              var project_labelArray = new Array(); //定义一数组 
+              project_labelArray = project_labelList.split(","); //字符分割 
+              project_labelArray.forEach((x, index) => {
+                app.console("數組")
+                app.console(project_labelArray[index] = x)
+                project_labelArray[index] = x;
+                that.setData({
+                  project_labelArray: project_labelArray
+                })
+              })
             })
             that.setData({
               projectDetailsList: projectDetailsList
@@ -118,7 +129,7 @@ Page({
               historyFinance[index].history_financing_money = x.history_financing_money;
               historyFinance[index].history_financing_rounds = x.history_financing_rounds;
               historyFinance[index].history_financing_who = x.history_financing_who;
-              historyFinance[index].history_financing_time = app.changeTime(x.history_financing_time);           
+              historyFinance[index].history_financing_time = app.changeTimeStyle(x.history_financing_time);
             })
             that.setData({
               historyFinance: historyFinance
@@ -137,7 +148,7 @@ Page({
             let mileStoneTime =
               mileStone.forEach((x, index) => {
                 mileStone[index].milestone_event = x.milestone_event;
-                mileStone[index].milestone_time = app.changeTime(x.milestone_time);
+                mileStone[index].milestone_time = app.changeTimeStyle(x.milestone_time);
               })
             that.setData({
               mileStone: mileStone
@@ -152,10 +163,13 @@ Page({
           },
           method: 'POST',
           success: function (res) {
+            app.console("新聞")
+            app.console(res)
             let newsList = res.data.data;
             newsList.forEach((x, index) => {
+              newsList[index].project_news_label = x.project_news_label;
               newsList[index].source = x.source;
-              newsList[index].project_news_time = app.changeTime(x.project_news_time);
+              newsList[index].project_news_time = app.changeTimeStyle(x.project_news_time);
               newsList[index].project_news_title = x.project_news_title;
               that.setData({
                 newsList: newsList
@@ -180,8 +194,8 @@ Page({
               competeList[index].competing_goods_label = x.competing_goods_label;
               competeList[index].competing_goods_logo = x.competing_goods_logo;
               competeList[index].competing_goods_Financing_rounds = x.competing_goods_Financing_rounds;
-              competeList[index].competing_goods_Financing_time = app.changeTime(x.competing_goods_Financing_time);
-              competeList[index].competing_goods_Set_up = app.changeTime(x.competing_goods_Set_up);
+              competeList[index].competing_goods_Financing_time = app.changeTimeStyle(x.competing_goods_Financing_time);
+              competeList[index].competing_goods_Set_up = app.changeTimeStyle(x.competing_goods_Set_up);
               competeList[index].competing_goods_industry = x.competing_goods_industry;
               that.setData({
                 competeList: competeList
@@ -274,5 +288,25 @@ Page({
       categories: simulationData.categories,
       series: series
     });
+  },
+  //查看全部
+  loadMore: function (e) {
+
+    let id = e.target.dataset.id;
+    console.log(id)
+    if (id == 1) {
+      this.setData({
+        more: 1
+      })
+    } else if (id == 2) {
+      this.setData({
+        more: 2
+      })
+    } else if (id == 3) {
+      this.setData({
+        more: 3
+      })
+    }
+
   }
 })

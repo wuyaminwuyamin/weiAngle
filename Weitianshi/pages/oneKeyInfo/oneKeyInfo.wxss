@@ -22,8 +22,9 @@
 }
 
 .pro_sorts {
-  width: 100%;
-  margin-top: 20rpx;
+  width: 90%;
+  margin-top: 20rpx; 
+  flex-wrap: wrap;
 }
 
 .pro_sort {
@@ -33,13 +34,12 @@
   border: 1px solid #40587a;
   text-align: center;
   height: 30rpx;
+  width:auto;
   line-height: 30rpx;
   padding: 0 16rpx;
   margin-right: 24rpx;
-}
-
-.companyInfo {
-  margin-top: 42rpx;
+  flex-wrap:norap;
+   margin-bottom: 42rpx;
 }
 
 .left {
@@ -49,6 +49,7 @@
 
 .right {
   margin-left: 16rpx;
+  margin-top: 2rpx;
 }
 
 .companyProductName {
@@ -114,7 +115,7 @@
   font-family: PingFangSC-Regular;
   font-size: 26rpx;
   color: #333;
-  line-height: 26rpx;
+  line-height: 38rpx;
   text-align: left;
   margin: 16rpx 0 32rpx 0;
 }
@@ -127,6 +128,10 @@
   text-align: left;
   margin-bottom: 32rpx;
   width: 50%;
+}
+
+.companyIntroduceBottom  .companyDateTitle {
+  margin-bottom: 0;
 }
 
 .companyDateTextEmpty {
@@ -165,6 +170,10 @@
 
 /*产品信息*/
 
+.projectExample1Right {
+  margin-top: 10rpx;
+}
+
 .projectExample1Name {
   font-size: 28rpx;
   color: #333;
@@ -189,7 +198,7 @@
   line-height: 24rpx;
   text-align: left;
   margin-top: 12rpx;
-  width:544rpx;
+  width: 544rpx;
 }
 
 /*项目信息*/
@@ -207,6 +216,11 @@
   width: 50%;
 }
 
+.projectTradeInfoLeft .projectTradeTitle:last-child,
+.projectTradeInfoRight .projectTradeTitle:last-child {
+  margin-bottom: 0;
+}
+
 .projectTradeTitle, .projectTradeText {
   font-size: 22rpx;
   color: #999;
@@ -215,6 +229,7 @@
   text-align: left;
   margin-bottom: 24rpx;
 }
+
 .projectTradeText {
   color: #333;
   margin-bottom: 0;
@@ -270,10 +285,11 @@
   color: #999;
   line-height: 34rpx;
   text-align: left;
-  margin-right:38rpx;
+  margin-right: 38rpx;
 }
-.industrialChangeTextAfter{
-  margin-right:0;
+
+.industrialChangeTextAfter {
+  margin-right: 0;
   font-size: 22rpx;
   color: #999;
   line-height: 34rpx;
@@ -286,10 +302,12 @@
   background: #fafafa;
   border: 2rpx solid #e6e6e6;
   border-radius: 4rpx;
-  width: 540rpx;
+  /*width: 540rpx;*/
+  width: 100%;
   height: 66rpx;
-  padding: 56rpx 78rpx 52rpx 66rpx;
+  padding: 56rpx 0 52rpx 0;
   margin-bottom: 54rpx;
+  justify-content: space-around;
 }
 
 .bossName, .bossMoney, .bossStatus {
@@ -415,11 +433,24 @@
   margin-right: 48rpx;
 }
 
-.milestone {
-  margin-bottom: 48rpx;
+.historyFinanceBox {
+  padding-bottom: 46rpx;
+  border-left: 1rpx solid #e6e6e6;
 }
+
+.historyFinanceBox:last-child {
+  padding-bottom: 0;
+  border-left: none;
+}
+
+.milestone {
+  padding-bottom: 46rpx;
+  border-left: 1rpx solid #e6e6e6;
+}
+
 .milestone:last-child {
-  margin-bottom: 0;
+  padding-bottom: 0;
+  border-left: none;
 }
 
 .case_pic {
@@ -443,23 +474,37 @@
 .milestoneBox {
   margin-bottom: 48rpx;
 }
-.mileCompanyCase_time{
+
+.mileCompanyCase_time {
   font-size: 24rpx;
   color: #333;
   line-height: 24rpx;
   text-align: left;
   margin-right: 48rpx;
 }
+
 .companyMilestoneContent:last-child {
   border-left: none;
   padding: 0;
 }
-.companyNewsContentBox{
-  margin-bottom:40rpx;
+
+.companyNewsContentBox {
+  padding-bottom: 40rpx;
+  border-left: 1rpx solid #e6e6e6;
 }
-.companyNewsContentBox:last-child{
-   border-left: none;
-  margin-bottom:0;
+
+.companyNewsContentBox:last-child {
+  border-left: none;
+  padding-bottom: 0;
+  border: none;
+}
+
+.mileCompanyCase_content {
+  font-size: 24rpx;
+  color: #666;
+  line-height: 32rpx;
+  text-align: left;
+  width: 480rpx;
 }
 
 .companyCase_time {
@@ -475,7 +520,7 @@
   width: 16rpx;
   height: 16rpx;
   margin-right: 24rpx;
-  margin-left: -6rpx;
+  margin-left: -8rpx;
   z-index: 3;
 }
 
@@ -495,27 +540,35 @@
   margin-top: 12rpx;
   margin-left: 204rpx;
 }
-.companyNewsNet{
+
+.companyNewsNet {
   font-size: 22rpx;
   color: #999;
   line-height: 22rpx;
   text-align: left;
   margin-top: 12rpx;
-   margin-left: 204rpx;
+  margin-left: 204rpx;
 }
+
 /*竞品*/
-.milestoneContentBox{
-  height:auto;
-  margin-bottom: 24rpx;
+
+.milestoneContentBox {
+  height: auto;
+  padding-bottom: 24rpx;
 }
+
 .competitorBox {
   background: #fafafa;
   padding: 24rpx;
-  padding-bottom: 28rpx;
+  margin-bottom: 28rpx;
+}
+
+.competitorBox:last-child {
+  margin-bottom: 0;
 }
 
 .milestoneContentBox:last-child {
-  margin-bottom: 0;
+  padding-bottom: 0;
 }
 
 .competitorBoxTop {
@@ -554,8 +607,16 @@
   color: #999;
   line-height: 26rpx;
   text-align: left;
-  /*margin-right:38rpx;*/
-  width: 132rpx;
+  width: auto;
+}
+
+.competitorTitleTime {
+  margin-right: 48rpx;
+  font-size: 26rpx;
+  color: #999;
+  line-height: 26rpx;
+  text-align: left;
+  width: auto;
 }
 
 .competitorText {
@@ -563,20 +624,25 @@
   color: #333;
   line-height: 26rpx;
   text-align: left;
+  padding-bottom: 20rpx;
+}
+
+.competitorDomain {
   margin-bottom: 20rpx;
+  border-bottom: 1rpx solid #e6e6e6;
 }
 
 .competitorBoxTimeRight {
   font-size: 22rpx;
   color: #666;
-  line-height: 22rpx;
+  line-height: 34rpx;
   text-align: left;
-  margin-left: 132rpx;
+  margin-left: 182rpx;
 }
 
-.competitorBoxTimeRight {
+/*.competitorBoxTimeRight {
   margin-bottom: 24rpx;
-}
+}*/
 
 .competitorTips {
   position: absolute;
@@ -588,4 +654,25 @@
   width: 24rpx;
   height: 24rpx;
   margin-right: 16rpx;
+}
+
+.inLine {
+  right: 50rpx;
+}
+
+.competitor {
+  margin-bottom: 0;
+}
+
+/*更多*/
+
+.moreInfo {
+  margin-top: 32rpx;
+  width: 100%;
+  height: 22rpx;
+  background: #fff;
+  font-size: 24rpx;
+  color: #009eff;
+  line-height: 24rpx;
+  text-align: center;
 }

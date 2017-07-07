@@ -6,9 +6,8 @@
   <!--项目信息-->
   <view class="projectDetailsBox">
     <view class="boxName">项目信息</view>
-    <view class="pro_sorts flex" wx:for="{{projectDetailsList}}">
-      <view class="pro_sort">标签一</view>
-      <view class="pro_sort">标签二</view>
+    <view class="pro_sorts flex">
+      <view class="pro_sort" wx:for="{{project_labelArray}}">{{project_labelArray[index]}}</view>
     </view>
     <view class="companyInfo flex" wx:for="{{projectDetailsList}}">
       <view class="left">
@@ -179,7 +178,6 @@
   <view class="coreMember" wx:for="{{teamList}}">
     <view class="boxName">核心成员</view>
     <view class="coreMemberInfo">
-      <!--<view class="coreMemberLeft">{{teamList[index].team_member_photo}}</view>-->
       <view class="coreMemberRight">
         <view class="coreMemberRightBox flex">
           <view class="coreMemberName">{{teamList[index].team_member_name}}</view>
@@ -204,14 +202,14 @@
   <!--历史融资-->
   <view class="historyFinance">
     <view class="boxName">历史融资</view>
-    <view class="milestone" wx:for="{{historyFinance}}">
+    <view class="historyFinanceBox" wx:for="{{historyFinance}}" wx:if="{{index<2}}">
       <view class="milestoneContentBox">
         <view class="companyMilestoneContent flex">
           <image class="case_pic" src="/img/dot@3x.png"></image>
           <view class="companyCase_time">{{historyFinance[index].history_financing_time}}</view>
           <view class="flex">
             <view class="companyCase_content byPass">{{historyFinance[index].history_financing_money}}</view>
-            <view class="pro_sort competitorTips">{{ historyFinance[index].history_financing_rounds}}</view>
+            <view class="pro_sort competitorTips">{{historyFinance[index].history_financing_rounds}}</view>
           </view>
         </view>
         <view class="companyNewsNetWork">{{historyFinance[index].history_financing_who}}</view>
@@ -221,37 +219,45 @@
   <!--里程碑-->
   <view class="companyMileStone">
     <view class="boxName">里程碑</view>
-    <view class="milestone">
-      <view class="milestoneContentBox" wx:for="{{mileStone}}">
-        <view class="companyMilestoneContent flex">
-          <image class="case_pic" src="/img/dot@3x.png"></image>
-          <view class="mileCompanyCase_time">{{mileStone[index].milestone_time}}</view>
-          <view class="companyCase_content byPass">{{mileStone[index].milestone_event}}</view>
+    <view>
+      <view class="milestone" wx:for="{{mileStone}}" wx:if="{{index<2 || more == 1}}">
+        <view class="milestoneContentBox">
+          <view class="companyMilestoneContent flex">
+            <image class="case_pic" src="/img/dot@3x.png"></image>
+            <view class="mileCompanyCase_time">{{mileStone[index].milestone_time}}</view>
+            <view class="mileCompanyCase_content byPass">{{mileStone[index].milestone_event}}</view>
+          </view>
         </view>
       </view>
+
+
     </view>
+
+    <view class="moreInfo" catchtap="loadMore" wx:if="{{more != 1}}" data-id="{{1}}">查看全部</view>
   </view>
   <!--新闻-->
   <view class="companyNews">
     <view class="boxName">新闻</view>
-    <view class="milestone">
-      <view class="companyNewsContentBox" wx:for="{{newsList}}">
+    <view class="companyNewsBox">
+      <view class="companyNewsContentBox" wx:for="{{newsList}}" wx:if="{{index<2 || more == 2}}">
         <view class="companyMilestoneContent flex">
           <image class="case_pic" src="/img/dot@3x.png"></image>
           <view class="companyCase_time">{{newsList[index].project_news_time}}</view>
           <view class="flex">
             <view class="companyCase_content byPass">{{newsList[index].project_news_title}}</view>
-            <view class="pro_sort competitorTips">lalal </view>
+            <view class="pro_sort competitorTips">{{ newsList[index].project_news_label}}</view>
           </view>
         </view>
         <view class="companyNewsNet">{{newsList[index].source}}</view>
       </view>
     </view>
+    <view class="moreInfo" catchtap="loadMore" wx:if="{{more != 2}}" data-id="{{2}}">查看全部</view>
   </view>
   <!--竞品-->
   <view class="competitor">
     <view class="boxName">竟品</view>
-    <view class="competitorBox" wx:for="{{competeList}}">
+    <view>
+    <view class="competitorBox" wx:for="{{competeList}}" wx:if="{{index<2 || more == 3}}">
       <view class="competitorBoxTop flex">
         <view class="competitorBoxLeft">
           <image src="{{competeList[index].competing_goods_logo}}" class="competitorBoxLeft"></image>
@@ -261,18 +267,20 @@
           <view class="competitorTime">{{competeList[index].competing_goods_Set_up}}</view>
         </view>
       </view>
-      <view class="competitorBoxTime">
-        <view class="competitorBoxTimeLeft flex">
-          <view class="competitorTitle">{{competeList[index].competing_goods_Financing_time}}</view>
-          <view class="competitorText">{{competeList[index].competing_goods_Financing_amount}}</view>
-          <view class="pro_sort competitorTips" wx:if="{{competeList[index].competing_goods_Financing_rounds != '--' }}">{{competeList[index].competing_goods_Financing_rounds}}</view>
-        </view>
-        <view class="competitorBoxTimeRight">{{competeList[index].competing_goods_label}}</view>
-      </view>
       <view class="competitorDomain flex">
         <view class="competitorTitle">领域：</view>
         <view class="competitorText">{{competeList[index].competing_goods_industry}}</view>
       </view>
+      <view class="competitorBoxTime">
+        <view class="competitorBoxTimeLeft flex">
+          <view class="competitorTitleTime">{{competeList[index].competing_goods_Financing_time}}</view>
+          <view class="competitorText">{{competeList[index].competing_goods_Financing_amount}}</view>
+          <view class="pro_sort competitorTips inLine" wx:if="{{competeList[index].competing_goods_Financing_rounds != '--' }}">{{competeList[index].competing_goods_Financing_rounds}}</view>
+        </view>
+        <view class="competitorBoxTimeRight">{{competeList[index].competing_goods_label}}</view>
+      </view>
     </view>
+    </view>
+    <view class="moreInfo" catchtap="loadMore" wx:if="{{more != 3}}" data-id="{{3}}">查看全部</view>
   </view>
 </view>
