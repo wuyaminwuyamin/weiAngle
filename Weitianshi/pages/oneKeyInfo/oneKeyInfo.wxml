@@ -7,33 +7,32 @@
   <view class="projectDetailsBox">
     <view class="boxName">项目信息</view>
     <view class="pro_sorts flex">
-      <view class="pro_sort">标签一</view>
-      <view class="pro_sort">标签二</view>
+      <view class="pro_sort" wx:for="{{project_labelArray}}">{{project_labelArray[index]}}</view>
     </view>
-    <view class="companyInfo flex">
+    <view class="companyInfo flex" wx:for="{{projectDetailsList}}">
       <view class="left">
-        <image src="src"></image>
+        <image src="{{projectDetailsList[index].project_logo}}" class="left"></image>
       </view>
       <view class="right">
-        <view class="companyProductName">微天使乐投平台</view>
-        <view class="companyProductText">这里是这里是这个项目的一句峰在40字以内要…</view>
-        <view class="companyName">杭州投着乐网络科技有限公司</view>
+        <view class="companyProductName">{{projectDetailsList[index].project_name}}</view>
+        <view class="companyProductText">{{projectDetailsList[index].project_industry}}</view>
+        <view class="companyName">{{projectDetailsList[index].company_name}}</view>
       </view>
     </view>
-    <view class="projectInfo">
+    <view class="projectInfo" wx:for="{{projectDetailsList}}">
       <view class="industry">
         <image src="/img/icon-lingyu@2x" class="oneKeyIcon"></image>
-        人工智能、大数据、理财
+        {{projectDetailsList[index].project_industry}}
       </view>
       <view class="projectInfoText flex">
         <image src="/img/icon-jine@2x" class="oneKeyIcon"></image>
-        <label>100-500万</label>
+        <label>{{company.company_registered_capital}} | </label>
         <label>IPO上市后</label>
         <label>杭州市</label>
       </view>
       <view class="companyNet">
         <image src="/img/icon-jine@2x" class="oneKeyIcon"></image>
-        www.weitianshi.cn
+        {{projectDetailsList[index].project_website}}
       </view>
     </view>
   </view>
@@ -49,7 +48,7 @@
     </view>
     <view class="companyIntroduceTop flex">
       <view class="companyDateTitle">成立日期
-        <view class="companyDateText" wx:if="{{company.company_register_date != null}}">{{company.company_register_date}}</view>
+        <view class="companyDateText" wx:if="{{company.company_register_date != null}}">{{time}}</view>
         <view class="companyDateTextEmpty" wx:if="{{company.company_register_date==null}}">-</view>
       </view>
       <view class="companyDateTitle">公司规模
@@ -71,46 +70,40 @@
   <!--产品信息-->
   <view class="projectExample">
     <view class="boxName">产品信息</view>
-    <view class="projectExample1 flex">
-      <view class="projectExample1Logo"></view>
-      <view class="projectExample1Right">
-        <view class="projectExample1Info flex">
-          <view class="projectExample1Name">滴滴打车</view>
-          <view class="projectExample1Type">交通</view>
-        </view>
-        <view class="projectExampleText">一句话介绍</view>
+    <view class="projectExample1 flex" wx:for="{{projectDetailsList}}">
+      <view class="projectExample1Logo">
+        <image src="{{projectDetailsList[index].project_logo}}" class="projectExample1Logo"></image>
       </view>
-    </view>
-    <view class="projectExample1 flex">
-      <view class="projectExample1Logo"></view>
       <view class="projectExample1Right">
         <view class="projectExample1Info flex">
-          <view class="projectExample1Name">滴滴打车</view>
+          <view class="projectExample1Name">{{projectDetailsList[index].project_name}}</view>
           <view class="projectExample1Type">交通</view>
         </view>
-        <view class="projectExampleText">近3亿用户的选择，2012年诞生的滴12年诞生滴...</view>
+        <view class="projectExampleText byPass">{{projectDetailsList[index].project_introduce}}</view>
       </view>
     </view>
   </view>
   <!--项目信息-->
   <view class="projectTrade">
     <view class="boxName">项目信息</view>
-    <view class="projectTradeInfo">这里是一个商标信息</view>
-    <view class="flex">
-      <view class="projectTradeInfoLeft">
-        <view class="projectTradeTitle flex">注册时间：
-          <view class="projectTradeText">2014-03-23</view>
+    <view wx:for="{{brandInfoList}}">
+      <view class="projectTradeInfo">{{brandInfoList[index].company_brand_name}}</view>
+      <view class="flex">
+        <view class="projectTradeInfoLeft">
+          <view class="projectTradeTitle flex">注册时间：
+            <view class="projectTradeText">{{brandInfoList[index].company_brand_time}}</view>
+          </view>
+          <view class="projectTradeTitle flex">状态：
+            <view class="projectTradeText">{{brandInfoList[index].company_brand_status}}</view>
+          </view>
         </view>
-        <view class="projectTradeTitle flex">状态：
-          <view class="projectTradeText">转让程序中</view>
-        </view>
-      </view>
-      <view class="projectTradeInfoRight">
-        <view class="projectTradeTitle flex">注册号：
-          <view class="projectTradeText">17680971A</view>
-        </view>
-        <view class="projectTradeTitle flex">类型：
-          <view class="projectTradeText">20</view>
+        <view class="projectTradeInfoRight">
+          <view class="projectTradeTitle flex">注册号：
+            <view class="projectTradeText">{{brandInfoList[index].company_brand_registration_number}}</view>
+          </view>
+          <view class="projectTradeTitle flex">类型：
+            <view class="projectTradeText">{{brandInfoList[index].company_brand_type}}</view>
+          </view>
         </view>
       </view>
     </view>
@@ -118,31 +111,17 @@
   <!--工商变更-->
   <view class="industrialChange">
     <view class="boxName">工商变更</view>
-    <view class="industrialChangeInfo">
-      <view class="industrialChangeTime">2015-08-17</view>
-      <view class="industrialChangeBoxTitle">经营范围</view>
+    <view class="industrialChangeInfo" wx:for="{{companyChangeList}}">
+      <view class="industrialChangeTime">{{companyChangeList[index].company_change_time}}</view>
+      <view class="industrialChangeBoxTitle">{{companyChangeList[index].company_change_matter}}</view>
       <view class="industrialChangeTextBox flex">
         <view class="industrialChangeBefore">
           <view class="industrialChangeTitle">变更前</view>
-          <view class="industrialChangeText">技术开发、技术咨询、技术服务、技术推广；基础软件服务；应用软件服务。（未取得行政许可的项目除外）</view>
+          <view class="industrialChangeText">{{companyChangeList[index].company_change_before}}</view>
         </view>
         <view class="industrialChangeAfter">
           <view class="industrialChangeTitle">变更后</view>
-          <view class="industrialChangeText">技术开发、技术咨询、技术服务、技术推广；基础软件服务；应用软件服务。（未取得行政许可的项目除外）</view>
-        </view>
-      </view>
-    </view>
-    <view class="industrialChangeInfo">
-      <view class="industrialChangeTime">2015-08-08</view>
-      <view class="industrialChangeBoxTitle">注册资本</view>
-      <view class="industrialChangeTextBox flex">
-        <view class="industrialChangeBefore">
-          <view class="industrialChangeTitle">变更前</view>
-          <view class="industrialChangeText">5000万元</view>
-        </view>
-        <view class="industrialChangeAfter">
-          <view class="industrialChangeTitle">变更后</view>
-          <view class="industrialChangeText">5000万元</view>
+          <view class="industrialChangeTextAfter">{{companyChangeList[index].company_change_after}}</view>
         </view>
       </view>
     </view>
@@ -165,7 +144,7 @@
       <view class="flex">
         <view class="companyIntroduceLeft">
           <view class="companyEstablishTitle">成立日期
-            <view class="companyEstablishText">{{company.company_register_date}}</view>
+            <view class="companyEstablishText">{{time}}</view>
           </view>
           <view class="companyEstablishTitle">工商注册号
             <view class="companyEstablishText">{{company.company_business_number}}</view>
@@ -179,7 +158,7 @@
         </view>
         <view class="companyIntroduceRight">
           <view class="companyEstablishTitle">企业类型
-            <view class="companyEstablishText">{{company.company_type}})</view>
+            <view class="companyEstablishText">{{company.company_type}}</view>
           </view>
           <view class="companyEstablishTitle">营业期限
             <view class="companyEstablishText">{{company.company_business_term}}</view>
@@ -196,30 +175,15 @@
     </view>
   </view>
   <!--核心成员-->
-  <view class="coreMember">
+  <view class="coreMember" wx:for="{{teamList}}">
     <view class="boxName">核心成员</view>
     <view class="coreMemberInfo">
-      <view class="coreMemberLeft"></view>
       <view class="coreMemberRight">
         <view class="coreMemberRightBox flex">
-          <view class="coreMemberName">顾嘉</view>
-          <view class="coreMemberPosition">创始人</view>
+          <view class="coreMemberName">{{teamList[index].team_member_name}}</view>
+          <view class="coreMemberPosition">{{teamList[index].team_member_position}}</view>
         </view>
-        <view class="coreMemberIntro">
-          13年开发经验，这里是一段话这里是一段他的个人介绍，这里是他的介绍，字数可能会很长，长的话也要显示出来。
-        </view>
-      </view>
-    </view>
-    <view class="coreMemberInfo">
-      <view class="coreMemberLeft"></view>
-      <view class="coreMemberRight">
-        <view class="coreMemberRightBox flex">
-          <view class="coreMemberName">顾嘉</view>
-          <view class="coreMemberPosition">创始人</view>
-        </view>
-        <view class="coreMemberIntro">
-          13年开发经验，这里是一段话这里是一段他的个人介绍，这里是他的介绍，字数可能会很长，长的话也要显示出来。
-        </view>
+        <view class="coreMemberIntro">{{teamList[index].team_member_introduce}}</view>
       </view>
     </view>
   </view>
@@ -238,116 +202,85 @@
   <!--历史融资-->
   <view class="historyFinance">
     <view class="boxName">历史融资</view>
-    <view class="milestone">
+    <view class="historyFinanceBox" wx:for="{{historyFinance}}" wx:if="{{index<2}}">
       <view class="milestoneContentBox">
         <view class="companyMilestoneContent flex">
           <image class="case_pic" src="/img/dot@3x.png"></image>
-          <view class="companyCase_time">2017.05.04</view>
+          <view class="companyCase_time">{{historyFinance[index].history_financing_time}}</view>
           <view class="flex">
-            <view class="companyCase_content">100-500万</view>
-            <view class="pro_sort competitorTips">种子轮</view>
-          </view>
-          <view>
-            <view class="companyNewsNetWork">天使投资、华人资本、微天使</view>
+            <view class="companyCase_content byPass">{{historyFinance[index].history_financing_money}}</view>
+            <view class="pro_sort competitorTips">{{historyFinance[index].history_financing_rounds}}</view>
           </view>
         </view>
-        <view class="companyMilestoneContent flex">
-          <image class="case_pic" src="/img/dot@3x.png"></image>
-          <view class="companyCase_time">2017.05.04</view>
-          <view>
-            <view class="companyCase_content">100-500万</view>
-            <view class="companyNewsNetWork">天使投资</view>
-          </view>
-        </view>
+        <view class="companyNewsNetWork">{{historyFinance[index].history_financing_who}}</view>
       </view>
     </view>
   </view>
   <!--里程碑-->
   <view class="companyMileStone">
     <view class="boxName">里程碑</view>
-    <view class="milestone">
-      <view class="milestoneContentBox">
-        <view class="companyMilestoneContent flex">
-          <image class="case_pic" src="/img/dot@3x.png"></image>
-          <view class="companyCase_time">2014.07</view>
-          <view class="companyCase_content">App的下载量冲破1000万</view>
-        </view>
-        <view class="companyMilestoneContent flex">
-          <image class="case_pic" src="/img/dot@3x.png"></image>
-          <view class="companyCase_time">2014.07</view>
-          <view class="companyCase_content">App的下载量，冲破1000万，冲破1000,用户很多的呢</view>
+    <view>
+      <view class="milestone" wx:for="{{mileStone}}" wx:if="{{index<2 || more == 1}}">
+        <view class="milestoneContentBox">
+          <view class="companyMilestoneContent flex">
+            <image class="case_pic" src="/img/dot@3x.png"></image>
+            <view class="mileCompanyCase_time">{{mileStone[index].milestone_time}}</view>
+            <view class="mileCompanyCase_content byPass">{{mileStone[index].milestone_event}}</view>
+          </view>
         </view>
       </view>
+
+
     </view>
+
+    <view class="moreInfo" catchtap="loadMore" wx:if="{{more != 1}}" data-id="{{1}}">查看全部</view>
   </view>
   <!--新闻-->
   <view class="companyNews">
     <view class="boxName">新闻</view>
-    <view class="milestone">
-      <view class="milestoneContentBox">
+    <view class="companyNewsBox">
+      <view class="companyNewsContentBox" wx:for="{{newsList}}" wx:if="{{index<2 || more == 2}}">
         <view class="companyMilestoneContent flex">
           <image class="case_pic" src="/img/dot@3x.png"></image>
-          <view class="companyCase_time">2017.05.04</view>
-          <view>
-            <view class="companyCase_content">滴滴首推五星级出行服务 「豪 ...</view>
-            <view class="companyNewsNetWork">view.inews.qq.com</view>
+          <view class="companyCase_time">{{newsList[index].project_news_time}}</view>
+          <view class="flex">
+            <view class="companyCase_content byPass">{{newsList[index].project_news_title}}</view>
+            <view class="pro_sort competitorTips">{{ newsList[index].project_news_label}}</view>
           </view>
         </view>
-        <view class="companyMilestoneContent flex">
-          <image class="case_pic" src="/img/dot@3x.png"></image>
-          <view class="companyCase_time">2017.05.04</view>
-          <view>
-            <view class="companyCase_content">滴滴出行资深副总裁陶然离职</view>
-            <view class="companyNewsNetWork">tech.sina.com.cn</view>
-          </view>
-        </view>
+        <view class="companyNewsNet">{{newsList[index].source}}</view>
       </view>
     </view>
+    <view class="moreInfo" catchtap="loadMore" wx:if="{{more != 2}}" data-id="{{2}}">查看全部</view>
   </view>
   <!--竞品-->
   <view class="competitor">
     <view class="boxName">竟品</view>
-    <view class="competitorBox">
+    <view>
+    <view class="competitorBox" wx:for="{{competeList}}" wx:if="{{index<2 || more == 3}}">
       <view class="competitorBoxTop flex">
-        <view class="competitorBoxLeft"></view>
+        <view class="competitorBoxLeft">
+          <image src="{{competeList[index].competing_goods_logo}}" class="competitorBoxLeft"></image>
+        </view>
         <view class="competitorBoxRight">
-          <view class="competitorName">英科医疗</view>
-          <view class="competitorTime">2014-07</view>
+          <view class="competitorName">{{competeList[index].competing_goods_name}}</view>
+          <view class="competitorTime">{{competeList[index].competing_goods_Set_up}}</view>
         </view>
-      </view>
-      <view class="competitorBoxTime">
-        <view class="competitorBoxTimeLeft flex">
-          <view class="competitorTitle">2014.04</view>
-          <view class="competitorText">100-500万</view>
-          <view class="pro_sort competitorTips">种子轮</view>
-        </view>
-        <view class="competitorBoxTimeRight">天使投资、华人资本、微天使</view>
       </view>
       <view class="competitorDomain flex">
         <view class="competitorTitle">领域：</view>
-        <view class="competitorText">医疗健康、医疗器械及硬件</view>
-      </view>
-    </view>
-    <view class="competitorBox">
-      <view class="competitorBoxTop flex">
-        <view class="competitorBoxLeft"></view>
-        <view class="competitorBoxRight">
-          <view class="competitorName">英科医疗</view>
-          <view class="competitorTime">2014-07</view>
-        </view>
+        <view class="competitorText">{{competeList[index].competing_goods_industry}}</view>
       </view>
       <view class="competitorBoxTime">
         <view class="competitorBoxTimeLeft flex">
-          <view class="competitorTitle">2014.04</view>
-          <view class="competitorText">100-500万</view>
-          <view class="pro_sort competitorTips">种子轮</view>
+          <view class="competitorTitleTime">{{competeList[index].competing_goods_Financing_time}}</view>
+          <view class="competitorText">{{competeList[index].competing_goods_Financing_amount}}</view>
+          <view class="pro_sort competitorTips inLine" wx:if="{{competeList[index].competing_goods_Financing_rounds != '--' }}">{{competeList[index].competing_goods_Financing_rounds}}</view>
         </view>
-        <view class="competitorBoxTimeRight">天使投资、华人资本、微天使</view>
-      </view>
-      <view class="competitorDomain flex">
-        <view class="competitorTitle">领域：</view>
-        <view class="competitorText">医疗健康、医疗器械及硬件</view>
+        <view class="competitorBoxTimeRight">{{competeList[index].competing_goods_label}}</view>
       </view>
     </view>
+    </view>
+    <view class="moreInfo" catchtap="loadMore" wx:if="{{more != 3}}" data-id="{{3}}">查看全部</view>
   </view>
 </view>
