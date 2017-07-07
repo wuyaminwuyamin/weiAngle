@@ -212,8 +212,6 @@ Page({
     var modal = this.data.modal;
     var com_name = this.data.user.user_company_name;
     var status_code = this.data.status_code;
-    //判断,如果公司名称小于3,直接提示去完善信息
-    if (com_name.length > 3) {
       wx.request({
         url: url_common + '/api/dataTeam/taxNumber',
         data: {
@@ -248,13 +246,6 @@ Page({
           }
         }
       })
-    } else {
-      console.log(2222)
-      that.setData({
-        modalStyle: 1,
-        modalBox: 1
-      })
-    }
   },
   //完善公司信息
   writeInformation: function () {
