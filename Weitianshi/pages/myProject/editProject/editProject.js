@@ -262,14 +262,11 @@ Page({
         var pro_finance_scale = this.data.scale_index;
         var is_exclusive = this.data.tipsIndex;
         var pro_goodness = this.data.pro_goodness;
-
         this.setData({
             upLoad: 0
         })
-
         //保存项目更改
         that.updata(that)
-
         //跳出提示模态框 
         wx.showModal({
             titel: "友情提示",
@@ -317,8 +314,6 @@ Page({
                 }
             }
         })
-
-
     },
 
     //点击发布

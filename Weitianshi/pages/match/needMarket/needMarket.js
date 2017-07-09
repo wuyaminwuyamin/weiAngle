@@ -112,6 +112,7 @@ Page({
     // 获取当前点击的项目id
     var id = e.currentTarget.dataset.id
     console.log(id);
+    // 判斷項目是不是自己的
     wx.request({
       url: url + '/api/project/projectIsMine',
       data: {
