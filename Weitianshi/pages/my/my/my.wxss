@@ -65,7 +65,8 @@ page {
 
 .user_left .flex:first-child {
   align-items: flex-end;
-  margin-bottom: 96rpx;
+  /*margin-bottom: 96rpx;*/
+   margin-bottom: 0;
 }
 
 .user_right {
@@ -105,6 +106,9 @@ page {
   font-size: 28rpx;
   color: #999;
   margin-bottom: 20rpx;
+}
+.user_company{
+  margin-top:80rpx;
 }
 
 #user_mobile {

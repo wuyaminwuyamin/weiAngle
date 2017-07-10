@@ -37,7 +37,7 @@ Page({
             },
             method: 'POST',
             success: function (res) {
-                console.log(res)
+                app.console(res)
                 var user = res.data.user_info;
                 var count = res.data.count;
                 var invest = res.data.invest_info;
@@ -46,6 +46,7 @@ Page({
                 var invest_case = res.data.invest_case;
                 var tel = user.user_mobile;
                 var button_type = res.data.button_type;
+                app.console(user.active_status)
                 if (tel.indexOf("*") != -1) {
                     that.setData({
                         blue: 1

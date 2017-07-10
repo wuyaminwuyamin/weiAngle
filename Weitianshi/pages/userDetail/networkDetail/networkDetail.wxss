@@ -63,6 +63,5 @@
 
 .user_left .flex:first-child {
   align-items: flex-end;
-  /*margin-bottom: 0;*/
-  margin-bottom: 96rpx;
+  margin-bottom: 0;
 }
