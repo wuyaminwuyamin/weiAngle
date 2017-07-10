@@ -166,9 +166,9 @@ Page({
         //一键尽调
         //公司信息
         var that = this;
-        // let company_name = wx.getStorageSync("companyName");
-        // console.log(company_name)
-        let company_name = "北京大杰致远信息技术有限公司";
+        let company_name = wx.getStorageSync("companyName");
+        console.log(company_name)
+        // let company_name = "北京大杰致远信息技术有限公司";
         // let company_name = "上海艺娱信息科技有限公司";
         // let company_name = "杭州投着乐网络科技有限公司"
         wx.request({

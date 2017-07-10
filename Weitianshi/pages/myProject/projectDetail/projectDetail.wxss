@@ -361,6 +361,7 @@ scroll-view {
   color: #333;
   line-height: 48rpx;
   text-align: left;
+  width:480rpx;
 }
 
 /*.projectDetailType {
