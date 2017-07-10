@@ -283,16 +283,17 @@ scroll-view {
 }
 
 .others_nopic {
-  font-size: 32rpx;
+  font-size: 28rpx;
   color: #40587a;
   background: #f2f2f2;
-  padding: 14rpx 20rpx;
+  /*padding: 14rpx 20rpx;*/
   border-radius: 50%;
   width: 48rpx;
   height: 48rpx;
   text-align: center;
   margin-top: 18rpx;
   margin-right: 16rpx;
+  line-height: 48rpx;
 }
 
 .load {

@@ -363,7 +363,7 @@ scroll-view {
   text-align: left;
 }
 
-.projectDetailType {
+/*.projectDetailType {
   border: 2rpx solid #40587a;
   border-left: none;
   width: 104rpx;
@@ -372,8 +372,11 @@ scroll-view {
   color: #40587a;
   line-height: 32rpx;
   text-align: right;
+}*/
+.projectDetailType{
+  height:36rpx;
+  width:108rpx;
 }
-
 .industry {
   font-family: PingFangSC-Regular;
   font-size: 26rpx;
@@ -1611,7 +1614,10 @@ scroll-view {
   border-top: 1rpx solid #e6e6e6;
 }
 .industryIcon{
-  margin-right:16rpx;
-   width: 24rpx;
+  margin: 0 16rpx;
+  width: 24rpx;
   height: 24rpx;
+}
+.industryIcon:first-child{
+  margin-left:0;
 }

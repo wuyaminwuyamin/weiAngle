@@ -7,14 +7,16 @@
             <view class="describle">
               {{project.pro_intro}}
             </view>
-            <view class="projectDetailType">非獨家</view>
+            <image src="/img/img-dujiaqianyue@2x.png" class="projectDetailType" wx:if="{{project.is_exclusive == 1}}"></image>
+             <image src="/img/img-feiduqianyue@2x.png" class="projectDetailType" 
+             wx:if="{{project.is_exclusive == 2}}"></image>
           </view>
           <view class="industry">{{industy_sort}}</view>
           <view class="allProjectDetail flex">
             <image src="/img/icon-jine@2x.png" class="industryIcon"></image>
             <view class="classname">{{project.pro_scale.scale_money}}</view>
             <label style="margin:0 16rpx;">|</label>
-            <view class="classname">{{project.pro_finance_stock_after}}%</view>
+            <view class="classname">{{pro_finance_stock_after}}%</view>
             <image src="/img/icon-lunci-s@2x.png" class="industryIcon"></image>
             <view class="classname">{{project.pro_stage.stage_name}}</view>
             <image src="/img/icon-diqu-s@2x.png" class="industryIcon"></image>
