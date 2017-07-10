@@ -71,7 +71,7 @@
               <view class="investor_text">寻求资源:</view>
               <view class="investor_right flex">
                 <block wx:for="{{item.user_resource_find}}" wx:for-item="res_find" wx:key="{{res_find.resource_id}}">
-                  <view class="res_find">{{res_find.resource_name}}</view>
+                  <view class="res_find">{{res_find.group_title}}</view>
                 </block>
               </view>
             </view>

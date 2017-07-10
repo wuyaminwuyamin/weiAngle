@@ -232,7 +232,7 @@ scroll-view {
   justify-content: center;
   color:#ffffff;
   border-radius: 0;
-  background: #f2f2f2;
+  background: #cccccc;
 }
 
 .edit {
@@ -306,6 +306,7 @@ scroll-view {
   padding-left: 295rpx;
   padding-top: 170rpx;
   /*padding-bottom: 295rpx;*/
+  position:absolute;
 }
 
 /*加人脉*/
@@ -408,6 +409,7 @@ scroll-view {
   color: #333;
   line-height: 48rpx;
   text-align: left;
+  width:480rpx;
 }
 
 .industry {
@@ -539,4 +541,19 @@ button::after{
 .projectDetailType{
   height:36rpx;
   width:108rpx;
+  margin-right: 6rpx;
+}
+.industryIcon{
+  margin: 0 16rpx;
+  width: 24rpx;
+  height: 24rpx;
+}
+.industryIcon:first-child{
+  margin-left:0;
+}
+.lockBackground{
+  z-index:-1;
+  width:100%;
+  height:942rpx;
+  position:relative;
 }
