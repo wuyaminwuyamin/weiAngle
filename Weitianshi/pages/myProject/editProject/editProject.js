@@ -75,10 +75,10 @@ Page({
 
         // 获取项目信息
         wx.request({
-            url: url + '/api/project/showProjectDetail',
+          url: url_common + '/api/project/getProjectDetail',
             data: {
                 user_id: options.user_id,
-                pro_id: options.pro_id
+                project_id: options.pro_id
             },
             method: 'POST',
             success: function (res) {

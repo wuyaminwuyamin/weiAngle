@@ -30,10 +30,10 @@ Page({
         });
         //项目详情(不包括投资人)
         wx.request({
-            url: url + '/api/project/showProjectDetail',
+            url: url_common + '/api/project/getProjectDetail',
             data: {
                 user_id: user_id,
-                pro_id: this.data.id
+                project_id: this.data.id
             },
             method: 'POST',
             success: function (res) {
@@ -42,7 +42,17 @@ Page({
                 var user = res.data.user; 
                 var firstName = user.user_name.substr(0, 1) || '';
                 var pro_industry = project.pro_industry;
-                console.log(project)
+                let pro_finance_stock_after = Math.round(project.pro_finance_stock_after);
+                let industy_sort = [];
+                console.log(project.pro_finance_stock_after)
+                // 项目介绍的标签
+                for (var i = 0; i < pro_industry.length; i++) {
+                  industy_sort.push(pro_industry[i].industry_name)
+                }
+                that.setData({
+                  industy_sort: industy_sort,
+                  pro_finance_stock_after: pro_finance_stock_after
+                })
                 var followed_user_id=res.data.user.user_id
                 // 加載個人信息
                 wx.request({

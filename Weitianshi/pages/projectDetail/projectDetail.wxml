@@ -11,11 +11,15 @@
               <image src="/img/img-dujiaqianyue@2x.png" class="projectDetailType" wx:if="{{project.is_exclusive == 1}}"></image>
               <image src="/img/img-feiduqianyue@2x.png" class="projectDetailType" wx:if="{{project.is_exclusive == 2}}"></image>
             </view>
-            <view class="industry" wx:key="{{item.industry_name}}">人工智能、大数据、理财、企业服务台</view>
+            <view class="industry" wx:key="{{item.industry_name}}">{{industy_sort}}</view>
             <view class="allProjectDetail flex">
+              <image src="/img/icon-jine@2x.png" class="industryIcon"></image>
               <view class="classname">{{project.pro_scale.scale_money}}</view>
-              <view class="classname">10%</view>
+              <label style="margin:0 16rpx;">|</label>
+              <view class="classname">{{pro_finance_stock_after}}%</view>
+              <image src="/img/icon-lunci-s@2x.png" class="industryIcon"></image>
               <view class="classname">{{project.pro_stage.stage_name}}</view>
+              <image src="/img/icon-diqu-s@2x.png" class="industryIcon"></image>
               <view class="classname">{{project.pro_area.area_title}}</view>
             </view>
             <view class="otherInfo flex" bindtap="userDetail" data-id="{{user.user_id}}">
@@ -62,22 +66,24 @@
       <view class="detail">
         <view class="grey" wx:if="{{bpName!==''}}">项目BP</view>
         <view class="bpName" wx:if="{{bpName!==''}}">
-          <view class="item1 ">BP名称</view>
-          <view class="item2 ">{{bpName}}</view>
+          <view class="item1">BP名称</view>
+          <view class="item2">{{bpName}}</view>
         </view>
         <view class="grey" wx:if="{{projectName!==''}}">项目机密</view>
         <view class="projectName" wx:if="{{projectName!==''}}">
-          <view class="item1 ">项目名称</view>
-          <view class="item2 ">{{projectName}}</view>
+          <view class="item1">项目名称</view>
+          <view class="item2">{{projectName}}</view>
         </view>
         <view class="companyName" wx:if="{{companyName!==''}}">
-          <view class="item1 ">公司名称</view>
-          <view class="item2 ">{{companyName}}</view>
+          <view class="item1">公司名称</view>
+          <view class="item2">{{companyName}}</view>
         </view>
       </view>
       <!--锁图-->
-      <image class="lock" src="/img/lock.png"></image>
-
+      <view class="lockStyle">
+        <image class="lock" src="/img/img-suo2@2x.png"></image>
+        <image src="/img/img-bg@2x(2).png" class="lockBackground"> </image>
+      </view>
       <!--资本对接-->
       <!--<view class=" resource ">-->
       <view class="others">
