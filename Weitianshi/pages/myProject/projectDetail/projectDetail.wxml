@@ -77,7 +77,7 @@
                     <image src="/img/icon-gengduo2@2x.png" class="titleRightBPIcon"></image>
                   </view>
                   <view class="pro_sorts flex" style="margin-bottom:48rpx;">
-                    <view class="pro_sort" wx:for="{{tagOfPro}}">{{tagOfPro[index].tag_name}}</view>
+                    <view class="pro_sort" wx:for="{{tagOfPro}}" wx:key="{{index}}">{{tagOfPro[index].tag_name}}</view>
                   </view>
                   <view class="proposal grayName" wx:if="{{project.pro_BP.length != 0}}">商业计划书：
                     <label class="materialContent">{{project.pro_BP.file_title}}</label>
@@ -130,12 +130,12 @@
               </view>
               <view class="contentAll">
                 <view class="flex" style="margin-bottom:48rpx;">
-                  <view class="pro_sorts flex" wx:for="{{teamOfPro}}">
+                  <view class="pro_sorts flex" wx:for="{{teamOfPro}}" wx:key="{{index}}">
                     <view class="pro_sort">{{teamOfPro[index].tag_name}}</view>
                   </view>
                 </view>
                 <view class="personAll">
-                  <view class="personInfo" wx:for="{{core_memberArray}}">
+                  <view class="personInfo" wx:for="{{core_memberArray}}" wx:key="{{index}}">
                     <view class="personInfoList flex">
                       <label class="personName">{{core_memberArray[index].ct_member_name}}</label>
                       <label class="personPosition">{{core_memberArray[index].ct_member_career}}</label>
@@ -179,7 +179,7 @@
                   <view class="purposeContent">{{project.pro_finance_use}}</view>
                 </view>
                 <view class="investBox">
-                  <view class="invest" wx:for="{{pro_history_financeList}}" wx:if="{{index<2}}">
+                  <view class="invest" wx:for="{{pro_history_financeList}}" wx:if="{{index<2}}" wx:key="{{index}}">
                     <view class="investBoxContent flex">
                       <image class="case_pic" src="/img/dot@3x.png"></image>
                       <view class="case_time">{{pro_history_financeList[index].finance_time}}</view>
@@ -199,7 +199,7 @@
                 <image src="/img/img-mail.png" class="titlePic"></image>
                 <view class="title">里程碑</view>
               </view>
-              <view class="milestoneContentBox" wx:for="{{mileStoneArray}}" wx:if="{{index<2}}">
+              <view class="milestoneContentBox" wx:for="{{mileStoneArray}}" wx:if="{{index<2}}" wx:key="{{index}}">
                 <view class="milestoneContent flex">
                   <image class="case_pic" src="/img/dot@3x.png"></image>
                   <view class="milestoneContentcase_time">{{mileStoneArray[index].dh_start_time}}</view>
@@ -252,7 +252,7 @@
         <!--资本对接-->
         <view class=" resource ">
           <view class="others ">
-            <block wx:for="{{investor}}" wx:key="{{investor_id}}">
+            <block wx:for="{{investor}}" wx:key="{{investor_id}}" wx:key="{{index}}">
               <view class="investor" data-id="{{investor[index].user_id}}" bindtap="detail">
                 <view class="weui-cell " style="background:white;margin:32rpx;margin-bottom:0;border-radius:4px 4px 0 0 ">
                   <view class="weui-cell__hd " style="position: relative;margin-right: 10px; ">
@@ -275,7 +275,7 @@
                   <!--标签1-->
                   <view class="sort offer ">
                     <view class="sort_item ">投资领域:</view>
-                    <block wx:for="{{industry_tag[index]}}" wx:key="{{industry_name}}">
+                    <block wx:for="{{industry_tag[index]}}" wx:key="{{industry_name}}" wx:key="{{index}}">
                       <view class="weui-media-box__desc" wx:if="{{index<3}}">
                         {{item.industry_name}}
                       </view>
@@ -285,7 +285,7 @@
                   <!--标签2-->
                   <view class=" flex offer" wx:if="{{stage_tag[index]!=''}}">
                     <view class="sort_item ">投资轮次:</view>
-                    <block wx:for="{{stage_tag[index]}}" wx:key="{{stage_name}}">
+                    <block wx:for="{{stage_tag[index]}}" wx:key="{{stage_name}}" wx:key="{{index}}">
                       <view class="weui-media-box__desc ">
                         {{item.stage_name}}
                       </view>
@@ -383,9 +383,9 @@
         <view class="projectDetailsBox">
           <view class="boxName">项目信息</view>
           <view class="pro_sorts flex" wx:if="{{project_labelArray != ''}}">
-            <view class="pro_sort" wx:for="{{project_labelArray}}">{{project_labelArray[index]}}</view>
+            <view class="pro_sort" wx:for="{{project_labelArray}}" wx:key="{{index}}">{{project_labelArray[index]}}</view>
           </view>
-          <view class="companyInfo flex" wx:for="{{projectDetailsList}}">
+          <view class="companyInfo flex" wx:for="{{projectDetailsList}}" wx:key="{{index}}">
             <view class="left">
               <image src="{{projectDetailsList[index].project_logo}}" class="left"></image>
             </view>
@@ -395,7 +395,7 @@
               <view class="companyName">{{projectDetailsList[index].company_name}}</view>
             </view>
           </view>
-          <view class="projectInfo" wx:for="{{projectDetailsList}}">
+          <view class="projectInfo" wx:for="{{projectDetailsList}}" wx:key="{{index}}">
             <view class="industry">
               <image src="/img/icon-lingyu@2x.png" class="oneKeyIcon"></image>
               <label>{{projectDetailsList[index].project_industry}}</label>
@@ -453,7 +453,7 @@
         <!--产品信息-->
         <view class="projectExample">
           <view class="boxName">产品信息</view>
-          <view class="projectExample1 flex" wx:for="{{projectDetailsList}}">
+          <view class="projectExample1 flex" wx:for="{{projectDetailsList}}" wx:key="{{index}}">
             <view class="projectExample1Logo">
               <image src="{{projectDetailsList[index].project_logo}}" class="projectExample1Logo"></image>
             </view>
@@ -469,7 +469,7 @@
         <!--商标信息-->
         <view class="projectTrade" wx:if="{{brandInfoList != 0}}">
           <view class="boxName">商标信息</view>
-          <view wx:for="{{brandInfoList}}">
+          <view wx:for="{{brandInfoList}}" wx:key="{{index}}">
             <view class="projectTradeInfo">{{brandInfoList[index].company_brand_name}}</view>
             <view class="flex">
               <view class="projectTradeInfoLeft">
@@ -494,7 +494,7 @@
         <!--工商变更-->
         <view class="industrialChange" wx:if="{{companyChangeList != 0}}">
           <view class="boxName">工商变更</view>
-          <view class="industrialChangeInfo" wx:for="{{companyChangeList}}">
+          <view class="industrialChangeInfo" wx:for="{{companyChangeList}}" wx:key="{{index}}">
             <view class="industrialChangeTime">{{companyChangeList[index].company_change_time}}</view>
             <view class="industrialChangeBoxTitle">{{companyChangeList[index].company_change_matter}}</view>
             <view class="industrialChangeTextBox flex">
@@ -562,7 +562,7 @@
           </view>
         </view>
         <!--核心成员-->
-        <view class="coreMember" wx:for="{{teamList}}">
+        <view class="coreMember" wx:for="{{teamList}}" wx:key="{{index}}">
           <view class="boxName">核心成员</view>
           <view class="coreMemberInfo">
             <view class="coreMemberRight">
@@ -589,7 +589,7 @@
         <!--历史融资-->
         <view class="historyFinance">
           <view class="boxName">历史融资</view>
-          <view class="historyFinanceBox" wx:for="{{historyFinance}}" wx:if="{{index<2}}">
+          <view class="historyFinanceBox" wx:for="{{historyFinance}}" wx:if="{{index<2}}" wx:key="{{index}}">
             <view class="milestoneContentBox">
               <view class="companyMilestoneContent flex">
                 <image class="case_pic" src="/img/dot@3x.png"></image>
@@ -607,7 +607,7 @@
         <view class="companyMileStone">
           <view class="boxName">里程碑</view>
           <view>
-            <view class="milestone" wx:for="{{mileStone}}" wx:if="{{index<2 || more == 1}}">
+            <view class="milestone" wx:for="{{mileStone}}" wx:if="{{index<2 || more == 1}}" wx:key="{{index}}">
               <view class="milestoneContentBox">
                 <view class="companyMilestoneContent flex">
                   <image class="case_pic" src="/img/dot@3x.png"></image>
@@ -623,7 +623,7 @@
         <view class="companyNews">
           <view class="boxName">新闻</view>
           <view class="companyNewsBox">
-            <view class="companyNewsContentBox" wx:for="{{newsList}}" wx:if="{{index<2 || more == 2}}">
+            <view class="companyNewsContentBox" wx:for="{{newsList}}" wx:if="{{index<2 || more == 2}}" wx:key="{{index}}">
               <view class="companyMilestoneContent flex">
                 <image class="case_pic" src="/img/dot@3x.png"></image>
                 <view class="companyCase_time">{{newsList[index].project_news_time}}</view>
@@ -641,7 +641,7 @@
         <view class="competitor">
           <view class="boxName">竟品</view>
           <view>
-            <view class="competitorBox" wx:for="{{competeList}}" wx:if="{{index<2 || more == 3}}">
+            <view class="competitorBox" wx:for="{{competeList}}" wx:if="{{index<2 || more == 3}}" wx:key="{{index}}">
               <view class="competitorBoxTop flex">
                 <view class="competitorBoxLeft">
                   <image src="{{competeList[index].competing_goods_logo}}" class="competitorBoxLeft"></image>
