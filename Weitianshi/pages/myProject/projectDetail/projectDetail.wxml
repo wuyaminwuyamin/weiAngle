@@ -11,10 +11,13 @@
           </view>
           <view class="industry">{{industy_sort}}</view>
           <view class="allProjectDetail flex">
-            <image src="/img/icon-jine@2x.png" class="scale_moneyIcon"></image>
+            <image src="/img/icon-jine@2x.png" class="industryIcon"></image>
             <view class="classname">{{project.pro_scale.scale_money}}</view>
-            <view class="classname">{{project.pro_finance_stock_after}}</view>
+            <label style="margin:0 16rpx;">|</label>
+            <view class="classname">{{project.pro_finance_stock_after}}%</view>
+            <image src="/img/icon-lunci-s@2x.png" class="industryIcon"></image>
             <view class="classname">{{project.pro_stage.stage_name}}</view>
+            <image src="/img/icon-diqu-s@2x.png" class="industryIcon"></image>
             <view class="classname">{{project.pro_area.area_title}}</view>
           </view>
           <view class="ProjectClues flex">
@@ -44,7 +47,7 @@
 
     <view class="swiper-tab-list {{currentTab==2 ? 'on' : ''}}" data-current="2" bindtap="swichNav">一键尽调</view>
   </view>
-  <swiper current="{{currentTab}}" class="swiper-box" duration="300" style="height:900px" bindchange="bindChange">
+  <swiper current="{{currentTab}}" class="swiper-box" duration="300" style="height:656px" bindchange="bindChange">
 
     <swiper-item>
       <scroll-view scroll-y="true" bindscrolltolower="loadMore">
@@ -61,46 +64,46 @@
               </view>
             </view>
             <!--项目资料-->
-            <view class="material">
+            <view class="material" wx:if="{{project.pro_BP.length != 0|| project.pro_name != ''||project.pro_company_name != ''||project.pro_status != ''||project.pro_company_scale !=''||project.pro_website != ''||project.contact.user_name !=''||project.contact.user_mobile !=''}}">
               <view class="materialBox flex">
                 <image src="/img/icon-jieshao.png" class="titlePic"></image>
                 <view class="title">项目资料</view>
               </view>
               <view class="contentAll">
                 <view>
-                  <view class="titleRightBP" bindtap="sendBp">查看BP
+                  <view class="titleRightBP" bindtap="sendBp" wx:if="{{project.pro_BP.length != 0}}">查看BP
                     <image src="/img/icon-gengduo2@2x.png" class="titleRightBPIcon"></image>
                   </view>
                   <view class="pro_sorts flex" style="margin-bottom:48rpx;">
                     <view class="pro_sort" wx:for="{{tagOfPro}}">{{tagOfPro[index].tag_name}}</view>
                   </view>
-                  <view class="proposal grayName">商业计划书：
+                  <view class="proposal grayName" wx:if="{{project.pro_BP.length != 0}}">商业计划书：
                     <label class="materialContent">{{project.pro_BP.file_title}}</label>
                   </view>
-                  <view class="grayName">项目名称：
+                  <view class="grayName" wx:if="{{project.pro_name != ''}}">项目名称：
                     <label class="materialContent">{{project.pro_name}}</label>
                   </view>
-                  <view class="grayName">公司名称：
+                  <view class="grayName" wx:if="{{project.pro_company_name != ''}}">公司名称：
                     <label class="materialContent">{{project.pro_company_name}}</label>
                   </view>
-                  <view class="grayName">运营状态：
+                  <view class="grayName" wx:if="{{project.pro_status != ''}}">运营状态：
                     <label class="materialContent">{{project.pro_status.status_name}}</label>
                   </view>
-                  <view class="grayName">公司规模：
+                  <view class="grayName" wx:if="{{project.pro_company_scale !=''}}">公司规模：
                     <label class="materialContent">{{project.pro_company_scale.comp_scale_value}}</label>
                   </view>
-                  <view class="grayName">产品链接：
+                  <view class="grayName" wx:if="{{project.pro_website != ''}}">产品链接：
                     <label class="materialWeb materialContent">{{project.pro_website}}</label>
                   </view>
-                  <view class="grayName proposalFinal">项目联系人：
-                    <label class="materialContent">{{project.contact.user_name}}</label>
+                  <view class="grayName proposalFinal" wx:if="{{project.contact.user_name !=''||project.contact.user_mobile !=''}}">项目联系人：
+                    <label class="materialContent" style="margin-right:24rpx;">{{project.contact.user_name}}</label>
                     <label class="materialContent">{{project.contact.user_mobile}}</label>
                   </view>
                 </view>
               </view>
             </view>
             <!--品牌-->
-            <view class="companyBrand">
+            <!--<view class="companyBrand">
               <view class="corePersonBox flex">
                 <image src="/img/myOn.png" class="titlePic"></image>
                 <view class="title"> 品牌</view>
@@ -116,15 +119,14 @@
                   <label class="materialContent">5-20人</label>
                 </view>
               </view>
-            </view>
+            </view>-->
             <!--核心团队-->
-            <view class="corePerson">
+            <view class="corePerson" wx:if="{{core_memberArray}}">
               <view class="corePersonBox flex">
                 <image src="/img/myOn.png" class="titlePic"></image>
                 <view class="title"> 核心团队</view>
               </view>
-              <view class="contentAll" wx:if="{{core_memberArray}}">
-
+              <view class="contentAll">
                 <view class="flex" style="margin-bottom:48rpx;">
                   <view class="pro_sorts flex" wx:for="{{teamOfPro}}">
                     <view class="pro_sort">{{teamOfPro[index].tag_name}}</view>
@@ -143,7 +145,7 @@
               </view>
             </view>
             <!--融资信息-->
-            <view class="information">
+            <view class="information" wx:if="{{project.pro_finance_stock_after !=0 || project.pro_scale.scale_money !=0 || project.pro_finance_value != ''}}">
               <view class="informationBox flex">
                 <image src="/img/img-money.png" class="titlePic"></image>
                 <view class="title">融资信息</view>
@@ -190,7 +192,7 @@
               </view>
             </view>
             <!--里程碑-->
-            <view class="milestone">
+            <view class="milestone" wx:if="{{project.pro_develop.length != 0}}">
               <view class="milestoneBox flex">
                 <image src="/img/img-mail.png" class="titlePic"></image>
                 <view class="title">里程碑</view>
@@ -204,7 +206,7 @@
               </view>
             </view>
             <!--FA签约-->
-            <view class="signFA">
+            <view class="signFA" wx:if="{{project.pro_FA != ''}}">
               <view class="signFABox flex">
                 <image src="/img/img-money.png" class="titlePic"></image>
                 <view class="title">FA签约</view>
@@ -239,11 +241,6 @@
               </view>
             </view>
           </view>
-        </view>
-        <view class="noMessage">
-          <image src="/img/nothing.png" class="nothing"></image>
-          <view class="hasNoFind">暂时还没有补充</view>
-          <view class="writeCompanyName" bindtap="goToPc">去PC端完善</view>
         </view>
       </scroll-view>
     </swiper-item>
@@ -378,8 +375,8 @@
     </swiper-item>
 
     <swiper-item>
-    <!--/*wx:if="{{nothing != 0}}"*/-->
-      <view id="oneKey">
+    <scroll-view scroll-y="true">
+      <view id="oneKey"  wx:if="{{nothing != 0}}">
         <!--项目信息-->
         <view class="projectDetailsBox">
           <view class="boxName">项目信息</view>
@@ -414,7 +411,7 @@
               </label>
             </view>
             <view class="companyNet">
-              <image src="/img/icon-jine@2x.png" class="oneKeyIcon"></image>
+              <image src="/img/icon-diqu-s@2x.png" class="oneKeyIcon"></image>
               {{projectDetailsList[index].project_website}}
             </view>
           </view>
@@ -423,29 +420,31 @@
         <view class="companyIntroduce">
           <view class="boxName">公司信息</view>
           <view class="companyIntroduceName">公司名称
-            <view class="companyIntroduceNameText">{{company.company_name}}</view>
+            <view class="companyIntroduceNameText" wx:if="{{company.company_name}}">{{company.company_name}}</view>
+            <view class="companyIntroduceNameText" wx:if="{{!company.company_name}}">{{company.company_name}}</view>
           </view>
           <view class="companyIntroduceAdd">公司地址
-            <view class="companyIntroduceAddText" wx:if="{{company.company_address != null}}">{{company.company_address}}</view>
-            <view class="companyDateTextEmpty" wx:if="{{company.company_address ==null}}">-</view>
+            <view class="companyIntroduceAddText" wx:if="{{company.company_address != ''}}">{{company.company_address}}</view>
+            <view class="companyDateTextEmpty" wx:if="{{company.company_address == ''}}">-</view>
           </view>
           <view class="companyIntroduceTop flex">
             <view class="companyDateTitle">成立日期
-              <view class="companyDateText" wx:if="{{company.company_register_date != null}}">{{time}}</view>
-              <view class="companyDateTextEmpty" wx:if="{{company.company_register_date==null}}">-</view>
+              <view class="companyDateText" wx:if="{{company.company_register_date != ''}}">{{time}}</view>
+              <view class="companyDateTextEmpty" wx:if="{{company.company_register_date==''}}">-</view>
             </view>
             <view class="companyDateTitle">公司规模
               <view class="companyDateText" wx:if="{{company.company_team_size !=null}}">{{company.company_team_size}}</view>
+               <view class="companyDateText" wx:if="{{company.company_team_size ==null}}">-</view>
             </view>
           </view>
           <view class="companyIntroduceBottom flex">
             <view class="companyDateTitle">邮箱地址
-              <view class="companyDateText" wx:if="{{company.company_email != null}}">{{company.company_email}}</view>
-              <view class="companyDateTextEmpty" wx:if="{{company.company_email==null}}">-</view>
+              <view class="companyDateText" wx:if="{{company.company_email != ''}}">{{company.company_email}}</view>
+              <view class="companyDateTextEmpty" wx:if="{{company.company_email==''}}">-</view>
             </view>
             <view class="companyDateTitle">联系电话
-              <view class="companyDateText" wx:if="{{company.company_contact != null}}">{{company.company_contact}}</view>
-              <view class="companyDateTextEmpty" wx:if="{{company.company_contact==null}}">-</view>
+              <view class="companyDateText" wx:if="{{company.company_contact != ''}}">{{company.company_contact}}</view>
+              <view class="companyDateTextEmpty" wx:if="{{company.company_contact==''}}">-</view>
             </view>
           </view>
         </view>
@@ -466,7 +465,7 @@
           </view>
         </view>
         <!--商标信息-->
-        <view class="projectTrade">
+        <view class="projectTrade" wx:if="{{brandInfoList != 0}}">
           <view class="boxName">商标信息</view>
           <view wx:for="{{brandInfoList}}">
             <view class="projectTradeInfo">{{brandInfoList[index].company_brand_name}}</view>
@@ -491,7 +490,7 @@
           </view>
         </view>
         <!--工商变更-->
-        <view class="industrialChange">
+        <view class="industrialChange" wx:if="{{companyChangeList != 0}}">
           <view class="boxName">工商变更</view>
           <view class="industrialChangeInfo" wx:for="{{companyChangeList}}">
             <view class="industrialChangeTime">{{companyChangeList[index].company_change_time}}</view>
@@ -672,6 +671,7 @@
         <view class="hasNoFind">暂未调查到相关信息</view>
         <view class="writeCompanyName" bindtap="writeCompanyName">完善公司名称</view>
       </view>
+       </scroll-view>
     </swiper-item>
   </swiper>
 </view>
