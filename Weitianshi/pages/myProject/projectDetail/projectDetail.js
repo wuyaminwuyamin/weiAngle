@@ -37,7 +37,7 @@ Page({
     var page = this.data.page;
     var avatarUrl = wx.getStorageSync('avatarUrl');
     var investors = wx.getStorageSync('investors') || '';//所有项目对应四位投资人
-    app.console(investors)
+    console.log(investors)
     app.console(index)
     that.setData({
       index: index,
@@ -99,13 +99,15 @@ Page({
             industy_sort: industy_sort
           })
           // 核心团队
-          let core_memberArray = project.core_users;
-          core_memberArray.forEach((x, index) => {
-            core_memberArray[index] = x;
-            that.setData({
-              core_memberArray: core_memberArray
+          if (project.core_users != 0){
+            let core_memberArray = project.core_users;
+            core_memberArray.forEach((x, index) => {
+              core_memberArray[index] = x;
+              that.setData({
+                core_memberArray: core_memberArray
+              })
             })
-          })
+          }
           // 标签 type:0; 项目标签 type:1 团队标签
           let infoTagArray = project.tag;
           let tagOfPro = [];//项目资料的标签
@@ -143,6 +145,7 @@ Page({
           })
           // 里程碑
           let mileStoneArray = project.pro_develop;
+          console.log(project.pro_develop)
           mileStoneArray.forEach((x, index) => {
             mileStoneArray[index].dh_start_time = app.changeTime(x.dh_start_time);
             mileStoneArray[index].dh_event = x.dh_event;
@@ -161,7 +164,10 @@ Page({
     //公司信息
     var that = this;
     // let company_name = wx.getStorageSync("companyName");
+    // console.log(company_name)
     let company_name = "北京大杰致远信息技术有限公司";
+    // let company_name = "上海艺娱信息科技有限公司";
+    // let company_name = "杭州投着乐网络科技有限公司"
     wx.request({
       url: url_common + '/api/dataTeam/getCrawlerCompany',
       data: {
@@ -177,7 +183,7 @@ Page({
           that.setData({
             nothing: nothing
           })
-        }
+        }else{
         let company = res.data.data.company;
         let com_id = company.com_id;
         let com_time = company.company_register_date;
@@ -360,6 +366,7 @@ Page({
             })
           }
         })
+      }
       }
     })
     // //定宽,默认320,自动取设备宽
@@ -572,10 +579,6 @@ Page({
   // 完善公司信息
   writeCompanyName: function () {
 
-  },
-  // 去PC完善
-  goToPc: function () {
-    console.log("去PC上传")
   },
   // 查看bp
   sendBp: function () {

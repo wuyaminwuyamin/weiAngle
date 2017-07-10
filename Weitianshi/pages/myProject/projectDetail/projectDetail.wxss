@@ -1610,3 +1610,8 @@ scroll-view {
 .choiceBox {
   border-top: 1rpx solid #e6e6e6;
 }
+.industryIcon{
+  margin-right:16rpx;
+   width: 24rpx;
+  height: 24rpx;
+}
