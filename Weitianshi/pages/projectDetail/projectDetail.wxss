@@ -410,17 +410,6 @@ scroll-view {
   text-align: left;
 }
 
-.projectDetailType {
-  border: 2rpx solid #40587a;
-  border-left: none;
-  width: 104rpx;
-  height: 32rpx;
-  font-size: 20rpx;
-  color: #40587a;
-  line-height: 32rpx;
-  text-align: right;
-}
-
 .industry {
   font-family: PingFangSC-Regular;
   font-size: 26rpx;
@@ -546,4 +535,8 @@ scroll-view {
 
 button::after{
   border: none;
+}
+.projectDetailType{
+  height:36rpx;
+  width:108rpx;
 }

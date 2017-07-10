@@ -8,8 +8,8 @@
           <view class="projectDetailBox" bindtap="toMy">
             <view class="flex">
               <view class="describle">{{project.pro_intro}}</view>
-              <view class="theOne exclusive" wx:if="{{project.is_exclusive==1}}">独家签约</view>
-              <view class="theOne exclusive" wx:if="{{project.is_exclusive==2}}">非独家签约</view>
+              <image src="/img/img-dujiaqianyue@2x.png" class="projectDetailType" wx:if="{{project.is_exclusive == 1}}"></image>
+              <image src="/img/img-feiduqianyue@2x.png" class="projectDetailType" wx:if="{{project.is_exclusive == 2}}"></image>
             </view>
             <view class="industry" wx:key="{{item.industry_name}}">人工智能、大数据、理财、企业服务台</view>
             <view class="allProjectDetail flex">
@@ -50,14 +50,14 @@
       </view>
       <!--项目亮点-->
       <view class="brightBox" style="background: white;">
-       <view class="brightPoint">
-            <view class="brightPointBox flex">
-              <image src="/img/img-star.png" class="titlePic"></image>
-              <view class="title star">项目亮点</view>
-            </view>
-            <view class="brightContent" bindtap="more" value="{{number}}">{{project.pro_goodness}}</view>
+        <view class="brightPoint">
+          <view class="brightPointBox flex">
+            <image src="/img/img-star.png" class="titlePic"></image>
+            <view class="title star">项目亮点</view>
           </view>
-          </view>
+          <view class="brightContent" bindtap="more" value="{{number}}">{{project.pro_goodness}}</view>
+        </view>
+      </view>
       <!--项目详情-->
       <view class="detail">
         <view class="grey" wx:if="{{bpName!==''}}">项目BP</view>
