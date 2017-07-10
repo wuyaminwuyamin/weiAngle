@@ -50,7 +50,6 @@
     <view class="swiper-tab-list {{currentTab==2 ? 'on' : ''}}" data-current="2" bindtap="swichNav">一键尽调</view>
   </view>
   <swiper current="{{currentTab}}" class="swiper-box" duration="300" style="height:656px" bindchange="bindChange">
-
     <swiper-item>
       <scroll-view scroll-y="true" bindscrolltolower="loadMore">
         <view id="projectBox">
@@ -582,8 +581,7 @@
             <view class="companySheet">微天使乐投平台</view>
           </view>
           <view class="downloadAppSheet">
-            <canvas canvas-id="lineCanvas" disable-scroll="true" class="canvas" bindtouchstart="touchHandler"></canvas>
-            <button type="primary" bindtap="updateData">更新数据</button>
+            <canvas canvas-id="lineCanvas" disable-scroll="true" class="canvas" ></canvas>
           </view>
         </view>
         <!--历史融资-->
