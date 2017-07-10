@@ -166,9 +166,9 @@ Page({
         //一键尽调
         //公司信息
         var that = this;
-        let company_name = wx.getStorageSync("companyName");
-        console.log(company_name)
-        // let company_name = "北京大杰致远信息技术有限公司";
+        // let company_name = wx.getStorageSync("companyName");
+        // console.log(company_name)
+        let company_name = "北京大杰致远信息技术有限公司";
         // let company_name = "上海艺娱信息科技有限公司";
         // let company_name = "杭州投着乐网络科技有限公司"
         wx.request({
@@ -243,6 +243,11 @@ Page({
                                 // wxChart图表的数据处理
                                 var mid = parseInt(project_views.data.total_download_mid);
                                 var downLoad = project_views.data.total_download[0].value;
+                                var downLoadArr=[];
+                                downLoad.forEach((x)=>{
+                                    x=x/100
+                                    downLoadArr.push(x)
+                                })
                                 var midArr=[]
                                 for(let i=0;i<90;i++){
                                     midArr.push(mid)
@@ -265,7 +270,7 @@ Page({
                                     background: '#f5f5f5',
                                     series: [{
                                         name: '微天使乐投平台',
-                                        data: downLoad,
+                                        data: downLoadArr,
                                         format: function (val, name) {
                                             return val.toFixed(2) + '万';
                                         }
