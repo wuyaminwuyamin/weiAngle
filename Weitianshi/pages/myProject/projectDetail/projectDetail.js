@@ -84,11 +84,13 @@ Page({
           let pro_goodness = res.data.data.pro_goodness;
           let industy_sort = [];
           var firstName = user.user_name.substr(0, 1);
+          let pro_finance_stock_after = Math.round(project.pro_finance_stock_after);
           that.setData({
             project: project,
             user: user,
             firstName: firstName,
-            company_name: company_name
+            company_name: company_name,
+            pro_finance_stock_after: pro_finance_stock_after
           });
           // 项目介绍的标签
           var pro_industry = project.pro_industry;
@@ -200,8 +202,8 @@ Page({
           },
           method: 'POST',
           success: function (res) {
-            // app.console("项目信息")
-            // app.console(res)
+            app.console("项目信息")
+            app.console(res)
             let projectDetailsList = res.data.data;
             projectDetailsList.forEach((x, index) => {
               projectDetailsList[index].project_logo = x.project_logo;
@@ -211,17 +213,21 @@ Page({
               projectDetailsList[index].project_label = x.project_label;
               projectDetailsList[index].project_name = x.project_name;
               projectDetailsList[index].project_website = x.project_website;
+              projectDetailsList[index].project_views = x.project_views;
               // 分割字符串
               var project_labelList = projectDetailsList[0].project_label;
               var project_labelArray = new Array(); //定义一数组 
               project_labelArray = project_labelList.split(","); //字符分割 
-              console.log(project_labelArray)
               project_labelArray.forEach((x, index) => {
                 project_labelArray[index] = x;
                 that.setData({
                   project_labelArray: project_labelArray
                 })
               })
+              
+              let project_views = projectDetailsList[0].project_views;
+              // app下载量
+              console.log(project_views)
             })
             that.setData({
               projectDetailsList: projectDetailsList
