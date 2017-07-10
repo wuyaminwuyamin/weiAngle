@@ -30,8 +30,8 @@
               <view class="weui-cell__bd">
                 <view class="flex userInfo" style="align-items: baseline;">
                   <view class="userName">{{user.user_name}}</view>
-                  <view class="userCareer">{{userInfo.user_company_career}}</view>
-                  <view class="userCompany">{{userInfo.user_company_name}}</view>
+                  <view class="userCareer">{{user.user_career}}</view>
+                  <view class="userCompany">{{user.user_company}}</view>
                   <image src="/img/icon-gengduo2@2x.png" class="userIcon"></image>
                 </view>
                 <!--<view class="flex">

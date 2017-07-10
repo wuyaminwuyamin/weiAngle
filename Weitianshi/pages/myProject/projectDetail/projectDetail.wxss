@@ -533,6 +533,7 @@ scroll-view {
   line-height: 24rpx;
   text-align: left;
   margin: 16rpx 0;
+  width:558rpx;
 }
 
 #oneKey .companyName {
@@ -1577,8 +1578,16 @@ scroll-view {
   width: 570rpx;
   height: 344rpx;
   padding-top: 48rpx;
-  margin-left: 40rpx;
-  z-index: 99;
+  margin-left: 90rpx;
+  margin-top:45%;
+}
+.modal{
+  background: rgba(0, 0, 0, 0.5);
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  left: 0;
+  top: 0;
 }
 
 .bpModalText {
