@@ -32,9 +32,9 @@ Page({
         user_id: user_id,
       })
       //分享至群打点准备
-      wx.showShareMenu({
+     /* wx.showShareMenu({
         withShareTicket: true,
-      })
+      })*/
       if (user_id != 0) {
         //载入我的个人信息
         wx.request({

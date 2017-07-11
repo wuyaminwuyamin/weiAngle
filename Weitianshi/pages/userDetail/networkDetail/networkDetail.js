@@ -23,9 +23,9 @@ Page({
             user_id: user_id,
         })
         //分享至群打点准备
-        wx.showShareMenu({
+        /*wx.showShareMenu({
             withShareTicket: true,
-        })
+        })*/
 
         //用戶的个人信息
         wx.request({

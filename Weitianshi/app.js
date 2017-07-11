@@ -82,9 +82,9 @@ App({
     loginPage: function (cb) {
         var that = this;
         //群分享打点准备
-        wx.showShareMenu({
+       /* wx.showShareMenu({
             withShareTicket: true
-        })
+        })*/
         if (this.globalData.open_session) {
             console.log("open_session已经存在")
             var timeNow = Date.now();
