@@ -116,9 +116,9 @@ Page({
                         let core_memberArray = project.core_users;
                         core_memberArray.forEach((x, index) => {
                             core_memberArray[index] = x;
-                            that.setData({
-                                core_memberArray: core_memberArray
-                            })
+                        })
+                        that.setData({
+                              core_memberArray: core_memberArray
                         })
                     }
                     // 标签 type:0; 项目标签 type:1 团队标签
@@ -135,16 +135,16 @@ Page({
                     tagOfPro.forEach((x, index) => {
                         tagOfPro[index].tag_name = x.tag_name;
                         console.log(tagOfPro[index].tag_name)
-                        that.setData({
+                    })
+                  that.setData({
                             tagOfPro: tagOfPro
                         })
-                    })
                     teamOfPro.forEach((x, index) => {
                         teamOfPro[index].tag_name = x.tag_name;
-                        that.setData({
+                    })
+                  that.setData({
                             teamOfPro: teamOfPro
                         })
-                    })
                     // 融资信息
                     let pro_history_financeList = project.pro_history_finance;
                     pro_history_financeList.forEach((x, index) => {
@@ -162,11 +162,10 @@ Page({
                     mileStoneArray.forEach((x, index) => {
                         mileStoneArray[index].dh_start_time = app.changeTime(x.dh_start_time);
                         mileStoneArray[index].dh_event = x.dh_event;
-                        that.setData({
-                            mileStoneArray: mileStoneArray
-                        })
                     })
+ 
                     that.setData({
+                       mileStoneArray: mileStoneArray,
                         industy_sort: industy_sort,
                         pro_goodness: pro_goodness
                     });
@@ -238,11 +237,10 @@ Page({
                                             project_labelArray = project_labelList.split(","); //字符分割 
                                             project_labelArray.forEach((x, index) => {
                                                 project_labelArray[index] = x;
-                                                that.setData({
+                                            })
+                                              that.setData({
                                                     project_labelArray: project_labelArray
                                                 })
-                                            })
-
                                             let project_views = JSON.parse(projectDetailsList[0].project_views);
                                             that.setData({
                                                 projectDetailsList: projectDetailsList
@@ -357,10 +355,10 @@ Page({
                                             newsList[index].source = x.source;
                                             newsList[index].project_news_time = app.changeTimeStyle(x.project_news_time);
                                             newsList[index].project_news_title = x.project_news_title;
-                                            that.setData({
+                                        })
+                                                that.setData({
                                                 newsList: newsList
                                             })
-                                        })
                                     }
                                 })
                                 // 竞品
@@ -383,10 +381,10 @@ Page({
                                             competeList[index].competing_goods_Financing_time = app.changeTimeStyle(x.competing_goods_Financing_time);
                                             competeList[index].competing_goods_Set_up = app.changeTimeStyle(x.competing_goods_Set_up);
                                             competeList[index].competing_goods_industry = x.competing_goods_industry;
-                                            that.setData({
+                                        })
+                                                            that.setData({
                                                 competeList: competeList
                                             })
-                                        })
                                     }
                                 })
                             }
