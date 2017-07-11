@@ -60,11 +60,11 @@
                 <image src="/img/img-star.png" class="titlePic"></image>
                 <view class="title star">项目亮点</view>
               </view>
-              <view class="{{isChecked?'brightContent':'brightContentAfter'}}" bindtap="allBrightPoint" value="{{number}}">
+              <view class="{{isChecked?'brightContent':'brightContentAfter'}}" value="{{number}}">
                 {{project.pro_goodness}}
-
               </view>
-              <label class="more" bindtap="noBrightPoint" wx:if="{{isChecked == false}}">收起</label>
+              <label class="more" bindtap="allBrightPoint" wx:if="{{isChecked == true && textBeyond1}}">全部</label>
+              <label class="more" bindtap="noBrightPoint" wx:if="{{isChecked == false && textBeyond1}}">收起</label>
             </view>
             <!--项目资料-->
             <view class="material" wx:if="{{project.pro_BP.length != 0|| project.pro_name != ''||project.pro_company_name != ''||project.pro_status != ''||project.pro_company_scale !=''||project.pro_website != ''||project.contact.user_name !=''||project.contact.user_mobile !=''}}">
@@ -699,11 +699,11 @@
   <view class="bpModal">
     <view class="bpModalBox">
       <view class="bpModalText">BP会发送到您的邮箱</view>
-      <input class="writeBpEmail" value="{{userEmail}}" bindblur="bpModalSure" />
+      <input class="writeBpEmail" value="{{userEmail}}" bindblur="writeBpEmail" />
       <view class="choiceBox">
         <view class="flex">
           <view class="bpModalCancel" bindtap="bpModalCancel" data-index="0">取消</view>
-          <view class="bpModalSure" bindtap="bpModalSure" data-index="0">发送</view>
+          <view class="bpModalSure {{checkEmail==true? '':'checkEmail'}}" bindtap="bpModalSure" data-index="0">发送</view>
         </view>
       </view>
     </view>
@@ -714,7 +714,7 @@
   <view class="bpModal">
     <view class="bpModalBox">
       <view class="bpModalText">请完善您的公司全称</view>
-      <input class="writeBpEmail" placeholder="请输入您的公司" bindblur="bpModalSure" />
+      <input class="writeBpEmail" placeholder="请输入您的公司" />
       <view class="choiceBox">
         <view class="flex">
           <view class="bpModalCancel" bindtap="bpModalCancel" data-index="1">取消</view>
@@ -724,3 +724,5 @@
     </view>
   </view>
 </view>
+<!--没有更多-->
+<view class="error" wx:if="{{error=='1'}}">{{error_text}}</view>
