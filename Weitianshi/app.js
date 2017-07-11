@@ -82,9 +82,9 @@ App({
     loginPage: function (cb) {
         var that = this;
         //群分享打点准备
-       /* wx.showShareMenu({
-            withShareTicket: true
-        })*/
+        /* wx.showShareMenu({
+             withShareTicket: true
+         })*/
         if (this.globalData.open_session) {
             console.log("open_session已经存在")
             var timeNow = Date.now();
@@ -417,6 +417,20 @@ App({
         }
     },
 
+    //初始化页面(others为其他要初始化的数据,格式为键值对.如{key:value})
+    initPage: function (that, others) {
+        var user_id = wx.getStorageSync('user_id');
+        that.setData({
+            user_id: user_id,
+            requestCheck: true,
+            currentPage: 1,
+            page_end: false
+        })
+        if (others) {
+            that.setData(others)
+        }
+    },
+    
     //添加人脉
     addContacts(that, addType, user_id, followed_id, callBack1, callBack2) {
         if (addType == 1) {
@@ -456,20 +470,6 @@ App({
         wx.setStorageSync("stageFilter", '');
     },
 
-    //初始化页面(others为其他要初始化的数据,格式为键值对.如{key:value})
-    initPage: function (that, others) {
-        var user_id = wx.getStorageSync('user_id');
-        that.setData({
-            user_id: user_id,
-            requestCheck: true,
-            currentPage: 1,
-            page_end: false
-        })
-        if (others) {
-            that.setData(others)
-        }
-    },
-
     //重新封装console.log
     console(x) {
         if (this.globalData.url == 'https://wx.weitianshi.cn') {
@@ -478,6 +478,7 @@ App({
             console.log(x)
         }
     },
+
     // 时间戳转换
     changeTime: function (x) {
         var n = x * 1000;
@@ -496,12 +497,22 @@ App({
         return (Y + M + D)
     },
 
-    //初始本地缓存
-    globalData: {
-        error: 0,
+    // 邮箱检验
+    checkEmail(data){
+        var myreg = /^(\w-*\.*)+@(\w-?)+(\.\w{2,})+$/;
+        if (myreg.test(data)) {
+            return true 
+        } else {
+            return  false
+        }
+    },
+
+//初始本地缓存
+globalData: {
+    error: 0,
         // url: "https://wx.weitianshi.cn",
         // url_common: "https://www.weitianshi.cn"
         url: "https://wx.dev.weitianshi.cn",
-        url_common: "https://dev.weitianshi.cn"
-    }
+            url_common: "https://dev.weitianshi.cn"
+}
 });
