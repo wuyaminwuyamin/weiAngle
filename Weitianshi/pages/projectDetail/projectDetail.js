@@ -39,7 +39,6 @@ Page({
             success: function (res) {
                 console.log(res)
                 var project = res.data.data;
-                
                 var user = res.data.user; 
                 console.log(user)
                 var firstName = user.user_name.substr(0, 1) || '';
@@ -56,27 +55,27 @@ Page({
                   pro_finance_stock_after: pro_finance_stock_after
                 })
                 var followed_user_id=res.data.user.user_id
-                // 加載個人信息
-                wx.request({
-                  url: url + '/api/user/getUserAllInfo',
-                  data: {
-                    share_id: 0,
-                    user_id: followed_user_id,
-                    view_id: user_id,
-                  },
-                  method: 'POST',
-                  success: function (res) {
-                    console.log(res)
-                    var button_type = res.data.button_type;
-                    let userInfo = res.data.user_info;
-                    console.log(user_id)
-                    console.log(button_type)
-                    that.setData({
-                      button_type: button_type,
-                      userInfo: userInfo
-                    })
-                  }
-                })
+                // // 加載個人信息
+                // wx.request({
+                //   url: url + '/api/user/getUserAllInfo',
+                //   data: {
+                //     share_id: 0,
+                //     user_id: followed_user_id,
+                //     view_id: user_id,
+                //   },
+                //   method: 'POST',
+                //   success: function (res) {
+                //     console.log(res)
+                //     var button_type = res.data.button_type;
+                //     let userInfo = res.data.user_info;
+                //     console.log(user_id)
+                //     console.log(button_type)
+                //     that.setData({
+                //       button_type: button_type,
+                //       userInfo: userInfo
+                //     })
+                //   }
+                // })
                 that.setData({
                     project: project,
                     user: user,
@@ -150,7 +149,7 @@ Page({
       var view_id = wx.getStorageSync('user_id');//获取我自己的user_id/查看者的id
       //用戶的个人信息
       wx.request({
-        url: url + '/api/user/getUserAllInfo',
+        url: url_common + '/api/user/getUserAllInfo',
         data: {
           share_id: 0,
           user_id: followed_user_id,

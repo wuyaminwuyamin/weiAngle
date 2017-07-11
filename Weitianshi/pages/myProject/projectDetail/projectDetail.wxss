@@ -364,16 +364,6 @@ scroll-view {
   width:480rpx;
 }
 
-/*.projectDetailType {
-  border: 2rpx solid #40587a;
-  border-left: none;
-  width: 104rpx;
-  height: 32rpx;
-  font-size: 20rpx;
-  color: #40587a;
-  line-height: 32rpx;
-  text-align: right;
-}*/
 .projectDetailType{
   height:36rpx;
   width:108rpx;
@@ -384,9 +374,11 @@ scroll-view {
   color: #666;
   line-height: 26rpx;
   text-align: left;
+  
+}
+.allIndustry{
   margin: 36rpx 0 24rpx 0;
 }
-
 .allProjectDetail {
   font-size: 26rpx;
   color: #666;
@@ -1258,17 +1250,24 @@ scroll-view {
 }
 
 #projectBox .brightContent {
-  height: auto;
+  height:72rpx;
   font-size: 26rpx;
   color: #666;
   line-height: 39rpx;
   text-align: left;
-  text-overflow: -o-ellipsis-lastline;
   overflow: hidden;
+  /*text-overflow: -o-ellipsis-lastline; 
   text-overflow: ellipsis;
   display: -webkit-box;
   -webkit-line-clamp: 2;
-  -webkit-box-orient: vertical;
+  -webkit-box-orient: vertical;*/
+}
+#projectBox .brightContentAfter {
+  height:auto;
+  font-size: 26rpx;
+  color: #666;
+  line-height: 39rpx;
+  text-align: left;
 }
 
 #projectBox  .pro_sort {
@@ -1545,6 +1544,9 @@ scroll-view {
   width: 24rpx;
   height: 24rpx;
 }
+#projectBox .teamPro{
+  margin-bottom:48rpx;
+}
 
 /*空白页*/
 
@@ -1630,4 +1632,15 @@ scroll-view {
 }
 .industryIcon:first-child{
   margin-left:0;
+}
+/*项目信息的展开和合并*/
+.moreInfo{
+   margin-top: 32rpx;
+  width: 100%;
+  height: 22rpx;
+  /*background: #fff;*/
+  font-size: 24rpx;
+  color: #009eff;
+  line-height: 24rpx;
+  text-align: center;
 }

@@ -22,7 +22,7 @@ Page({
             wx.setStorageSync('user_id', user_id);
             //载入被分享者的个人信息
             wx.request({
-                url: url + '/api/user/getUserAllInfo',
+                url: url_common + '/api/user/getUserAllInfo',
                 data: {
                     share_id: share_id,
                     user_id: followed_user_id,

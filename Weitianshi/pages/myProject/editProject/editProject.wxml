@@ -1,5 +1,5 @@
 <import src="/pages/Template/Template.wxml"></import>
-<!--<template is="pointPC">去电脑上创建项目更方便</template>-->
+<template is="pointPC">去电脑上创建项目更方便</template>
 <view id="myProject">
   <view class="card">
     <view class="text">项目介绍*</view>

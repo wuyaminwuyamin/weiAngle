@@ -27,9 +27,10 @@ Page({
         },
         method: 'POST',
         success: function (res) {
-          console.log("浏览了我的用户的数据")     
+          console.log("浏览了我的用户的数据")  
+          console.log(res)   
           var contacts = res.data.list.users;
-          console.log(res)
+         
           var count = res.data.list.count;
           var page_end = res.data.page_end;
           that.setData({

@@ -138,7 +138,7 @@ Page({
         if (result == "1" && company !== "" && position !== "") {
             //向后台发送公司信息
             wx.request({
-                url: url + '/api/wx/updateUser',
+              url: url_common + '/api/user/updateUser',
                 data: {
                     user_id: user_id,
                     user_company_name: company,
