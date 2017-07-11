@@ -7,11 +7,15 @@ Page({
   data: {
     count: 0
   },
+  onLoad:function(options){
+    console.log(options);
+  },
   onShow: function () {
     var that = this;
     app.initPage(that);
     var user_id = this.data.user_id;
-    let project_id = "ypOVDKWK";
+    let project_id = wx.getStorageSync("projectId");
+    console.log(project_id)
     // 获取浏览我的用户信息
     if (user_id) {
       wx.request({
@@ -23,10 +27,9 @@ Page({
         },
         method: 'POST',
         success: function (res) {
-          console.log("浏览了我的用户的数据")
-         
+          console.log("浏览了我的用户的数据")     
           var contacts = res.data.list.users;
-          console.log(contacts)
+          console.log(res)
           var count = res.data.list.count;
           var page_end = res.data.page_end;
           that.setData({
@@ -40,13 +43,15 @@ Page({
 
     //向后台发送信息取消红点
     wx.request({
-      url: url_common + '/api/message/setMessageToRead',
+      url: url_common + '/api/message/setProjectViewToRead',
       data: {
         user_id: user_id,
-        type_id: 3
+        project_id: project_id,
+        type_id: 6
       },
       method: "POST",
     })
+    wx.removeStorageSync("project_id")
   },
   // 添加人脉
   addNetWork: function (e) {

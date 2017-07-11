@@ -39,7 +39,9 @@ Page({
             success: function (res) {
                 console.log(res)
                 var project = res.data.data;
+                
                 var user = res.data.user; 
+                console.log(user)
                 var firstName = user.user_name.substr(0, 1) || '';
                 var pro_industry = project.pro_industry;
                 let pro_finance_stock_after = Math.round(project.pro_finance_stock_after);
