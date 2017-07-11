@@ -162,11 +162,11 @@ Page({
           });
           //一键尽调
           //公司信息
-          let company_name = that.data.pro_company_name;
+          // let company_name = that.data.pro_company_name;
           // let company_name = "阿里巴巴（中国）有限公司";
           // let company_name = "上海艺娱信息科技有限公司";
           // let company_name = "杭州投着乐网络科技有限公司"
-          // let company_name = "北京大杰致远信息技术有限公司"
+          let company_name = "北京大杰致远信息技术有限公司"
           wx.request({
             url: url_common + '/api/dataTeam/getCrawlerCompany',
             data: {
@@ -505,18 +505,21 @@ Page({
     console.log(id)
     if (id == 1) {
       this.setData({
-        noCompanyMileStoneMore: 1,
         companyMileStoneMore:1
       })
     } else if (id == 2) {
+      // 新闻接口
       this.setData({
-        companyNewsMore: 2,
-        noCompanyNews:2
+        companyNews:2
       })
     } else if (id == 3) {
+      // 竞品
       this.setData({
-        noCheckMore: 3,
-        competitorMore:3
+        competitorMore: 3
+      })
+    }else if(id == 4){
+      this.setData({
+        historyMore: 4
       })
     }
   },
@@ -526,19 +529,20 @@ Page({
     console.log(id)
     if (id == 1) {
       this.setData({
-        noCompanyMileStoneMore: 0,
-        CompanyMileStoneMore:0
+        companyMileStoneMore:0
       })
     } else if (id == 2) {
       this.setData({
-        companyNewsMore: 0,
-        noCompanyNews: 0
+        companyNews: 0
       })
     } else if (id == 3) {
       this.setData({
-        noCheckMore: 0,
-        competitorMore: 0
+        competitorMore:0
       })
+    }else if(id ==4 ){
+     this.setData({
+       historyMore:0
+     }) 
     }
   },
   // 浏览

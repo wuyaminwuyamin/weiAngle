@@ -63,9 +63,9 @@
               </view>
               <view class="{{isChecked?'brightContent':'brightContentAfter'}}" bindtap="allBrightPoint" value="{{number}}">
                 {{project.pro_goodness}}
-               
+
               </view>
-               <label class="more" bindtap="noBrightPoint" wx:if="{{isChecked == false}}">收起</label>
+              <label class="more" bindtap="noBrightPoint" wx:if="{{isChecked == false}}">收起</label>
             </view>
             <!--项目资料-->
             <view class="material" wx:if="{{project.pro_BP.length != 0|| project.pro_name != ''||project.pro_company_name != ''||project.pro_status != ''||project.pro_company_scale !=''||project.pro_website != ''||project.contact.user_name !=''||project.contact.user_mobile !=''}}">
@@ -141,7 +141,7 @@
                     <view class="personInfoList flex">
                       <label class="personName">{{core_memberArray[index].ct_member_name}}</label>
                       <label class="personPosition">{{core_memberArray[index].ct_member_career}}</label>
-                      <label class="scale">股权比例:{{core_memberArray[index].stock_scale}}</label>
+                      <label class="scale">股权比例：{{core_memberArray[index].stock_scale}}%</label>
                     </view>
                     <view class="introduce byPass">{{core_memberArray[index].ct_member_intro}}</view>
                   </view>
@@ -165,12 +165,12 @@
                       </view>
                       <view class="txtContent">
                         <view class="textTab">投后股份</view>
-                        <view class="textNum" wx:if="{{project.pro_finance_stock_after}}">{{project.pro_finance_stock_after}}</view>
+                        <view class="textNum" wx:if="{{project.pro_finance_stock_after}}">{{project.pro_finance_stock_after}}%</view>
                         <view class="textNum" wx:if="{{!project.pro_finance_stock_after}}">-</view>
                       </view>
                       <view class="txtContent">
                         <view class="textTab">估值</view>
-                        <view class="textNum" wx:if="{{project.pro_finance_value}}">{{project.pro_finance_value}}</view>
+                        <view class="textNum" wx:if="{{project.pro_finance_value}}">{{project.pro_finance_value}}万</view>
                         <view class="textNum" wx:if="{{!project.pro_finance_value}}">-</view>
                       </view>
                     </view>
@@ -181,7 +181,7 @@
                   <view class="purposeContent">{{project.pro_finance_use}}</view>
                 </view>
                 <view class="investBox">
-                  <view class="invest" wx:for="{{pro_history_financeList}}" wx:if="{{index<2||moreInfoList == 3}}" wx:key="{{index}}" >
+                  <view class="invest" wx:for="{{pro_history_financeList}}" wx:if="{{index<2||moreInfoList == 3}}" wx:key="{{index}}">
                     <view class="investBoxContent flex">
                       <image class="case_pic" src="/img/dot@3x.png"></image>
                       <view class="case_time">{{pro_history_financeList[index].finance_time}}</view>
@@ -193,8 +193,8 @@
                     <view class="investContent">{{pro_history_financeList[index].pro_finance_investor}}</view>
                   </view>
                 </view>
-                 <view class="moreInfo" bindtap="moreInfo" wx:if="{{moreInfoList !=3&&pro_history_financeList.length>2}}" data-id="{{3}}" >展开</view>
-              <view class="moreInfo" bindtap="noMoreInfo" wx:if="{{moreInfoList == 3}}" data-id="{{3}}">折叠</view>
+                <view class="moreInfo" bindtap="moreInfo" wx:if="{{moreInfoList !=3&&pro_history_financeList.length>2}}" data-id="{{3}}">展开</view>
+                <view class="moreInfo" bindtap="noMoreInfo" wx:if="{{moreInfoList == 3}}" data-id="{{3}}">折叠</view>
               </view>
             </view>
             <!--里程碑-->
@@ -204,13 +204,13 @@
                 <view class="title">里程碑</view>
               </view>
               <view class="classname">
-              <view class="milestoneContentBox" wx:for="{{mileStoneArray}}" wx:if="{{index<2 ||moreInfo == 4}}" wx:key="{{index}}" >
-                <view class="milestoneContent flex">
-                  <image class="case_pic" src="/img/dot@3x.png"></image>
-                  <view class="milestoneContentcase_time">{{mileStoneArray[index].dh_start_time}}</view>
-                  <view class="case_content">{{mileStoneArray[index].dh_event}}</view>
+                <view class="milestoneContentBox" wx:for="{{mileStoneArray}}" wx:if="{{index<2 ||moreInfo == 4}}" wx:key="{{index}}">
+                  <view class="milestoneContent flex">
+                    <image class="case_pic" src="/img/dot@3x.png"></image>
+                    <view class="milestoneContentcase_time">{{mileStoneArray[index].dh_start_time}}</view>
+                    <view class="case_content">{{mileStoneArray[index].dh_event}}</view>
+                  </view>
                 </view>
-              </view>
               </view>
               <view class="moreInfo" bindtap="moreInfo" wx:if="{{moreInfo !=4 &&project.pro_develop.length >2}}" data-id="{{4}}">展开</view>
               <view class="moreInfo" bindtap="noMoreInfo" wx:if="{{moreInfo == 4}}" data-id="{{4}}">折叠</view>
@@ -383,7 +383,7 @@
         </view>
       </scroll-view>
     </swiper-item>
-
+    <!--一键尽调页面的内容-->
     <swiper-item>
       <scroll-view scroll-y="true">
         <view id="oneKey" wx:if="{{nothing != 0}}">
@@ -543,21 +543,21 @@
                   </view>
                   <view class="companyEstablishTitle">工商注册号
                     <view class="companyEstablishText" wx:if="{{company.company_business_number}}">{{company.company_business_number}}</view>
-                     <view class="companyEstablishText" wx:if="{{!company.company_business_number}}">-</view>
+                    <view class="companyEstablishText" wx:if="{{!company.company_business_number}}">-</view>
                   </view>
                   <view class="companyEstablishTitle">登记机关
                     <view class="companyEstablishText" wx:if="{{company.company_register_office}}">{{company.company_register_office}}</view>
-                    <view class="companyEstablishText"  wx:if="{{!company.company_register_office}}">-</view>
+                    <view class="companyEstablishText" wx:if="{{!company.company_register_office}}">-</view>
                   </view>
                   <view class="companyEstablishTitle">组织机构代码
                     <view class="companyEstablishText" wx:if="{{company.company_organization_code}}">{{company.company_organization_code}}</view>
-                     <view class="companyEstablishText" wx:if="{{!company.company_organization_code}}">-</view>
+                    <view class="companyEstablishText" wx:if="{{!company.company_organization_code}}">-</view>
                   </view>
                 </view>
                 <view class="companyIntroduceRight">
                   <view class="companyEstablishTitle">企业类型
                     <view class="companyEstablishText" wx:if="{{company.company_type}}">{{company.company_type}}</view>
-                    <view class="companyEstablishText"  wx:if="{{!company.company_type}}">-</view>
+                    <view class="companyEstablishText" wx:if="{{!company.company_type}}">-</view>
                   </view>
                   <view class="companyEstablishTitle">营业期限
                     <view class="companyEstablishText" wx:if="{{company.company_business_term !=null}}">{{company.company_business_term}}</view>
@@ -593,44 +593,46 @@
           <!--历史融资-->
           <view class="historyFinance" wx:if="{{historyFinance}}">
             <view class="boxName">历史融资</view>
-            <view class="historyFinanceBox" wx:for="{{historyFinance}}" wx:if="{{index<2}}" wx:key="{{index}}">
-              <view class="milestoneContentBox">
-                <view class="companyMilestoneContent flex">
-                  <image class="case_pic" src="/img/dot@3x.png"></image>
-                  <view class="companyCase_time">{{historyFinance[index].history_financing_time}}</view>
-                  <view class="flex">
-                    <view class="companyCase_content byPass">{{historyFinance[index].history_financing_money}}</view>
-                    <view class="pro_sort competitorTips">{{historyFinance[index].history_financing_rounds}}</view>
+            <view class="classname">
+              <view class="historyFinanceBox" wx:for="{{historyFinance}}" wx:if="{{index<2 ||historyMore == 4}}" wx:key="{{index}}">
+                <view class="milestoneContentBox">
+                  <view class="companyMilestoneContent flex">
+                    <image class="case_pic" src="/img/dot@3x.png"></image>
+                    <view class="companyCase_time">{{historyFinance[index].history_financing_time}}</view>
+                    <view class="flex">
+                      <view class="companyCase_content byPass">{{historyFinance[index].history_financing_money}}</view>
+                      <view class="pro_sort competitorTips">{{historyFinance[index].history_financing_rounds}}</view>
+                    </view>
                   </view>
+                  <view class="companyNewsNetWork">{{historyFinance[index].history_financing_who}}</view>
                 </view>
-                <view class="companyNewsNetWork">{{historyFinance[index].history_financing_who}}</view>
               </view>
             </view>
-             <view class="moreInfo" catchtap="checkMore" data-id="{{1}}">展开</view>
-             <view class="moreInfo" catchtap="noCheckMore" wx:if="{{noHistoryFinanceMore == 1}}" data-id="{{1}}">折叠</view>
+           <view class="moreInfo" catchtap="checkMore" wx:if="{{historyMore != 4 && historyFinance.length>2}}" data-id="{{4}}">展开</view>
+            <view class="moreInfo" catchtap="noCheckMore" wx:if="{{historyMore == 4}}" data-id="{{4}}">折叠</view>
           </view>
           <!--里程碑-->
           <view class="companyMileStone" wx:if="{{mileStone !=''}}">
             <view class="boxName">里程碑</view>
-            <view>
-              <view class="milestone" wx:for="{{mileStone}}" wx:if="{{index<2 || noCompanyMileStoneMore == 1}}" wx:key="{{index}}">
-                <view class="milestoneContentBox">
-                  <view class="companyMilestoneContent flex">
-                    <image class="case_pic" src="/img/dot@3x.png"></image>
-                    <view class="mileCompanyCase_time">{{mileStone[index].milestone_time}}</view>
-                    <view class="mileCompanyCase_content byPass">{{mileStone[index].milestone_event}}</view>
-                  </view>
+            <view class="classname">
+            <view class="milestone" wx:for="{{mileStone}}" wx:key="{{index}}" wx:if="{{index<2 || companyMileStoneMore == 1}}">
+              <view class="milestoneContentBox ">
+                <view class="companyMilestoneContent flex ">
+                  <image class="case_pic" src="/img/dot@3x.png "></image>
+                  <view class="mileCompanyCase_time ">{{mileStone[index].milestone_time}}</view>
+                  <view class="mileCompanyCase_content byPass">{{mileStone[index].milestone_event}}</view>
                 </view>
               </view>
             </view>
-            <view class="moreInfo" catchtap="checkMore" wx:if="{{companyMileStoneMore !=1 &&mileStone >2}}" data-id="{{1}}">展开</view>
-             <view class="moreInfo" catchtap="noCheckMore" wx:if="{{noCompanyMileStoneMore == 1}}" data-id="{{1}}">折叠</view>
+            </view>
+            <view class="moreInfo" catchtap="checkMore" wx:if="{{companyMileStoneMore != 1 && mileStone.length>2}}" data-id="{{1}}">展开</view>
+            <view class="moreInfo" catchtap="noCheckMore" wx:if="{{companyMileStoneMore == 1}}" data-id="{{1}}">折叠</view>
           </view>
           <!--新闻-->
           <view class="companyNews" wx:if="{{newsList}}">
             <view class="boxName">新闻</view>
             <view class="companyNewsBox">
-              <view class="companyNewsContentBox" wx:for="{{newsList}}" wx:if="{{index<2 || noCompanyNews == 2}}" wx:key="{{index}}">
+              <view class="companyNewsContentBox" wx:for="{{newsList}}" wx:if="{{index<2 || companyNews == 2}}" wx:key="{{index}}">
                 <view class="companyMilestoneContent flex">
                   <image class="case_pic" src="/img/dot@3x.png"></image>
                   <view class="companyCase_time">{{newsList[index].project_news_time}}</view>
@@ -642,14 +644,14 @@
                 <view class="companyNewsNet">{{newsList[index].source}}</view>
               </view>
             </view>
-            <view class="moreInfo" catchtap="checkMore" wx:if="{{companyNewsMore != 2&&newsList.length>2}}" data-id="{{2}}">展开</view>
-             <view class="moreInfo" catchtap="noCheckMore" wx:if="{{noCompanyNews == 2}}" data-id="{{2}}">折叠</view>
+            <view class="moreInfo" catchtap="checkMore" wx:if="{{companyNews != 2 && competeList.length>2}}" data-id="{{2}}">展开</view>
+            <view class="moreInfo" catchtap="noCheckMore" wx:if="{{companyNews == 2}}" data-id="{{2}}">折叠</view>
           </view>
           <!--竞品-->
           <view class="competitor" wx:if="{{competeList}}">
             <view class="boxName">竟品</view>
             <view>
-              <view class="competitorBox" wx:for="{{competeList}}" wx:if="{{index<2 ||noCheckMore == 3}}" wx:key="{{index}}">
+              <view class="competitorBox" wx:for="{{competeList}}" wx:if="{{index<2 ||competitorMore == 3}}" wx:key="{{index}}">
                 <view class="competitorBoxTop flex">
                   <view class="competitorBoxLeft">
                     <image src="{{competeList[index].competing_goods_logo}}" class="competitorBoxLeft"></image>
@@ -674,7 +676,7 @@
               </view>
             </view>
             <view class="moreInfo" catchtap="checkMore" wx:if="{{competitorMore != 3 && competeList.length>2}}" data-id="{{3}}">展开</view>
-             <view class="moreInfo" catchtap="noCheckMore" wx:if="{{noCheckMore == 3}}" data-id="{{3}}">折叠</view>
+            <view class="moreInfo" catchtap="noCheckMore" wx:if="{{competitorMore == 3}}" data-id="{{3}}">折叠</view>
           </view>
         </view>
         <view class="noMessage" wx:if="{{nothing == 0}}">
