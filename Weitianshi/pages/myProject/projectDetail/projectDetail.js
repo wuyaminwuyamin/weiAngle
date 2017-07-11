@@ -122,18 +122,21 @@ Page({
               teamOfPro.push(infoTagArray[i])
             }
           }
+          console.log(tagOfPro)
           tagOfPro.forEach((x, index) => {
             tagOfPro[index].tag_name = x.tag_name;
             console.log(tagOfPro[index].tag_name)
-            that.setData({
-              tagOfPro: tagOfPro
-            })
+            
+          })
+          that.setData({
+            tagOfPro: tagOfPro
           })
           teamOfPro.forEach((x, index) => {
             teamOfPro[index].tag_name = x.tag_name;
-            that.setData({
-              teamOfPro: teamOfPro
-            })
+           
+          })
+          that.setData({
+            teamOfPro: teamOfPro
           })
           // 融资信息
           let pro_history_financeList = project.pro_history_finance;
@@ -141,10 +144,10 @@ Page({
             pro_history_financeList[index].finance_time = app.changeTime(x.finance_time);
             pro_history_financeList[index].pro_finance_scale = x.pro_finance_scale;
             pro_history_financeList[index].pro_finance_investor = x.pro_finance_investor;
-            pro_history_financeList[index].belongs_to_stage.stage_name = x.belongs_to_stage.stage_name;
-            that.setData({
-              pro_history_financeList: pro_history_financeList
-            })
+            pro_history_financeList[index].belongs_to_stage.stage_name = x.belongs_to_stage.stage_name;   
+          })
+          that.setData({
+            pro_history_financeList: pro_history_financeList
           })
           // 里程碑
           let mileStoneArray = project.pro_develop;
@@ -152,21 +155,19 @@ Page({
           mileStoneArray.forEach((x, index) => {
             mileStoneArray[index].dh_start_time = app.changeTime(x.dh_start_time);
             mileStoneArray[index].dh_event = x.dh_event;
-            that.setData({
-              mileStoneArray: mileStoneArray
-            })
           })
           that.setData({
             industy_sort: industy_sort,
-            pro_goodness: pro_goodness
+            pro_goodness: pro_goodness,
+              mileStoneArray: mileStoneArray
           });
           //一键尽调
           //公司信息
           // let company_name = that.data.pro_company_name;
           // let company_name = "阿里巴巴（中国）有限公司";
-          // let company_name = "上海艺娱信息科技有限公司";
+          let company_name = "上海艺娱信息科技有限公司";
           // let company_name = "杭州投着乐网络科技有限公司"
-          let company_name = "北京大杰致远信息技术有限公司"
+          // let company_name = "北京大杰致远信息技术有限公司"
           wx.request({
             url: url_common + '/api/dataTeam/getCrawlerCompany',
             data: {
@@ -212,6 +213,7 @@ Page({
                   success: function (res) {
                     app.console("项目信息")
                     app.console(res)
+                    if(res.data.data.length != 0){
                     let projectDetailsList = res.data.data;
                     projectDetailsList.forEach((x, index) => {
                       projectDetailsList[index].project_logo = x.project_logo;
@@ -227,17 +229,24 @@ Page({
                       var project_labelArray = new Array(); //定义一数组 
                       project_labelArray = project_labelList.split(","); //字符分割 
                       project_labelArray.forEach((x, index) => {
-                        project_labelArray[index] = x;
-                        that.setData({
-                          project_labelArray: project_labelArray
-                        })
+                        project_labelArray[index] = x; 
                       })
-
+                      that.setData({
+                        project_labelArray: project_labelArray
+                      })
+                      console.log(project_labelArray)
                       let project_views = JSON.parse(projectDetailsList[0].project_views);
                       that.setData({
                         projectDetailsList: projectDetailsList
                       })
+                      
                     })
+                  }else{
+                      let projectDetailsList = res.data.data.length;
+                      that.setData({
+                        projectDetailsList: projectDetailsList
+                      })
+                  }
                   }
                 })
                 //工商变更
@@ -373,6 +382,7 @@ Page({
                       competeList[index].competing_goods_Financing_time = app.changeTimeStyle(x.competing_goods_Financing_time);
                       competeList[index].competing_goods_Set_up = app.changeTimeStyle(x.competing_goods_Set_up);
                       competeList[index].competing_goods_industry = x.competing_goods_industry;
+                      competeList[index].competing_goods_region = x.competing_goods_region;
                       that.setData({
                         competeList: competeList
                       })

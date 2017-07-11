@@ -21,6 +21,11 @@ scroll-view {
   text-align: center;
 }
 
+.noMessage {
+  background: white;
+  height: 100%;
+}
+
 .empty {
   padding-top: 92rpx;
   width: 252rpx;
@@ -361,24 +366,26 @@ scroll-view {
   color: #333;
   line-height: 48rpx;
   text-align: left;
-  width:480rpx;
+  width: 480rpx;
 }
 
-.projectDetailType{
-  height:36rpx;
-  width:108rpx;
+.projectDetailType {
+  height: 36rpx;
+  width: 108rpx;
 }
+
 .industry {
   font-family: PingFangSC-Regular;
   font-size: 26rpx;
   color: #666;
   line-height: 26rpx;
   text-align: left;
-  
 }
-.allIndustry{
+
+.allIndustry {
   margin: 36rpx 0 24rpx 0;
 }
+
 .allProjectDetail {
   font-size: 26rpx;
   color: #666;
@@ -414,7 +421,7 @@ scroll-view {
 }
 
 .sceenPerson, .applyPerson, .investPerson {
-  font-size: 20rpx;
+  font-size: 22rpx;
   color: #ccc;
   width: 33%;
   height: 20rpx;
@@ -422,6 +429,10 @@ scroll-view {
   text-align: center;
   border-right: 2rpx solid #ccc;
   position: relative;
+}
+
+.screenPersonColor {
+  color: #999;
 }
 
 .investPerson {
@@ -440,7 +451,7 @@ scroll-view {
 
 .viewTimeAll {
   text-align: center;
-  margin-left: 60rpx;
+  margin-left: 26rpx;
 }
 
 /*选项卡*/
@@ -489,17 +500,17 @@ scroll-view {
 
 #oneKey .pro_sort {
   font-size: 20rpx;
-  color: #999;
+  color: #40587a;
   border-radius: 98rpx;
-  border: 1px solid #40587a;
+  border: 1rpx solid #40587a;
   text-align: center;
-  height: 30rpx;
+  height: 44rpx;
   width: auto;
-  line-height: 30rpx;
+  line-height: 44rpx;
   padding: 0 16rpx;
   margin-right: 24rpx;
   flex-wrap: norap;
-  margin-bottom: 42rpx;
+  margin-bottom: 24rpx;
 }
 
 #oneKey  .left {
@@ -525,7 +536,7 @@ scroll-view {
   line-height: 24rpx;
   text-align: left;
   margin: 16rpx 0;
-  width:558rpx;
+  width: 558rpx;
 }
 
 #oneKey .companyName {
@@ -1051,7 +1062,7 @@ scroll-view {
 }
 
 #oneKey .competitorName {
-  margin-top: 6rpx;
+  margin-top: 13rpx;
   font-size: 28rpx;
   color: #333;
   letter-spacing: 0;
@@ -1250,7 +1261,7 @@ scroll-view {
 }
 
 #projectBox .brightContent {
-  height:72rpx;
+  height: 72rpx;
   font-size: 26rpx;
   color: #666;
   line-height: 39rpx;
@@ -1262,8 +1273,9 @@ scroll-view {
   -webkit-line-clamp: 2;
   -webkit-box-orient: vertical;*/
 }
+
 #projectBox .brightContentAfter {
-  height:auto;
+  height: auto;
   font-size: 26rpx;
   color: #666;
   line-height: 39rpx;
@@ -1272,13 +1284,13 @@ scroll-view {
 
 #projectBox  .pro_sort {
   font-size: 20rpx;
-  color: #999;
+  color: #40587a;
   border-radius: 98rpx;
-  border: 1px solid #40587a;
+  border: 1rpx solid #40587a;
   text-align: center;
-  height: 30rpx;
+  height: 44rpx;
   width: auto;
-  line-height: 30rpx;
+  line-height: 44rpx;
   padding: 0 16rpx;
   margin-right: 24rpx;
   flex-wrap: norap;
@@ -1298,8 +1310,12 @@ scroll-view {
   margin-right: 8rpx;
   margin-bottom: 32rpx;
 }
+.grayName:last-child{
+  margin-bottom:0;
+}
 
 .personPosition {
+  margin-top:2rpx;
   font-size: 22rpx;
   color: #666;
   letter-spacing: 0;
@@ -1365,7 +1381,7 @@ scroll-view {
 
 .whiteContent {
   background-color: #fff;
-  border: 0 solid #e6e6e6;
+  border: 1rpx solid #e6e6e6;
   border-radius: 4rpx;
   width: 100%;
   height: 176rpx;
@@ -1400,15 +1416,16 @@ scroll-view {
   color: #999;
   line-height: 24rpx;
   text-align: left;
-  margin-bottom: 24rpx;
+  margin-top: 48rpx;
+  margin-bottom:24rpx;
 }
 
 .purpose .purposeContent {
   font-size: 26rpx;
   color: #666;
-  line-height: 30rpx;
+  line-height: 34rpx;
   text-align: left;
-  margin-bottom: 24rpx;
+  margin-bottom: 48rpx;
 }
 
 .case_money {
@@ -1544,8 +1561,9 @@ scroll-view {
   width: 24rpx;
   height: 24rpx;
 }
-#projectBox .teamPro{
-  margin-bottom:48rpx;
+
+#projectBox .teamPro {
+  margin-bottom: 48rpx;
 }
 
 /*空白页*/
@@ -1581,9 +1599,10 @@ scroll-view {
   height: 344rpx;
   padding-top: 48rpx;
   margin-left: 90rpx;
-  margin-top:45%;
+  margin-top: 45%;
 }
-.modal{
+
+.modal {
   background: rgba(0, 0, 0, 0.5);
   width: 100%;
   height: 100%;
@@ -1625,17 +1644,21 @@ scroll-view {
 .choiceBox {
   border-top: 1rpx solid #e6e6e6;
 }
-.industryIcon{
+
+.industryIcon {
   margin: 0 16rpx;
   width: 24rpx;
   height: 24rpx;
 }
-.industryIcon:first-child{
-  margin-left:0;
+
+.industryIcon:first-child {
+  margin-left: 0;
 }
+
 /*项目信息的展开和合并*/
-.moreInfo{
-   margin-top: 32rpx;
+
+.moreInfo {
+  margin-top: 32rpx;
   width: 100%;
   height: 22rpx;
   /*background: #fff;*/
@@ -1643,4 +1666,12 @@ scroll-view {
   color: #009eff;
   line-height: 24rpx;
   text-align: center;
+}
+.competitorPosition{
+  font-size: 24rpx;
+  color: #999;
+  letter-spacing: 0;
+  line-height: 24rpx;
+  text-align: left;
+  margin-left:32rpx;
 }
