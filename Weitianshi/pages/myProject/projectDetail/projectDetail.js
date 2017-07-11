@@ -162,11 +162,11 @@ Page({
           });
           //一键尽调
           //公司信息
-          // let company_name = that.data.pro_company_name;
+          let company_name = that.data.pro_company_name;
           // let company_name = "阿里巴巴（中国）有限公司";
           // let company_name = "上海艺娱信息科技有限公司";
           // let company_name = "杭州投着乐网络科技有限公司"
-          let company_name = "北京大杰致远信息技术有限公司"
+          // let company_name = "北京大杰致远信息技术有限公司"
           wx.request({
             url: url_common + '/api/dataTeam/getCrawlerCompany',
             data: {
