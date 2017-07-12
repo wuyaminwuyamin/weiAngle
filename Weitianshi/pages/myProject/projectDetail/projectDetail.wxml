@@ -48,7 +48,7 @@
   </view>
   <swiper current="{{currentTab}}" class="swiper-box" duration="300" style="height:336px" bindchange="bindChange">
     <swiper-item>
-      <scroll-view scroll-y="true" bindscrolltolower="loadMore">
+      <scroll-view scroll-y="true">
         <view id="projectBox">
           <view class="bigBox">
             <view class="brightPoint" wx:if="{{project.pro_goodness != ''}}">
@@ -385,8 +385,8 @@
         <view id="oneKey" wx:if="{{nothing != 0}}">
           <view class="projectDetailsBox" wx:if="{{project_labelArrayOne != ''||projectDetailsOne !=''}}">
             <view class="boxName">项目信息</view>
-            <view class="pro_sorts flex" wx:if="{{project_labelArrayOne}}">
-              <view class="pro_sort">{{project_labelArrayOne}}</view>
+            <view class="pro_sorts flex" wx:if="{{project_labelArray !=0}}">
+              <view class="pro_sort" wx:for="{{project_labelArray}}" wx:key="{{index}}">{{project_labelArray[index]}}</view>
             </view>
             <view class="companyInfo flex">
               <view class="left">

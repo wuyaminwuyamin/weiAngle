@@ -12,7 +12,9 @@ Page({
         projectName: "",
         companyName: "",
         stock: 0,
-        load: 0
+        load: 0,
+        isChecked: true,
+        textBeyond1: false,//项目亮点的全部和收起是否显示标志
     },
     onLoad: function (options) {
         var that = this;
@@ -44,6 +46,7 @@ Page({
                 var firstName = user.user_name.substr(0, 1) || '';
                 var pro_industry = project.pro_industry;
                 let industy_sort = [];
+                let pro_goodness = project.pro_goodness;
                 // 项目介绍的标签
                 for (var i = 0; i < pro_industry.length; i++) {
                   industy_sort.push(pro_industry[i].industry_name)
@@ -52,6 +55,11 @@ Page({
                   industy_sort: industy_sort,
 
                 })
+                if (pro_goodness.length > 50) {
+                  that.setData({
+                    textBeyond1: true
+                  })
+                }
                 var followed_user_id=res.data.user.user_id
                 // // 加載個人信息
                 // wx.request({
@@ -267,5 +275,16 @@ Page({
           console.log(res)
         },
       }) 
+    },
+    // 项目详情中的显示全部
+    allBrightPoint: function () {
+      this.setData({
+        isChecked: false
+      })
+    },
+    noBrightPoint: function () {
+      this.setData({
+        isChecked: true
+      })
     }
 })
