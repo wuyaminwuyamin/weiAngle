@@ -171,11 +171,13 @@ Page({
                     });
                     //一键尽调
                     //公司信息
-                    // let company_name = that.data.pro_company_name;
+                    let company_name = that.data.pro_company_name;
+                    console.log(company_name)
                     // let company_name = "阿里巴巴（中国）有限公司";
                     // let company_name = "上海艺娱信息科技有限公司";
                     // let company_name = "杭州投着乐网络科技有限公司"
-                    let company_name = "北京大杰致远信息技术有限公司"
+                    // let company_name = "北京大杰致远信息技术有限公司"
+                    // let company_name = "北京微吼时代科技有限公司"
                     wx.request({
                         url: url_common + '/api/dataTeam/getCrawlerCompany',
                         data: {
@@ -201,14 +203,13 @@ Page({
                                 if (projectInfoList.length != 0) {
                                     projectInfoList.forEach((x, index) => {
                                         projectInfoList[index] = x;
-                                        that.setData({
-                                            projectInfoList: projectInfoList
-                                        })
                                     })
                                 }
+                                console.log(projectInfoList)
                                 that.setData({
                                     company: company,
                                     time: time,
+                                    projectInfoList: projectInfoList
 
                                 })
                                 // 项目信息
@@ -222,6 +223,10 @@ Page({
                                         app.console("项目信息")
                                         app.console(res)
                                         let projectDetailsList = res.data.data;
+                                        console.log(projectDetailsList)
+                                        that.setData({
+                                          projectDetailsList: projectDetailsList
+                                        })
                                         projectDetailsList.forEach((x, index) => {
                                             projectDetailsList[index].project_logo = x.project_logo;
                                             projectDetailsList[index].company_name = x.company_name;
@@ -238,13 +243,12 @@ Page({
                                             project_labelArray.forEach((x, index) => {
                                                 project_labelArray[index] = x;
                                             })
-                                            that.setData({
-                                                project_labelArray: project_labelArray
-                                            })
+                                              that.setData({
+                                                    project_labelArray: project_labelArray,
+                                                    projectDetailsList: projectDetailsList
+                                                })
                                             let project_views = JSON.parse(projectDetailsList[0].project_views);
-                                            that.setData({
-                                                projectDetailsList: projectDetailsList
-                                            })
+                                           
                                         })
                                     }
                                 })
@@ -267,6 +271,7 @@ Page({
                                             brandInfoList[index].company_brand_status = x.company_brand_status;
                                             brandInfoList[index].company_brand_time = app.changeTime(x.company_brand_time);
                                             brandInfoList[index].company_brand_type = x.company_brand_type;
+                                            console.log(x.company_brand_time)
                                         })
                                         companyChangeList.forEach((x, index) => {
                                             companyChangeList[index].company_change_after = x.company_change_after;
@@ -289,6 +294,7 @@ Page({
                                     method: 'POST',
                                     success: function (res) {
                                         let teamList = res.data.data;
+                                        console.log(teamList)
                                         teamList.forEach((x, index) => {
                                             teamList[index].team_member_name = x.team_member_name;
                                         })
@@ -563,7 +569,7 @@ Page({
         })
     },
     // 完善公司信息
-    writeCompanyName: function () {
+    writeCompanyName: function (e) {
         console.log("完善公司信息")
         let that = this;
         that.setData({
