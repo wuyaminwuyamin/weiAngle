@@ -601,6 +601,7 @@ Page({
             },
             method: 'POST',
             success: function (res) {
+
                 let userEmail = res.data.user_email;
                 if (userEmail) {
                     that.setData({

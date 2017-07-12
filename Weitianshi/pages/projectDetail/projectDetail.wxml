@@ -52,13 +52,15 @@
         </view>
       </view>
       <!--项目亮点-->
-      <view class="brightBox" style="background: white;">
+      <view class="brightBox" style="background: white;" wx:if="{{project.pro_goodness}}">
         <view class="brightPoint">
           <view class="brightPointBox flex">
             <image src="/img/img-star.png" class="titlePic"></image>
             <view class="title star">项目亮点</view>
           </view>
-          <view class="brightContent" bindtap="more" value="{{number}}">{{project.pro_goodness}}</view>
+          <view class="brightContent" class="{{isChecked?'brightContent':'brightContentAfter'}}" value="{{number}}" wx:if="{{project.pro_goodness}}">{{project.pro_goodness}}</view>
+           <label class="more" bindtap="allBrightPoint" wx:if="{{isChecked == true&& textBeyond1}}">全部</label>
+           <label class="more" bindtap="noBrightPoint" wx:if="{{isChecked == false&& textBeyond1}}">收起</label>
         </view>
       </view>
       <!--项目详情-->
