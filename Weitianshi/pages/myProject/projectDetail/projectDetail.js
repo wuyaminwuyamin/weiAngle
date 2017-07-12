@@ -235,19 +235,21 @@ Page({
                                         app.console("项目信息")
                                         app.console(res)
                                         let projectDetailsList = res.data.data;
-                                        let projectDetailsOne = projectDetailsList[0];
-                                        let project_labelList = projectDetailsList[0].project_label;
-                                        let project_labelArray = project_labelList.split(","); //字符分割 
-                                        project_labelArray.forEach((x, index) => {
-                                            project_labelArray[index] = x;
-                                        })
-                                        let project_labelArrayOne = project_labelArray[0]
-                                        let project_views = JSON.parse(projectDetailsList[0].project_views);
-                                        that.setData({
-                                            projectDetailsOne: projectDetailsOne,
-                                            project_labelArrayOne: project_labelArrayOne
-                                        })
-
+                                        if (!projectDetailsList){
+                                            let projectDetailsOne = projectDetailsList[0];
+                                            let project_labelList = projectDetailsList[0].project_label;
+                                            let project_labelArray = project_labelList.split(","); //字符分割 
+                                            project_labelArray.forEach((x, index) => {
+                                                project_labelArray[index] = x;
+                                            })
+                                            let project_labelArrayOne = project_labelArray[0]
+                                            let project_views = JSON.parse(projectDetailsList[0].project_views);
+                                            that.setData({
+                                                projectDetailsOne: projectDetailsOne,
+                                                project_labelArrayOne: project_labelArrayOne
+                                            })
+                                            
+                                        }
                                     }
                                 })
                                 //工商变更
@@ -707,14 +709,12 @@ Page({
                     console.log(res)
                     //一键尽调
                     //公司信息
-                    let company_name = that.data.pro_company_name;
                     console.log("完善公司信息")
-                    console.log(company_name)
                     wx.request({
                         url: url_common + '/api/dataTeam/getCrawlerCompany',
                         data: {
                             user_id: user_id,
-                            company_name: company_name
+                            company_name: companyName
                         },
                         method: 'POST',
                         success: function (res) {
@@ -742,7 +742,7 @@ Page({
                                     company: company,
                                     time: time,
                                     projectInfoList: projectInfoList,
-                                    company_name: company_name
+                                    company_name: companyName
 
                                 })
                                 // 项目信息

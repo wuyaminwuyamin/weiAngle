@@ -383,7 +383,7 @@
     <swiper-item>
       <scroll-view scroll-y="true">
         <view id="oneKey" wx:if="{{nothing != 0}}">
-          <view class="projectDetailsBox" wx:if="{{project_labelArrayOne != ''||projectDetailsOne !=''}}">
+          <view class="projectDetailsBox" wx:if="{{project_labelArrayOne != '' || projectDetailsOne !=''}}">
             <view class="boxName">项目信息</view>
             <view class="pro_sorts flex" wx:if="{{project_labelArray !=0}}">
               <view class="pro_sort" wx:for="{{project_labelArray}}" wx:key="{{index}}">{{project_labelArray[index]}}</view>
