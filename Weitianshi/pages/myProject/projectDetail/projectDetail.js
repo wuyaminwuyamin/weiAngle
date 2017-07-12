@@ -30,7 +30,7 @@ Page({
         loadMorecheck: true,//下拉加载更多判断,
         isChecked: true,
         checkEmail: false,
-        textBeyond1:false,//项目亮点的全部和收起是否显示标志
+        textBeyond1: false,//项目亮点的全部和收起是否显示标志
         textBeyond2: false,//创始人的全部和收起是否显示标志
         textBeyond3: false,//资金用途的全部和收起是否显示标志
     },
@@ -92,9 +92,9 @@ Page({
                     var firstName = user.user_name.substr(0, 1);
                     // 如果项目亮点字数超出字,刚显示全部按钮
                     console.log(pro_goodness)
-                    if (pro_goodness.length>50){
+                    if (pro_goodness.length > 50) {
                         that.setData({
-                            textBeyond1:true
+                            textBeyond1: true
                         })
                     }
                     that.setData({
@@ -118,7 +118,7 @@ Page({
                             core_memberArray[index] = x;
                         })
                         that.setData({
-                              core_memberArray: core_memberArray
+                            core_memberArray: core_memberArray
                         })
                     }
                     // 标签 type:0; 项目标签 type:1 团队标签
@@ -136,15 +136,15 @@ Page({
                         tagOfPro[index].tag_name = x.tag_name;
                         console.log(tagOfPro[index].tag_name)
                     })
-                  that.setData({
-                            tagOfPro: tagOfPro
-                        })
+                    that.setData({
+                        tagOfPro: tagOfPro
+                    })
                     teamOfPro.forEach((x, index) => {
                         teamOfPro[index].tag_name = x.tag_name;
                     })
-                  that.setData({
-                            teamOfPro: teamOfPro
-                        })
+                    that.setData({
+                        teamOfPro: teamOfPro
+                    })
                     // 融资信息
                     let pro_history_financeList = project.pro_history_finance;
                     pro_history_financeList.forEach((x, index) => {
@@ -163,9 +163,9 @@ Page({
                         mileStoneArray[index].dh_start_time = app.changeTime(x.dh_start_time);
                         mileStoneArray[index].dh_event = x.dh_event;
                     })
- 
+
                     that.setData({
-                       mileStoneArray: mileStoneArray,
+                        mileStoneArray: mileStoneArray,
                         industy_sort: industy_sort,
                         pro_goodness: pro_goodness
                     });
@@ -362,9 +362,9 @@ Page({
                                             newsList[index].project_news_time = app.changeTimeStyle(x.project_news_time);
                                             newsList[index].project_news_title = x.project_news_title;
                                         })
-                                                that.setData({
-                                                newsList: newsList
-                                            })
+                                        that.setData({
+                                            newsList: newsList
+                                        })
                                     }
                                 })
                                 // 竞品
@@ -388,9 +388,9 @@ Page({
                                             competeList[index].competing_goods_Set_up = app.changeTimeStyle(x.competing_goods_Set_up);
                                             competeList[index].competing_goods_industry = x.competing_goods_industry;
                                         })
-                                                            that.setData({
-                                                competeList: competeList
-                                            })
+                                        that.setData({
+                                            competeList: competeList
+                                        })
                                     }
                                 })
                             }
