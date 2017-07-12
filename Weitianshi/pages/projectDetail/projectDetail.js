@@ -43,16 +43,14 @@ Page({
                 console.log(user)
                 var firstName = user.user_name.substr(0, 1) || '';
                 var pro_industry = project.pro_industry;
-                let pro_finance_stock_after = Math.round(project.pro_finance_stock_after);
                 let industy_sort = [];
-                console.log(project.pro_finance_stock_after)
                 // 项目介绍的标签
                 for (var i = 0; i < pro_industry.length; i++) {
                   industy_sort.push(pro_industry[i].industry_name)
                 }
                 that.setData({
                   industy_sort: industy_sort,
-                  pro_finance_stock_after: pro_finance_stock_after
+
                 })
                 var followed_user_id=res.data.user.user_id
                 // // 加載個人信息

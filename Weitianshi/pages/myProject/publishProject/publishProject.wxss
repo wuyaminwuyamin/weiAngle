@@ -132,6 +132,6 @@ page {
 }
 .pointPcIcon{
   width:24rpx;
-  height:18rpx;
+  height:22rpx;
   margin-right:8rpx;
 }

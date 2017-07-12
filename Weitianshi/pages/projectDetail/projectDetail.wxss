@@ -557,3 +557,15 @@ button::after{
   height:942rpx;
   position:relative;
 }
+.projectDetailLine{
+  padding: 0 16rpx;
+border-right:1rpx solid #999999;
+}
+.projectDetailLine:first-child{
+  padding-left:0;
+}
+.projectDetailLine:last-child{
+  border-right:none;
+}
+
+
