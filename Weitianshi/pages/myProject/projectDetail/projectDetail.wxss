@@ -1212,8 +1212,8 @@ scroll-view {
   color: #666;
   line-height: 24rpx;
   position: absolute;
-  right: 64rpx;
-  top: 280rpx;
+  right: 32rpx;
+  top: 33rpx;
 }
 
 .titleRightBPIcon {
@@ -1684,4 +1684,10 @@ scroll-view {
 
 .checkEmail{
     color: #ccc;
+}
+.coreMemberLeftBox{
+  width:82rpx;
+  height:82rpx;
+  margin-right:14rpx;
+  border-radius: 50%;
 }
