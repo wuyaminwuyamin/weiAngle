@@ -430,7 +430,7 @@ App({
             that.setData(others)
         }
     },
-    
+
     //添加人脉
     addContacts(that, addType, user_id, followed_id, callBack1, callBack2) {
         if (addType == 1) {
@@ -498,21 +498,21 @@ App({
     },
 
     // 邮箱检验
-    checkEmail(data){
+    checkEmail(data) {
         var myreg = /^(\w-*\.*)+@(\w-?)+(\.\w{2,})+$/;
         if (myreg.test(data)) {
-            return true 
+            return true
         } else {
-            return  false
+            return false
         }
     },
 
-//初始本地缓存
-globalData: {
-    error: 0,
+    //初始本地缓存
+    globalData: {
+        error: 0,
         // url: "https://wx.weitianshi.cn",
         // url_common: "https://www.weitianshi.cn"
         url: "https://wx.dev.weitianshi.cn",
-            url_common: "https://dev.weitianshi.cn"
-}
+        url_common: "https://dev.weitianshi.cn"
+    }
 });
