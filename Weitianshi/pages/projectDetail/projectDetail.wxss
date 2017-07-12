@@ -14,7 +14,12 @@ scroll-view {
   border-bottom: 5rpx solid #333;
   text-align: center;
 }
-
+.more{
+    color:#009eff;
+    font-size: 12px;
+    text-align: center;
+    display: block;
+}
 .swiper-box {
   display: block;
   height: 100%;
@@ -521,6 +526,13 @@ scroll-view {
   -webkit-box-orient: vertical;
   background: #fafafa;
 }
+.brightContentAfter {
+  height: auto;
+  font-size: 26rpx;
+  color: #666;
+  line-height: 39rpx;
+  text-align: left;
+}
 
 .title {
   font-size: 28rpx;
@@ -541,7 +553,7 @@ button::after{
 .projectDetailType{
   height:36rpx;
   width:108rpx;
-  margin-right: 6rpx;
+  margin-left:32rpx;
 }
 .industryIcon{
   margin: 0 16rpx;

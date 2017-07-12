@@ -372,6 +372,7 @@ scroll-view {
 .projectDetailType {
   height: 36rpx;
   width: 108rpx;
+  margin-left:23rpx;
 }
 
 .industry {

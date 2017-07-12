@@ -228,17 +228,18 @@ Page({
                     app.console("项目信息")
                     app.console(res)
                     let projectDetailsList = res.data.data;
+                    if (projectDetailsList.length!=0){
                     let projectDetailsOne = projectDetailsList[0];
                     let project_labelList = projectDetailsList[0].project_label;
+                    }
                     let project_labelArray = project_labelList.split(","); //字符分割 
                     project_labelArray.forEach((x, index) => {
                       project_labelArray[index] = x;
                     })
-                    let project_labelArrayOne = project_labelArray[0]
                     let project_views = JSON.parse(projectDetailsList[0].project_views);
                     that.setData({
                       projectDetailsOne: projectDetailsOne,
-                      project_labelArrayOne: project_labelArrayOne
+                      project_labelArray: project_labelArray
                     })
 
                   }
@@ -743,7 +744,6 @@ Page({
                   time: time,
                   projectInfoList: projectInfoList,
                   company_name: company_name
-
                 })
                 // 项目信息
                 wx.request({
@@ -756,33 +756,20 @@ Page({
                     app.console("项目信息")
                     app.console(res)
                     let projectDetailsList = res.data.data;
-                    console.log(projectDetailsList)
+                    if (projectDetailsList.length != 0){
+                    let projectDetailsOne = projectDetailsList[0];
+                    let project_labelList = projectDetailsList[0].project_label;
+                    let project_labelArray = project_labelList.split(","); //字符分割 
+                    project_labelArray.forEach((x, index) => {
+                      project_labelArray[index] = x;
+                    })
+                    }
+                    let project_views = JSON.parse(projectDetailsList[0].project_views);
                     that.setData({
-                      projectDetailsList: projectDetailsList
+                      projectDetailsOne: projectDetailsOne,
+                      project_labelArray: project_labelArray
                     })
-                    projectDetailsList.forEach((x, index) => {
-                      projectDetailsList[index].project_logo = x.project_logo;
-                      projectDetailsList[index].company_name = x.company_name;
-                      projectDetailsList[index].project_industry = x.project_industry;
-                      projectDetailsList[index].project_introduce = x.project_introduce;
-                      projectDetailsList[index].project_label = x.project_label;
-                      projectDetailsList[index].project_name = x.project_name;
-                      projectDetailsList[index].project_website = x.project_website;
-                      projectDetailsList[index].project_views = x.project_views;
-                      // 分割字符串
-                      var project_labelList = projectDetailsList[0].project_label;
-                      var project_labelArray = new Array(); //定义一数组 
-                      project_labelArray = project_labelList.split(","); //字符分割 
-                      project_labelArray.forEach((x, index) => {
-                        project_labelArray[index] = x;
-                      })
-                      that.setData({
-                        project_labelArray: project_labelArray,
-                        projectDetailsList: projectDetailsList
-                      })
-                      let project_views = JSON.parse(projectDetailsList[0].project_views);
 
-                    })
                   }
                 })
                 //工商变更
