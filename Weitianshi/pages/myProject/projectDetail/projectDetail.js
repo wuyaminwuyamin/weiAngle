@@ -10,7 +10,7 @@ Page({
         currentTab: 0,//选项卡
         firstName: "代",
         id: "",
-        page: 0,
+        page: 1,
         user_id: 0,
         industy_sort: [],
         bp_title: "",//bp名称
