@@ -28,10 +28,11 @@ Page({
                 },
                 method: 'POST',
                 success: function (res) {
-                    console.log("浏览了我的用户的数据")
+                    console.log("浏览了我的項目")
                     console.log(res)
                     var contacts = res.data.list.users;
                     var count = res.data.list.count;
+                    console.log(count)
                     that.setData({
                         contacts: contacts,
                         count: count,
