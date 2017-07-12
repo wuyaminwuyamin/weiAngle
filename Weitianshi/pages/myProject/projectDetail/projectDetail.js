@@ -235,21 +235,26 @@ Page({
                                         app.console("项目信息")
                                         app.console(res)
                                         let projectDetailsList = res.data.data;
-                                        if (!projectDetailsList){
+                                        console.log(projectDetailsList)
+                                        if (projectDetailsList.length!=0){
                                             let projectDetailsOne = projectDetailsList[0];
                                             let project_labelList = projectDetailsList[0].project_label;
                                             let project_labelArray = project_labelList.split(","); //字符分割 
                                             project_labelArray.forEach((x, index) => {
                                                 project_labelArray[index] = x;
                                             })
-                                            let project_labelArrayOne = project_labelArray[0]
+                                            console.log("array")
+                                            console.log(project_labelArray)
+                                            // let project_labelArrayOne = project_labelArray[0]
                                             let project_views = JSON.parse(projectDetailsList[0].project_views);
                                             that.setData({
                                                 projectDetailsOne: projectDetailsOne,
-                                                project_labelArrayOne: project_labelArrayOne
-                                            })
-                                            
+                                                project_labelArray: project_labelArray
+                                            })  
                                         }
+                                        that.setData({
+                                          projectDetailsList: projectDetailsList
+                                        }) 
                                     }
                                 })
                                 //工商变更
