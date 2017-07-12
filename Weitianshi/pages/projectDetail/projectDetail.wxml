@@ -11,15 +11,14 @@
               <image src="/img/img-dujiaqianyue@2x.png" class="projectDetailType" wx:if="{{project.is_exclusive == 1}}"></image>
               <image src="/img/img-feiduqianyue@2x.png" class="projectDetailType" wx:if="{{project.is_exclusive == 2}}"></image>
             </view>
-            <view class="industry" wx:key="{{item.industry_name}}">{{industy_sort}}</view>
-            <view class="allProjectDetail flex">
-              <image src="/img/icon-jine@2x.png" class="industryIcon"></image>
+            <view class="industry" wx:key="{{item.industry_name}}" wx:if="{{industy_sort}}">{{industy_sort}}</view>
+            <view class="allProjectDetail flex" wx:if="{{project.pro_area != ''||pro_finance_stock_after!=0||project.pro_stage!=''||project.pro_scale!=''}}">
               <view class="classname">{{project.pro_scale.scale_money}}</view>
-              <label style="margin:0 16rpx;">|</label>
+              <label style="margin:0 16rpx;" wx:if="{{project.pro_scale!=''}}">|</label>
               <view class="classname">{{pro_finance_stock_after}}%</view>
-              <image src="/img/icon-lunci-s@2x.png" class="industryIcon"></image>
+              <label style="margin:0 16rpx;" wx:if="{{pro_finance_stock_after!=0}}">|</label>
               <view class="classname">{{project.pro_stage.stage_name}}</view>
-              <image src="/img/icon-diqu-s@2x.png" class="industryIcon"></image>
+             <label style="margin:0 16rpx;" wx:if="{{project.pro_stage!=''}}">|</label>
               <view class="classname">{{project.pro_area.area_title}}</view>
             </view>
             <view class="otherInfo flex" bindtap="userDetail" data-id="{{user.user_id}}">
