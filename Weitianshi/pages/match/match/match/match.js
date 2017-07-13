@@ -293,19 +293,15 @@ Page({
                             var myPublic_page_end = res.data.page_end;
                             var newPage = res.data.data;//新请求到的数据
                             var myProject = that.data.myProject;//现在显示的数据
-                            var investors = that.data.investors;
                             console.log("触发刷新")
                             console.log(myPublicProject_page, myPublic_page_end)
                             console.log("分页加载项目融资")
                             console.log(res.data);
                             newPage.forEach((x) => {
                                 myProject.push(x)
-                                investors.push(x.match_investors)
                             })
-                            wx.setStorageSync("investors", investors)
                             that.setData({
                                 myProject: myProject,
-                                investors: investors,
                                 myPublicCheck: true,
                                 myPublic_page_end: myPublic_page_end
                             })

@@ -64,6 +64,7 @@ Page({
         var myPublicProject_page = this.data.myPublicProject_page;
         var myPublicCheck = this.data.myPublicCheck;
         var myPublic_page_end = this.data.myPublic_page_end;
+        var user_id=wx.getStorageSync('user_id');
         if (myPublicCheck) {
             if (user_id != '') {
                 //判断数据是不是已经全部显示了
@@ -87,19 +88,13 @@ Page({
                             var myPublic_page_end = res.data.page_end;
                             var newPage = res.data.data;//新请求到的数据
                             var myProject = that.data.myProject;//现在显示的数据
-                            var investors = that.data.investors;
                             console.log("触发刷新")
                             console.log(myPublicProject_page, myPublic_page_end)
                             console.log("分页加载项目融资")
                             console.log(res.data);
-                            newPage.forEach((x) => {
-                                myProject.push(x)
-                                investors.push(x.match_investors)
-                            })
-                            wx.setStorageSync("investors", investors)
+                            myProject=myProject.concat(newPage)
                             that.setData({
                                 myProject: myProject,
-                                investors: investors,
                                 myPublicCheck: true,
                                 myPublic_page_end: myPublic_page_end
                             })
