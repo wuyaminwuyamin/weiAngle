@@ -23,7 +23,7 @@ Page({
         var user_id = wx.getStorageSync('user_id');//获取我的user_id==view_id
         var page = this.data.page;
         var avatarUrl = wx.getStorageSync('avatarUrl');
-        console.log(user_id,id)
+        app.console(user_id,id)
         that.setData({
             index: index,
             id: id,
@@ -39,10 +39,10 @@ Page({
             },
             method: 'POST',
             success: function (res) {
-                console.log(res)
+                app.console(res)
                 var project = res.data.data;
                 var user = res.data.user; 
-                console.log(user)
+                app.console(user)
                 var firstName = user.user_name.substr(0, 1) || '';
                 var pro_industry = project.pro_industry;
                 let industy_sort = [];
@@ -71,11 +71,11 @@ Page({
                 //   },
                 //   method: 'POST',
                 //   success: function (res) {
-                //     console.log(res)
+                //     app.console(res)
                 //     var button_type = res.data.button_type;
                 //     let userInfo = res.data.user_info;
-                //     console.log(user_id)
-                //     console.log(button_type)
+                //     app.console(user_id)
+                //     app.console(button_type)
                 //     that.setData({
                 //       button_type: button_type,
                 //       userInfo: userInfo
@@ -91,7 +91,7 @@ Page({
                 });
 
                 var is_mine = res.data.data.is_mine;
-                //console.log(is_mine)
+                //app.console(is_mine)
                 if (is_mine == true) {
                     //请求投资人详情
                     wx.request({
@@ -103,9 +103,9 @@ Page({
                         },
                         method: 'POST',
                         success: function (res) {
-                            console.log(res)
+                            app.console(res)
                             var investor2 = res.data.data;
-                            console.log(investor2)
+                            app.console(investor2)
                             that.setData({
                                 investor2: investor2
                             });
@@ -125,27 +125,27 @@ Page({
     },
     // 用户详情
     userDetail: function (e) {
-        console.log(e);
+        app.console(e);
         var id = e.currentTarget.dataset.id
-        console.log(id)
+        app.console(id)
         wx.navigateTo({
             url: '/pages/userDetail/networkDetail/networkDetail?id=' + id,
         })
     },
     //下拉刷新
     onPullDownRefresh: function () {
-        // console.log("开启了下拉刷新")
+        // app.console("开启了下拉刷新")
         wx.stopPullDownRefresh()
     },
     //分享当前页面
     onShareAppMessage: function () {
         var pro_intro = this.data.project.pro_intro;
-        console.log(pro_intro)
+        app.console(pro_intro)
         return {
             title: pro_intro,
             path: '/pages/projectDetail/projectDetail?id=' + this.data.id
         }
-        console.log(data.project.pro_intro);
+        app.console(data.project.pro_intro);
     },
     // 加人脉
     addPerson: function (e) {
@@ -162,9 +162,9 @@ Page({
         },
         method: 'POST',
         success: function (res) {
-          console.log(res)
+          app.console(res)
           var button_type = res.data.button_type;
-          console.log(button_type)
+          app.console(button_type)
           that.setData({
             button_type : button_type
           })
@@ -190,8 +190,8 @@ Page({
                       },
                       method: 'POST',
                       success: function (res) {
-                        console.log(res)
-                        console.log("正常申请添加人脉")
+                        app.console(res)
+                        app.console("正常申请添加人脉")
                         that.setData({
                           button_type: 2
                         })
@@ -199,9 +199,9 @@ Page({
                     })
 
                   } else if (button_type == 1) {
-                    console.log("我的人脉--不显示内容")
+                    app.console("我的人脉--不显示内容")
                   } else if (button_type == 2) {
-                    console.log("待验证===显示待验证")
+                    app.console("待验证===显示待验证")
                   } else if (button_type == 3) {
                     wx.request({
                       url: url + '/api/user/handleApplyFollowUser',
@@ -213,8 +213,8 @@ Page({
                       },
                       method: 'POST',
                       success: function (res) {
-                        console.log(res)
-                        console.log("同意申請")
+                        app.console(res)
+                        app.console("同意申請")
                         that.setData({
                           button_type: 1
                         })
@@ -230,8 +230,8 @@ Page({
                       },
                       method: 'POST',
                       success: function (res) {
-                        console.log("这里是单方人脉添加")
-                        console.log(res)
+                        app.console("这里是单方人脉添加")
+                        app.console(res)
                         that.setData({
                           button_type: 1
                         })
@@ -272,7 +272,7 @@ Page({
           })
         },
         fail: function (res) {
-          console.log(res)
+          app.console(res)
         },
       }) 
     },
