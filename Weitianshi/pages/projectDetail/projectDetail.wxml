@@ -31,7 +31,10 @@
                   <view class="userName">{{user.user_name}}</view>
                   <view class="userCareer">{{user.user_career}}</view>
                   <view class="userCompany">{{user.user_company}}</view>
-                  <image src="/img/icon-gengduo2@2x.png" class="userIcon"></image>
+                <view class="contactPersonBox flex">
+                  <view class="contactPerson">联系Ta</view>
+                  <image src="/img/icon-jiantou.png" class="userIcon"></image>
+                  </view>
                 </view>
                 <!--<view class="flex">
             <view class="others_company">{{user.user_company}} | {{user.user_career}}</view>
