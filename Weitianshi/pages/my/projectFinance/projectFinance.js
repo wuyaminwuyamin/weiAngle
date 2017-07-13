@@ -65,8 +65,50 @@ Page({
         var myPublicCheck = this.data.myPublicCheck;
         var myPublic_page_end = this.data.myPublic_page_end;
         var user_id=wx.getStorageSync('user_id');
+        var followed_user_id = this.data.followed_user_id;
         if (myPublicCheck) {
-            if (user_id != '') {
+            if (followed_user_id ) {
+                //判断数据是不是已经全部显示了
+                if (myPublic_page_end == false) {
+                    myPublicProject_page++;
+                    this.setData({
+                        myPublicProject_page: myPublicProject_page,
+                        myPublicCheck: false
+                    });
+                    wx.showLoading({
+                        title: 'loading',
+                    })
+                    wx.request({
+                        url: url + '/api/project/getMyProject',
+                        data: {
+                            user_id: followed_user_id,
+                            page: myPublicProject_page,
+                        },
+                        method: 'POST',
+                        success: function (res) {
+                            var myPublic_page_end = res.data.page_end;
+                            var newPage = res.data.data;//新请求到的数据
+                            var myProject = that.data.myProject;//现在显示的数据
+                            console.log("触发刷新")
+                            console.log(myPublicProject_page, myPublic_page_end)
+                            console.log("分页加载项目融资")
+                            console.log(res.data);
+                            myProject=myProject.concat(newPage)
+                            that.setData({
+                                myProject: myProject,
+                                myPublicCheck: true,
+                                myPublic_page_end: myPublic_page_end
+                            })
+                            wx.hideLoading()
+                        },
+                    })
+                } else {
+                    rqj.errorHide(that, "没有更多了", that, 3000)
+                    that.setData({
+                        myPublicCheck: true
+                    })
+                }
+            }else{
                 //判断数据是不是已经全部显示了
                 if (myPublic_page_end == false) {
                     myPublicProject_page++;
@@ -92,7 +134,7 @@ Page({
                             console.log(myPublicProject_page, myPublic_page_end)
                             console.log("分页加载项目融资")
                             console.log(res.data);
-                            myProject=myProject.concat(newPage)
+                            myProject = myProject.concat(newPage)
                             that.setData({
                                 myProject: myProject,
                                 myPublicCheck: true,
