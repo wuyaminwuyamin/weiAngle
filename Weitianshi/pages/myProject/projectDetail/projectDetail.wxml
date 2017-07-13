@@ -603,7 +603,7 @@
                     <view class="companyCase_time" wx:if="{{historyFinance[index].history_financing_time}}">{{historyFinance[index].history_financing_time}}</view>
                     <view class="flex">
                       <view class="companyCase_content byPass">{{historyFinance[index].history_financing_money}}</view>
-                      <view class="pro_sort competitorTips">{{historyFinance[index].history_financing_rounds}}</view>
+                      <view class="pro_sort competitorTips" wx:if="{{historyFinance[index].history_financing_rounds!=''}}">{{historyFinance[index].history_financing_rounds}}</view>
                     </view>
                   </view>
                   <view class="companyNewsNetWork">{{historyFinance[index].history_financing_who}}</view>
