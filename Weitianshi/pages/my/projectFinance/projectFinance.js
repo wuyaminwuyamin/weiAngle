@@ -83,6 +83,7 @@ Page({
                         data: {
                             user_id: followed_user_id,
                             page: myPublicProject_page,
+                            type:'profile'
                         },
                         method: 'POST',
                         success: function (res) {
@@ -124,6 +125,7 @@ Page({
                         data: {
                             user_id: user_id,
                             page: myPublicProject_page,
+                            type:'profile'
                         },
                         method: 'POST',
                         success: function (res) {
