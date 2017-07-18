@@ -480,16 +480,12 @@ scroll-view {
 }
 
 .userIcon {
-  /* position: absolute;
-  top: 40rpx;
-  right: 2rpx; */
   width: 12rpx;
   height: 16rpx;
 }
 
 .userInfo {
-  /* position: relative; */
-  width:460rpx;
+  width: 460rpx;
 }
 
 /*项目亮点*/
@@ -597,12 +593,11 @@ button::after {
   color: #40587a;
   line-height: 20rpx;
   text-align: left;
-  margin-right:4rpx;
+  margin-right: 4rpx;
 }
-.contactPersonBox{
-    position: absolute;
+
+.contactPersonBox {
+  position: absolute;
   top: 40rpx;
   right: 2rpx;
-  /* width: 12rpx;
-  height: 16rpx; */
 }
