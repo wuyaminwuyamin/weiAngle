@@ -32,7 +32,7 @@ Page({
         }
         //获取我的项目匹配到的投资人
         wx.request({
-            url: url + '/api/project/getMyProject',
+            url: url_common + '/api/project/getMyProjectList',
             data: {
                 user_id: user_id
             },
@@ -79,7 +79,7 @@ Page({
                         title: 'loading',
                     })
                     wx.request({
-                        url: url + '/api/project/getMyProject',
+                        url: url_common + '/api/project/getMyProjectList',
                         data: {
                             user_id: followed_user_id,
                             page: myPublicProject_page,
@@ -121,7 +121,7 @@ Page({
                         title: 'loading',
                     })
                     wx.request({
-                        url: url + '/api/project/getMyProject',
+                        url: url_common + '/api/project/getMyProjectList',
                         data: {
                             user_id: user_id,
                             page: myPublicProject_page,
@@ -177,7 +177,7 @@ Page({
         var currentTab=this.data.currentTab;
         if(currentTab!=1){
             wx.navigateTo({
-                url: '/pages/myProject/editProject/editProject?pro_id=' + id + "&&user_id=" + user_id,
+                url: '/pages/myProject/editProject/editProject?project_id=' + id + "&&user_id=" + user_id,
             })
         }
     },

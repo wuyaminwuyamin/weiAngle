@@ -233,7 +233,7 @@ Page({
         // console.log(user_id, describe, industryId, console_stage, console_expect, provinceNum, cityNum, tips)
         if (describe !== "" && industryValue !== "选择领域" && console_stage !== 0 && console_expect != 0 && provinceNum !== 0 && cityNum !== 0 && tips !== 4 && pro_goodness !== "") {
             wx.request({
-                url: url + '/api/project/insertProject',
+                url: url_common + '/api/project/createProject',
                 data: {
                     user_id: user_id,
                     pro_intro: describe,
@@ -250,7 +250,7 @@ Page({
                     console.log(res)
                     if (res.data.status_code == 2000000) {
                         //数据清空
-                        wx.setStorageSync('project_id', res.data.project_index);
+                        wx.setStorageSync('project_id', res.data.project_id);
                         wx.setStorageSync('describe', "");
                         wx.setStorageSync('console_stage', 0);
                         wx.setStorageSync('console_expect', 0);

@@ -69,11 +69,11 @@ Page({
         var other_id = wx.getStorageSync('user_id');
         if (user_id == other_id) {
             // 载入买家图谱数据
-            wx.request({
-                url: url + '/api/project/getProjectMatchInvestors',
+            wx.request({u
+                url: url_common + '/api/project/getProjectMatchInvestors',
                 data: {
                     user_id: user_id,
-                    pro_id: id,
+                    project_id: id,
                     page: currentPage
                 },
                 method: 'POST',
@@ -502,10 +502,10 @@ Page({
         var currentPage=this.data.currentPage;
         console.log(this.data)
         var request = {
-            url: url + '/api/project/getProjectMatchInvestors',
+            url: url_common + '/api/project/getProjectMatchInvestors',
             data: {
                 user_id: user_id,
-                pro_id: id,
+                project_id: id,
                 page: currentPage
             },
         }

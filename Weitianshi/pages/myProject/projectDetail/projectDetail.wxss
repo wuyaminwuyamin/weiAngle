@@ -1124,6 +1124,8 @@ scroll-view {
   position: absolute;
   right: 32rpx;
   margin: 0;
+  height:30rpx;
+  line-height: 30rpx;
 }
 
 #oneKey .oneKeyIcon {
@@ -1220,7 +1222,7 @@ scroll-view {
 }
 
 .titleRightBPIcon {
-  height: 24rpx;
+  height: 20rpx;
   width: 12rpx;
 }
 
@@ -1264,7 +1266,7 @@ scroll-view {
 }
 
 #projectBox .brightContent {
-  height: 72rpx;
+  /* height: 72rpx; */
   font-size: 26rpx;
   color: #666;
   line-height: 39rpx;
@@ -1704,3 +1706,9 @@ border-right:1rpx solid #999999;
 .projectDetailLine:last-child{
   border-right:none;
 }
+
+/* .byPass {
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+} */

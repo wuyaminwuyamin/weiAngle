@@ -55,9 +55,10 @@ Page({
             if (user_id != 0) {
                 //获取我的项目信息
                 wx.request({
-                    url: url + '/api/project/getMyProject',
+                    url: url_common + '/api/project/getMyProjectList',
                     data: {
-                        user_id: user_id
+                        user_id: user_id,
+                        type:'match'
                     },
                     method: 'POST',
                     success: function (res) {
@@ -283,10 +284,11 @@ Page({
                         title: 'loading',
                     })
                     wx.request({
-                        url: url + '/api/project/getMyProject',
+                        url: url_common + '/api/project/getMyProjectList',
                         data: {
                             user_id: user_id,
                             page: myPublicProject_page,
+                            type:'match'
                         },
                         method: 'POST',
                         success: function (res) {
