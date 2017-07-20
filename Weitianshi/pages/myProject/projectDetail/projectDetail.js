@@ -69,7 +69,7 @@ Page({
         var other_id = wx.getStorageSync('user_id');
         if (user_id == other_id) {
             // 载入买家图谱数据
-            wx.request({
+            wx.request({u
                 url: url_common + '/api/project/getProjectMatchInvestors',
                 data: {
                     user_id: user_id,
