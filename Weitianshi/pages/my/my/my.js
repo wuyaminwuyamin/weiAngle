@@ -106,6 +106,11 @@ Page({
       url: '/pages/message/beAddedContacts/beAddedContacts'
     })
   },
+  pushTo:function(){
+    wx.navigateTo({
+      url: '/pages/message/bePushedProject/bePushedProject'
+    })
+  },
   //寻找案源
   findProjectEdit: function () {
     if (!this.data.options) {

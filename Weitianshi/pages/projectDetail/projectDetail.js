@@ -95,10 +95,10 @@ Page({
                 if (is_mine == true) {
                     //请求投资人详情
                     wx.request({
-                        url: url + '/api/project/getProjectMatchInvestors',
+                        url: url_common + '/api/project/getProjectMatchInvestors',
                         data: {
                             user_id: user_id,
-                            pro_id: that.data.id,
+                            project_id: that.data.id,
                             page: page
                         },
                         method: 'POST',

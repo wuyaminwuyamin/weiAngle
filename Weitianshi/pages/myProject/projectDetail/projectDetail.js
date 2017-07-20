@@ -44,42 +44,54 @@ Page({
         })
     },
     onShow: function () {
+    
         //  投资人数据
         var that = this;
         var id = this.data.id;
         var index = this.data.index;
         var user_id = wx.getStorageSync('user_id');
-        var page = this.data.page;
+        var currentPage = this.data.currentPage;
         var avatarUrl = wx.getStorageSync('avatarUrl');
-        var investors = wx.getStorageSync('investors') || '';//所有项目对应四位投资人
-        app.console(investors)
+        // 为上拉加载准备
+        app.initPage(that);
         app.console(index)
         that.setData({
             user_id: user_id,
             avatarUrl: avatarUrl,
-            investor: investors[index],
         });
         var investor = this.data.investor;
         var industry_tag = [];
         var scale_tag = [];
         var stage_tag = [];
         var pro_goodness = "";
-        if (investors != '') {
-            for (var i = 0; i < investor.length; i++) {
-                industry_tag.push(investor[i].industry_tag);
-                scale_tag.push(investor[i].scale_tag);
-                stage_tag.push(investor[i].stage_tag);
-            }
-            that.setData({
-                industry_tag: industry_tag,
-                stage_tag: stage_tag,
-                scale_tag: scale_tag
-            });
-        }
         app.loginPage(function () { });
         //项目详情(不包括投资人)
         var other_id = wx.getStorageSync('user_id');
         if (user_id == other_id) {
+            // 载入买家图谱数据
+            wx.request({
+                url: url_common + '/api/project/getProjectMatchInvestors',
+                data: {
+                    user_id: user_id,
+                    project_id: id,
+                    page: currentPage
+                },
+                method: 'POST',
+                success: function (res) {
+                    var investor2 = res.data.data;
+                    console.log(that.data.pro_id)
+                    console.log(res)
+                    that.setData({
+                        investor2: investor2,
+                        page_end: res.data.page_end
+                    });
+                    wx.hideToast({
+                        title: 'loading...',
+                        icon: 'loading'
+                    })
+                }
+            })
+            // 载入项目详情数据
             wx.request({
                 url: url_common + '/api/project/getProjectDetail',
                 data: {
@@ -433,13 +445,14 @@ Page({
         })
     },
     //触底加载
-    loadMore: function () {
+    /* loadMore: function () {
         var that = this;
         var page = this.data.page;
         var user_id = this.data.user_id;
         var pro_id = this.data.id;
         var page_end = this.data.page_end;
         var loadMorecheck = this.data.loadMorecheck;
+        var investor2=this.data.investor2;
         if (loadMorecheck) {
             if (page_end == false) {
                 wx.showToast({
@@ -459,8 +472,10 @@ Page({
                     },
                     method: 'POST',
                     success: function (res) {
-                        var investor2 = res.data.data;
-                        app.console(investor2)
+                        var newPage = res.data.data;
+                        console.log(investor2,newPage)
+                        investor2=investor2.concat(newPage)
+                        console.log(investor2)
                         that.setData({
                             investor2: investor2,
                             page_end: res.data.page_end
@@ -478,6 +493,24 @@ Page({
         this.setData({
             loadMorecheck: false
         });
+    }, */
+    // 买家图谱上拉加载
+    loadMore:function(){
+        var that=this;
+        var user_id = this.data.user_id;
+        var id=this.data.id;
+        var currentPage=this.data.currentPage;
+        console.log(this.data)
+        var request = {
+            url: url_common + '/api/project/getProjectMatchInvestors',
+            data: {
+                user_id: user_id,
+                project_id: id,
+                page: currentPage
+            },
+        }
+        //调用通用加载函数
+        app.loadMore(that, request, "investor2", that.data.investor2)
     },
     //维护项目
     maintainProject() {

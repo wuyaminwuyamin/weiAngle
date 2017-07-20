@@ -1,5 +1,6 @@
 {
     "pages": [
+        "pages/message/bePushedProject/bePushedProject",
         "pages/match/match/match/match",
         "pages/my/my/my",
         "pages/search/filter4/filter4",
@@ -28,7 +29,7 @@
         "pages/message/viewProjectUser/viewProjectUser",
         "pages/message/applyMyProject/applyMyProject",
         "pages/message/myApplyProject/myApplyProject",
-        "pages/message/bePushedProject/bePushedProject",
+ 
         "pages/message/myPushProject/myPushProject",
         "pages/message/beAddedContacts/beAddedContacts",
         "pages/message/browseMe/browseMe",

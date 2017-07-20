@@ -383,10 +383,10 @@ Page({
         var upLoad = that.data.upLoad;
         // console.log(2222)
         wx.request({
-            url: url + '/api/project/updateProject',
+          url: url_common + '/api/project/updateProject',
             data: {
                 user_id: user_id,
-                pro_id: pro_id,
+                project_id: pro_id,
                 pro_intro: describe,
                 industry: industryId,
                 pro_finance_stage: console_stage,

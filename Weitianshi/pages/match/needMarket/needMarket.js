@@ -29,7 +29,7 @@ Page({
     });
     //融资需求获取数据
     wx.request({
-      url: url + '/api/project/projectMarket',
+      url: url_common + '/api/project/getMarketProjectList',
       data: {
       
       },
@@ -116,18 +116,13 @@ Page({
     wx.request({
       url: url + '/api/project/projectIsMine',
       data: {
-        pro_id: id
+        project_id: id
       },
       method: 'POST',
       success: function (res) {
         var that = this;
         var userId = res.data.user_id;
         var user = wx.getStorageSync('user_id');
-        // console.log(userId);
-        // console.log(user);
-        // that.setData({
-        //   userId : userId
-        // })
         if (userId==user ) {
           wx.navigateTo({
             url: '/pages/myProject/projectDetail/projectDetail?id=' + id + '&&index=' + 0
@@ -188,7 +183,7 @@ Page({
     console.log(financingPage);
     if (financingNeedcheck) {
       wx.request({
-        url: url + '/api/project/projectMarket',
+        url: url_common + '/api/project/getMarketProjectList',
         data: {
           page: financingPage
         },
