@@ -82,14 +82,19 @@ Page({
 
     //跳转到人脉申请页面
     beAddedContacts: function () {
-        console.log("跳转")
         wx.navigateTo({
             url: '/pages/message/beAddedContacts/beAddedContacts',
         })
-    }
+    },
     //  beAddedContacts: function (e) {
     //   wx.navigateTo({
     //     url: '/pages/message/beAddedContacts/beAddedContacts',
     //   })
     // }
+    toIdentity:function(){
+    console.log("跳转身份认证")
+      wx.navigateTo({
+        url: '/pages/my/identity/indentity/indentity',
+      })
+    }
 })

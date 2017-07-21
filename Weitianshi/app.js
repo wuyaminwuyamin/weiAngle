@@ -45,7 +45,7 @@ App({
 
         //获取各分类的信息并存入缓存
         wx.request({
-            url: url_common + '/api/category/getWxProjectCategory',
+          url: url_common + '/api/category/getProjectCategory',
             method: 'POST',
             success: function (res) {
                 var thisData = res.data.data;
