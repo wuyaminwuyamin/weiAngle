@@ -45,7 +45,7 @@ App({
 
         //获取各分类的信息并存入缓存
         wx.request({
-            url: url_common + '/api/category/getWxProjectCategory',
+          url: url_common + '/api/category/getProjectCategory',
             method: 'POST',
             success: function (res) {
                 var thisData = res.data.data;
@@ -312,7 +312,7 @@ App({
         var user_id = this.globalData.user_id;
         // 核对用户信息是否完整
         wx.request({
-            url: this.globalData.url + '/api/user/checkUserInfo',
+            url: this.globalData.url_common + '/api/user/checkUserInfo',
             data: {
                 user_id: user_id
             },

@@ -409,6 +409,7 @@ scroll-view {
   padding: 32rpx;
   height: auto;
   padding-bottom: 0;
+  position: relative;
 }
 
 .describle {
@@ -471,7 +472,7 @@ scroll-view {
   width: 320rpx;
   text-overflow: ellipsis;
   overflow: hidden;
-  white-space:nowrap; 
+  white-space: nowrap;
 }
 
 .userName {
@@ -548,20 +549,16 @@ scroll-view {
   text-align: left;
 }
 
-.push {
-  height: 88rpx;
-  font-size: 28rpx;
-  line-height: 88rpx;
-}
-
 button::after {
   border: none;
 }
 
 .projectDetailType {
-  height: 36rpx;
-  width: 108rpx;
-  margin-left: 32rpx;
+  height: 92rpx;
+  width: 92rpx;
+  right: -3rpx;
+  top: -6rpx;
+  position: absolute;
 }
 
 .industryIcon {
@@ -606,4 +603,45 @@ button::after {
   position: absolute;
   top: 40rpx;
   right: 2rpx;
+}
+
+/*认证细腻  */
+
+.accreditation {
+  background: #fff1e8;
+  height: 88rpx;
+  font-size: 24rpx;
+  color: #999;
+  line-height: 88rpx;
+  text-align: left;
+  padding-left: 32rpx;
+}
+
+.toAccreditation {
+  font-size: 24rpx;
+  color: #fff;
+  line-height: 52rpx;
+  text-align: center;
+  background: #40587a;
+  border-radius: 4rpx;
+  width: 136rpx;
+  height: 52rpx;
+  margin-top:18rpx;
+  margin-left:184rpx;
+}
+.push {
+  height: 88rpx;
+  font-size: 28rpx;
+  line-height: 88rpx;
+  background: #40587a;
+  text-align: center;
+  color: #fff;
+}
+.pushing{
+  background:#cccccc;
+  height: 88rpx;
+  font-size: 28rpx;
+  line-height: 88rpx;
+  text-align: center;
+  color: #fff;
 }

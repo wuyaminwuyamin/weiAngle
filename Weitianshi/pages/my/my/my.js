@@ -108,7 +108,7 @@ Page({
   },
   pushTo:function(){
     wx.navigateTo({
-      url: '/pages/message/bePushedProject/bePushedProject'
+      url: '/pages/message/potentialProject/potentialProject'
     })
   },
   //寻找案源
