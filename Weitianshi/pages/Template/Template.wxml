@@ -518,7 +518,7 @@
     <image src="{{item.iconPath}}"  class="picture"></image>
     <view class="inforBox">
       <view class="identityName">{{item.identityName}}</view>
-       <view class="indentityExplain">{{item.indentityExplain}}</view> 
+      <view class="indentityExplain">{{item.indentityExplain}}</view> 
     </view>
     <view>
        <image src="/img/icon-gengduo2@2x.png" class="arrowStyle"></image> 

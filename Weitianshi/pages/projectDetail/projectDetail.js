@@ -121,6 +121,22 @@ Page({
         }
       },
     });
+  },
+  onShow:function(){
+    let user_id = wx.getStorageSync('user_id');
+    let that = this;
+    wx.request({
+      url: url_common + '/api/user/getUserGroupByStatus',
+      data: {
+        user_id: user_id
+      },
+      method: 'POST',
+      success: function (res) {
+        let status = res.data.status;
+        console.log(status);
+      }
+    })
+
 
   },
   // 用户详情
@@ -160,14 +176,15 @@ Page({
   },
   // 去认证
   toAccreditation: function () {
+    console.log("去认证")
     wx.navigateTo({
       url: '/pages/my/identity/indentity/indentity'
     })
   },
   // 申请查看
   applyProject: function () {
-    let user_id = wx.getStorageSync('user_id');
-    app.infoJump("/pages/projectDetail/projectDetail");
+   
+
     wx.request({
       url: url_common + '/api/user/getUserGroupByStatus',
       data: {
@@ -178,12 +195,13 @@ Page({
         // 0:未认证1:待审核 2 审核通过 3审核未通过
         let status = res.data.status;
         if (status == 0) {
+          app.infoJump("/pages/projectDetail/projectDetail");
           console.log(status)
           wx.showModal({
             title: '友情提示',
-            content: '认证的投资人,买房FA才可申请查看项目',
-            confirmText:"去认证",
-            confirmColor:"#333333;",
+            content: '认证的投资人,买方FA才可申请查看项目',
+            confirmText: "去认证",
+            confirmColor: "#333333",
             success: function (res) {
               if (res.confirm) {
                 console.log('用户点击确定')
@@ -228,19 +246,6 @@ Page({
         }
       }
     })
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
     // wx.showModal({
