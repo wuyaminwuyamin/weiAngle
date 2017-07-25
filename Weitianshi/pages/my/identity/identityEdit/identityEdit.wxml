@@ -1,5 +1,5 @@
 <view class="classname">
-  <view class="visitCard flex">
+  <view class="visitCard flex" bindtap="scanIDcard">
     <view class="visitCardMessage">名片</view>
     <image src="/img/icon-mingpian-n@2x.png" class="pushIdCard"></image>
     <!-- <image src="/img/icon-mingpian-s@2x.png" class="pushIdCard"></image> -->

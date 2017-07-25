@@ -104,7 +104,7 @@ Page({
         // button_type==0  0申请加人脉按钮，1不显示任何按钮  2待验证   3同意加为人脉  4加为单方人脉
         //判断用户信息是否完整
         wx.request({
-            url: url + '/api/user/checkUserInfo',
+            url: url_common + '/api/user/checkUserInfo',
             data: {
                 user_id: view_id
             },

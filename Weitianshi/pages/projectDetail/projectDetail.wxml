@@ -8,17 +8,17 @@
           <view class="projectDetailBox" bindtap="toMy">
             <view class="flex">
               <view class="describle">{{project.pro_intro}}</view>
-              <image src="/img/img-dujiaqianyue@2x.png" class="projectDetailType" wx:if="{{project.is_exclusive == 1}}"></image>
-              <image src="/img/img-feiduqianyue@2x.png" class="projectDetailType" wx:if="{{project.is_exclusive == 2}}"></image>
+              <image src="/img/img-dujiaqianyue1@2x.png" class="projectDetailType" wx:if="{{project.is_exclusive == 1}}"></image>
+              <image src="/img/img-feidujiaqianyue@2x.png" class="projectDetailType" wx:if="{{project.is_exclusive == 2}}"></image>
             </view>
             <view class="industry" wx:key="{{item.industry_name}}" wx:if="{{industy_sort}}">{{industy_sort}}</view>
             <view class="allProjectDetail flex" wx:if="{{project.pro_area != ''||pro_finance_stock_after!=0||project.pro_stage!=''||project.pro_scale!=''}}">
               <view class="projectDetailLine" wx:if="{{project.pro_scale!=''}}">{{project.pro_scale.scale_money}}</view>
-             
+
               <view class="projectDetailLine" wx:if="{{pro_finance_stock_after!=0}}">{{project.pro_finance_stock_after}}%</view>
-            
+
               <view class="projectDetailLine" wx:if="{{project.pro_stage!=''}}">{{project.pro_stage.stage_name}}</view>
-            
+
               <view class="projectDetailLine" wx:if="{{project.pro_area != ''}}">{{project.pro_area.area_title}}</view>
             </view>
             <view class="otherInfo flex" bindtap="userDetail" data-id="{{user.user_id}}">
@@ -31,24 +31,11 @@
                   <view class="userName">{{user.user_name}}</view>
                   <view class="userCareer">{{user.user_career}}</view>
                   <view class="userCompany">{{user.user_company}}</view>
-                <view class="contactPersonBox flex">
-                  <view class="contactPerson">联系Ta</view>
-                  <image src="/img/icon-jiantou.png" class="userIcon"></image>
+                  <view class="contactPersonBox flex">
+                    <view class="contactPerson">联系Ta</view>
+                    <image src="/img/icon-jiantou.png" class="userIcon"></image>
                   </view>
                 </view>
-                <!--<view class="flex">
-            <view class="others_company">{{user.user_company}} | {{user.user_career}}</view>
-            <view class="addPerson" wx:if="{{button_type == 0 ||button_type == 3||button_type == 4}}">
-              <view class="addPersonBtn" catchtap="addPerson" data-id="{{user.user_id}}">加人脉</view>
-            </view>
-            <view class="waitPerson" wx:if="{{button_type == 1 && followed_user_id!==user_id}}">
-              <view class="waitPersonBtn" style="background:#ffffff;color:#cccccc;">已为人脉</view>
-            </view>
-            <view class="waitPerson" wx:if="{{button_type == 2}}">
-              <view class="waitPersonBtn" style="background:#ffffff;color:#cccccc;">待验证</view>
-            </view>
-          </view>-->
-                <!--<view class="ohters_position"></view>-->
               </view>
             </view>
           </view>
@@ -62,8 +49,8 @@
             <view class="title star">项目亮点</view>
           </view>
           <view class="brightContent" class="{{isChecked?'brightContent':'brightContentAfter'}}" value="{{number}}" wx:if="{{project.pro_goodness}}">{{project.pro_goodness}}</view>
-           <label class="more" bindtap="allBrightPoint" wx:if="{{isChecked == true&& textBeyond1}}">全部</label>
-           <label class="more" bindtap="noBrightPoint" wx:if="{{isChecked == false&& textBeyond1}}">收起</label>
+          <label class="more" bindtap="allBrightPoint" wx:if="{{isChecked == true&& textBeyond1}}">全部</label>
+          <label class="more" bindtap="noBrightPoint" wx:if="{{isChecked == false&& textBeyond1}}">收起</label>
         </view>
       </view>
       <!--项目详情-->
@@ -148,6 +135,12 @@
 </scroll-view>
 
 <!--下面的浮动按钮-->
-<view class="floatBtn flex ">
-  <button class="push" bindtap="">申请查看(近期开放)</button>
+<view class="floatBtn">
+  <view class="accreditation flex">
+    <view>认证投资人、买家FA才可申请查看</view>
+    <view class="toAccreditation" bindtap="toAccreditation">立即认证</view>
+  </view>
+  <view class="push" bindtap="applyProject">申请查看</view>
+  <view class="pushing">申请中</view>
 </view>
+<!--友情提示  -->

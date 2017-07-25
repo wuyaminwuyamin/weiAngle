@@ -96,7 +96,7 @@ Page({
         if (button_type == 0) {
             //走正常申请流程
             wx.request({
-                url: url + '/api/user/checkUserInfo',
+                url: url_common + '/api/user/checkUserInfo',
                 data: {
                     user_id: user_id
                 },
@@ -178,7 +178,7 @@ Page({
             wx.setStorageSync("driectAdd", 1)
             //判断用户信息是否完整
             wx.request({
-                url: url + '/api/user/checkUserInfo',
+                url: url_common + '/api/user/checkUserInfo',
                 data: {
                     user_id: user_id
                 },

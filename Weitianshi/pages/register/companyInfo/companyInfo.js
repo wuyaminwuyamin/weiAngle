@@ -21,7 +21,7 @@ Page({
         var user_id = wx.getStorageSync('user_id');
         // console.log(user_id);
         wx.request({
-            url: url + '/api/user/checkUserInfo',
+            url: url_common + '/api/user/checkUserInfo',
             data: {
                 user_id: user_id
             },

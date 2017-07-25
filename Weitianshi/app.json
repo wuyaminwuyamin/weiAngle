@@ -1,6 +1,6 @@
 {
     "pages": [
-      "pages/my/identity/identityResult/identityResult",
+      
         "pages/match/match/match/match",
         "pages/my/my/my",
         "pages/search/filter4/filter4",
@@ -27,7 +27,7 @@
         "pages/identity/entrepreneurFA/entrepreneurFA",
         "pages/message/message/message",
         "pages/message/viewProjectUser/viewProjectUser",
-        "pages/message/applyProject/applyProject",
+       "pages/message/applyProject/applyProject",
         "pages/message/potentialProject/potentialProject",
         "pages/message/pushProject/pushProject",
         "pages/message/beAddedContacts/beAddedContacts",
@@ -61,7 +61,8 @@
         "pages/my/projectFinance/projectFinance",
         "pages/my/qrCode/qrCode",
         "pages/my/identity/indentity/indentity",
-        "pages/my/identity/identityEdit/identityEdit"
+        "pages/my/identity/identityEdit/identityEdit",
+        "pages/my/identity/identityResult/identityResult"
         
     ],
     "window": {

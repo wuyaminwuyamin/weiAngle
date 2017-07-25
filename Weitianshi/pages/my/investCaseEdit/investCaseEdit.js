@@ -187,7 +187,7 @@ Page({
                 console.log(case_index)
             } else {
                 wx.request({
-                    url: url + '/api/user/createUserProjectCase',
+                    url: url_common + '/api/user/createUserProjectCase',
                     data: {
                         user_id: user_id,
                         case_name: case_name,

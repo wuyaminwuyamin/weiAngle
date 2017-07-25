@@ -69,7 +69,7 @@ Page({
         var other_id = wx.getStorageSync('user_id');
         if (user_id == other_id) {
             // 载入买家图谱数据
-            wx.request({u
+            wx.request({
                 url: url_common + '/api/project/getProjectMatchInvestors',
                 data: {
                     user_id: user_id,
@@ -635,7 +635,7 @@ Page({
         let that = this;
         let user_id = wx.getStorageSync("user_id");
         wx.request({
-            url: url + '/api/user/checkUserInfo',
+            url: url_common + '/api/user/checkUserInfo',
             data: {
                 user_id: user_id
             },
