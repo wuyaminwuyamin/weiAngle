@@ -18,12 +18,32 @@
 
   <!--投资案例-->
   <template is="investProject" data="{{invest_case:invest_case,canEdit:canEdit}}"></template>
-
+  <view style="height:88rpx;"></view>
   <!--加人脉按钮-->
-  <view class="floatBtn flex addPerson" wx:if="{{button_type==0||button_type==3}}">
-    <button class="addPersonBtn" bindtap="addPerson" >加人脉</button>
+  <!-- button_type==0  0申请加人脉按钮，1不显示任何按钮  2待验证   3同意加为人脉  4加为单方人脉 -->
+  <view class="floatBtn flex addPerson" wx:if="{{button_type==0||button_type==3||button_type == 4}}">
+    <view class="flex pushProjectBox">
+      <image src="/img/icon-tuisong-w@2x.png" class="iconStyle"></image>
+      <view class="pushProjectTo" bindtap="pushProjectTo">推送项目</view>
+    </view>
+    <view class="flex addPersonBox">
+      <image src="/img/icon-jiarenmai-w@2x.png" class="iconStyle"></image>
+      <view class="addPersonBtn" bindtap="addPerson">加人脉</view>
+    </view>
   </view>
-  <view class="floatBtn flex waitPerson" wx:if="{{button_type==2}}">
-    <button class="waitPersonBtn" style="background: #f2f2f2;color:#cccccc;">待验证</button>
+  <!--button-type == 2 待验证状态  -->
+  <view class="floatBtn flex addPerson" wx:if="{{button_type==2}}">
+    <view class="flex pushProjectBox">
+      <image src="/img/icon-tuisong-w@2x.png" class="iconStyle"></image>
+      <view class="pushProjectTo" bindtap="pushProjectTo">推送项目</view>
+    </view>
+    <view class="flex addPersonBox">
+      <image src="/img/icon-daiyanzheng@3x.png" class="iconStyle"></image>
+      <view class="addPersonBtn">待验证</view>
+    </view>
+  </view>
+  <view class="floatBtn flex pushPro" wx:if="{{button_type==1}}">
+    <image src="/img/icon-tuisong-w@2x.png" class="iconStyle"></image>
+    <view class="pushProjectAfter" bindtap="pushProjectTo">推送项目</view>
   </view>
 </view>

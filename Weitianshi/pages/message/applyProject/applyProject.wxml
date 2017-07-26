@@ -60,6 +60,10 @@
         </view>
         <view id="time">05-04 19:00</view>
       </view>
+      <view class="empty flex">
+        <image src="/img/img-kong1@2x.png" class="noData"></image>
+        <view class="hasNothing">暂无数据</view>
+      </view>
     </scroll-view>
   </swiper-item>
   <!--我申请查看的项目  -->
@@ -68,6 +72,7 @@
       <block>
         <template is="personModal"></template>
       </block>
+      <view class="empty"></view>
     </scroll-view>
   </swiper-item>
 </swiper>

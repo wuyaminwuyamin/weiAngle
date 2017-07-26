@@ -200,9 +200,9 @@
             <view class="projectInfo flex">
               <view class="seeNum">1人看过项目</view>
               <view class="applyBox flex">
-                <view class="apply">同意查看</view>
-                <!-- <view class="apply">拒绝</view>
-                 <view class="applying">申请中</view>  -->
+                <!-- <view class="apply">同意查看</view> -->
+                <view class="reapply">重新申请</view>
+                 <!-- <view class="applying">申请中</view> -->
               </view>
             </view>
           </view>

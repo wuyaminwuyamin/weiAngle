@@ -183,8 +183,7 @@ Page({
   },
   // 申请查看
   applyProject: function () {
-   
-
+    let user_id = wx.getStorageSync('user_id');
     wx.request({
       url: url_common + '/api/user/getUserGroupByStatus',
       data: {

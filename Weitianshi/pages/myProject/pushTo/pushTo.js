@@ -5,80 +5,41 @@ var url = app.globalData.url;
 var url_common = app.globalData.url_common;
 Page({
 
-  /**
-   * 页面的初始数据
-   */
   data: {
-  
+
   },
 
-  /**
-   * 生命周期函数--监听页面加载
-   */
+
   onLoad: function (options) {
-  
+    wx.request({
+      url: url_common + '/api/project/getMyProjectList',
+      data: {
+        user_id: "90ky197p",
+        type:'push',
+        page:1
+      },
+      method: 'POST',
+      success: function (res) {
+        console.log(res)
+      }
+    })
   },
-
-  /**
-   * 生命周期函数--监听页面初次渲染完成
-   */
-  onReady: function () {
-  
-  },
-
-  /**
-   * 生命周期函数--监听页面显示
-   */
   onShow: function () {
-  
-  },
 
-  /**
-   * 生命周期函数--监听页面隐藏
-   */
-  onHide: function () {
-  
   },
-
-  /**
-   * 生命周期函数--监听页面卸载
-   */
-  onUnload: function () {
-  
+  pushTo: function () {
+    wx.showToast({
+      title: '成功',
+      icon: 'success',
+      duration: 2000
+    })
+    //  错误信息提示
+    rqj.errorHide(that, "最多可选择五项", 1000)
   },
-
-  /**
-   * 页面相关事件处理函数--监听用户下拉动作
-   */
-  onPullDownRefresh: function () {
-  
-  },
-
-  /**
-   * 页面上拉触底事件的处理函数
-   */
-  onReachBottom: function () {
-  
-  },
-
-  /**
-   * 用户点击右上角分享
-   */
-  onShareAppMessage: function () {
-  
-  },
-
-  /**
-   * 页面上拉触底事件的处理函数
-   */
-  onReachBottom: function () {
-  
-  },
-
-  /**
-   * 页面相关事件处理函数--监听用户下拉动作
-   */
-  onPullDownRefresh: function () {
-  
+  // 创建项目
+  createProject: function () {
+    wx.navigateTo({
+      url: '/pages/myProject/publishProject/publishProject',
+    })
   }
 })

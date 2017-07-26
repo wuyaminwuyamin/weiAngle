@@ -99,7 +99,7 @@
       </view>
     </view>
     <view class="investBox">
-      <view class="investContent flex">
+      <view class="userDescribeContent flex">
         <view class="investListTile">投资地区</view>
         <view class="flex">
           <view class="personListContent">请选择</view>
@@ -107,15 +107,6 @@
         </view>
       </view>
     </view>
-    <view class="investBox">
-      <view class="investContent flex">
-        <view class="investListTile">成功案例</view>
-        <view class="flex">
-          <view class="personListContent">请选择</view>
-          <image src="/img/icon-gengduo2@2x.png" class="arrowStyle"></image>
-        </view>
-      </view>
-    </view> 
   </view>
   <view class="choice">
     <view class="userBox">

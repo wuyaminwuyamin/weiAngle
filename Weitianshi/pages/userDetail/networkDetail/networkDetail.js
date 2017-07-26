@@ -232,4 +232,10 @@ Page({
             url: '/pages/projectDetail/projectDetail?id=' + id,
         })
     },
+    // 推送项目
+    pushProjectTo:function(){
+      wx.navigateTo({
+        url: '/pages/myProject/pushTo/pushTo',
+      })
+    }
 });
