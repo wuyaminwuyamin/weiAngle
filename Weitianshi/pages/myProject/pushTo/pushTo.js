@@ -11,12 +11,13 @@ Page({
 
 
   onLoad: function (options) {
+    // pushed_user_id == 推送给谁
     wx.request({
       url: url_common + '/api/project/getMyProjectList',
       data: {
         user_id: "90ky197p",
         type:'push',
-        page:1
+        pushed_user_id:"Er6NwnMr"
       },
       method: 'POST',
       success: function (res) {

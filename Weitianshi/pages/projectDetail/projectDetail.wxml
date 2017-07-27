@@ -136,7 +136,7 @@
 
 <!--下面的浮动按钮-->
 <view class="floatBtn">
-  <view class="accreditation flex" wx:if="{{status != 0 }}">
+  <view class="accreditation flex" wx:if="{{status == 0 ||status ==3}}">
     <view>认证投资人、买家FA才可申请查看</view>
     <view class="toAccreditation" bindtap="toAccreditation">立即认证</view>
   </view>

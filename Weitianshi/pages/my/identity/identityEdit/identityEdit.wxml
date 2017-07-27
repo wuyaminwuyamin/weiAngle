@@ -4,12 +4,13 @@
     <image src="/img/icon-mingpian-n@2x.png" class="pushIdCard"></image>
     <!-- <image src="/img/icon-mingpian-s@2x.png" class="pushIdCard"></image> -->
   </view>
-   <view class="personList">
+  <view class="personList">
     <view class="userBox">
       <view class="userNameContent flex">
         <view class="personListTile">姓名*</view>
         <view class="flex">
-          <view class="personListContent">请输入姓名</view>
+          <view class="personListContent" wx:if="{{!user_info.user_real_name}}">请输入姓名</view>
+          <view class="personListContentAfter" wx:if="{{user_info.user_real_name}}">{{user_info.user_real_name}}</view>
           <image src="/img/icon-gengduo2@2x.png" class="arrowStyle"></image>
         </view>
       </view>
@@ -18,7 +19,8 @@
       <view class="userPhoneContent flex">
         <view class="personListTile">手机*</view>
         <view class="flex">
-          <view class="personListContent">请输入手机号码</view>
+          <view class="personListContent" wx:if="{{!user_info.user_mobile}}">请输入手机号码</view>
+          <view class="personListContent" wx:if="{{user_info.user_mobile}}">{{user_info.user_mobile}}</view>
           <image src="/img/icon-gengduo2@2x.png" class="arrowStyle"></image>
         </view>
       </view>
@@ -27,7 +29,8 @@
       <view class="userBrandContent flex">
         <view class="personListTile">品牌</view>
         <view class="flex">
-          <view class="personListContent">请输入品牌</view>
+          <view class="personListContent" wx:if="{{!user_info.user_brand}}">请输入品牌</view>
+          <view class="personListContentAfter" wx:if="{{user_info.user_brand}}">{{user_info.user_brand}}</view>
           <image src="/img/icon-gengduo2@2x.png" class="arrowStyle"></image>
         </view>
       </view>
@@ -36,7 +39,8 @@
       <view class="userCompanyContent flex">
         <view class="personListTile">公司*</view>
         <view class="flex">
-          <view class="personListContent">请输入公司</view>
+          <view class="personListContent" wx:if="{{!user_info.user_company_name}}">请输入公司</view>
+          <view class="personListContentAfter" wx:if="{{user_info.user_company_name}}">{{user_info.user_company_name}}</view>
           <image src="/img/icon-gengduo2@2x.png" class="arrowStyle"></image>
         </view>
       </view>
@@ -45,7 +49,8 @@
       <view class="userPositionContent flex">
         <view class="personListTile">职位*</view>
         <view class="flex">
-          <view class="personListContent">请输入职位</view>
+          <view class="personListContent" wx:if="{{!user_info.user_company_career}}">请输入职位</view>
+          <view class="personListContentAfter" wx:if="{{user_info.user_company_career}}">{{user_info.user_company_career}}</view>
           <image src="/img/icon-gengduo2@2x.png" class="arrowStyle"></image>
         </view>
       </view>
@@ -54,7 +59,8 @@
       <view class="userEmailContent flex">
         <view class="personListTile">邮箱</view>
         <view class="flex">
-          <view class="personListContent">请输入邮箱</view>
+          <view class="personListContent" wx:if="{{!user_info.user_email}}">请输入邮箱</view>
+          <view class="personListContentAfter" wx:if="{{user_info.user_email}}">{{user_info.user_email}}</view>
           <image src="/img/icon-gengduo2@2x.png" class="arrowStyle"></image>
         </view>
       </view>
@@ -63,15 +69,16 @@
       <view class="userDescribeContent flex">
         <view class="personListTile">个人描述</view>
         <view class="flex">
-          <view class="personListContent">请输入个人描述</view>
+          <view class="personListContent" wx:if="{{!user_info.user_intro}}">请输入个人描述</view>
+          <view class="personListContentAfter" wx:if="{{user_info.user_intro}}">{{user_info.user_intro}}</view>
           <image src="/img/icon-gengduo2@2x.png" class="arrowStyle"></image>
         </view>
       </view>
     </view>
-  </view> 
-   <view class="point">选填（建议填写，完善的信息有助于精准对接）</view>
+  </view>
+  <view class="point">选填（建议填写，完善的信息有助于精准对接）</view>
   <view class="investList">
-    <view class="investBox">
+    <view class="investBox" bindtap="toIndustry">
       <view class="investContent flex">
         <view class="investListTile">投资领域</view>
         <view class="flex">
@@ -80,7 +87,7 @@
         </view>
       </view>
     </view>
-     <view class="investBox">
+    <view class="investBox" bindtap="toStage">
       <view class="investContent flex">
         <view class="investListTile">投资轮次</view>
         <view class="flex">
@@ -89,7 +96,7 @@
         </view>
       </view>
     </view>
-    <view class="investBox">
+    <view class="investBox" bindtap="toScale">
       <view class="investContent flex">
         <view class="investListTile">投资金额</view>
         <view class="flex">
@@ -98,7 +105,7 @@
         </view>
       </view>
     </view>
-    <view class="investBox">
+    <view class="investBox" bindtap="toArea1">
       <view class="userDescribeContent flex">
         <view class="investListTile">投资地区</view>
         <view class="flex">
@@ -108,16 +115,79 @@
       </view>
     </view>
   </view>
-  <view class="choice">
-    <view class="userBox">
-      <view class="userDescribeContent flex">
-        <view class="personListTile">申请使用为FA量身定制的saas系统</view>
-        <view class="flex">
-          <view class="personListContent">请选择</view>
-          <image src="/img/icon-gengduo2@2x.png" class="arrowStyle"></image>
+  <view class="choiceList">
+    <view class="choice" wx:if="{{group_id == 18 ||group_id == 19}}">
+      <view class="userBox">
+        <view class="investContent flex">
+          <!-- group_id 18:买方FA 19:卖方FA  6:投资人 3:创业者 8:其他  -->
+          <view class="personListTile">申请加入FA行业联盟</view>
+          <picker id="bindFAService" bindchange="bindFAService" value="{{bindFAService_index}}" range="{{array}}">
+            <view class="flex" wx:if="{{group_id == 18 ||group_id == 19}}">
+              <view class="chooseContent" wx:if="{{!array[bindFAService_index]}}">请选择</view>
+              <view class="chooseAfter" wx:if="{{array[bindFAService_index] !=''}}">{{array[bindFAService_index]}}</view>
+              <image src="/img/icon-gengduo2@2x.png" class="arrowStyle"></image>
+            </view>
+          </picker>
         </view>
       </view>
     </view>
-  </view> 
+    <view class="choice" wx:if="{{group_id == 6|| group_id == 8}}">
+      <view class="userBox">
+        <view class="userDescribeContent flex">
+          <view class="personListTile">兼职FA业务</view>
+          <picker id="partFA" bindchange="partFA" value="{{partFA_index}}" range="{{array}}">
+            <view class="flex">
+              <view class="chooseContent" wx:if="{{!array[partFA_index]}}">请选择</view>
+              <view class="chooseAfter" wx:if="{{array[partFA_index] !=''}}">{{array[partFA_index]}}</view>
+              <image src="/img/icon-gengduo2@2x.png" class="arrowStyle"></image>
+            </view>
+          </picker>
+        </view>
+      </view>
+    </view>
+    <view class="choice" wx:if="{{group_id == 3}}">
+      <view class="userBox">
+        <view class="userDescribeContent flex">
+          <view class="personListTile">需要FA（财务顾问）融资服务</view>
+          <picker id="needFA" bindchange="needFA" value="{{needFA_index}}" range="{{array}}">
+            <view class="flex">
+              <view class="chooseContent" wx:if="{{!array[needFA_index]}}">请选择</view>
+              <view class="chooseAfter" wx:if="{{array[needFA_index] !=''}}">{{array[needFA_index]}}</view>
+              <image src="/img/icon-gengduo2@2x.png" class="arrowStyle"></image>
+            </view>
+          </picker>
+        </view>
+    </view>
+    </view>
+    <view class="choice" wx:if="{{group_id == 18 ||group_id == 19}}">
+      <view class="userBox">
+        <view class="investContent flex">
+          <view class="personListTile">申请使用创业项目库的管理sass系统</view>
+          <picker id="sass" bindchange="sass" value="{{sass_index}}" range="{{array}}">
+            <view class="flex">
+              <view class="chooseContent" wx:if="{{!array[sass_index]}}">请选择</view>
+              <view class="chooseAfter" wx:if="{{array[sass_index] !=''}}">{{array[sass_index]}}</view>
+              <image src="/img/icon-gengduo2@2x.png" class="arrowStyle"></image>
+            </view>
+          </picker>
+        </view>
+      </view>
+    </view>
+    <view class="choice" wx:if="{{group_id == 18 ||group_id == 19}}">
+      <view class="userBox">
+        <view class="userDescribeContent flex">
+          <view class="personListTile">加入FA社群认证会员</view>
+          <picker id="addFAService" bindchange="addFAService" value="{{addFAService_index}}" range="{{array}}">
+            <view class="flex">
+              <view class="chooseContent" wx:if="{{!array[addFAService_index]}}">请选择</view>
+              <view class="chooseAfter" wx:if="{{array[addFAService_index] !=''}}">{{array[addFAService_index]}}</view>
+              <image src="/img/icon-gengduo2@2x.png" class="arrowStyle"></image>
+            </view>
+          </picker>
+        </view>
+      </view>
+    </view>
+  </view>
 </view>
+
 <view class="btn">提交</view>

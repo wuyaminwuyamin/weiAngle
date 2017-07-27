@@ -34,9 +34,19 @@
   color: #ccc;
   text-align: right;
   margin-right: 12rpx;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+  width: 480rpx;
+}
+.chooseContent {
+  font-size: 28rpx;
+  color: #ccc;
+  text-align: right;
+  margin-right: 12rpx;
 }
 
-.userBox,.investBox {
+.userBox, .investBox {
   width: 100%;
   height: 114rpx;
   background: #fff;
@@ -44,7 +54,7 @@
 }
 
 .userNameContent, .userPhoneContent, .userBrandContent, .userCompanyContent,
-.userPositionContent, .userEmailContent, .userDescribeContent,.investContent {
+.userPositionContent, .userEmailContent, .userDescribeContent, .investContent {
   justify-content: space-between;
   margin: 0 32rpx;
   border-bottom: 1rpx solid #e6e6e6;
@@ -61,8 +71,12 @@
   height: 20rpx;
 }
 
-.choice {
-  margin: 28rpx 0 152rpx 0;
+.choice:first-child {
+  margin-top: 28rpx;
+}
+
+.choice:last-child {
+  margin-bottom: 152rpx;
 }
 
 /*提示  */
@@ -87,4 +101,21 @@
   text-align: center;
   position: fixed;
   top: 1126rpx;
+}
+
+.personListContentAfter {
+  font-size: 28rpx;
+  color: #666;
+  margin-right: 12rpx;
+  text-align: right;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+  width: 480rpx;
+}
+.chooseAfter {
+  font-size: 28rpx;
+  color: #666;
+  margin-right: 12rpx;
+  text-align: right;
 }

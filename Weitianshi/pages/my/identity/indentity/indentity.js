@@ -50,8 +50,8 @@ Page({
         let groupIdentityList = res.data.data;
         var messageList = that.data.messageList;
         groupIdentityList.forEach((x, index) => {
-         messageList[index].sort = x.sort;
-         messageList[index].group_id = x.group_id;
+          messageList[index].sort = x.sort;
+          messageList[index].group_id = x.group_id;
         })
         that.setData({
           messageList: messageList
@@ -64,10 +64,25 @@ Page({
   onShow: function () {
 
   },
+  // 跳转认证资料信息填写页面
   toIdentityEdit: function (e) {
-    wx.navigateTo({
-      url: '/pages/my/identity/identityEdit/identityEdit',
+    let user_id = wx.getStorageSync('user_id');
+    let group_id = e.currentTarget.dataset.group;
+    wx.request({
+      url: url_common + '/api/user/setUserGroup',
+      data: {
+        user_id: user_id,
+        group_id: group_id
+      },
+      method: 'POST',
+      success: function (res) {
+        console.log(res.data.authenticate_id)
+        var authenticate_id = res.data.authenticate_id;
+        wx.navigateTo({
+          url: '/pages/my/identity/identityEdit/identityEdit?group_id=' + group_id + '&&authenticate_id=' + authenticate_id,
+        })
+      }
     })
+   
   }
-
 })

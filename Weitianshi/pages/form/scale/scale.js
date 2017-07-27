@@ -32,8 +32,6 @@ Page({
             enchangeId : enchangeId,
             index: enchangeId
         });
-        // console.log(enchangeValue,enchangeId)
-        // console.log(this.data.checked, typeof this.data.checked)
     },
 
     //下拉刷新
@@ -42,34 +40,6 @@ Page({
         wx.stopPullDownRefresh()
     },
 
-    // //传值部份
-    // radioCheck: function (e) {
-    //     var that = this;
-    //     var checked = this.data.checked;
-    //     var payMoney = this.data.payMoney;
-    //     var index = this.data.index;
-    //     var thisData = e.currentTarget.dataset;
-    //     var isCheck = thisData.check;
-    //     var value = thisData.value;
-    //     var idx = thisData.index;
-    //     var id = e.currentTarget.id;
-
-
-    //     if (index.indexOf(id) == -1) {
-    //         checked.push(value);
-    //         index.push(id)
-    //     } else {
-    //         // console.log(checked.indexOf(value), index.indexOf(id) + 1);
-    //         checked.splice(checked.indexOf(value), 1);
-    //         index.splice(index.indexOf(id), 1);
-    //     }
-
-    //     that.setData({
-    //         checked: checked,
-    //         index: index
-    //     })
-
-    // },
     //传值部份可提供资源
   checkboxChange: function (e) {
         // console.log(e);
@@ -88,12 +58,6 @@ Page({
         for(var i=0; i<enchange.length; i++){
             enchangeCheck.push(enchange[i].checked)//被选中的状态
         }
-
-        // console.log(enchange)
-        // console.log(enchangeId)
-        // console.log(enchangeCheck)
-        // console.log(enchangeValue)
-        // console.log(enchangeCheck[e_index]);
         if (enchangeCheck[e_index] == false) {//当确认按钮时
         if (enchangeValue.length < 5) {
             enchangeCheck[e_index] = true;
@@ -107,11 +71,7 @@ Page({
         } else {//当取消按钮时
         enchangeCheck[e_index] = false;
         enchange[e_index].checked = false;
-        //   console.log(enchangeValue);
-        //   console.log(enchangeValue.indexOf(e_value))
         enchangeValue.splice(enchangeValue.indexOf(e_value), 1)
-        //   console.log(enchangeId);
-        //   console.log(enchangeId.indexOf(enchange[e_index].scale_id))
         enchangeId.splice(enchangeId.indexOf(enchange[e_index].scale_id), 1)
         }
         this.setData({
@@ -122,11 +82,6 @@ Page({
             checked: enchangeCheck,
             index: enchangeId
         });
-        // wx.setStorageSync('paymoneyenchangeValue', enchangeValue)
-        // wx.setStorageSync('paymoneyenchangeId', enchangeId)
-        // wx.setStorageSync('paymoneyenchangeCheck', enchangeCheck)
-        // wx.setStorageSync('enchangeValue', enchangeValue);
-        // wx.setStorageSync('enchangeId', enchangeId);
         console.log(enchangeValue, enchangeId)
     },
 
@@ -182,16 +137,4 @@ Page({
         }
         save = !save;
   }
-  // ,
-  // onUnload: function () {
-  //   console.log(save)
-  //   // 页面关闭
-  //   if (save) {
-  //     wx.setStorageSync('paymoneyenchangeValue',[]);
-  //     wx.setStorageSync('paymoneyenchangeId',[]);
-  //     wx.setStorageSync('paymoneyenchangeCheck',[]);
-
-  //   }
-  // }
-
 });
