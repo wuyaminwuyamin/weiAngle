@@ -132,12 +132,14 @@ Page({
       },
       method: 'POST',
       success: function (res) {
+        // 0:未认证1:待审核 2 审核通过 3审核未通过
         let status = res.data.status;
-        console.log(status);
-      }
+        that.setData({
+          status:status
+        })
+        console.log(status)
+        }
     })
-
-
   },
   // 用户详情
   userDetail: function (e) {
@@ -177,9 +179,42 @@ Page({
   // 去认证
   toAccreditation: function () {
     console.log("去认证")
-    wx.navigateTo({
-      url: '/pages/my/identity/indentity/indentity'
-    })
+    console.log(this.data.status)
+    let status = this.data.status;
+    if (status == 0) {
+      // app.infoJump("/pages/projectDetail/projectDetail");
+      wx.showModal({
+        title: '友情提示',
+        content: '认证的投资人,买方FA才可申请查看项目',
+        confirmText: "去认证",
+        confirmColor: "#333333",
+        success: function (res) {
+          if (res.confirm) {
+            console.log('用户点击确定')
+            wx.navigateTo({
+              url: '/pages/my/identity/indentity/indentity'
+            })
+          } else if (res.cancel) {
+            console.log('用户点击取消')
+          }
+        }
+      })
+    } else if (status == 3) {
+      console.log(status)
+      wx.showModal({
+        title: '友情提示',
+        content: '您的身份未通过审核,只有投资人和卖方FA才可申请查看项目',
+        confirmColor: "#333333;",
+        confirmText: "重新认证",
+        showCancel: false,
+        success: function (res) {
+          console.log('用户点击确定')
+          wx.navigateTo({
+            url: '/pages/my/identity/indentity/indentity'
+          })
+        }
+      })
+    }
   },
   // 申请查看
   applyProject: function () {
@@ -240,6 +275,9 @@ Page({
             showCancel: false,
             success: function (res) {
               console.log('用户点击确定')
+              wx.navigateTo({
+                url: '/pages/my/identity/indentity/indentity'
+              })
             }
           })
         }

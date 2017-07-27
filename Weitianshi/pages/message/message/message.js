@@ -107,11 +107,27 @@ Page({
     //   })
     // },
     // 身份认证跳转
-    toIdentity:function(){
+    toIdentity:function(e){
     console.log("跳转身份认证")
+    let status = this.data.status;
+    if(status == 0){
       wx.navigateTo({
         url: '/pages/my/identity/indentity/indentity',
       })
+    } else if (status == 1){
+      wx.navigateTo({
+        url: '/pages/my/identity/identityResult/identityResult',
+      })
+    } else if (status == 2) {
+      wx.navigateTo({
+        url: '/pages/my/identity/identityResult/identityResult',
+      })
+    } else if (status == 3) {
+      wx.navigateTo({
+        url: '/pages/my/identity/identityResult/identityResult',
+      })
+    }
+      
     },
     // 项目申请跳转
     projectApply:function(){

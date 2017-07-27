@@ -10,10 +10,10 @@
       <view class="title">
         身份认证
       </view>
-       <view class="identity" bindtap="toIdentity" wx:if="{{status == 0}}">立即认证</view> 
-       <!-- <view class="identifyContent" bindtap="toIdentity" wx:if="{{status == 3}}">审核未通过</view>   -->
-      <!-- <view class="identifyContent on" wx:if="{{status == 1}}">审核 中</view>  -->
-      <!-- <view class="identifyContent" wx:if="{{status == 2}}">认证成功</view>  -->
+      <view class="identity" bindtap="toIdentity" wx:if="{{status == 0}}" data-status="{{0}}">立即认证</view>
+      <view class="identifyContent" bindtap="toIdentity" wx:if="{{status == 3}}">审核未通过</view>
+      <view class="identifyContent on"  bindtap="toIdentity" wx:if="{{status == 1}}">审核中</view>
+      <view class="identifyContent" bindtap="toIdentity" wx:if="{{status == 2}}">认证成功</view>
     </view>
   </view>
 </view>
@@ -37,7 +37,7 @@
     <view class="flex title">
       <image class="title_icon" src="/img/img-personMessage.png"></image>
       <view class="title">
-       项目推送
+        项目推送
       </view>
     </view>
     <view class="flex number">
@@ -64,6 +64,6 @@
 </view>
 <!--底部信息提示  -->
 <view class="bottomBox">
-<view class="contactPerson">联系客服</view>
-<view class="wechatNumber">微信添加：weitianshicn</view>
+  <view class="contactPerson">联系客服</view>
+  <view class="wechatNumber">微信添加：weitianshicn</view>
 </view>
