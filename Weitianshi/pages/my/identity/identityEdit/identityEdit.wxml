@@ -4,7 +4,7 @@
     <image src="/img/icon-mingpian-n@2x.png" class="pushIdCard"></image>
     <!-- <image src="/img/icon-mingpian-s@2x.png" class="pushIdCard"></image> -->
   </view>
-  <view class="personList">
+   <view class="personList">
     <view class="userBox">
       <view class="userNameContent flex">
         <view class="personListTile">姓名*</view>
@@ -68,8 +68,8 @@
         </view>
       </view>
     </view>
-  </view>
-  <view class="point">选填（建议填写，完善的信息有助于精准对接）</view>
+  </view> 
+   <view class="point">选填（建议填写，完善的信息有助于精准对接）</view>
   <view class="investList">
     <view class="investBox">
       <view class="investContent flex">
@@ -80,7 +80,7 @@
         </view>
       </view>
     </view>
-    <view class="investBox">
+     <view class="investBox">
       <view class="investContent flex">
         <view class="investListTile">投资轮次</view>
         <view class="flex">
@@ -99,17 +99,8 @@
       </view>
     </view>
     <view class="investBox">
-      <view class="investContent flex">
+      <view class="userDescribeContent flex">
         <view class="investListTile">投资地区</view>
-        <view class="flex">
-          <view class="personListContent">请选择</view>
-          <image src="/img/icon-gengduo2@2x.png" class="arrowStyle"></image>
-        </view>
-      </view>
-    </view>
-    <view class="investBox">
-      <view class="investContent flex">
-        <view class="investListTile">成功案例</view>
         <view class="flex">
           <view class="personListContent">请选择</view>
           <image src="/img/icon-gengduo2@2x.png" class="arrowStyle"></image>
@@ -118,7 +109,7 @@
     </view>
   </view>
   <view class="choice">
-   <view class="userBox">
+    <view class="userBox">
       <view class="userDescribeContent flex">
         <view class="personListTile">申请使用为FA量身定制的saas系统</view>
         <view class="flex">
@@ -127,6 +118,6 @@
         </view>
       </view>
     </view>
-    </view>
+  </view> 
 </view>
 <view class="btn">提交</view>

@@ -514,11 +514,11 @@
 <!--身份认证列表-->
 <template name="identityList">
   <view class="indentityBox">
-  <view class="indentityInside flex" bindtap="{{item.event}}" data-id="{{groupIdentityList[index].sort}}">
+  <view class="indentityInside flex" bindtap="{{item.event}}" data-id="{{item.sort}}" data-group="{{item.group_id}}">
     <image src="{{item.iconPath}}"  class="picture"></image>
     <view class="inforBox">
       <view class="identityName">{{item.identityName}}</view>
-       <view class="indentityExplain">{{item.indentityExplain}}</view> 
+      <view class="indentityExplain">{{item.indentityExplain}}</view> 
     </view>
     <view>
        <image src="/img/icon-gengduo2@2x.png" class="arrowStyle"></image> 

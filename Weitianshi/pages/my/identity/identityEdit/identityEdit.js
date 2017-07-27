@@ -11,8 +11,9 @@ Page({
   
   },
 
-  onShow: function () {
+  onShow: function (e) {
   console.log("edit")
+  console.log(e)
   },
   scanIDcard:function(){
     console.log("上传名片")

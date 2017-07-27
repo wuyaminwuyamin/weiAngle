@@ -47,17 +47,16 @@ Page({
       },
       method: 'POST',
       success: function (res) {
-        console.log("身份信息")
-        console.log(res);
         let groupIdentityList = res.data.data;
-        console.log(groupIdentityList);
+        var messageList = that.data.messageList;
         groupIdentityList.forEach((x, index) => {
-          groupIdentityList[index].sort = x.sort;
-          console.log(groupIdentityList[index].sort)
+         messageList[index].sort = x.sort;
+         messageList[index].group_id = x.group_id;
         })
         that.setData({
-          groupIdentityList: groupIdentityList
+          messageList: messageList
         })
+        console.log(that.data.messageList)
       }
     })
   },
@@ -66,8 +65,6 @@ Page({
 
   },
   toIdentityEdit: function (e) {
-    console.log("跳转身份详情")
-    console.log(e)
     wx.navigateTo({
       url: '/pages/my/identity/identityEdit/identityEdit',
     })

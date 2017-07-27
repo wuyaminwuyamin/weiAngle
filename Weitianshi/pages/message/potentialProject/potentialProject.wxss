@@ -147,7 +147,7 @@
 
 .projectInfo {
   height: 72rpx;
-  position:relative;
+  position: relative;
 }
 
 .seeNum, .haveInterest {
@@ -186,11 +186,26 @@
 }
 
 /*==========我申请查看的项目===============  */
+
 .apply {
   font-size: 24rpx;
   color: #40587a;
   line-height: 24rpx;
-  position:absolute;
-  top:34rpx;
-  right:20rpx;
+  position: absolute;
+  top: 34rpx;
+  right: 20rpx;
+}
+
+.reapply {
+  background: #40587a;
+  border-radius: 2px;
+  width: 136rpx;
+  height: 52rpx;
+  font-size: 24rpx;
+  color: #fff;
+  line-height: 52rpx;
+  text-align: center;
+  position: absolute;
+  top: 20rpx;
+  right:0;
 }

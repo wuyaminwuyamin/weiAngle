@@ -338,3 +338,16 @@
   top: 16rpx;
   left: 16rpx;
 }
+
+.hasNothing {
+  font-size: 30rpx;
+  color: #666;
+  line-height: 30rpx;
+  text-align: center;
+}
+.noData{
+  width:144rpx;
+  height:88rpx;
+  margin-bottom: 38rpx;
+  /* margin-top:344rpx; */
+}

@@ -1,2 +1,53 @@
-<!--pages/myProject/pushTo/pushTo.wxml-->
-<text>pages/myProject/pushTo/pushTo.wxml</text>
+<import src="/pages/Template/Template.wxml" />
+<view class="title">
+  今日还可以推送<label>5</label>次（1个项目推送给1个投资人计为1次）
+</view>
+
+ <view class="outBox">
+  <view class="matching">匹配度：<label class="matchingNum">60%</label></view>
+  <view class="projectInfoBox">
+    <view class="classname">
+      <view class="flex">
+        <view class="describle">项目一句话介绍，这里字数会有点多，反复但是不能尝过第二行</view>
+        <image src="/img/img-dujiaqianyue1@2x.png" class="projectDetailType"></image>
+        <image src="/img/img-feidujiaqianyue@2x.png" class="projectDetailType"></image>
+      </view>
+      <view class="industry">人工智能、大数据、理财、企业服务台</view>
+      <view class="allProjectDetail flex">
+        <view class="projectDetailLine">300-500万</view>
+        <view class="projectDetailLine">10%</view>
+        <view class="projectDetailLine">天使轮</view>
+        <view class="projectDetailLine">杭州</view>
+      </view>
+    </view>
+  </view>
+</view>
+<view class="outBox on">
+  <view class="matching">匹配度：<label class="matchingNum">60%</label></view>
+  <view class="projectInfoBox">
+    <view class="classname">
+      <view class="flex">
+        <view class="describle">这个是为选中的项目,我只想做一个对比来看看</view>
+        <image src="/img/img-dujiaqianyue1@2x.png" class="projectDetailType"></image>
+        <image src="/img/img-feidujiaqianyue@2x.png" class="projectDetailType"></image>
+      </view>
+      <view class="industry">人工智能、大数据、理财、企业服务台</view>
+      <view class="allProjectDetail flex">
+        <view class="projectDetailLine">300-500万</view>
+        <view class="projectDetailLine">10%</view>
+        <view class="projectDetailLine">天使轮</view>
+        <view class="projectDetailLine">杭州</view>
+      </view>
+    </view>
+  </view>
+</view>
+<view class="floatBtn flex pushPro">
+  <view class="pushProjectAfter" bindtap="pushTo">推送</view>
+</view> 
+<!-- 错误提示-->
+ <view class="error" wx:if="{{error=='1'}}">{{error_text}}</view>  
+<!-- <view class="hasNone">
+  <image src="/img/img-kong@2x.png" class="iconStyle"></image>
+  <view class="none">暂无项目</view>
+  <view class="createProject" bindtap="createProject">创建项目</view>
+</view> -->
