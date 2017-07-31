@@ -143,19 +143,13 @@ Page({
         console.log("onshow industryCurrent2")
         console.log(wx.getStorageSync("industryCurrent2"))
         var that = this;
-        // console.log(that.data)
-        // console.log(that.data.belongArea)
         if (wx.getStorageSync("m_belongArea") != '') {
             var belongArea = wx.getStorageSync('m_belongArea');
             console.log(belongArea);
         }
-        // var belongArea = wx.getStorageSync('m_belongArea') || this.data.belongArea;
-        // var belongArea = wx.getStorageSync('m_belongArea');
         var provinceNum = wx.getStorageSync("m_provinceNum");
         var cityNum = wx.getStorageSync('m_cityNum');
         var pro_goodness = wx.getStorageSync("pro_goodness");
-        // console.log(cityNum);
-        // console.log(pro_goodness)
         //如果已经进入项目领域后时,对返回该页面的值进行修正
         var industryCurrent2 = wx.getStorageSync("industryCurrent2");
         var industryCard = this.data.industryCard;
@@ -176,10 +170,6 @@ Page({
                 industryCard: industryCard
             })
         }
-        // this.setData({
-        //     belongArea: belongArea,
-        //     // pro_goodness: pro_goodness
-        // })
         if (cityNum) {//如果取到了cityNum
             // console.log(cityNum)
             this.setData({

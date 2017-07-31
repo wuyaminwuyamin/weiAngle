@@ -65,6 +65,7 @@ Page({
                         console.log("获取我的项目信息")
                         console.log(res)
                         var myProject = res.data.data;
+                        console.log(myProject)
                         //刷新数据
                         that.setData({
                             myProject: myProject,
