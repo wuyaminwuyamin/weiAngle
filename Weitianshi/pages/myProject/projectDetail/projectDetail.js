@@ -35,6 +35,7 @@ Page({
         textBeyond3: false,//资金用途的全部和收起是否显示标志
     },
     onLoad: function (options) {
+      console.log(options)
         var id = options.id;
         var index = options.index;
         this.setData({

@@ -17,5 +17,5 @@
   <view class="contextContent">联系FA哥，加速审核</view>
   <!-- <view class="contextContent">联系FA哥，重新审核</view> -->
   <view class="contextContent">扫码加微信weitianshicn</view>
-  <view class="btnYes">确定</view>
+  <view class="btnYes" bindtap="btnYes">确定</view>
 </view>

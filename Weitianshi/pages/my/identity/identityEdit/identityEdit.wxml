@@ -6,7 +6,7 @@
   </view>
   <view class="personList">
     <view class="userBox">
-      <view class="userNameContent flex">
+      <view class="userNameContent flex" bindtap="writeNewThing" data-type="{{0}}">
         <view class="personListTile">姓名*</view>
         <view class="flex">
           <view class="personListContent" wx:if="{{!user_info.user_real_name}}">请输入姓名</view>
@@ -16,7 +16,7 @@
       </view>
     </view>
     <view class="userBox">
-      <view class="userPhoneContent flex">
+      <view class="userPhoneContent flex" bindtap="writeNewThing" data-type="{{1}}">
         <view class="personListTile">手机*</view>
         <view class="flex">
           <view class="personListContent" wx:if="{{!user_info.user_mobile}}">请输入手机号码</view>
@@ -26,7 +26,7 @@
       </view>
     </view>
     <view class="userBox">
-      <view class="userBrandContent flex">
+      <view class="userBrandContent flex"  bindtap="writeNewThing" data-type="{{2}}">
         <view class="personListTile">品牌</view>
         <view class="flex">
           <view class="personListContent" wx:if="{{!user_info.user_brand}}">请输入品牌</view>
@@ -36,7 +36,7 @@
       </view>
     </view>
     <view class="userBox">
-      <view class="userCompanyContent flex">
+      <view class="userCompanyContent flex"  bindtap="writeNewThing" data-type="{{3}}">
         <view class="personListTile">公司*</view>
         <view class="flex">
           <view class="personListContent" wx:if="{{!user_info.user_company_name}}">请输入公司</view>
@@ -46,7 +46,7 @@
       </view>
     </view>
     <view class="userBox">
-      <view class="userPositionContent flex">
+      <view class="userPositionContent flex"  bindtap="writeNewThing" data-type="{{4}}">
         <view class="personListTile">职位*</view>
         <view class="flex">
           <view class="personListContent" wx:if="{{!user_info.user_company_career}}">请输入职位</view>
@@ -56,7 +56,7 @@
       </view>
     </view>
     <view class="userBox">
-      <view class="userEmailContent flex">
+      <view class="userEmailContent flex"  bindtap="writeNewThing" data-type="{{5}}">
         <view class="personListTile">邮箱</view>
         <view class="flex">
           <view class="personListContent" wx:if="{{!user_info.user_email}}">请输入邮箱</view>
@@ -190,4 +190,4 @@
   </view>
 </view>
 
-<view class="btn">提交</view>
+<view class="btn" bindtap="submit">提交</view>
