@@ -9,6 +9,10 @@
   padding-left: 32rpx;
   margin-bottom: 32rpx;
 }
+.s_frame {
+  height: 1052rpx;
+  position: static;
+}
 
 .outBox {
   margin: 0 32rpx 24rpx 32rpx;
