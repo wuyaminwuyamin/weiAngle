@@ -65,6 +65,16 @@
         </view>
       </view>
     </view>
+     <view class="userBox">
+      <view class="userEmailContent flex"  bindtap="writeNewThing" data-type="{{6}}">
+        <view class="personListTile">微信</view>
+        <view class="flex">
+          <view class="personListContent">请输入微信</view>
+          <!-- <view class="personListContentAfter"></view> -->
+          <image src="/img/icon-gengduo2@2x.png" class="arrowStyle"></image>
+        </view>
+      </view>
+    </view>
     <view class="userBox">
       <view class="userDescribeContent flex">
         <view class="personListTile">个人描述</view>

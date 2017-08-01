@@ -16,7 +16,6 @@ Page({
     },
     onLoad: function (options) {
         var that = this
-        console.log(options);
         var user_id = options.id;
         var view_id = wx.getStorageSync('user_id');
         that.setData({
@@ -233,9 +232,10 @@ Page({
         })
     },
     // 推送项目
-    pushProjectTo:function(){
+    pushProjectTo:function(options){
+      var personId = this.data.user_id;
       wx.navigateTo({
-        url: '/pages/myProject/pushTo/pushTo',
+        url: '/pages/myProject/pushTo/pushTo?pushId=' + personId,
       })
     }
 });

@@ -145,3 +145,13 @@
   color: #009eff;
   line-height: 30rpx;
 }
+.checkBoxOut{
+  position:relative;
+}
+
+.checkbox{
+position:absolute;
+right:-9rpx;
+top:-55rpx;
+z-index:5;
+}

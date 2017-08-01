@@ -9,7 +9,13 @@ Page({
   onLoad: function (option) {
     let authenticate_id = option.authenticate_id;
     let writeNameValue = option.user_name;
-    console.log(writeNameValue)
+    let writeTelValue = option.user_tel;
+    let writeBrandValue = option.user_brand;
+    let writeCompanyValue = option.user_company_name;
+    let writeCareerValue = option.user_career;
+    let writeEmailValue = option.user_email;
+
+    console.log(option)
       // group_id 18:买方FA 19:卖方FA  6:投资人 3:创业者 8:其他
     let group_id = option.group_id;
     let that = this;
@@ -20,19 +26,51 @@ Page({
     })
     //请求数据
     wx.request({
-      url: url_common + '/api/user/getUserAllInfo',
+      url: url_common + '/api/user/getUserBasicInfo',
       data: {
-        share_id: 0,
-        user_id: user_id,
-        view_id: user_id,
+        user_id: user_id
       },
       method: 'POST',
       success: function (res) {
         console.log(res);
         let user_info = res.data.user_info;
-        
+        let invest_info = res.data.invest_info;
+        let invest_industryList = invest_info.invest_industry;
+        invest_industryList.forEach((x, index) => {
+          invest_industryList[index] = x.industry_name;
+
+        })
+        console.log(invest_industryList)
         if (writeNameValue){
-          res.data.user_info.user_real_name = option.user_name;
+          res.data.user_info.user_real_name = option.user_name;  
+          that.setData({
+            user_info: user_info
+          })
+        } else if (writeTelValue){
+          res.data.user_info.user_mobile = option.user_tel;
+          that.setData({
+            user_info: user_info
+          })
+        } else if (writeBrandValue){
+          res.data.user_info.user_brand = option.user_brand;
+          that.setData({
+            user_info: user_info
+          })
+        } else if (writeCompanyValue){
+          res.data.user_info.user_company_name = option.user_company_name;
+          that.setData({
+            user_info: user_info
+          })
+        } else if (writeCareerValue){
+          res.data.user_info.user_company_career = option.user_career;
+          that.setData({
+            user_info: user_info
+          })
+        } else if (writeEmailValue){
+          res.data.user_info.user_email = option.user_email;
+          that.setData({
+            user_info: user_info
+          })
         }
         that.setData({
           user_info: user_info
@@ -68,6 +106,7 @@ Page({
       })
     }
     else if (type == 3) {
+       console.log("company")
       wx.navigateTo({
         url: '/pages/form/personInfo/personInfo?company=' + writeCompany + '&&type=3',
       })
