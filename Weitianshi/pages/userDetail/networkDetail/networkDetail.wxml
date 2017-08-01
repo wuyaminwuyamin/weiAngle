@@ -33,7 +33,7 @@
   </view>
   <!--button-type == 2 待验证状态  -->
   <view class="floatBtn flex addPerson" wx:if="{{button_type==2}}">
-    <view class="flex pushProjectBox">
+    <view class="flex pushProjectBox"  data-id="{{user.user_id}}">
       <image src="/img/icon-tuisong-w@2x.png" class="iconStyle"></image>
       <view class="pushProjectTo" bindtap="pushProjectTo">推送项目</view>
     </view>
@@ -42,7 +42,7 @@
       <view class="addPersonBtn">待验证</view>
     </view>
   </view>
-  <view class="floatBtn flex pushPro" wx:if="{{button_type==1}}">
+  <view class="floatBtn flex pushPro" wx:if="{{button_type==1}}" data-id="{{user.user_id}}">
     <image src="/img/icon-tuisong-w@2x.png" class="iconStyle"></image>
     <view class="pushProjectAfter" bindtap="pushProjectTo">推送项目</view>
   </view>
