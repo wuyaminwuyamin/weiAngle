@@ -43,15 +43,16 @@ Page({
       method: 'POST',
       success: function (res) {
         console.log(res)
-        let contacts = res.data.data;
+        let dataList = res.data.data;
         let pushTimes = res.data.push_times;
         var page_end = res.data.page_end;
-        contacts.forEach((x, index) => {
-          contacts[index] = x;
+        dataList.forEach((x, index) => {
+          dataList[index] = x;
+          console.log(dataList[index].pro_intro)
         })
         // is_exclusive是否独家 1独家 2非独家 0其他
         that.setData({
-          contacts: contacts,
+          dataList: dataList,
           pushTimes: pushTimes,
           pushed_user_id: pushed_user_id
         })
@@ -123,10 +124,10 @@ Page({
   //上拉加载
   loadMore: function () {
     //请求上拉加载接口所需要的参数
-    console.log("yes")
     var that = this;
     var user_id = wx.getStorageSync('user_id');
     var currentPage = this.data.currentPage;
+    let pushed_user_id = this.data.pushed_user_id;
     var request = {
       url: url_common + '/api/project/getMyProjectList',
       data: {
@@ -134,9 +135,10 @@ Page({
         page: this.data.currentPage,
         type: 'push',
         pushed_user_id: pushed_user_id
+
       }
     }
     //调用通用加载函数
-    app.loadMore(that, request, "contacts", that.data.contacts)
+    app.loadMore(that, request, "dataList", that.data.dataList)
   },
 })
