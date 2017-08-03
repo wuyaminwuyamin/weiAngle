@@ -185,7 +185,7 @@ Page({
       console.log(status)
       wx.showModal({
         title: '友情提示',
-        content: '您的身份未通过审核,只有投资人和卖方FA才可申请查看项目',
+        content: '您的身份未通过审核,只有投资人和买方FA才可申请查看项目',
         confirmColor: "#333333;",
         confirmText: "重新认证",
         showCancel: false,
@@ -199,7 +199,9 @@ Page({
     }
   },
   // 申请查看
-  applyProject: function () {
+  applyProject: function (options) {
+    let id = options.currentTarget.dataset.id;
+    let that = this;
     let user_id = wx.getStorageSync('user_id');
     wx.request({
       url: url_common + '/api/user/getUserGroupByStatus',
@@ -209,8 +211,9 @@ Page({
       method: 'POST',
       success: function (res) {
         // 0:未认证1:待审核 2 审核通过 3审核未通过
-        console.log(res)
         let status = res.data.status;
+        let group_id = res.data.group.group_id;
+        console.log(group_id)
         if (status == 0) {
           app.infoJump("/pages/projectDetail/projectDetail");
           console.log(status)
@@ -234,7 +237,7 @@ Page({
           console.log(status)
           wx.showModal({
             title: '友情提示',
-            content: '您的身份正在审核中,只有投资人和卖方FA才可申请查看项目',
+            content: '您的身份正在审核中,只有投资人和买方FA才可申请查看项目',
             confirmColor: "#333333;",
             showCancel: false,
             success: function (res) {
@@ -242,9 +245,10 @@ Page({
             }
           })
         } else if (status == 2) {
+        if(group_id){
           if (group_id == 18 || group_id == 6) {
             let that = this;
-            console.log(status)
+            console.log(this)
             wx.showToast({
               title: '已提交申请',
               icon: 'success',
@@ -255,21 +259,20 @@ Page({
               url: url_common + '/api/project/applyProject',
               data: {
                 user_id: user_id,
-                project_id: this.data.id
+                project_id: id
               },
               method: 'POST',
               success: function (res) {
-                console.log("申请查看")
+                console.log("申请查看");
                 that.setData({
                   button_type: 0
                 })
               }
-
             })
           } else if (group_id == 19) {
             wx.showModal({
               title: '友情提示',
-              content: '您的身份是卖方FA,只有投资人和卖方FA才可申请查看项目',
+              content: '您的身份是卖方FA,只有投资人和买方FA才可申请查看项目',
               confirmColor: "#333333;",
               showCancel: false,
               success: function (res) {
@@ -279,7 +282,7 @@ Page({
           } else if (group_id == 3) {
             wx.showModal({
               title: '友情提示',
-              content: '您的身份是创业者,只有投资人和卖方FA才可申请查看项目',
+              content: '您的身份是创业者,只有投资人和买方FA才可申请查看项目',
               confirmColor: "#333333;",
               showCancel: false,
               success: function (res) {
@@ -290,7 +293,7 @@ Page({
           } else if (group_id == 4) {
             wx.showModal({
               title: '友情提示',
-              content: '您的身份是投资机构,只有投资人和卖方FA才可申请查看项目',
+              content: '您的身份是投资机构,只有投资人和买方FA才可申请查看项目',
               confirmColor: "#333333;",
               showCancel: false,
               success: function (res) {
@@ -300,7 +303,7 @@ Page({
           } else if (group_id == 5) {
             wx.showModal({
               title: '友情提示',
-              content: '您的身份是卖方FA,只有投资人和卖方FA才可申请查看项目',
+              content: '您的身份是卖方FA,只有投资人和买方FA才可申请查看项目',
               confirmColor: "#333333;",
               showCancel: false,
               success: function (res) {
@@ -310,7 +313,7 @@ Page({
           } else if (group_id == 7) {
             wx.showModal({
               title: '友情提示',
-              content: '您的身份是政府、事业单位、公益组织,只有投资人和卖方FA才可申请查看项目',
+              content: '您的身份是政府、事业单位、公益组织,只有投资人和买方FA才可申请查看项目',
               confirmColor: "#333333;",
               showCancel: false,
               success: function (res) {
@@ -320,7 +323,7 @@ Page({
           } else if (group_id == 8) {
             wx.showModal({
               title: '友情提示',
-              content: '您的身份是其他,只有投资人和卖方FA才可申请查看项目',
+              content: '您的身份是其他,只有投资人和买方FA才可申请查看项目',
               confirmColor: "#333333;",
               showCancel: false,
               success: function (res) {
@@ -329,11 +332,12 @@ Page({
             })
           }
 
+        }
         } else if (status == 3) {
           console.log(status)
           wx.showModal({
             title: '友情提示',
-            content: '您的身份未通过审核,只有投资人和卖方FA才可申请查看项目',
+            content: '您的身份未通过审核,只有投资人和买方FA才可申请查看项目',
             confirmColor: "#333333;",
             confirmText: "重新认证",
             showCancel: false,
@@ -347,9 +351,6 @@ Page({
         }
       }
     })
-
-
-
 
   }
 })

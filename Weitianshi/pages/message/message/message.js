@@ -116,18 +116,17 @@ Page({
       })
     } else if (status == 1){
       wx.navigateTo({
-        url: '/pages/my/identity/identityResult/identityResult',
+        url: '/pages/my/identity/identityResult/identityResult?type='+1,
       })
     } else if (status == 2) {
       wx.navigateTo({
-        url: '/pages/my/identity/identityResult/identityResult',
+        url: '/pages/my/identity/identityResult/identityResult?type='+2,
       })
     } else if (status == 3) {
       wx.navigateTo({
-        url: '/pages/my/identity/identityResult/identityResult',
+        url: '/pages/my/identity/identityResult/identityResult?type='+3,
       })
-    }
-      
+    }  
     },
     // 项目申请跳转
     projectApply:function(){
