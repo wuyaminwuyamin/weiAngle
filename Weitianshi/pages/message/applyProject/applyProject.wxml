@@ -6,88 +6,68 @@
   <view class="swiper-tab-list {{currentTab==1 ? 'on' : ''}}" data-current="1" bindtap="swichNav">我申请查看的项目</view>
 
 </view>
-<swiper current="{{currentTab}}" class="swiper-box" duration="300" style="height:470px" bindchange="bindChange">
+<swiper current="{{currentTab}}" class="swiper-box" duration="300" style="height:570px" bindchange="bindChange">
   <!--申请查看我的项目  -->
   <swiper-item>
-    <scroll-view scroll-y="true">
-      <view class="browseMeTitle flex" style="justify-content: space-between;">
-        <view class="title flex">
-          <view class="block"></view>
-          申请查看我的项目
-        </view>
-        <!--动态改变数字-->
-        <view class="num">
-          共<label>99</label> 个
-        </view>
-      </view>
-      <view id="introduce">这里是一句话介绍</view>
-      <!--名片内容  -->
-      <view class="outsideBox">
-        <view class="redPoint"></view>
-        <image src="/img/img-quanwang@2x.png" class="connection"></image>
-        <view class="applyMyProject">
-          <view class="introduceBox flex">
-            <view class="userName">张三</view>
-            <view class="userPosition">投资总监</view>
-            <view class="userPart flex">
-              <image src="/img/icon-renzheng@2x.png" class="renzheng"></image>
-              <view class="userPart1">卖方FA</view>
+    <scroll-view scroll-y="true" scroll-top="{{scroll}}">
+      <template is="allNumber" data="{{count:count1,text:'申请查看我的项目'}}"></template>
+      <block wx:for="{{contentList}}" wx:key="{{contentList}}">
+        <view id="introduce">{{item.project.pro_intro}}</view>
+        <!--名片内容  -->
+        <view class="outsideBox" data-project="{{item.project.project_id}}" catchtap="projectDetail">
+          <view class="redPoint"></view>
+          <image src="/img/img-quanwang@2x.png" class="connection" wx:if="{{item.user.follow_status != 1}}"></image>
+          <image src="/img/img-wode@2x.png" class="connection" wx:if="{{item.user.follow_status == 1}}"></image>
+          <view class="applyMyProject">
+            <view class="introduceBox flex">
+              <view class="userName">{{item.user.user_real_name}}</view>
+              <view class="userPosition">{{item.user.user_company_career}}</view>
+              <view class="userPart flex">
+                <image src="/img/icon-renzheng@2x.png" class="renzheng"></image>
+                <view class="userPart1">卖方FA</view>
+                <!-- <view class="userPart1">买方FA</view> -->
+              </view>
+              <!--需要进行判断 0:不是当前用户人脉1.当前用户的人脉2.待验证3.同意加为人脉-->
+              <image src="{{item.user.user_avatar_url}}" class="userPic"></image>
             </view>
-            <view class="userPic" class="userPic"></view>
-          </view>
-          <view class="userCompany">杭州投着乐网络科技有限公司</view>
-          <view class="investmentGroup flex">
-            <view class="investmentGroupTitle">投资领域：</view>
-            <view class="investmentGroupContent">智能服务、电商</view>
-          </view>
-          <view class="roundGroup flex">
-            <view class="roundGroupTitle">投资轮次：</view>
-            <view class="roundGroupContent">种子轮、天使轮、A轮、B轮</view>
-          </view>
-          <!-- <view class="flex">
-            <view class="flex refuseBox">
-              <image src="/img/icon-jujue@2x.png" class="iconStyle"></image>
-              <view class="refuseBtn">拒绝</view>
+            <view class="userCompany">{{item.user.user_company_name}}</view>
+            <view class="investmentGroup flex">
+              <view class="investmentGroupTitle">投资领域：</view>
+              <view class="investmentGroupContent"><label wx:for="{{item.user.stage}}">
+              {{item.industry_name}}</label></view>
             </view>
-            <view class="flex agreeBox">
-            <image src="/img/icon-tongyi@2x.png" class="iconStyle"></image>
-            <view class="agreeBtn">同意查看</view>
+            <view class="roundGroup flex">
+              <view class="roundGroupTitle">投资轮次：</view>
+              <view class="roundGroupContent">种子轮、天使轮、A轮、B轮</view>
             </view>
-          </view> -->
-          <view class="classname">
-            <view class="agreed">已同意</view>
+            <view class="flex"  wx:if="{{item.handle_status == 0}}">
+              <view class="flex refuseBox" bindtap="btn" data-record="{{item.record_id}}" data-status="{{1}}">
+                <image src="/img/icon-jujue@2x.png" class="iconStyle"></image>
+                <view class="refuseBtn">拒绝</view>
+              </view>
+              <view class="flex agreeBox" bindtap="btn" data-record="{{item.record_id}}" data-status="{{2}}">
+                <image src="/img/icon-tongyi@2x.png" class="iconStyle"></image>
+                <view class="agreeBtn">同意查看</view>
+              </view>
+            </view>
+            <view class="classname" wx:if="{{item.handle_status == 1}}">
+              <view class="agreed">已同意</view>
+            </view>
           </view>
+          <view id="time">{{item.created_at}}</view>
         </view>
-        <view id="time">05-04 19:00</view>
-      </view>
-      <view class="empty flex">
+        <!-- <view class="empty flex">
         <image src="/img/img-kong1@2x.png" class="noData"></image>
         <view class="hasNothing">暂无数据</view>
-      </view>
+      </view> -->
+      </block>
     </scroll-view>
   </swiper-item>
   <!--我申请查看的项目  -->
   <swiper-item>
-    <scroll-view bindscrolltolower="loadMore" scroll-top="{{scroll}}">
-      <template is="allNumber" data="{{count:count}}"></template>
-      <block wx:for="{{applyList}}">
-        <view class="outBox">
-          <view>
-            <view class="insideBox">
-              <template is="personModal" data="{{applyList:applyList}}"></template>
-              <view class="projectInfo flex">
-                <view class="seeNum">1人看过项目</view>
-                <view class="interest flex">
-                  <view class="btnHaveInterest">感兴趣</view>
-                  <view class="btnNoInterest">没兴趣</view>
-                  <!-- <view class="haveInterest">感兴趣</view> -->
-                </view>
-              </view>
-            </view>
-            <view id="time">{{item.created_at}}</view>
-          </view>
-        </view>
-      </block>
+    <scroll-view bindscrolltolower="loadMore" scroll-top="{{scroll}}" scroll-y="true">
+      <template is="allNumber" data="{{count:count,text:'我申请查看的项目'}}"></template>
+      <template is="personModal" data="{{applyList:applyList,type:1}}"></template>
       <!-- <view class="empty"></view> -->
     </scroll-view>
   </swiper-item>

@@ -532,7 +532,7 @@
   <view class="browseMeTitle flex" style="justify-content: space-between;">
     <view class="title flex">
       <view class="block"></view>
-          推送给我的项目
+          {{text}}
       </view>
         <!--动态改变数字-->
     <view class="num">
@@ -542,31 +542,54 @@
 </template>
 <!--我申请查看的项目  -->
 <template name="personModal">
-  <view>
-    <view class="flex">
-      <view class="describle">{{5555}}</view>
-      <image src="/img/img-dujiaqianyue@2x.png" class="projectDetailType" wx:if="{{project.is_exclusive == 1}}"></image>
-      <image src="/img/img-feiduqianyue@2x.png" class="projectDetailType" wx:if="{{project.is_exclusive == 2}}"></image>
+  <block wx:for="{{applyList}}" wx:key="{{item.project_id}}"> 
+    <view class="classname"  data-project="{{item.project_id}}"  bindtap="projectDetail">
+        <view class="outBox">
+          <view class="insideBox">
+            <view class="flex">
+              <view class="describle" wx:if="{{item.pro_intro != ''}}">{{item.pro_intro}}</view>
+              <image src="/img/img-dujiaqianyue@2x.png" class="projectDetailType" wx:if="{{item.is_exclusive == 1}}"></image>
+              <image src="/img/img-feidujiaqianyue@2x.png" class="projectDetailType" wx:if="{{item.is_exclusive == 2}}"></image>
+            </view>
+            <view class="allIndustry" style="text-align: left">人工智能、大数据、理财、企业服务台</view>
+            <view class="allProjectDetail flex"  wx:if="{{item.pro_area != ''||item.pro_finance_stock_after!=0||item.pro_stage!=''||item.pro_scale!=''}}">
+              <view class="projectDetailLine"  wx:if="{{item.pro_scale != ''}}">{{item.pro_scale.scale_money}}</view>
+              <view class="projectDetailLine"  wx:if="{{item.pro_finance_stock_after != ''}}">{{item.pro_finance_stock_after}}%</view>
+              <view class="projectDetailLine"  wx:if="{{item.pro_stage != ''}}">{{item.pro_stage.stage_name}}</view>
+              <view class="projectDetailLine"  wx:if="{{item.pro_area != ''}}">{{item.pro_area.area_title}}</view>
+            </view>
+            <view class="flex otherInfo">
+              <view>
+                <image src="{{item.user.investor_logo_url}}" class="others_pic" />
+                <view>{{item.user.user_avatar_text}}</view>
+              </view>
+              <view>
+                <view class="flex userInfo">
+                  <view class="userName">{{item.user.user_name}}</view>
+                  <view class="userCareer">{{item.user.user_career}}</view>
+                  <view class="userCompany">{{item.user.user_company}}</view>
+                </view>
+              </view>
+            </view>
+            <view class="projectInfo flex" wx:if="{{type == 0}}">
+              <view class="seeNum">1人看过项目</view>
+              <view class="interest flex">
+                <view class="btnHaveInterest">感兴趣</view>
+                <view class="btnNoInterest">没兴趣</view>
+                <!-- <view class="haveInterest">感兴趣</view> -->
+              </view>
+            </view>
+            <view class="projectInfo flex" wx:if="{{type == 1}}">
+              <view class="seeNum">1人看过项目</view>
+              <view class="interest flex">
+                <view class="appling" wx:if="{{item.handle_status == 0}}">申请中</view>
+                <view class="agreeToRead" wx:if="{{item.handle_status == 1}}">同意查看</view>
+                <view class="refuseToRead" wx:if="{{item.handle_status == 2}}">拒绝</view>
+              </view>
+            </view>
+          </view>
+          <view id="time">{{item.created_at}}</view>
+        </view>
     </view>
-    <view class="allIndustry" style="text-align: left">人工智能、大数据、理财、企业服务台</view>
-    <view class="allProjectDetail flex">
-      <view class="projectDetailLine"></view>
-      <view class="projectDetailLine">10%</view>
-      <view class="projectDetailLine">天使轮</view>
-      <view class="projectDetailLine">杭州</view>
-    </view>
-    <view class="flex otherInfo">
-      <view>
-      <imag src="{{user.user_avatar_url}}" class="others_pic" />
-      <view>{{user.user_avatar_text}}</view>
-      </view>
-      <view>
-      <view class="flex userInfo">
-        <view class="userName">姓名</view>
-        <view class="userCareer">投资经理</view>
-        <view class="userCompany">杭州投着乐网络科技邮箱公司</view>
-      </view>
-      </view>
-    </view>
- </view> 
+  </block>
 </template>
