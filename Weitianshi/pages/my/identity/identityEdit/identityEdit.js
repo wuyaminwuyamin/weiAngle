@@ -229,7 +229,7 @@ Page({
 
 
     wx.navigateTo({
-      url: '/pages/my/identity/identityResult/identityResult',
+      url: '/pages/my/identity/identityResult/identityResult?authenticate_id=' + authenticate_id,
     })
   }
 

@@ -4,7 +4,7 @@ page {
 }
 
 scroll-view {
-  height: 93%;
+  height: 100%;
 }
 
 /*我的项目卡片*/
@@ -244,33 +244,6 @@ scroll-view {
 
 .edit {
   background: #40587a;
-}
-
-.detail {
-  padding: 0 32rpx;
-}
-
-.grey {
-  padding: 32rpx 0;
-  font-size: 24rpx;
-  color: #ccc;
-  padding-bottom: 0;
-}
-
-.item1 {
-  padding: 32rpx 0;
-  font-size: 24rpx;
-  color: #333;
-}
-
-.item2 {
-  text-align: center;
-  color: #333;
-  font-size: 28rpx;
-  padding: 30rpx 32rpx;
-  border: 1px solid #e0e0e0;
-  border-radius: 4px;
-  margin-bottom: 16rpx;
 }
 
 .sort_item {
@@ -553,6 +526,10 @@ button::after {
   border: none;
 }
 
+.contentAll view {
+  text-align: left;
+}
+
 .projectDetailType {
   height: 92rpx;
   width: 92rpx;
@@ -644,4 +621,530 @@ button::after {
   line-height: 88rpx;
   text-align: center;
   color: #fff;
+}
+/*项目详情内容页 */
+.followPerson, .brightPoint, .material, .corePerson, .information, .milestone,
+.signFA, .companyBrand {
+  background: #fafafa;
+  border-radius: 2px;
+  padding: 32rpx 24rpx 32rpx 24rpx;
+  margin-bottom: 20rpx;
+}
+
+.title {
+  font-size: 14px;
+  color: #333;
+  line-height: 14px;
+  text-align: left;
+  margin-bottom: 46rpx;
+}
+
+.titlePic {
+  width: 28rpx;
+  height: 28rpx;
+  padding-right: 14rpx;
+  display: inline-block;
+}
+
+.titleRight {
+  font-size: 24rpx;
+  color: #666;
+  line-height: 24rpx;
+  text-align: right;
+  width: 80%;
+}
+
+.titleRightBP {
+  font-size: 24rpx;
+  color: #40587a;
+  line-height: 24rpx;
+  position: absolute;
+  right: 32rpx;
+  top: 33rpx;
+}
+
+.titleRightBPIcon {
+  height: 20rpx;
+  width: 12rpx;
+}
+
+.contentAll view {
+  text-align: left;
+}
+
+.companyBrand view {
+  text-align: left;
+}
+
+.contentBox {
+  margin-bottom: 20rpx;
+}
+
+.personName, .position, .company {
+  font-size: 24rpx;
+  color: #333;
+  line-height: 24rpx;
+  text-align: left;
+  margin-right: 16rpx;
+}
+
+.position {
+  color: #666;
+}
+
+.company {
+  color: #999;
+}
+
+.time {
+  font-size: 24rpx;
+  color: #666;
+  line-height: 24rpx;
+  text-align: left;
+}
+
+.star {
+  margin-bottom: 26rpx;
+}
+
+#projectBox .brightContent {
+  /* height: 72rpx; */
+  font-size: 26rpx;
+  color: #666;
+  line-height: 39rpx;
+  text-align: left;
+  overflow: hidden;
+  text-overflow: -o-ellipsis-lastline; 
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+}
+
+#projectBox .brightContentAfter {
+  height: auto;
+  font-size: 26rpx;
+  color: #666;
+  line-height: 39rpx;
+  text-align: left;
+}
+
+#projectBox  .pro_sort {
+  font-size: 20rpx;
+  color: #40587a;
+  border-radius: 98rpx;
+  border: 1rpx solid #40587a;
+  text-align: center;
+  height: 44rpx;
+  width: auto;
+  line-height: 44rpx;
+  padding: 0 16rpx;
+  margin-right: 24rpx;
+  flex-wrap: norap;
+}
+
+.pro_sort_right {
+  position: absolute;
+  right: 24rpx;
+  flex-wrap: wrap;
+}
+
+.grayName {
+  font-size: 24rpx;
+  color: #999;
+  line-height: 24rpx;
+  text-align: left;
+  margin-right: 8rpx;
+  margin-bottom: 32rpx;
+}
+.grayName:last-child{
+  margin-bottom:0;
+}
+
+.personPosition {
+  margin-top:2rpx;
+  font-size: 22rpx;
+  color: #666;
+  letter-spacing: 0;
+  line-height: 24rpx;
+  text-align: left;
+}
+
+#projectBox .personInfo {
+  border-bottom: 2rpx solid #e6e6e6;
+  padding: 24rpx 0;
+}
+
+#projectBox .personInfo:first-child {
+  padding-top: 0;
+}
+
+#projectBox .personInfo:last-child {
+  border-bottom: none;
+  padding-bottom: 0;
+}
+
+.personInfoList {
+  margin-bottom: 16rpx;
+}
+
+#projectBox .scale {
+  font-size: 22rpx;
+  color: #40587a;
+  letter-spacing: 0;
+  line-height: 22rpx;
+  text-align: right;
+  position: absolute;
+  right: 48rpx;
+}
+
+.introduce {
+  font-size: 22rpx;
+  color: #666;
+  letter-spacing: 0;
+  line-height: 30rpx;
+  text-align: left;
+}
+
+.proposalFinal {
+  margin-bottom: 0;
+}
+
+.materialContent {
+  font-size: 26rpx;
+  color: #666;
+  letter-spacing: 0;
+  line-height: 26rpx;
+  text-align: left;
+}
+
+.materialWeb {
+  font-size: 26rpx;
+  color: #666;
+  letter-spacing: 0;
+  line-height: 26rpx;
+  text-align: left;
+}
+
+.whiteContent {
+  background-color: #fff;
+  border: 1rpx solid #e6e6e6;
+  border-radius: 4rpx;
+  width: 100%;
+  height: 176rpx;
+}
+
+.txtContent {
+  margin: 62rpx 0 54rpx 0;
+  width: 33.33%;
+}
+
+.textTab {
+  font-size: 22rpx;
+  color: #666;
+  line-height: 22rpx;
+  text-align: center;
+}
+
+.textNum {
+  font-size: 30rpx;
+  color: #333;
+  line-height: 30rpx;
+  text-align: center;
+}
+
+#project .purpose {
+  margin-bottom: 48rpx;
+  text-align: left;
+}
+
+.purpose .purposeTitle {
+  font-size: 24rpx;
+  color: #999;
+  line-height: 24rpx;
+  text-align: left;
+  margin-top: 48rpx;
+  margin-bottom:24rpx;
+}
+
+.purpose .purposeContent {
+  font-size: 26rpx;
+  color: #666;
+  line-height: 34rpx;
+  text-align: left;
+  margin-bottom: 48rpx;
+}
+
+.case_money {
+  font-size: 26rpx;
+  color: #333;
+  line-height: 26rpx;
+  text-align: left;
+}
+
+.case_turn {
+  border-radius: 62rpx;
+  font-size: 20rpx;
+  text-align: right;
+  border: 1rpx solid #40587a;
+  padding: 2rpx;
+}
+
+.invest {
+  padding-bottom: 48rpx;
+  border-left: 1px solid #e6e6e6;
+}
+
+.invest view {
+  text-align: left;
+}
+
+.invest:last-child {
+  border: none;
+  padding: 0;
+}
+
+.investContent {
+  font-size: 22rpx;
+  color: #666;
+  line-height: 22rpx;
+  text-align: left;
+  padding-left: 32rpx;
+}
+
+.milestoneContent:last-child {
+  border-left: none;
+  padding: 0;
+  width: auto;
+  height: auto;
+}
+
+.milestoneContent {
+  border-left: 2rpx solid #e6e6e6;
+  padding-bottom: 48rpx;
+}
+
+#projectBox .case_time {
+  font-size: 24rpx;
+  color: #333;
+  line-height: 24rpx;
+  text-align: left;
+  margin-right: 48rpx;
+  width: auto;
+  margin-bottom: 20rpx;
+}
+
+.milestoneContentcase_time {
+  font-size: 24rpx;
+  color: #333;
+  line-height: 24rpx;
+  text-align: left;
+  margin-right: 48rpx;
+  width: 128rpx;
+  margin-bottom: 20rpx;
+}
+
+.case_pic {
+  margin-top: -1rpx;
+  width: 16rpx;
+  height: 16rpx;
+  margin-right: 24rpx;
+  margin-left: -7rpx;
+  z-index: 3;
+}
+
+#projectBox .case_content {
+  font-size: 24rpx;
+  color: #666;
+  line-height: 32rpx;
+  text-align: left;
+  width: auto;
+  flex-wrap: wrap;
+}
+
+#projectBox .milestoneContentBox .case_content {
+  font-size: 24rpx;
+  color: #666;
+  line-height: 32rpx;
+  text-align: left;
+  width: 429rpx;
+  flex-wrap: wrap;
+}
+
+#projectBox .milestoneContentBox {
+  border-left: 1rpx solid #e6e6e6;
+  padding-bottom: 48rpx;
+}
+
+#projectBox .milestoneContentBox:last-child {
+  border-left: none;
+  padding-bottom: 0;
+}
+
+.conBox {
+  margin: 56rpx 0 54rpx 0;
+  text-align: center;
+}
+
+.conBox .textFAContent {
+  width: 25%;
+}
+
+.textTab {
+  margin-bottom: 16rpx;
+}
+
+.bigBox {
+  margin: 0 32rpx 0 32rpx;
+  text-align: left;
+}
+
+#projectBox {
+  background: white;
+  padding-top: 32rpx;
+}
+
+.scale_moneyIcon {
+  width: 24rpx;
+  height: 24rpx;
+}
+
+#projectBox .teamPro {
+  margin-bottom: 48rpx;
+}
+
+/*空白页*/
+
+.nothing {
+  height: 120rpx;
+  width: 96rpx;
+  margin-top: 234rpx;
+}
+
+.hasNoFind {
+  font-size: 26rpx;
+  color: #999;
+  line-height: 30rpx;
+  text-align: center;
+  margin: 52rpx 0 32rpx 0;
+}
+
+.writeCompanyName {
+  font-size: 30rpx;
+  color: #009eff;
+  letter-spacing: 0;
+  line-height: 30rpx;
+  text-align: center;
+}
+
+/*bp模态框*/
+
+.bpModal {
+  background: #fff;
+  border-radius: 8rpx;
+  width: 570rpx;
+  height: 344rpx;
+  padding-top: 48rpx;
+  margin-left: 90rpx;
+  margin-top: 45%;
+}
+
+.modal {
+  background: rgba(0, 0, 0, 0.5);
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  left: 0;
+  top: 0;
+}
+
+.bpModalText {
+  font-size: 36rpx;
+  color: #333;
+  letter-spacing: 0;
+  line-height: 36rpx;
+  text-align: center;
+}
+
+.writeBpEmail {
+  border: 1rpx solid #ccc;
+  width: 426rpx;
+  height: 84rpx;
+  margin: 64rpx 38rpx 64rpx 40rpx;
+  padding: 0 32rpx;
+}
+
+.bpModalCancel, .bpModalSure {
+  width: 50%;
+  font-size: 32rpx;
+  color: #333;
+  letter-spacing: 0;
+  line-height: 32rpx;
+  text-align: center;
+  padding: 26rpx 0 32rpx 0;
+}
+
+.bpModalCancel {
+  border-right: 1rpx solid #e6e6e6;
+}
+
+.choiceBox {
+  border-top: 1rpx solid #e6e6e6;
+}
+
+.industryIcon {
+  margin: 0 16rpx;
+  width: 24rpx;
+  height: 24rpx;
+}
+
+.industryIcon:first-child {
+  margin-left: 0;
+}
+
+/*项目信息的展开和合并*/
+
+.moreInfo {
+  margin-top: 32rpx;
+  width: 100%;
+  height: 22rpx;
+  /*background: #fff;*/
+  font-size: 24rpx;
+  color: #009eff;
+  line-height: 24rpx;
+  text-align: center;
+}
+
+.competitorPosition{
+  font-size: 24rpx;
+  color: #999;
+  letter-spacing: 0;
+  line-height: 24rpx;
+  text-align: left;
+  margin-left:32rpx;
+}
+
+.more{
+    color:#009eff;
+    font-size: 12px;
+}
+
+.checkEmail{
+    color: #ccc;
+}
+.coreMemberLeftBox{
+  width:82rpx;
+  height:82rpx;
+  margin-right:14rpx;
+  border-radius: 50%;
+}
+.projectDetailLine{
+  padding: 0 16rpx;
+border-right:1rpx solid #999999;
+}
+.projectDetailLine:first-child{
+  padding-left:0;
+}
+.projectDetailLine:last-child{
+  border-right:none;
 }
