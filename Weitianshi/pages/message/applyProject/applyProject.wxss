@@ -60,9 +60,10 @@
 /*名片*/
 
 .outBox {
-  margin: 16px 16px 0 16px;
+  margin: 0 16px 0 16px;
   width: auto;
   height: auto;
+  position: relative;
 }
 
 .insideBox {
@@ -88,11 +89,20 @@
   line-height: 26rpx;
   text-align: left;
   margin-bottom: 24rpx;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .projectDetailLine {
   padding: 0 16rpx;
   border-right: 1rpx solid #999;
+}
+
+.projectDetailLight {
+  padding: 0 16rpx;
+  border-right: 1rpx solid #999;
+  color: #40587a;
 }
 
 .otherInfo {
@@ -114,6 +124,14 @@
 }
 
 .projectDetailLine:last-child {
+  border-right: none;
+}
+
+.projectDetailLight:first-child {
+  padding-left: 0;
+}
+
+.projectDetailLight:last-child {
   border-right: none;
 }
 
@@ -186,7 +204,7 @@
   color: #999;
   line-height: 20rpx;
   text-align: right;
-  margin: 8rpx 0 20rpx 0;
+  margin: 10rpx 0 20rpx 0;
 }
 
 /*==========我申请查看的项目===============  */
@@ -213,18 +231,19 @@
 }
 
 #introduce {
-  background: #fafafa;
+  background: #f3f4f8;
   border-radius: 4rpx 4rpx 0 0;
   font-size: 26rpx;
-  color: #666; 
+  color: #666;
   line-height: 88rpx;
   text-align: left;
   height: 88rpx;
-  margin-left: 56rpx;
+  margin-left: 30rpx;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
-  width:664rpx;
+  width: 670rpx;
+  padding-left: 16rpx;
 }
 
 .applyMyProject .userPosition {
@@ -270,6 +289,9 @@
   line-height: 26rpx;
   text-align: left;
   margin-bottom: 24rpx;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .roundGroup {
@@ -368,10 +390,20 @@
   color: #ccc;
   line-height: 24rpx;
   text-align: center;
-  padding-top: 34rpx;
   margin-left: 370rpx;
+  position: absolute;
+  top: 34rpx;
+  right: 0;
 }
 
 .agreeToRead {
   color: #40587a;
+}
+
+.hightLight {
+  color: #40587a;
+}
+
+.noLight {
+  color: #999;
 }

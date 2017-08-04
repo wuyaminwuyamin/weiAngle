@@ -83,7 +83,7 @@ Page({
     let time = this.data.pushTimes;
     let that = this;
     wx.request({
-      url: url + '/api/project/pushProjectToUser',
+      url: url_common + '/api/project/pushProjectToUser',
       data: {
         user_id: user_id,
         pushed_user_id: "90ky197p",

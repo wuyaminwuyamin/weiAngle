@@ -1,66 +1,204 @@
 // pages/message/pushProject/pushProject.js
+var rqj = require('../../Template/Template.js')
+var app = getApp();
+var url = app.globalData.url;
+var url_common = app.globalData.url_common;
 Page({
-
-  /**
-   * 页面的初始数据
-   */
   data: {
-  
+    winWidth: 0,//选项卡
+    winHeight: 0,//选项卡
+    currentTab: 0,//选项卡
+    type: 1 //我申請查看的項目
   },
 
-  /**
-   * 生命周期函数--监听页面加载
-   */
   onLoad: function (options) {
   
   },
-
-  /**
-   * 生命周期函数--监听页面初次渲染完成
-   */
-  onReady: function () {
-  
-  },
-
-  /**
-   * 生命周期函数--监听页面显示
-   */
   onShow: function () {
-  
+    var user_id = wx.getStorageSync('user_id');//获取我的user_id
+    let that = this;
+    // 我推送的项目
+    wx.request({
+      url: url_common + '/api/message/pushProjectList',
+      data: {
+        user_id : user_id
+      },
+      method: 'POST',
+      success: function (res) {
+        console.log("我推送的")
+        console.log(res)
+        let pushProjectList = res.data.data;
+        let count = res.data.count;
+        that.setData({
+          count:count,
+          pushProjectList: pushProjectList
+        })
+      }
+    })
+    // 推送给我的项目
+    wx.request({
+      url: url_common + '/api/message/getProjectWithPushToMe',
+      data: {
+        user_id : user_id
+      },
+      method: 'POST',
+      success: function (res) {
+        console.log("推送给我的")
+        console.log(res)
+        let pushToList = res.data.data;
+        let count1 = res.data.count;
+        that.setData({
+          count1: count1,
+          pushToList: pushToList
+        })
+      }
+    })
+    that.setData({
+      requestCheck: true,
+      requestCheckBoolean: true,
+      currentPage: 1,
+      otherCurrentPage: 1,
+      page_end: false,
+      page_endBoolean: false,
+      push_page: 1
+    })
   },
-
-  /**
-   * 生命周期函数--监听页面隐藏
-   */
-  onHide: function () {
-  
+  /*滑动切换tab*/
+  bindChange: function (e) {
+    var that = this;
+    var current = e.detail.current;
+    that.setData({ currentTab: e.detail.current });
   },
-
-  /**
-   * 生命周期函数--监听页面卸载
-   */
-  onUnload: function () {
-  
+  /*点击tab切换*/
+  swichNav: function (e) {
+    var that = this;
+    if (this.data.currentTab === e.target.dataset.current) {
+      return false;
+    } else {
+      that.setData({
+        currentTab: e.target.dataset.current
+      })
+    }
   },
-
-  /**
-   * 页面相关事件处理函数--监听用户下拉动作
-   */
-  onPullDownRefresh: function () {
-  
+  // 点击跳转
+  projectDetail: function (e) {
+    // 获取我自己的项目id
+    var that = this;
+    // 获取当前点击的项目id
+    var id = e.currentTarget.dataset.project;
+    console.log(id);
+    // 判斷項目是不是自己的
+    wx.request({
+      url: url + '/api/project/projectIsMine',
+      data: {
+        project_id: id
+      },
+      method: 'POST',
+      success: function (res) {
+        var that = this;
+        var userId = res.data.user_id;
+        var user = wx.getStorageSync('user_id');
+        if (userId == user) {
+          wx.navigateTo({
+            url: '/pages/myProject/projectDetail/projectDetail?id=' + id + '&&index=' + 0
+          })
+        } else {
+          wx.navigateTo({
+            url: '/pages/projectDetail/projectDetail?id=' + id,
+          })
+        }
+      }
+    })
   },
-
-  /**
-   * 页面上拉触底事件的处理函数
-   */
-  onReachBottom: function () {
-  
+  //推送给我的加载更多
+  loadMore: function () {
+    //请求上拉加载接口所需要的参数
+    var that = this;
+    var user_id = wx.getStorageSync('user_id');
+    var currentPage = this.data.currentPage;
+    var request = {
+      url: url_common + '/api/message/getProjectWithPushToMe',
+      data: {
+        user_id: user_id,
+        page: this.data.currentPage
+      }
+    }
+    //调用通用加载函数
+    app.loadMore(that, request, "pushToList", that.data.pushToList)
   },
-
-  /**
-   * 用户点击右上角分享
-   */
-  onShareAppMessage: function () {
-  
-  }
+  // 我推送的项目加载更多
+  moreForApply: function () {
+    //请求上拉加载接口所需要的参数
+    var user_id = wx.getStorageSync("user_id");
+    let that = this;
+    let pushProjectList = this.data.pushProjectList;
+    if (that.data.requestCheckBoolean) {
+      if (user_id != '') {
+        if (that.data.page_endBoolean == false) {
+          wx.showToast({
+            title: 'loading...',
+            icon: 'loading'
+          })
+          that.data.push_page++;
+          that.setData({
+            otherCurrentPage: this.data.push_page,
+            requestCheckBoolean: false
+          });
+          //请求加载数据
+          wx.request({
+            url: url_common + '/api/message/pushProjectList',
+            data: {
+              user_id: user_id,
+              page: this.data.otherCurrentPage
+            },
+            method: 'POST',
+            success: function (res) {
+              console.log(res)
+              var newPage = res.data.data;
+              // console.log(newPage);
+              var page_end = res.data.page_end;
+              console.log(page_end)
+              for (var i = 0; i < newPage.length; i++) {
+                pushProjectList.push(newPage[i])
+              }
+              that.setData({
+                pushProjectList: pushProjectList,
+                page_endBoolean: page_end,
+                requestCheckBoolean: true
+              })
+            }
+          })
+        } else {
+          rqj.errorHide(that, "没有更多了", 3000)
+          that.setData({
+            requestCheckBoolean: true
+          });
+        }
+      }
+    }
+  },
+  // 感兴趣
+  interesting:function(e){
+    var user_id = wx.getStorageSync('user_id');//获取我的user_id
+    let status = e.currentTarget.dataset.type;
+    let push_id = e.currentTarget.dataset.pushid;
+    let that = this;
+    wx.request({
+      url: url_common + '/api/message/handlePushProjectMessage',
+      data: {
+        user_id : user_id,
+        push_id: push_id,
+        status: status
+      },
+      method: 'POST',
+      success: function (res) {
+        console.log("我推送的")
+        console.log(res)
+        that.setData({
+          handle_status : 1
+        })
+      }
+    })
+  },
+ 
 })

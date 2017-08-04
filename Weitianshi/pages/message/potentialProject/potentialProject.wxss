@@ -60,9 +60,10 @@
 /*名片*/
 
 .outBox {
-  margin: 16px 16px 0 16px;
+  margin: 0 16px 0 16px;
   width: auto;
   height: auto;
+  position:relative;
 }
 
 .insideBox {
@@ -70,12 +71,16 @@
   background: #fff;
 }
 
-.describle {
+.outBox .describle {
   font-size: 34rpx;
   color: #666;
   line-height: 34rpx;
   text-align: left;
   margin-bottom: 36rpx;
+  /* width:1418rpx; */
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .allIndustry {
@@ -84,11 +89,19 @@
   line-height: 26rpx;
   text-align: left;
   margin-bottom: 24rpx;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .projectDetailLine {
   padding: 0 16rpx;
   border-right: 1rpx solid #999;
+}
+.projectDetailLight {
+   padding: 0 16rpx;
+  border-right: 1rpx solid #999;
+  color: #40587a;
 }
 
 .otherInfo {
@@ -109,7 +122,14 @@
   padding-left: 0;
 }
 
+
 .projectDetailLine:last-child {
+  border-right: none;
+}
+.projectDetailLight:first-child {
+  padding-left: 0;
+}
+.projectDetailLight:last-child {
   border-right: none;
 }
 
@@ -182,7 +202,7 @@
   color: #999;
   line-height: 20rpx;
   text-align: right;
-  margin: 8rpx 0 20rpx 0;
+  margin: 10rpx 0 20rpx 0;
 }
 
 /*==========我申请查看的项目===============  */
@@ -196,16 +216,190 @@
   right: 20rpx;
 }
 
-.reapply {
-  background: #40587a;
-  border-radius: 2px;
-  width: 136rpx;
-  height: 52rpx;
+/*=============================  */
+
+.applyMyProject {
+  padding: 32rpx;
+  background: white;
+}
+
+.outsideBox {
+  margin: 0 30rpx;
+  position: relative;
+}
+
+#introduce {
+  background: #f3f4f8;
+  border-radius: 4rpx 4rpx 0 0;
+  font-size: 26rpx;
+  color: #666;
+  line-height: 88rpx;
+  text-align: left;
+  height: 88rpx;
+  margin-left: 30rpx;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  width: 670rpx;
+  padding-left:16rpx;
+}
+
+.applyMyProject .userPosition {
+  font-size: 28rpx;
+  color: #666;
+  line-height: 28rpx;
+  text-align: left;
+  margin-right: 16rpx;
+}
+
+.introduceBox {
+  margin-bottom: 16rpx;
+  align-items: flex-end;
+}
+
+.introduceBox .userName {
+  font-size: 36rpx;
+  color: #333;
+  line-height: 36rpx;
+  text-align: left;
+  margin-right: 16rpx;
+  align-items: flex-end;
+}
+
+.applyMyProject .userPart {
+  font-size: 20rpx;
+  color: #d3b987;
+  line-height: 20rpx;
+  text-align: left;
+}
+
+.applyMyProject .userCompany {
   font-size: 24rpx;
-  color: #fff;
-  line-height: 52rpx;
-  text-align: center;
+  color: #999;
+  line-height: 24rpx;
+  text-align: left;
+  margin-bottom: 84rpx;
+}
+
+.investmentGroup, .roundGroup {
+ font-size: 26rpx;
+  color: #999;
+  line-height: 26rpx;
+  text-align: left;
+  margin-bottom: 24rpx;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.roundGroup {
+  margin-bottom: none;
+  border-bottom: 1rpx solid #e6e6e6;
+  padding-bottom: 28rpx;
+}
+
+.agreeBtn, .refuseBtn {
+  font-size: 28rpx;
+  color: #40587a;
+  line-height: 28rpx;
+  text-align: left;
+  margin-left: 16rpx;
+}
+
+.agreeBox {
+  padding-left: 94rpx;
+}
+
+.refuseBox {
+  padding-left: 88rpx;
+  padding-right: 122rpx;
+  border-right: 1rpx solid #e6e6e6;
+}
+
+.iconStyle {
+  width: 24rpx;
+  height: 26rpx;
+  border-radius: 100%;
+}
+
+.agreed {
+  font-size: 28rpx;
+  color: #40587a;
+  letter-spacing: 0;
+  line-height: 28rpx;
+  text-align: left;
+}
+
+.renzheng {
+  width: 24rpx;
+  height: 24rpx;
+  margin-right: 4rpx;
+}
+
+.userPart1 {
+  margin-top: 4rpx;
+}
+
+.connection {
+  width: 68rpx;
+  height: 68rpx;
   position: absolute;
-  top: 20rpx;
+  right: 0;
+}
+
+.userPic {
+  width: 104rpx;
+  height: 104rpx;
+  border-radius: 100%;
+  position: absolute;
+  right: 32rpx;
+  top: 32rpx;
+}
+
+.redPoint {
+  background: #f44c4c;
+  width: 16rpx;
+  height: 16rpx;
+  border-radius: 100%;
+  position: absolute;
+  top: 16rpx;
+  left: 16rpx;
+}
+
+.noData {
+  width: 144rpx;
+  height: 88rpx;
+  margin-bottom: 38rpx;
+  /* margin-top:344rpx; */
+}
+
+.projectDetailType {
+  height: 92rpx;
+  width: 92rpx;
+  right: -3rpx;
+  top: -6rpx;
+  position: absolute;
+}
+
+/*同意查看或不同意查看或申请中  */
+
+.appling, .refuseToRead, .agreeToRead {
+  font-size: 24rpx;
+  color: #ccc;
+  line-height: 24rpx;
+  text-align: center;
+  margin-left: 370rpx;
+  position:absolute;
+  top:34rpx;
   right:0;
+}
+
+.agreeToRead {
+  color: #40587a;
+}
+.hightLight{
+  color: #40587a;
+}
+.noLight{
+  color:#999999;
 }

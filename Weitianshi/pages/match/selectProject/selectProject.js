@@ -21,6 +21,7 @@ Page({
             },
             method: 'POST',
             success: function (res) {
+              console.log(res)
                 var slectProject = res.data.data;
                 that.setData({
                     slectProject: slectProject,
@@ -46,11 +47,11 @@ Page({
         app.loadMore(that, request, "slectProject", that.data.slectProject)
     },
     //项目详情
-    yourDetail: function (e) {
-        var thisData = e.currentTarget.dataset;
-        wx.navigateTo({
-            url: '/pages/projectDetail/projectDetail?id=' + thisData.id
-        })
+    projectDetail: function (e) {
+      var project_id = e.currentTarget.dataset.project;
+      wx.navigateTo({
+        url: '/pages/projectDetail/projectDetail?id=' + project_id
+      })
     },
     //分享当前页面
     onShareAppMessage: function () {
@@ -58,5 +59,11 @@ Page({
             title: '来微天使找优质项目',
             path: '/pages/match/selectProject/selectProject'
         }
+    },
+    // 跳转创建项目页面
+    toCreateProject:function(){
+      wx.navigateTo({
+        url: '/pages/myProject/publishProject/publishProject'
+      })
     }
 })
