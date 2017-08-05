@@ -1,15 +1,21 @@
 <import src="/pages/Template/Template.wxml" />
 <scroll-view style="height:100%;" scroll-y="true" bindscrolltolower='loadMore'>
   <!--已匹配的项目-->
-  <view class="others">
+  <!-- <view class="others">
     <block wx:for="{{slectProject}}" wx:key="{{myProject.project_id}}" wx:for-item="myProject">
       <template is="selectedCard" data="{{myProject:myProject}}"></template>
     </block>
-  </view>
-
+  </view> -->
+  <template is="personModal" data="{{list:slectProject}}"></template>
   <!--没有更多-->
   <view class="error" wx:if="{{error=='1'}}">{{error_text}}</view>
 
   <!--空状态-->
   <image class="empty" src="/img/empty.png" wx:if="{{myProject==''}}"></image>
+  <view class="floatBtn">
+  <view class="accreditation flex">
+    <view>创建项目，参与融资对接</view>
+    <view class="toAccreditation" bindtap="toCreateProject">创建项目</view>
+  </view>
+  </view>
 </scroll-view>

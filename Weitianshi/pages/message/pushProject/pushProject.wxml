@@ -1,2 +1,26 @@
-<!--pages/message/pushProject/pushProject.wxml-->
-<text>pages/message/pushProject/pushProject.wxml</text>
+<import src="/pages/Template/Template.wxml" />
+<view class="swiper-tab">
+
+  <view class="swiper-tab-list {{currentTab==0 ? 'on' : ''}}" data-current="0" bindtap="swichNav">推送给我的项目</view>
+
+  <view class="swiper-tab-list {{currentTab==1 ? 'on' : ''}}" data-current="1" bindtap="swichNav">我推送的项目</view>
+
+</view>
+<swiper current="{{currentTab}}" class="swiper-box" duration="300" style="height:570px" bindchange="bindChange">
+  <!--推送给我的项目  -->
+  <swiper-item>
+    <scroll-view bindscrolltolower="loadMore" scroll-top="{{scroll}}" scroll-y="true">
+      <template is="allNumber" data="{{count:count1,text:'推送给我的项目'}}"></template>
+      <template is="personModal" data="{{list:pushToList,type:0}}"></template>
+      <!-- <view class="empty"></view> -->
+    </scroll-view>
+  </swiper-item>
+  <!--我推送的项目 -->
+  <swiper-item>
+    <scroll-view scroll-y="true" scroll-top="{{scroll}}" bindscrolltolower="moreForApply"> 
+      <template is="allNumber" data="{{count:count,text:'我推送的项目'}}"></template>
+       <template is="pushProject" data="{{contentList:pushProjectList}}"></template>
+    </scroll-view>
+  </swiper-item>
+
+</swiper>

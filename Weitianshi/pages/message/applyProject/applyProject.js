@@ -21,17 +21,10 @@ Page({
       },
       method: 'POST',
       success: function (res) {
+        console.log("申請查看我的")
         console.log(res)
         let contentList = res.data.data;
         let count1 = res.data.count;
-        let industryArray = [];
-        let array = [];
-        let p  ='';
-        contentList.forEach((x, index) => {
-          industryArray = x.user.industry;
-        })
-
-        console.log(industryArray)
         that.setData({
           count1 :　count1,
           contentList: contentList
@@ -46,16 +39,10 @@ Page({
       },
       method: 'POST',
       success: function (res) {
+        console.log("我申请查看的项目")
+        console.log(res)
         let count = res.data.count;
         let applyList = res.data.data;
-        let list = applyList[0].pro_industry;
-        let arr = [];
-        let p;
-        console.log(list)
-        list.forEach((x, index) => {
-          arr[index] = x.industry_name;
-        })
-        p = arr.join("、");
         that.setData({
           count: count,
           applyList: applyList
@@ -67,8 +54,12 @@ Page({
     let that = this;
         that.setData({
           requestCheck: true,
+          requestCheckBoolean : true,
           currentPage: 1,
-          page_end: false,
+          otherCurrentPage: 1,
+          page_end: false, 
+          page_endBoolean : false,
+          push_page: 1  
         })
   },
   /*滑动切换tab*/
@@ -88,7 +79,7 @@ Page({
       })
     }
   },
-  // 加载更多
+  //我申请的项目加载更多
   loadMore: function () {
     //请求上拉加载接口所需要的参数
     var that = this;
@@ -103,6 +94,58 @@ Page({
     }
     //调用通用加载函数
     app.loadMore(that, request, "applyList", that.data.applyList)
+  },
+  // 申请我的项目加载更多
+  moreForApply:function(){
+    //请求上拉加载接口所需要的参数
+    var user_id = wx.getStorageSync("user_id");
+    let that = this;
+    let contentList = this.data.contentList;
+
+    if (that.data.requestCheckBoolean) {
+      if (user_id != '') {
+        if (that.data.page_endBoolean == false) {
+          wx.showToast({
+            title: 'loading...',
+            icon: 'loading'
+          })
+          that.data.push_page++;
+          that.setData({
+            otherCurrentPage: this.data.push_page,
+            requestCheckBoolean: false
+          });
+          //请求加载数据
+          wx.request({
+           url: url_common + '/api/message/applyProjectToMe',
+            data: {
+              user_id: user_id,
+              page: this.data.otherCurrentPage
+            },
+            method: 'POST',
+            success: function (res) {
+              console.log(res)
+              var newPage = res.data.data;
+              // console.log(newPage);
+              var page_end = res.data.page_end;
+              console.log(page_end)
+              for (var i = 0; i < newPage.length; i++) {
+                contentList.push(newPage[i])
+              }
+              that.setData({
+                contentList: contentList,
+                page_endBoolean: page_end,
+                requestCheckBoolean: true
+              })
+            }
+          })
+        } else {
+          rqj.errorHide(that, "没有更多了", 3000)
+          that.setData({
+            requestCheckBoolean: true
+          });
+        }
+      }
+    }
   },
   // 点击跳转
   projectDetail: function (e) {
