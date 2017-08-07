@@ -6,6 +6,7 @@
       <template is="selectedCard" data="{{myProject:myProject}}"></template>
     </block>
   </view> -->
+
   <template is="personModal" data="{{list:slectProject,type:2}}"></template>
   <!--没有更多-->
   <view class="error" wx:if="{{error=='1'}}">{{error_text}}</view>
