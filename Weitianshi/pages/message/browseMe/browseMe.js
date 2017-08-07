@@ -10,7 +10,6 @@ Page({
         var that = this;
         app.initPage(that);
         var user_id = this.data.user_id;
-
         // 获取浏览我的用户信息
         if (user_id) {
             wx.request({

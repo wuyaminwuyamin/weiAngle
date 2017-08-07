@@ -1,7 +1,7 @@
 <import src="/pages/Template/Template.wxml" />
 <view class="swiper-tab">
 
-  <view class="swiper-tab-list {{currentTab==0 ? 'on' : ''}}" data-current="0" bindtap="swichNav">推送给我的项目</view>
+  <view class="swiper-tab-list {{currentTab==0 ? 'on' : ''}}"  data-current="0" bindtap="swichNav">推送给我的项目</view>
 
   <view class="swiper-tab-list {{currentTab==1 ? 'on' : ''}}" data-current="1" bindtap="swichNav">我申请查看的项目</view>
 
@@ -30,3 +30,5 @@
     </scroll-view>
   </swiper-item>
 </swiper>
+<!--没有更多-->
+  <view class="error" wx:if="{{error=='1'}}">{{error_text}}</view>

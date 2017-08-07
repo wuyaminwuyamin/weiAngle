@@ -23,3 +23,5 @@
     </scroll-view>
   </swiper-item>
 </swiper>
+<!--没有更多-->
+  <view class="error" wx:if="{{error=='1'}}">{{error_text}}</view>

@@ -572,6 +572,11 @@ page {
   border-radius: 4rpx;
   width: 136rpx;
   height: 52rpx;
-  margin-top:18rpx;
-  margin-left:286rpx;
+  margin-top: 18rpx;
+  position: absolute;
+  right:0;
+}
+.highBox{
+  height:88rpx;
+  width:100%;
 }

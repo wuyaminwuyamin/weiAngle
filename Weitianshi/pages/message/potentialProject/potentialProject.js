@@ -135,46 +135,49 @@ Page({
     var user_id = wx.getStorageSync("user_id");
     let that = this;
     let getMatchList = this.data.getMatchList;
-    if (that.data.requestCheckBoolean) {
+    if (that.data.requestCheckThird) {
       if (user_id != '') {
-        if (that.data.page_endBoolean == false) {
+        if (that.data.page_endThird == false) {
           wx.showToast({
             title: 'loading...',
             icon: 'loading'
           })
-          that.data.push_page++;
+          that.data.match_page++;
           that.setData({
-            otherCurrentPage: this.data.push_page,
-            requestCheckBoolean: false
+            thirdCurrentPage: this.data.match_page,
+            requestCheckThird: false
           });
           //请求加载数据
           wx.request({
-            url: url_common + '/api/message/pushProjectList',
+            url: url_common + '/api/investor/getMatchProjectList',
             data: {
               user_id: user_id,
-              page: this.data.otherCurrentPage
+              type: 'only_match',   
+              page: this.data.thirdCurrentPage
             },
             method: 'POST',
             success: function (res) {
               console.log(res)
-              var newPage = res.data.data;
-              // console.log(newPage);
-              var page_end = res.data.page_end;
-              console.log(page_end)
+              let newPage = res.data.data.projects;
+              console.log(newPage);
+              let page_end = res.data.page_end;
+              console.log(newPage.length)
               for (var i = 0; i < newPage.length; i++) {
-                pushProjectList.push(newPage[i])
+                getMatchList.push(newPage[i])
               }
               that.setData({
-                pushProjectList: pushProjectList,
-                page_endBoolean: page_end,
-                requestCheckBoolean: true
+                getMatchList: getMatchList,
+                page_endThird: page_end,
+                requestCheckThird: true
               })
+              console.log(getMatchList)
             }
           })
         } else {
-          rqj.errorHide(that, "没有更多了", 3000)
+          console.log("没有更多")
+          rqj.errorHide(that, "没有更多了", that, 3000)
           that.setData({
-            requestCheckBoolean: true
+            requestCheckThird: true
           });
         }
       }
@@ -209,7 +212,7 @@ Page({
             success: function (res) {
               console.log(res)
               var newPage = res.data.data;
-              // console.log(newPage);
+              console.log(newPage);
               var page_end = res.data.page_end;
               console.log(page_end)
               for (var i = 0; i < newPage.length; i++) {
@@ -223,7 +226,7 @@ Page({
             }
           })
         } else {
-          rqj.errorHide(that, "没有更多了", 3000)
+          rqj.errorHide(that, "没有更多了", that, 3000)
           that.setData({
             requestCheckBoolean: true
           });
@@ -271,6 +274,22 @@ Page({
     let index = e.currentTarget.dataset.index;
     let getMatchList = this.data.getMatchList;
       // button-type: 0=申请中 1.申请已通过 2.申请被拒绝(重新申请) 3.推送给我的 4.未申请也未推送(申请按钮)
+    if (content == 0) {
+      console.log(index)
+      getMatchList[index].relationship_button = 0;
+      console.log(getMatchList[index].relationship_button)
+      that.setData({
+        getMatchList: getMatchList[index].relationship_button
+      })
+    } else if (content == 1) {
+      console.log(index)
+      console.log(content)
+      getMatchList[index].relationship_button = 0;
+      console.log(getMatchList[index].relationship_button)
+      that.setData({
+        getMatchList: getMatchList[index].relationship_button
+      })
+    }
       wx.request({
         url: url_common + '/api/project/applyProject',
         data: {
@@ -280,21 +299,7 @@ Page({
         method: 'POST',
         success: function (res) { 
           console.log(res)
-          if (content == 0){
-            console.log(index)
-            getMatchList[index].relationship_button = 0;
-            console.log(getMatchList[index].relationship_button)
-           that.setData({
-             getMatchList:getMatchList[index].relationship_button 
-           })
-          } else if (content == 1){
-            console.log(index)
-            getMatchList[index].relationship_button = 0;
-            console.log(getMatchList[index].relationship_button)
-            that.setData({
-              getMatchList: getMatchList[index].relationship_button
-            })
-         }
+          
         }
       })
   },

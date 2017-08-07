@@ -12,11 +12,18 @@ Page({
   },
 
   onLoad: function (options) {
-  
+  console.log(options)
+  let type = options.type;
+  let that = this;
+  that.setData({
+    type: type
+  })
   },
   onShow: function () {
+
     var user_id = wx.getStorageSync('user_id');//获取我的user_id
     let that = this;
+    let type = this.data.type;
     // 我推送的项目
     wx.request({
       url: url_common + '/api/message/pushProjectList',
@@ -33,7 +40,7 @@ Page({
           count:count,
           pushProjectList: pushProjectList
         })
-      }
+      }       
     })
     // 推送给我的项目
     wx.request({
@@ -53,7 +60,19 @@ Page({
         })
       }
     })
-    that.setData({
+    //向后台发送信息取消红点
+    wx.request({
+      url: url_common + '/api/message/setMessageToRead',
+      data: {
+        user_id: user_id,
+        type_id: type
+      },
+      method: "POST",
+      success:function(res){
+        console.log(res)
+      }
+    })
+    that.setData({ 
       requestCheck: true,
       requestCheckBoolean: true,
       currentPage: 1,
@@ -67,6 +86,20 @@ Page({
   bindChange: function (e) {
     var that = this;
     var current = e.detail.current;
+    var user_id = wx.getStorageSync('user_id');//获取我的user_id
+    if(current == 1){
+      //向后台发送信息取消红点
+      wx.request({
+        url: url_common + '/api/message/setFeedbackToRead',
+        data: {
+          user_id: user_id,
+          type: "push" 
+        },
+        method: "POST",
+        success: function (res) {
+        }
+      })
+    }
     that.setData({ currentTab: e.detail.current });
   },
   /*点击tab切换*/
@@ -155,7 +188,7 @@ Page({
             success: function (res) {
               console.log(res)
               var newPage = res.data.data;
-              // console.log(newPage);
+              console.log(newPage);
               var page_end = res.data.page_end;
               console.log(page_end)
               for (var i = 0; i < newPage.length; i++) {
@@ -169,7 +202,7 @@ Page({
             }
           })
         } else {
-          rqj.errorHide(that, "没有更多了", 3000)
+          rqj.errorHide(that, "没有更多了", that, 3000)
           that.setData({
             requestCheckBoolean: true
           });
