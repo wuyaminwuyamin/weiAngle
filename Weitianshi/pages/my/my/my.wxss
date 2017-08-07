@@ -527,7 +527,9 @@ page {
 .attentionNum {
   left: 54%;
 }
-
+.potentialNum{
+  left:88%;
+}
 .popularity-Num, .attention-Num, .potential-Num {
   font-size: 32rpx;
   color: #333;

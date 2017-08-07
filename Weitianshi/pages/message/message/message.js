@@ -59,23 +59,23 @@ Page({
             method: 'POST',
             success: function (res) {
                 console.log(res)
-                var data = res.data.data;
-                console.log(data)
-                var count = data[1].count;
+                var list = res.data.data;
+                // console.log(data)
+                // var count = data[1].count;
                 // console.log(data[1].count)
-                data.forEach((x, index) => {
-                    messageList[index].message_name = x.message_name;
-                    if (x.count) {
-                        messageList[index].count = x.count
-                    } else {
-                        messageList[index].count = 0
-                    }
-                })
-                that.setData({
-                    messageList: messageList,
-                    count: count
-                })
-                console.log(that.data.messageList)
+                // list.forEach((x, index) => {
+                //     messageList[index].message_name = x.message_name;
+                //     if (x.count) {
+                //         messageList[index].count = x.count
+                //     } else {
+                //         messageList[index].count = 0
+                //     }
+                // })
+                // that.setData({
+                //     messageList: messageList,
+                //     count: count
+                // })
+                // console.log(that.data.messageList)
             }
         })
         wx.request({

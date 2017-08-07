@@ -160,7 +160,6 @@ Page({
             console_expect: this.data.expect[this.data.expect_index].scale_id,
         });
     },
-
     //上传BP
     upLoad: function () {
         var pro_intro = this.data.describe;//描述
@@ -171,9 +170,10 @@ Page({
         var is_exclusive = this.data.tips_index * 1;
         //弹出PC端url提示文本模态框
         wx.showModal({
-            titel: "友情提示",
-            content: "请到www.weitianshi.cn/qr上传",
+            title: "PC上传",
+            content: "电脑打开www.weitianshi.cn/qr点击扫一扫",
             showCancel: true,
+            confirmText:"扫一扫",
             success: function (res) {
                 // console.log('用户点击确定')
                 if (res.confirm) {
@@ -214,8 +214,6 @@ Page({
             }
         })
     },
-
-
     //点击发布
     public: function () {
         var that = this;

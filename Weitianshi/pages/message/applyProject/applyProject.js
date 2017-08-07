@@ -216,9 +216,5 @@ Page({
       })
     }
     
-  },
-  // 点击拒绝
-  refuseBtn:function(e){
-    console.log(e)
   }
 })

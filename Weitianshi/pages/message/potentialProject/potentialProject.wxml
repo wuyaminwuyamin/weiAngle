@@ -10,7 +10,7 @@
 <swiper current="{{currentTab}}" class="swiper-box" duration="300" style="height:570px" bindchange="bindChange">
   <!--推送给我的项目  -->
   <swiper-item>
-    <scroll-view scroll-y="true">
+    <scroll-view scroll-y="true" bindscrolltolower="pushMore" scroll-top="{{scroll}}">
       <template is="allNumber" data="{{count:count1,text:'推送给我的项目'}}"></template>
       <template is="personModal" data="{{list:pushToList,type:0}}"></template>
     </scroll-view>
@@ -24,56 +24,9 @@
   </swiper-item>
   <!--匹配推荐  -->
   <swiper-item>
-    <scroll-view scroll-y="true">
-      <view class="browseMeTitle flex" style="justify-content: space-between;">
-        <view class="title flex">
-          <view class="block"></view>
-          匹配推荐
-        </view>
-        <!--动态改变数字-->
-        <view class="num">
-          共<label>99</label>个</view>
-      </view>
-      <view class="classname">
-        <view class="outBox">
-          <view class="insideBox">
-            <view class="flex">
-              <view class="describle">项目一句话介绍</view>
-              <image src="/img/img-dujiaqianyue@2x.png" class="projectDetailType" wx:if="{{project.is_exclusive == 1}}"></image>
-              <image src="/img/img-feiduqianyue@2x.png" class="projectDetailType" wx:if="{{project.is_exclusive == 2}}"></image>
-            </view>
-            <view class="allIndustry" style="text-align: left">人工智能、大数据、理财、企业服务台</view>
-            <view class="allProjectDetail flex">
-              <view class="projectDetailLine">300-500万</view>
-              <view class="projectDetailLine">10%</view>
-              <view class="projectDetailLine">天使轮</view>
-              <view class="projectDetailLine">杭州</view>
-            </view>
-            <view class="flex otherInfo">
-              <view>
-                <imag src="{{user.user_avatar_url}}" class="others_pic" />
-                <view>{{user.user_avatar_text}}</view>
-              </view>
-              <view>
-                <view class="flex userInfo">
-                  <view class="userName">姓名</view>
-                  <view class="userCareer">投资经理</view>
-                  <view class="userCompany">杭州投着乐网络科技邮箱公司</view>
-                </view>
-              </view>
-            </view>
-            <view class="projectInfo flex">
-              <view class="seeNum">1人看过项目</view>
-              <view class="applyBox flex">
-                <!-- <view class="apply">同意查看</view> -->
-                <view class="reapply">重新申请</view>
-                <!-- <view class="applying">申请中</view> -->
-              </view>
-            </view>
-          </view>
-          <view id="time">05-04 19:00</view>
-        </view>
-      </view>
+    <scroll-view scroll-y="true" scroll-top="{{scroll}}" bindscrolltolower="matchMore">
+      <template is="allNumber" data="{{count:count2,text:'匹配推荐'}}"></template>
+      <template is="personModal" data="{{list:getMatchList,type:2}}"></template>
     </scroll-view>
   </swiper-item>
 </swiper>
