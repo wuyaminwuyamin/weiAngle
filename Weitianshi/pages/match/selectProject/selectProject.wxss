@@ -89,7 +89,6 @@ page {
   width: 40rpx;
   height: 40rpx;
   display: block;
-  background: black;
   margin-right: 16rpx;
 }
 
