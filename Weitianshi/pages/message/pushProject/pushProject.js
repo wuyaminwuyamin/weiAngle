@@ -12,15 +12,14 @@ Page({
   },
 
   onLoad: function (options) {
-  console.log(options)
-  let type = options.type;
-  let that = this;
-  that.setData({
-    type: type
-  })
+    console.log(options)
+    let type = options.type;
+    let that = this;
+    that.setData({
+      type: type
+    })
   },
   onShow: function () {
-
     var user_id = wx.getStorageSync('user_id');//获取我的user_id
     let that = this;
     let type = this.data.type;
@@ -61,6 +60,7 @@ Page({
       }
     })
     //向后台发送信息取消红点
+    // 推送给我的
     wx.request({
       url: url_common + '/api/message/setMessageToRead',
       data: {
@@ -88,7 +88,7 @@ Page({
     var current = e.detail.current;
     var user_id = wx.getStorageSync('user_id');//获取我的user_id
     if(current == 1){
-      //向后台发送信息取消红点
+      //向后台发送信息取消红点 我推送的项目
       wx.request({
         url: url_common + '/api/message/setFeedbackToRead',
         data: {
@@ -97,6 +97,7 @@ Page({
         },
         method: "POST",
         success: function (res) {
+          console.log("yes,成功了")
         }
       })
     }

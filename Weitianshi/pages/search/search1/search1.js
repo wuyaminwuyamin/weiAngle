@@ -1,80 +1,71 @@
 // pages/search/search1/search1.js
+var rqj = require('../../Template/Template.js')
+var app = getApp();
+var url = app.globalData.url;
+var url_common = app.globalData.url_common;
 Page({
 
-  /**
-   * 页面的初始数据
-   */
   data: {
-  
+      tags:'',
+      com_id:0
   },
 
-  /**
-   * 生命周期函数--监听页面加载
-   */
   onLoad: function (options) {
-  
+
   },
 
-  /**
-   * 生命周期函数--监听页面初次渲染完成
-   */
-  onReady: function () {
-  
-  },
-
-  /**
-   * 生命周期函数--监听页面显示
-   */
   onShow: function () {
-  
-  },
 
-  /**
-   * 生命周期函数--监听页面隐藏
-   */
-  onHide: function () {
-  
   },
-
-  /**
-   * 生命周期函数--监听页面卸载
-   */
-  onUnload: function () {
-  
+  //获取输入内容
+  inputValue: function (e) {
+    console.log(e)
+    let companyName = e.detail.value;
+    let that = this;
+    that.setData({
+      companyName: companyName
+    })
   },
-
-  /**
-   * 页面相关事件处理函数--监听用户下拉动作
-   */
-  onPullDownRefresh: function () {
-  
+  // 查找公司名字
+  searchCompany: function () {
+    let that = this;
+    let companyName = this.data.companyName;
+    var user_id = wx.getStorageSync('user_id');
+    console.log(companyName);
+    let com_id = this.data.com_id;
+    wx.request({
+      url: url_common + '/api/dataTeam/selectCompany',
+      data: {
+        user_id: user_id,
+        company_name: companyName
+      },
+      method: 'POST',
+      success: function (res) {
+        console.log(res)
+        let company = res.data.data;
+        
+        that.setData({
+          company : company,
+          com_id: com_id
+        })
+      }
+    })
   },
+  // 选择其中的一个
+  checkOne:function(e){
+    console.log(e)
+    let tags = e.currentTarget.dataset.id;
+    let company_name = e.currentTarget.dataset.name;
+    console.log(company_name)
+    let that = this;
+    that.setData({
+      com_id : tags,
+      company_name: company_name
+    })
 
-  /**
-   * 页面上拉触底事件的处理函数
-   */
-  onReachBottom: function () {
-  
   },
-
-  /**
-   * 用户点击右上角分享
-   */
-  onShareAppMessage: function () {
-  
-  },
-
-  /**
-   * 页面上拉触底事件的处理函数
-   */
-  onReachBottom: function () {
-  
-  },
-
-  /**
-   * 页面相关事件处理函数--监听用户下拉动作
-   */
-  onPullDownRefresh: function () {
-  
+  // 保存公司名称
+  save: function () {
+    console.log("保存")
   }
-})
+}) 

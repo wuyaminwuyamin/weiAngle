@@ -81,6 +81,18 @@ Page({
         })
       }
     })
+    // 取消红点 --推送给我的
+    wx.request({
+      url: url_common + '/api/message/setMessageToRead',
+      data: {
+        user_id: user_id,
+        type_id: "7"
+      },
+      method: "POST",
+      success: function (res) {
+        console.log(res)
+      }
+    })
     that.setData({
       requestCheck: true,
       requestCheckBoolean: true,
@@ -101,6 +113,21 @@ Page({
     var that = this;
     var current = e.detail.current;
     that.setData({ currentTab: e.detail.current });
+    var user_id = wx.getStorageSync('user_id');//获取我的user_id
+    if (current == 1) {
+      //向后台发送信息取消红点 我申请查看的
+      wx.request({
+        url: url_common + '/api/message/setFeedbackToRead',
+        data: {
+          user_id: user_id,
+          type: "apply"
+        },
+        method: "POST",
+        success: function (res) {
+          console.log("yes,成功了")
+        }
+      })
+    }
   },
   /*点击tab切换*/
   swichNav: function (e) {

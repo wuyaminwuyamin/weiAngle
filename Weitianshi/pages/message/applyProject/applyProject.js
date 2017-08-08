@@ -11,8 +11,13 @@ Page({
   },
 
   onLoad: function (options) {
-    var user_id = wx.getStorageSync('user_id');//获取我的user_id
+    console.log(options)
+    let type = options.type;
     let that = this;
+    that.setData({
+      type: type
+    })
+    var user_id = wx.getStorageSync('user_id');//获取我的user_id
     // 申请查看我的项目
     wx.request({
       url: url_common + '/api/message/applyProjectToMe',
@@ -31,6 +36,7 @@ Page({
         })
       }
     })
+    
     // 我申请查看的项目
     wx.request({
       url: url_common + '/api/message/applyProjectList',
@@ -52,20 +58,50 @@ Page({
   },
   onShow: function () {
     let that = this;
-        that.setData({
-          requestCheck: true,
-          requestCheckBoolean : true,
-          currentPage: 1,
-          otherCurrentPage: 1,
-          page_end: false, 
-          page_endBoolean : false,
-          push_page: 1  
-        })
+    var user_id = wx.getStorageSync('user_id');//获取我的user_id
+    let type = this.data.type;
+    that.setData({
+      requestCheck: true,
+      requestCheckBoolean : true,
+      currentPage: 1,
+      otherCurrentPage: 1,
+      page_end: false, 
+      page_endBoolean : false,
+      push_page: 1  
+    })
+    //向后台发送信息取消红点
+    wx.request({
+      url: url_common + '/api/message/setMessageToRead',
+      data: {
+        user_id: user_id,
+        type_id: type
+      },
+      method: "POST",
+      success: function (res) {
+        console.log(res)
+        console.log("发送成功")
+      }
+    })
   },
   /*滑动切换tab*/
   bindChange: function (e) {
     var that = this;
     var current = e.detail.current;
+    var user_id = wx.getStorageSync('user_id');//获取我的user_id
+    if (current == 1) {
+      //向后台发送信息取消红点
+      wx.request({
+        url: url_common + '/api/message/setFeedbackToRead',
+        data: {
+          user_id: user_id,
+          type: "apply"
+        },
+        method: "POST",
+        success: function (res) {
+          console.log("yes,成功了")
+        }
+      })
+    }
     that.setData({ currentTab: e.detail.current });
   },
   /*点击tab切换*/

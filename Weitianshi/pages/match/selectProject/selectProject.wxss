@@ -266,7 +266,11 @@ page {
   overflow: hidden;
   text-overflow: ellipsis;
 }
-
+.investmentGroupContent{
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
 .roundGroup {
   margin-bottom: none;
   border-bottom: 1rpx solid #e6e6e6;
@@ -402,6 +406,19 @@ page {
   margin-top: 18rpx;
   position: absolute;
   right:0;
+}
+.btnToAccreditation{
+  ont-size: 24rpx;
+  color: #fff;
+  line-height: 52rpx;
+  text-align: center;
+  background: #40587a;
+  border-radius: 4rpx;
+  width: 136rpx;
+  height: 52rpx;
+  margin-top: 18rpx;
+  position: absolute;
+  right:32rpx;
 }
 .highBox{
   height:88rpx;

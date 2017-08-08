@@ -136,9 +136,11 @@ Page({
     }
   },
   // 项目申请跳转
-  projectApply: function () {
+  projectApply: function (e) {
+    let type = e.currentTarget.dataset.type;
+    console.log(type)
     wx.navigateTo({
-      url: '/pages/message/applyProject/applyProject',
+      url: '/pages/message/applyProject/applyProject?type=' + type,
     })
   },
   // 项目推送

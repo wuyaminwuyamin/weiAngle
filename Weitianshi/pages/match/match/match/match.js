@@ -400,22 +400,26 @@ Page({
                         icon: 'loading'
                     })
                     resource_page++;
+                    console.log(resource_page)
                     that.setData({
                         resource_page: resource_page
                     });
                     wx.request({
-                        url: url + '/api/resource/getMatchResourceForPage',
+                        url: url_common + '/api/resource/getMatchResourceList',
                         data: {
-                            res_id: res_id,
+                            user_id: user_id,
                             page: resource_page,
                         },
                         method: 'POST',
                         success: function (res) {
                             console.log("分页加载的资源需求的匹配项目")
                             console.log(res);
-                            var newPage = res.data.res_match;
+                            var newPage = res.data.data.match_list;
+                            console.log(newPage)
                             var resource_page_end = res.data.page_end;
+                            console.log(resource_page_end)
                             var res_match = that.data.res_match;
+                            console.log(res_match)
                             for (var i = 0; i < newPage.length; i++) {
                                 res_match.push(newPage[i])
                             }
@@ -441,5 +445,9 @@ Page({
             title: '微天使帮您精准对接投融资需求',
             path: '/pages/match/match/match/match'
         }
+    },
+    //推送项目或加人脉
+    btn:function(){
+
     }
 });

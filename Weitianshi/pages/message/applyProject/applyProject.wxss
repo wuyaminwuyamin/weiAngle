@@ -296,8 +296,6 @@
 
 .roundGroup {
   margin-bottom: none;
-  border-bottom: 1rpx solid #e6e6e6;
-  padding-bottom: 28rpx;
 }
 
 .agreeBtn, .refuseBtn {
@@ -406,4 +404,30 @@
 
 .noLight {
   color: #999;
+}
+.bottomTabAfter{
+  border-top: 1rpx solid #e6e6e6;
+  padding-top: 28rpx;
+}
+.bottomTab{
+  border-top: 1rpx solid #e6e6e6;
+  padding-top: 28rpx;
+}
+
+.user_text {
+  background: #f2f2f2;
+  line-height: 104rpx;
+  text-align: center;
+  font-size: 40rpx;
+  width: 104rpx;
+  height: 104rpx;
+  border-radius: 100%;
+  position: absolute;
+  right: 32rpx;
+  top: 32rpx;
+}
+.investmentGroupContent, .roundGroupContent{
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
