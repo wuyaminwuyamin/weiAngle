@@ -48,7 +48,6 @@ Page({
         var page_end = res.data.page_end;
         dataList.forEach((x, index) => {
           dataList[index] = x;
-          console.log(dataList[index].pro_intro)
         })
         // is_exclusive是否独家 1独家 2非独家 0其他
         that.setData({
