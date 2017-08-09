@@ -344,10 +344,12 @@ App({
     tagsCheck(that, rqj, e, tags, str) {
         console.log(tags)
         let target = e.currentTarget.dataset;
+        console.log(target)
         let tagsData = tags.tagsData;
+        console.log(tags)
         let checkObject = [];
-
         tagsData[target.index].check = !tagsData[target.index].check;
+        console.log(tagsData[target.index])
         let checkedNum = 0
         tagsData.forEach((x) => {
             if (x.check == true) {

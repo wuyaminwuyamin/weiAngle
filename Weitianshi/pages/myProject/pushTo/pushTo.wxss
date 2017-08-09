@@ -9,6 +9,7 @@
   padding-left: 32rpx;
   margin-bottom: 32rpx;
 }
+
 .s_frame {
   height: 1052rpx;
   position: static;
@@ -47,6 +48,9 @@
   line-height: 48rpx;
   text-align: left;
   /* width: 480rpx; */
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .industry {
@@ -56,6 +60,9 @@
   line-height: 26rpx;
   text-align: left;
   margin: 36rpx 0 24rpx 0;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .allProjectDetail {
@@ -63,6 +70,9 @@
   color: #666;
   line-height: 26rpx;
   text-align: left;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .projectDetailType {
@@ -134,14 +144,14 @@
   background: #fff;
   width: 94rpx;
   height: 118rpx;
-  margin-top:340rpx;
+  margin-top: 340rpx;
 }
 
 .none {
   font-size: 26rpx;
   color: #999;
   line-height: 30rpx;
-  margin:50rpx 0 32rpx 0;
+  margin: 50rpx 0 32rpx 0;
 }
 
 .createProject {
@@ -149,13 +159,25 @@
   color: #009eff;
   line-height: 30rpx;
 }
-.checkBoxOut{
-  position:relative;
+
+.checkBoxOut {
+  position: relative;
 }
 
-.checkbox{
-position:absolute;
-right:-9rpx;
-top:-55rpx;
-z-index:5;
+.checkbox {
+  position: absolute;
+  right: -9rpx;
+  top: -55rpx;
+  z-index: 5;
+}
+
+.tips .checkedOne {
+  border: 1px solid #333;
+  color: #fff;
+  background: #40587a;
+}
+
+.checkedOne {
+  border: 1px solid #333;
+  color: #333;
 }

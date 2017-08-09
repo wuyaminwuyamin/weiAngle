@@ -127,11 +127,13 @@ Page({
                     });
                     // 项目介绍的标签
                     var pro_industry = project.pro_industry;
+                    console.log(pro_industry.length)
                     for (var i = 0; i < pro_industry.length; i++) {
                         industy_sort.push(pro_industry[i].industry_name)
                     }
                     that.setData({
-                        industy_sort: industy_sort
+                        industy_sort: industy_sort,
+                        pro_industry: pro_industry
                     })
                     // 核心团队
                     if (project.core_users != 0) {

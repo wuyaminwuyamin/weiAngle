@@ -2,12 +2,10 @@
 <view class="title">
   今日还可以推送<label>{{pushTimes.remain_times}}</label>次（1个项目推送给1个投资人计为1次）
 </view>
-
-
 <view class="s_frame">
   <scroll-view scroll-y="true" bindscrolltolower="loadMore" scroll-top="{{scroll}}">
     <block  wx:for="{{dataList}}" wx:key="{{index}}">
-      <view class="outBox"  bindtap="{{checkboxChange}}">
+      <view class="outBox {{item.check==true?'checkedOne':''}}"  bindtap="checkboxChange" data-id="{{item.project_id}}" data-index="{{index}}"  >
         <view class="matching">匹配度：<label class="matchingNum">{{dataList[index].match_weight}}%</label></view>
         <view class="projectInfoBox">
           <view class="classname">
@@ -45,3 +43,8 @@
   <view class="none">暂无项目</view>
   <view class="createProject" bindtap="createProject">创建项目</view>
 </view> -->
+
+<!--{{item.check==true?'checkedOne':''}} 
+data-id="{{item.project_id}}" data-index="{{index}}" 
+data-value='{{item.industry_name}}'
+ -->

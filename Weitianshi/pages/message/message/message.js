@@ -8,8 +8,8 @@ Page({
     count: 0,
     messageList: [
       {
-        event: "beAddedContacts",
-        iconPath: "/img/img-personMessage.png",
+        event: "toIdentity",
+        iconPath: "/img/icon-xiaoxi_renzheng@2x.png",
         message_name: "项目申请",
         count: 0,
         type_id :0
@@ -35,18 +35,6 @@ Page({
         count: 0,
         type_id: 0
       }
-      //     {
-      //         event: "beAddedContacts",
-      //         iconPath: "/img/img-personMessage.png",
-      //         message_name: "同意/拒绝添加人脉",
-      //         count: 0
-      //     },
-      //     {
-      //         event: "beAddedContacts",
-      //         iconPath: "/img/img-personMessage.png",
-      //         message_name: "人脉申请",
-      //         count: 0
-      //     }
     ]
   },
   onShow: function () {
@@ -108,11 +96,7 @@ Page({
       url: '/pages/message/beAddedContacts/beAddedContacts',
     })
   },
-  //  beAddedContacts: function (e) {
-  //   wx.navigateTo({
-  //     url: '/pages/message/beAddedContacts/beAddedContacts',
-  //   })
-  // },
+
   // 身份认证跳转
   toIdentity: function (e) {
     console.log("跳转身份认证")
