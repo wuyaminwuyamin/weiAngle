@@ -460,10 +460,10 @@
         <image class="iconEdit" src="/img/icon-edit@3x.png"></image>
       </view>
        <view  wx:if="{{item.type_id == 8}}">
-         <view class="identity" bindtap="{{item.event}}" wx:if="{{status == 0}}" data-status="{{0}}">立即认证</view>
-         <view class="identifyContent" bindtap="{{item.event}}" wx:if="{{status == 3}}">审核未通过</view>
-         <view class="identifyContent on"  bindtap="{{item.event}}" wx:if="{{status == 1}}">审核中</view>
-         <view class="identifyContent" bindtap="{{item.event}}" wx:if="{{status == 2}}">认证成功</view>
+         <view class="identity"  wx:if="{{status == 0}}" data-status="{{0}}">立即认证</view>
+         <view class="identifyContent"  wx:if="{{status == 3}}">审核未通过</view>
+         <view class="identifyContent on"  wx:if="{{status == 1}}">审核中</view>
+         <view class="identifyContent"  wx:if="{{status == 2}}">认证成功</view>
      </view>
     </view>
   </view>

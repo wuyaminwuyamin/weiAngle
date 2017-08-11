@@ -100,32 +100,62 @@ Page({
     let user_career = this.data.user_career;
     let user_email = this.data.user_email;
     let type = this.data.type;
+    let pages = getCurrentPages();
+    let currPage=pages[pages.length-1];
+    let prevPage=pages[pages.length-2];
+    let user_info = prevPage.data.user_info;
+    console.log(pages);
+    console.log(currPage);
+
     // 姓名type:0 手机type:1 品牌type:2 公司type:3 职位type:4 邮箱type:5
     if (type == 0) {
-      wx.navigateTo({
-        url: '/pages/my/identity/identityEdit/identityEdit?user_name=' + user_name,
-      })
+        user_info.user_real_name=user_name;
+        prevPage.setData({
+            user_info:user_info
+        })
+        wx.navigateBack({
+            delta:1
+        })
     } else if (type == 1){
-      wx.navigateTo({
-        url: '/pages/my/identity/identityEdit/identityEdit?user_tel=' + user_tel,
-      })
+        user_info.user_tel = user_tel;
+        prevPage.setData({
+            user_info: user_info
+        })
+        wx.navigateBack({
+            delta: 1
+        })
     } else if (type == 2) {
-      wx.navigateTo({
-        url: '/pages/my/identity/identityEdit/identityEdit?user_brand=' + user_brand,
-      })
+        user_info.user_brand = user_brand;
+        prevPage.setData({
+            user_info: user_info
+        })
+        wx.navigateBack({
+            delta: 1
+        })
     } else if (type == 3) {
-      wx.navigateTo({
-        url: '/pages/my/identity/identityEdit/identityEdit?user_company_name=' + user_company_name,
-      })
+        user_info.user_company_name = user_company_name;
+        prevPage.setData({
+            user_info: user_info
+        })
+        wx.navigateBack({
+            delta: 1
+        })
     } else if (type == 4) {
-      wx.navigateTo({
-        url: '/pages/my/identity/identityEdit/identityEdit?user_career=' + user_career,
-      })
+        user_info.user_career = user_career;
+        prevPage.setData({
+            user_info: user_info
+        })
+        wx.navigateBack({
+            delta: 1
+        })
     } else if (type == 5) {
-      wx.navigateTo({
-        url: '/pages/my/identity/identityEdit/identityEdit?user_email=' + user_email,
-      })
+        user_info.user_email = user_email;
+        prevPage.setData({
+            user_info: user_info
+        })
+        wx.navigateBack({
+            delta: 1
+        })
     }
-
   }
 })
