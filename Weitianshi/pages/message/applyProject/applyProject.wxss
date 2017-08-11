@@ -115,7 +115,6 @@
   width: 40rpx;
   height: 40rpx;
   display: block;
-  background: black;
   margin-right: 16rpx;
 }
 
@@ -245,7 +244,20 @@
   width: 670rpx;
   padding-left: 16rpx;
 }
-
+.introduce{
+   background: #f3f4f8;
+  border-radius: 4rpx 4rpx 0 0;
+  font-size: 26rpx;
+  color: #666;
+  line-height: 88rpx;
+  text-align: left;
+  height: 88rpx;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  width: 670rpx;
+  padding-left: 16rpx;
+}
 .applyMyProject .userPosition {
   font-size: 28rpx;
   color: #666;
@@ -405,15 +417,20 @@
 .noLight {
   color: #999;
 }
-.bottomTabAfter{
+
+.bottomTabAfter {
   border-top: 1rpx solid #e6e6e6;
   padding-top: 28rpx;
-}
-.bottomTab{
-  border-top: 1rpx solid #e6e6e6;
-  padding-top: 28rpx;
+  background: white;
+  padding-bottom: 30rpx;
 }
 
+.bottomTab {
+  border-top: 1rpx solid #e6e6e6;
+  padding-top: 28rpx;
+  padding-bottom: 30rpx;
+  background: white;
+}
 .user_text {
   background: #f2f2f2;
   line-height: 104rpx;
@@ -430,4 +447,22 @@
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
+}
+.hide {
+  display: none;
+}
+/*重新申请  */
+.toAccreditation {
+  font-size: 24rpx;
+  color: #fff;
+  line-height: 52rpx;
+  text-align: center;
+  background: #40587a;
+  border-radius: 4rpx;
+  width: 136rpx;
+  height: 52rpx;
+  /* margin-top: 18rpx; */
+  position: absolute;
+  right: 0;
+  top:20rpx;
 }

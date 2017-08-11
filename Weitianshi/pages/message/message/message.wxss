@@ -13,7 +13,7 @@
 
 .messageList {
   height: 32rpx;
-  padding: 50rpx 42rpx 50rpx 36rpx;
+  padding: 50rpx 42rpx 50rpx 32rpx;
   align-items: center;
   position: relative;
 }
@@ -37,9 +37,9 @@
 }
 
 .title_icon {
-  width: 68rpx;
-  height: 56rpx;
-  margin-right: 46rpx;
+  width: 32rpx;
+  height: 32rpx;
+  margin-right: 32rpx;
 }
 
 /* .addedContacts .title {
@@ -111,6 +111,7 @@
   padding: 0 20rpx;
   position: absolute;
   right: 34rpx;
+  top:45rpx;
 }
 
 .identityIcon {

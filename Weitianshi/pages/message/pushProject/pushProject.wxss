@@ -233,6 +233,7 @@
   text-overflow: ellipsis;
   width: 670rpx;
   padding-left: 16rpx;
+  justify-content: space-between;
 }
 
 .applyMyProject .userPosition {
@@ -389,6 +390,7 @@
   border-top: 1rpx solid #e6e6e6;
   padding-top: 28rpx;
   background: white;
+  padding-bottom: 30rpx;
 }
 
 .bottomTab {
@@ -417,6 +419,9 @@
   display: block;
   margin-right: 16rpx;
   border-radius: 50%;
+  font-size: 22rpx;
+  background:#999999;
+  line-height: 40rpx;
 }
 
 .investmentGroupContent, .roundGroupContent {
@@ -438,6 +443,11 @@
 .status {
   font-size: 24rpx;
   color: #40587a;
-  line-height: 24rpx;
+  line-height: 88rpx;
   text-align: right;
+  padding-right:34rpx;
+}
+
+.readed {
+  color: #40587a;
 }

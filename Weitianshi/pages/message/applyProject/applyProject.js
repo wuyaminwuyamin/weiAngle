@@ -31,12 +31,12 @@ Page({
         let contentList = res.data.data;
         let count1 = res.data.count;
         that.setData({
-          count1 :　count1,
+          count1: 　count1,
           contentList: contentList
         })
       }
     })
-    
+
     // 我申请查看的项目
     wx.request({
       url: url_common + '/api/message/applyProjectList',
@@ -62,12 +62,12 @@ Page({
     let type = this.data.type;
     that.setData({
       requestCheck: true,
-      requestCheckBoolean : true,
+      requestCheckBoolean: true,
       currentPage: 1,
       otherCurrentPage: 1,
-      page_end: false, 
-      page_endBoolean : false,
-      push_page: 1  
+      page_end: false,
+      page_endBoolean: false,
+      push_page: 1
     })
     //向后台发送信息取消红点
     wx.request({
@@ -132,7 +132,7 @@ Page({
     app.loadMore(that, request, "applyList", that.data.applyList)
   },
   // 申请我的项目加载更多
-  moreForApply:function(){
+  moreForApply: function () {
     //请求上拉加载接口所需要的参数
     var user_id = wx.getStorageSync("user_id");
     let that = this;
@@ -152,7 +152,7 @@ Page({
           });
           //请求加载数据
           wx.request({
-           url: url_common + '/api/message/applyProjectToMe',
+            url: url_common + '/api/message/applyProjectToMe',
             data: {
               user_id: user_id,
               page: this.data.otherCurrentPage
@@ -214,43 +214,72 @@ Page({
     })
   },
   // 点击同意
-  btn:function(e){
+  btn: function (e) {
+    console.log(e)
+    let contentList = this.data.contentList;
     var user_id = wx.getStorageSync('user_id');//获取我的user_id
     let that = this;
     let record_id = e.currentTarget.dataset.record;
-    // status 1:同意  2:拒绝
+    // status 1:同意  2:拒绝 0:待处理
     let status = e.currentTarget.dataset.status;
-    if(status == 1){
-      wx.request({
-        url: url_common + '/api/message/handleApplyProjectMessage',
-        data: {
-          user_id : user_id,
-          record_id: record_id,
-          status: status
-        },
-        method: 'POST',
-        success: function (res) {
-          if (res.data.status == 2000000){
-            that.setData({
-              
-            })
+    wx.request({
+      url: url_common + '/api/message/handleApplyProjectMessage',
+      data: {
+        user_id : user_id,
+        record_id: record_id,
+        status: status
+      },
+      method: 'POST',
+      success: function (res) {
+        console.log(res)
+        if (status == 1) {
+          contentList.forEach((x) => {
+            if (x.record_id == record_id) {
+              x.handle_status = 1
+            }
+          })
+          console.log(contentList)
+          that.setData({
+            contentList: contentList
+          })
+        } else if (status == 2) {
+          that.setData({
+            record_id :record_id
+          })
+        }
+      }
+    })
+  },
+  //重新申请
+  matchReApply: function (e) {
+    console.log("重新申请")
+    console.log(e)
+    var user_id = wx.getStorageSync('user_id');//获取我的user_id
+    let that = this;
+    let project_id = e.currentTarget.dataset.project;
+    let applyList = this.data.applyList;
+    // button-type: 0=申请中 1.申请已通过 2.申请被拒绝(重新申请) 3.推送给我的 4.未申请也未推送(申请按钮)
+    wx.request({
+      url: url_common + '/api/project/applyProject',
+      data: {
+        user_id : user_id,
+        project_id: project_id
+      },
+      method: 'POST',
+      success: function (res) {
+        console.log("重新申请")
+
+        applyList.forEach((x) => {
+          if (x.project_id == project_id) {
+            console.log("进来了")
+            x.handle_status = 0
           }
-        }
-      })
-    }else if(status ==2){
-      wx.request({
-        url: url_common + '/api/message/handleApplyProjectMessage',
-        data: {
-          user_id : user_id,
-          record_id: record_id,
-          status: status
-        },
-        method: 'POST',
-        success: function (res) {
-          console.log(res)
-        }
-      })
-    }
-    
-  }
+        })
+        that.setData({
+          applyList: applyList
+        })
+      }
+    })
+  },
+
 })

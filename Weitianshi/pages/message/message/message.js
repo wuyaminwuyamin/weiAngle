@@ -2,7 +2,6 @@ var rqj = require('../../Template/Template.js')
 var app = getApp();
 var url = app.globalData.url;
 var url_common = app.globalData.url_common;
-// pages/message/message/message.js
 Page({
   data: {
     count: 0,
@@ -10,28 +9,28 @@ Page({
       {
         event: "toIdentity",
         iconPath: "/img/icon-xiaoxi_renzheng@2x.png",
-        message_name: "项目申请",
+        message_name: "身份认证",
         count: 0,
         type_id :0
       },
       {
         event: "projectApply",
-        iconPath: "/img/img-personMessage.png",
-        message_name: "人脉申请",
+        iconPath: "/img/icon-xiaoxi_xiangmu@2x.png",
+        message_name: "项目申请",
         count: 0,
         type_id: 0
       },
       {
         event: "projectPush",
-        iconPath: "/img/img-personMessage.png",
-        message_name: "浏览我的名片",
+        iconPath: "/img/icon-xiaoxi_tuisong@2x.png",
+        message_name: "项目推送",
         count: 0,
         type_id: 0
       },
       {
         event: "beAddedContacts",
-        iconPath: "/img/img-personMessage.png",
-        message_name: "加我为人脉",
+        iconPath: "/img/icon-xiaoxi_renmai@2x.png",
+        message_name: "人脉申请",
         count: 0,
         type_id: 0
       }
@@ -101,23 +100,48 @@ Page({
   toIdentity: function (e) {
     console.log("跳转身份认证")
     let status = this.data.status;
-    if (status == 0) {
-      wx.navigateTo({
-        url: '/pages/my/identity/indentity/indentity',
-      })
-    } else if (status == 1) {
-      wx.navigateTo({
-        url: '/pages/my/identity/identityResult/identityResult?type=' + 1,
-      })
-    } else if (status == 2) {
-      wx.navigateTo({
-        url: '/pages/my/identity/identityResult/identityResult?type=' + 2,
-      })
-    } else if (status == 3) {
-      wx.navigateTo({
-        url: '/pages/my/identity/identityResult/identityResult?type=' + 3,
-      })
-    }
+    var user_id = wx.getStorageSync('user_id');
+    // 0未认证 1待审核 2 认证成功 3 拒绝
+    wx.request({
+      url: url_common + '/api/user/checkUserInfo',
+      data: {
+        user_id: user_id
+      },
+      method: 'POST',
+      success: function (res) {
+        if (res.data.status_code == 2000000) {
+          var complete = res.data.is_complete;
+          if (complete == 1) {
+            //如果信息完整就可以显示去认证
+            if (status == 0) {
+              wx.navigateTo({
+                url: '/pages/my/identity/indentity/indentity',
+              })
+            } else if (status == 1) {
+              wx.navigateTo({
+                url: '/pages/my/identity/identityResult/identityResult?type=' + 1,
+              })
+            } else if (status == 2) {
+              wx.navigateTo({
+                url: '/pages/my/identity/identityResult/identityResult?type=' + 2,
+              })
+            } else if (status == 3) {
+              wx.navigateTo({
+                url: '/pages/my/identity/identityResult/identityResult?type=' + 3,
+              })
+            }
+          } else if (complete == 0) {
+            wx.navigateTo({
+              url: '/pages/register/companyInfo/companyInfo?type=1'
+            })
+          }
+        } else {
+          wx.navigateTo({
+            url: '/pages/register/personInfo/personInfo?type=2'
+          })
+        }
+      },
+    });
   },
   // 项目申请跳转
   projectApply: function (e) {

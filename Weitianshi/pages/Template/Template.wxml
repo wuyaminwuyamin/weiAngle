@@ -23,6 +23,11 @@
         <view class="user_name" wx:if="{{!user.user_real_name}}">代替名</view>
         <view class="user_career" wx:if="{{user.user_company_career}}">{{user.user_company_career}}</view>
         <view class="user_career" wx:if="{{!user.user_company_career}}">职位名称</view>
+        <view class="userPart flex">
+            <image src="/img/icon-renzheng@2x.png" class="renzheng"></image>
+            <view class="userPart1">卖方FA</view>
+            <!-- <view class="userPart1">买方FA</view> -->
+          </view>
       </view>
       <view class="user_play_time" wx:if="{{playTime==1}}">{{user.active_status}}</view>
       <view class="user_company" wx:if="{{user.user_company_name}}">公司：{{user.user_company_name}}</view>
@@ -358,7 +363,7 @@
     <view class="weui-cell select_project" data-id='{{myProject.pro_id}}' data-index="{{index}}" bindtap="yourDetail">
       <view class="weui-cell__hd" style="position: relative;margin-right: 10px;">
         <image wx:if="{{myProject.user.user_avatar_url}}" class="others_pic" src="{{myProject.user.user_avatar_url}}" />
-        <view wx:if="{{!myProject.user.user_avatar_url}}" class="others_nopic">{{myProject.user.user_avatar_text}}</view>
+        <view wx:if="{{!myProject.user.user_avatar_text}}" class="others_nopic">{{myProject.user.user_avatar_text}}</view>
       </view>
       <view class="weui-cell__bd">
         <view class="flex" style="align-items: baseline;">
@@ -442,7 +447,7 @@
 <!--消息卡片列表-->
 <template name="messageList">
   <view class="beAddedContacts">
-    <view class="messageList flex" bindtap="{{item.event}}" data-type="{{item.type_id}}">
+    <view class="messageList flex" catchtap="{{item.event}}" data-type="{{item.type_id}}">
       <view class="flex title">
         <image class="title_icon" src="{{item.iconPath}}"></image>
         <view class="title">
@@ -550,10 +555,11 @@
 
 <!--我申请查看的项目+推送給我的 +匹配推荐 + 精选-->
 <template name="personModal">
-  <block wx:for="{{list}}" wx:key="{{item.project_id}}"> 
-    <view class="{{item.push_id ==  push_id ? 'hide':''}}"  wx:if="{{item.handle_status != 2}}">
+  <block wx:for="{{list}}"  wx:key="{{index}}"> 
+  <!--wx:if="{{item.handle_status != 2}}"  -->
+    <view  class="{{item.push_id ==  push_id ? 'hide':''}}">
       <view class="outBox">
-        <view class="redPoint" wx:if="{{type != 2}}"  wx:if="{{item.message_status==0}}"></view>
+        <view class="redPoint" wx:if="{{type != 2}}"  wx:if="{{item.message_status==0 ||item.handle_status}}"></view>
         <view class="insideBox">
         <view  data-project="{{item.project_id}}"  catchtap="projectDetail">
           <view class="flex">
@@ -597,22 +603,24 @@
               <view class="haveInterest"  wx:if="{{item.handle_status == 1}}">感兴趣</view> 
             </view>
           </view>
+          <!--我申请查看的项目  -->
           <view class="projectInfo flex" wx:if="{{type == 1}}">
             <view class="seeNum">{{item.view_count}}人看过项目</view>
             <view class="interest flex">
               <view class="appling" wx:if="{{item.handle_status == 0}}">申请中</view>
               <view class="agreeToRead" wx:if="{{item.handle_status == 1}}">同意查看</view>
-              <view class="refuseToRead" wx:if="{{item.handle_status == 2}}">拒绝</view>
+              <view class="toAccreditation" wx:if="{{item.handle_status == 2}}" catchtap="matchReApply" data-project="{{item.project_id}}">重新申请</view>
             </view>
           </view>
+          <!--匹配推荐  -->
           <view class="projectInfo flex" wx:if="{{type == 2}}">
             <view class="seeNum">{{item.view_count}}人看过项目</view>
             <view class="interest flex">
               <view class="appling" wx:if="{{item.relationship_button == 0}}">申请中</view>
-              <view class="toAccreditation" wx:if="{{item.relationship_button == 4}}"  data-project="{{item.project_id}}" catchtap="matchApply" data-content="{{0}}" data-index="{{index}}">申请查看</view>
+              <view class="toAccreditation" wx:if="{{item.relationship_button == 4}}"  data-project="{{item.project_id}}" catchtap="matchApply" data-content="{{0}}">申请查看</view>
               <view class="refuseToRead" wx:if="{{item.relationship_button == 1}}">同意查看</view>
-              <view class="refuseToRead" wx:if="{{item.relationship_button == 3}}">推送给我</view>
-              <view class="toAccreditation" wx:if="{{item.relationship_button == 2}}" data-project="{{item.project_id}}" data-content="{{1}}" catchtap="matchApply" data-index="{{index}}">重新申请</view>
+              <view class="refuseToRead readed" wx:if="{{item.relationship_button == 3}}">推送给我</view>
+              <view class="toAccreditation" wx:if="{{item.relationship_button == 2}}" data-project="{{item.project_id}}" data-content="{{1}}" catchtap="matchApply">重新申请</view>
             </view>
           </view>
         </view>
@@ -626,7 +634,7 @@
 <!--精准对接---资源对接-->
 <template name="resourceProject">
   <block wx:for="{{contentList}}" wx:key="{{contentList}}">
-    <view class="outsideBox" data-project="{{item.resource.project_id}}" catchtap="projectDetail">
+    <view class="outsideBox" data-project="{{item.resource.res_id}}" catchtap="projectDetail">
       <view class="applyMyProject">
         <view class="introduceBox flex">
           <view class="userName">{{item.user_name}}</view>
@@ -698,14 +706,15 @@
 <!--申请查看我的项目 + 我推送的项目  -->
 <template name="pushProject">
   <block wx:for="{{contentList}}" wx:key="{{contentList}}">
-    <view wx:if="{{item.handle_status != 2}}">
+    <view wx:if="{{item.handle_status != 2}}" class="{{item.record_id ==  record_id ? 'hide':''}}">
       <view class="flex" id="introduce">
-        <view >{{item.project.pro_intro}}</view>
+        <view class="introduce">{{item.project.pro_intro}}</view>
         <!--我推送的项目样式  -->
         <view wx:if="{{type != 0}}" class="flex">
-          <view class="status"  wx:if="{{item.handle_status == 3}}">已读</view>
-          <view class="status"  wx:if="{{item.handle_status == 1}}">感兴趣</view>
+          <view class="status"  wx:if="{{item.handle_status == 0}}">未读</view>
+          <view class="status readed"  wx:if="{{item.handle_status == 1}}">感兴趣</view>
           <view class="status"  wx:if="{{item.handle_status == 2}}">没兴趣</view> 
+          <view class="status"  wx:if="{{item.handle_status == 3}}">已读</view>
         </view>
       </view>
       <!--名片内容  -->
@@ -752,11 +761,11 @@
           <!--申请查看我的样式  -->
           <view wx:if="{{type == 0}}">
             <view class="bottomTab flex"  wx:if="{{item.handle_status == 0}}">
-              <view class="flex refuseBox" catchtap="btn" data-record="{{item.record_id}}" data-status="{{1}}">
+              <view class="flex refuseBox" catchtap="btn" data-record="{{item.record_id}}" data-status="{{2}}">
                 <image src="/img/icon-jujue@2x.png" class="iconStyle"></image>
                 <view class="refuseBtn">拒绝</view>
               </view>
-              <view class="flex agreeBox" catchtap="btn" data-record="{{item.record_id}}" data-status="{{2}}">
+              <view class="flex agreeBox" catchtap="btn" data-record="{{item.record_id}}" data-status="{{1}}">
                 <image src="/img/icon-tongyi@2x.png" class="iconStyle"></image>
                 <view class="agreeBtn">同意查看</view>
               </view>

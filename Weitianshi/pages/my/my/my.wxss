@@ -22,7 +22,7 @@ page {
   border: none !important;
   position: absolute;
   top: 116rpx;
-  right:44rpx;
+  right: 44rpx;
 }
 
 .user_edit image {
@@ -66,7 +66,7 @@ page {
 .user_left .flex:first-child {
   align-items: flex-end;
   /*margin-bottom: 96rpx;*/
-   margin-bottom: 0;
+  margin-bottom: 0;
 }
 
 .user_right {
@@ -107,8 +107,9 @@ page {
   color: #999;
   margin-bottom: 20rpx;
 }
-.user_company{
-  margin-top:80rpx;
+
+.user_company {
+  margin-top: 80rpx;
 }
 
 #user_mobile {
@@ -527,9 +528,11 @@ page {
 .attentionNum {
   left: 54%;
 }
-.potentialNum{
-  left:88%;
+
+.potentialNum {
+  left: 88%;
 }
+
 .popularity-Num, .attention-Num, .potential-Num {
   font-size: 32rpx;
   color: #333;
@@ -593,16 +596,19 @@ page {
   text-align: left;
   margin-bottom: 48rpx;
 }
-.IdentificationNumber{
+
+.IdentificationNumber {
   display: block;
 }
-.IdentificationNumCompany{
-  position:relative;
+
+.IdentificationNumCompany {
+  position: relative;
 }
+
 .modalBtn {
-  position:absolute;
-  top:342rpx;
-  left:52rpx;
+  position: absolute;
+  top: 342rpx;
+  left: 52rpx;
 }
 
 .modalYes {
@@ -615,14 +621,15 @@ page {
   border-radius: 200rpx;
   width: 180rpx;
   height: 60rpx;
-   margin-right:40rpx;
+  margin-right: 40rpx;
 }
-.modalYes:first{
-  margin-right:40rpx;
+
+.modalYes:first {
+  margin-right: 40rpx;
 }
 
 .informationText {
-  font-family:PingFangSC-Regular;
+  font-family: PingFangSC-Regular;
   font-size: 32rpx;
   color: #475669;
   letter-spacing: 0;
@@ -633,7 +640,7 @@ page {
 
 .informationBtn {
   margin-top: 258rpx;
-  margin-left:40rpx;
+  margin-left: 40rpx;
 }
 
 .informationYes {
@@ -646,18 +653,44 @@ page {
   letter-spacing: 0;
   line-height: 60rpx;
   text-align: center;
-  margin-right:46rpx;
+  margin-right: 46rpx;
 }
-.informationYes:first{
-  margin-right:0;
+
+.informationYes:first {
+  margin-right: 0;
 }
+
 /*税号的横杠*/
-.oneLine{
-  display:block;
-  width:42rpx;
-  border-top:1rpx solid #99a9bf;
-  margin-top:19rpx;
+
+.oneLine {
+  display: block;
+  width: 42rpx;
+  border-top: 1rpx solid #99a9bf;
+  margin-top: 19rpx;
 }
-.oneLine:first-child{
-  margin-left:112rpx;
+
+.oneLine:first-child {
+  margin-left: 112rpx;
+}
+
+.userPart {
+  font-size: 20rpx;
+  color: #d3b987;
+  line-height: 48rpx;
+  text-align: left;
+}
+
+.userPart1 {
+  margin-top: 4rpx;
+  height: 48rpx;
+  line-height: 48rpx;
+  width: auto;
+}
+
+.renzheng {
+  width: 24rpx;
+  height: 24rpx;
+  margin-right: 4rpx;
+  margin-left: 8rpx;
+  margin:17rpx 4rpx 0 8rpx;
 }

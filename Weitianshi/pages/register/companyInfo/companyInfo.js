@@ -15,6 +15,7 @@ Page({
     onLoad: function (options) {
         var that = this;
         console.log(options)
+        var type = options.type;
         var company = options.user_company;
         var position = options.user_career;
         var email = options.user_email;
@@ -52,6 +53,7 @@ Page({
             company: company,
             position: position,
             email: email,
+            type:type
         })
     },
     //下拉刷新
@@ -130,6 +132,7 @@ Page({
         var error_text = this.data.error_text;
         var email = this.data.email;
         var user_id = wx.getStorageSync('user_id');
+        let type = this.data.type;
         // console.log(typeof user_id, user_id);
         // console.log(company);
         // console.log(position);
@@ -212,9 +215,21 @@ Page({
                                 })
                             }
                         } else {
-                            wx.switchTab({
-                                url: "/pages/match/match/match/match"
-                            });
+                            if(type == 1 ){
+                             wx.navigateBack({
+                               delta: 1
+                             })
+                            }else{
+                              if(type == 2){
+                                wx.navigateBack({
+                                  delta: 2
+                                })
+                              }else{
+                                wx.switchTab({
+                                  url: "/pages/match/match/match/match"
+                                });
+                              }
+                            }
                         }
                     } else {
                         var error_msg = res.data.error_msg;

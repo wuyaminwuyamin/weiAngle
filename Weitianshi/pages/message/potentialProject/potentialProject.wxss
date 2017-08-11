@@ -109,6 +109,9 @@
   position: relative;
   padding-bottom: 30rpx;
   border-bottom: 1rpx solid #e6e6e6;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .others_pic {
@@ -140,6 +143,9 @@
   line-height: 26rpx;
   text-align: left;
   margin-bottom: 34rpx;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .userInfo {
@@ -180,8 +186,12 @@
 }
 
 .haveInterest {
-  margin-left: 388rpx;
+  position: absolute;
   color: #999;
+  right: 32rpx;
+  white-space: nowrap;
+  display: block;
+  /* top: -16rpx; */
 }
 
 .btnHaveInterest, .btnNoInterest {
@@ -389,10 +399,11 @@
   color: #ccc;
   line-height: 24rpx;
   text-align: center;
-  margin-left: 370rpx;
+  /* margin-left: 370rpx; */
   position: absolute;
   top: 34rpx;
   right: 0;
+  white-space: nowrap;
 }
 
 .agreeToRead {
@@ -426,7 +437,30 @@
   border-radius: 4rpx;
   width: 136rpx;
   height: 52rpx;
-  margin-top: 18rpx;
+  /* margin-top: 18rpx; */
   position: absolute;
-  right:0;
+  right: 0;
+  top:20rpx;
+}
+.user_text {
+  width: 40rpx;
+  height: 40rpx;
+  display: block;
+  margin-right: 16rpx;
+  border-radius: 50%;
+}
+.interest {
+  position: absolute;
+  /* margin-top: 20rpx; */
+  right: 0;
+}
+
+.status {
+  font-size: 24rpx;
+  color: #40587a;
+  line-height: 24rpx;
+  text-align: right;
+}
+.hide {
+  display: none;
 }

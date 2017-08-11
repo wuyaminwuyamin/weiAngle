@@ -118,7 +118,7 @@ Page({
           },
           method: "POST",
           success: function (res) {
-            console.log("yes,成功了")
+            console.log("yes,成功了.点击")
           }
         })
       }

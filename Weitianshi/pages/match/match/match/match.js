@@ -446,6 +446,37 @@ Page({
             path: '/pages/match/match/match/match'
         }
     },
+    // 点击跳转
+    projectDetail: function (e) {
+      console.log(e)
+      // 获取我自己的项目id
+      var that = this;
+      // 获取当前点击的项目id
+      var id = e.currentTarget.dataset.project;
+      console.log(id);
+      // 判斷項目是不是自己的
+      wx.request({
+        url: url + '/api/project/projectIsMine',
+        data: {
+          project_id: id
+        },
+        method: 'POST',
+        success: function (res) {
+          var that = this;
+          var userId = res.data.user_id;
+          var user = wx.getStorageSync('user_id');
+          if (userId == user) {
+            wx.navigateTo({
+              url: '/pages/myProject/projectDetail/projectDetail?id=' + id + '&&index=' + 0
+            })
+          } else {
+            wx.navigateTo({
+              url: '/pages/projectDetail/projectDetail?id=' + id,
+            })
+          }
+        }
+      })
+    },
     //推送项目或加人脉
     btn:function(){
 
