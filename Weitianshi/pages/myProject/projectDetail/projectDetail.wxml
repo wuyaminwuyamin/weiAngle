@@ -12,10 +12,10 @@
           </view>
           <view class="flex allIndustry" wx:if="{{industy_sort.length != 0}}">
             <!-- <view class="industry">{{industy_sort}}</view> -->
-             <block wx:for="{{pro_industry}}" wx:key="{{index}}">
-                <label class="industry" wx:if="{{index < pro_industry.length-1}}">{{item.industry_name}}、</label> 
-                <label class="industry" wx:if="{{index == pro_industry.length-1}}">{{item.industry_name}}</label>
-              </block>
+            <block wx:for="{{pro_industry}}" wx:key="{{index}}">
+              <label class="industry" wx:if="{{index < pro_industry.length-1}}">{{item.industry_name}}、</label>
+              <label class="industry" wx:if="{{index == pro_industry.length-1}}">{{item.industry_name}}</label>
+            </block>
           </view>
           <view class="allProjectDetail flex" wx:if="{{project.pro_area != ''||pro_finance_stock_after!=0||project.pro_stage!=''||project.pro_scale!=''}}">
             <view class="projectDetailLine" wx:if="{{project.pro_scale.scale_money}}">{{project.pro_scale.scale_money}}</view>
@@ -36,7 +36,12 @@
               <label>{{count.view_times_all}}</label>
             </view>
           </view>
-          <view class="applyPerson">申请查看：-</view>
+          <view class="flex sceenPerson" catchtap="applyPerson" data-proid="{{id}}">
+            <view class="viewTimeNew" wx:if="{{project.count.apply_times_new != 0}}">+{{count.apply_times_new}}</view>
+            <view class="viewTimeAll screenPersonColor">申请查看：
+              <label>{{count.apply_times_all}}</label>
+            </view>
+          </view>
           <view class="investPerson">意向投资人：-</view>
         </view>
       </view>
@@ -375,27 +380,27 @@
               <view class="companyIntroduceNameText" wx:if="{{!company.company_name}}">{{company.company_name}}</view>
             </view>
             <view class="companyIntroduceAdd">公司地址
-              <view class="companyIntroduceAddText" wx:if="{{company.company_address != ''}}">{{company.company_address}}</view>
-              <view class="companyDateText" wx:if="{{company.company_address == ''}}">-</view>
+              <view class="companyIntroduceAddText" wx:if="{{company.company_address}}">{{company.company_address}}</view>
+              <view class="companyDateText" wx:if="{{!company.company_address}}">-</view>
             </view>
             <view class="companyIntroduceTop flex">
               <view class="companyDateTitle">成立日期
-                <view class="companyDateText" wx:if="{{company.company_register_date != ''}}">{{time}}</view>
-                <view class="companyDateText" wx:if="{{company.company_register_date==''||company.company_register_date == '1970-01-01'}}">-</view>
+                <view class="companyDateText" wx:if="{{company.company_register_date}}">{{time}}</view>
+                <view class="companyDateText" wx:if="{{!company.company_register_date||company.company_register_date == '1970-01-01'}}">-</view>
               </view>
               <view class="companyDateTitle">公司规模
-                <view class="companyDateText" wx:if="{{company.company_team_size !=null}}">{{company.company_team_size}}</view>
-                <view class="companyDateText" wx:if="{{company.company_team_size ==null}}">-</view>
+                <view class="companyDateText" wx:if="{{company.company_team_size}}">{{company.company_team_size}}</view>
+                <view class="companyDateText" wx:if="{{!company.company_team_size}}">-</view>
               </view>
             </view>
             <view class="companyIntroduceBottom flex">
               <view class="companyDateTitle">邮箱地址
-                <view class="companyDateText" wx:if="{{company.company_email != ''}}">{{company.company_email}}</view>
-                <view class="companyDateText" wx:if="{{company.company_email==''}}">-</view>
+                <view class="companyDateText" wx:if="{{company.company_email}}">{{company.company_email}}</view>
+                <view class="companyDateText" wx:if="{{!company.company_email}}">-</view>
               </view>
               <view class="companyDateTitle">联系电话
-                <view class="companyDateText" wx:if="{{company.company_contact != ''}}">{{company.company_contact}}</view>
-                <view class="companyDateText" wx:if="{{company.company_contact==''}}">-</view>
+                <view class="companyDateText" wx:if="{{company.company_contact}}">{{company.company_contact}}</view>
+                <view class="companyDateText" wx:if="{{!company.company_contact}}">-</view>
               </view>
             </view>
           </view>
@@ -448,7 +453,7 @@
           <!--工商变更-->
           <view class="industrialChange" wx:if="{{companyChangeList != 0}}">
             <view class="boxName">工商变更</view>
-            <view class="industrialChangeInfo" wx:for="{{companyChangeList}}" wx:key="{{index}}"  wx:if="{{index<2 ||industrialChangeMore == 5}}">
+            <view class="industrialChangeInfo" wx:for="{{companyChangeList}}" wx:key="{{index}}" wx:if="{{index<2 ||industrialChangeMore == 5}}">
               <view class="industrialChangeTime" wx:if="{{companyChangeList[index].company_change_time!='1970-01-01'}}">{{companyChangeList[index].company_change_time}}</view>
               <view class="industrialChangeBoxTitle">{{companyChangeList[index].company_change_matter}}</view>
               <view class="industrialChangeTextBox flex">
@@ -462,11 +467,11 @@
                 </view>
               </view>
             </view>
-               <view class="moreInfo" catchtap="checkMore" wx:if="{{industrialChangeMore != 5 && companyChangeList.length>2}}" data-id="{{5}}">展开</view>
+            <view class="moreInfo" catchtap="checkMore" wx:if="{{industrialChangeMore != 5 && companyChangeList.length>2}}" data-id="{{5}}">展开</view>
             <view class="moreInfo" catchtap="noCheckMore" wx:if="{{industrialChangeMore == 5}}" data-id="{{5}}">收起</view>
           </view>
           <!--工商信息-->
-          <view class="industrialInfo" wx:if="{{company.company_legal_representative != ''||company.company_registered_capital != ''||company.company_operating_state != ''||company.company_organization_code != ''||company.company_business_number != ''||company.company_register_office != '' ||company.company_type != ''||company.company_business_term != null || company.company_unified_code != ''||company.company_empirical_range != ''}}">
+          <view class="industrialInfo" wx:if="{{company.company_legal_representative||company.company_registered_capital||company.company_operating_state||company.company_organization_code ||company.company_business_number||company.company_register_office||company.company_type ||company.company_business_term || company.company_unified_code ||company.company_empirical_range}}">
             <view class="boxName">工商信息</view>
             <view class="bossInfo flex">
               <view class="bossName">法定代表人
@@ -505,8 +510,8 @@
                     <view class="companyEstablishText" wx:if="{{!company.company_type}}">-</view>
                   </view>
                   <view class="companyEstablishTitle">营业期限
-                    <view class="companyEstablishText" wx:if="{{company.company_business_term !=null}}">{{company.company_business_term}}</view>
-                    <view class="companyEstablishText" wx:if="{{company.company_business_term ==null}}">-</view>
+                    <view class="companyEstablishText" wx:if="{{company.company_business_term}}">{{company.company_business_term}}</view>
+                    <view class="companyEstablishText" wx:if="{{!company.company_business_term}}">-</view>
                   </view>
                   <view class="companyEstablishTitle">统一社会信用代码
                     <view class="companyEstablishText" wx:if="{{company.company_unified_code}}">{{company.company_unified_code}}</view>

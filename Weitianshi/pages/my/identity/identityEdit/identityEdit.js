@@ -38,7 +38,6 @@ Page({
         let invest_industryList = invest_info.invest_industry;
         invest_industryList.forEach((x, index) => {
           invest_industryList[index] = x.industry_name;
-
         })
         console.log(invest_industryList)
         if (writeNameValue){
