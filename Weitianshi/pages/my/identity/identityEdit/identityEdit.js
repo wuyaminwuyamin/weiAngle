@@ -34,7 +34,6 @@ Page({
 
                     })
                 }
-                
                 that.setData({
                     user_info: user_info
                 })

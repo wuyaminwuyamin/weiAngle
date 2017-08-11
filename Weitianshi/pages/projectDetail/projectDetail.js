@@ -45,20 +45,103 @@ Page({
         var user = res.data.user;
         var firstName = user.user_name.substr(0, 1) || '';
         var pro_industry = project.pro_industry;
+        var pro_company_name = project.pro_company_name;
         let industy_sort = [];
         let pro_goodness = project.pro_goodness;
         let button_type = res.data.button_type;
+        console.log(button_type)
         // 项目介绍的标签
         for (var i = 0; i < pro_industry.length; i++) {
           industy_sort.push(pro_industry[i].industry_name)
         }
         that.setData({
           industy_sort: industy_sort,
+          button_type: button_type
         })
         if (pro_goodness.length > 50) {
           that.setData({
             textBeyond1: true
           })
+        }
+        var firstName = user.user_name.substr(0, 1);
+        // 如果项目亮点字数超出字,刚显示全部按钮
+        that.setData({
+          project: project,
+          user: user,
+          firstName: firstName,
+          pro_company_name: pro_company_name
+        });
+        if (button_type == 1 || button_type == 2 || button_type==3){
+        // 项目介绍的标签
+        var pro_industry = project.pro_industry;
+        console.log(pro_industry.length)
+        for (var i = 0; i < pro_industry.length; i++) {
+          industy_sort.push(pro_industry[i].industry_name)
+        }
+        that.setData({
+          industy_sort: industy_sort,
+          pro_industry: pro_industry
+        })
+        // 核心团队
+        if (project.core_users != 0) {
+          let core_memberArray = project.core_users;
+          core_memberArray.forEach((x, index) => {
+            core_memberArray[index] = x;
+          })
+          that.setData({
+            core_memberArray: core_memberArray
+          })
+        }
+        // 标签 type:0; 项目标签 type:1 团队标签
+        let infoTagArray = project.tag;
+        let tagOfPro = [];//项目资料的标签
+        let teamOfPro = [];//核心团队的标签
+        for (var i = 0; i < infoTagArray.length; i++) {
+          if (infoTagArray[i].type == 0) {
+            tagOfPro.push(infoTagArray[i])
+          } else if (infoTagArray[i].type == 1) {
+            teamOfPro.push(infoTagArray[i])
+          }
+        }
+        tagOfPro.forEach((x, index) => {
+          tagOfPro[index].tag_name = x.tag_name;
+          app.console(tagOfPro[index].tag_name)
+        })
+        that.setData({
+          tagOfPro: tagOfPro
+        })
+        teamOfPro.forEach((x, index) => {
+          teamOfPro[index].tag_name = x.tag_name;
+        })
+        that.setData({
+          teamOfPro: teamOfPro
+        })
+        // 融资信息
+        let pro_history_financeList = project.pro_history_finance;
+        app.console(pro_history_financeList)
+        pro_history_financeList.forEach((x, index) => {
+          pro_history_financeList[index].finance_time = app.changeTime(x.finance_time);
+          pro_history_financeList[index].pro_finance_scale = x.pro_finance_scale;
+          pro_history_financeList[index].pro_finance_investor = x.pro_finance_investor;
+          pro_history_financeList[index].belongs_to_stage.stage_name = x.belongs_to_stage.stage_name;
+
+        })
+        that.setData({
+          pro_history_financeList: pro_history_financeList
+        })
+        // 里程碑
+        let mileStoneArray = project.pro_develop;
+        app.console(project.pro_develop)
+        mileStoneArray.forEach((x, index) => {
+          mileStoneArray[index].dh_start_time = app.changeTime(x.dh_start_time);
+          mileStoneArray[index].dh_event = x.dh_event;
+        })
+
+        that.setData({
+          mileStoneArray: mileStoneArray,
+          industy_sort: industy_sort,
+          pro_goodness: pro_goodness
+        });
         }
         var followed_user_id = res.data.user.user_id;
         that.setData({
@@ -69,7 +152,7 @@ Page({
           followed_user_id: followed_user_id,
           button_type: button_type
         });
-
+       
         var is_mine = res.data.data.is_mine;
         //app.console(is_mine)
         if (is_mine == true) {
@@ -101,7 +184,6 @@ Page({
         }
       },
     })
-
   },
   onShow: function () {
     let user_id = wx.getStorageSync('user_id');

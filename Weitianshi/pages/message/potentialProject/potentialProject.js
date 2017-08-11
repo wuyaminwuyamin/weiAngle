@@ -9,7 +9,6 @@ Page({
     winHeight: 0,//选项卡
     currentTab: 1,//选项卡
   },
-
   onLoad: function (e) {
     console.log(e)
     if (this.data.currentTab == 0) {
@@ -303,38 +302,7 @@ Page({
     console.log(getMatchList)
       // button-type: 0=申请中 1.申请已通过 2.申请被拒绝(重新申请) 3.推送给我的 4.未申请也未推送(申请按钮)
     app.applyProjectTo(that,project_id,content,getMatchList)
-    // wx.request({
-    //   url: url_common + '/api/project/applyProject',
-    //   data: {
-    //     user_id : user_id,
-    //     project_id: project_id
-    //   },
-    //   method: 'POST',
-    //   success: function (res) { 
-        
-        // if (content == 0) {
-        //   console.log("申请查看")
-        //   getMatchList.forEach((x) => {
-        //     if (x.project_id == project_id) {
-        //       x.relationship_button = 0
-        //     }
-        //   })
-        //   that.setData({
-        //     getMatchList: getMatchList
-        //   })
-        // } else if (content == 1) {
-        //   console.log("重新查看")
-        //   getMatchList.forEach((x) => {
-        //     if (x.project_id == project_id) {
-        //       x.relationship_button = 0
-        //     }
-        //   })
-        //   that.setData({
-        //     getMatchList: getMatchList
-        //   })
-        // }
-      // }
-    // })
+
   },
   //重新申请
   matchReApply:function(e){

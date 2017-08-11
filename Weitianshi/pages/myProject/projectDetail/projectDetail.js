@@ -45,7 +45,7 @@ Page({
         })
     },
     onShow: function () {
-    
+
         //  投资人数据
         var that = this;
         var id = this.data.id;
@@ -102,13 +102,14 @@ Page({
                 method: 'POST',
                 success: function (res) {
                     var project = res.data.data;
-                    app.console("项目详情")
-                    app.console(res);
-                    app.console(project.count)
+                    console.log("项目详情")
+                    console.log(res);
+                    console.log(project.count)
                     var user = res.data.user;
                     let count = project.count;
                     var pro_company_name = project.pro_company_name;
                     let pro_goodness = res.data.data.pro_goodness;
+                    console.log(pro_goodness)
                     let industy_sort = [];
                     var firstName = user.user_name.substr(0, 1);
                     // 如果项目亮点字数超出字,刚显示全部按钮

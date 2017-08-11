@@ -64,9 +64,7 @@
                 <image src="/img/img-star.png" class="titlePic"></image>
                 <view class="title star">项目亮点</view>
               </view>
-              <view class="{{isChecked?'brightContent':'brightContentAfter'}}" value="{{number}}">
-                {{project.pro_goodness}}
-              </view>
+              <view class="{{isChecked?'brightContent':'brightContentAfter'}}" value="{{number}}">{{project.pro_goodness}}</view>
               <label class="more" bindtap="allBrightPoint" wx:if="{{isChecked == true && textBeyond1}}">全部</label>
               <label class="more" bindtap="noBrightPoint" wx:if="{{isChecked == false && textBeyond1}}">收起</label>
             </view>
@@ -131,7 +129,7 @@
             <view class="corePerson" wx:if="{{teamOfPro.length !=0}}">
               <view class="corePersonBox flex">
                 <image src="/img/myOn.png" class="titlePic"></image>
-                <view class="title"> 核心团队</view>
+                <view class="title">核心团队</view>
               </view>
               <view class="contentAll">
                 <view class="flex" style="margin-bottom:48rpx;">
