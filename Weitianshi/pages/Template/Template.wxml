@@ -23,6 +23,11 @@
         <view class="user_name" wx:if="{{!user.user_real_name}}">代替名</view>
         <view class="user_career" wx:if="{{user.user_company_career}}">{{user.user_company_career}}</view>
         <view class="user_career" wx:if="{{!user.user_company_career}}">职位名称</view>
+        <view class="userPart flex">
+            <image src="/img/icon-renzheng@2x.png" class="renzheng"></image>
+            <view class="userPart1">卖方FA</view>
+            <!-- <view class="userPart1">买方FA</view> -->
+          </view>
       </view>
       <view class="user_play_time" wx:if="{{playTime==1}}">{{user.active_status}}</view>
       <view class="user_company" wx:if="{{user.user_company_name}}">公司：{{user.user_company_name}}</view>
@@ -57,21 +62,22 @@
       <label class="popularityNum" wx:if="{{count.user_view_new==0 || show ==0}}"></label>
       <view wx:if="{{!user.user_popularity}}" class="popularity-Num">{{count.user_view_all}}</view>
       <view class="popularity-people">人气</view>
-      <!--加我为人脉-->
     </view>
+    <!--加我为人脉-->
     <view class="user_attention user_tips" bindtap="attention">
       <view wx:if="{{user.user_attention}}">{{user.user_attention}}</view>
       <label class="attentionNum" wx:if="{{count.user_followed_new && show ==1}}">+{{count.user_followed_new}}</label>
       <label class="popularityNum" wx:if="{{count.user_followed_new==0 || show ==0}}"></label>
-      <view wx:if="{{!user.user_attention}}" class="attention-Num">{{count.user_followed_all }}
+      <view wx:if="{{!user.user_attention}}" class="attention-Num">{{count.user_followed_all}}
       </view>
       <view class="attention-people">{{text}}</view>
     </view>
     <!--潜在项目-->
     <view class="user_potential user_tips" bindtap="pushTo">
       <view wx:if="{{user.user_potential}}">{{user.user_potential}}</view>
-      <label class="potentialNum"></label>
-      <view wx:if="{{!user.user_potential}}" class="potential-Num">-</view>
+      <label class="potentialNum" wx:if="{{count.project_push_new && show == 1}}">+{{count.project_push_new}}</label>
+      <label class="popularityNum" wx:if="{{count.project_push_new==0 || show ==0}}"></label>
+      <view wx:if="{{!user.user_attention}}" class="attention-Num">{{count.project_push_all}}</view>
       <view class="potential-content">潜在项目</view>
     </view>
   </view>
@@ -357,7 +363,7 @@
     <view class="weui-cell select_project" data-id='{{myProject.pro_id}}' data-index="{{index}}" bindtap="yourDetail">
       <view class="weui-cell__hd" style="position: relative;margin-right: 10px;">
         <image wx:if="{{myProject.user.user_avatar_url}}" class="others_pic" src="{{myProject.user.user_avatar_url}}" />
-        <view wx:if="{{!myProject.user.user_avatar_url}}" class="others_nopic">{{myProject.user.user_avatar_text}}</view>
+        <view wx:if="{{!myProject.user.user_avatar_text}}" class="others_nopic">{{myProject.user.user_avatar_text}}</view>
       </view>
       <view class="weui-cell__bd">
         <view class="flex" style="align-items: baseline;">
@@ -441,18 +447,24 @@
 <!--消息卡片列表-->
 <template name="messageList">
   <view class="beAddedContacts">
-    <view class="messageList flex" bindtap="{{item.event}}">
+    <view class="messageList flex" catchtap="{{item.event}}" data-type="{{item.type_id}}">
       <view class="flex title">
         <image class="title_icon" src="{{item.iconPath}}"></image>
         <view class="title">
           {{item.message_name}}
         </view>
       </view>
-      <view class="flex number">
+      <view class="flex number"  wx:if="{{item.type_id != 8}}">
         <label class="netWorkNum" wx:if="{{item.count !=0}}">{{item.count}}</label>
         <label class="netWorkNumAfter" wx:if="{{item.count == 0}}"></label>
         <image class="iconEdit" src="/img/icon-edit@3x.png"></image>
       </view>
+       <view  wx:if="{{item.type_id == 8}}">
+         <view class="identity" bindtap="{{item.event}}" wx:if="{{status == 0}}" data-status="{{0}}">立即认证</view>
+         <view class="identifyContent" bindtap="{{item.event}}" wx:if="{{status == 3}}">审核未通过</view>
+         <view class="identifyContent on"  bindtap="{{item.event}}" wx:if="{{status == 1}}">审核中</view>
+         <view class="identifyContent" bindtap="{{item.event}}" wx:if="{{status == 2}}">认证成功</view>
+     </view>
     </view>
   </view>
 </template>
@@ -540,137 +552,235 @@
     </view>
   </view>
 </template>
-<!--我申请查看的项目+推送給我的 -->
+
+<!--我申请查看的项目+推送給我的 +匹配推荐 + 精选-->
 <template name="personModal">
-  <block wx:for="{{list}}" wx:key="{{item.project_id}}"> 
-    <view class="classname"  data-project="{{item.project_id}}"  bindtap="projectDetail">
-        <view class="outBox">
-          <view class="insideBox">
-            <view class="flex">
-              <view class="describle" wx:if="{{item.pro_intro != ''}}">{{item.pro_intro}}</view>
-              <image src="/img/img-dujiaqianyue1@2x.png" class="projectDetailType" wx:if="{{item.is_exclusive == 1}}"></image>
-              <image src="/img/img-feidujiaqianyue@2x.png" class="projectDetailType" wx:if="{{item.is_exclusive == 2}}"></image>
+  <block wx:for="{{list}}"  wx:key="{{index}}"> 
+  <!--wx:if="{{item.handle_status != 2}}"  -->
+    <view  class="{{item.push_id ==  push_id ? 'hide':''}}">
+      <view class="outBox">
+        <view class="redPoint" wx:if="{{type != 2}}"  wx:if="{{item.message_status==0 ||item.handle_status}}"></view>
+        <view class="insideBox">
+        <view  data-project="{{item.project_id}}"  catchtap="projectDetail">
+          <view class="flex">
+            <view class="describle" wx:if="{{item.pro_intro != ''}}">{{item.pro_intro}}</view>
+            <image src="/img/img-dujiaqianyue1@2x.png" class="projectDetailType" wx:if="{{item.is_exclusive == 1}}"></image>
+            <image src="/img/img-feidujiaqianyue@2x.png" class="projectDetailType" wx:if="{{item.is_exclusive == 2}}"></image>
+          </view>
+          <view class="allIndustry" style="text-align:left">
+            <block wx:for="{{item.pro_industry}}" wx:key="{{index}}"wx:for-item ='industry'>
+              <label class="{{industry.is_match == 1 ? 'hightLight':'noLight'}}" wx:if="{{index < item.pro_industry.length-1}}">{{industry.industry_name}}、</label> 
+              <label class="{{industry.is_match == 1 ? 'hightLight':'noLight'}}" wx:if="{{index == item.pro_industry.length-1}}">{{industry.industry_name}}</label>
+              <!-- <label>{{item.pro_industry.length}}</label> -->
+            </block>
+          </view>
+          <view class="allProjectDetail flex"  wx:if="{{item.pro_area != ''||item.pro_finance_stock_after!=0||item.pro_stage!=''||item.pro_scale!=''}}">
+            <view class="{{item.pro_scale.is_match == 1 ? 'projectDetailLight' : 'projectDetailLine'}}"  wx:if="{{item.pro_scale != ''}}">{{item.pro_scale.scale_money}}</view>
+            <view class="{{item.pro_finance_stock_after.is_match == 1 ? 'projectDetailLight' : 'projectDetailLine'}}"   wx:if="{{item.pro_finance_stock_after != ''}}">{{item.pro_finance_stock_after}}%</view>
+            <view class="{{item.pro_stage.is_match == 1 ? 'projectDetailLight' : 'projectDetailLine'}}"  wx:if="{{item.pro_stage != ''}}">{{item.pro_stage.stage_name}}</view>
+            <view class="{{item.pro_area.area_title.is_match == 1 ? 'projectDetailLight' : 'projectDetailLine'}}"  wx:if="{{item.pro_area != ''}}">{{item.pro_area.area_title}}</view>
+          </view>
+          <view class="flex otherInfo">
+            <view>
+              <image src="{{item.user.investor_logo_url}}" class="others_pic"  wx:if="{{item.user.investor_logo_url}}"/>
+              <view class="user_text flex" wx:if="{{item.user.investor_logo_text}}">{{item.user.investor_logo_text}}</view>
             </view>
-            <view class="allIndustry" style="text-align:left">
-              <block wx:for="{{item.pro_industry}}" wx:key="{{index}}"wx:for-item ='industry'>
-                <label class="{{industry.is_match == 1 ? 'hightLight':'noLight'}}" wx:if="{{index < item.pro_industry.length-1}}">{{industry.industry_name}}、</label> 
-                <label class="{{industry.is_match == 1 ? 'hightLight':'noLight'}}" wx:if="{{index == item.pro_industry.length-1}}">{{industry.industry_name}}</label>
-               <!-- <label>{{item.pro_industry.length}}</label> -->
-              </block>
-            </view>
-            <view class="allProjectDetail flex"  wx:if="{{item.pro_area != ''||item.pro_finance_stock_after!=0||item.pro_stage!=''||item.pro_scale!=''}}">
-              <view class="{{item.pro_scale.is_match == 1 ? 'projectDetailLight' : 'projectDetailLine'}}"  wx:if="{{item.pro_scale != ''}}">{{item.pro_scale.scale_money}}</view>
-              <view class="{{item.pro_finance_stock_after.is_match == 1 ? 'projectDetailLight' : 'projectDetailLine'}}"   wx:if="{{item.pro_finance_stock_after != ''}}">{{item.pro_finance_stock_after}}%</view>
-              <view class="{{item.pro_stage.is_match == 1 ? 'projectDetailLight' : 'projectDetailLine'}}"  wx:if="{{item.pro_stage != ''}}">{{item.pro_stage.stage_name}}</view>
-              <view class="{{item.pro_area.area_title.is_match == 1 ? 'projectDetailLight' : 'projectDetailLine'}}"  wx:if="{{item.pro_area != ''}}">{{item.pro_area.area_title}}</view>
-            </view>
-            <view class="flex otherInfo">
-              <view>
-                <image src="{{item.user.investor_logo_url}}" class="others_pic" />
-                <view>{{item.user.user_avatar_text}}</view>
-              </view>
-              <view>
-                <view class="flex userInfo">
-                  <view class="userName">{{item.user.user_name}}</view>
-                  <view class="userCareer">{{item.user.user_career}}</view>
-                  <view class="userCompany">{{item.user.user_company}}</view>
-                </view>
-              </view>
-            </view>
-            <view class="projectInfo flex" wx:if="{{type == 0}}">
-              <view class="seeNum">{{item.view_count}}人看过项目</view>
-              <view class="interest flex">
-                <view class="btnHaveInterest">感兴趣</view>
-                <view class="btnNoInterest">没兴趣</view>
-                <!-- <view class="haveInterest">感兴趣</view> -->
-              </view>
-            </view>
-            <view class="projectInfo flex" wx:if="{{type == 1}}">
-              <view class="seeNum">{{item.view_count}}人看过项目</view>
-              <view class="interest flex">
-                <view class="appling" wx:if="{{item.handle_status == 0}}">申请中</view>
-                <view class="agreeToRead" wx:if="{{item.handle_status == 1}}">同意查看</view>
-                <view class="refuseToRead" wx:if="{{item.handle_status == 2}}">拒绝</view>
-              </view>
-            </view>
-            <view class="projectInfo flex" wx:if="{{type == 2}}">
-              <view class="seeNum">{{item.view_count}}人看过项目</view>
-              <view class="interest flex">
-                <view class="appling" wx:if="{{item.handle_status == 0}}">申请中</view>
-                <view class="agreeToRead" wx:if="{{item.handle_status == 1}}">申请查看</view>
-                <view class="refuseToRead" wx:if="{{item.handle_status == 2}}">同意查看</view>
-                <view class="refuseToRead" wx:if="{{item.handle_status == 2}}">推送给我</view>
-                <view class="refuseToRead" wx:if="{{item.handle_status == 2}}">重新申请</view>
+            <view>
+              <view class="flex userInfo">
+                <view class="userName">{{item.user.user_name}}</view>
+                <view class="userCareer">{{item.user.user_career}}</view>
+                <view class="userCompany">{{item.user.user_company}}</view>
               </view>
             </view>
           </view>
-          <view id="time">{{item.created_at}}</view>
+          </view>
+          <!--推送给我的项目  -->
+          <view class="projectInfo flex" wx:if="{{type == 0}}">
+            <view class="seeNum">{{item.view_count}}人看过项目</view>
+            <view class="interest flex">
+              <view class="btnHaveInterest" catchtap="interesting" data-push="{{item.push_id}}" wx:if="{{item.handle_status == 0}}" data-status="{{1}}">感兴趣</view>
+              <view class="btnNoInterest" catchtap="interesting"   data-push="{{item.push_id}}" wx:if="{{item.handle_status == 0}}" data-status="{{2}}">没兴趣</view>
+              <view class="haveInterest"  wx:if="{{item.handle_status == 1}}">感兴趣</view> 
+            </view>
+          </view>
+          <!--我申请查看的项目  -->
+          <view class="projectInfo flex" wx:if="{{type == 1}}">
+            <view class="seeNum">{{item.view_count}}人看过项目</view>
+            <view class="interest flex">
+              <view class="appling" wx:if="{{item.handle_status == 0}}">申请中</view>
+              <view class="agreeToRead" wx:if="{{item.handle_status == 1}}">同意查看</view>
+              <view class="toAccreditation" wx:if="{{item.handle_status == 2}}" catchtap="matchReApply" data-project="{{item.project_id}}">重新申请</view>
+            </view>
+          </view>
+          <!--匹配推荐  -->
+          <view class="projectInfo flex" wx:if="{{type == 2}}">
+            <view class="seeNum">{{item.view_count}}人看过项目</view>
+            <view class="interest flex">
+              <view class="appling" wx:if="{{item.relationship_button == 0}}">申请中</view>
+              <view class="toAccreditation" wx:if="{{item.relationship_button == 4}}"  data-project="{{item.project_id}}" catchtap="matchApply" data-content="{{0}}">申请查看</view>
+              <view class="refuseToRead" wx:if="{{item.relationship_button == 1}}">同意查看</view>
+              <view class="refuseToRead readed" wx:if="{{item.relationship_button == 3}}">推送给我</view>
+              <view class="toAccreditation" wx:if="{{item.relationship_button == 2}}" data-project="{{item.project_id}}" data-content="{{1}}" catchtap="matchApply">重新申请</view>
+            </view>
+          </view>
         </view>
+        <view id="time">{{item.created_at}}</view>
+      </view>
     </view>
   </block>
+   <view class="highBox"></view>
 </template>
-<!--申请查看我的项目 +我推送的項目 -->
-<template name="pushProject">
+
+<!--精准对接---资源对接-->
+<template name="resourceProject">
   <block wx:for="{{contentList}}" wx:key="{{contentList}}">
-    <view id="introduce">{{item.project.pro_intro}}</view>
-    <!--名片内容  -->
-    <view class="outsideBox" data-project="{{item.project.project_id}}" catchtap="projectDetail">
-      <view class="redPoint"></view>
-      <image src="/img/img-quanwang@2x.png" class="connection" wx:if="{{item.user.follow_status != 1}}"></image>
-      <image src="/img/img-wode@2x.png" class="connection" wx:if="{{item.user.follow_status == 1}}"></image>
+    <view class="outsideBox" data-project="{{item.resource.res_id}}" catchtap="projectDetail">
       <view class="applyMyProject">
         <view class="introduceBox flex">
-          <view class="userName">{{item.user.user_real_name}}</view>
-          <view class="userPosition">{{item.user.user_company_career}}</view>
+          <view class="userName">{{item.user_name}}</view>
+          <view class="userPosition">{{item.user_career}}</view>
           <view class="userPart flex">
             <image src="/img/icon-renzheng@2x.png" class="renzheng"></image>
             <view class="userPart1">卖方FA</view>
             <!-- <view class="userPart1">买方FA</view> -->
           </view>
-          <!--需要进行判断 0:不是当前用户人脉1.当前用户的人脉2.待验证3.同意加为人脉-->
-          <image src="{{item.user.user_avatar_url}}" class="userPic"></image>
+          
+          <view class="user_text" wx:if="{{item.user_avatar_text}}">{{item.user_avatar_text}}</view>
+          <image src="{{item.user_avatar_url}}" class="userPic" wx:if="{{item.user_avatar_url}}"></image>
         </view>
-        <view class="userCompany">{{item.user.user_company_name}}</view>
-        <view class="investmentGroup flex" wx:if="{{item.user.industry != ''}}">
-          <view class="investmentGroupTitle">投资领域：</view>
+        <view class="userCompany">{{item.user_company}}</view>
+        <view class="record">{{item.active_status}}</view>
+        <view class="investmentGroup flex" wx:if="{{item.resource.res_find != ''}}">
+          <view class="investmentGroupTitle">寻求资源：</view>
           <view class="investmentGroupContent">
-            <block  wx:for="{{item.user.industry}}" wx:key="{{item.index}}" wx:for-item ='userIndustry'>
-              <label class="{{userIndustry.is_match == 1 ? 'hightLight':'noLight'}}" wx:if="{{index < item.user.industry.length-1}}">{{userIndustry.industry_name}}、</label>  
-              <label class="{{userIndustry.is_match == 1 ? 'hightLight':'noLight'}}" wx:if="{{index == item.user.industry.length-1}}">{{userIndustry.industry_name}}</label> 
+            <block  wx:for="{{item.resource.res_find}}" wx:key="{{item.resource.res_find.index}}" wx:for-item ='userFind'>
+              <label class="{{userFind.is_match == 1 ? 'hightLight':'noLight'}}" wx:if="{{index < item.resource.res_find.length-1}}">{{userFind.resource_name}}、</label>  
+              <label class="{{userFind.is_match == 1 ? 'hightLight':'noLight'}}" wx:if="{{index ==item.resource.res_find.length-1}}">{{userFind.resource_name}}</label>  
             </block>
           </view>
         </view>
-        <view class="roundGroup flex" wx:if="{{item.user.stage != ''}}">
-          <view class="roundGroupTitle">投资轮次：</view>
+        <view class="roundGroupPush flex" wx:if="{{item.resource.res_give != ''}}">
+          <view class="roundGroupTitle">提供资源：</view>
           <view class="roundGroupContent">
-            <block  wx:for="{{item.user.stage}}" wx:key="{{item.index}}" wx:for-item ='userStage'>
-              <label class="{{userStage.is_match == 1 ? 'hightLight':'noLight'}}" wx:if="{{index < item.user.stage.length-1}}">{{userStage.stage_name
-}}、</label>  
-              <label class="{{userStage.is_match == 1 ? 'hightLight':'noLight'}}" wx:if="{{index == item.user.stage.length-1}}">{{userStage.stage_name
-}}</label> 
+            <block  wx:for="{{item.resource.res_give}}" wx:key="{{item.resource.res_give.index}}" wx:for-item ='userGive'>
+              <label class="{{userGive.is_match == 1 ? 'hightLight':'noLight'}}" wx:if="{{index < item.resource.res_give.length-1}}">
+               {{userGive.resource_name}}、
+              </label>  
+              <label class="{{userGive.is_match == 1 ? 'hightLight':'noLight'}}" wx:if="{{index ==  item.resource.res_give.length-1}}">
+               {{userGive.resource_name}}
+              </label> 
             </block>
           </view>
         </view>
-        <view class="flex"  wx:if="{{item.handle_status == 0}}">
-          <view class="flex refuseBox" bindtap="btn" data-record="{{item.record_id}}" data-status="{{1}}">
-            <image src="/img/icon-jujue@2x.png" class="iconStyle"></image>
-            <view class="refuseBtn">拒绝</view>
+      <view>
+        <view class="describe" wx:if="{{item.resource.res_desc != ''}}">{{item.resource.res_desc}}</view>
+      </view>
+        <view class="flex bottomTab">
+          <view class="flex refuseBox" bindtap="btn" data-record="{{item.user_id}}" data-status="{{1}}">
+            <image src="/img/icon-tuisongxiangmu@2x.png" class="iconFreeStyle"></image>
+            <view class="refuseBtn">推送项目</view>
           </view>
-          <view class="flex agreeBox" bindtap="btn" data-record="{{item.record_id}}" data-status="{{2}}">
-            <image src="/img/icon-tongyi@2x.png" class="iconStyle"></image>
-            <view class="agreeBtn">同意查看</view>
+          <!--需要进行判断 0:不是当前用户人脉1.当前用户的人脉2.待验证3.同意加为人脉-->
+          <view class="flex agreeBox" bindtap="btn" data-record="{{item.user_id}}" data-status="{{2}}" wx:if="{{item.follow_status == 0}}">
+            <image src="/img/icon-jiarenmai@2x.png" class="iconFreeStyle"></image>
+            <view class="agreeBtn" >加人脉</view>
           </view>
-        </view>
-        <view class="classname" wx:if="{{item.handle_status == 1}}">
-          <view class="agreed">已同意</view>
+          <view class="flex agreeBox"  wx:if="{{item.follow_status == 1}}">
+            <image src="/img/icon-huweirenmai@2x.png" class="iconFreeStyle"></image>
+            <view class="connectionBtn">互为人脉</view>
+          </view>
+           <view class="flex agreeBox"  wx:if="{{item.follow_status == 2}}">
+            <image src="/img/icon-daiyanzheng@2x.png" class="iconFreeStyle"></image>
+            <view class="connectionBtn">待验证</view>
+          </view>
         </view>
       </view>
-      <view id="time">{{item.created_at}}</view>
     </view>
-    <!-- <view class="empty flex">
-    <image src="/img/img-kong1@2x.png" class="noData"></image>
-    <view class="hasNothing">暂无数据</view>
-  </view> -->
+    <view class="empty flex" wx:if="{{item.contentList == ''}}">
+      <image src="/img/img-kong1@2x.png" class="noData"></image>
+      <view class="hasNothing">暂无数据</view>
+    </view> 
   </block>
+</template>
 
+<!--申请查看我的项目 + 我推送的项目  -->
+<template name="pushProject">
+  <block wx:for="{{contentList}}" wx:key="{{contentList}}">
+    <view wx:if="{{item.handle_status != 2}}" class="{{item.record_id ==  record_id ? 'hide':''}}">
+      <view class="flex" id="introduce">
+        <view class="introduce">{{item.project.pro_intro}}</view>
+        <!--我推送的项目样式  -->
+        <view wx:if="{{type != 0}}" class="flex">
+          <view class="status"  wx:if="{{item.handle_status == 0}}">未读</view>
+          <view class="status readed"  wx:if="{{item.handle_status == 1}}">感兴趣</view>
+          <view class="status"  wx:if="{{item.handle_status == 2}}">没兴趣</view> 
+          <view class="status"  wx:if="{{item.handle_status == 3}}">已读</view>
+        </view>
+      </view>
+      <!--名片内容  -->
+      <view class="outsideBox" data-project="{{item.project.project_id}}">
+        <view class="redPoint"  wx:if="{{item.message_status==0}}"></view>
+        <view class="classname" catchtap="projectDetail">
+        <image src="/img/img-quanwang@2x.png" class="connection" wx:if="{{item.user.follow_status != 1}}"></image>
+        <image src="/img/img-wode@2x.png" class="connection" wx:if="{{item.user.follow_status == 1}}"></image>
+        <view class="applyMyProject">
+          <view class="introduceBox flex">
+            <view class="userName">{{item.user.user_real_name}}</view>
+            <view class="userPosition">{{item.user.user_company_career}}</view>
+            <view class="userPart flex">
+              <image src="/img/icon-renzheng@2x.png" class="renzheng"></image>
+              <view class="userPart1">卖方FA</view>
+              <!-- <view class="userPart1">买方FA</view> -->
+            </view>
+            <!--需要进行判断 0:不是当前用户人脉1.当前用户的人脉2.待验证3.同意加为人脉-->
+            <image src="{{item.user.user_avatar_url}}" class="userPic"></image>
+            <view class="user_text" wx:if="{{item.user_avatar_text}}">{{item.user_avatar_text}}</view>
+          </view>
+          <view class="userCompany">{{item.user.user_company_name}}</view>
+          <view class="investmentGroup flex" wx:if="{{item.user.industry != ''}}">
+            <view class="investmentGroupTitle">投资领域：</view>
+            <view class="investmentGroupContent">
+              <block  wx:for="{{item.user.industry}}" wx:key="{{item.index}}" wx:for-item ='userIndustry'>
+                <label class="{{userIndustry.is_match == 1 ? 'hightLight':'noLight'}}" wx:if="{{index < item.user.industry.length-1}}">{{userIndustry.industry_name}}、</label>  
+                <label class="{{userIndustry.is_match == 1 ? 'hightLight':'noLight'}}" wx:if="{{index == item.user.industry.length-1}}">{{userIndustry.industry_name}}</label> 
+              </block>
+            </view>
+          </view>
+          <view class="roundGroup flex" wx:if="{{item.user.stage != ''}}">
+            <view class="roundGroupTitle">投资轮次：</view>
+            <view class="roundGroupContent">
+              <block  wx:for="{{item.user.stage}}" wx:key="{{item.index}}" wx:for-item ='userStage'>
+                <label class="{{userStage.is_match == 1 ? 'hightLight':'noLight'}}" wx:if="{{index < item.user.stage.length-1}}">
+                {{userStage.stage_name}}、</label>  
+                <label class="{{userStage.is_match == 1 ? 'hightLight':'noLight'}}" wx:if="{{index == item.user.stage.length-1}}">
+                {{userStage.stage_name}}</label> 
+              </block>
+            </view>
+          </view>
+          </view>
+          <!--申请查看我的样式  -->
+          <view wx:if="{{type == 0}}">
+            <view class="bottomTab flex"  wx:if="{{item.handle_status == 0}}">
+              <view class="flex refuseBox" catchtap="btn" data-record="{{item.record_id}}" data-status="{{2}}">
+                <image src="/img/icon-jujue@2x.png" class="iconStyle"></image>
+                <view class="refuseBtn">拒绝</view>
+              </view>
+              <view class="flex agreeBox" catchtap="btn" data-record="{{item.record_id}}" data-status="{{1}}">
+                <image src="/img/icon-tongyi@2x.png" class="iconStyle"></image>
+                <view class="agreeBtn">同意查看</view>
+              </view>
+            </view>
+            <view class="bottomTabAfter" wx:if="{{item.handle_status == 1}}">
+              <view class="agreed">已同意</view>
+            </view>
+          </view>
+        </view>
+        <view id="time">{{item.created_at}}</view>
+      </view>
+      <!-- <view class="empty flex">
+      <image src="/img/img-kong1@2x.png" class="noData"></image>
+      <view class="hasNothing">暂无数据</view>
+    </view> -->
+    </view>
+  </block>
 </template>

@@ -63,7 +63,7 @@
   margin: 0 16px 0 16px;
   width: auto;
   height: auto;
-  position:relative;
+  position: relative;
 }
 
 .insideBox {
@@ -98,8 +98,9 @@
   padding: 0 16rpx;
   border-right: 1rpx solid #999;
 }
+
 .projectDetailLight {
-   padding: 0 16rpx;
+  padding: 0 16rpx;
   border-right: 1rpx solid #999;
   color: #40587a;
 }
@@ -108,13 +109,15 @@
   position: relative;
   padding-bottom: 30rpx;
   border-bottom: 1rpx solid #e6e6e6;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .others_pic {
   width: 40rpx;
   height: 40rpx;
   display: block;
-  background: black;
   margin-right: 16rpx;
 }
 
@@ -122,13 +125,14 @@
   padding-left: 0;
 }
 
-
 .projectDetailLine:last-child {
   border-right: none;
 }
+
 .projectDetailLight:first-child {
   padding-left: 0;
 }
+
 .projectDetailLight:last-child {
   border-right: none;
 }
@@ -139,6 +143,9 @@
   line-height: 26rpx;
   text-align: left;
   margin-bottom: 34rpx;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .userInfo {
@@ -179,8 +186,12 @@
 }
 
 .haveInterest {
-  margin-left: 388rpx;
+  position: absolute;
   color: #999;
+  right: 32rpx;
+  white-space: nowrap;
+  display: block;
+  /* top: -16rpx; */
 }
 
 .btnHaveInterest, .btnNoInterest {
@@ -241,7 +252,7 @@
   overflow: hidden;
   text-overflow: ellipsis;
   width: 670rpx;
-  padding-left:16rpx;
+  padding-left: 16rpx;
 }
 
 .applyMyProject .userPosition {
@@ -282,7 +293,7 @@
 }
 
 .investmentGroup, .roundGroup {
- font-size: 26rpx;
+  font-size: 26rpx;
   color: #999;
   line-height: 26rpx;
   text-align: left;
@@ -388,18 +399,68 @@
   color: #ccc;
   line-height: 24rpx;
   text-align: center;
-  margin-left: 370rpx;
-  position:absolute;
-  top:34rpx;
-  right:0;
+  /* margin-left: 370rpx; */
+  position: absolute;
+  top: 34rpx;
+  right: 0;
+  white-space: nowrap;
 }
 
 .agreeToRead {
   color: #40587a;
 }
-.hightLight{
+
+.hightLight {
   color: #40587a;
 }
-.noLight{
-  color:#999999;
+
+.noLight {
+  color: #999;
+}
+
+.accreditation {
+  background: #fff1e8;
+  height: 88rpx;
+  font-size: 24rpx;
+  color: #999;
+  line-height: 88rpx;
+  text-align: left;
+  padding-left: 32rpx;
+}
+
+.toAccreditation {
+  font-size: 24rpx;
+  color: #fff;
+  line-height: 52rpx;
+  text-align: center;
+  background: #40587a;
+  border-radius: 4rpx;
+  width: 136rpx;
+  height: 52rpx;
+  /* margin-top: 18rpx; */
+  position: absolute;
+  right: 0;
+  top:20rpx;
+}
+.user_text {
+  width: 40rpx;
+  height: 40rpx;
+  display: block;
+  margin-right: 16rpx;
+  border-radius: 50%;
+}
+.interest {
+  position: absolute;
+  /* margin-top: 20rpx; */
+  right: 0;
+}
+
+.status {
+  font-size: 24rpx;
+  color: #40587a;
+  line-height: 24rpx;
+  text-align: right;
+}
+.hide {
+  display: none;
 }

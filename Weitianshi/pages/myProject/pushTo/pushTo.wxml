@@ -2,12 +2,10 @@
 <view class="title">
   今日还可以推送<label>{{pushTimes.remain_times}}</label>次（1个项目推送给1个投资人计为1次）
 </view>
-
-
 <view class="s_frame">
   <scroll-view scroll-y="true" bindscrolltolower="loadMore" scroll-top="{{scroll}}">
     <block  wx:for="{{dataList}}" wx:key="{{index}}">
-      <view class="outBox"  bindtap="{{checkboxChange}}">
+      <view class="outBox {{item.check==true?'checkedOne':''}}"  bindtap="checkboxChange" data-id="{{item.project_id}}" data-index="{{index}}"  >
         <view class="matching">匹配度：<label class="matchingNum">{{dataList[index].match_weight}}%</label></view>
         <view class="projectInfoBox">
           <view class="classname">
@@ -16,7 +14,12 @@
               <image src="/img/img-dujiaqianyue1@2x.png" class="projectDetailType" wx:if="{{dataList[index].is_exclusive == 1}}"></image>
               <image src="/img/img-feidujiaqianyue@2x.png" class="projectDetailType" wx:if="{{dataList[index].is_exclusive == 2}}"></image>
             </view>
-            <view class="industry">人工智能、大数据、理财、企业服务台</view>
+            <view class="industry">
+            <block  wx:for="{{item.pro_industry}}" wx:key="{{item.index}}" wx:for-item ='userIndustry'>
+              <label wx:if="{{index < item.pro_industry.length-1}}">{{userIndustry.industry_name}}、</label>  
+              <label wx:if="{{index == item.pro_industry.length-1}}">{{userIndustry.industry_name}}</label>  
+            </block>
+            </view>
             <view class="allProjectDetail flex">
               <view class="projectDetailLine" wx:if="{{dataList[index].pro_scale}}">{{dataList[index].pro_scale.scale_money}}</view>
               <view class="projectDetailLine" wx:if="{{dataList[index].pro_finance_stock_after!= 0}}">{{dataList[index].pro_finance_stock_after}}%</view>
@@ -40,3 +43,8 @@
   <view class="none">暂无项目</view>
   <view class="createProject" bindtap="createProject">创建项目</view>
 </view> -->
+
+<!--{{item.check==true?'checkedOne':''}} 
+data-id="{{item.project_id}}" data-index="{{index}}" 
+data-value='{{item.industry_name}}'
+ -->

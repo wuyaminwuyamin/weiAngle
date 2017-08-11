@@ -11,7 +11,10 @@
               <image src="/img/img-dujiaqianyue1@2x.png" class="projectDetailType" wx:if="{{project.is_exclusive == 1}}"></image>
               <image src="/img/img-feidujiaqianyue@2x.png" class="projectDetailType" wx:if="{{project.is_exclusive == 2}}"></image>
             </view>
-            <view class="industry" wx:key="{{item.industry_name}}" wx:if="{{industy_sort}}">{{industy_sort}}</view>
+            <block wx:for="{{pro_industry}}" wx:key="{{index}}" wx:if="{{pro_industry != ''}}">
+                <label class="industry" wx:if="{{index < pro_industry.length-1}}">{{item.industry_name}}、</label> 
+                <label class="industry" wx:if="{{index == pro_industry.length-1}}">{{item.industry_name}}</label>
+            </block>
             <view class="allProjectDetail flex" wx:if="{{project.pro_area != ''||pro_finance_stock_after!=0||project.pro_stage!=''||project.pro_scale!=''}}">
               <view class="projectDetailLine" wx:if="{{project.pro_scale!=''}}">{{project.pro_scale.scale_money}}</view>
 
@@ -324,7 +327,7 @@
     <view class="toAccreditation" bindtap="toAccreditation">立即认证</view>
   </view>
   <view class="push" bindtap="applyProject" wx:if="{{button_type == 3}}" data-id="{{id}}">申请查看</view>
-   <view class="push" bindtap="applyProject" wx:if="{{button_type == 2}}">重新申请</view>
+   <view class="push" bindtap="applyProject" wx:if="{{button_type == 2}}" data-id="{{id}}">重新申请</view>
   <view class="pushing" wx:if="{{button_type == 0}}">申请中</view>
 </view>
 <!--友情提示  -->

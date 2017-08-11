@@ -1,9 +1,6 @@
-<!-- <import src="/pages/Template/Template.wxml" />
-<block wx:for="{{messageList}}" wx:key="index">
-  <template is="messageList" data="{{item:item}}"></template>
-</block> -->
-<!--身份认证  -->
-<view class="messageBox">
+ <import src="/pages/Template/Template.wxml" />
+ <!--身份认证  -->
+ <!-- <view class="messageBox">
   <view class="flex messageInside">
     <view class="flex title">
       <image class="identityIcon" src="/img/icon-xiaoxi_renzheng@2x.png"></image>
@@ -16,52 +13,11 @@
       <view class="identifyContent" bindtap="toIdentity" wx:if="{{status == 2}}">认证成功</view>
     </view>
   </view>
-</view>
-<view class="beAddedContacts">
-  <view class="messageList flex" bindtap="projectApply">
-    <view class="flex title">
-      <image class="title_icon" src="/img/img-personMessage.png"></image>
-      <view class="title">
-        项目申请
-      </view>
-    </view>
-    <view class="flex number">
-      <label class="netWorkNum" wx:if="{{count !=0}}">{{count}}</label>
-      <label class="netWorkNumAfter" wx:if="{{count == 0}}"></label>
-      <image class="iconEdit" src="/img/icon-edit@3x.png"></image>
-    </view>
-  </view>
-</view>
-<view class="beAddedContacts">
-  <view class="messageList flex" bindtap="projectPush">
-    <view class="flex title">
-      <image class="title_icon" src="/img/img-personMessage.png"></image>
-      <view class="title">
-        项目推送
-      </view>
-    </view>
-    <view class="flex number">
-      <label class="netWorkNum" wx:if="{{count !=0}}">{{count}}</label>
-      <label class="netWorkNumAfter" wx:if="{{count == 0}}"></label>
-      <image class="iconEdit" src="/img/icon-edit@3x.png"></image>
-    </view>
-  </view>
-</view>
-<view class="beAddedContacts">
-  <view class="messageList flex" bindtap="beAddedContacts">
-    <view class="flex title">
-      <image class="title_icon" src="/img/img-personMessage.png"></image>
-      <view class="title">
-        人脉申请
-      </view>
-    </view>
-    <view class="flex number">
-      <label class="netWorkNum" wx:if="{{count !=0}}">{{count}}</label>
-      <label class="netWorkNumAfter" wx:if="{{count == 0}}"></label>
-      <image class="iconEdit" src="/img/icon-edit@3x.png"></image>
-    </view>
-  </view>
-</view>
+</view> -->
+<block wx:for="{{messageList}}" wx:key="index">
+  <template is="messageList" data="{{item:item,status:status}}"></template>
+</block> 
+
 <!--底部信息提示  -->
 <view class="bottomBox">
   <view class="contactPerson">联系客服</view>

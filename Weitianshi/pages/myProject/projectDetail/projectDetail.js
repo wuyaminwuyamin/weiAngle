@@ -127,11 +127,13 @@ Page({
                     });
                     // 项目介绍的标签
                     var pro_industry = project.pro_industry;
+                    console.log(pro_industry.length)
                     for (var i = 0; i < pro_industry.length; i++) {
                         industy_sort.push(pro_industry[i].industry_name)
                     }
                     that.setData({
-                        industy_sort: industy_sort
+                        industy_sort: industy_sort,
+                        pro_industry: pro_industry
                     })
                     // 核心团队
                     if (project.core_users != 0) {
@@ -445,56 +447,7 @@ Page({
             url: '/pages/userDetail/networkDetail/networkDetail?id=' + id,
         })
     },
-    //触底加载
-    /* loadMore: function () {
-        var that = this;
-        var page = this.data.page;
-        var user_id = this.data.user_id;
-        var pro_id = this.data.id;
-        var page_end = this.data.page_end;
-        var loadMorecheck = this.data.loadMorecheck;
-        var investor2=this.data.investor2;
-        if (loadMorecheck) {
-            if (page_end == false) {
-                wx.showToast({
-                    title: 'loading...',
-                    icon: 'loading'
-                })
-                page++;
-                that.setData({
-                    page: page,
-                });
-                wx.request({
-                    url: url + '/api/project/getProjectMatchInvestors',
-                    data: {
-                        user_id: user_id,
-                        pro_id: pro_id,
-                        page: page
-                    },
-                    method: 'POST',
-                    success: function (res) {
-                        var newPage = res.data.data;
-                        console.log(investor2,newPage)
-                        investor2=investor2.concat(newPage)
-                        console.log(investor2)
-                        that.setData({
-                            investor2: investor2,
-                            page_end: res.data.page_end
-                        });
-                        wx.hideToast({
-                            title: 'loading...',
-                            icon: 'loading'
-                        })
-                    }
-                })
-            } else {
-                rqj.errorHide(that, "没有更多了", 3000)
-            }
-        }
-        this.setData({
-            loadMorecheck: false
-        });
-    }, */
+
     // 买家图谱上拉加载
     loadMore:function(){
         var that=this;

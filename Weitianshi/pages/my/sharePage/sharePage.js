@@ -274,5 +274,13 @@ Page({
       wx.switchTab({
         url: '/pages/contacts/contacts/contacts',
       })
+    },
+    // 跳转到推送项目页面
+    pushProject:function(){
+      var user_id = this.data.followed_user_id;
+      var share_id = this.data.share_id;
+    wx.navigateTo({
+      url: '/pages/myProject/pushTo/pushTo?user_id='+user_id + '&&share+id=' + share_id,
+    })
     }
 }); 

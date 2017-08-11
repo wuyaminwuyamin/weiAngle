@@ -37,6 +37,7 @@ Page({
 
     //点击选中标签
     checkboxChange(e) {
+      console.log(e)
         let tags = this.data.industryTags;
         let that = this;
         let checkObject = app.tagsCheck(that, rqj, e, tags, 'industryTags')
@@ -52,7 +53,6 @@ Page({
         // console.log("开启了下拉刷新");
         wx.stopPullDownRefresh()
     },
-
 
     //点击确定
     certain() {

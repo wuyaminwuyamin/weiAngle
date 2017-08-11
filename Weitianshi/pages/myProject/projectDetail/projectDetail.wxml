@@ -11,7 +11,11 @@
             <image src="/img/img-feiduqianyue@2x.png" class="projectDetailType" wx:if="{{project.is_exclusive == 2}}"></image>
           </view>
           <view class="flex allIndustry" wx:if="{{industy_sort.length != 0}}">
-            <view class="industry">{{industy_sort}}</view>
+            <!-- <view class="industry">{{industy_sort}}</view> -->
+             <block wx:for="{{pro_industry}}" wx:key="{{index}}">
+                <label class="industry" wx:if="{{index < pro_industry.length-1}}">{{item.industry_name}}、</label> 
+                <label class="industry" wx:if="{{index == pro_industry.length-1}}">{{item.industry_name}}</label>
+              </block>
           </view>
           <view class="allProjectDetail flex" wx:if="{{project.pro_area != ''||pro_finance_stock_after!=0||project.pro_stage!=''||project.pro_scale!=''}}">
             <view class="projectDetailLine" wx:if="{{project.pro_scale.scale_money}}">{{project.pro_scale.scale_money}}</view>

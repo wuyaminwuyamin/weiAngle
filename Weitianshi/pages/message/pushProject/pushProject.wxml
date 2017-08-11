@@ -11,16 +11,17 @@
   <swiper-item>
     <scroll-view bindscrolltolower="loadMore" scroll-top="{{scroll}}" scroll-y="true">
       <template is="allNumber" data="{{count:count1,text:'推送给我的项目'}}"></template>
-      <template is="personModal" data="{{list:pushToList,type:0}}"></template>
-      <!-- <view class="empty"></view> -->
+      <template is="personModal" data="{{list:pushToList,push_id:push_id,type:0}}"></template>
+       <view class="empty" wx:if="{{pushToList == ''}}"></view> 
     </scroll-view>
   </swiper-item>
   <!--我推送的项目 -->
   <swiper-item>
     <scroll-view scroll-y="true" scroll-top="{{scroll}}" bindscrolltolower="moreForApply"> 
       <template is="allNumber" data="{{count:count,text:'我推送的项目'}}"></template>
-       <template is="pushProject" data="{{contentList:pushProjectList}}"></template>
+       <template is="pushProject" data="{{contentList:pushProjectList,record_id:0,type:1}}"></template>
     </scroll-view>
   </swiper-item>
-
 </swiper>
+<!--没有更多-->
+  <view class="error" wx:if="{{error=='1'}}">{{error_text}}</view>

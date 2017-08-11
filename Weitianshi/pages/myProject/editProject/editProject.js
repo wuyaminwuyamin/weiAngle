@@ -259,9 +259,10 @@ Page({
         that.updata(that)
         //跳出提示模态框 
         wx.showModal({
-            titel: "友情提示",
-            content: "请到www.weitianshi.cn/qr上传",
+            title: "PC上传",
+            content: "电脑打开www.weitianshi.cn/qr点击扫一扫",
             showCancel: true,
+            confirmText: "扫一扫",
             success: function (res) {
                 if (res.confirm) {
                     wx.scanCode({

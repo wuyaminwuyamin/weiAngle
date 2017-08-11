@@ -166,8 +166,12 @@
 }
 
 .haveInterest {
-  margin-left: 388rpx;
+  position: absolute;
   color: #999;
+  right: 32rpx;
+  white-space: nowrap;
+  display: block;
+  top: -16rpx;
 }
 
 .btnHaveInterest, .btnNoInterest {
@@ -177,11 +181,11 @@
   height: 52rpx;
   line-height: 52rpx;
   padding: 0 32rpx;
-  margin: 20rpx 24rpx 0 185rpx;
+  margin: 0 24rpx 0 185rpx;
 }
 
 .btnNoInterest {
-  margin: 20rpx 0 0 0;
+  margin: 0;
 }
 
 #time {
@@ -229,6 +233,7 @@
   text-overflow: ellipsis;
   width: 670rpx;
   padding-left: 16rpx;
+  justify-content: space-between;
 }
 
 .applyMyProject .userPosition {
@@ -281,8 +286,6 @@
 
 .roundGroup {
   margin-bottom: none;
-  border-bottom: 1rpx solid #e6e6e6;
-  padding-bottom: 28rpx;
 }
 
 .agreeBtn, .refuseBtn {
@@ -380,5 +383,71 @@
 }
 
 .agreeToRead {
+  color: #40587a;
+}
+
+.bottomTabAfter {
+  border-top: 1rpx solid #e6e6e6;
+  padding-top: 28rpx;
+  background: white;
+  padding-bottom: 30rpx;
+}
+
+.bottomTab {
+  border-top: 1rpx solid #e6e6e6;
+  padding-top: 28rpx;
+  padding-bottom: 30rpx;
+  background: white;
+}
+
+/* .user_text {
+  background: #f2f2f2;
+  line-height: 104rpx;
+  text-align: center;
+  font-size: 40rpx;
+  width: 104rpx;
+  height: 104rpx;
+  border-radius: 100%;
+  position: absolute;
+  right: 32rpx;
+  top: 32rpx;
+} */
+
+.user_text {
+  width: 40rpx;
+  height: 40rpx;
+  display: block;
+  margin-right: 16rpx;
+  border-radius: 50%;
+  font-size: 22rpx;
+  background:#999999;
+  line-height: 40rpx;
+}
+
+.investmentGroupContent, .roundGroupContent {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.hide {
+  display: none;
+}
+
+.interest {
+  position: absolute;
+  margin-top: 20rpx;
+  right: 0;
+}
+
+.status {
+  font-size: 24rpx;
+  color: #40587a;
+  line-height: 88rpx;
+  text-align: right;
+  padding-right:34rpx;
+}
+
+.readed {
   color: #40587a;
 }

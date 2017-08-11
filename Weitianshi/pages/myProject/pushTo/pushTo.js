@@ -6,7 +6,10 @@ var url_common = app.globalData.url_common;
 Page({
 
   data: {
-
+    dataList: {
+      tagsData: ''
+      // bindEvent: "checkboxChange"
+    }
   },
 
 
@@ -48,7 +51,6 @@ Page({
         var page_end = res.data.page_end;
         dataList.forEach((x, index) => {
           dataList[index] = x;
-          console.log(dataList[index].pro_intro)
         })
         // is_exclusive是否独家 1独家 2非独家 0其他
         that.setData({
@@ -66,17 +68,38 @@ Page({
       url: '/pages/myProject/publishProject/publishProject',
     })
   },
-  // 选中项目
-  checkboxChange: function (e) {
-    console.log('checkbox发生change事件，携带value值为：', e.detail.value)
-    let checkBoxId = e.detail.value;
-    let checkArray = [];
-    checkArray.push(checkBoxId);
-    console.log(checkArray)
-
-
-    
+  //点击选中标签
+  checkboxChange(e) {
+    console.log(e)
+    let tags = this.data.dataList;
+    console.log(tags.data)
+    let that = this;
+    let checkObject = app.tagsCheck(that, rqj, e, tags, 'dataList')
+    this.setData({
+      dataList: tags,
+      contactsFilter1: checkObject
+    })
+    console.log(checkObject)
   },
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
   pushTo: function () {
     let user_id = wx.getStorageSync('user_id');
     let pushed_user_id = this.data.pushed_user_id;
