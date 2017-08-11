@@ -48,6 +48,7 @@ Page({
                 console.log("各种条目分类")
                 console.log(res)
                 var thisData = res.data.data;
+                console.log(thisData)
                 wx.setStorageSync('area', thisData.area);
                 wx.setStorageSync('industry', thisData.industry);
                 wx.setStorageSync('scale', thisData.scale);
