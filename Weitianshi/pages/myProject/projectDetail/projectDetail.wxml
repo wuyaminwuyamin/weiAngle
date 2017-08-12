@@ -7,8 +7,8 @@
             <view class="describle">
               {{project.pro_intro}}
             </view>
-            <image src="/img/img-dujiaqianyue@2x.png" class="projectDetailType" wx:if="{{project.is_exclusive == 1}}"></image>
-            <image src="/img/img-feiduqianyue@2x.png" class="projectDetailType" wx:if="{{project.is_exclusive == 2}}"></image>
+             <image src="/img/img-dujiaqianyue1@2x.png" class="projectDetailType" wx:if="{{project.is_exclusive == 1}}"></image>
+            <image src="/img/img-feidujiaqianyue@2x.png" class="projectDetailType" wx:if="{{project.is_exclusive == 2}}"></image>
           </view>
           <view class="flex allIndustry" wx:if="{{industy_sort.length != 0}}">
             <!-- <view class="industry">{{industy_sort}}</view> -->
@@ -36,9 +36,9 @@
               <label>{{count.view_times_all}}</label>
             </view>
           </view>
-          <view class="flex sceenPerson" catchtap="applyPerson" data-proid="{{id}}">
+          <view class="flex sceenPerson" catchtap="applyPerson">
             <view class="viewTimeNew" wx:if="{{project.count.apply_times_new != 0}}">+{{count.apply_times_new}}</view>
-            <view class="viewTimeAll screenPersonColor">申请查看：
+            <view class="viewTimeAll screenPersonColor"  data-proid="{{id}}">申请查看：
               <label>{{count.apply_times_all}}</label>
             </view>
           </view>

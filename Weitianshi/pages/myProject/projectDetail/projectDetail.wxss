@@ -355,10 +355,17 @@ scroll-view {
   border-radius: 8rpx;
   margin: 32rpx 32rpx 38rpx 36rpx;
 }
-
+.projectDetailType {
+  height: 92rpx;
+  width: 92rpx;
+  right: -3rpx;
+  top: -6rpx;
+  position: absolute;
+}
 .projectDetailBox {
   padding: 32rpx;
   height: auto;
+  position:relative;
 }
 
 .describle {
@@ -367,12 +374,6 @@ scroll-view {
   line-height: 48rpx;
   text-align: left;
   width: 480rpx;
-}
-
-.projectDetailType {
-  height: 36rpx;
-  width: 108rpx;
-  margin-left:23rpx;
 }
 
 .industry {

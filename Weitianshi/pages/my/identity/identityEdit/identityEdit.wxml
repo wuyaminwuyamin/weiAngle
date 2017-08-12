@@ -26,7 +26,7 @@
       </view>
     </view>
     <view class="userBox">
-      <view class="userBrandContent flex"  bindtap="writeNewThing" data-type="{{2}}">
+      <view class="userBrandContent flex" bindtap="writeNewThing" data-type="{{2}}">
         <view class="personListTile">品牌</view>
         <view class="flex">
           <view class="personListContent" wx:if="{{!user_info.user_brand}}">请输入品牌</view>
@@ -36,7 +36,7 @@
       </view>
     </view>
     <view class="userBox">
-      <view class="userCompanyContent flex"  bindtap="writeNewThing" data-type="{{3}}">
+      <view class="userCompanyContent flex" bindtap="writeNewThing" data-type="{{3}}">
         <view class="personListTile">公司*</view>
         <view class="flex">
           <view class="personListContent" wx:if="{{!user_info.user_company_name}}">请输入公司</view>
@@ -46,7 +46,7 @@
       </view>
     </view>
     <view class="userBox">
-      <view class="userPositionContent flex"  bindtap="writeNewThing" data-type="{{4}}">
+      <view class="userPositionContent flex" bindtap="writeNewThing" data-type="{{4}}">
         <view class="personListTile">职位*</view>
         <view class="flex">
           <view class="personListContent" wx:if="{{!user_info.user_company_career}}">请输入职位</view>
@@ -56,7 +56,7 @@
       </view>
     </view>
     <view class="userBox">
-      <view class="userEmailContent flex"  bindtap="writeNewThing" data-type="{{5}}">
+      <view class="userEmailContent flex" bindtap="writeNewThing" data-type="{{5}}">
         <view class="personListTile">邮箱</view>
         <view class="flex">
           <view class="personListContent" wx:if="{{!user_info.user_email}}">请输入邮箱</view>
@@ -65,18 +65,18 @@
         </view>
       </view>
     </view>
-     <view class="userBox">
-      <view class="userEmailContent flex"  bindtap="writeNewThing" data-type="{{6}}">
+    <view class="userBox">
+      <view class="userEmailContent flex" bindtap="writeNewThing" data-type="{{6}}">
         <view class="personListTile">微信</view>
         <view class="flex">
-          <view class="personListContent">请输入微信</view>
-          <!-- <view class="personListContentAfter"></view> -->
+          <view class="personListContent" wx:if="{{!user_info.user_wechat}}">请输入微信</view>
+          <view class="personListContentAfter" wx:if="{{user_info.user_wechat}}">{{user_info.user_wechat}}</view>
           <image src="/img/icon-gengduo2@2x.png" class="arrowStyle"></image>
         </view>
       </view>
     </view>
     <view class="userBox">
-      <view class="userDescribeContent flex">
+      <view class="userDescribeContent flex" bindtap="writeNewThing" data-type="{{7}}">
         <view class="personListTile">个人描述</view>
         <view class="flex">
           <view class="personListContent" wx:if="{{!user_info.user_intro}}">请输入个人描述</view>
@@ -91,8 +91,14 @@
     <view class="investBox" bindtap="toIndustry">
       <view class="investContent flex">
         <view class="investListTile">投资领域</view>
-        <view class="flex">
-          <view class="personListContent">请选择</view>
+        <view class="flex overMore">
+          <view class="personListContent" wx:if="{{!invest_info.invest_industry}}">请选择</view>
+          <view class="overMore flex">
+            <block wx:for="{{invest_info.invest_industry}}" wx:key="{{index}}">
+              <label class="investStyle" wx:if="{{index < item.length-1}}">{{item}}、</label>
+              <label class="investStyle" wx:if="{{index == item.length-1}}">{{item}}</label>
+            </block>
+          </view>
           <image src="/img/icon-gengduo2@2x.png" class="arrowStyle"></image>
         </view>
       </view>
@@ -100,8 +106,14 @@
     <view class="investBox" bindtap="toStage">
       <view class="investContent flex">
         <view class="investListTile">投资轮次</view>
-        <view class="flex">
-          <view class="personListContent">请选择</view>
+        <view class="flex overMore">
+          <view class="personListContent" wx:if="{{!invest_info.invest_stage}}">请选择</view>
+          <view class="flex overMore">
+            <block wx:for="{{invest_info.invest_stage}}" wx:key="{{index}}" wx:for-item='stage'>
+              <label class="investStyle" wx:if="{{index < invest_info.invest_stage.length-1}}">{{stage.stage_name}}、</label>
+              <label class="investStyle" wx:if="{{index == invest_info.invest_stage.length-1}}">{{stage.stage_name}}</label>
+            </block>
+          </view>
           <image src="/img/icon-gengduo2@2x.png" class="arrowStyle"></image>
         </view>
       </view>
@@ -110,7 +122,13 @@
       <view class="investContent flex">
         <view class="investListTile">投资金额</view>
         <view class="flex">
-          <view class="personListContent">请选择</view>
+          <view class="personListContent" wx:if="{{!invest_info.invest_scale}}">请选择</view>
+          <view class="overMore flex">
+            <block wx:for="{{invest_info.invest_scale}}" wx:key="{{index}}" wx:for-item='scale'>
+              <label class="investStyle" wx:if="{{index < invest_info.invest_scale.length-1}}">{{scale.scale_money}}、</label>
+              <label class="investStyle" wx:if="{{index == invest_info.invest_scale.length-1}}">{{scale.scale_money}}</label>
+            </block>
+          </view>
           <image src="/img/icon-gengduo2@2x.png" class="arrowStyle"></image>
         </view>
       </view>
@@ -118,8 +136,14 @@
     <view class="investBox" bindtap="toArea1">
       <view class="userDescribeContent flex">
         <view class="investListTile">投资地区</view>
-        <view class="flex">
-          <view class="personListContent">请选择</view>
+        <view class="flex overMore">
+          <view class="personListContent" wx:if="{{!invest_info.invest_area}}">请选择</view>
+          <view class="flex overMore">
+            <block wx:for="{{invest_info.invest_area}}" wx:key="{{index}}" wx:for-item='area'>
+              <label class="investStyle" wx:if="{{index < invest_info.invest_area.length-1}}">{{area.area_title}}、</label>
+              <label class="investStyle" wx:if="{{index == invest_info.invest_area.length-1}}">{{area.area_title}}</label>
+            </block>
+          </view>
           <image src="/img/icon-gengduo2@2x.png" class="arrowStyle"></image>
         </view>
       </view>
@@ -167,7 +191,7 @@
             </view>
           </picker>
         </view>
-    </view>
+      </view>
     </view>
     <view class="choice" wx:if="{{group_id == 18 ||group_id == 19}}">
       <view class="userBox">

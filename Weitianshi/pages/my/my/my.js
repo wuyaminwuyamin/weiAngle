@@ -288,5 +288,11 @@ Page({
         })
       }
     })
-   }
+  },
+  //去认证
+  authentication:function(){
+    wx.navigateTo({
+      url: '/pages/my/identity/indentity/indentity'
+    })
+  }
 });

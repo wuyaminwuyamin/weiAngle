@@ -23,11 +23,11 @@
         <view class="user_name" wx:if="{{!user.user_real_name}}">代替名</view>
         <view class="user_career" wx:if="{{user.user_company_career}}">{{user.user_company_career}}</view>
         <view class="user_career" wx:if="{{!user.user_company_career}}">职位名称</view>
-        <view class="userPart flex">
-            <image src="/img/icon-renzheng@2x.png" class="renzheng"></image>
-            <view class="userPart1">卖方FA</view>
-            <!-- <view class="userPart1">买方FA</view> -->
-          </view>
+        <!-- <view class="userPart flex" wx:if="{{user.authentication.length != 0}}">
+          <image src="/img/icon-renzheng@2x.png" class="renzheng"></image>
+          <view class="userPart1">{{user.authentication[0].group_title}}</view>
+        </view> -->
+        <view class="userAuthentication flex" catchtap="authentication">认证</view>
       </view>
       <view class="user_play_time" wx:if="{{playTime==1}}">{{user.active_status}}</view>
       <view class="user_company" wx:if="{{user.user_company_name}}">公司：{{user.user_company_name}}</view>
@@ -718,19 +718,18 @@
         </view>
       </view>
       <!--名片内容  -->
-      <view class="outsideBox" data-project="{{item.project.project_id}}">
+      <view class="outsideBox" data-project="{{item.project.project_id}}" catchtap="projectDetail">
         <view class="redPoint"  wx:if="{{item.message_status==0}}"></view>
-        <view class="classname" catchtap="projectDetail">
+        <view class="classname" >
         <image src="/img/img-quanwang@2x.png" class="connection" wx:if="{{item.user.follow_status != 1}}"></image>
         <image src="/img/img-wode@2x.png" class="connection" wx:if="{{item.user.follow_status == 1}}"></image>
         <view class="applyMyProject">
           <view class="introduceBox flex">
             <view class="userName">{{item.user.user_real_name}}</view>
             <view class="userPosition">{{item.user.user_company_career}}</view>
-            <view class="userPart flex">
+            <view class="userPart flex" wx:if="{{item.user.user_groups.length !=0}}">
               <image src="/img/icon-renzheng@2x.png" class="renzheng"></image>
-              <view class="userPart1">卖方FA</view>
-              <!-- <view class="userPart1">买方FA</view> -->
+               <view class="userPart1">{{item.user.user_groups[0].group_title}}</view> 
             </view>
             <!--需要进行判断 0:不是当前用户人脉1.当前用户的人脉2.待验证3.同意加为人脉-->
             <image src="{{item.user.user_avatar_url}}" class="userPic"></image>
