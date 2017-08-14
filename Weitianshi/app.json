@@ -32,6 +32,7 @@
         "pages/message/pushProject/pushProject",
         "pages/message/beAddedContacts/beAddedContacts",
         "pages/message/browseMe/browseMe",
+        "pages/message/applyPerson/applyPerson",
         "pages/search/search1/search1",
         "pages/search/search2/search2",
         "pages/search/filter1/filter1",

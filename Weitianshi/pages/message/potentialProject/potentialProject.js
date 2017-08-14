@@ -15,7 +15,7 @@ Page({
       console.log(this.data.currentTab)
     } else if (this.data.currentTab == 1) {
       console.log(this.data.currentTab)
-    }else(
+    } else (
       console.log(this.data.currentTab)
     )
   },
@@ -64,7 +64,7 @@ Page({
       url: url_common + '/api/investor/getMatchProjectList',
       data: {
         user_id : user_id,
-        type: 'only_match'     
+        type: 'only_match'
       },
       method: 'POST',
       success: function (res) {
@@ -72,6 +72,7 @@ Page({
         console.log(res)
         let count2 = res.data.data.match_count;
         let getMatchList = res.data.data.projects;
+        console.log(getMatchList)
         // button-type: 0=申请中 1.申请已通过 2.申请被拒绝(重新申请) 3.推送给我的 4.未申请也未推送(申请按钮)
         that.setData({
           count2: count2,
@@ -97,14 +98,14 @@ Page({
       requestCheckThird: true,
       currentPage: 1,
       otherCurrentPage: 1,
-      thirdCurrentPage:1,
+      thirdCurrentPage: 1,
       page_end: false,
       page_endBoolean: false,
-      page_endThird : false,
+      page_endThird: false,
       push_page: 1,
-      match_page:1
+      match_page: 1
     })
-    
+
   },
   /*滑动切换tab*/
   bindChange: function (e) {
@@ -155,7 +156,7 @@ Page({
     app.loadMore(that, request, "applyList", that.data.applyList)
   },
   //匹配更多
-  matchMore:function(){
+  matchMore: function () {
     //请求上拉加载接口所需要的参数
     var user_id = wx.getStorageSync("user_id");
     let that = this;
@@ -177,7 +178,7 @@ Page({
             url: url_common + '/api/investor/getMatchProjectList',
             data: {
               user_id: user_id,
-              type: 'only_match',   
+              type: 'only_match',
               page: this.data.thirdCurrentPage
             },
             method: 'POST',
@@ -209,7 +210,7 @@ Page({
     }
   },
   //推送给我更多
-  pushMore:function(){
+  pushMore: function () {
     //请求上拉加载接口所需要的参数
     var user_id = wx.getStorageSync("user_id");
     let that = this;
@@ -291,7 +292,7 @@ Page({
     })
   },
   // 申请查看
-  matchApply:function(e){
+  matchApply: function (e) {
     console.log(e)
     var user_id = wx.getStorageSync('user_id');//获取我的user_id
     let that = this;
@@ -300,12 +301,12 @@ Page({
     let project_id = e.currentTarget.dataset.project;
     let getMatchList = this.data.getMatchList;
     console.log(getMatchList)
-      // button-type: 0=申请中 1.申请已通过 2.申请被拒绝(重新申请) 3.推送给我的 4.未申请也未推送(申请按钮)
-    app.applyProjectTo(that,project_id,content,getMatchList)
+    // button-type: 0=申请中 1.申请已通过 2.申请被拒绝(重新申请) 3.推送给我的 4.未申请也未推送(申请按钮)
+    app.applyProjectTo(that, project_id, content, getMatchList)
 
   },
   //重新申请
-  matchReApply:function(e){
+  matchReApply: function (e) {
     console.log("重新申请")
     console.log(e)
     var user_id = wx.getStorageSync('user_id');//获取我的user_id
@@ -322,7 +323,7 @@ Page({
       method: 'POST',
       success: function (res) {
         console.log("重新申请")
-        
+
         applyList.forEach((x) => {
           if (x.project_id == project_id) {
             console.log("进来了")
@@ -356,22 +357,33 @@ Page({
       method: 'POST',
       success: function (res) {
         console.log(res)
-        if (status == 1) {
-          console.log("感兴趣")
-          pushToList.forEach((x) => {
-            if (x.push_id == push_id) {
-              x.handle_status = 1
-            }
-          })
-          console.log(pushToList)
-          that.setData({
-            pushToList: pushToList
-          })
-        } else if (status == 2) {
-          that.setData({
-            push_id: push_id
-          })
+        let statusCode = res.data.status_code;
+        if (statusCode == 2000000) {
+          if (status == 1) {
+            console.log("感兴趣")
+            pushToList.forEach((x) => {
+              if (x.push_id == push_id) {
+                x.handle_status = 1
+              }
+            })
+            wx.showToast({
+              title: '已感兴趣',
+              icon: 'success',
+              duration: 2000
+            })
+            console.log(pushToList)
+            that.setData({
+              pushToList: pushToList
+            })
+          } else if (status == 2) {
+            that.setData({
+              push_id: push_id
+            })
+          }
+        } else {
+          console.log(statusCode)
         }
+
       }
     })
   },

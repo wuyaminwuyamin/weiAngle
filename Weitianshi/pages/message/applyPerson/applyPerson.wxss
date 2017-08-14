@@ -1,37 +1,18 @@
-/* pages/message/applyProject/applyProject.wxss */
-
-.swiper-tab {
-  width: 100%;
-  text-align: center;
-  line-height: 80rpx;
-  background: #fff;
-}
-
-.swiper-tab-list {
-  display: inline-block;
-  width: 50%;
-  font-size: 26rpx;
-  color: #999;
-  line-height: 62rpx;
-  text-align: center;
-  border: none;
-}
-
-.on {
-  color: #40587a;
-  text-align: center;
-  font-size: 26rpx;
-  line-height: 80rpx;
-  border-bottom: 4rpx solid #40587a;
-}
-
+/* pages/message/applyPerson/applyPerson.wxss */
 .empty {
   padding-top: 0;
   margin-top:344rpx;
   width: 252rpx;
   height: 190rpx;
 }
+page {
+  height: 100%;
+}
 
+.s_frame {
+  height: 1200rpx;
+  position: static;
+}
 .browseMeTitle {
   /*height: 90rpx;*/
   margin: 32rpx 32rpx 32rpx 32rpx;
@@ -100,6 +81,12 @@
   border-right: 1rpx solid #999;
 }
 
+.projectDetailLight {
+  padding: 0 16rpx;
+  border-right: 1rpx solid #999;
+  color: #40587a;
+}
+
 .otherInfo {
   position: relative;
   padding-bottom: 30rpx;
@@ -118,6 +105,14 @@
 }
 
 .projectDetailLine:last-child {
+  border-right: none;
+}
+
+.projectDetailLight:first-child {
+  padding-left: 0;
+}
+
+.projectDetailLight:last-child {
   border-right: none;
 }
 
@@ -167,12 +162,8 @@
 }
 
 .haveInterest {
-  position: absolute;
+  margin-left: 388rpx;
   color: #999;
-  right: 32rpx;
-  white-space: nowrap;
-  display: block;
-  top: -16rpx;
 }
 
 .btnHaveInterest, .btnNoInterest {
@@ -182,11 +173,11 @@
   height: 52rpx;
   line-height: 52rpx;
   padding: 0 32rpx;
-  margin: 0 24rpx 0 185rpx;
+  margin: 20rpx 24rpx 0 185rpx;
 }
 
 .btnNoInterest {
-  margin: 0;
+  margin: 20rpx 0 0 0;
 }
 
 #time {
@@ -234,12 +225,20 @@
   text-overflow: ellipsis;
   width: 670rpx;
   padding-left: 16rpx;
-  justify-content: space-between;
 }
 .introduce{
+   background: #f3f4f8;
+  border-radius: 4rpx 4rpx 0 0;
+  font-size: 26rpx;
+  color: #666;
+  line-height: 88rpx;
+  text-align: left;
+  height: 88rpx;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
+  width: 670rpx;
+  padding-left: 16rpx;
 }
 .applyMyProject .userPosition {
   font-size: 28rpx;
@@ -322,7 +321,7 @@
   color: #40587a;
   letter-spacing: 0;
   line-height: 28rpx;
-  text-align: left;
+  text-align: center;
 }
 
 .renzheng {
@@ -383,12 +382,22 @@
   color: #ccc;
   line-height: 24rpx;
   text-align: center;
-  padding-top: 34rpx;
   margin-left: 370rpx;
+  position: absolute;
+  top: 34rpx;
+  right: 0;
 }
 
 .agreeToRead {
   color: #40587a;
+}
+
+.hightLight {
+  color: #40587a;
+}
+
+.noLight {
+  color: #999;
 }
 
 .bottomTabAfter {
@@ -404,8 +413,7 @@
   padding-bottom: 30rpx;
   background: white;
 }
-
-/* .user_text {
+.user_text {
   background: #f2f2f2;
   line-height: 104rpx;
   text-align: center;
@@ -416,43 +424,27 @@
   position: absolute;
   right: 32rpx;
   top: 32rpx;
-} */
-
-.user_text {
-  width: 40rpx;
-  height: 40rpx;
-  display: block;
-  margin-right: 16rpx;
-  border-radius: 50%;
-  font-size: 22rpx;
-  background:#999999;
-  line-height: 40rpx;
 }
-
-.investmentGroupContent, .roundGroupContent {
+.investmentGroupContent, .roundGroupContent{
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
 }
-
 .hide {
   display: none;
 }
-
-.interest {
-  position: absolute;
-  margin-top: 20rpx;
-  right: 0;
-}
-
-.status {
+/*重新申请  */
+.toAccreditation {
   font-size: 24rpx;
-  color: #40587a;
-  line-height: 88rpx;
-  text-align: right;
-  padding-right:34rpx;
-}
-
-.readed {
-  color: #40587a;
+  color: #fff;
+  line-height: 52rpx;
+  text-align: center;
+  background: #40587a;
+  border-radius: 4rpx;
+  width: 136rpx;
+  height: 52rpx;
+  /* margin-top: 18rpx; */
+  position: absolute;
+  right: 0;
+  top:20rpx;
 }

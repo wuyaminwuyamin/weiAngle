@@ -13,9 +13,10 @@ Page({
     let user_mobile = options.mobile;
     let user_brand = options.brand;
     let user_company = options.company;
-    console.log(user_company)
     let user_career = options.career;
     let user_email = options.email;
+    let user_weChat = options.writeWeChat;
+    let user_describle = options.writeDescrible;
     let type = options.type;
     let that = this;
     that.setData({
@@ -25,6 +26,8 @@ Page({
       user_company: user_company,
       user_career: user_career,
       user_email: user_email,
+      user_weChat: user_weChat,
+      user_describle: user_describle,
       type: type
     })
   },
@@ -49,113 +52,232 @@ Page({
   onShareAppMessage: function () {
 
   },
+  // 姓名
   nameEdit: function (e) {
     let user_name = e.detail.value;
-    console.log(user_name)
-    this.setData({
-      user_name: user_name
-    })
+    let user_name_length = e.detail.value.length;
+    let that = this;
+    if (user_name_length <= 20) {
+      console.log(user_name_length)
+      this.setData({
+        user_name: user_name
+      })
+    } else {
+      console.log("超了啊")
+      rqj.errorHide(that, "不能超过20个字", 100)
+    }
   },
+  // 手机号码
   telEdit: function (e) {
     let user_tel = e.detail.value;
-    console.log(user_tel)
-    this.setData({
-      user_tel: user_tel
-    })
+    let user_tel_length = e.detail.value.length;
+    let that = this;
+    if (user_tel_length <= 11) {
+      this.setData({
+        user_tel: user_tel
+      })
+    } else {
+      console.log("超了啊")
+      rqj.errorHide(that, "不能超过11个数字", 1000)
+    }
   },
+  // 品牌
   brandEdit: function (e) {
     let user_brand = e.detail.value;
-    console.log(user_brand)
-    this.setData({
-      user_brand: user_brand
-    })
+    let user_brand_length = e.detail.value.length;
+    let that = this;
+    if (user_brand_length <= 40) {
+      this.setData({
+        user_brand: user_brand
+      })
+    } else {
+      console.log("超了啊")
+      rqj.errorHide(that, "不能超过40个数字", 1000)
+    }
   },
+  // 公司
   companyEdit: function (e) {
     let user_company_name = e.detail.value;
-    console.log(user_company_name)
-    this.setData({
-      user_company_name: user_company_name
-    })
+    let user_company_name_length = e.detail.value.length;
+    let pattern = new RegExp("[`~!@#$^&*()=|{}':;',\\[\\].<>/?~！@#￥……&*（）——|{}【】‘；：”“'。，、？]");
+    let rs = "";
+    let that = this;
+    for (var i = 0; i < user_company_name.length; i++) {
+      rs = rs + user_company_name.substr(i, 1).replace(pattern, '');
+    }
+    if (user_company_name_length <= 40) {
+      this.setData({
+        user_company_name: rs
+      })
+    } else {
+      console.log("超了啊")
+      rqj.errorHide(that, "不能超过40个数字", 1000)
+    }
   },
+  // 职位
   careerEdit: function (e) {
     let user_career = e.detail.value;
     console.log(user_career)
-    this.setData({
-      user_career: user_career
-    })
+    let user_career_length = e.detail.value.length;
+    let that = this;
+    if (user_career_length <= 40) {
+      this.setData({
+        user_career: user_career
+      })
+    } else {
+      console.log("超了啊")
+      rqj.errorHide(that, "不能超过40个数字", 1000)
+    }
   },
+  // 邮箱
   emailEdit: function (e) {
     let user_email = e.detail.value;
-    console.log(user_email)
+    let user_email_length = e.detail.value.length;
     this.setData({
       user_email: user_email
     })
   },
+  // 微信
+  weChat: function (e) {
+    let user_weChat = e.detail.value;
+    let user_weChat_length = e.detail.value.length;
+    let that = this;
+    console.log(user_weChat_length)
+    if (user_weChat_length <= 40) {
+      this.setData({
+        user_weChat: user_weChat
+      })
+    } else {
+      console.log("超了啊")
+      rqj.errorHide(that, "不能超过40个数字", 1000)
+    }
+  },
+  // 个人描述
+  personDescrible: function (e) {
+    let user_describle = e.detail.value;
+    let user_describle_length = e.detail.value.length;
+    console.log(user_describle_length)
+    let that = this;
+    if (user_describle_length <= 500) {
+      this.setData({
+        user_describle: user_describle
+      })
+    } else {
+      console.log("超了啊")
+      rqj.errorHide(that, "不能超过500个数字", 1000)
+    }
+  },
   save: function () {
+    let that = this;
     let user_id = wx.getStorageSync('user_id');
     let user_name = this.data.user_name;
     let user_tel = this.data.user_tel;
     let user_brand = this.data.user_brand;
     let user_company_name = this.data.user_company_name;
+    console.log(user_career)
     let user_career = this.data.user_career;
     let user_email = this.data.user_email;
+    let user_describle = this.data.user_describle;
+    let user_weChat = this.data.user_weChat;
     let type = this.data.type;
     let pages = getCurrentPages();
-    let currPage=pages[pages.length-1];
-    let prevPage=pages[pages.length-2];
+    let currPage = pages[pages.length - 1];
+    let prevPage = pages[pages.length - 2];
     let user_info = prevPage.data.user_info;
     console.log(pages);
     console.log(currPage);
 
-    // 姓名type:0 手机type:1 品牌type:2 公司type:3 职位type:4 邮箱type:5
+    // 姓名type:0 手机type:1 品牌type:2 公司type:3 职位type:4 邮箱type:5 微信type:6 个人描述type:7
     if (type == 0) {
-        user_info.user_real_name=user_name;
+      user_info.user_real_name = user_name;
+      if (user_name != '') {
         prevPage.setData({
-            user_info:user_info
+          user_info: user_info
         })
         wx.navigateBack({
-            delta:1
+          delta: 1
         })
-    } else if (type == 1){
-        user_info.user_tel = user_tel;
+      } else {
+        rqj.errorHide(that, "姓名不能为空", 1500)
+      }
+
+    } else if (type == 1) {
+      user_info.user_mobile = user_tel;
+      if (user_tel != '') {
         prevPage.setData({
-            user_info: user_info
+          user_info: user_info
         })
         wx.navigateBack({
-            delta: 1
+          delta: 1
         })
+      } else {
+        rqj.errorHide(that, "电话不能为空", 1500)
+      }
     } else if (type == 2) {
-        user_info.user_brand = user_brand;
-        prevPage.setData({
-            user_info: user_info
-        })
-        wx.navigateBack({
-            delta: 1
-        })
+      user_info.user_brand = user_brand;
+      prevPage.setData({
+        user_info: user_info
+      })
+      wx.navigateBack({
+        delta: 1
+      })
     } else if (type == 3) {
-        user_info.user_company_name = user_company_name;
+      user_info.user_company_name = user_company_name;
+      console.log(user_company_name)
+      if (user_company_name != '') {
         prevPage.setData({
-            user_info: user_info
+          user_info: user_info
         })
         wx.navigateBack({
-            delta: 1
+          delta: 1
         })
+      } else {
+        rqj.errorHide(that, "公司不能为空", 1500)
+      }
     } else if (type == 4) {
-        user_info.user_career = user_career;
+      user_info.user_company_career = user_career;
+      if (user_career != '') {
         prevPage.setData({
-            user_info: user_info
+          user_info: user_info
         })
         wx.navigateBack({
-            delta: 1
+          delta: 1
         })
+      } else {
+        rqj.errorHide(that, "职位不能为空", 1500)
+      }
     } else if (type == 5) {
-        user_info.user_email = user_email;
-        prevPage.setData({
-            user_info: user_info
-        })
-        wx.navigateBack({
-            delta: 1
-        })
+      user_info.user_email = user_email;
+      let that = this;
+      if (app.checkEmail(user_email)|| user_email==''){
+      prevPage.setData({
+        user_info: user_info
+      })
+      wx.navigateBack({
+        delta: 1
+      })
+      }else{
+        rqj.errorHide(that, "请填写正确格式的邮箱", 1500)
+      }
+    }
+    else if (type == 6) {
+      user_info.user_wechat = user_weChat;
+      prevPage.setData({
+        user_info: user_info
+      })
+      console.log(user_info)
+      wx.navigateBack({
+        delta: 1
+      })
+    }
+    else if (type == 7) {
+      user_info.user_intro = user_describle;
+      prevPage.setData({
+        user_info: user_info
+      })
+      wx.navigateBack({
+        delta: 1
+      })
     }
   }
 })

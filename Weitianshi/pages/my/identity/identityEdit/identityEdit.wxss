@@ -39,6 +39,7 @@
   overflow: hidden;
   width: 480rpx;
 }
+
 .chooseContent {
   font-size: 28rpx;
   color: #ccc;
@@ -113,9 +114,25 @@
   overflow: hidden;
   width: 480rpx;
 }
+
 .chooseAfter {
   font-size: 28rpx;
   color: #666;
   margin-right: 12rpx;
   text-align: right;
+}
+
+.investStyle {
+  font-size: 28rpx;
+  color: #666;
+  line-height: 112rpx;
+  text-align: right;
+ 
+  margin-right: 12rpx;
+}
+.overMore{
+ text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+  width:470rpx;
 }

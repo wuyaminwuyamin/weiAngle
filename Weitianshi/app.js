@@ -561,7 +561,7 @@ App({
                    success: function (res) {
                      console.log('用户点击确定')
                      wx.navigateTo({
-                       url: '/pages/my/identity/indentity/indentity'
+                       url: '/pages/my/identity/identityEdit/identityEdit?restatus=3'
                      })
                    }
                  })

@@ -69,6 +69,7 @@ page {
   margin-bottom: 0;
 }
 
+
 .user_right {
   width: 20%;
   height: 120rpx;
@@ -692,5 +693,14 @@ page {
   height: 24rpx;
   margin-right: 4rpx;
   margin-left: 8rpx;
-  margin:17rpx 4rpx 0 8rpx;
+  margin: 17rpx 4rpx 0 8rpx;
+}
+
+.userAuthentication {
+  font-size: 24rpx;
+  color: #40587a;
+  line-height: 24rpx;
+  text-align: left;
+  margin-left:24rpx;
+  margin-bottom:12rpx;
 }

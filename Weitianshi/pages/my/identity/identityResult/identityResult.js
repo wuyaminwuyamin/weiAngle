@@ -12,49 +12,112 @@ Page({
     console.log(options)
     let group_id = options.group_id;
     let user_id = wx.getStorageSync('user_id');
-    let authenticate_id = options.authenticate_id;
-    let that = this;
     let type = options.type;
-    wx.request({
-      url: url_common + '/api/user/getUserGroupByStatus',
-      data: {
-        user_id: user_id
-      },
-      method: 'POST',
-      success: function (res) {
-        // 0:未认证1:待审核 2 审核通过 3审核未通过
-        console.log(res)
-        let status = res.data.status;
-        let group_title = res.data.group.group_title;
-        that.setData({
-          status: status,
-          group_title: group_title,
-        })
-      }
-    })
-    that.setData({
-      type: type,
-      authenticate_id: authenticate_id
-    })
+    let that = this;
+    let authenticate_id = options.authenticate_id;
+    if (authenticate_id) {
+      that.setData({
+        type: type,
+        authenticate_id: authenticate_id
+      })
+    } else {
+      wx.request({
+        url: url_common + '/api/user/getUserGroupByStatus',
+        data: {
+          user_id: user_id
+        },
+        method: 'POST',
+        success: function (res) {
+          // 0:未认证1:待审核 2 审核通过 3审核未通过
+          console.log(res)
+          let status = res.data.status;
+          let group_title = res.data.group.group_title;
+          let authenticate_id = res.data.authenticate_id;
+          that.setData({
+            status: status,
+            group_title: group_title,
+            type: type,
+            authenticate_id: authenticate_id
+          })
+        }
+      })
+    }
   },
 
   onShow: function () {
 
   },
-
-  btnYes: function () {
-    let type = this.data.type;
-    let authenticate_id = this.data.authenticate_id;
-    
-    if (type) {
-      wx.navigateBack({
-        delta: 1
+  // 留言
+  leaveMessage: function (e) {
+    let leaveMessage = e.detail.value;
+    let leaveMessage_length = e.detail.value.length;
+    console.log(leaveMessage_length)
+    let that = this;
+    if (leaveMessage_length <= 500) {
+      this.setData({
+        leaveMessage: leaveMessage
       })
-    }else{
-      wx.navigateBack({
-        delta: 3
-      })
+    } else {
+      console.log("超了啊")
+      rqj.errorHide(that, "不能超过500个数字", 1000)
     }
- 
+  },
+  btnYes: function () {
+    let leaveMessage = this.data.leaveMessage;
+    let type = this.data.type;
+    let user_id = wx.getStorageSync('user_id');
+    let authenticate_id = this.data.authenticate_id;
+    wx.request({
+      url: url_common + '/api/user/saveOtherAuthenticateFeed',
+      data: {
+        user_id: user_id,
+        authenticate_id: authenticate_id,
+        message_board: leaveMessage
+      },
+      method: 'POST',
+      success: function (res) {
+        let statusCode = res.data.status_code;
+        if (statusCode == 2000000) {
+          if (type) {
+            wx.navigateBack({
+              delta: 1
+            })
+          } else {
+            wx.navigateBack({
+              delta: 3
+            })
+          }
+        } else {
+          console.log(statusCode)
+        }
+      }
+    })
+  },
+  reaccreditation: function () {
+    let leaveMessage = this.data.leaveMessage;
+    let type = this.data.type;
+    let user_id = wx.getStorageSync('user_id');
+    let authenticate_id = this.data.authenticate_id;
+    console.log(authenticate_id)
+    wx.request({
+      url: url_common + '/api/user/saveOtherAuthenticateFeed',
+      data: {
+        user_id: user_id,
+        authenticate_id: authenticate_id,
+        message_board: leaveMessage
+      },
+      method: 'POST',
+      success: function (res) {
+        let statusCode = res.data.status_code;
+       
+        if (statusCode == 2000000) {
+          wx.navigateTo({
+            url: '/pages/my/identity/identityEdit/identityEdit',
+          })
+        } else {
+          console.log(statusCode)
+        }
+      }
+    })
   }
 })
