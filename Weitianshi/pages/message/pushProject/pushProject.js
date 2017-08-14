@@ -246,22 +246,32 @@ Page({
       method: 'POST',
       success: function (res) {
         console.log(res)
-        if (status == 1) {
-          console.log("感兴趣")
-          pushToList.forEach((x) => {
-            if (x.push_id == push_id) {
-              x.handle_status = 1
-            }
-          })
-          console.log(pushToList)
-          that.setData({
-            pushToList: pushToList
-          })
-        } else if (status == 2) {
-          that.setData({
-            push_id: push_id
-          })
+        let statusCode = res.data.status_code;
+        if (statusCode == 2000000){
+          if (status == 1) {
+            console.log("感兴趣")
+            pushToList.forEach((x) => {
+              if (x.push_id == push_id) {
+                x.handle_status = 1
+              }
+            })
+            wx.showToast({
+              title: '已感兴趣',
+              icon: 'success',
+              duration: 2000
+            })
+            that.setData({
+              pushToList: pushToList
+            })
+          } else if (status == 2) {
+            that.setData({
+              push_id: push_id
+            })
+          }
+        }else{
+          console.log(statusCode)
         }
+       
       }
     })
   },

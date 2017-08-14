@@ -1,6 +1,7 @@
 /* pages/message/applyPerson/applyPerson.wxss */
 .empty {
-  padding-top: 92rpx;
+  padding-top: 0;
+  margin-top:344rpx;
   width: 252rpx;
   height: 190rpx;
 }

@@ -221,12 +221,12 @@
               <view class="moreInfo" bindtap="noMoreInfo" wx:if="{{moreInfo == 4}}" data-id="{{4}}">收起</view>
             </view>
             <!--FA签约-->
-            <view class="signFA" wx:if="{{project.pro_FA != ''}}">
+            <view class="signFA" wx:if="{{!project.pro_FA}}">
               <view class="signFABox flex">
                 <image src="/img/img-money.png" class="titlePic"></image>
                 <view class="title">FA签约</view>
               </view>
-              <view class="signFAcontentAll" wx:if="{{project.pro_FA.commission != ''||project.pro_FA.stock_right !=''||project.pro_FA.stock_other!=''||project.pro_FA.stock_follow !=''}}">
+              <view class="signFAcontentAll" wx:if="{{project.pro_FA.commission !=0||project.pro_FA.stock_right !=0||project.pro_FA.stock_other!=0||project.pro_FA.stock_follow !=0}}">
                 <view class="flex">
                   <view class="whiteContent">
                     <view class="conBox flex">
@@ -237,18 +237,18 @@
                       </view>
                       <view class="textFAContent">
                         <view class="textTab">股权赠与</view>
-                        <view class="textNum" wx:if="{{project.pro_FA.stock_right}}">{{project.pro_FA.stock_right}}%</view>
-                        <view class="textNum" wx:if="{{!project.pro_FA.stock_right}}">-</view>
+                        <view class="textNum" wx:if="{{project.pro_FA.stock_right!=0}}">{{project.pro_FA.stock_right}}%</view>
+                        <view class="textNum" wx:if="{{project.pro_FA.stock_right==0}}">-</view>
                       </view>
                       <view class="textFAContent">
                         <view class="textTab">其他权益</view>
-                        <view class="textNum" wx:if="{{project.pro_FA.stock_other}}">{{project.pro_FA.stock_other}}%</view>
-                        <view class="textNum" wx:if="{{!project.pro_FA.stock_other}}">-</view>
+                        <view class="textNum" wx:if="{{project.pro_FA.stock_other!=0}}">{{project.pro_FA.stock_other}}%</view>
+                        <view class="textNum" wx:if="{{project.pro_FA.stock_other==0}}">-</view>
                       </view>
                       <view class="textFAContent">
                         <view class="textTab">跟投权</view>
-                        <view class="textNum" wx:if="{{project.pro_FA.stock_follow}}">{{project.pro_FA.stock_follow}}%</view>
-                        <view class="textNum" wx:if="{{!project.pro_FA.stock_follow}}">-</view>
+                        <view class="textNum" wx:if="{{project.pro_FA.stock_follow!=0}}">{{project.pro_FA.stock_follow}}%</view>
+                        <view class="textNum" wx:if="{{project.pro_FA.stock_follow==0}}">-</view>
                       </view>
                     </view>
                   </view>

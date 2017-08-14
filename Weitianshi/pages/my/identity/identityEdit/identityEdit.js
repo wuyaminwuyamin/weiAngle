@@ -7,6 +7,8 @@ Page({
     array: ['是', '否']
   },
   onLoad: function (option) {
+    console.log(option)
+    let restatus = option.restatus;
     let that = this;
     let authenticate_id = option.authenticate_id;
     // group_id 18:买方FA 19:卖方FA  6:投资人 3:创业者 8:其他
@@ -17,28 +19,83 @@ Page({
       group_id: group_id
     })
     //请求数据
-    wx.request({
-      url: url_common + '/api/user/getUserBasicInfo',
-      data: {
-        user_id: user_id
-      },
-      method: 'POST',
-      success: function (res) {
-        console.log(res);
-        let user_info = res.data.user_info;
-        let invest_info = res.data.invest_info;
-        if (invest_info.invest_industry) {
-          let invest_industryList = invest_info.invest_industry;
-          invest_industryList.forEach((x, index) => {
-            invest_industryList[index] = x.industry_name;
+    if(restatus == 3){
+      wx.request({
+        url: url_common + '/api/user/getUserGroupByStatus',
+        data: {
+          user_id: user_id
+        },
+        method: 'POST',
+        success: function (res) {
+          // 0:未认证1:待审核 2 审核通过 3审核未通过
+          console.log(res)
+          let status = res.data.status;
+          let group_id = res.data.group.group_id;
+          let authenticate_id = res.data.authenticate_id;
+          that.setData({
+            status: status,
+            group_id: group_id,
+            // type: type,
+            authenticate_id: authenticate_id
+          })
+          wx.request({
+            url: url_common + '/api/user/getUserAuthenticateInfo',
+            data: {
+              user_id: user_id,
+              authenticate_id: authenticate_id
+            },
+            method: 'POST',
+            success: function (res) {
+              console.log(res);
+              let user_info = res.data.group;
+              let invest_info = res.data.tags;
+              console.log(invest_info)
+              if (invest_info.invest_industry) {
+                let invest_industryList = invest_info.invest_industry;
+                invest_industryList.forEach((x, index) => {
+                  invest_industryList[index] = x.industry_name;
+                })
+              }
+              that.setData({
+                user_info: user_info,
+                invest_info: invest_info
+              })
+            }
+          })
+          // that.setData({
+          //   status: status,
+          //   group_id: group_id,
+          //   type: type,
+          //   authenticate_id: authenticate_id
+          // })
+        }
+      })
+
+    }else{
+      wx.request({
+        url: url_common + '/api/user/getUserBasicInfo',
+        data: {
+          user_id: user_id
+        },
+        method: 'POST',
+        success: function (res) {
+          console.log(res);
+          let user_info = res.data.user_info;
+          let invest_info = res.data.invest_info;
+          if (invest_info.invest_industry) {
+            let invest_industryList = invest_info.invest_industry;
+            invest_industryList.forEach((x, index) => {
+              invest_industryList[index] = x.industry_name;
+            })
+          }
+          that.setData({
+            user_info: user_info,
+            invest_info: invest_info
           })
         }
-        that.setData({
-          user_info: user_info,
-          invest_info: invest_info
-        })
-      }
-    })
+      })
+    }
+  
   },
   onShow: function () {
 
@@ -100,6 +157,8 @@ Page({
     console.log("上传名片")
     let user_id = wx.getStorageSync('user_id');
     let group_id = this.data.group_id;
+    let authenticate_id = this.data.authenticate_id;
+    console.log(authenticate_id)
     wx.chooseImage({
       success: function (res) {
         console.log(res)

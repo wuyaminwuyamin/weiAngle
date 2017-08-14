@@ -23,11 +23,11 @@
         <view class="user_name" wx:if="{{!user.user_real_name}}">代替名</view>
         <view class="user_career" wx:if="{{user.user_company_career}}">{{user.user_company_career}}</view>
         <view class="user_career" wx:if="{{!user.user_company_career}}">职位名称</view>
-        <!-- <view class="userPart flex" wx:if="{{user.authentication.length != 0}}">
+         <view class="userPart flex" wx:if="{{user.authentication.length != 0 &&IdentificationShow==1}}">
           <image src="/img/icon-renzheng@2x.png" class="renzheng"></image>
           <view class="userPart1">{{user.authentication[0].group_title}}</view>
-        </view> -->
-        <view class="userAuthentication flex" catchtap="authentication">认证</view>
+        </view> 
+        <view class="userAuthentication flex" catchtap="authentication"  wx:if="{{user.authentication.length == 0 &&IdentificationShow==1}}">认证</view>
       </view>
       <view class="user_play_time" wx:if="{{playTime==1}}">{{user.active_status}}</view>
       <view class="user_company" wx:if="{{user.user_company_name}}">公司：{{user.user_company_name}}</view>
@@ -776,10 +776,12 @@
         </view>
         <view id="time">{{item.created_at}}</view>
       </view>
-      <!-- <view class="empty flex">
-      <image src="/img/img-kong1@2x.png" class="noData"></image>
-      <view class="hasNothing">暂无数据</view>
-    </view> -->
     </view>
   </block>
+</template>
+<template name="hasNothing">
+  <view class="empty flex"  wx:if="{{emptyNumber == ''}}" >
+    <image src="/img/img-kong1@2x.png" class="noData"></image>
+    <view class="hasNothing">暂无数据</view>
+  </view> 
 </template>

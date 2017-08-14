@@ -390,7 +390,7 @@ scroll-view {
   color: #333;
   line-height: 48rpx;
   text-align: left;
-  width: 480rpx;
+  /* width: 480rpx; */
 }
 
 .industry {
