@@ -10,7 +10,6 @@ Page({
   onLoad: function (options) {
     console.log(options)
     let user_name = options.name;
-    let user_mobile = options.mobile;
     let user_brand = options.brand;
     let user_company = options.company;
     let user_career = options.career;
@@ -21,7 +20,6 @@ Page({
     let that = this;
     that.setData({
       user_name: user_name,
-      user_mobile: user_mobile,
       user_brand: user_brand,
       user_company: user_company,
       user_career: user_career,
@@ -67,20 +65,7 @@ Page({
       rqj.errorHide(that, "不能超过20个字", 100)
     }
   },
-  // 手机号码
-  telEdit: function (e) {
-    let user_tel = e.detail.value;
-    let user_tel_length = e.detail.value.length;
-    let that = this;
-    if (user_tel_length <= 11) {
-      this.setData({
-        user_tel: user_tel
-      })
-    } else {
-      console.log("超了啊")
-      rqj.errorHide(that, "不能超过11个数字", 1000)
-    }
-  },
+
   // 品牌
   brandEdit: function (e) {
     let user_brand = e.detail.value;
@@ -171,7 +156,6 @@ Page({
     let that = this;
     let user_id = wx.getStorageSync('user_id');
     let user_name = this.data.user_name;
-    let user_tel = this.data.user_tel;
     let user_brand = this.data.user_brand;
     let user_company_name = this.data.user_company_name;
     console.log(user_career)
@@ -201,19 +185,7 @@ Page({
         rqj.errorHide(that, "姓名不能为空", 1500)
       }
 
-    } else if (type == 1) {
-      user_info.user_mobile = user_tel;
-      if (user_tel != '') {
-        prevPage.setData({
-          user_info: user_info
-        })
-        wx.navigateBack({
-          delta: 1
-        })
-      } else {
-        rqj.errorHide(that, "电话不能为空", 1500)
-      }
-    } else if (type == 2) {
+    }  else if (type == 2) {
       user_info.user_brand = user_brand;
       prevPage.setData({
         user_info: user_info

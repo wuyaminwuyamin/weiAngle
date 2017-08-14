@@ -39,8 +39,8 @@ Page({
   },
 
   onLoad: function (options) {
+    let old_group_id = options.group_id;
     let that = this;
-    console.log("进来了")
     wx.request({
       url: url_common + '/api/category/getGroupIdentify',
       data: {
@@ -59,6 +59,9 @@ Page({
         console.log(that.data.messageList)
       }
     })
+    that.setData({
+      old_group_id : old_group_id
+    })
   },
 
   onShow: function () {
@@ -68,21 +71,42 @@ Page({
   toIdentityEdit: function (e) {
     let user_id = wx.getStorageSync('user_id');
     let group_id = e.currentTarget.dataset.group;
-    wx.request({
-      url: url_common + '/api/user/setUserGroup',
-      data: {
-        user_id: user_id,
-        group_id: group_id
-      },
-      method: 'POST',
-      success: function (res) {
-        console.log(res.data.authenticate_id)
-        var authenticate_id = res.data.authenticate_id;
-        wx.navigateTo({
-          url: '/pages/my/identity/identityEdit/identityEdit?group_id=' + group_id + '&&authenticate_id=' + authenticate_id,
-        })
-      }
-    })
-   
+    let old_group_id = this.data.old_group_id;
+    console.log(old_group_id)
+   console.log(group_id)
+    if (old_group_id != group_id){
+      wx.request({
+        url: url_common + '/api/user/setUserGroup',
+        data: {
+          user_id: user_id,
+          group_id: group_id,
+          old_group_id: old_group_id
+        },
+        method: 'POST',
+        success: function (res) {
+          console.log(res.data.authenticate_id)
+          var authenticate_id = res.data.authenticate_id;
+          wx.navigateTo({
+            url: '/pages/my/identity/identityEdit/identityEdit?group_id=' + group_id + '&&authenticate_id=' + authenticate_id + '&&new=old',
+          })
+        }
+      })
+   }else{
+      wx.request({
+        url: url_common + '/api/user/setUserGroup',
+        data: {
+          user_id: user_id,
+          group_id: group_id
+        },
+        method: 'POST',
+        success: function (res) {
+          console.log(res.data.authenticate_id)
+          var authenticate_id = res.data.authenticate_id;
+          wx.navigateTo({
+            url: '/pages/my/identity/identityEdit/identityEdit?group_id=' + group_id + '&&authenticate_id=' + authenticate_id +'&&new=new',
+          })
+        }
+      })
+   }
   }
 })

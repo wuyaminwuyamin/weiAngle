@@ -522,6 +522,7 @@ App({
     //去认证
     accreditation:function(status){
        var user_id = this.globalData.user_id;
+       let url_common = this.globalData.url_common;
        wx.request({
          url: this.globalData.url_common + '/api/user/checkUserInfo',
          data: {
@@ -529,6 +530,7 @@ App({
          },
          method: 'POST',
          success: function (res) {
+           console.log(res)
            if (res.data.status_code == 2000000) {
              var complete = res.data.is_complete;
              if (complete == 1) {
@@ -559,10 +561,22 @@ App({
                    confirmText: "重新认证",
                    showCancel: false,
                    success: function (res) {
+                    //  重新认证的时候,确定group_id
+                     wx.request({
+                       url: url_common + '/api/user/getUserGroupByStatus',
+                       data: {
+                         user_id: user_id
+                       },
+                       method: 'POST',
+                       success: function (res) {
+                         let group_id = res.data.group.group_id;
+                         wx.navigateTo({
+                           url: '/pages/my/identity/indentity/indentity?group_id=' + group_id
+                         })
+                       }
+                       })
                      console.log('用户点击确定')
-                     wx.navigateTo({
-                       url: '/pages/my/identity/identityEdit/identityEdit?restatus=3'
-                     })
+                    
                    }
                  })
                }
@@ -777,7 +791,7 @@ App({
                        success: function (res) {
                          console.log('用户点击确定')
                          wx.navigateTo({
-                           url: '/pages/my/identity/indentity/indentity'
+                           url: '/pages/my/identity/indentity/indentity?group_id=' + group_id 
                          })
                        }
                      })

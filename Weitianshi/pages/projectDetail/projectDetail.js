@@ -227,6 +227,7 @@ Page({
       path: '/pages/projectDetail/projectDetail?id=' + this.data.id
     }
     app.console(data.project.pro_intro);
+    console.log(data.id)
   },
   // 项目详情中的显示全部
   allBrightPoint: function () {

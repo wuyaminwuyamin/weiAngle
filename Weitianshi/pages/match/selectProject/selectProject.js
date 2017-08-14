@@ -78,6 +78,5 @@ Page({
       console.log(getMatchList)
       // button-type: 0=申请中 1.申请已通过 2.申请被拒绝(重新申请) 3.推送给我的 4.未申请也未推送(申请按钮)
       app.applyProjectTo(that, project_id, content, getMatchList)
-
     },
 })

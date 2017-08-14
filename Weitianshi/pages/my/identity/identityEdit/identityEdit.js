@@ -8,7 +8,7 @@ Page({
   },
   onLoad: function (option) {
     console.log(option)
-    let restatus = option.restatus;
+    let recertification = option.new;
     let that = this;
     let authenticate_id = option.authenticate_id;
     // group_id 18:买方FA 19:卖方FA  6:投资人 3:创业者 8:其他
@@ -19,7 +19,7 @@ Page({
       group_id: group_id
     })
     //请求数据
-    if(restatus == 3){
+    if (recertification == "old"){
       wx.request({
         url: url_common + '/api/user/getUserGroupByStatus',
         data: {
@@ -47,8 +47,8 @@ Page({
             method: 'POST',
             success: function (res) {
               console.log(res);
-              let user_info = res.data.group;
-              let invest_info = res.data.tags;
+              let user_info = res.data.user_info;
+              let invest_info = res.data.invest_info;
               console.log(invest_info)
               if (invest_info.invest_industry) {
                 let invest_industryList = invest_info.invest_industry;
@@ -70,7 +70,6 @@ Page({
           // })
         }
       })
-
     }else{
       wx.request({
         url: url_common + '/api/user/getUserBasicInfo',
@@ -105,7 +104,6 @@ Page({
   writeNewThing: function (e) {
     let type = e.currentTarget.dataset.type;
     let writeNameValue = this.data.user_info.user_real_name;
-    let writeMobile = this.data.user_info.user_mobile;
     let writeBrand = this.data.user_info.user_brand;
     let writeCompany = this.data.user_info.user_company_name;
     let writeCareer = this.data.user_info.user_company_career;
@@ -115,10 +113,6 @@ Page({
     if (type == 0) {
       wx.navigateTo({
         url: '/pages/form/personInfo/personInfo?name=' + writeNameValue + '&&type=0',
-      })
-    } else if (type == 1) {
-      wx.navigateTo({
-        url: '/pages/form/personInfo/personInfo?mobile=' + writeMobile + '&&type=1',
       })
     } else if (type == 2) {
       wx.navigateTo({
@@ -242,7 +236,6 @@ Page({
     let iden_name = this.data.user_info.user_real_name;
     let iden_company_name = this.data.user_info.user_company_name;
     let iden_company_career = this.data.user_info.user_company_career;
-    let iden_tel = this.data.user_info.user_mobile;
     let iden_email = this.data.user_info.user_email;
     let iden_wx = this.data.user_info.user_wechat;
     let iden_desc = this.data.user_info.user_intro;
@@ -256,7 +249,7 @@ Page({
     let area = this.data.area;
     let stage = this.data.stage;
     let scale = this.data.scale;
-    if (iden_name != '' && iden_tel != '' && iden_company_name != '' && iden_company_career != '') {
+    if (iden_name != '' && iden_company_name != '' && iden_company_career != '') {
       wx.request({
         url: url_common + '/api/user/saveUserAuthentication',
         data: {
@@ -297,9 +290,7 @@ Page({
         rqj.errorHide(that, "公司不能为空", 1500)
       } else if (iden_company_career == '') {
         rqj.errorHide(that, "职位不能为空", 1500)
-      } else if (iden_tel == '') {
-        rqj.errorHide(that, "手机不能为空", 1500)
-      } 
+      }
     }
   }
 
