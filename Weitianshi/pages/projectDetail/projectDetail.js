@@ -31,7 +31,15 @@ Page({
       avatarUrl: avatarUrl,
     });
     //项目详情(不包括投资人)
-    wx.request({
+   
+
+
+
+    app.loginPage(function (user_id) {
+      console.log("我进入登陆维护了")
+      var view_id = user_id;
+      wx.setStorageSync('user_id', user_id);
+      wx.request({
       url: url_common + '/api/project/getProjectDetail',
       data: {
         user_id: user_id,
@@ -184,6 +192,30 @@ Page({
         }
       },
     })
+      console.log("分享者", "数据显示的人", "查看的人")
+      console.log(share_id, followed_user_id, view_id)
+
+
+      that.setData({
+        user_id: user_id,
+      })
+    })
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
   },
   onShow: function () {
     let user_id = wx.getStorageSync('user_id');
@@ -249,6 +281,7 @@ Page({
   },
   // 申请查看
   applyProject: function (options) {
+    console.log("申请查看")
     let id = options.currentTarget.dataset.id;
     let that = this;
     let user_id = wx.getStorageSync('user_id');

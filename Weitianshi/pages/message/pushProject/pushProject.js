@@ -7,7 +7,7 @@ Page({
   data: {
     winWidth: 0,//选项卡
     winHeight: 0,//选项卡
-    currentTab: 1,//选项卡
+    currentTab: 0,//选项卡
     type: 1, //我申請查看的項目
     // handle_status: 0 // handle_status:待处理:0  感兴趣:1
   },
@@ -85,6 +85,7 @@ Page({
   /*滑动切换tab*/
   bindChange: function (e) {
     var that = this;
+    let type = this.data.type;
     var current = e.detail.current;
     var user_id = wx.getStorageSync('user_id');//获取我的user_id
     if (current == 1) {
@@ -97,9 +98,23 @@ Page({
         },
         method: "POST",
         success: function (res) {
+          console.log(res)
           console.log("yes,成功了")
         }
       })
+    }else if(current == 0){
+      wx.request({
+            url: url_common + '/api/message/setMessageToRead',
+            data: {
+              user_id: user_id,
+              type_id: type
+            },
+            method: "POST",
+            success: function (res) {
+              console.log(res)
+              console.log("current=0")
+            }
+          })
     }
     that.setData({ currentTab: e.detail.current });
   },
@@ -118,7 +133,21 @@ Page({
           },
           method: "POST",
           success: function (res) {
+            console.log(res)
             console.log("yes,成功了.点击")
+          }
+        })
+      } else if (current == 0) {
+        wx.request({
+          url: url_common + '/api/message/setMessageToRead',
+          data: {
+            user_id: user_id,
+            type_id: type
+          },
+          method: "POST",
+          success: function (res) {
+            console.log(res)
+            console.log("current=0")
           }
         })
       }

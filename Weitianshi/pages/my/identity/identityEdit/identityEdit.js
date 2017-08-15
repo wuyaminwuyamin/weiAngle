@@ -10,16 +10,14 @@ Page({
     console.log(option)
     let recertification = option.new;
     let that = this;
-    let authenticate_id = option.authenticate_id;
     // group_id 18:买方FA 19:卖方FA  6:投资人 3:创业者 8:其他
     let group_id = option.group_id;
     let user_id = wx.getStorageSync('user_id');
     that.setData({
-      authenticate_id: authenticate_id,
       group_id: group_id
     })
     //请求数据
-    if (recertification == "old"){
+    if (recertification){
       wx.request({
         url: url_common + '/api/user/getUserGroupByStatus',
         data: {

@@ -15,13 +15,13 @@ Page({
 
   onLoad: function (options) {
     // pushed_user_id == 推送给谁
+    console.log(options)
     let pushed_user_id = options.pushId;
     console.log(pushed_user_id)
     let that = this;
     that.setData({
       pushed_user_id: pushed_user_id
     })
-   
   },
   onShow: function () {
     var that = this;
@@ -71,50 +71,62 @@ Page({
   //点击选中标签
   checkboxChange(e) {
     console.log(e)
-    let tags = this.data.dataList;
-    console.log(tags.data)
+    let overTime = this.data.pushTimes.remain_times;
+    console.log(overTime)
+    let dataList = this.data.dataList;
     let that = this;
-    let checkObject = app.tagsCheck(that, rqj, e, tags, 'dataList')
-    this.setData({
-      dataList: tags,
-      contactsFilter1: checkObject
+    let tagsData = e.currentTarget.dataset;
+    let index = tagsData.index;
+    let checkObject = [];
+    dataList[index].check = !dataList[index].check;
+     let checkedNum = 0
+     dataList.forEach((x) => {
+       if (x.check == true) {
+         checkedNum++
+       }
+     })
+     if (checkedNum >overTime) {
+       dataList[index].check = !dataList[index].check;
+       rqj.errorHide(that, "最多可选择五项", 1000)
+     } else {
+       that.setData({
+         dataList: dataList
+       })
+     }
+     dataList.forEach((x) => {
+       if (x.check == true) {
+         checkObject.push(x)
+       }
+     })
+    that.setData({
+      checkObject:checkObject
     })
-    console.log(checkObject)
   },
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
   pushTo: function () {
     let user_id = wx.getStorageSync('user_id');
     let pushed_user_id = this.data.pushed_user_id;
     let time = this.data.pushTimes;
     let that = this;
+    let checkObject = this.data.checkObject;
+    console.log(checkObject)
+    let projectList = []
+    checkObject.forEach((x)=>{
+      projectList.push(x.project_id)
+    })
+    console.log(projectList)
     wx.request({
       url: url_common + '/api/project/pushProjectToUser',
       data: {
         user_id: user_id,
         pushed_user_id: "90ky197p",
-        pushed_project: ['xpEv2arq']
+        pushed_project: projectList
       },
       method: 'POST',
       success: function (res) {
         console.log(res)
+        let statusCode = res.data.status_code;
+        if (statusCode == 2000000) {
         wx.request({
           url: url_common + '/api/project/getMyProjectList',
           data: {
@@ -127,17 +139,24 @@ Page({
             console.log(res)
             let dataList = res.data.data;
             let pushTimes = res.data.push_times;
+            let remainTimes = pushTimes.remain_times;
             that.setData({
               pushTimes: pushTimes
             })
-            console.log(pushTimes)
+            console.log(remainTimes)
+            if (remainTimes == 0){
+                rqj.errorHide(that, "每天最多推送5次", 1000)
+            }else{
+              wx.showToast({
+                title: '成功',
+                icon: 'success',
+                duration: 2000
+              })
+            }
           }
         })
-        wx.showToast({
-          title: '成功',
-          icon: 'success',
-          duration: 2000
-        })
+      
+        }
       }
     })
 

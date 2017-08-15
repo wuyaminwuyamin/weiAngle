@@ -103,9 +103,7 @@ Page({
       let companyName = this.data.company_name;
       project.pro_company_name = companyName;
       let id = project.project_id;
-     wx.navigateTo({
-       url: '/pages/myProject/projectDetail/projectDetail?companyName='+companyName+'&&id='+id+'&&index=0',
-     })
+     
      wx.request({
        url: url_common + '/api/project/updateProjectByField',
        data: {
@@ -116,6 +114,9 @@ Page({
        method: 'POST',
        success: function (res) {
         console.log(res)
+        wx.redirectTo({
+          url: '/pages/myProject/projectDetail/projectDetail?companyName=' + companyName + '&&id=' + id + '&&index=0',
+        })
        }
        })
     }

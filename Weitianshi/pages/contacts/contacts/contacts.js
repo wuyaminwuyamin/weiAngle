@@ -49,7 +49,7 @@ Page({
         // 获取人脉库信息
         if (user_id) {
             wx.request({
-                url: url + '/api/user/getMyFollowList',
+                url: url_common + '/api/user/getMyFollowList',
                 data: {
                     user_id: user_id,
                     page: 1,
