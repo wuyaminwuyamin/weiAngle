@@ -37,7 +37,6 @@ Page({
 
     //点击选中标签
     checkboxChange(e) {
-      console.log(e)
         let tags = this.data.industryTags;
         let that = this;
         let checkObject = app.tagsCheck(that, rqj, e, tags, 'industryTags')
@@ -45,7 +44,6 @@ Page({
             industryTags: tags,
             contactsFilter1: checkObject
         })
-        console.log(checkObject)
     },
 
     //下拉刷新

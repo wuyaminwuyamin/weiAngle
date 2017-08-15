@@ -344,14 +344,10 @@ App({
 
     //多选标签事件封装(tags需要要data里设置相关,str为标签数所字段)
     tagsCheck(that, rqj, e, tags, str) {
-        console.log(tags)
         let target = e.currentTarget.dataset;
-        console.log(target)
         let tagsData = tags.tagsData;
-        console.log(tags)
         let checkObject = [];
         tagsData[target.index].check = !tagsData[target.index].check;
-        console.log(tagsData[target.index])
         let checkedNum = 0
         tagsData.forEach((x) => {
             if (x.check == true) {
