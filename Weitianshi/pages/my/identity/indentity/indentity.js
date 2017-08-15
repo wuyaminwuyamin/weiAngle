@@ -86,21 +86,22 @@ Page({
           data: {
             user_id: user_id,
             group_id: group_id,
-            old_authenticate_id: old_authenticate_id
+            authenticate_id: old_authenticate_id
           },
           method: 'POST',
           success: function (res) {
             console.log(res)
             // isUpdate :0 未认证过 1:重新认证
             let isUpdate = res.data.is_update;
+            var authenticate_id = res.data.authenticate_id;
             console.log(isUpdate)
           if(old_group_id != group_id){
             wx.navigateTo({
-              url: '/pages/my/identity/identityEdit/identityEdit?group_id=' + group_id + '&&authenticate_id=' + authenticate_id,
+              url: '/pages/my/identity/identityEdit/identityEdit?group_id=' + group_id + '&&authenticate_id=' + authenticate_id+'&&isUpdate='+isUpdate,
             })
           }else if(old_group_id == group_id){
             wx.navigateTo({
-              url: '/pages/my/identity/identityEdit/identityEdit?group_id=' + group_id + '&&authenticate_id=' + authenticate_id,
+              url: '/pages/my/identity/identityEdit/identityEdit?group_id=' + group_id + '&&authenticate_id=' + authenticate_id + '&&isUpdate=' + isUpdate,
             })
           }
           }
@@ -114,10 +115,11 @@ Page({
         },
         method: 'POST',
         success: function (res) {
+          console.log(res)
+          let authenticate_id = res.data.authenticate_id;
           let isUpdate = res.data.is_update;
-          var authenticate_id = res.data.authenticate_id;
           wx.navigateTo({
-            url: '/pages/my/identity/identityEdit/identityEdit?group_id=' + group_id + '&&authenticate_id=' + authenticate_id,
+            url: '/pages/my/identity/identityEdit/identityEdit?group_id=' + group_id + '&&authenticate_id=' + authenticate_id + '&&isUpdate=' + isUpdate,
           })
         }
       })

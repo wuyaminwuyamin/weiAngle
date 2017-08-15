@@ -716,7 +716,7 @@
         </view>
       </view>
       <!--名片内容  -->
-      <view class="outsideBox" data-project="{{item.project.project_id}}" catchtap="projectDetail">
+      <view class="outsideBox" data-project="{{item.user.user_id}}" catchtap="personDetail">
         <view class="redPoint"  wx:if="{{item.message_status==0}}"></view>
         <view class="classname" >
         <image src="/img/img-quanwang@2x.png" class="connection" wx:if="{{item.user.follow_status != 1}}"></image>

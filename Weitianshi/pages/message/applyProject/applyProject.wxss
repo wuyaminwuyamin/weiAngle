@@ -151,7 +151,7 @@
 .userCompany, .userCareer, .userName {
   font-size: 22rpx;
   color: #999;
-  line-height: 22rpx;
+  line-height: 24rpx;
   text-align: left;
   width: 320rpx;
   text-overflow: ellipsis;
@@ -245,7 +245,7 @@
   width: 670rpx;
   padding-left: 16rpx;
 }
-.introduce{
+#introduce .introduce{
    background: #f3f4f8;
   border-radius: 4rpx 4rpx 0 0;
   font-size: 26rpx;

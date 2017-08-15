@@ -213,6 +213,15 @@ Page({
       }
     })
   },
+  //点击跳转到用户详情
+  personDetail:function(e){
+    console.log(e);
+    var id = e.currentTarget.dataset.project;
+    app.console(id)
+    wx.navigateTo({
+      url: '/pages/userDetail/networkDetail/networkDetail?id=' + id,
+    })
+  },
   // 点击同意
   btn: function (e) {
     console.log(e)

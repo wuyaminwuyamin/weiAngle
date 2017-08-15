@@ -91,6 +91,31 @@ Page({
       }
     })
   },
+  //重新认证页面点击返回
+  reaccreditationYes:function(){
+    let leaveMessage = this.data.leaveMessage;
+    let type = this.data.type;
+    let user_id = wx.getStorageSync('user_id');
+    console.log(type)
+    let authenticate_id = this.data.authenticate_id;
+    wx.request({
+      url: url_common + '/api/user/saveOtherAuthenticateFeed',
+      data: {
+        user_id: user_id,
+        authenticate_id: authenticate_id,
+        message_board: leaveMessage
+      },
+      method: 'POST',
+      success: function (res) {
+        let statusCode = res.data.status_code;
+        if (statusCode == 2000000) {
+            wx.navigateBack({
+              delta: 4
+            })
+        }
+      }
+    })
+  },
   reaccreditation: function () {
     let leaveMessage = this.data.leaveMessage;
     let type = this.data.type;

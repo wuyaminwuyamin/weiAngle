@@ -188,6 +188,15 @@ Page({
       }
     })
   },
+  //点击跳转到用户详情
+  personDetail: function (e) {
+    console.log(e);
+    var id = e.currentTarget.dataset.project;
+    app.console(id)
+    wx.navigateTo({
+      url: '/pages/userDetail/networkDetail/networkDetail?id=' + id,
+    })
+  },
   //推送给我的加载更多
   loadMore: function () {
     //请求上拉加载接口所需要的参数

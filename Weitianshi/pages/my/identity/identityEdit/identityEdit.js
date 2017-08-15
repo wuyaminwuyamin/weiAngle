@@ -8,16 +8,17 @@ Page({
   },
   onLoad: function (option) {
     console.log(option)
-    let recertification = option.new;
+    let recertification = option.isUpdate;
     let that = this;
     // group_id 18:买方FA 19:卖方FA  6:投资人 3:创业者 8:其他
     let group_id = option.group_id;
+    let authenticate_id = option.authenticate_id;
     let user_id = wx.getStorageSync('user_id');
     that.setData({
       group_id: group_id
     })
     //请求数据
-    if (recertification){
+    if (recertification ==1){
       wx.request({
         url: url_common + '/api/user/getUserGroupByStatus',
         data: {
@@ -48,12 +49,12 @@ Page({
               let user_info = res.data.user_info;
               let invest_info = res.data.invest_info;
               console.log(invest_info)
-              if (invest_info.invest_industry) {
-                let invest_industryList = invest_info.invest_industry;
-                invest_industryList.forEach((x, index) => {
-                  invest_industryList[index] = x.industry_name;
-                })
-              }
+              // if (invest_info.invest_industry) {
+              //   let invest_industryList = invest_info.invest_industry;
+              //   invest_industryList.forEach((x, index) => {
+              //     invest_industryList[index] = x.industry_name;
+              //   })
+              // }
               that.setData({
                 user_info: user_info,
                 invest_info: invest_info
@@ -68,7 +69,7 @@ Page({
           // })
         }
       })
-    }else{
+    }else if(recertification == 0){
       wx.request({
         url: url_common + '/api/user/getUserBasicInfo',
         data: {
@@ -87,7 +88,8 @@ Page({
           }
           that.setData({
             user_info: user_info,
-            invest_info: invest_info
+            invest_info: invest_info,
+            authenticate_id: authenticate_id
           })
         }
       })
@@ -198,31 +200,31 @@ Page({
   bindFAService: function (e) {
     console.log('picker发送选择改变，携带值为', e.detail.value)
     this.setData({
-      bindFAService_index: e.detail.value
+      is_alliance: e.detail.value
     })
   },
   // FA服务
   addFAService: function (e) {
     this.setData({
-      addFAService_index: e.detail.value
+      is_identify_member: e.detail.value
     })
   },
   // sass服务
   sass: function (e) {
     this.setData({
-      sass_index: e.detail.value
+      is_saas: e.detail.value
     })
   },
   // 兼职FA
   partFA: function (e) {
     this.setData({
-      partFA_index: e.detail.value
+      is_FA_part: e.detail.value
     })
   },
   // 需要FA顾问
   needFA: function (e) {
     this.setData({
-      needFA_index: e.detail.value
+      is_financing: e.detail.value
     })
   },
   // 提交保存跳转
@@ -238,11 +240,11 @@ Page({
     let iden_wx = this.data.user_info.user_wechat;
     let iden_desc = this.data.user_info.user_intro;
     let iden_brand = this.data.user_info.user_brand;
-    let is_financing = this.data.needFA_index;
-    let is_alliance = this.data.bindFAService_index;
-    let is_identify_member = this.data.addFAService_index;
-    let is_saas = this.data.sass_index;
-    let is_FA_part = this.data.partFA_index;
+    let is_financing = this.data.is_financing;
+    let is_alliance = this.data.is_alliance;
+    let is_identify_member = this.data.is_identify_member;
+    let is_saas = this.data.is_saas;
+    let is_FA_part = this.data.is_FA_part;
     let industry = this.data.industry;
     let area = this.data.area;
     let stage = this.data.stage;
