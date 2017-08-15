@@ -7,7 +7,7 @@ Page({
   data: {
     winWidth: 0,//选项卡
     winHeight: 0,//选项卡
-    currentTab: 0,//选项卡
+    currentTab: 2,//选项卡
     firstName: "代",
     id: "",
     page: 1,
@@ -37,12 +37,15 @@ Page({
   onLoad: function (options) {
     console.log(options)
     var id = options.id;
+    let newCompanyName = options.companyName;
     var index = options.index;
     this.setData({
       index: index,
       id: id,
-      currentTab: options.currentTab
+      currentTab: options.currentTab,
+      newCompanyName: newCompanyName     
     })
+    console.log(newCompanyName)
   },
   onShow: function () {
 
@@ -53,6 +56,7 @@ Page({
     var user_id = wx.getStorageSync('user_id');
     var currentPage = this.data.currentPage;
     var avatarUrl = wx.getStorageSync('avatarUrl');
+    let new_company_name = this.data.newCompanyName;
     // 为上拉加载准备
     app.initPage(that);
     app.console(index)
@@ -105,9 +109,15 @@ Page({
           console.log("项目详情")
           console.log(res);
           console.log(project.count)
+          // console.log(this.data.new_company_name)
           var user = res.data.user;
           let count = project.count;
           var pro_company_name = project.pro_company_name;
+          // if (new_company_name){
+          //   console.log(new_company_name)
+          //  pro_company_name = new_company_name,
+          //    project.pro_company_name = new_company_name
+          // }
           let pro_goodness = res.data.data.pro_goodness;
           console.log(pro_goodness)
           let industy_sort = [];
@@ -570,14 +580,14 @@ Page({
   // 完善公司信息
   writeCompanyName: function () {
     let that = this;
-    let writeCompany = that.data.pro_company_name;
+    let user_id = wx.getStorageSync('user_id');
+    let companyName = that.data.pro_company_name;
     console.log(that.data)
     wx.navigateTo({
-      url: '/pages/form/personInfo/personInfo?company=' + writeCompany + '&&type=8',
+      url: '/pages/search/search1/search1?company=' + companyName + '&&type=8' + '&&user_id=' + user_id,
     })
-
   },
-  // //写入公司信息
+  //写入公司信息
   // writeCompany: function (e) {
   //   let companyName = e.detail.value;
   //   this.setData({
@@ -957,7 +967,6 @@ Page({
         moreInfo: 4
       })
     }
-
   },
   noMoreInfo: function (e) {
     let id = e.target.dataset.id;

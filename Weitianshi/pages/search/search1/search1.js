@@ -13,10 +13,13 @@ Page({
   onLoad: function (options) {
     let that = this;
     let company = options.company;
+    let  user_id = options.user_id;
+    console.log(options)
     let type = options.type;
     that.setData({
       company_name: company,
-      type: type
+      type: type,
+      user_id: user_id
     })
   },
 
@@ -74,6 +77,7 @@ Page({
     console.log("保存")
     let that = this;
     let type = this.data.type;
+    let user_id = this.data.user_id;
     let pages = getCurrentPages();
     let currPage = pages[pages.length - 1];
     let prevPage = pages[pages.length - 2];
@@ -93,15 +97,28 @@ Page({
       }
     } else if (type == 8) {
       let pages = getCurrentPages();
-      let currPage = pages[pages.length - 1];
       let prevPage = pages[pages.length - 2];
-      let company_name = this.data.company_name;
-      prevPage.setData({
-        company_name: company_name
-      })
-      wx.navigateBack({
-        delta: 1
-      })
+      let project = prevPage.data.project;
+      console.log(user_id)
+      let companyName = this.data.company_name;
+      project.pro_company_name = companyName;
+      let id = project.project_id;
+     
+     wx.request({
+       url: url_common + '/api/project/updateProjectByField',
+       data: {
+         user_id: user_id,
+         pro_company_name	: companyName,
+         project_id : id
+       },
+       method: 'POST',
+       success: function (res) {
+        console.log(res)
+        wx.redirectTo({
+          url: '/pages/myProject/projectDetail/projectDetail?companyName=' + companyName + '&&id=' + id + '&&index=0',
+        })
+       }
+       })
     }
   }
 }) 

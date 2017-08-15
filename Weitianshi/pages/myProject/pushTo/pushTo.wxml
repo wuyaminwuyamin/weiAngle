@@ -38,13 +38,9 @@
 </view>
 <!-- 错误提示-->
 <view class="error" wx:if="{{error=='1'}}">{{error_text}}</view>
-<!-- <view class="hasNone">
+ <view class="hasNone" wx:if="{{!dataList}}">
   <image src="/img/img-kong@2x.png" class="iconStyle"></image>
   <view class="none">暂无项目</view>
   <view class="createProject" bindtap="createProject">创建项目</view>
-</view> -->
+</view> 
 
-<!--{{item.check==true?'checkedOne':''}} 
-data-id="{{item.project_id}}" data-index="{{index}}" 
-data-value='{{item.industry_name}}'
- -->

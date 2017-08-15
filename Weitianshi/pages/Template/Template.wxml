@@ -623,6 +623,7 @@
               <view class="toAccreditation" wx:if="{{item.relationship_button == 2}}" data-project="{{item.project_id}}" data-content="{{1}}" catchtap="matchApply">重新申请</view>
             </view>
           </view>
+          <view class="classname" wx:if="{{type == 3}}"></view>
         </view>
         <view id="time">{{item.created_at}}</view>
       </view>
@@ -675,12 +676,12 @@
       <view>
         <view class="describe" wx:if="{{item.resource.res_desc != ''}}">{{item.resource.res_desc}}</view>
       </view>
-        <view class="flex bottomTab">
+        <!-- <view class="flex bottomTab">
           <view class="flex refuseBox" bindtap="btn" data-record="{{item.user_id}}" data-status="{{1}}">
             <image src="/img/icon-tuisongxiangmu@2x.png" class="iconFreeStyle"></image>
             <view class="refuseBtn">推送项目</view>
           </view>
-          <!--需要进行判断 0:不是当前用户人脉1.当前用户的人脉2.待验证3.同意加为人脉-->
+          需要进行判断 0:不是当前用户人脉1.当前用户的人脉2.待验证3.同意加为人脉
           <view class="flex agreeBox" bindtap="btn" data-record="{{item.user_id}}" data-status="{{2}}" wx:if="{{item.follow_status == 0}}">
             <image src="/img/icon-jiarenmai@2x.png" class="iconFreeStyle"></image>
             <view class="agreeBtn" >加人脉</view>
@@ -693,13 +694,10 @@
             <image src="/img/icon-daiyanzheng@2x.png" class="iconFreeStyle"></image>
             <view class="connectionBtn">待验证</view>
           </view>
-        </view>
+        </view> -->
       </view>
     </view>
-    <view class="empty flex" wx:if="{{item.contentList == ''}}">
-      <image src="/img/img-kong1@2x.png" class="noData"></image>
-      <view class="hasNothing">暂无数据</view>
-    </view> 
+
   </block>
 </template>
 

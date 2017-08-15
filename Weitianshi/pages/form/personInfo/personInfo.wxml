@@ -2,9 +2,6 @@
 <view wx:if="{{type == 0}}">
   <input class="myName" id="name" value="{{user_name}}" bindinput="nameEdit" placeholder="请输入姓名" />
 </view>
-<view wx:if="{{type == 1}}">
-  <input class="myName" id="telephone" value="{{user_mobile}}" bindinput="telEdit" placeholder="请输入电话" />
-</view>
 <view wx:if="{{type == 2}}">
   <input class="myName" id="brand" value="{{user_brand}}" bindinput="brandEdit" placeholder="请输入品牌" />
 </view>
@@ -18,7 +15,7 @@
   <input class="myName" id="email" value="{{user_email}}" bindinput="emailEdit" placeholder="请输入邮箱" />
 </view>
 <view wx:if="{{type == 6}}">
-  <input class="myName" id="email" value="{{user_weChat}}" bindinput="weChat" placeholder="请输入微信" />
+  <input class="myName" id="weChat" value="{{user_weChat}}" bindinput="weChat" placeholder="请输入微信" />
 </view>
 <view wx:if="{{type == 7}}">
   <textarea bindinput="personDescrible" class="myDescrible" auto-height maxlength="503" placeholder="请输入个人描述" value="{{user_describle}}" />

@@ -76,8 +76,8 @@
           <template is="selectedCard" data="{{myProject:myProject}}"></template>
         </block> -->
         <template is="allNumber" data="{{count:count2,text:'为您对接到的项目'}}"></template>
-        <template is="personModal" data="{{list:yourProject,type:2}}"></template>
-
+        <template is="personModal" data="{{list:yourProject,type:3}}"></template>
+ <!-- <template is="personModal" data="{{list:yourProject,type:2}}"></template> -->
         <!--没有更多-->
         <view class="error" wx:if="{{error=='1'}}">{{error_text}}</view>
 
@@ -99,7 +99,7 @@
         </block>
         <view style="height:32rpx;"></view> -->
          <template is="allNumber" data="{{count:count3,text:'为您匹配到的资源'}}"></template>
-        <template is="resourceProject" data="{{contentList:res_match}}"></template>
+         <template is="resourceProject" data="{{contentList:res_match}}"></template>
         <!--没有更多-->
         <view class="error" wx:if="{{error=='1'}}">{{error_text}}</view>
         <!--空状态-->

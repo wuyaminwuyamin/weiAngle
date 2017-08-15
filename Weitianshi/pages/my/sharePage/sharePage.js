@@ -18,6 +18,7 @@ Page({
         })
         //登录态维护
         app.loginPage(function (user_id) {
+          console.log("我进入登陆维护了")
             var view_id = user_id;
             wx.setStorageSync('user_id', user_id);
             //载入被分享者的个人信息
@@ -277,10 +278,14 @@ Page({
     },
     // 跳转到推送项目页面
     pushProject:function(){
-      var user_id = this.data.followed_user_id;
+      // 推送给数据显示的人 push_id = followed_user_id
+      //查看的人 view_id = user_id
+      console.log("我进入跳转页面啦")
       var share_id = this.data.share_id;
-    wx.navigateTo({
-      url: '/pages/myProject/pushTo/pushTo?user_id='+user_id + '&&share+id=' + share_id,
-    })
+      let view_id = this.data.view_id;
+      var push_id = this.data.followed_user_id;
+        wx.navigateTo({
+          url: '/pages/myProject/pushTo/pushTo?user_id=' + view_id + '&&pushId=' + push_id,
+        })
     }
 }); 

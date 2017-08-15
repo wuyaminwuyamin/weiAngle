@@ -39,8 +39,10 @@ Page({
   },
 
   onLoad: function (options) {
+    console.log(options)
+    let old_group_id = options.group_id;
+    let old_authenticate_id = options.authenticate_id;
     let that = this;
-    console.log("进来了")
     wx.request({
       url: url_common + '/api/category/getGroupIdentify',
       data: {
@@ -59,6 +61,10 @@ Page({
         console.log(that.data.messageList)
       }
     })
+    that.setData({
+      old_group_id : old_group_id,
+      old_authenticate_id: old_authenticate_id
+    })
   },
 
   onShow: function () {
@@ -66,23 +72,55 @@ Page({
   },
   // 跳转认证资料信息填写页面
   toIdentityEdit: function (e) {
+    console.log(e)
     let user_id = wx.getStorageSync('user_id');
     let group_id = e.currentTarget.dataset.group;
-    wx.request({
-      url: url_common + '/api/user/setUserGroup',
-      data: {
-        user_id: user_id,
-        group_id: group_id
-      },
-      method: 'POST',
-      success: function (res) {
-        console.log(res.data.authenticate_id)
-        var authenticate_id = res.data.authenticate_id;
-        wx.navigateTo({
-          url: '/pages/my/identity/identityEdit/identityEdit?group_id=' + group_id + '&&authenticate_id=' + authenticate_id,
+    // 重新认证的时候，才会有old_group_id
+    let old_group_id = this.data.old_group_id;
+    let old_authenticate_id = this.data.old_authenticate_id;
+    console.log(old_group_id)
+    console.log(group_id)
+    if (old_group_id){
+        wx.request({
+          url: url_common + '/api/user/setUserGroup',
+          data: {
+            user_id: user_id,
+            group_id: group_id,
+            old_authenticate_id: old_authenticate_id
+          },
+          method: 'POST',
+          success: function (res) {
+            console.log(res)
+            // isUpdate :0 未认证过 1:重新认证
+            let isUpdate = res.data.is_update;
+            console.log(isUpdate)
+          if(old_group_id != group_id){
+            wx.navigateTo({
+              url: '/pages/my/identity/identityEdit/identityEdit?group_id=' + group_id + '&&authenticate_id=' + authenticate_id,
+            })
+          }else if(old_group_id == group_id){
+            wx.navigateTo({
+              url: '/pages/my/identity/identityEdit/identityEdit?group_id=' + group_id + '&&authenticate_id=' + authenticate_id,
+            })
+          }
+          }
         })
-      }
-    })
-   
+   }else{
+      wx.request({
+        url: url_common + '/api/user/setUserGroup',
+        data: {
+          user_id: user_id,
+          group_id: group_id
+        },
+        method: 'POST',
+        success: function (res) {
+          let isUpdate = res.data.is_update;
+          var authenticate_id = res.data.authenticate_id;
+          wx.navigateTo({
+            url: '/pages/my/identity/identityEdit/identityEdit?group_id=' + group_id + '&&authenticate_id=' + authenticate_id,
+          })
+        }
+      })
+   }
   }
 })
