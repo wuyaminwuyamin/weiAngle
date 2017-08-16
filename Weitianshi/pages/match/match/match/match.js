@@ -254,6 +254,7 @@ Page({
         var index = thisData.index;
         wx.navigateTo({
             url: '/pages/myProject/projectDetail/projectDetail?id=' + thisData.id + '&&index=' + index
+            // url: '/pages/myProject/projectDetail/projectDetail?id=' + thisData.id + '&&index=' + index
         })
     },
     //点击融资项目匹配出来的投资人
@@ -480,5 +481,14 @@ Page({
     //推送项目或加人脉
     btn:function(){
 
-    }
+    },
+     //点击跳转到用户详情
+  personDetail: function (e) {
+      console.log(e);
+      var id = e.currentTarget.dataset.id;
+      app.console(id)
+      wx.navigateTo({
+        url: '/pages/userDetail/networkDetail/networkDetail?id=' + id,
+      })
+    },
 });

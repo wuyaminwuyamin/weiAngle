@@ -158,6 +158,5 @@ Page({
     wx.navigateTo({
       url: '/pages/message/pushProject/pushProject?type=' + type,
     })
-  },
-
+  }
 })

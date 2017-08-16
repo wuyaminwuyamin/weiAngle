@@ -633,20 +633,19 @@
    <view class="highBox"></view>
 </template>
 
-<!--精准对接---资源对接-->
+<!---资源对接-->
 <template name="resourceProject">
   <block wx:for="{{contentList}}" wx:key="{{contentList}}">
-    <view class="outsideBox" data-project="{{item.resource.res_id}}" catchtap="projectDetail">
+    <view class="outsideBox" data-id="{{item.user_id}}" catchtap="personDetail">
       <view class="applyMyProject">
         <view class="introduceBox flex">
           <view class="userName">{{item.user_name}}</view>
           <view class="userPosition">{{item.user_career}}</view>
           <view class="userPart flex">
             <image src="/img/icon-renzheng@2x.png" class="renzheng"></image>
-            <view class="userPart1">卖方FA</view>
+            <view class="userPart1">{{user.authentication[0].group_title}}</view>
             <!-- <view class="userPart1">买方FA</view> -->
           </view>
-          
           <view class="user_text" wx:if="{{item.user_avatar_text}}">{{item.user_avatar_text}}</view>
           <image src="{{item.user_avatar_url}}" class="userPic" wx:if="{{item.user_avatar_url}}"></image>
         </view>

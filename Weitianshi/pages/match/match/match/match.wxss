@@ -645,7 +645,7 @@ page {
 .introduceBox .userName {
   font-size: 36rpx;
   color: #333;
-  line-height: 36rpx;
+  line-height: 38rpx;
   text-align: left;
   margin-right: 16rpx;
   align-items: flex-end;
@@ -654,7 +654,7 @@ page {
 .applyMyProject .userPart {
   font-size: 20rpx;
   color: #d3b987;
-  line-height: 20rpx;
+  line-height: 22rpx;
   text-align: left;
   align-items: flex-end;
 }
@@ -662,7 +662,7 @@ page {
 .applyMyProject .userCompany {
   font-size: 24rpx;
   color: #999;
-  line-height: 24rpx;
+  line-height: 26rpx;
   text-align: left;
   margin-bottom: 84rpx;
 }
