@@ -85,9 +85,9 @@ border-radius: 100rpx;*/
   overflow: hidden;
 }
 
-.swiper-box view {
+/* .swiper-box view {
   text-align: center;
-}
+} */
 
 /*发布按钮*/
 
@@ -527,11 +527,11 @@ page {
 }
 
 .userInfo {
-  width: 460rpx;
+  width: 566rpx;
   margin-top: 9rpx;
 }
 
-.userCompany, .userCareer, .userName {
+#styleLeft .userCompany,#styleLeft .userCareer,#styleLeft .userName {
   font-size: 22rpx;
   color: #999;
   line-height: 24rpx;
@@ -870,9 +870,9 @@ page {
 .roundGroupPush {
   font-size: 26rpx;
   color: #999;
-  line-height: 26rpx;
+  line-height: 28rpx;
   text-align: left;
-  margin-bottom: 24rpx;
+  margin-bottom: 22rpx;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;

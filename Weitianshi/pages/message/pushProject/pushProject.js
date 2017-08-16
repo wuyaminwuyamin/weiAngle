@@ -10,6 +10,7 @@ Page({
     currentTab: 0,//选项卡
     type: 1, //我申請查看的項目
     // handle_status: 0 // handle_status:待处理:0  感兴趣:1
+    cancel:false
   },
 
   onLoad: function (options) {
@@ -88,6 +89,7 @@ Page({
     let type = this.data.type;
     var current = e.detail.current;
     var user_id = wx.getStorageSync('user_id');//获取我的user_id
+    let cancel = this.data.cancel;
     if (current == 1) {
       //向后台发送信息取消红点 我推送的项目
       wx.request({
@@ -99,7 +101,12 @@ Page({
         method: "POST",
         success: function (res) {
           console.log(res)
-          console.log("yes,成功了")
+          if (res.data.status_code == 2000000){
+            that.setData({
+              cancel: true
+            })
+            console.log("yes,成功了")
+          }
         }
       })
     }else if(current == 0){
@@ -121,6 +128,7 @@ Page({
   /*点击tab切换*/
   swichNav: function (e) {
     var that = this;
+    let cancel = this.data.cancel;
     var user_id = wx.getStorageSync('user_id');//获取我的user_id
     if (this.data.currentTab === e.target.dataset.current) {
       if (current == 1) {
@@ -133,8 +141,12 @@ Page({
           },
           method: "POST",
           success: function (res) {
-            console.log(res)
-            console.log("yes,成功了.点击")
+            if (res.data.status_code == 2000000) {
+              that.setData({
+                cancel: true
+              })
+              console.log("yes,成功了")
+            }
           }
         })
       } else if (current == 0) {

@@ -117,7 +117,7 @@ page {
 }
 
 .userInfo {
-  width: 460rpx;
+  width: 566rpx;
   margin-top: 9rpx;
 }
 
@@ -259,9 +259,9 @@ page {
 .investmentGroup, .roundGroup {
   font-size: 26rpx;
   color: #999;
-  line-height: 26rpx;
+  line-height: 28rpx;
   text-align: left;
-  margin-bottom: 24rpx;
+  margin-bottom: 22rpx;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;

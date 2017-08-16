@@ -63,8 +63,8 @@
         "pages/my/qrCode/qrCode",
         "pages/my/identity/indentity/indentity",
         "pages/my/identity/identityEdit/identityEdit",
-        "pages/my/identity/identityResult/identityResult"
-        
+        "pages/my/identity/identityResult/identityResult",
+        "pages/oneKeyFind/oneKeyFind" 
     ],
     "window": {
         "navigationBarBackgroundColor": "#fff",

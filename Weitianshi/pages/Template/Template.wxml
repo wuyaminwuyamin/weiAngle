@@ -556,10 +556,11 @@
 <!--我申请查看的项目+推送給我的 +匹配推荐 + 精选-->
 <template name="personModal">
   <block wx:for="{{list}}"  wx:key="{{index}}"> 
-  <!--wx:if="{{item.handle_status != 2}}"  -->
-    <view  class="{{item.push_id ==  push_id ? 'hide':''}}">
+  <!-- wx:if="{{item.handle_status != 2}}"   -->
+    <view  class="{{item.push_id ==  push_id ? 'hide':''}}" wx:if="{{item.handle_status != 3}}">
       <view class="outBox">
-        <view class="redPoint" wx:if="{{type != 2}}"  wx:if="{{item.message_status==0 ||item.handle_status}}"></view>
+         <!-- <view class="classname">{{item.message_status}}||{{item.handle_status}}</view>  -->
+        <view class="redPoint {{cancel ? 'hidePoint':''}}" wx:if="{{type != 2}}"  wx:if="{{item.message_status==0 ||item.handle_status}}"></view>
         <view class="insideBox">
         <view  data-project="{{item.project_id}}"  catchtap="projectDetail">
           <view class="flex">
@@ -581,7 +582,7 @@
             <view class="{{item.pro_area.area_title.is_match == 1 ? 'projectDetailLight' : 'projectDetailLine'}}"  wx:if="{{item.pro_area != ''}}">{{item.pro_area.area_title}}</view>
           </view>
           <view class="flex otherInfo">
-            <view>
+            <view >
               <image src="{{item.user.investor_logo_url}}" class="others_pic"  wx:if="{{item.user.investor_logo_url}}"/>
               <view class="user_text flex" wx:if="{{item.user.investor_logo_text}}">{{item.user.investor_logo_text}}</view>
             </view>
@@ -589,7 +590,7 @@
               <view class="flex userInfo">
                 <view class="userName">{{item.user.user_name}}</view>
                 <view class="userCareer">{{item.user.user_career}}</view>
-                <view class="userCompany">{{item.user.user_company}}</view>
+                <view class="userCompany" style="text-align:left">{{item.user.user_company}}</view>
               </view>
             </view>
           </view>
