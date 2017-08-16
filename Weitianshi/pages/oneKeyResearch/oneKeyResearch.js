@@ -7,7 +7,7 @@ Page({
   data: {
     winWidth: 0,//选项卡
     winHeight: 0,//选项卡
-    currentTab: 2,//选项卡
+    currentTab: 1,//选项卡
     firstName: "代",
     id: "",
     page: 1,
@@ -458,33 +458,6 @@ Page({
       url: '/pages/userDetail/networkDetail/networkDetail?id=' + id,
     })
   },
-
-  // 买家图谱上拉加载
-  loadMore: function () {
-    var that = this;
-    var user_id = this.data.user_id;
-    var id = this.data.id;
-    var currentPage = this.data.currentPage;
-    console.log(this.data)
-    var request = {
-      url: url_common + '/api/project/getProjectMatchInvestors',
-      data: {
-        user_id: user_id,
-        project_id: id,
-        page: currentPage
-      },
-    }
-    //调用通用加载函数
-    app.loadMore(that, request, "investor2", that.data.investor2)
-  },
-  //维护项目
-  maintainProject() {
-    var id = this.data.id;
-    var user_id = this.data.user_id;
-    wx.navigateTo({
-      url: '/pages/myProject/editProject/editProject?pro_id=' + id + "&&user_id=" + user_id,
-    })
-  },
   //分享当前页面
   onShareAppMessage: function () {
     var pro_intro = this.data.project.pro_intro;
@@ -587,13 +560,6 @@ Page({
       url: '/pages/search/search1/search1?company=' + companyName + '&&type=8' + '&&user_id=' + user_id,
     })
   },
-  //写入公司信息
-  // writeCompany: function (e) {
-  //   let companyName = e.detail.value;
-  //   this.setData({
-  //     companyName: companyName
-  //   })
-  // },
   // 查看bp
   sendBp: function () {
     app.console(this.data.checkEmail)
@@ -1002,5 +968,4 @@ Page({
       url: '/pages/message/applyPerson/applyPerson?id=' + proid,
     })
   }
-
 });

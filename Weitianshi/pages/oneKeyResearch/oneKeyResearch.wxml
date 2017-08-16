@@ -1,9 +1,6 @@
 <view id="myDetail">
   <view class="swiper-tab">
-
     <view class="swiper-tab-list {{currentTab==0 ? 'on' : ''}}" data-current="0" bindtap="swichNav">详情</view>
-
-   
     <view class="swiper-tab-list {{currentTab==1 ? 'on' : ''}}" data-current="1" bindtap="swichNav">一键尽调</view>
   </view>
   <swiper current="{{currentTab}}" class="swiper-box" duration="300" style="height:556px" bindchange="bindChange">
@@ -31,9 +28,6 @@
               </view>
               <view class="contentAll">
                 <view>
-                  <view class="titleRightBP" bindtap="sendBp" wx:if="{{project.pro_BP.length != 0}}">发送BP
-                    <image src="/img/icon-jiantou.png" class="titleRightBPIcon"></image>
-                  </view>
                   <view class="pro_sorts flex teamPro" wx:if="{{tagOfPro.length != 0}}">
                     <view class="pro_sort" wx:for="{{tagOfPro}}" wx:key="{{index}}">{{tagOfPro[index].tag_name}}</view>
                   </view>
@@ -527,29 +521,6 @@
   </swiper>
 </view>
 
-<!--下面的浮动按钮-->
-<view class="floatBtn flex" hidden="{{currentTab==0||currentTab == 2}}">
-  <button class="push" disabled="true">一键推送(近期开放)</button>
-</view>
-<view class="floatBtn flex maintainProject" hidden="{{currentTab==1||currentTab == 2}}" bindtap="maintainProject">
-  <button class="push maintainProject">维护项目</button>
-</view>
-<!--邮箱-->
-<view class="modal" wx:if="{{sendPc == 1}}">
-  <view class="bpModal">
-    <view class="bpModalBox">
-      <view class="bpModalText">BP会发送到您的邮箱</view>
-      <input class="writeBpEmail" value="{{userEmail}}" bindinput="writeBpEmail" placeholder="请输入邮箱" />
-
-      <view class="choiceBox">
-        <view class="flex">
-          <view class="bpModalCancel" bindtap="bpModalCancel" data-index="0">取消</view>
-          <view class="bpModalSure {{checkEmail==true? '':'checkEmail'}}" bindtap="bpModalSure" data-index="0">发送</view>
-        </view>
-      </view>
-    </view>
-  </view>
-</view>
 <!--公司信息-->
 <view class="modal" wx:if="{{sendCompany == 1}}">
   <view class="bpModal">
