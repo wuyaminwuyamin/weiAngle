@@ -514,7 +514,6 @@
         <view class="noMessage" wx:if="{{nothing == 0}}">
           <image src="/img/img-kong@2x.png" class="nothing"></image>
           <view class="hasNoFind">暂未调查到相关信息</view>
-          <view class="writeCompanyName" bindtap="writeCompanyName">完善公司名称</view>
         </view>
       </scroll-view>
     </swiper-item>

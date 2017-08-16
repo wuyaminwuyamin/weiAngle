@@ -73,29 +73,6 @@ Page({
     //项目详情(不包括投资人)
     var other_id = wx.getStorageSync('user_id');
     if (user_id == other_id) {
-      // 载入买家图谱数据
-      wx.request({
-        url: url_common + '/api/project/getProjectMatchInvestors',
-        data: {
-          user_id: user_id,
-          project_id: id,
-          page: currentPage
-        },
-        method: 'POST',
-        success: function (res) {
-          var investor2 = res.data.data;
-          console.log(that.data.pro_id)
-          console.log(res)
-          that.setData({
-            investor2: investor2,
-            page_end: res.data.page_end
-          });
-          wx.hideToast({
-            title: 'loading...',
-            icon: 'loading'
-          })
-        }
-      })
       // 载入项目详情数据
       wx.request({
         url: url_common + '/api/project/getProjectDetail',
@@ -108,16 +85,9 @@ Page({
           var project = res.data.data;
           console.log("项目详情")
           console.log(res);
-          console.log(project.count)
-          // console.log(this.data.new_company_name)
           var user = res.data.user;
           let count = project.count;
           var pro_company_name = project.pro_company_name;
-          // if (new_company_name){
-          //   console.log(new_company_name)
-          //  pro_company_name = new_company_name,
-          //    project.pro_company_name = new_company_name
-          // }
           let pro_goodness = res.data.data.pro_goodness;
           console.log(pro_goodness)
           let industy_sort = [];
@@ -209,6 +179,11 @@ Page({
           //一键尽调
           //公司信息
           let company_name = that.data.pro_company_name;
+          if(company_name==''){
+              that.setData({
+                  nothing:0
+              })
+          }
           // app.console(company_name)
           // let company_name = "阿里巴巴（中国）有限公司";
           // let company_name = "上海艺娱信息科技有限公司";
@@ -464,7 +439,7 @@ Page({
     app.console(this.data.id)
     return {
       title: pro_intro,
-      path: '/pages/projectDetail/projectDetail?id=' + this.data.id
+      path: '/pages/oneKeyResearch/oneKeyResearch?id=' + this.data.id
     }
   },
   //跳转到我的页面
