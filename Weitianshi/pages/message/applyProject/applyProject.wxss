@@ -75,9 +75,9 @@
 .outBox .describle {
   font-size: 34rpx;
   color: #666;
-  line-height: 34rpx;
+  line-height: 38rpx;
   text-align: left;
-  margin-bottom: 36rpx;
+  margin-bottom: 32rpx;
   /* width:1418rpx; */
   white-space: nowrap;
   overflow: hidden;
@@ -144,14 +144,14 @@
 }
 
 .userInfo {
-  width: 460rpx;
+  width: 566rpx;
   margin-top: 9rpx;
 }
 
 .userCompany, .userCareer, .userName {
   font-size: 22rpx;
   color: #999;
-  line-height: 22rpx;
+  line-height: 24rpx;
   text-align: left;
   width: 320rpx;
   text-overflow: ellipsis;
@@ -245,7 +245,7 @@
   width: 670rpx;
   padding-left: 16rpx;
 }
-.introduce{
+#introduce .introduce{
    background: #f3f4f8;
   border-radius: 4rpx 4rpx 0 0;
   font-size: 26rpx;
@@ -466,4 +466,7 @@
   position: absolute;
   right: 0;
   top:20rpx;
+}
+.hidePoint{
+  display: none
 }

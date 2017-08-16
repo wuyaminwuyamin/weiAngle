@@ -100,10 +100,7 @@
                   <view class="grayName" wx:if="{{project.pro_website != ''}}">产品链接：
                     <label class="materialWeb materialContent byPass">{{project.pro_website}}</label>
                   </view>
-                  <view class="grayName proposalFinal" wx:if="{{project.contact.user_name !=''||project.contact.user_mobile !=''}}">项目联系人：
-                    <label class="materialContent" style="margin-right:24rpx;">{{project.contact.user_name}}</label>
-                    <label class="materialContent">{{project.contact.user_mobile}}</label>
-                  </view>
+                  <!-- <view class="grayName proposalFinal" wx:if="{{project.contact.user_name !=''||project.contact.user_mobile !=''}}">项目联系人：   -->
                 </view>
               </view>
             </view>
@@ -217,7 +214,7 @@
               <view class="moreInfo" bindtap="noMoreInfo" wx:if="{{moreInfo == 4}}" data-id="{{4}}">收起</view>
             </view>
             <!--FA签约-->
-            <view class="signFA" wx:if="{{project.pro_FA != ''}}">
+            <!-- <view class="signFA" wx:if="{{project.pro_FA != ''}}">
               <view class="signFABox flex">
                 <image src="/img/img-money.png" class="titlePic"></image>
                 <view class="title">FA签约</view>
@@ -250,7 +247,7 @@
                   </view>
                 </view>
               </view>
-            </view>
+            </view> -->
           </view>
         <view style="height:24rpx;"></view>
       </view>

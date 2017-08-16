@@ -133,6 +133,7 @@
   position: absolute;
   right: 34rpx;
   width: 120rpx;
+  top:54rpx;
 }
 
 .on {

@@ -20,6 +20,7 @@ Page({
         var view_id = wx.getStorageSync('user_id');
         that.setData({
             user_id: user_id,
+            view_id : view_id
         })
         //分享至群打点准备
         /*wx.showShareMenu({
@@ -233,9 +234,41 @@ Page({
     },
     // 推送项目
     pushProjectTo:function(options){
+      console.log(options)
       var personId = this.data.user_id;
-      wx.navigateTo({
-        url: '/pages/myProject/pushTo/pushTo?pushId=' + personId,
-      })
+      console.log("我进入跳转页面啦")
+      // var share_id = this.data.share_id;
+      let view_id = this.data.view_id;
+      var push_id = this.data.followed_user_id;
+      wx.request({
+        url: url_common + '/api/user/checkUserInfo',
+        data: {
+          user_id: view_id
+        },
+        method: 'POST',
+        success: function (res) {
+          if (res.data.status_code == 2000000) {
+            var complete = res.data.is_complete;
+            if (complete == 1) {
+              //如果信息完整就正常申请添加人脉
+              wx.navigateTo({
+                url: '/pages/myProject/pushTo/pushTo?user_id=' + view_id + '&&pushId=' + personId,
+              })
+            } else if (complete == 0) {
+              //如果有user_id但信息不全则跳companyInfo页面
+              // wx.setStorageSync('followed_user_id', followed_user_id)
+              wx.navigateTo({
+                url: '/pages/register/companyInfo/companyInfo'
+              })
+            }
+          } else {
+            //如果没有user_id则跳personInfo
+            // wx.setStorageSync('followed_user_id', followed_user_id)
+            wx.navigateTo({
+              url: '/pages/register/personInfo/personInfo'
+            })
+          }
+        },
+      });
     }
 });

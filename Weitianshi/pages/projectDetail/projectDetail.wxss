@@ -439,9 +439,9 @@ scroll-view {
   font-size: 20rpx;
   color: #666;
   letter-spacing: 0;
-  line-height: 20rpx;
+  line-height: 22rpx;
   text-align: left;
-  margin-top: 36rpx;
+  margin-top: 34rpx;
   width: 320rpx;
   text-overflow: ellipsis;
   overflow: hidden;

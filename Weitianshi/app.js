@@ -244,12 +244,13 @@ App({
     },
 
     //分享页面函数(user_id为数据所有人ID,share_Id为分享人的ID)
-    sharePage: function (user_id, share_id) {
-        let path = "/pages/my/sharePage/sharePage?user_id=" + user_id + "&&share_id=" + share_id;
+    sharePage: function (user_id, share_id,path,title) {
+        // let path = "/pages/my/sharePage/sharePage?user_id=" + user_id + "&&share_id=" + share_id;
         let url = this.globalData.url;
         let url_common = this.globalData.url_common;
         let json = {
-            title: '投资名片—智能精准匹配投融资双方的神器',
+            // title: '投资名片—智能精准匹配投融资双方的神器',
+            title:title,
             path: path,
             //分享成功后的回调
             success: function (res) {
@@ -301,7 +302,7 @@ App({
                             }
                         }
                     }
-                })
+                }) 
             },
         }
         return json

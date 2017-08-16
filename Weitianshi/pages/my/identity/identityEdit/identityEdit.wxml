@@ -155,10 +155,10 @@
         <view class="investContent flex">
           <!-- group_id 18:买方FA 19:卖方FA  6:投资人 3:创业者 8:其他  -->
           <view class="personListTile">申请加入FA行业联盟</view>
-           <picker id="bindFAService" bindchange="bindFAService" value="{{bindFAService_index}}" range="{{array}}">
+           <picker id="bindFAService" bindchange="bindFAService" value="{{is_alliance}}" range="{{array}}">
             <view class="flex" wx:if="{{group_id == 18 ||group_id == 19}}">
-              <view class="chooseContent" wx:if="{{!array[bindFAService_index]}}">请选择</view>
-              <view class="chooseAfter" wx:if="{{array[bindFAService_index] !=''}}">{{array[bindFAService_index]}}</view>
+              <view class="chooseContent" wx:if="{{!array[is_alliance]}}">请选择</view>
+              <view class="chooseAfter" wx:if="{{array[is_alliance] !=''}}">{{array[is_alliance]}}</view>
               <image src="/img/icon-gengduo2@2x.png" class="arrowStyle"></image>
             </view>
           </picker> 
@@ -176,10 +176,10 @@
       <view class="userBox">
         <view class="userDescribeContent flex">
           <view class="personListTile">兼职FA业务</view>
-          <picker id="partFA" bindchange="partFA" value="{{partFA_index}}" range="{{array}}">
+          <picker id="partFA" bindchange="partFA" value="{{is_FA_part}}" range="{{array}}">
             <view class="flex">
-              <view class="chooseContent" wx:if="{{!array[partFA_index]}}">请选择</view>
-              <view class="chooseAfter" wx:if="{{array[partFA_index] !=''}}">{{array[partFA_index]}}</view>
+              <view class="chooseContent" wx:if="{{!array[is_FA_part]}}">请选择</view>
+              <view class="chooseAfter" wx:if="{{array[is_FA_part] !=''}}">{{array[is_FA_part]}}</view>
               <image src="/img/icon-gengduo2@2x.png" class="arrowStyle"></image>
             </view>
           </picker>
@@ -190,10 +190,10 @@
       <view class="userBox">
         <view class="userDescribeContent flex">
           <view class="personListTile">需要FA（财务顾问）融资服务</view>
-          <picker id="needFA" bindchange="needFA" value="{{needFA_index}}" range="{{array}}">
+          <picker id="needFA" bindchange="needFA" value="{{is_financing}}" range="{{array}}">
             <view class="flex">
-              <view class="chooseContent" wx:if="{{!array[needFA_index]}}">请选择</view>
-              <view class="chooseAfter" wx:if="{{array[needFA_index] !=''}}">{{array[needFA_index]}}</view>
+              <view class="chooseContent" wx:if="{{!array[is_financing]}}">请选择</view>
+              <view class="chooseAfter" wx:if="{{array[is_financing] !=''}}">{{array[is_financing]}}</view>
               <image src="/img/icon-gengduo2@2x.png" class="arrowStyle"></image>
             </view>
           </picker>
@@ -204,10 +204,10 @@
       <view class="userBox">
         <view class="investContent flex">
           <view class="personListTile">申请使用创业项目库的管理sass系统</view>
-          <picker id="sass" bindchange="sass" value="{{sass_index}}" range="{{array}}">
+          <picker id="sass" bindchange="sass" value="{{is_saas}}" range="{{array}}">
             <view class="flex">
-              <view class="chooseContent" wx:if="{{!array[sass_index]}}">请选择</view>
-              <view class="chooseAfter" wx:if="{{array[sass_index] !=''}}">{{array[sass_index]}}</view>
+              <view class="chooseContent" wx:if="{{!array[is_saas]}}">请选择</view>
+              <view class="chooseAfter" wx:if="{{array[is_saas] !=''}}">{{array[is_saas]}}</view>
               <image src="/img/icon-gengduo2@2x.png" class="arrowStyle"></image>
             </view>
           </picker>
@@ -218,10 +218,10 @@
       <view class="userBox">
         <view class="userDescribeContent flex">
           <view class="personListTile">加入FA社群认证会员</view>
-          <picker id="addFAService" bindchange="addFAService" value="{{addFAService_index}}" range="{{array}}">
+          <picker id="addFAService" bindchange="addFAService" value="{{is_identify_member}}" range="{{array}}">
             <view class="flex">
-              <view class="chooseContent" wx:if="{{!array[addFAService_index]}}">请选择</view>
-              <view class="chooseAfter" wx:if="{{array[addFAService_index] !=''}}">{{array[addFAService_index]}}</view>
+              <view class="chooseContent" wx:if="{{!array[is_identify_member]}}">请选择</view>
+              <view class="chooseAfter" wx:if="{{array[is_identify_member] !=''}}">{{array[is_identify_member]}}</view>
               <image src="/img/icon-gengduo2@2x.png" class="arrowStyle"></image>
             </view>
           </picker>

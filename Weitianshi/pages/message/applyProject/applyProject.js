@@ -67,7 +67,8 @@ Page({
       otherCurrentPage: 1,
       page_end: false,
       page_endBoolean: false,
-      push_page: 1
+      push_page: 1,
+      cancel:false
     })
     //向后台发送信息取消红点
     wx.request({
@@ -88,6 +89,8 @@ Page({
     var that = this;
     var current = e.detail.current;
     var user_id = wx.getStorageSync('user_id');//获取我的user_id
+    let cancel = this.data.cancel;
+    console.log(cancel)
     if (current == 1) {
       //向后台发送信息取消红点
       wx.request({
@@ -98,7 +101,12 @@ Page({
         },
         method: "POST",
         success: function (res) {
+          console.log(res)
           console.log("yes,成功了")
+          that.setData({
+            cancel:true
+          })
+          console.log(cancel)
         }
       })
     }
@@ -211,6 +219,15 @@ Page({
           })
         }
       }
+    })
+  },
+  //点击跳转到用户详情
+  personDetail:function(e){
+    console.log(e);
+    var id = e.currentTarget.dataset.project;
+    app.console(id)
+    wx.navigateTo({
+      url: '/pages/userDetail/networkDetail/networkDetail?id=' + id,
     })
   },
   // 点击同意

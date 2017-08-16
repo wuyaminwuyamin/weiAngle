@@ -201,7 +201,9 @@ Page({
   onShareAppMessage: function () {
     var user_id = wx.getStorageSync('user_id');
     var share_id = wx.getStorageSync("user_id");
-    return app.sharePage(user_id, share_id)
+    let path = "/pages/my/sharePage/sharePage?user_id=" + user_id + "&&share_id=" + share_id;
+    let title = '投资名片—智能精准匹配投融资双方的神器';
+    return app.sharePage(user_id, share_id,path,title)
   },
 
   //取消分享
