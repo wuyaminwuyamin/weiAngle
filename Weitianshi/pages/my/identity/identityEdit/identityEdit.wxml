@@ -94,9 +94,9 @@
         <view class="flex overMore">
           <view class="personListContent" wx:if="{{!invest_info.invest_industry}}">请选择</view>
           <view class="overMore flex" wx:if="{{invest_info.invest_industry}}">
-            <block wx:for="{{invest_info.invest_industry}}" wx:key="{{index}}">
-              <label class="investStyle" wx:if="{{index < item.length-1}}">{{item}}、</label>
-              <label class="investStyle" wx:if="{{index == item.length-1}}">{{item}}</label>
+            <block wx:for="{{invest_info.invest_industry}}" wx:key="{{index}}" wx:for-item='industry'>
+              <label class="investStyle" wx:if="{{index < invest_info.invest_industry.length-1}}">{{industry.industry_name}}、</label>
+              <label class="investStyle" wx:if="{{index == invest_info.invest_industry.length-1}}">{{industry.industry_name}}</label>
             </block>
           </view>
           <image src="/img/icon-gengduo2@2x.png" class="arrowStyle"></image>

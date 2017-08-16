@@ -7,7 +7,6 @@ Page({
     array: ['是', '否']
   },
   onLoad: function (option) {
-    console.log(option)
     let recertification = option.isUpdate;
     let that = this;
     // group_id 18:买方FA 19:卖方FA  6:投资人 3:创业者 8:其他
@@ -49,24 +48,12 @@ Page({
               let user_info = res.data.user_info;
               let invest_info = res.data.invest_info;
               console.log(invest_info)
-              // if (invest_info.invest_industry) {
-              //   let invest_industryList = invest_info.invest_industry;
-              //   invest_industryList.forEach((x, index) => {
-              //     invest_industryList[index] = x.industry_name;
-              //   })
-              // }
               that.setData({
                 user_info: user_info,
                 invest_info: invest_info
               })
             }
           })
-          // that.setData({
-          //   status: status,
-          //   group_id: group_id,
-          //   type: type,
-          //   authenticate_id: authenticate_id
-          // })
         }
       })
     }else if(recertification == 0){
@@ -80,12 +67,6 @@ Page({
           console.log(res);
           let user_info = res.data.user_info;
           let invest_info = res.data.invest_info;
-          if (invest_info.invest_industry) {
-            let invest_industryList = invest_info.invest_industry;
-            invest_industryList.forEach((x, index) => {
-              invest_industryList[index] = x.industry_name;
-            })
-          }
           that.setData({
             user_info: user_info,
             invest_info: invest_info,
@@ -97,7 +78,30 @@ Page({
   
   },
   onShow: function () {
+     let industryCurrent1=wx.getStorageSync('industryCurrent1');
+    //  let y_payStage=wx.setStorageSync('y_payStage');
+    //  let y_payStageId=wx.setStorageSync('y_payStageId');
+    //  let payenChangeCheck=wx.setStorageSync('payenchangeCheck')
+    //  let payenchangeValue=wx.setStorageSync('payenchangeValue')
+    //  console.log(1,y_payStage)
+    //  console.log(2,y_payStageId)
+    //  console.log(3,payenChangeCheck)
+    //  console.log(4,payenchangeValue)
+    //  console.log(5, this.data.invest_info.invest_stage)
 
+     let newIndustry=[]; 
+     industryCurrent1.forEach(x=>{
+        if(x.check===true){
+            newIndustry.push(x)
+        }
+    })
+    let invest_info=this.data.invest_info;
+    if(invest_info){
+        invest_info.invest_industry = newIndustry;
+        this.setData({
+            invest_info: invest_info
+        })
+    }
   },
   // 姓名type:0 手机type:1 品牌type:2 公司type:3 职位type:4 邮箱type:5  微信type:6 个人描述type:7
   //
@@ -175,7 +179,7 @@ Page({
   // 跳转投资领域
   toIndustry: function () {
     wx.navigateTo({
-      url: '/pages/form/industry/industry?current=2',
+      url: '/pages/form/industry/industry?current=1',
     })
   },
   // 跳转投资轮次
@@ -292,6 +296,5 @@ Page({
         rqj.errorHide(that, "职位不能为空", 1500)
       }
     }
-  }
-
+  },
 })
