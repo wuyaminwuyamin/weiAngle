@@ -12,7 +12,7 @@
 
   <!-- 项目融资 -->
   <swiper-item>
-    <scroll-view style="height:100%;" scroll-y="true" scroll-top="0"  bindscrolltolower='myPublicProject'>
+    <scroll-view style="height:100%;" scroll-y="true" scroll-top="0" bindscrolltolower='myPublicProject'>
       <view>
         <view class="publish publish_my_project" bindtap="myProject">
           <view>发布融资项目</view>
@@ -66,7 +66,7 @@
   <!-- 寻找项目 -->
   <swiper-item>
     <scroll-view style="height:100%;" scroll-y="true" bindscrolltolower='yourPayProject'>
-      
+
       <template is="publish" data="{{hasPublic:hasPublic,user_industry:user_industry,text:investText,jumpProject:'yourProject'}}"></template>
       <!-- <view class="foryou2" hidden="{{yourProject==''}}">为您对接到的项目</view> -->
 
@@ -75,16 +75,16 @@
         <block wx:for="{{yourProject}}" wx:key="{{project_id}}" wx:for-item="myProject">
           <template is="selectedCard" data="{{myProject:myProject}}"></template>
         </block> -->
-        <template is="allNumber" data="{{count:count2,text:'为您对接到的项目'}}"></template>
-        <template is="personModal" data="{{list:yourProject,type:3}}"></template>
- <!-- <template is="personModal" data="{{list:yourProject,type:2}}"></template> -->
-        <!--没有更多-->
-        <view class="error" wx:if="{{error=='1'}}">{{error_text}}</view>
+      <template is="allNumber" data="{{count:count2,text:'为您对接到的项目'}}"></template>
+      <template is="personModal" data="{{list:yourProject,type:3}}"></template>
+      <!-- <template is="personModal" data="{{list:yourProject,type:2}}"></template> -->
+      <!--没有更多-->
+      <view class="error" wx:if="{{error=='1'}}">{{error_text}}</view>
 
-        <!--空状态-->
-        <view wx:if="{{yourProject==''}}">
-          <image class="empty" src="/img/empty.png"></image>
-        </view>
+      <!--空状态-->
+      <view wx:if="{{yourProject==''}}">
+        <image class="empty" src="/img/empty.png"></image>
+      </view>
       <!-- </view> -->
     </scroll-view>
   </swiper-item>
@@ -92,20 +92,20 @@
   <!-- 资源对接 -->
   <swiper-item>
     <scroll-view style="height:100%;" scroll-y="true" bindscrolltolower='resourceProject'>
-      <template is="publish" data="{{hasPublic:hasPublic2,user_industry:res_find,text:resourceText,jumpProject:'resourceNeed'}}"></template>
+      <!-- <template is="publish" data="{{hasPublic:hasPublic2,user_industry:res_find,text:resourceText,jumpProject:'resourceNeed'}}"></template> -->
       <!-- <view class="others">
         <block wx:for="{{res_match}}" wx:key="{{item.resource_id}}">
           <template is="resourceCard" data="{{item:item}}"></template>
         </block>
         <view style="height:32rpx;"></view> -->
-         <template is="allNumber" data="{{count:count3,text:'为您匹配到的资源'}}"></template>
-         <template is="resourceProject" data="{{contentList:res_match}}"></template>
-        <!--没有更多-->
-        <view class="error" wx:if="{{error=='1'}}">{{error_text}}</view>
-        <!--空状态-->
-        <view wx:if="{{res_match==''}}">
-          <image class="empty" src="/img/empty.png"></image>
-        </view>
+      <template is="allNumber" data="{{count:count3,text:'为您匹配到的资源'}}"></template>
+      <template is="resourceProject" data="{{contentList:res_match}}"></template>
+      <!--没有更多-->
+      <view class="error" wx:if="{{error=='1'}}">{{error_text}}</view>
+      <!--空状态-->
+      <view wx:if="{{res_match==''}}">
+        <image class="empty" src="/img/empty.png"></image>
+      </view>
       <!-- </view> -->
     </scroll-view>
   </swiper-item>
