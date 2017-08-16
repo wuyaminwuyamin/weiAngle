@@ -244,7 +244,7 @@ App({
     },
 
     //分享页面函数(user_id为数据所有人ID,share_Id为分享人的ID)
-    sharePage: function (user_id, share_id,path,title) {
+    sharePage: function (path,title) {
         // let path = "/pages/my/sharePage/sharePage?user_id=" + user_id + "&&share_id=" + share_id;
         let url = this.globalData.url;
         let url_common = this.globalData.url_common;
@@ -518,7 +518,8 @@ App({
     },
     //去认证
     accreditation:function(status){
-       var user_id = this.globalData.user_id;
+       var user_id = wx.getStorageSync('user_id');
+       console.log(user_id)
        let url_common = this.globalData.url_common;
        wx.request({
          url: this.globalData.url_common + '/api/user/checkUserInfo',
@@ -597,7 +598,7 @@ App({
      //项目申请
     applyProjectTo:function(that,project_id,content,list){
       console.log(list)
-       var user_id = this.globalData.user_id;
+       var user_id = wx.getStorageSync('user_id');
        let url_common = this.globalData.url_common;
        wx.request({
          url: this.globalData.url_common + '/api/user/checkUserInfo',
