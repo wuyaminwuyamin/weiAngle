@@ -57,7 +57,7 @@ Page({
             if (user_id != 0) {
                 //获取我的项目匹配到的投资人
                 wx.request({
-                    url: url + '/api/project/getMyProject',
+                  url: url + '/api/project/getMyProject',
                     data: {
                         user_id: user_id
                     },
