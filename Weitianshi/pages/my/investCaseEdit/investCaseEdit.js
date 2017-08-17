@@ -33,7 +33,7 @@ Page({
         var that = this;
         var industry = wx.getStorageSync("industry");
         wx.request({
-            url: app.globalData.url_common + '/api/category/getWxProjectCategory',
+          url: app.globalData.url_common + '/api/category/getProjectCategory',
             method: 'POST',
             success: function (res) {
                 var stage = res.data.data.stage;

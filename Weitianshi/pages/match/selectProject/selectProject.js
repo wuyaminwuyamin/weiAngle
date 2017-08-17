@@ -15,9 +15,9 @@ Page({
         app.contactsCacheClear();
         //请求精选项目数据
         wx.request({
-            url: url + '/api/project/getSelectedProjects',
+          url: url + '/api/project/getSelectedProjectList',
             data: {
-                user_id: user_id
+              user_id: user_id
             },
             method: 'POST',
             success: function (res) {
@@ -35,9 +35,9 @@ Page({
         var user_id=this.data.user_id;
         var currentPage = this.data.currentPage;
         var request = {
-            url: url + '/api/project/getSelectedProjects',
+          url: url + '/api/project/getSelectedProjectList',
             data: {
-                user_id: user_id,
+              user_id: user_id,
                 page: this.data.currentPage,
             }
         }

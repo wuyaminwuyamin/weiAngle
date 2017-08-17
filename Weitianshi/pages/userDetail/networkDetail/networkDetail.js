@@ -44,7 +44,7 @@ Page({
                 var resource = res.data.resource_info;
                 var project_info = res.data.project_info;
                 var invest_case = res.data.invest_case;
-                var tel = user.user_mobile;
+                var tel = res.data.user_info.user_mobile;
                 var button_type = res.data.button_type;
                 if (tel.indexOf("*") != -1) {
                     that.setData({

@@ -29,7 +29,7 @@ Page({
     });
     //融资需求获取数据
     wx.request({
-      url: url + '/api/project/projectMarket',
+      url: url + '/api/project/getMarketProjectList',
       data: {
       
       },
@@ -187,7 +187,7 @@ Page({
     console.log(financingPage);
     if (financingNeedcheck) {
       wx.request({
-        url: url + '/api/project/projectMarket',
+        url: url + '/api/project/getMarketProjectList',
         data: {
           page: financingPage
         },
